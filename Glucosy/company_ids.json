@@ -3451,7 +3451,7 @@
     { "code": 3449, "name": "VIVIWARE JAPAN, Inc." },
     { "code": 3450, "name": "Xiamen Intretech Inc." },
     { "code": 3451, "name": "MindMaze SA" },
-
+    
     {
         "code": 65535,
         "name": "< Unknown >"

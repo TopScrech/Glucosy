@@ -181,8 +181,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DiaBLE.xcconfig; sourceTree = "<group>"; };
-		49DE8D3429AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DiaBLEOverride.xcconfig; sourceTree = "<group>"; };
+		49DE8D3329AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DiaBLEOverride.xcconfig; sourceTree = "<group>"; };
 		C50B9AD22AA7396500FF1EA3 /* ConsoleTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleTools.swift; sourceTree = "<group>"; };
 		C535AEB72AB343AE00AB61AD /* Realm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		C53F77C529894478004F275A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -349,8 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				F35AFC532BA490C70065145A /* App State.swift */,
-				49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */,
-				49DE8D3429AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */,
+				49DE8D3329AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */,
 				C5E015DF2989B0EA00F6EDF9 /* README.md */,
 				C5E015E22989B0F600F6EDF9 /* TODO.md */,
 				C5E015E52989B10500F6EDF9 /* LICENSE.md */,
@@ -792,7 +790,7 @@
 /* Begin XCBuildConfiguration section */
 		C581D59A2B0E699D002A4633 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -829,7 +827,7 @@
 		};
 		C581D59B2B0E699D002A4633 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
@@ -866,7 +864,7 @@
 		};
 		C59960EA2981E383005999C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -906,7 +904,7 @@
 		};
 		C59960EB2981E383005999C2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1068,7 +1066,7 @@
 		};
 		C5AAA6252981CF7200CA3EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1120,7 +1118,7 @@
 		};
 		C5AAA6262981CF7200CA3EC1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLE.xcconfig */;
+			baseConfigurationReference = 49DE8D3329AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

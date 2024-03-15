@@ -6,7 +6,6 @@ FIXME
 * iOS 16:
   - *"This method should not be called on the main thread as it may lead to UI unresponsiveness"* warning for `App.swift`
 
-
 TODO
 ----
 

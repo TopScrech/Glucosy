@@ -376,7 +376,8 @@ struct ConsoleSidebar: View {
                     Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                          "\(readingCountdown) s" : "")
                     .fixedSize()
-                    .font(.caption.monospacedDigit())
+                    .caption()
+                    .monospacedDigit()
                     .foregroundColor(.orange)
                     .onReceive(timer) { _ in
                         readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
@@ -384,13 +385,16 @@ struct ConsoleSidebar: View {
                 } else {
                     Text("")
                         .fixedSize()
-                        .font(.caption.monospacedDigit())
+                        .caption()
+                        .monospacedDigit()
                         .hidden()
                 }
                 
                 Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
                     .fixedSize()
-                    .foregroundColor(.cyan).font(Font.caption.monospacedDigit())
+                    .foregroundColor(.cyan)
+                    .caption()
+                    .monospacedDigit()
                     .onReceive(timer) { _ in
                         onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
                     }

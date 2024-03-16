@@ -23,7 +23,8 @@ extension AppState {
         app.lastReadingDate = transmitter.lastConnectionDate
         
         let sensor = Sensor(transmitter: transmitter, main: main)
-        sensor.state = .active; sensor.serial = "3MH001DG75W"
+        sensor.state = .active
+        sensor.serial = "3MH001DG75W"
         sensor.age = 18705
         sensor.uid = "2fe7b10000a407e0".bytes
         sensor.patchInfo = "9d083001712b".bytes

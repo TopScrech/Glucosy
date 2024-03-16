@@ -259,6 +259,7 @@ struct SettingsView: View {
                             }
                             .pickerStyle(.wheel)
                         }
+                        
                         Section {
                             HStack {
                                 Image(systemName: "bell.fill")
@@ -292,7 +293,7 @@ struct SettingsView: View {
             
             Spacer()
         }
-        .font(.body.monospacedDigit())
+        .monospacedDigit()
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Settings")
     }

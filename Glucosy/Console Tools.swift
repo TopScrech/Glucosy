@@ -243,7 +243,8 @@ struct ShellView: View {
         .background(.thinMaterial, ignoresSafeAreaEdges: [])
         .sheet(isPresented: $showingRealmKeyPrompt) {
             VStack(spacing: 20) {
-                Text("The Realm might be encrypted").fontWeight(.bold)
+                Text("The Realm might be encrypted")
+                    .bold()
                 
                 Text("Either this is not a Realm file or it's encrypted.")
                 
@@ -338,7 +339,7 @@ struct CrcCalculator: View {
         VStack {
             TextField("Hexadecimal string", text: $hexString, axis: .vertical)
                 .textFieldStyle(.roundedBorder)
-                .font(.system(.footnote, design: .monospaced))
+                .footnote(design: .monospaced)
                 .truncationMode(.head)
                 .focused($focused)
                 .toolbar {

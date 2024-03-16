@@ -74,7 +74,10 @@ struct OnlineView: View {
                             }
                             
                             // keep only the latest 22 minutes considering the 17-minute latency of the historic values update
-                            trend = trend.filter { lastMeasurement.id - $0.id < 22 }
+                            trend = trend.filter { 
+                                lastMeasurement.id - $0.id < 22
+                            }
+                            
                             history.factoryTrend = trend
                             // TODO: merge and update sensor history / trend
                             app.main.didParseSensor(app.sensor)
@@ -98,14 +101,17 @@ struct OnlineView: View {
         // Workaround to avoid top textfields scrolling offscreen in iOS 14
         GeometryReader { _ in
             VStack(spacing: 0) {
-                
                 HStack(alignment: .top) {
                     Button {
                         settings.selectedService = settings.selectedService == .nightscout ? .libreLinkUp : .nightscout
                     } label: {
-                        Image(settings.selectedService.rawValue).resizable().frame(width: 32, height: 32).shadow(color: .cyan, radius: 4.0 )
+                        Image(settings.selectedService.rawValue)
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .shadow(color: .cyan, radius: 4.0 )
                     }
-                    .padding(.top, 8).padding(.trailing, 4)
+                    .padding(.top, 8)
+                    .padding(.trailing, 4)
                     
                     VStack(spacing: 0) {
                         @Bindable var settings = settings
@@ -129,7 +135,8 @@ struct OnlineView: View {
                             
                         } else if settings.selectedService == .libreLinkUp {
                             HStack(alignment: .firstTextBaseline, spacing: 0) {
-                                Text("email: ").foregroundColor(Color(.lightGray))
+                                Text("email: ")
+                                    .foregroundColor(Color(.lightGray))
                                 
                                 TextField("email", text: $settings.libreLinkUpEmail)
                                     .keyboardType(.emailAddress)
@@ -204,7 +211,8 @@ struct OnlineView: View {
                         Text(onlineCountdown > -1 ? "\(onlineCountdown) s" : "...")
                             .fixedSize()
                             .foregroundColor(.cyan)
-                            .font(.caption.monospacedDigit())
+                            .caption()
+                            .monospacedDigit()
                             .onReceive(timer) { _ in
                                 onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
                             }
@@ -228,7 +236,8 @@ struct OnlineView: View {
                              "\(readingCountdown) s" : "...")
                         .fixedSize()
                         .foregroundColor(.orange)
-                        .font(.caption.monospacedDigit())
+                        .caption()
+                        .monospacedDigit()
                         .onReceive(timer) { _ in
                             readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                         }
@@ -292,7 +301,8 @@ struct OnlineView: View {
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                     }
                     .listStyle(.plain)
-                    .font(.system(.caption, design: .monospaced)).foregroundColor(.cyan)
+                    .caption(design: .monospaced)
+                    .foregroundColor(.cyan)
 #if targetEnvironment(macCatalyst)
                     .padding(.leading, 15)
 #endif
@@ -307,7 +317,7 @@ struct OnlineView: View {
                     VStack {
                         ScrollView(showsIndicators: true) {
                             Text(libreLinkUpResponse)
-                                .font(.system(.footnote, design: .monospaced))
+                                .footnote(design: .monospaced)
                                 .foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
                                 .textSelection(.enabled)
                         }
@@ -316,8 +326,9 @@ struct OnlineView: View {
 #endif
                         if libreLinkUpHistory.count > 0 {
                             Chart(libreLinkUpHistory) {
-                                PointMark(x: .value("Time", $0.glucose.date),
-                                          y: .value("Glucose", $0.glucose.value)
+                                PointMark(
+                                    x: .value("Time", $0.glucose.date),
+                                    y: .value("Glucose", $0.glucose.value)
                                 )
                                 .foregroundStyle($0.color.color)
                                 .symbolSize(12)
@@ -371,7 +382,8 @@ struct OnlineView: View {
                             }
                         }
                         .listStyle(.plain)
-                        .caption(design: .monospaced)
+                        .caption()
+                        .monospaced()
                     }
                     .task {
                         await reloadLibreLinkUp()

@@ -86,7 +86,9 @@ struct Monitor: View {
                             Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                                  "\(readingCountdown) s" : "")
                             .fixedSize()
-                            .font(Font.callout.monospacedDigit()).foregroundColor(.orange)
+                            .callout()
+                            .monospacedDigit()
+                            .foregroundColor(.orange)
                             .onReceive(timer) { _ in
                                 readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                             }
@@ -113,12 +115,15 @@ struct Monitor: View {
                             VStack {
                                 if app.device.battery > -1 {
                                     let battery = app.device.battery
+                                    
                                     HStack(spacing: 4) {
                                         let ext = battery > 95 ? 100 :
                                         battery > 65 ? 75 :
                                         battery > 35 ? 50 :
                                         battery > 10 ? 25 : 0
+                                        
                                         Image(systemName: "battery.\(ext)")
+                                        
                                         Text("\(app.device.battery)%")
                                     }
                                     .foregroundColor(app.device.battery > 10 ? .green : .red)

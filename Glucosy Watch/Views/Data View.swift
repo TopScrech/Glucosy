@@ -29,7 +29,8 @@ struct DataView: View {
                         Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                              "\(readingCountdown) s" : " ")
                         .foregroundColor(.orange)
-                        // .font(Font.caption.monospacedDigit())
+                        // .caption()
+                        // .monospacedDigit()
                         .onReceive(timer) { _ in
                             // workaround: watchOS fails converting the interval to an Int32
                             if app.lastConnectionDate == Date.distantPast {
@@ -190,7 +191,8 @@ struct DataView: View {
         .padding(.top, -4)
         .edgesIgnoringSafeArea([.bottom])
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
+        // .footnote(design: .monospaced)
+        // .foregroundColor(Color(.lightGray))
         .footnote()
         .navigationTitle("Data")
         .accentColor(.blue)

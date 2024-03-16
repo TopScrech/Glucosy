@@ -352,7 +352,7 @@ struct Details: View {
                         Button {
                             app.main.rescan()
                         } label: {
-                            Label { 
+                            Label {
                                 Text("RePair")
                             } icon: {
                                 Image(.bluetooth)
@@ -421,7 +421,9 @@ struct Details: View {
                         Text(!app.deviceState.isEmpty && app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
                              "\(readingCountdown) s" : "...")
                         .fixedSize()
-                        .foregroundColor(.orange).font(.footnote.monospacedDigit())
+                        .foregroundColor(.orange)
+                        .footnote()
+                        .monospacedDigit()
                         .onReceive(timer) { _ in
                             // workaround: watchOS fails converting the interval to an Int32
                             if app.lastConnectionDate == Date.distantPast {

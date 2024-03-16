@@ -37,7 +37,8 @@ struct Monitor: View {
                                 Text("---")
                             }
                         }
-                        .font(.footnote).frame(maxWidth: .infinity, alignment: .trailing )
+                        .footnote()
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                         .foregroundColor(Color(.lightGray))
                         .onChange(of: app.lastReadingDate) {
                             minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
@@ -99,7 +100,8 @@ struct Monitor: View {
                             Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                                  "\(readingCountdown) s" : "")
                             .fixedSize()
-                            .font(.footnote.monospacedDigit())
+                            .footnote()
+                            .monospacedDigit()
                             .foregroundColor(.orange)
                             .onReceive(timer) { _ in
                                 // workaround: watchOS fails converting the interval to an Int32

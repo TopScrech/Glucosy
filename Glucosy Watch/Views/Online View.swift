@@ -141,7 +141,8 @@ struct OnlineView: View {
                         Text(onlineCountdown > -1 ? "\(onlineCountdown) s" : "...")
                             .fixedSize()
                             .foregroundColor(.cyan)
-                            .font(.footnote.monospacedDigit())
+                            .footnote()
+                            .monospacedDigit()
                             .onReceive(timer) { _ in
                                 // workaround: watchOS fails converting the interval to an Int32
                                 if settings.lastOnlineDate == Date.distantPast {
@@ -168,7 +169,8 @@ struct OnlineView: View {
                          "\(readingCountdown) s" : "...")
                     .fixedSize()
                     .foregroundColor(.orange)
-                    .font(.footnote.monospacedDigit())
+                    .footnote()
+                    .monospacedDigit()
                     .onReceive(timer) { _ in
                         // workaround: watchOS fails converting the interval to an Int32
                         if app.lastConnectionDate == Date.distantPast {
@@ -267,12 +269,13 @@ struct OnlineView: View {
                         .frame(minHeight: 64)
                     }
                 }
-                // .font(.system(.footnote, design: .monospaced))
+                // .footnote(design: .monospaced)
                 .foregroundColor(.cyan)
-                .onAppear { if let nightscout = app.main?.nightscout {
-                    nightscout.read()
-                    app.main.log("nightscoutValues count \(history.nightscoutValues.count)")
-                }
+                .onAppear {
+                    if let nightscout = app.main?.nightscout {
+                        nightscout.read()
+                        app.main.log("nightscoutValues count \(history.nightscoutValues.count)")
+                    }
                 }
             }
             
@@ -281,8 +284,9 @@ struct OnlineView: View {
                     VStack(spacing: 0) {
                         if libreLinkUpHistory.count > 0 {
                             Chart(libreLinkUpHistory) {
-                                PointMark(x: .value("Time", $0.glucose.date),
-                                          y: .value("Glucose", $0.glucose.value)
+                                PointMark(
+                                    x: .value("Time", $0.glucose.date),
+                                    y: .value("Glucose", $0.glucose.value)
                                 )
                                 .foregroundStyle($0.color.color)
                                 .symbolSize(6)
@@ -290,7 +294,9 @@ struct OnlineView: View {
                             .chartXAxis {
                                 AxisMarks(values: .stride(by: .hour, count: 3)) { _ in
                                     AxisGridLine()
+                                    
                                     AxisTick()
+                                    
                                     AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .omitted)).minute(), anchor: .top)
                                 }
                             }
@@ -333,13 +339,15 @@ struct OnlineView: View {
                                 }
                             }
                         }
-                        // .font(.system(.footnote, design: .monospaced))
+                        // .footnote(design: .monospaced)
                         .frame(minHeight: 64)
                         
                         Text(libreLinkUpResponse)
                         
-                        // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
-                            .font(.footnote).foregroundColor(Color(.lightGray))
+                        // .footnote(design: .monospaced)
+                        // .foregroundColor(Color(.lightGray))
+                            .footnote()
+                            .foregroundColor(Color(.lightGray))
                     }
                     
                 }

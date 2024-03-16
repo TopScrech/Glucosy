@@ -55,7 +55,7 @@ struct Details: View {
                 }
                 
                 if app.device != nil {
-                    Section(header: Text("Device").font(.headline)) {
+                    Section("Device") {
                         Group {
                             Row("Name", app.device.peripheral?.name ?? app.device.name)
                             
@@ -121,7 +121,7 @@ struct Details: View {
                 }
                 
                 if app.sensor != nil {
-                    Section(header: Text("Sensor").font(.headline)) {
+                    Section("Sensor") {
                         Row("State", app.sensor.state.description,
                             foregroundColor: app.sensor.state == .active ? .green : .red)
                         
@@ -409,7 +409,7 @@ struct Details: View {
                 // Embed a specific device setup panel
                 // if app.device?.type == Custom.type {
                 //     CustomDetailsView(device: app.device as! Custom)
-                //     .font(.callout)
+                //     .callout()
                 // }
                 
                 Section("Known Devices") {
@@ -437,6 +437,7 @@ struct Details: View {
                                     
                                     Image(systemName: "nosign")
                                         .foregroundColor(.red)
+                                    
                                 } else if device.isIgnored {
                                     Spacer()
                                     
@@ -470,7 +471,9 @@ struct Details: View {
                     Text(!app.deviceState.isEmpty && app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
                          "\(readingCountdown) s" : "...")
                     .fixedSize()
-                    .foregroundColor(.orange).font(Font.caption.monospacedDigit())
+                    .foregroundColor(.orange)
+                    .caption()
+                    .monospacedDigit()
                     .onReceive(timer) { _ in
                         readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                     }
@@ -482,7 +485,9 @@ struct Details: View {
                         app.main.centralManager.cancelPeripheralConnection(app.device.peripheral!)
                     }
                 } label: {
-                    Image(systemName: "escape").resizable().frame(width: 28, height: 28)
+                    Image(systemName: "escape")
+                        .resizable()
+                        .frame(width: 28, height: 28)
                         .foregroundColor(.blue)
                 }
                 

@@ -162,7 +162,7 @@ struct SettingsView: View {
                             .tag(unit == .mmoll)
                     }
                 }
-                .font(.footnote)
+                .footnote()
                 .labelsHidden()
                 .frame(width: 68, height: 20)
                 
@@ -217,7 +217,7 @@ struct SettingsView: View {
         }
         .padding(.top, -4)
         .edgesIgnoringSafeArea([.bottom])
-        .font(.body.monospacedDigit())
+        .monospacedDigit()
         .buttonStyle(.plain)
         .navigationTitle("Settings")
         .accentColor(.blue)

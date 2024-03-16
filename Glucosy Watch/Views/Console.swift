@@ -44,7 +44,9 @@ struct Console: View {
                             Button {
                                 filterText = label
                             } label: {
-                                Text(label).font(.caption).foregroundColor(.blue)
+                                Text(label)
+                                    .caption()
+                                    .foregroundColor(.blue)
                             }
                         }
                     }
@@ -66,7 +68,8 @@ struct Console: View {
                             }
                         }
                     }
-                    // .font(.system(.footnote, design: .monospaced)).foregroundColor(Color(.lightGray))
+                    // .footnote(design: .monospaced)
+                    // .foregroundColor(Color(.lightGray))
                     .footnote()
                     .foregroundColor(Color(.lightGray))
                     .onChange(of: log.entries.count) {
@@ -172,7 +175,9 @@ struct Console: View {
                         Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                              "s" : " ")
                     }
-                    .font(.footnote.monospacedDigit()).foregroundColor(.orange)
+                    .footnote()
+                    .monospacedDigit()
+                    .foregroundColor(.orange)
                     .frame(width: 24, height: 24)
                     .allowsTightening(true)
                     .fixedSize()
@@ -190,7 +195,9 @@ struct Console: View {
                 
                 Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
                     .fixedSize()
-                    .foregroundColor(.cyan).font(Font.footnote.monospacedDigit())
+                    .foregroundColor(.cyan)
+                    .footnote()
+                    .monospacedDigit()
                     .onReceive(timer) { _ in
                         // workaround: watchOS fails converting the interval to an Int32
                         if settings.lastOnlineDate == Date.distantPast {

@@ -4,5 +4,6 @@ enum Tab: String {
          console,
          settings,
          data,
-         plan
+         plan,
+         healthKit
 }

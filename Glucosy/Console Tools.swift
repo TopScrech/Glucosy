@@ -33,7 +33,7 @@ struct ShellView: View {
                             showingFileImporter = true
                         } label: {
                             Image(systemName: "doc.circle")
-                                .font(.system(size: 32))
+                                .fontSize(32)
                         }
                         .fileImporter(
                             isPresented: $showingFileImporter,
@@ -279,7 +279,9 @@ struct ShellView: View {
         }
         .toolbar {
             Button {
-                withAnimation { showingStack.toggle() }
+                withAnimation {
+                    showingStack.toggle()
+                }
             } label: {
                 VStack(spacing: 0) {
                     Image(systemName: showingStack ? "fossil.shell.fill" : "fossil.shell")
@@ -350,6 +352,7 @@ struct CrcCalculator: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text("CRC: \(crc == "0000" ? "---" : crc)")
+                    
                     Text("Computed: \(crc == "0000" ? "---" : computedCrc)")
                 }
                 .foregroundColor(crc != "0000" && crc == computedCrc ? .green : .primary)

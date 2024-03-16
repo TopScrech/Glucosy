@@ -1,13 +1,13 @@
 {
   "images" : [
     {
-      "filename" : "Icon.png",
+      "filename" : "1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
     },
     {
-      "filename" : "Icon-Watch.png",
+      "filename" : "1 1.png",
       "idiom" : "universal",
       "platform" : "watchos",
       "size" : "1024x1024"

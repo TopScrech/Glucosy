@@ -57,6 +57,14 @@ struct HomeView: View {
             .tabItem {
                 Label("Plan", systemImage: "map")
             }
+            
+            NavigationView {
+                AppleHealthView()
+            }
+            .tag(Tab.healthKit)
+            .tabItem {
+                Label("Apple Health", systemImage: "heart")
+            }
         }
         .toolbarRole(.navigationStack)
     }

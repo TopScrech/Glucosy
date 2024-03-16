@@ -12,6 +12,7 @@ protocol Logging {
 extension Logging {
     func log(_ msg: String)         { main?.log(msg) }
     func debugLog(_ msg: String)    { main?.debugLog(msg) }
+    
     var app: AppState               { main.app }
     var settings: Settings          { main.settings }
 }
@@ -358,6 +359,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                     content.title = title
                     content.subtitle = ""
                     content.sound = UNNotificationSound.default
+                    
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
                     let request = UNNotificationRequest(identifier: "Glucosy", content: content, trigger: trigger)
                     UNUserNotificationCenter.current().add(request)
@@ -389,10 +391,14 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             }
             
             entries += history.factoryTrend.dropFirst() + [Glucose(currentGlucose, date: sensor.lastReadingDate)]
-            entries = entries.filter { $0.value > 0 && $0.id > -1 }
+            entries = entries.filter {
+                $0.value > 0 && $0.id > -1
+            }
             
             // TODO
-            let newEntries = (entries.filter { $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())! })
+            let newEntries = (entries.filter {
+                $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())!
+            })
             
             if newEntries.count > 0 {
                 healthKit?.writeGlucose(newEntries)
@@ -403,8 +409,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                 let newEntries = values.count > 0 ? entries.filter { $0.date > values[0].date } : entries
                 
                 if newEntries.count > 0 {
-                    nightscout?.post(entries: newEntries) { [self]
-                        data, response, error in
+                    nightscout?.post(entries: newEntries) { [self] data, response, error in
                         nightscout?.read()
                     }
                 }

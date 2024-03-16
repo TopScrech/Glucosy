@@ -13,7 +13,7 @@ class AlarmConfigEntity: Object {
     @objc dynamic var _overrideDND = false
     
     override static func primaryKey() -> String? {
-        return "_alarmType"
+        "_alarmType"
     }
 }
 

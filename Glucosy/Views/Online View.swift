@@ -74,7 +74,7 @@ struct OnlineView: View {
                             }
                             
                             // keep only the latest 22 minutes considering the 17-minute latency of the historic values update
-                            trend = trend.filter { 
+                            trend = trend.filter {
                                 lastMeasurement.id - $0.id < 22
                             }
                             
@@ -258,10 +258,7 @@ struct OnlineView: View {
                             showingNFCAlert = true
                         }
                     } label: {
-                        Image(.NFC)
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 39, height: 27)
+                        Image(systemName: "sensor.tag.radiowaves.forward.fill")
                     }
                     .alert("NFC not supported", isPresented: $showingNFCAlert) {
                         

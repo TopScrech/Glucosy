@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct Monitor: View {
     @Environment(AppState.self) private var app: AppState
@@ -190,8 +190,8 @@ struct Monitor: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Monitor")
             .onAppear {
-                timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+                timer =         Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+                minuteTimer =   Timer.publish(every: 60, on: .main, in: .common).autoconnect()
                 
                 if app.lastReadingDate != Date.distantPast {
                     minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
@@ -207,26 +207,16 @@ struct Monitor: View {
                         settings.caffeinated.toggle()
                         UIApplication.shared.isIdleTimerDisabled = settings.caffeinated
                     } label: {
-                        Image(systemName: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer" )
+                        Image(systemName: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer")
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
+                    SFButton("sensor.tag.radiowaves.forward.fill") {
                         if app.main.nfc.isAvailable {
                             app.main.nfc.startSession()
                         } else {
                             showingNFCAlert = true
-                        }
-                    } label: {
-                        VStack(spacing: 0) {
-                            Image(.NFC)
-                                .renderingMode(.template)
-                                .resizable()
-                                .frame(width: 26, height: 18)
-                            
-                            Text("Scan")
-                                .footnote()
                         }
                     }
                 }

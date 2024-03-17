@@ -2,14 +2,15 @@ import HealthKit
 
 extension HealthKit {
     func readGlucose(limit: Int = 100, handler: (([Glucose]) -> Void)? = nil) {
-        guard let glucoseType = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
+        guard let glucoseType else {
             log("HealthKit error: unable to create glucose quantity type")
             return
         }
         
         let sortDescriptor = NSSortDescriptor(
             key: HKSampleSortIdentifierEndDate,
-            ascending: false)
+            ascending: false
+        )
         
         let query = HKSampleQuery(
             sampleType: glucoseType,

@@ -2,7 +2,7 @@ import HealthKit
 
 extension HealthKit {
     func readInsulin() {
-        guard let insulinType = HKObjectType.quantityType(forIdentifier: .insulinDelivery) else {
+        guard let insulinType else {
             print("Insulin Delivery Type is unavailable in HealthKit")
             return
         }

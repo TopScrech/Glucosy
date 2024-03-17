@@ -2,7 +2,7 @@ import HealthKit
 
 extension HealthKit {
     func readCarbs() {
-        guard let carbs = HKObjectType.quantityType(forIdentifier: .dietaryCarbohydrates) else {
+        guard let carbsType else {
             print("Carbohydrates Type is unavailable in HealthKit")
             return
         }
@@ -27,7 +27,7 @@ extension HealthKit {
         )
         
         let insulinQuery = HKSampleQuery(
-            sampleType: carbs,
+            sampleType: carbsType,
             predicate: predicate,
             limit: HKObjectQueryNoLimit,
             sortDescriptors: [sortDescriptor]

@@ -2,13 +2,13 @@ import HealthKit
 
 extension HealthKit {
     func writeInsulinDelivery(_ data: [InsulinDelivery]) {
-        guard let insulinDeliveryType = HKQuantityType.quantityType(forIdentifier: .insulinDelivery) else {
+        guard let insulinType else {
             return
         }
         
         let samples = data.map {
             HKQuantitySample(
-                type: insulinDeliveryType,
+                type: insulinType,
                 quantity: .init(
                     unit: .internationalUnit(),
                     doubleValue: Double($0.value)

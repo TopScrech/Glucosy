@@ -11,9 +11,9 @@ final class HealthKit: Logging {
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L is unavailible
     var lastDate: Date?
     
-    private let glucoseType = HKQuantityType.quantityType(forIdentifier: .bloodGlucose)
-    private let insulinType = HKQuantityType.quantityType(forIdentifier: .insulinDelivery)
-    private let carbsType   = HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates)
+    let glucoseType: HKQuantityType? = .bloodGlucose()
+    let insulinType: HKQuantityType? = .insulinDelivery()
+    let carbsType:   HKQuantityType? = .dietaryCarbohydrates()
     
     init() {
         if isAvailable {

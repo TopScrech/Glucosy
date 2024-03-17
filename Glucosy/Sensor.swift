@@ -217,13 +217,17 @@ enum SensorState: UInt8, CustomStringConvertible {
             return
         }
         
-        if fram.count < 344 && encryptedFram.count > 0 { return }
+        if fram.count < 344 && encryptedFram.count > 0 {
+            return
+        }
         
         if let sensorState = SensorState(rawValue: fram[4]) {
             state = sensorState
         }
         
-        guard fram.count >= 320 else { return }
+        guard fram.count >= 320 else {
+            return
+        }
         
         age = Int(fram[316]) + Int(fram[317]) << 8    // body[-4]
         let startDate = lastReadingDate - Double(age) * 60
@@ -236,7 +240,11 @@ enum SensorState: UInt8, CustomStringConvertible {
         
         for i in 0 ... 15 {
             var j = trendIndex - 1 - i
-            if j < 0 { j += 16 }
+            
+            if j < 0 {
+                j += 16
+            }
+            
             let offset = 28 + j * 6         // body[4 ..< 100]
             let rawValue = readBits(fram, offset, 0, 0xe)
             let quality = UInt16(readBits(fram, offset, 0xe, 0xb)) & 0x1FF
@@ -245,9 +253,14 @@ enum SensorState: UInt8, CustomStringConvertible {
             let rawTemperature = readBits(fram, offset, 0x1a, 0xc) << 2
             var temperatureAdjustment = readBits(fram, offset, 0x26, 0x9) << 2
             let negativeAdjustment = readBits(fram, offset, 0x2f, 0x1)
-            if negativeAdjustment != 0 { temperatureAdjustment = -temperatureAdjustment }
+            
+            if negativeAdjustment != 0 {
+                temperatureAdjustment = -temperatureAdjustment
+            }
+            
             let id = age - i
             let date = startDate + Double(age - i) * 60
+            
             trend.append(Glucose(rawValue: rawValue, rawTemperature: rawTemperature, temperatureAdjustment: temperatureAdjustment, id: id, date: date, hasError: hasError, dataQuality: Glucose.DataQuality(rawValue: Int(quality)), dataQualityFlags: qualityFlags))
         }
         
@@ -266,7 +279,11 @@ enum SensorState: UInt8, CustomStringConvertible {
         
         for i in 0 ... 31 {
             var j = historyIndex - 1 - i
-            if j < 0 { j += 32 }
+            
+            if j < 0 {
+                j += 32
+            }
+            
             let offset = 124 + j * 6    // body[100 ..< 292]
             let rawValue = readBits(fram, offset, 0, 0xe)
             let quality = UInt16(readBits(fram, offset, 0xe, 0xb)) & 0x1FF
@@ -275,14 +292,20 @@ enum SensorState: UInt8, CustomStringConvertible {
             let rawTemperature = readBits(fram, offset, 0x1a, 0xc) << 2
             var temperatureAdjustment = readBits(fram, offset, 0x26, 0x9) << 2
             let negativeAdjustment = readBits(fram, offset, 0x2f, 0x1)
-            if negativeAdjustment != 0 { temperatureAdjustment = -temperatureAdjustment }
+            
+            if negativeAdjustment != 0 {
+                temperatureAdjustment = -temperatureAdjustment
+            }
+            
             let id = age - delay - i * 15
             let date = id > -1 ? readingDate - Double(i) * 15 * 60 : startDate
             
             history.append(Glucose(rawValue: rawValue, rawTemperature: rawTemperature, temperatureAdjustment: temperatureAdjustment, id: id, date: date, hasError: hasError, dataQuality: Glucose.DataQuality(rawValue: Int(quality)), dataQualityFlags: qualityFlags))
         }
         
-        guard fram.count >= 344 else { return }
+        guard fram.count >= 344 else { 
+            return
+        }
         
         // fram[322...323] (footer[2..3]) corresponds to patchInfo[2...3]
         region = SensorRegion(rawValue: Int(fram[323])) ?? .unknown
@@ -328,6 +351,7 @@ enum SensorState: UInt8, CustomStringConvertible {
             let errorCode = fram[6]
             let failureAge = Int(fram[7]) + Int(fram[8]) << 8
             let failureInterval = failureAge == 0 ? "an unknown time" : "\(failureAge) minutes (\(failureAge.formattedInterval))"
+            
             log("Sensor failure error 0x\(errorCode.hex) (\(decodeFailure(error: errorCode))) at \(failureInterval) after activation.")
         }
         

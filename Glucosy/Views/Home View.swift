@@ -59,7 +59,7 @@ struct HomeView: View {
             }
             
             NavigationView {
-                ConsoleTab()
+                Console()
             }
             .tag(Tab.console)
             .tabItem {

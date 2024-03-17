@@ -64,7 +64,8 @@ struct DataView: View {
                                 
                                 List {
                                     ForEach(history.factoryTrend) { glucose in
-                                        (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold()).frame(maxWidth: .infinity, alignment: .leading)
+                                        (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
+                                            .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -81,7 +82,8 @@ struct DataView: View {
                                 
                                 List {
                                     ForEach(history.rawTrend) { glucose in
-                                        (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold()).frame(maxWidth: .infinity, alignment: .leading)
+                                        (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
+                                            .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                 }
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -147,7 +149,8 @@ struct DataView: View {
                             
                             List {
                                 ForEach(history.values) { glucose in
-                                    (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold()).frame(maxWidth: .infinity, alignment: .leading)
+                                    (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -162,7 +165,8 @@ struct DataView: View {
                             
                             List {
                                 ForEach(history.factoryValues) { glucose in
-                                    (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold()).frame(maxWidth: .infinity, alignment: .leading)
+                                    (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -178,7 +182,8 @@ struct DataView: View {
                         
                         List {
                             ForEach(history.rawValues) { glucose in
-                                (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold()).frame(maxWidth: .infinity, alignment: .leading)
+                                (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .topLeading)

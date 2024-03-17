@@ -3,7 +3,7 @@ import SwiftUI
 struct Graph: View {
     @Environment(History.self) private var history: History
     @Environment(Settings.self) private var settings: Settings
-
+    
     func yMax() -> Double {
         let maxValues = [
             history.rawValues.map(\.value).max() ?? 0,
@@ -14,7 +14,7 @@ struct Graph: View {
         
         return Double(maxValues.max()!)
     }
-
+    
     var body: some View {
         ZStack {
             // Glucose range rect in the background
@@ -28,7 +28,7 @@ struct Graph: View {
                 .fill(.green)
                 .opacity(0.15)
             }
-
+            
             // Target glucose low and high labels at the right, timespan on the left
             GeometryReader { geometry in
                 ZStack {
@@ -56,9 +56,9 @@ struct Graph: View {
                     }
                 }
                 .footnote()
-                    .foregroundColor(.gray)
+                .foregroundColor(.gray)
             }
-
+            
             // Historic raw values
             GeometryReader { geometry in
                 let count = history.rawValues.count
@@ -93,7 +93,7 @@ struct Graph: View {
                     .opacity(0.6)
                 }
             }
-
+            
             // Historic factory values
             GeometryReader { geometry in
                 let count = history.factoryValues.count
@@ -128,7 +128,7 @@ struct Graph: View {
                     .opacity(0.75)
                 }
             }
-
+            
             // Frame and historic OOP values
             GeometryReader { geometry in
                 Path { path in
@@ -166,9 +166,10 @@ struct Graph: View {
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .monitor))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.monitor)
+    //        .preferredColorScheme(.dark)
+//        .environment(AppState.test(tab: .monitor))
+//        .environment(Log())
+//        .environment(History.test)
+//        .environment(Settings())
 }

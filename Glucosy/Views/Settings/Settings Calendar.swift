@@ -33,7 +33,9 @@ struct SettingsCalendar: View {
                 
                 Section {
                     Picker("Calendar", selection: $settings.calendarTitle) {
-                        ForEach([""] + (app.main.eventKit?.calendarTitles ?? [""]), id: \.self) { title in
+                        let titles = [""] + (app.main.eventKit?.calendarTitles ?? [""])
+                        
+                        ForEach(titles, id: \.self) { title in
                             Text(title != "" ? title : "None")
                         }
                     }

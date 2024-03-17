@@ -297,10 +297,10 @@ struct OnlineView: View {
                         
                         HStack {
                             List {
-                                ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
-                                    let glucose = libreLinkUpGlucose.glucose
-                                    (Text("\(!settings.libreLinkUpScrapingLogbook ? String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)]) + " " : "")\(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(libreLinkUpGlucose.trendArrow?.symbol ?? "").font(.title3))
-                                        .foregroundColor(libreLinkUpGlucose.color.color)
+                                ForEach(libreLinkUpHistory) { lluGlucose in
+                                    let glucose = lluGlucose.glucose
+                                    (Text("\(!settings.libreLinkUpScrapingLogbook ? String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)]) + " " : "")\(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow?.symbol ?? "").font(.title3))
+                                        .foregroundColor(lluGlucose.color.color)
                                         .padding(.vertical, 1)
                                         .fixedSize(horizontal: false, vertical: true)
                                 }
@@ -310,6 +310,7 @@ struct OnlineView: View {
                             .onReceive(minuteTimer) { _ in
                                 Task {
                                     app.main.debugLog("DEBUG: fired onlineView minuteTimer: timeInterval: \(Int(Date().timeIntervalSince(settings.lastOnlineDate)))")
+                                    
                                     if settings.onlineInterval > 0 && Int(Date().timeIntervalSince(settings.lastOnlineDate)) >= settings.onlineInterval * 60 - 5 {
                                         await reloadLibreLinkUp()
                                     }
@@ -319,10 +320,10 @@ struct OnlineView: View {
                             if settings.libreLinkUpScrapingLogbook {
                                 // TODO: alarms
                                 List {
-                                    ForEach(libreLinkUpLogbookHistory) { libreLinkUpGlucose in
-                                        let glucose = libreLinkUpGlucose.glucose
-                                        (Text("\(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(libreLinkUpGlucose.trendArrow!.symbol).font(.title3))
-                                            .foregroundColor(libreLinkUpGlucose.color.color)
+                                    ForEach(libreLinkUpLogbookHistory) { lluGlucose in
+                                        let glucose = lluGlucose.glucose
+                                        (Text("\(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow!.symbol).font(.title3))
+                                            .foregroundColor(lluGlucose.color.color)
                                             .padding(.vertical, 1)
                                             .fixedSize(horizontal: false, vertical: true)
                                     }
@@ -334,11 +335,10 @@ struct OnlineView: View {
                         .frame(minHeight: 64)
                         
                         Text(libreLinkUpResponse)
-                        
-                        // .footnote(design: .monospaced)
-                        // .foregroundColor(Color(.lightGray))
                             .footnote()
                             .foregroundColor(Color(.lightGray))
+                        // .footnote(design: .monospaced)
+                        // .foregroundColor(Color(.lightGray))
                     }
                 }
                 .task {

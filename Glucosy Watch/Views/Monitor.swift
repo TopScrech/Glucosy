@@ -73,7 +73,8 @@ struct Monitor: View {
                                 Text(app.trendArrow.symbol)
                                     .fontSize(28)
                                     .bold()
-                                    .frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 10)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.leading, 10)
                             }
                         }
                         .foregroundColor(app.currentGlucose > 0 && ((app.currentGlucose > Int(settings.alarmHigh) && (app.trendDelta > 0 || app.trendArrow == .rising || app.trendArrow == .risingQuickly)) || (app.currentGlucose < Int(settings.alarmLow) && (app.trendDelta < 0 || app.trendArrow == .falling || app.trendArrow == .fallingQuickly))) ?
@@ -116,8 +117,7 @@ struct Monitor: View {
                 }
                 
                 Graph()
-                    .frame(width: 31 * 4 + 60, height: 80)
-                    .padding(.vertical, 2)
+                    .frame(height: 80)
                 
                 HStack(spacing: 2) {
                     if app.sensor != nil && (app.sensor.state != .unknown || app.sensor.serial != "") {
@@ -218,8 +218,7 @@ struct Monitor: View {
         .padding(.top, -26)
         .buttonStyle(.plain)
         .multilineTextAlignment(.center)
-        // .navigationTitle("Monitor")
-        .tint(.blue)
+        //        .navigationTitle("Monitor")
         .onAppear {
             timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
             minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
@@ -246,21 +245,21 @@ struct Monitor: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     settings.caffeinated.toggle()
-                    // UIApplication.shared.isIdleTimerDisabled = settings.caffeinated
                 } label: {
                     Image(systemName: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer")
                         .foregroundColor(.blue)
                 }
-                .hidden() // trick to center time
             }
         }
     }
 }
 
 #Preview {
-    Monitor()
-        .environment(AppState.test(tab: .monitor))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+    NavigationView {
+        Monitor()
+    }
+    .environment(AppState.test(tab: .monitor))
+    .environment(Log())
+    .environment(History.test)
+    .environment(Settings())
 }

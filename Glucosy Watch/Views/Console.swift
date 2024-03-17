@@ -40,7 +40,9 @@ struct Console: View {
                         }
                         
                         // TODO: picker to filter labels
-                        ForEach(Array(log.labels), id: \.self) { label in
+                        let labels = Array(log.labels)
+                        
+                        ForEach(labels, id: \.self) { label in
                             Button {
                                 filterText = label
                             } label: {
@@ -61,8 +63,11 @@ struct Console: View {
                                 }
                             } else {
                                 let pattern = filterText.lowercased()
+                                let entries = log.entries.filter { 
+                                    $0.message.lowercased().contains(pattern)
+                                }
                                 
-                                ForEach(log.entries.filter { $0.message.lowercased().contains(pattern) }) { entry in
+                                ForEach(entries) { entry in
                                     Text(entry.message)
                                 }
                             }

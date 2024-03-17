@@ -34,17 +34,18 @@ struct Details: View {
     private func repair() {
         ((app.device as? Abbott)?.sensor as? Libre3)?.pair()
         
-        if app.main.nfc.isAvailable {
-            settings.logging = true
-            settings.selectedTab = .console
-            
-            if app.sensor as? Libre3 == nil {
-                showingRePairConfirmationDialog = true
-            } else {
-                app.main.nfc.taskRequest = .enableStreaming
-            }
-        } else {
+        guard app.main.nfc.isAvailable else {
             showingNFCAlert = true
+            return
+        }
+        
+        settings.logging = true
+        settings.selectedTab = .console
+        
+        if app.sensor as? Libre3 == nil {
+            showingRePairConfirmationDialog = true
+        } else {
+            app.main.nfc.taskRequest = .enableStreaming
         }
     }
     

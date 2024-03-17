@@ -1,14 +1,5 @@
 import SwiftUI
 
-struct ConsoleTab: View {
-    var body: some View {
-        // Workaround to avoid top textfields scrolling offscreen in iOS 14
-        GeometryReader { _ in
-            Console()
-        }
-    }
-}
-
 struct Console: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Log.self) private var log: Log
@@ -25,6 +16,24 @@ struct Console: View {
     
     @State private var showingFilterField = false
     @State private var filterText = ""
+    
+    private func repair() {
+        ((app.device as? Abbott)?.sensor as? Libre3)?.pair()
+        
+        guard app.main.nfc.isAvailable else {
+            showingNFCAlert = true
+            return
+        }
+        
+        settings.logging = true
+        settings.selectedTab = .console
+        
+        if app.sensor as? Libre3 == nil {
+            showingRePairConfirmationDialog = true
+        } else {
+            app.main.nfc.taskRequest = .enableStreaming
+        }
+    }
     
     var body: some View {
         HStack(spacing: 0) {
@@ -55,14 +64,14 @@ struct Console: View {
                         .cornerRadius(10)
                         
                         HStack {
-                            ForEach(Array(log.labels), id: \.self) { label in
-                                Button {
+                            let labels = Array(log.labels)
+                            
+                            ForEach(labels, id: \.self) { label in
+                                Button(label) {
                                     filterText = label
-                                } label: {
-                                    Text(label)
-                                        .footnote()
-                                        .foregroundColor(.blue)
                                 }
+                                .footnote()
+                                .foregroundColor(.blue)
                             }
                         }
                     }
@@ -79,8 +88,11 @@ struct Console: View {
                                 }
                             } else {
                                 let pattern = filterText.lowercased()
+                                let entries = log.entries.filter {
+                                    $0.message.lowercased().contains(pattern)
+                                }
                                 
-                                ForEach(log.entries.filter { $0.message.lowercased().contains(pattern) }) { entry in
+                                ForEach(entries) { entry in
                                     Text(entry.message)
                                         .textSelection(.enabled)
                                 }
@@ -150,20 +162,7 @@ struct Console: View {
                 
                 Menu {
                     Button {
-                        ((app.device as? Abbott)?.sensor as? Libre3)?.pair()
-                        
-                        if app.main.nfc.isAvailable {
-                            settings.logging = true
-                            settings.selectedTab = .console
-                            
-                            if app.sensor as? Libre3 == nil {
-                                showingRePairConfirmationDialog = true
-                            } else {
-                                app.main.nfc.taskRequest = .enableStreaming
-                            }
-                        } else {
-                            showingNFCAlert = true
-                        }
+                        repair()
                     } label: {
                         Label("RePair Streaming", systemImage: "sensor.tag.radiowaves.forward.fill")
                     }

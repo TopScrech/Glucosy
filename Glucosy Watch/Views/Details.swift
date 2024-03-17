@@ -368,7 +368,11 @@ struct Details: View {
                 
                 Section(header: Text("Known Devices")) {
                     List {
-                        ForEach(app.main.bluetoothDelegate.knownDevices.sorted(by: { $0.key < $1.key }), id: \.key) { uuid, device in
+                        let knownDevices = app.main.bluetoothDelegate.knownDevices.sorted(by: {
+                            $0.key < $1.key
+                        })
+                        
+                        ForEach(knownDevices, id: \.key) { uuid, device in
                             HStack {
                                 Text(device.name)
                                     .callout()

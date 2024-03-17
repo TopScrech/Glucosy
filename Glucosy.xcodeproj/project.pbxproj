@@ -101,6 +101,8 @@
 		C5E400A029825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
 		F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */; };
 		F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */; };
+		F31C70902BA78F5700A5BFCD /* Glossy Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */; };
+		F31C70912BA78F5A00A5BFCD /* Glossy Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */; };
 		F35AFC472BA48CBC0065145A /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC462BA48CBC0065145A /* ScrechKit */; };
 		F35AFC4A2BA48CCD0065145A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC492BA48CCD0065145A /* Algorithms */; };
 		F35AFC4C2BA48D7F0065145A /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC4B2BA48D7F0065145A /* ScrechKit */; };
@@ -265,6 +267,7 @@
 		C5E4009E29825F580021C6B7 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_ids.json; sourceTree = "<group>"; };
 		F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Calendar.swift"; sourceTree = "<group>"; };
 		F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Notification.swift"; sourceTree = "<group>"; };
+		F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glossy Preview.swift"; sourceTree = "<group>"; };
 		F35AFC4D2BA490100065145A /* UI Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI Tests.swift"; sourceTree = "<group>"; };
 		F35AFC502BA4908B0065145A /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		F35AFC532BA490C70065145A /* App State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App State.swift"; sourceTree = "<group>"; };
@@ -404,6 +407,7 @@
 				C5E4004329825C710021C6B7 /* Media */,
 				C5AAA6182981CF7000CA3EC1 /* App.swift */,
 				F35AFC562BA490FF0065145A /* Logging.swift */,
+				F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */,
 				F35AFC502BA4908B0065145A /* History.swift */,
 				F35AFC4D2BA490100065145A /* UI Tests.swift */,
 				F3E69B412BA5FD1E00A5469A /* Models */,
@@ -771,6 +775,7 @@
 				C5E4009A29825F1C0021C6B7 /* Nightscout.swift in Sources */,
 				C5916E4F29827E860051AC06 /* Settings View.swift in Sources */,
 				F35AFC552BA490C70065145A /* App State.swift in Sources */,
+				F31C70912BA78F5A00A5BFCD /* Glossy Preview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +810,7 @@
 				F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */,
 				F3E69B482BA6E67000A5469A /* Write Insulin.swift in Sources */,
 				C568696A2B30469000B11687 /* NFCTools.swift in Sources */,
+				F31C70902BA78F5700A5BFCD /* Glossy Preview.swift in Sources */,
 				F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */,
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,
 				C5E4008229825E8B0021C6B7 /* Libre2.swift in Sources */,

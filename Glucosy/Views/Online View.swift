@@ -321,10 +321,10 @@ struct OnlineView: View {
                         
                         HStack {
                             List {
-                                ForEach(libreLinkUpHistory) { libreLinkUpGlucose in
-                                    let glucose = libreLinkUpGlucose.glucose
-                                    (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(libreLinkUpGlucose.trendArrow?.symbol ?? "").font(.subheadline))
-                                        .foregroundColor(libreLinkUpGlucose.color.color)
+                                ForEach(libreLinkUpHistory) { lluGlucose in
+                                    let glucose = lluGlucose.glucose
+                                    (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow?.symbol ?? "").font(.subheadline))
+                                        .foregroundColor(lluGlucose.color.color)
                                         .fixedSize(horizontal: false, vertical: true)
                                         .listRowInsets(EdgeInsets())
                                 }
@@ -344,10 +344,10 @@ struct OnlineView: View {
                             if settings.libreLinkUpScrapingLogbook {
                                 // TODO: alarms
                                 List {
-                                    ForEach(libreLinkUpLogbookHistory) { libreLinkUpGlucose in
-                                        let glucose = libreLinkUpGlucose.glucose
-                                        (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(libreLinkUpGlucose.trendArrow!.symbol).font(.subheadline))
-                                            .foregroundColor(libreLinkUpGlucose.color.color)
+                                    ForEach(libreLinkUpLogbookHistory) { lluGlucose in
+                                        let glucose = lluGlucose.glucose
+                                        (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow!.symbol).font(.subheadline))
+                                            .foregroundColor(lluGlucose.color.color)
                                             .fixedSize(horizontal: false, vertical: true)
                                             .listRowInsets(EdgeInsets())
                                     }

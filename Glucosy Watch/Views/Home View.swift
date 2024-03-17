@@ -40,16 +40,10 @@ struct HomeView: View {
                     .tabItem {
                         Label("Data", systemImage: "tray.full.fill")
                     }
-                
-                //                Plan()
-                //                    .tag(Tab.plan)
-                //                    .tabItem {
-                //                        Label("Plan", systemImage: "map")
-                //                    }
             }
             .toolbarBackground(.hidden, for: .navigationBar)
             // FIXME: often hangs
-            // .tabViewStyle(.verticalPage)
+             .tabViewStyle(.verticalPage)
         }
     }
 }

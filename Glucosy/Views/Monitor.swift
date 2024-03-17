@@ -164,11 +164,9 @@ struct Monitor: View {
                 Button {
                     app.main.rescan()
                 } label: {
-                    Image(systemName: "arrow.clockwise.circle")
-                        .resizable()
-                        .frame(width: 32, height: 32)
+                    Image(systemName: "arrow.clockwise")
+                        .title()
                         .padding(.bottom, 8)
-                        .foregroundColor(.accentColor)
                 }
                 
                 if (app.status.hasPrefix("Scanning") || app.status.hasSuffix("retrying...")) && app.main.centralManager.state != .poweredOff {
@@ -178,8 +176,7 @@ struct Monitor: View {
                         app.main.log("Bluetooth: stopped scanning")
                     } label: {
                         Image(systemName: "stop.circle")
-                            .resizable()
-                            .frame(width: 32, height: 32)
+                            .title()
                     }
                     .padding(.bottom, 8)
                     .foregroundColor(.red)

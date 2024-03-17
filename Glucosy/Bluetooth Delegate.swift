@@ -219,9 +219,11 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
             
             if name!.hasPrefix("Dexcom") {
                 app.device.name = "Dexcom"         // TODO: separate Dexcom G6 and ONE
+                
             } else if name!.hasPrefix("DEXCOMG7") {  // restore to the original G7 device name
                 app.device.name = "Dexcom G7"
                 name = "DXCM" + name!.suffix(2)
+                
             } else if name!.hasPrefix("DEXCOMONE+") {  // restore to the original ONE+ device name
                 app.device.name = "Dexcom ONE+"
                 name = "DX02" + name!.suffix(2)
@@ -498,7 +500,9 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
             }
             
             if serviceUUID == Libre3.UUID.security.rawValue {
-                if sensor.transmitter == nil { sensor.transmitter = app.transmitter }
+                if sensor.transmitter == nil {
+                    sensor.transmitter = app.transmitter
+                }
                 
                 if settings.userLevel < .test { // not sniffing Trident
                     ((app.device as? Abbott)?.sensor as? Libre3)?.send(securityCommand: .readChallenge)
@@ -660,6 +664,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
             log("Bluetooth: error while writing \(name)'s \(characteristicString) characteristic value: \(error!.localizedDescription)")
         } else {
             log("Bluetooth: \(name) did write value for \(characteristicString) characteristic")
+            
             if characteristic.uuid.uuidString == Abbott.dataWriteCharacteristicUUID {
                 app.device.peripheral?.setNotifyValue(true, for: app.device.readCharacteristic!)
                 log("Bluetooth: enabling data read notifications for \(name)")

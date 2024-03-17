@@ -393,7 +393,8 @@ struct Details: View {
                                         .frame(width: 32, height: 32)
                                         .padding(.horizontal, 12)
                                     
-                                    Text("RePair").footnote(.bold)
+                                    Text("RePair")
+                                        .footnote(.bold)
                                         .padding(.bottom, 4)
                                 }
                                 .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.accentColor, lineWidth: 2.5))
@@ -432,9 +433,7 @@ struct Details: View {
                         self.minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
                     } label: {
                         Image(systemName: "arrow.clockwise.circle")
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                            .foregroundColor(.accentColor)
+                            .title()
                     }
                     
                     Text(!app.deviceState.isEmpty && app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
@@ -456,9 +455,7 @@ struct Details: View {
                     }
                 } label: {
                     Image(systemName: "escape")
-                        .resizable()
-                        .frame(width: 28, height: 28)
-                        .foregroundColor(.blue)
+                        .title()
                 }
                 
                 Spacer()

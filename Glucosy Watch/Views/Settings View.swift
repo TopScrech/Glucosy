@@ -96,7 +96,9 @@ struct SettingsView: View {
                 }
                 
                 Picker("", selection: $settings.onlineInterval) {
-                    ForEach([0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 45, 60], id: \.self) { t in
+                    let intervals = [0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 45, 60]
+                    
+                    ForEach(intervals, id: \.self) { t in
                         Text(t != 0 ? "\(t) min" : "offline")
                     }
                 }
@@ -120,16 +122,16 @@ struct SettingsView: View {
                     }
                     
                     HStack {
-                        Slider(value: $settings.targetLow, in: 40 ... 99, step: 1)
+                        Slider(value: $settings.targetLow, in: 40...99, step: 1)
                             .frame(height: 20)
                             .scaleEffect(0.6)
                         
-                        Slider(value: $settings.targetHigh, in: 120 ... 300, step: 1)
+                        Slider(value: $settings.targetHigh, in: 120...300, step: 1)
                             .frame(height: 20)
                             .scaleEffect(0.6)
                     }
                 }
-                .accentColor(.green)
+                .tint(.green)
                 
                 VStack(spacing: 0) {
                     HStack(spacing: 20) {
@@ -152,7 +154,7 @@ struct SettingsView: View {
                             .scaleEffect(0.6)
                     }
                 }
-                .accentColor(.red)
+                .tint(.red)
             }
             
             HStack {
@@ -185,13 +187,13 @@ struct SettingsView: View {
                             settings.disabledNotifications.toggle()
                         }
                         
-                        if settings.disabledNotifications {
+                        // if settings.disabledNotifications {
                             // UNUserNotificationCenter.current().setBadgeCount(0)
-                        } else {
+                        // } else {
                             // UNUserNotificationCenter.current().setBadgeCount(
                             //     settings.displayingMillimoles ? Int(Float(app.currentGlucose.units)! * 10) : Int(app.currentGlucose.units)!
                             // )
-                        }
+                        // }
                     } label: {
                         Image(systemName: settings.disabledNotifications ? "zzz" : "app.badge.fill")
                             .resizable()
@@ -220,7 +222,7 @@ struct SettingsView: View {
         .monospacedDigit()
         .buttonStyle(.plain)
         .navigationTitle("Settings")
-        .accentColor(.blue)
+        .tint(.blue)
     }
 }
 

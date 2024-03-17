@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 // https://github.com/timoschlueter/nightscout-librelink-up
 // https://gist.github.com/khskekec/6c13ba01b10d3018d816706a32ae8ab2
@@ -28,6 +28,15 @@ enum MeasurementColor: Int, Codable {
     case yellow = 2
     case orange = 3
     case red    = 4
+    
+    var color: Color {
+        switch self {
+        case .green:  .green
+        case .yellow: .yellow
+        case .orange: .orange
+        case .red:    .red
+        }
+    }
 }
 
 struct GlucoseMeasurement: Codable {
@@ -53,9 +62,9 @@ struct GlucoseMeasurement: Codable {
              trendArrow = "TrendArrow",
              trendMessage = "TrendMessage",
              measurementColor = "MeasurementColor",
-             glucoseUnits = "GlucoseUnits", 
+             glucoseUnits = "GlucoseUnits",
              value = "Value",
-             isHigh, 
+             isHigh,
              isLow
     }
 }
@@ -465,8 +474,13 @@ class LibreLinkUp: Logging {
                                         i += 1
                                         let date = dateFormatter.date(from: measurement.timestamp)!
                                         var lifeCount = Int(date.timeIntervalSince(activationDate)) / 60
+                                        
                                         // FIXME: lifeCount not always multiple of 5
-                                        if lifeCount % 5 == 1 { lifeCount -= 1 }
+                                        
+                                        if lifeCount % 5 == 1 {
+                                            lifeCount -= 1
+                                        }
+                                        
                                         history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: lifeCount, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
                                         debugLog("LibreLinkUp: graph measurement # \(i) of \(graphData.count): \(measurement) (JSON: \(glucoseMeasurement)), lifeCount = \(lifeCount)")
                                     }
@@ -484,8 +498,10 @@ class LibreLinkUp: Logging {
                                 if let ticketDict = json["ticket"] as? [String: Any],
                                    let token = ticketDict["token"] as? String {
                                     log("LibreView: new token for glucoseHistory: \(token)")
+                                    
                                     request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
                                     request.url = URL(string: "https://api.libreview.io/glucoseHistory?numPeriods=\(numPeriods)&period=\(period)")!
+                                    
                                     debugLog("LibreView: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
                                     let (data, response) = try await URLSession.shared.data(for: request)
                                     debugLog("LibreView: response data: \(data.string.trimmingCharacters(in: .newlines)), status: \((response as! HTTPURLResponse).statusCode)")
@@ -502,7 +518,9 @@ class LibreLinkUp: Logging {
                                         let reminderSent = data["reminderSent"] as! Bool
                                         let devices = data["devices"] as! [Int]
                                         let periods = data["periods"] as! [[String: Any]]
+                                        
                                         debugLog("LibreView: last upload date: \(lastUploadDate.local), last upload CGM date: \(lastUploadCGMDate.local), last upload pro date: \(lastUploadProDate.local), reminder sent: \(reminderSent), devices: \(devices), periods: \(periods.count)")
+                                        
                                         var i = 0
                                         
                                         for period in periods {
@@ -514,6 +532,7 @@ class LibreLinkUp: Logging {
                                             let data = period["data"] as! [String: Any]
                                             let blocks = data["blocks"] as! [[[String: Any]]]
                                             i += 1
+                                            
                                             debugLog("LibreView: period # \(i) of \(periods.count), start date: \(startDate.local), end date: \(endDate.local), days of data: \(daysOfData)")
                                             var j = 0
                                             
@@ -530,10 +549,14 @@ class LibreLinkUp: Logging {
                                let ticketDict = json["ticket"] as? [String: Any],
                                let token = ticketDict["token"] as? String {
                                 log("LibreLinkUp: new token for logbook: \(token)")
+                                
                                 request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
                                 request.url = URL(string: "\(regionalSiteURL)/\(connectionsEndpoint)/\(settings.libreLinkUpPatientId)/logbook")!
+                                
                                 debugLog("LibreLinkUp: URL request: \(request.url!.absoluteString), authenticated headers: \(request.allHTTPHeaderFields!)")
+                                
                                 let (data, response) = try await URLSession.shared.data(for: request)
+                                
                                 debugLog("LibreLinkUp: response data: \(data.string.trimmingCharacters(in: .newlines)), status: \((response as! HTTPURLResponse).statusCode)")
                                 logbookData = data
                                 
@@ -544,7 +567,7 @@ class LibreLinkUp: Logging {
                                         
                                         // TODO: type 3 has also an alarmType: 0 = fixedLow, 1 = low, 2 = high
                                         
-                                        if type == 1 || type == 3 {  // measurement
+                                        if type == 1 || type == 3 { // measurement
                                             if let measurementData = try? JSONSerialization.data(withJSONObject: entry),
                                                let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
                                                 i += 1
@@ -553,7 +576,7 @@ class LibreLinkUp: Logging {
                                                 debugLog("LibreLinkUp: logbook measurement # \(i - history.count) of \(data.count): \(measurement) (JSON: \(entry))")
                                             }
                                             
-                                        } else if type == 2 {  // alarm
+                                        } else if type == 2 { // alarm
                                             if let alarmData = try? JSONSerialization.data(withJSONObject: entry),
                                                var alarm = try? JSONDecoder().decode(LibreLinkUpAlarm.self, from: alarmData) {
                                                 alarm.date = dateFormatter.date(from: alarm.timestamp)!

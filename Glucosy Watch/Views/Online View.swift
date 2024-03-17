@@ -1,17 +1,6 @@
 import SwiftUI
 import Charts
 
-extension MeasurementColor {
-    var color: Color {
-        switch self {
-        case .green:  .green
-        case .yellow: .yellow
-        case .orange: .orange
-        case .red:    .red
-        }
-    }
-}
-
 struct OnlineView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(History.self) private var history: History
@@ -189,6 +178,7 @@ struct OnlineView: View {
                     if settings.selectedService == .nightscout {
                         TextField("Nightscout URL", text: $settings.nightscoutSite)
                             .textContentType(.URL)
+                        
                         SecureField("token", text: $settings.nightscoutToken)
                         
                     } else if settings.selectedService == .libreLinkUp {
@@ -240,8 +230,9 @@ struct OnlineView: View {
                             }
                             
                             Chart(nightscoutHistory) {
-                                PointMark(x: .value("Time", $0.date),
-                                          y: .value("Glucose", $0.value)
+                                PointMark(
+                                    x: .value("Time", $0.date),
+                                    y: .value("Glucose", $0.value)
                                 )
                                 .foregroundStyle(.cyan)
                                 .symbolSize(6)
@@ -359,7 +350,7 @@ struct OnlineView: View {
         .edgesIgnoringSafeArea([.bottom])
         .buttonStyle(.plain)
         .navigationTitle("Online")
-        .accentColor(.blue)
+        .tint(.blue)
     }
 }
 

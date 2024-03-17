@@ -75,6 +75,7 @@ final class Settings {
             } else if type == .abbott {
                 readingInterval = 1
             }
+            
             if type != .none {
                 preferredDevicePattern = type.id
             } else {

@@ -1,17 +1,6 @@
 import SwiftUI
 import Charts
 
-extension MeasurementColor {
-    var color: Color {
-        switch self {
-        case .green:  .green
-        case .yellow: .yellow
-        case .orange: .orange
-        case .red:    .red
-        }
-    }
-}
-
 struct OnlineView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(History.self) private var history: History
@@ -24,7 +13,7 @@ struct OnlineView: View {
     @State private var readingCountdown = 0
     
     @State private var libreLinkUpResponse = "[...]"
-    @State private var libreLinkUpHistory: [LibreLinkUpGlucose] = []
+    @State private var libreLinkUpHistory:        [LibreLinkUpGlucose] = []
     @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
     
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -108,7 +97,7 @@ struct OnlineView: View {
                         Image(settings.selectedService.rawValue)
                             .resizable()
                             .frame(width: 32, height: 32)
-                            .shadow(color: .cyan, radius: 4.0 )
+                            .shadow(color: .cyan, radius: 4)
                     }
                     .padding(.top, 8)
                     .padding(.trailing, 4)
@@ -126,6 +115,7 @@ struct OnlineView: View {
                                     .textContentType(.URL)
                                     .autocorrectionDisabled(true)
                             }
+                            
                             HStack(alignment: .firstTextBaseline) {
                                 Text("token:")
                                     .foregroundColor(Color(.lightGray))
@@ -134,40 +124,29 @@ struct OnlineView: View {
                             }
                             
                         } else if settings.selectedService == .libreLinkUp {
-                            HStack(alignment: .firstTextBaseline, spacing: 0) {
-                                Text("email: ")
-                                    .foregroundColor(Color(.lightGray))
-                                
-                                TextField("email", text: $settings.libreLinkUpEmail)
-                                    .keyboardType(.emailAddress)
-                                    .textContentType(.emailAddress)
-                                    .textInputAutocapitalization(.never)
-                                    .autocorrectionDisabled(true)
-                                    .onSubmit {
-                                        settings.libreLinkUpPatientId = ""
-                                        libreLinkUpResponse = "[Logging in...]"
-                                        
-                                        Task {
-                                            await reloadLibreLinkUp()
-                                        }
+                            TextField("email", text: $settings.libreLinkUpEmail)
+                                .keyboardType(.emailAddress)
+                                .textContentType(.emailAddress)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled(true)
+                                .onSubmit {
+                                    settings.libreLinkUpPatientId = ""
+                                    libreLinkUpResponse = "[Logging in...]"
+                                    
+                                    Task {
+                                        await reloadLibreLinkUp()
                                     }
-                            }
-                            
-                            HStack(alignment: .firstTextBaseline) {
-                                Text("password:")
-                                    .lineLimit(1)
-                                    .foregroundColor(Color(.lightGray))
-                                
-                                SecureField("password", text: $settings.libreLinkUpPassword)
-                            }
-                            .onSubmit {
-                                settings.libreLinkUpPatientId = ""
-                                libreLinkUpResponse = "[Logging in...]"
-                                
-                                Task {
-                                    await reloadLibreLinkUp()
                                 }
-                            }
+                            
+                            SecureField("password", text: $settings.libreLinkUpPassword)
+                                .onSubmit {
+                                    settings.libreLinkUpPatientId = ""
+                                    libreLinkUpResponse = "[Logging in...]"
+                                    
+                                    Task {
+                                        await reloadLibreLinkUp()
+                                    }
+                                }
                         }
                     }
                     
@@ -183,8 +162,7 @@ struct OnlineView: View {
                         }
                     } label: {
                         Image(systemName: settings.libreLinkUpFollowing ? "f.circle.fill" : "f.circle")
-                            .resizable()
-                            .frame(width: 32, height: 32)
+                            .title()
                             .foregroundColor(.blue)
                     }
                     
@@ -202,9 +180,8 @@ struct OnlineView: View {
                                 }
                             }
                         } label: {
-                            Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.circle.fill" : "book.closed.circle")
-                                .resizable()
-                                .frame(width: 32, height: 32)
+                            Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.fill" : "book.closed")
+                                .title()
                                 .foregroundColor(.blue)
                         }
                         
@@ -226,9 +203,8 @@ struct OnlineView: View {
                         Button {
                             app.main.rescan()
                         } label: {
-                            Image(systemName: "arrow.clockwise.circle")
-                                .resizable()
-                                .frame(width: 32, height: 32)
+                            Image(systemName: "arrow.clockwise")
+                                .title()
                                 .foregroundColor(.accentColor)
                         }
                         
@@ -259,6 +235,7 @@ struct OnlineView: View {
                         }
                     } label: {
                         Image(systemName: "sensor.tag.radiowaves.forward.fill")
+                            .title()
                     }
                     .alert("NFC not supported", isPresented: $showingNFCAlert) {
                         
@@ -391,8 +368,8 @@ struct OnlineView: View {
                 }
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Online")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

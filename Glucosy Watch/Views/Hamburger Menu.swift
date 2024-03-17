@@ -144,13 +144,12 @@ struct HamburgerMenu: View {
                         Link(Data(base64Encoded: "aHR0cHM6Ly9wYXlwYWwubWUvZ3Vpc29y")!.string, destination: URL(string: Data(base64Encoded: "aHR0cHM6Ly9wYXlwYWwubWUvZ3Vpc29y")!.string)!)
                             .foregroundColor(.blue)
                     }
-                    
                 }
                 .foregroundColor(.white)
             }
             .buttonStyle(.borderless)
             .navigationTitle("Glucosy")
-            .accentColor(.blue)
+            .tint(.blue)
             .navigationBarTitleDisplayMode(.inline)
         }
         .padding(.top, -4)

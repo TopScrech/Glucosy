@@ -195,7 +195,7 @@ struct DataView: View {
         // .foregroundColor(Color(.lightGray))
         .footnote()
         .navigationTitle("Data")
-        .accentColor(.blue)
+        .tint(.blue)
     }
 }
 

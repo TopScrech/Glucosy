@@ -58,7 +58,7 @@
 		C5E4004A29825C710021C6B7 /* alarm_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004529825C710021C6B7 /* alarm_low.mp3 */; };
 		C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
 		C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
-		C5E4005929825C930021C6B7 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004E29825C930021C6B7 /* DataView.swift */; };
+		C5E4005929825C930021C6B7 /* Data View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004E29825C930021C6B7 /* Data View.swift */; };
 		C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004F29825C930021C6B7 /* Settings View.swift */; };
 		C5E4005B29825C930021C6B7 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005029825C930021C6B7 /* Details.swift */; };
 		C5E4005C29825C930021C6B7 /* View Representables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005129825C930021C6B7 /* View Representables.swift */; };
@@ -99,6 +99,8 @@
 		C5E4009A29825F1C0021C6B7 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009829825F1C0021C6B7 /* Nightscout.swift */; };
 		C5E4009F29825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
 		C5E400A029825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
+		F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */; };
+		F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */; };
 		F35AFC472BA48CBC0065145A /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC462BA48CBC0065145A /* ScrechKit */; };
 		F35AFC4A2BA48CCD0065145A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC492BA48CCD0065145A /* Algorithms */; };
 		F35AFC4C2BA48D7F0065145A /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC4B2BA48D7F0065145A /* ScrechKit */; };
@@ -233,7 +235,7 @@
 		C5E4004429825C710021C6B7 /* alarm_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_high.mp3; sourceTree = "<group>"; };
 		C5E4004529825C710021C6B7 /* alarm_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_low.mp3; sourceTree = "<group>"; };
 		C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_signal_loss.mp3; sourceTree = "<group>"; };
-		C5E4004E29825C930021C6B7 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
+		C5E4004E29825C930021C6B7 /* Data View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data View.swift"; sourceTree = "<group>"; };
 		C5E4004F29825C930021C6B7 /* Settings View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Settings View.swift"; sourceTree = "<group>"; };
 		C5E4005029825C930021C6B7 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		C5E4005129825C930021C6B7 /* View Representables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View Representables.swift"; sourceTree = "<group>"; };
@@ -261,6 +263,8 @@
 		C5E4009529825F120021C6B7 /* LibreLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibreLink.swift; sourceTree = "<group>"; };
 		C5E4009829825F1C0021C6B7 /* Nightscout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nightscout.swift; sourceTree = "<group>"; };
 		C5E4009E29825F580021C6B7 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_ids.json; sourceTree = "<group>"; };
+		F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Calendar.swift"; sourceTree = "<group>"; };
+		F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Notification.swift"; sourceTree = "<group>"; };
 		F35AFC4D2BA490100065145A /* UI Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI Tests.swift"; sourceTree = "<group>"; };
 		F35AFC502BA4908B0065145A /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		F35AFC532BA490C70065145A /* App State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App State.swift"; sourceTree = "<group>"; };
@@ -464,12 +468,22 @@
 				F3E69B422BA65A4200A5469A /* Known Devices List.swift */,
 				C5E4005429825C930021C6B7 /* Online View.swift */,
 				C5E4005229825C930021C6B7 /* Console.swift */,
-				C5E4004F29825C930021C6B7 /* Settings View.swift */,
-				C5E4004E29825C930021C6B7 /* DataView.swift */,
+				F31C708A2BA750AF00A5BFCD /* Settings */,
+				C5E4004E29825C930021C6B7 /* Data View.swift */,
 				C5E4005629825C930021C6B7 /* Plan.swift */,
 				C5E4005129825C930021C6B7 /* View Representables.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F31C708A2BA750AF00A5BFCD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4004F29825C930021C6B7 /* Settings View.swift */,
+				F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */,
+				F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F35AFC5F2BA4917E0065145A /* Enums */ = {
@@ -507,8 +521,8 @@
 				F35AFC762BA4FF9E0065145A /* Read Carbs.swift */,
 				F35AFC742BA4FF9E0065145A /* Read Glucose.swift */,
 				F35AFC752BA4FF9E0065145A /* Read Insulin.swift */,
-				F35AFC732BA4FF9E0065145A /* Write Glucose.swift */,
 				F3E69B442BA6E66500A5469A /* Write Carbs.swift */,
+				F35AFC732BA4FF9E0065145A /* Write Glucose.swift */,
 				F3E69B472BA6E67000A5469A /* Write Insulin.swift */,
 			);
 			path = HealthKit;
@@ -780,10 +794,12 @@
 				F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */,
 				C5B7CE322AEE498F00227392 /* Dexcom.swift in Sources */,
 				F35AFC792BA4FF9E0065145A /* Read Insulin.swift in Sources */,
-				C5E4005929825C930021C6B7 /* DataView.swift in Sources */,
+				C5E4005929825C930021C6B7 /* Data View.swift in Sources */,
 				F35AFC912BA508A60065145A /* Carbohydrates Card.swift in Sources */,
 				F35AFC772BA4FF9E0065145A /* Write Glucose.swift in Sources */,
 				F35AFC542BA490C70065145A /* App State.swift in Sources */,
+				F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */,
+				F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */,
 				F35AFC712BA4FE640065145A /* HealthKit.swift in Sources */,
 				F35AFC5A2BA4913B0065145A /* Trend Arrow.swift in Sources */,
 				F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */,

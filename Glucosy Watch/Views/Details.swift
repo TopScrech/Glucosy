@@ -287,7 +287,7 @@ struct Details: View {
                                                     .padding(2)
                                                     .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
                                             }
-                                            .accentColor(.blue)
+                                            .tint(.blue)
                                             
                                             Spacer()
                                         }
@@ -455,7 +455,7 @@ struct Details: View {
         }
         .buttonStyle(.plain)
         .navigationTitle("Details")
-        .accentColor(.blue)
+        .tint(.blue)
         .onAppear {
             if app.sensor != nil {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate)/60)

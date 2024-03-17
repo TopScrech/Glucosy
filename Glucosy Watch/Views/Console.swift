@@ -285,7 +285,7 @@ struct Console: View {
         // .padding(.top, -4)
         .edgesIgnoringSafeArea(.bottom)
         .navigationTitle("Console")
-        .accentColor(.blue)
+        .tint(.blue)
     }
 }
 

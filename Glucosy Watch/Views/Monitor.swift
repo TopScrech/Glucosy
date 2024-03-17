@@ -219,7 +219,7 @@ struct Monitor: View {
         .buttonStyle(.plain)
         .multilineTextAlignment(.center)
         // .navigationTitle("Monitor")
-        .accentColor(.blue)
+        .tint(.blue)
         .onAppear {
             timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
             minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()

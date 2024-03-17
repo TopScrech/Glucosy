@@ -10,7 +10,6 @@
 //    
 //    var body: some View {
 //        VStack(alignment: .leading, spacing: 20) {
-//            
 //            HStack {
 //                Spacer()
 //            }
@@ -44,13 +43,10 @@
 //                    .navigationTitle("Help")
 //                    .navigationViewStyle(.stack)
 //                    .toolbar {
-//                        Button {
+//                        Button("Close") {
 //                            withAnimation {
 //                                showingHelp = false
 //                            }
-//                        } label: {
-//                            Text("Close")
-//                            
 //                        }
 //                    }
 //                    .onAppear {
@@ -77,14 +73,18 @@
 //                NavigationView {
 //                    VStack(spacing: 40) {
 //                        VStack {
-//                            Text("DiaBLE  \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)  (\(Bundle.main.infoDictionary!["CFBundleVersion"] as! String))")
-//                            
+//                            Text("Glucosy  \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)  (\(Bundle.main.infoDictionary!["CFBundleVersion"] as! String))")
+//
 //                            // TODO: get AppIcon 1024x1024
-//                            // Image("AppIcon").resizable().frame(width: 100, height: 100)
+//                              Image("AppIcon")
+//                                  .resizable()
+//                                  .frame(width: 100, height: 100)
 //                            // FIXME: crashes in TestFlight (not in Release scheme)
 //                            
 //                            if UIImage(named: "AppIcon") != nil {
-//                                Image(uiImage: UIImage(named: "AppIcon")!).resizable().frame(width: 100, height: 100)
+//                                Image(uiImage: UIImage(named: "AppIcon")!)
+//                                        .resizable()
+//                                        .frame(width: 100, height: 100)
 //                            }
 //                            
 //                            Link("https://github.com/gui-dos/DiaBLE",
@@ -103,7 +103,6 @@
 //                            
 //                            Link("PayPal", destination: URL(string: Data(base64Encoded: "aHR0cHM6Ly9wYXlwYWwubWUvZ3Vpc29y")!.string)!)
 //                        }
-//                        
 //                    }
 //                    .navigationBarTitleDisplayMode(.inline)
 //                    .navigationTitle("About")
@@ -115,7 +114,6 @@
 //                            }
 //                        } label: {
 //                            Text("Close")
-//                            
 //                        }
 //                    }
 //                }
@@ -138,7 +136,9 @@
 //        
 //        // TODO: swipe gesture
 //        .onLongPressGesture(minimumDuration: 0) {
-//            withAnimation(.easeOut(duration: 0.15)) { showingHamburgerMenu = false }
+//            withAnimation(.easeOut(duration: 0.15)) { 
+//                showingHamburgerMenu = false
+//            }
 //        }
 //    }
 //}

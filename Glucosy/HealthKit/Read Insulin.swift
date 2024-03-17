@@ -47,15 +47,17 @@ extension HealthKit {
             // MARK: Metadata example: ["HKInsulinDeliveryReason": 2, "HKWasUserEntered": 1]
             
             for sample in insulinSamples {
-                let insulinUnit = sample.quantity.doubleValue(for: HKUnit.internationalUnit())
+                let insulinUnit = sample.quantity.doubleValue(for: .internationalUnit())
                 print("Insulin Delivered: \(insulinUnit) IU, Date: \(sample.startDate) \(sample.metadata?.description ?? "")")
                 
-                if let insulinMetadata = sample.metadata, let insulinCategory = insulinMetadata["HKInsulinDeliveryReason"] as? Int {
+                if let insulinMetadata = sample.metadata,
+                    let insulinCategory = insulinMetadata["HKInsulinDeliveryReason"] as? Int {
+                    
                     var insulinType: InsulinType
                     insulinType = insulinCategory == 1 ? .basal : .bolus
                     
                     loadedRecords.append(.init(
-                        amount: Int(insulinUnit),
+                        value: Int(insulinUnit),
                         type: insulinType,
                         date: sample.startDate
                         //                        healthKitObject: sample

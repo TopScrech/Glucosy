@@ -1,7 +1,7 @@
 import Foundation
 
 struct InsulinDelivery: Hashable {
-    let amount: Int
+    let value: Int
     let type: InsulinType
     let date: Date
 }

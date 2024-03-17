@@ -48,7 +48,7 @@ extension HealthKit {
                 let carbsUnit = sample.quantity.doubleValue(for: HKUnit.gram())
                 
                 loadedRecords.append(.init(
-                    amount: Int(carbsUnit),
+                    value: Int(carbsUnit),
                     date: sample.startDate
                 ))
                 

@@ -1,6 +1,6 @@
 import Foundation
 
 struct Carbohydrates: Hashable {
-    var amount: Int
+    var value: Int
     var date: Date
 }

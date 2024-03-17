@@ -9,7 +9,7 @@ struct CarbohydratesCard: View {
     
     var body: some View {
         HStack {
-            Text(carbs.amount)
+            Text(carbs.value)
             
             Spacer()
             
@@ -21,7 +21,7 @@ struct CarbohydratesCard: View {
 #Preview {
     List {
         CarbohydratesCard(
-            .init(amount: 160, date: Date())
+            .init(value: 160, date: Date())
         )
     }
 }

@@ -176,6 +176,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
             
             msg += ", \(scanningFor.lowercased())..."
             log(msg)
+            
             return
         }
         
@@ -280,10 +281,12 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
     public func centralManager(_ manager: CBCentralManager, didConnect peripheral: CBPeripheral) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var msg = "Bluetooth: \(name) has connected"
+        
         app.device.state = peripheral.state
         app.deviceState = app.device.state.description.capitalized
         app.device.lastConnectionDate = Date()
         app.lastConnectionDate = app.device.lastConnectionDate
+        
         msg += ("; discovering services")
         peripheral.discoverServices(nil)
         log(msg)
@@ -468,6 +471,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
                     } else {
                         sensor.serial = app.device.serial
                         let family = Int(app.device.serial.prefix(1)) ?? 0
+                        
                         switch family {
                         case 7:  sensor.type = .libreSense
                         case 3:  sensor.type = .libre2

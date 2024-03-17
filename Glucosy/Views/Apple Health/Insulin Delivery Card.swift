@@ -16,7 +16,7 @@ struct InsulinDeliveryCard: View {
                     .foregroundStyle(.purple)
             }
             
-            Text(Int(insulin.amount))
+            Text(Int(insulin.value))
             
             Spacer()
             
@@ -29,7 +29,7 @@ struct InsulinDeliveryCard: View {
 
 #Preview {
     List {
-        InsulinDeliveryCard(.init(amount: 16, type: .bolus, date: Date()))
-        InsulinDeliveryCard(.init(amount: 8, type: .basal, date: Date()))
+        InsulinDeliveryCard(.init(value: 16, type: .bolus, date: Date()))
+        InsulinDeliveryCard(.init(value: 8, type: .basal, date: Date()))
     }
 }

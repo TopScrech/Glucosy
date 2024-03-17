@@ -1,16 +1,16 @@
 import HealthKit
 
 extension HealthKit {
-    func writeGlucose(_ data: [Glucose]) {
-        guard let glucose = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
+    func writeCarbs(_ data: [Carbohydrates]) {
+        guard let carbsType = HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates) else {
             return
         }
         
         let samples = data.map {
             HKQuantitySample(
-                type: glucose,
+                type: carbsType,
                 quantity: .init(
-                    unit: glucoseUnit,
+                    unit: .gram(), 
                     doubleValue: Double($0.value)
                 ),
                 start: $0.date,
@@ -21,10 +21,8 @@ extension HealthKit {
         
         store?.save(samples) { [self] _, error in
             if let error {
-                log("HealthKit: error while saving: \(error.localizedDescription)")
+                log("HealthKit: error while saving carbs: \(error.localizedDescription)")
             }
-            
-            self.lastDate = samples.last?.endDate
         }
     }
 }

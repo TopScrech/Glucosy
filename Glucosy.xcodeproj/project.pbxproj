@@ -143,6 +143,10 @@
 		F35AFC922BA508A60065145A /* Apple Health View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8C2BA508A60065145A /* Apple Health View.swift */; };
 		F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8D2BA508A60065145A /* HealthKit Card.swift */; };
 		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
+		F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
+		F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
+		F3E69B482BA6E67000A5469A /* Write Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B472BA6E67000A5469A /* Write Insulin.swift */; };
+		F3E69B492BA6E67000A5469A /* Write Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B472BA6E67000A5469A /* Write Insulin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,6 +285,8 @@
 		F35AFC8C2BA508A60065145A /* Apple Health View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apple Health View.swift"; sourceTree = "<group>"; };
 		F35AFC8D2BA508A60065145A /* HealthKit Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthKit Card.swift"; sourceTree = "<group>"; };
 		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
+		F3E69B442BA6E66500A5469A /* Write Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Carbs.swift"; sourceTree = "<group>"; };
+		F3E69B472BA6E67000A5469A /* Write Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Insulin.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -502,6 +508,8 @@
 				F35AFC742BA4FF9E0065145A /* Read Glucose.swift */,
 				F35AFC752BA4FF9E0065145A /* Read Insulin.swift */,
 				F35AFC732BA4FF9E0065145A /* Write Glucose.swift */,
+				F3E69B442BA6E66500A5469A /* Write Carbs.swift */,
+				F3E69B472BA6E67000A5469A /* Write Insulin.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -705,12 +713,14 @@
 				C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */,
 				C5916E5529827E860051AC06 /* Home View.swift in Sources */,
 				C5E4006C29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
+				F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */,
 				C5916E4E29827E860051AC06 /* Data View.swift in Sources */,
 				C5916E5429827E860051AC06 /* Monitor.swift in Sources */,
 				C5E4008629825E990021C6B7 /* Libre3.swift in Sources */,
 				C5E4007729825E370021C6B7 /* Glucose.swift in Sources */,
 				F35AFC652BA4919F0065145A /* GlycemicAlarm.swift in Sources */,
 				C5916E5729827EB10051AC06 /* Main Delegate.swift in Sources */,
+				F3E69B492BA6E67000A5469A /* Write Insulin.swift in Sources */,
 				F35AFC7D2BA4FFFE0065145A /* Insulin Delivery.swift in Sources */,
 				F35AFC842BA500B60065145A /* Write Glucose.swift in Sources */,
 				C5ADF5832B00E65E00E29632 /* Gen2.swift in Sources */,
@@ -767,6 +777,7 @@
 				C5E4006B29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
 				F35AFC8E2BA508A60065145A /* HealthKit Link.swift in Sources */,
 				C5E4007129825DF50021C6B7 /* Bluetooth Delegate.swift in Sources */,
+				F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */,
 				C5B7CE322AEE498F00227392 /* Dexcom.swift in Sources */,
 				F35AFC792BA4FF9E0065145A /* Read Insulin.swift in Sources */,
 				C5E4005929825C930021C6B7 /* DataView.swift in Sources */,
@@ -776,6 +787,7 @@
 				F35AFC712BA4FE640065145A /* HealthKit.swift in Sources */,
 				F35AFC5A2BA4913B0065145A /* Trend Arrow.swift in Sources */,
 				F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */,
+				F3E69B482BA6E67000A5469A /* Write Insulin.swift in Sources */,
 				C568696A2B30469000B11687 /* NFCTools.swift in Sources */,
 				F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */,
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,

@@ -67,8 +67,7 @@ final class Settings {
         "patchInfo": Data()
     ]
     
-    
-    var preferredTransmitter: TransmitterType = TransmitterType(rawValue: UserDefaults.standard.string(forKey: "preferredTransmitter")!) ?? .none {
+    var preferredTransmitter = TransmitterType(rawValue: UserDefaults.standard.string(forKey: "preferredTransmitter")!) ?? .none {
         willSet(type) {
             if type == .dexcom  {
                 readingInterval = 5
@@ -88,7 +87,7 @@ final class Settings {
         }
     }
     
-    var preferredDevicePattern: String = UserDefaults.standard.string(forKey: "preferredDevicePattern")! {
+    var preferredDevicePattern = UserDefaults.standard.string(forKey: "preferredDevicePattern")! {
         willSet(pattern) {
             if !pattern.isEmpty {
                 if !preferredTransmitter.id.matches(pattern) {
@@ -332,7 +331,7 @@ final class Settings {
         }
     }
     
-    var activeSensorCalibrationInfo: CalibrationInfo = try! JSONDecoder().decode(CalibrationInfo.self, from: UserDefaults.standard.data(forKey: "activeSensorCalibrationInfo")!) {
+    var activeSensorCalibrationInfo = try! JSONDecoder().decode(CalibrationInfo.self, from: UserDefaults.standard.data(forKey: "activeSensorCalibrationInfo")!) {
         didSet {
             UserDefaults.standard.set(try! JSONEncoder().encode(self.activeSensorCalibrationInfo), forKey: "activeSensorCalibrationInfo")
         }
@@ -362,13 +361,13 @@ final class Settings {
         }
     }
     
-    var patchUid: SensorUid = UserDefaults.standard.data(forKey: "patchUid")! {
+    var patchUid = UserDefaults.standard.data(forKey: "patchUid")! {
         didSet {
             UserDefaults.standard.set(self.patchUid, forKey: "patchUid")
         }
     }
     
-    var patchInfo: PatchInfo = UserDefaults.standard.data(forKey: "patchInfo")! {
+    var patchInfo = UserDefaults.standard.data(forKey: "patchInfo")! {
         didSet {
             UserDefaults.standard.set(self.patchInfo, forKey: "patchInfo")
         }

@@ -35,4 +35,5 @@ struct HealthKitCard: View {
     List {
         HealthKitCard(History.test.storedValues.first!)
     }
+    .darkSchemePreferred()
 }

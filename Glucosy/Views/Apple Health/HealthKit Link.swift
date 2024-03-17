@@ -29,4 +29,5 @@ struct HealthKitLink: View {
     List {
         HealthKitLink()
     }
+    .darkSchemePreferred()
 }

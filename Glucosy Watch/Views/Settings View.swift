@@ -186,6 +186,5 @@ struct SettingsView: View {
     NavigationView {
         SettingsView()
     }
-    .environment(AppState.test(tab: .settings))
-    .environment(Settings())
+    .glucosyPreview(.settings)
 }

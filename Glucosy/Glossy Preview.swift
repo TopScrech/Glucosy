@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension View {
-    func glucosyPreview(_ tab: Tab) -> some View {
+    func glucosyPreview(_ tab: Tab = .monitor) -> some View {
         self.modifier(GlucosyPreview(tab))
     }
 }

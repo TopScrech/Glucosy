@@ -32,4 +32,5 @@ struct InsulinDeliveryCard: View {
         InsulinDeliveryCard(.init(value: 16, type: .bolus, date: Date()))
         InsulinDeliveryCard(.init(value: 8, type: .basal, date: Date()))
     }
+    .darkSchemePreferred()
 }

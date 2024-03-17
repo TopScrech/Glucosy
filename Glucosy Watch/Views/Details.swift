@@ -472,14 +472,12 @@ struct Details: View {
 
 #Preview {
     Details()
-        .environment(AppState.test(tab: .monitor))
-        .environment(Settings())
+        .glucosyPreview()
 }
 
 #Preview {
     NavigationView {
         Details()
-            .environment(AppState.test(tab: .monitor))
-            .environment(Settings())
     }
+    .glucosyPreview()
 }

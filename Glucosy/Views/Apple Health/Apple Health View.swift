@@ -58,6 +58,5 @@ struct AppleHealthView: View {
 
 #Preview {
     AppleHealthView()
-        .environment(AppState())
-        .environment(History.test)
+        .glucosyPreview()
 }

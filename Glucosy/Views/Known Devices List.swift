@@ -59,5 +59,5 @@ struct KnownDevicesList: View {
 
 #Preview {
     KnownDevicesList()
-        .environment(AppState.test(tab: .monitor))
+        .glucosyPreview()
 }

@@ -2,7 +2,7 @@ import SwiftUI
 import RealmSwift
 import TabularData
 
-// TODO: rename to Copilot when smarter :-)
+// TODO: rename to Copilot when smarter
 
 struct ShellView: View {
     @Environment(AppState.self) private var app: AppState
@@ -18,7 +18,8 @@ struct ShellView: View {
     @State private var tridentContainer = ""
     
     @State private var showingRealmKeyPrompt = false
-    @AppStorage("tridentRealmKey") var tridentRealmKey = ""  // 128-char hex
+    
+    @AppStorage("tridentRealmKey") var tridentRealmKey = "" // 128-char hex
     
     var body: some View {
         VStack(spacing: 0) {
@@ -70,8 +71,11 @@ struct ShellView: View {
                                         history.renameColumn("Device Timestamp", to: "Date")
                                         history.renameColumn("Record Type", to: "Type")
                                         history.renameColumn("Historic Glucose mg/dL", to: "Glucose")
+                                        
                                         var formattingOptions = FormattingOptions(maximumLineWidth: 80, includesColumnTypes: false)
+                                        
                                         formattingOptions.includesRowIndices = false
+                                        
                                         app.main.log("TabularData: history:\n\(history.description(options: formattingOptions))")
                                         
                                         let filteredHistory = history
@@ -80,6 +84,7 @@ struct ShellView: View {
                                             .selecting(columnNames: ["Date", "Glucose"])
                                         
                                         formattingOptions.maximumLineWidth = 32
+                                        
                                         app.main.log("TabularData: filtered history:\n\(filteredHistory.description(options: formattingOptions))")
                                         
                                     } catch {
@@ -109,12 +114,13 @@ struct ShellView: View {
                         }
                         .fileImporter(
                             isPresented: $showingFolderImporter,
-                            allowedContentTypes: [.folder]  // .directory doesn't work
+                            allowedContentTypes: [.folder] // .directory doesn't work
                         ) { result in
                             switch result {
                             case .success(let directory):
                                 if !directory.startAccessingSecurityScopedResource() { return }
                                 tridentContainer = directory.path
+                                
                                 let fileManager = FileManager.default
                                 let containerDirs = try! fileManager.contentsOfDirectory(atPath: tridentContainer)
                                 app.main.log("ls \(tridentContainer)\n\(containerDirs)")
@@ -122,11 +128,13 @@ struct ShellView: View {
                                 for dir in containerDirs {
                                     if dir == "Library" {
                                         let libraryDirs = try! fileManager.contentsOfDirectory(atPath: "\(tridentContainer)/Library")
+                                        
                                         app.main.log("ls Library\n\(libraryDirs)")
                                         
                                         for dir in libraryDirs {
                                             if dir == "Preferences" {
                                                 let preferencesContents = try! fileManager.contentsOfDirectory(atPath: "\(tridentContainer)/Library/Preferences")
+                                                
                                                 app.main.log("ls Preferences\n\(preferencesContents)")
                                                 
                                                 for plist in preferencesContents {
@@ -134,8 +142,12 @@ struct ShellView: View {
                                                         if let plistData = fileManager.contents(atPath: "\(tridentContainer)/Library/Preferences/\(plist)") {
                                                             if let libre3Plist = try? PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [String: Any] {
                                                                 app.main.log("cat \(plist)\n\(libre3Plist)")
+                                                                
                                                                 let realmEncryptionKey = libre3Plist["RealmEncryptionKey"] as! [UInt8]
-                                                                let realmEncryptionKeyInt8 = realmEncryptionKey.map { Int8(bitPattern: $0) }
+                                                                
+                                                                let realmEncryptionKeyInt8 = realmEncryptionKey.map {
+                                                                    Int8(bitPattern: $0)
+                                                                }
                                                                 app.main.log("realmEncryptionKey:\n\(realmEncryptionKey)\nas Int8 array:\n\(realmEncryptionKeyInt8)")
                                                                 
                                                                 // https://frdmtoplay.com/freeing-glucose-data-from-the-freestyle-libre-3/
@@ -203,7 +215,11 @@ struct ShellView: View {
                                                     app.main.log("Realm: sensors: \(sensors)")
                                                     let appConfig = realm.objects(AppConfigEntity.self)
                                                     // overcome limit of max 100 objects in a result description
-                                                    app.main.log(appConfig.reduce("Realm: app config:", { $0 + "\n" + $1.description }))
+                                                    
+                                                    app.main.log(appConfig.reduce("Realm: app config:", {
+                                                        $0 + "\n" + $1.description
+                                                    }))
+                                                    
                                                     let libre3WrappedKAuth = realm.object(ofType: AppConfigEntity.self, forPrimaryKey: "Libre3WrappedKAuth")!["_configValue"]!
                                                     app.main.log("Realm: libre3WrappedKAuth: \(libre3WrappedKAuth)")
                                                     // TODO
@@ -297,80 +313,5 @@ struct ShellView: View {
 
 #Preview {
     ShellView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .console))
-        .environment(Log())
-        .environment(Settings())
-}
-
-struct CrcCalculator: View {
-    @State private var hexString = ""
-    @State private var crc = "0000"
-    @State private var computedCrc = "0000"
-    @State private var trailingCrc = true
-    
-    @FocusState private var focused: Bool
-    
-    func updateCRC() {
-        hexString = hexString.filter { $0.isHexDigit || $0 == " " }
-        var validated = hexString == "" ? "00" : hexString
-        validated = validated.replacingOccurrences(of: " ", with: "")
-        
-        if validated.count % 2 == 1 {
-            validated = "0" + validated
-        }
-        
-        if validated.count < 8 {
-            validated = String((String(repeating: "0", count: 8 - validated.count) + validated).suffix(8))
-        }
-        
-        let validatedBytes = validated.bytes
-        
-        if trailingCrc {
-            crc = Data(String(validated.suffix(4)).bytes.reversed()).hex
-            computedCrc = validatedBytes.dropLast(2).crc16.hex
-        } else {
-            crc = Data(String(validated.prefix(4)).bytes.reversed()).hex
-            computedCrc = validatedBytes.dropFirst(2).crc16.hex
-        }
-    }
-    
-    var body: some View {
-        VStack {
-            TextField("Hexadecimal string", text: $hexString, axis: .vertical)
-                .textFieldStyle(.roundedBorder)
-                .footnote(design: .monospaced)
-                .truncationMode(.head)
-                .focused($focused)
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        Button("Done") {
-                            focused = false
-                        }
-                    }
-                }
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("CRC: \(crc == "0000" ? "---" : crc)")
-                    
-                    Text("Computed: \(crc == "0000" ? "---" : computedCrc)")
-                }
-                .foregroundColor(crc != "0000" && crc == computedCrc ? .green : .primary)
-                
-                Spacer()
-                
-                Toggle("Trailing CRC", isOn: $trailingCrc)
-                    .controlSize(.mini)
-                    .fixedSize()
-                    .onChange(of: trailingCrc) {
-                        updateCRC()
-                    }
-            }
-        }
-        .subheadline()
-        .onChange(of: hexString) {
-            updateCRC()
-        }
-    }
+        .glucosyPreview(.console)
 }

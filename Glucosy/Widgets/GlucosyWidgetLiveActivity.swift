@@ -70,8 +70,10 @@ extension GlucosyWidgetAttributes.ContentState {
 
 #Preview("Notification", as: .content, using: GlucosyWidgetAttributes.preview) {
     GlucosyWidgetLiveActivity()
+    
 } contentStates: {
     GlucosyWidgetAttributes.ContentState.smiley
+    
     GlucosyWidgetAttributes.ContentState.starEyes
 }
 

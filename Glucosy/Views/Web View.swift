@@ -11,6 +11,7 @@ struct WebView: UIViewRepresentable {
         let webView = WKWebView(frame: .zero)
         webView.navigationDelegate = delegate
         webView.uiDelegate = delegate
+        
         (delegate as? Nightscout)?.webView = webView
         
         return webView

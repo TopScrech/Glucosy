@@ -188,9 +188,5 @@ struct DataView: View {
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .data))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.data)
 }

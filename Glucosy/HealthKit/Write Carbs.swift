@@ -10,7 +10,7 @@ extension HealthKit {
             HKQuantitySample(
                 type: carbsType,
                 quantity: .init(
-                    unit: .gram(), 
+                    unit: .gram(),
                     doubleValue: Double($0.value)
                 ),
                 start: $0.date,

@@ -258,8 +258,5 @@ struct Monitor: View {
     NavigationView {
         Monitor()
     }
-    .environment(AppState.test(tab: .monitor))
-    .environment(Log())
-    .environment(History.test)
-    .environment(Settings())
+    .glucosyPreview()
 }

@@ -296,7 +296,5 @@ struct Console: View {
 
 #Preview {
     Console()
-        .environment(AppState.test(tab: .console))
-        .environment(Log())
-        .environment(Settings())
+        .glucosyPreview(.console)
 }

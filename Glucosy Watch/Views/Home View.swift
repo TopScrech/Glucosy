@@ -50,8 +50,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .environment(AppState.test(tab: .monitor))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview()
 }

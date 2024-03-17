@@ -40,4 +40,5 @@ struct SettingsNotification: View {
 
 #Preview {
     SettingsNotification()
+        .glucosyPreview()
 }

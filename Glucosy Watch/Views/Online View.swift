@@ -356,7 +356,5 @@ struct OnlineView: View {
 
 #Preview {
     OnlineView()
-        .environment(AppState.test(tab: .online))
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.online)
 }

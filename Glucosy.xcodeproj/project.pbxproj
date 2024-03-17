@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C50B9AD32AA7396500FF1EA3 /* Console Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50B9AD22AA7396500FF1EA3 /* Console Tools.swift */; };
+		C50B9AD32AA7396500FF1EA3 /* Shell View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50B9AD22AA7396500FF1EA3 /* Shell View.swift */; };
 		C535AEB42AB3431F00AB61AD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C535AEB32AB3431F00AB61AD /* Realm */; };
 		C535AEB62AB3431F00AB61AD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C535AEB52AB3431F00AB61AD /* RealmSwift */; };
 		C535AEB82AB343AE00AB61AD /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535AEB72AB343AE00AB61AD /* Realm.swift */; };
@@ -61,7 +61,7 @@
 		C5E4005929825C930021C6B7 /* Data View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004E29825C930021C6B7 /* Data View.swift */; };
 		C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004F29825C930021C6B7 /* Settings View.swift */; };
 		C5E4005B29825C930021C6B7 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005029825C930021C6B7 /* Details.swift */; };
-		C5E4005C29825C930021C6B7 /* View Representables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005129825C930021C6B7 /* View Representables.swift */; };
+		C5E4005C29825C930021C6B7 /* Web View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005129825C930021C6B7 /* Web View.swift */; };
 		C5E4005D29825C930021C6B7 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005229825C930021C6B7 /* Console.swift */; };
 		C5E4005E29825C930021C6B7 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005329825C930021C6B7 /* Graph.swift */; };
 		C5E4005F29825C930021C6B7 /* Online View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005429825C930021C6B7 /* Online View.swift */; };
@@ -103,6 +103,7 @@
 		F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */; };
 		F31C70902BA78F5700A5BFCD /* Glossy Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */; };
 		F31C70912BA78F5A00A5BFCD /* Glossy Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */; };
+		F31C70942BA7916C00A5BFCD /* Crc Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */; };
 		F35AFC472BA48CBC0065145A /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC462BA48CBC0065145A /* ScrechKit */; };
 		F35AFC4A2BA48CCD0065145A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC492BA48CCD0065145A /* Algorithms */; };
 		F35AFC4C2BA48D7F0065145A /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC4B2BA48D7F0065145A /* ScrechKit */; };
@@ -197,7 +198,7 @@
 
 /* Begin PBXFileReference section */
 		49DE8D3329AFFB3000BB7CF4 /* DiaBLEOverride.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DiaBLEOverride.xcconfig; sourceTree = "<group>"; };
-		C50B9AD22AA7396500FF1EA3 /* Console Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Console Tools.swift"; sourceTree = "<group>"; };
+		C50B9AD22AA7396500FF1EA3 /* Shell View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Shell View.swift"; sourceTree = "<group>"; };
 		C535AEB72AB343AE00AB61AD /* Realm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		C53F77C529894478004F275A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C55D12B329ACB5E00050F567 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
@@ -240,7 +241,7 @@
 		C5E4004E29825C930021C6B7 /* Data View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data View.swift"; sourceTree = "<group>"; };
 		C5E4004F29825C930021C6B7 /* Settings View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Settings View.swift"; sourceTree = "<group>"; };
 		C5E4005029825C930021C6B7 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
-		C5E4005129825C930021C6B7 /* View Representables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View Representables.swift"; sourceTree = "<group>"; };
+		C5E4005129825C930021C6B7 /* Web View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Web View.swift"; sourceTree = "<group>"; };
 		C5E4005229825C930021C6B7 /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
 		C5E4005329825C930021C6B7 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		C5E4005429825C930021C6B7 /* Online View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Online View.swift"; sourceTree = "<group>"; };
@@ -268,6 +269,7 @@
 		F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Calendar.swift"; sourceTree = "<group>"; };
 		F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Notification.swift"; sourceTree = "<group>"; };
 		F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glossy Preview.swift"; sourceTree = "<group>"; };
+		F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crc Calculator.swift"; sourceTree = "<group>"; };
 		F35AFC4D2BA490100065145A /* UI Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI Tests.swift"; sourceTree = "<group>"; };
 		F35AFC502BA4908B0065145A /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		F35AFC532BA490C70065145A /* App State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App State.swift"; sourceTree = "<group>"; };
@@ -435,7 +437,6 @@
 				C5E4008F29825EED0021C6B7 /* NFC.swift */,
 				C56869692B30469000B11687 /* NFCTools.swift */,
 				C535AEB72AB343AE00AB61AD /* Realm.swift */,
-				C50B9AD22AA7396500FF1EA3 /* Console Tools.swift */,
 				C5E4009529825F120021C6B7 /* LibreLink.swift */,
 				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
 			);
@@ -471,11 +472,11 @@
 				C5E4005029825C930021C6B7 /* Details.swift */,
 				F3E69B422BA65A4200A5469A /* Known Devices List.swift */,
 				C5E4005429825C930021C6B7 /* Online View.swift */,
-				C5E4005229825C930021C6B7 /* Console.swift */,
+				F31C70922BA7915100A5BFCD /* Console */,
 				F31C708A2BA750AF00A5BFCD /* Settings */,
 				C5E4004E29825C930021C6B7 /* Data View.swift */,
 				C5E4005629825C930021C6B7 /* Plan.swift */,
-				C5E4005129825C930021C6B7 /* View Representables.swift */,
+				C5E4005129825C930021C6B7 /* Web View.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -488,6 +489,16 @@
 				F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		F31C70922BA7915100A5BFCD /* Console */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4005229825C930021C6B7 /* Console.swift */,
+				C50B9AD22AA7396500FF1EA3 /* Shell View.swift */,
+				F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */,
+			);
+			path = Console;
 			sourceTree = "<group>";
 		};
 		F35AFC5F2BA4917E0065145A /* Enums */ = {
@@ -817,7 +828,7 @@
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
 				F35AFC902BA508A60065145A /* Insulin Delivery Card.swift in Sources */,
 				F35AFC612BA491910065145A /* OnlineService.swift in Sources */,
-				C5E4005C29825C930021C6B7 /* View Representables.swift in Sources */,
+				C5E4005C29825C930021C6B7 /* Web View.swift in Sources */,
 				C5E4006829825DCD0021C6B7 /* Settings.swift in Sources */,
 				F35AFC672BA491BB0065145A /* UserLevel.swift in Sources */,
 				F35AFC7C2BA4FFF70065145A /* Insulin Delivery.swift in Sources */,
@@ -832,6 +843,7 @@
 				F35AFC6A2BA491FC0065145A /* Pen.swift in Sources */,
 				C5E4006029825C930021C6B7 /* Monitor.swift in Sources */,
 				C5E4008529825E990021C6B7 /* Libre3.swift in Sources */,
+				F31C70942BA7916C00A5BFCD /* Crc Calculator.swift in Sources */,
 				C5DB4E4E2B168E08005AD792 /* Libre.swift in Sources */,
 				F35AFC7A2BA4FF9E0065145A /* Read Carbs.swift in Sources */,
 				F35AFC922BA508A60065145A /* Apple Health View.swift in Sources */,
@@ -844,7 +856,7 @@
 				C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */,
 				C5E4009629825F120021C6B7 /* LibreLink.swift in Sources */,
 				F35AFC512BA4908B0065145A /* History.swift in Sources */,
-				C50B9AD32AA7396500FF1EA3 /* Console Tools.swift in Sources */,
+				C50B9AD32AA7396500FF1EA3 /* Shell View.swift in Sources */,
 				C5E4007C29825E4E0021C6B7 /* Abbott.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

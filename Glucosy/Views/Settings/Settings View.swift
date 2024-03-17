@@ -153,9 +153,5 @@ struct SettingsView: View {
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .settings))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.settings)
 }

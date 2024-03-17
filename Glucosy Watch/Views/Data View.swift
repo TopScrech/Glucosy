@@ -206,8 +206,5 @@ struct DataView: View {
 
 #Preview {
     DataView()
-        .environment(AppState.test(tab: .data))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.data)
 }

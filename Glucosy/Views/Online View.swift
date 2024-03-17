@@ -375,9 +375,5 @@ struct OnlineView: View {
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .online))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.online)
 }

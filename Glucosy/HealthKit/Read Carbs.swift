@@ -45,7 +45,7 @@ extension HealthKit {
             var loadedRecords: [Carbohydrates] = []
             
             for sample in insulinSamples {
-                let carbsUnit = sample.quantity.doubleValue(for: HKUnit.gram())
+                let carbsUnit = sample.quantity.doubleValue(for: .gram())
                 
                 loadedRecords.append(.init(
                     value: Int(carbsUnit),

@@ -72,45 +72,25 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .monitor))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview()
 }
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .online))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.online)
 }
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .data))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.data)
 }
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .console))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.console)
 }
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .settings))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.settings)
 }

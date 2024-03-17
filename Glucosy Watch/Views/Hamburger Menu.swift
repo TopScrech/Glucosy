@@ -159,4 +159,5 @@ struct HamburgerMenu: View {
 
 #Preview {
     HamburgerMenu()
+        .darkSchemePreferred()
 }

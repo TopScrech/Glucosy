@@ -24,4 +24,5 @@ struct CarbohydratesCard: View {
             .init(value: 160, date: Date())
         )
     }
+    .darkSchemePreferred()
 }

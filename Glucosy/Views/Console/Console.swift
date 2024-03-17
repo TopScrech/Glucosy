@@ -482,9 +482,5 @@ struct ConsoleSidebar: View {
 
 #Preview {
     HomeView()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .console))
-        .environment(Log())
-        .environment(History.test)
-        .environment(Settings())
+        .glucosyPreview(.console)
 }

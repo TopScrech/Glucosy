@@ -230,9 +230,5 @@ struct Monitor: View {
     NavigationView {
         Monitor()
     }
-    .preferredColorScheme(.dark)
-    .environment(AppState.test(tab: .monitor))
-    .environment(Log())
-    .environment(History.test)
-    .environment(Settings())
+    .glucosyPreview()
 }

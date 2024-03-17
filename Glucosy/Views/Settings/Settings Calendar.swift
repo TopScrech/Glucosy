@@ -75,4 +75,5 @@ struct SettingsCalendar: View {
 
 #Preview {
     SettingsCalendar()
+        .glucosyPreview()
 }

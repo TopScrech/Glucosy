@@ -479,8 +479,6 @@ struct Details: View {
 #Preview {
     NavigationView {
         Details()
-            .preferredColorScheme(.dark)
-            .environment(AppState.test(tab: .monitor))
-            .environment(Settings())
     }
+    .glucosyPreview()
 }

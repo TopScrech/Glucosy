@@ -9,6 +9,7 @@ final class History {
     var factoryTrend:            [Glucose] = []
     var storedValues:            [Glucose] = []
     var nightscoutValues:        [Glucose] = []
+    
     var insulinDeliveries:       [InsulinDelivery] = []
     var consumedCarbohydrates:   [Carbohydrates] = []
 }

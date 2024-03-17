@@ -13,7 +13,9 @@ struct Plan: View {
     
     var body: some View {
         VStack {
-            Text("\((app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime)")
+            let dateTime = (app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime
+            
+            Text(dateTime)
             
             if app.status.hasPrefix("Scanning") {
                 Text("Scanning...")

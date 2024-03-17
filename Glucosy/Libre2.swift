@@ -385,7 +385,9 @@ extension Sensor {
             }
         }
         
-        if bleTrend[0].rawValue > 0 { app.currentGlucose = bleTrend[0].value }
+        if bleTrend[0].rawValue > 0 {
+            app.currentGlucose = bleTrend[0].value
+        }
         
         let readingDate = bleTrend[0].date
         
@@ -395,6 +397,7 @@ extension Sensor {
         for i in 0 ... 15 {
             let id = wearTimeMinutes - i
             let date = readingDate - Double(i * 60)
+            
             trendDict[id] = Glucose(-1, id: id, date: date)
         }
         
@@ -414,6 +417,7 @@ extension Sensor {
         for i in 0 ... 31 {
             let id = lastHistoryId - i * 15
             let date = lastHistoryDate - Double(i * (60 * 15))
+            
             historyDict[id] = Glucose(-1, id: id, date: date)
         }
         

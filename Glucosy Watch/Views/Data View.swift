@@ -13,12 +13,15 @@ struct DataView: View {
     
     var body: some View {
         ScrollView {
-            Text("\((app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime)")
+            let dateTime = (app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime
+            
+            Text(dateTime)
             
             HStack {
                 if app.status.hasPrefix("Scanning") && !(readingCountdown > 0) {
                     Text("Scanning...")
                         .foregroundColor(.orange)
+                    
                 } else {
                     HStack {
                         if !app.deviceState.isEmpty && app.deviceState != "Connected" {
@@ -56,40 +59,50 @@ struct DataView: View {
             
             if history.factoryTrend.count + history.rawTrend.count > 0 {
                 HStack {
-                    VStack {
-                        if history.factoryTrend.count > 0 {
-                            VStack(spacing: 4) {
-                                Text("Trend")
-                                    .bold()
-                                
-                                List {
-                                    ForEach(history.factoryTrend) { glucose in
-                                        (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                            .frame(maxWidth: .infinity, alignment: .leading)
+                    if history.factoryTrend.count > 0 {
+                        VStack(spacing: 4) {
+                            Text("Trend")
+                                .bold()
+                            
+                            List {
+                                ForEach(history.factoryTrend) { glucose in
+                                    HStack {
+                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                        
+                                        Spacer()
+                                        
+                                        Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
+                                            .bold()
+                                        //                                                .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                 }
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
                             }
-                            .foregroundColor(.orange)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
                         }
+                        .foregroundColor(.orange)
                     }
                     
-                    VStack {
-                        if history.rawTrend.count > 0 {
-                            VStack(spacing: 4) {
-                                Text("Raw trend")
-                                    .bold()
-                                
-                                List {
-                                    ForEach(history.rawTrend) { glucose in
-                                        (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                            .frame(maxWidth: .infinity, alignment: .leading)
+                    if history.rawTrend.count > 0 {
+                        VStack(spacing: 4) {
+                            Text("Raw trend")
+                                .bold()
+                            
+                            List {
+                                ForEach(history.rawTrend) { glucose in
+                                    HStack {
+                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                        
+                                        Spacer()
+                                        
+                                        Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
+                                            .bold()
+                                        //                                                .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                 }
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
                             }
-                            .foregroundColor(.yellow)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
                         }
+                        .foregroundColor(.yellow)
                     }
                 }
                 .frame(idealHeight: 300)
@@ -103,8 +116,15 @@ struct DataView: View {
                         
                         List {
                             ForEach(history.storedValues) { glucose in
-                                (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                                    .fixedSize(horizontal: false, vertical: true)
+                                HStack {
+                                    Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)")
+                                    
+                                    Spacer()
+                                    
+                                    Text("  \(glucose.value, specifier: "%3d")")
+                                        .bold()
+                                }
+                                //                                    .fixedSize(horizontal: false, vertical: true)
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -124,8 +144,15 @@ struct DataView: View {
                         
                         List {
                             ForEach(history.nightscoutValues) { glucose in
-                                (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                                    .fixedSize(horizontal: false, vertical: true)
+                                HStack {
+                                    Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)")
+                                    
+                                    Spacer()
+                                    
+                                    Text("  \(glucose.value, specifier: "%3d")")
+                                        .bold()
+                                    //                                    .fixedSize(horizontal: false, vertical: true)
+                                }
                             }
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                         }
@@ -149,8 +176,15 @@ struct DataView: View {
                             
                             List {
                                 ForEach(history.values) { glucose in
-                                    (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    HStack {
+                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                        
+                                        Spacer()
+                                        
+                                        Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
+                                            .bold()
+                                    }
+                                    //                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -165,8 +199,15 @@ struct DataView: View {
                             
                             List {
                                 ForEach(history.factoryValues) { glucose in
-                                    (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    HStack {
+                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                        
+                                        Spacer()
+                                        
+                                        Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
+                                            .bold()
+                                    }
+                                    //                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -182,8 +223,15 @@ struct DataView: View {
                         
                         List {
                             ForEach(history.rawValues) { glucose in
-                                (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                HStack {
+                                    Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                    
+                                    Spacer()
+                                    
+                                    Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
+                                        .bold()
+                                }
+                                //                                .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -199,8 +247,8 @@ struct DataView: View {
         // .footnote(design: .monospaced)
         // .foregroundColor(Color(.lightGray))
         .footnote()
-        .navigationTitle("Data")
         .tint(.blue)
+        .navigationTitle("Data")
     }
 }
 

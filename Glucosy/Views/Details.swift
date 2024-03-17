@@ -176,7 +176,7 @@ struct Details: View {
                                 Row("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
                             }
                             .onReceive(minuteTimer) { _ in
-                                minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate)/60)
+                                minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate) / 60)
                             }
                         }
                         
@@ -470,7 +470,7 @@ struct Details: View {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate) / 60)
                 
             } else if app.lastReadingDate != Date.distantPast {
-                minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
+                minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
             }
         }
     }

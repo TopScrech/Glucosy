@@ -23,6 +23,7 @@ struct Graph: View {
                     let width  = geometry.size.width - 60
                     let height = geometry.size.height
                     let yScale = (height - 20) / yMax()
+                    
                     path.addRect(CGRect(x: 1 + 30, y: height - settings.targetHigh * yScale + 1.0, width: width - 2, height: (settings.targetHigh - settings.targetLow) * yScale - 1))
                 }
                 .fill(.green)
@@ -43,6 +44,7 @@ struct Graph: View {
                     if count > 0 {
                         let hours = count / 4
                         let minutes = count % 4 * 15
+                        
                         Text((hours > 0 ? "\(hours) h\n" : "") + (minutes != 0 ? "\(minutes) min" : ""))
                             .position(x: 5, y: geometry.size.height - geometry.size.height / 2)
                     } else {
@@ -90,7 +92,6 @@ struct Graph: View {
                         }
                     }
                     .stroke(.yellow)
-                    .opacity(0.6)
                 }
             }
             
@@ -125,7 +126,6 @@ struct Graph: View {
                         }
                     }
                     .stroke(.orange)
-                    .opacity(0.75)
                 }
             }
             

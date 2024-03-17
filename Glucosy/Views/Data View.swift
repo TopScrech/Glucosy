@@ -12,177 +12,161 @@ struct DataView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-            VStack {
-                Text("\((app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime)")
-                
-                HStack {
-                    if app.status.hasPrefix("Scanning") && !(readingCountdown > 0) {
-                        Text("Scanning...")
-                            .foregroundColor(.orange)
-                    } else {
-                        HStack {
-                            if !app.deviceState.isEmpty && app.deviceState != "Connected" {
-                                Text(app.deviceState)
-                                    .foregroundColor(.red)
-                            }
-                            
-                            Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
-                                 "\(readingCountdown) s" : " ")
-                            .foregroundColor(.orange)
-                            .onReceive(timer) { _ in
-                                readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
-                            }
-                        }
-                    }
+        VStack {
+            let dateTime = (app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime
+            
+            Text(dateTime)
+            
+            HStack {
+                if app.status.hasPrefix("Scanning") && !(readingCountdown > 0) {
+                    Text("Scanning...")
+                        .foregroundColor(.orange)
                     
-                    Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
-                        .foregroundColor(.cyan)
+                } else {
+                    HStack {
+                        if !app.deviceState.isEmpty && app.deviceState != "Connected" {
+                            Text(app.deviceState)
+                                .foregroundColor(.red)
+                        }
+                        
+                        Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
+                             "\(readingCountdown) s" : " ")
+                        .foregroundColor(.orange)
                         .onReceive(timer) { _ in
-                            onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
+                            readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                         }
+                    }
                 }
                 
-                VStack {
-                    HStack {
-                        VStack {
-                            if history.values.count > 0 {
-                                VStack(spacing: 4) {
-                                    Text("OOP history")
-                                        .bold()
-                                    
-                                    ScrollView {
-                                        ForEach(history.values) { glucose in
-                                            (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                        }
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                }
-                                .foregroundColor(.blue)
-                            }
-                            
-                            if history.factoryValues.count > 0 {
-                                VStack(spacing: 4) {
-                                    Text("History")
-                                        .bold()
-                                    
-                                    ScrollView {
-                                        ForEach(history.factoryValues) { glucose in
-                                            (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                        }
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                }
-                                .foregroundColor(.orange)
-                            }
-                        }
-                        
-                        if history.rawValues.count > 0 {
-                            VStack(spacing: 4) {
-                                Text("Raw history")
-                                    .bold()
-                                
-                                ScrollView {
-                                    ForEach(history.rawValues) { glucose in
-                                        (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                    }
-                                }
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                            }
-                            .foregroundColor(.yellow)
-                        }
+                Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
+                    .foregroundColor(.cyan)
+                    .onReceive(timer) { _ in
+                        onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
                     }
-                    
-                    HStack {
-                        VStack {
-                            if history.factoryTrend.count > 0 {
-                                VStack(spacing: 4) {
-                                    Text("Trend")
-                                        .bold()
-                                    
-                                    ScrollView {
-                                        ForEach(history.factoryTrend) { glucose in
-                                            (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                        }
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                }
-                                .foregroundColor(.orange)
-                            }
-                        }
-                        
-                        VStack {
-                            if history.rawTrend.count > 0 {
-                                VStack(spacing: 4) {
-                                    Text("Raw trend")
-                                        .bold()
-                                    
-                                    ScrollView {
-                                        ForEach(history.rawTrend) { glucose in
-                                            (Text("\(glucose.id) \(glucose.date.shortDateTime)") + Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ").bold())
-                                        }
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                }
-                                .foregroundColor(.yellow)
-                            }
-                        }
-                    }
-                    
-                    HStack(spacing: 0) {
-                        if history.storedValues.count > 0 {
-                            VStack(spacing: 4) {
-                                Text("HealthKit")
-                                    .bold()
-                                
-                                List {
-                                    ForEach(history.storedValues) { glucose in
-                                        (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                                            .fixedSize(horizontal: false, vertical: true)
-                                            .listRowInsets(EdgeInsets())
-                                            .listRowInsets(EdgeInsets())
-                                    }
-                                }
-                                .frame(maxWidth: .infinity, alignment: .topLeading)
-                            }
-                            .foregroundColor(.red)
-                                .onAppear {
-                                    if let healthKit = app.main?.healthKit { 
-                                        healthKit.readGlucose()
-                                    }
-                                }
-                        }
-                        
-                        if history.nightscoutValues.count > 0 {
-                            VStack(spacing: 4) {
-                                Text("Nightscout")
-                                    .bold()
-                                
-                                List {
-                                    ForEach(history.nightscoutValues) { glucose in
-                                        (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
-                                            .fixedSize(horizontal: false, vertical: true)
-                                            .listRowInsets(EdgeInsets())
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .topLeading)
-                                }
-                            }
-                            .foregroundColor(.cyan)
-                            .onAppear {
-                                if let nightscout = app.main?.nightscout { 
-                                    nightscout.read()
-                                }
-                            }
-                        }
-                    }
-                    .listStyle(.plain)
-                }
-#if targetEnvironment(macCatalyst)
-                .padding(.leading, 15)
-#endif
             }
-            .caption(design: .monospaced)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Data")
+            
+            HStack {
+                VStack {
+                    if history.values.count > 0 {
+                        VStack(spacing: 4) {
+                            Text("OOP history (values)")
+                                .bold()
+                            
+                            ScrollView {
+                                ForEach(history.values) { glucose in
+                                    HStack {
+                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                        
+                                        Spacer()
+                                        
+                                        Text(glucose.value > -1 ? glucose.value.units : "   … ")
+                                            .bold()
+                                    }
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                        }
+                        .foregroundColor(.blue)
+                    }
+                    
+                    if history.factoryValues.count > 0 {
+                        VStack(spacing: 4) {
+                            Text("History (factoryValues)")
+                                .bold()
+                            
+                            ScrollView {
+                                ForEach(history.factoryValues) { glucose in
+                                    HStack {
+                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                        
+                                        Spacer()
+                                        
+                                        Text(glucose.value > -1 ? "  \(glucose.value.units)" : "   … ")
+                                            .bold()
+                                    }
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                        }
+                        .foregroundColor(.orange)
+                    }
+                }
+                
+                if history.rawValues.count > 0 {
+                    VStack(spacing: 4) {
+                        Text("Raw history (rawValues)")
+                            .bold()
+                        
+                        ScrollView {
+                            ForEach(history.rawValues) { glucose in
+                                HStack {
+                                    Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                    
+                                    Spacer()
+                                    
+                                    Text(glucose.value > -1 ? "  \(glucose.value.units)" : "   … ")
+                                        .bold()
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                    }
+                    .foregroundColor(.yellow)
+                }
+            }
+            
+            HStack {
+                if history.factoryTrend.count > 0 {
+                    VStack(spacing: 4) {
+                        Text("Trend (factoryTrend)")
+                            .bold()
+                        
+                        ScrollView {
+                            ForEach(history.factoryTrend) { glucose in
+                                HStack {
+                                    Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                    
+                                    Spacer()
+                                    
+                                    Text(glucose.value > -1 ? glucose.value.units : "…")
+                                        .bold()
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                    }
+                    .foregroundColor(.orange)
+                }
+                
+                if history.rawTrend.count > 0 {
+                    VStack(spacing: 4) {
+                        Text("Raw trend (rawTrend)")
+                            .bold()
+                        
+                        ScrollView {
+                            ForEach(history.rawTrend) { glucose in
+                                HStack {
+                                    Text("\(glucose.id) \(glucose.date.shortDateTime)")
+                                    
+                                    Spacer()
+                                    
+                                    Text(glucose.value > -1 ? glucose.value.units : "…")
+                                        .bold()
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                    }
+                    .foregroundColor(.yellow)
+                }
+            }
+#if targetEnvironment(macCatalyst)
+            .padding(.leading, 15)
+#endif
+        }
+        .caption(design: .monospaced)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Data")
     }
 }
 

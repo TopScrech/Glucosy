@@ -33,20 +33,12 @@ struct Details: View {
         VStack {
             Form {
                 if app.status.starts(with: "Scanning") {
-                    HStack {
-                        Text("\(app.status)")
-                            .footnote()
-                    }
+                    Text("\(app.status)")
+                        .footnote()
                 } else {
                     if app.device == nil && app.sensor == nil {
-                        HStack {
-                            Spacer()
-                            
-                            Text("No device connected")
-                                .foregroundColor(.red)
-                            
-                            Spacer()
-                        }
+                        Text("No device connected")
+                            .foregroundColor(.red)
                     }
                 }
                 
@@ -121,7 +113,7 @@ struct Details: View {
                 }
                 
                 if app.sensor != nil {
-                    Section(header: Text("Sensor")) {
+                    Section("Sensor") {
                         Row("State", app.sensor.state.description,
                             foregroundColor: app.sensor.state == .active ? .green : .red)
                         
@@ -159,7 +151,7 @@ struct Details: View {
                                 Row("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
                             }
                             .onReceive(minuteTimer) { _ in
-                                minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate)/60)
+                                minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate) / 60)
                             }
                         }
                         
@@ -213,7 +205,7 @@ struct Details: View {
                             }
                             .sheet(isPresented: $showingCalibrationInfoForm) {
                                 Form {
-                                    Section(header: Text("Calibration Info")) {
+                                    Section("Calibration Info") {
                                         HStack {
                                             Text("i1")
                                             
@@ -326,7 +318,7 @@ struct Details: View {
                 
                 // TODO
                 if (app.device != nil && app.device.type == .transmitter(.dexcom)) || settings.preferredTransmitter == .dexcom {
-                    Section(header: Text("BLE Setup")) {
+                    Section("BLE Setup") {
                         @Bindable var settings = settings
                         
                         HStack {
@@ -365,8 +357,7 @@ struct Details: View {
                     }
                 }
                 
-                
-                Section(header: Text("Known Devices")) {
+                Section("Known Devices") {
                     List {
                         let knownDevices = app.main.bluetoothDelegate.knownDevices.sorted(by: {
                             $0.key < $1.key
@@ -389,11 +380,13 @@ struct Details: View {
                                             app.main.bluetoothDelegate.centralManager(app.main.centralManager, didDiscover: peripheral, advertisementData: [:], rssi: 0)
                                         }
                                     }
+                                
                                 if !device.isConnectable {
                                     Spacer()
                                     
                                     Image(systemName: "nosign")
                                         .foregroundColor(.red)
+                                    
                                 } else if device.isIgnored {
                                     Spacer()
                                     
@@ -462,17 +455,13 @@ struct Details: View {
         .tint(.blue)
         .onAppear {
             if app.sensor != nil {
-                minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate)/60)
+                minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate) / 60)
+                
             } else if app.lastReadingDate != Date.distantPast {
-                minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
+                minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
             }
         }
     }
-}
-
-#Preview {
-    Details()
-        .glucosyPreview()
 }
 
 #Preview {

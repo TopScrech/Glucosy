@@ -29,7 +29,7 @@ struct Monitor: View {
                                 .footnote()
                                 .monospacedDigit()
                                 .onReceive(minuteTimer) { _ in
-                                    minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
+                                    minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
                                 }
                         } else {
                             Text("---")
@@ -39,7 +39,7 @@ struct Monitor: View {
                     .padding(.trailing, 12)
                     .foregroundColor(Color(.lightGray))
                     .onChange(of: app.lastReadingDate) {
-                        minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
+                        minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
                     }
                     
                     Text(app.currentGlucose > 0 ? "\(app.currentGlucose.units) " : "--- ")
@@ -51,6 +51,7 @@ struct Monitor: View {
                         .cornerRadius(8)
                     
                     // TODO: display both delta and trend arrow
+                    
                     Group {
                         if app.trendDeltaMinutes > 0 {
                             VStack {
@@ -62,6 +63,7 @@ struct Monitor: View {
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 12)
+                            
                         } else {
                             Text(app.trendArrow.symbol)
                                 .largeTitle(.bold)
@@ -96,7 +98,20 @@ struct Monitor: View {
                 }
             }
             
-            Graph().frame(width: 31 * 7 + 60, height: 150)
+            Graph()
+                .frame(height: 200)
+                .padding(.horizontal)
+            
+            //            Text("values: \(Double(history.values.last?.value ?? 0) / 18.0182)")
+            //            Text("factoryValues: \(Double(history.factoryValues.last?.value ?? 0) / 18.0182)") // orange
+            //            Text("rawValues: \(Double(history.rawValues.last?.value ?? 0) / 18.0182)")         // yellow
+            //            Text("factoryTrend: \(Double(history.factoryTrend.last?.value ?? 0) / 18.0182)")
+            //            Text("rawTrend: \(Double(history.rawTrend.last?.value ?? 0) / 18.0182)")
+            //            Text("storedValues: \(Double(history.storedValues.last?.value ?? 0) / 18.0182)")
+            //
+            //            let factoryValues = history.factoryValues.map(\.value).map {
+            //                Double($0) / 18.0182
+            //            }
             
             VStack {
                 HStack(spacing: 12) {
@@ -166,7 +181,6 @@ struct Monitor: View {
                 } label: {
                     Image(systemName: "arrow.clockwise")
                         .title()
-                        .padding(.bottom, 8)
                 }
                 
                 if (app.status.hasPrefix("Scanning") || app.status.hasSuffix("retrying...")) && app.main.centralManager.state != .poweredOff {
@@ -178,10 +192,10 @@ struct Monitor: View {
                         Image(systemName: "stop.circle")
                             .title()
                     }
-                    .padding(.bottom, 8)
                     .foregroundColor(.red)
                 }
             }
+            .padding(.bottom, 8)
         }
         .multilineTextAlignment(.center)
         .navigationBarTitleDisplayMode(.inline)
@@ -191,7 +205,7 @@ struct Monitor: View {
             minuteTimer =   Timer.publish(every: 60, on: .main, in: .common).autoconnect()
             
             if app.lastReadingDate != Date.distantPast {
-                minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
+                minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
             }
         }
         .onDisappear {

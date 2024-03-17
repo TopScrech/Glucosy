@@ -299,8 +299,11 @@ class Dexcom: Transmitter {
                 let predictionData = UInt16(data[16..<18])
                 let predictedValue: UInt16? = predictionData != 0xffff ? predictionData & 0xfff : nil
                 let calibration = data[18]
+                
                 log("\(name): glucose response (EGV): status: 0x\(status.hex), message timestamp: \(messageTimestamp.formattedInterval), sensor activation date: \(activationDate.local), sensor age: \(sensorAge.formattedInterval), sequence number: \(sequenceNumber), reading age: \(age) seconds, timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose value: \(value != nil ? String(value!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil"), predicted value: \(predictedValue != nil ? String(predictedValue!) : "nil"), calibration: 0x\(calibration.hex)")
-                // TODO: merge last three hours; move to bluetoothDelegata main.didParseSensor(app.transmitter.sensor!)
+                
+                // TODO: merge last three hours
+                // TODO: move to bluetoothDelegata main.didParseSensor(app.transmitter.sensor!)
                 let item = Glucose(value != nil ? Int(value!) : -1, trendRate: Double(trend ?? 0), id: Int(Double(timestamp) / 60 / 5), date: date)
                 sensor?.trend.insert(item, at: 0)
                 app.currentGlucose = item.value

@@ -31,7 +31,7 @@ struct Monitor: View {
                                     .monospacedDigit()
                                     .lineLimit(1)
                                     .onReceive(minuteTimer) { _ in
-                                        minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
+                                        minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
                                     }
                             } else {
                                 Text("---")
@@ -41,7 +41,7 @@ struct Monitor: View {
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .foregroundColor(Color(.lightGray))
                         .onChange(of: app.lastReadingDate) {
-                            minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
+                            minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
                         }
                         
                         Text(app.currentGlucose > 0 ? "\(app.currentGlucose.units)" : "---")
@@ -97,6 +97,7 @@ struct Monitor: View {
                                 .footnote()
                                 .fixedSize()
                         }
+                        
                         if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
                             Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                                  "\(readingCountdown) s" : "")
@@ -224,7 +225,7 @@ struct Monitor: View {
             minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
             
             if app.lastReadingDate != Date.distantPast {
-                minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
+                minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
             }
         }
         .onDisappear {

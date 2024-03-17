@@ -349,7 +349,6 @@ struct OnlineView: View {
                             .footnote()
                             .foregroundColor(Color(.lightGray))
                     }
-                    
                 }
                 .task {
                     await reloadLibreLinkUp()

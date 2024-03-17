@@ -19,35 +19,27 @@ struct HomeView: View {
             }
             
             NavigationView {
-                OnlineView()
-            }
-            .tag(Tab.online)
-            .tabItem {
-                Label("Online", systemImage: "globe")
-            }
-            
-            NavigationView {
-                ConsoleTab()
-            }
-            .tag(Tab.console)
-            .tabItem {
-                Label("Console", systemImage: "terminal")
-            }
-            
-            NavigationView {
-                SettingsView()
-            }
-            .tag(Tab.settings)
-            .tabItem {
-                Label("Settings", systemImage: "gear")
-            }
-            
-            NavigationView {
                 DataView()
             }
             .tag(Tab.data)
             .tabItem {
                 Label("Data", systemImage: "tray.full.fill")
+            }
+            
+            NavigationView {
+                AppleHealthView()
+            }
+            .tag(Tab.healthKit)
+            .tabItem {
+                Label("Apple Health", systemImage: "heart")
+            }
+            
+            NavigationView {
+                OnlineView()
+            }
+            .tag(Tab.online)
+            .tabItem {
+                Label("Online", systemImage: "globe")
             }
             
             NavigationView {
@@ -59,11 +51,19 @@ struct HomeView: View {
             }
             
             NavigationView {
-                AppleHealthView()
+                SettingsView()
             }
-            .tag(Tab.healthKit)
+            .tag(Tab.settings)
             .tabItem {
-                Label("Apple Health", systemImage: "heart")
+                Label("Settings", systemImage: "gear")
+            }
+            
+            NavigationView {
+                ConsoleTab()
+            }
+            .tag(Tab.console)
+            .tabItem {
+                Label("Console", systemImage: "terminal")
             }
         }
         .toolbarRole(.navigationStack)

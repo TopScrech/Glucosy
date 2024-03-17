@@ -8,7 +8,106 @@ struct SettingsView: View {
     
     var body: some View {
         @Bindable var settings = settings
+        
         VStack {
+            List {
+                Section {
+                    Toggle(isOn: $settings.caffeinated) {
+                        Label("Karamel ice latte",
+                              systemImage: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer")
+                        
+                    }
+                } footer: {
+                    Text("Keep the screen on when the app is running")
+                }
+                
+                Picker("Glucose unit", selection: $settings.displayingMillimoles) {
+                    ForEach(GlucoseUnit.allCases) { unit in
+                        Text(unit.description)
+                            .tag(unit == .mmoll)
+                    }
+                }
+                .pickerStyle(.inline)
+                
+                let range = settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ?
+                1...1:
+                settings.preferredTransmitter == .dexcom || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.dexcom)) ?
+                5...5: 1...15
+                
+                Stepper(value: $settings.readingInterval, in: range, step: 1) {
+                    HStack {
+                        Image(systemName: "timer")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                        
+                        Text("\(settings.readingInterval) min")
+                    }
+                }
+                .foregroundColor(.orange)
+                
+                Stepper {
+                    HStack {
+                        Image(systemName: settings.onlineInterval > 0 ? "network" : "wifi.slash")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                        
+                        Text(settings.onlineInterval > 0 ? "\(settings.onlineInterval) min" : "offline")
+                    }
+                } onIncrement: {
+                    settings.onlineInterval += settings.onlineInterval >= 5 ? 5 : 1
+                } onDecrement: {
+                    settings.onlineInterval -= settings.onlineInterval == 0 ? 0 : settings.onlineInterval <= 5 ? 1 : 5
+                }
+                .foregroundColor(.cyan)
+                
+                Section {
+                    Button("Rescan") {
+                        settings.selectedTab = (settings.preferredTransmitter != .none) ? .monitor : .console
+                        app.main.rescan()
+                    }
+                    
+                    NavigationLink("Details") {
+                        Details()
+                    }
+                }
+                
+                HStack(spacing: 5) {
+                    Text("Target zone:")
+                    
+                    Text("\(settings.targetLow.units) - \(settings.targetHigh.units)")
+                        .foregroundColor(.green)
+                }
+                
+                Group {
+                    Slider(value: $settings.targetLow, in: 40...99, step: 1) {
+                        Text("Min")
+                    }
+                    
+                    Slider(value: $settings.targetHigh, in: 120...300, step: 1) {
+                        Text("Max")
+                    }
+                }
+                .accentColor(.green)
+                
+                HStack {
+                    Text("Alert when:")
+                    
+                    Text("< \(settings.alarmLow.units)  or  > \(settings.alarmHigh.units)")
+                        .foregroundColor(.red)
+                }
+                
+                Group {
+                    Slider(value: $settings.alarmLow, in: 40...99, step: 1) {
+                        Text("Min")
+                    }
+                    
+                    Slider(value: $settings.alarmHigh, in: 120...300, step: 1) {
+                        Text("Max")
+                    }
+                }
+                .accentColor(.red)
+            }
+            
             Spacer()
             
             VStack(spacing: 20) {
@@ -16,6 +115,7 @@ struct SettingsView: View {
                     HStack(spacing: 0) {
                         Button {
                             settings.stoppedBluetooth.toggle()
+                            
                             if settings.stoppedBluetooth {
                                 app.main.centralManager.stopScan()
                                 app.main.status("Stopped scanning")
@@ -37,7 +137,7 @@ struct SettingsView: View {
                                 .foregroundColor(.red)
                         }
                         
-                        Picker(selection: $settings.preferredTransmitter, label: Text("Preferred")) {
+                        Picker("Preferred", selection: $settings.preferredTransmitter) {
                             ForEach(TransmitterType.allCases) { t in
                                 Text(t.name)
                                     .tag(t)
@@ -61,133 +161,14 @@ struct SettingsView: View {
                             .padding(.horizontal, 12)
                             .frame(alignment: .center)
                     }
-                }.foregroundColor(.accentColor)
+                }
+                .foregroundColor(.accentColor)
 #if targetEnvironment(macCatalyst)
-                    .padding(.horizontal, 15)
+                .padding(.horizontal, 15)
 #endif
-                NavigationLink(destination: Details()) {
-                    Text("Details")
-                        .bold()
-                        .padding(.horizontal, 4)
-                        .padding(2)
-                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
-                }
             }
             
             Spacer()
-            
-            VStack {
-                HStack {
-                    Spacer()
-                    
-                    Stepper(value: $settings.readingInterval,
-                            in: settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ?
-                            1 ... 1 :
-                                settings.preferredTransmitter == .dexcom || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.dexcom)) ?
-                            5 ... 5 :
-                                1 ... 15,
-                            step: 1) {
-                        HStack {
-                            Image(systemName: "timer")
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                            
-                            Text("\(settings.readingInterval) min")
-                        }
-                    }
-                            .foregroundColor(.orange)
-                            .frame(maxWidth: 200)
-                    
-                    Spacer()
-                }
-                
-                HStack {
-                    Spacer()
-                    
-                    Stepper {
-                        HStack {
-                            Image(systemName: settings.onlineInterval > 0 ? "network" : "wifi.slash")
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                            
-                            Text(settings.onlineInterval > 0 ? "\(settings.onlineInterval) min" : "offline")
-                        }
-                    } onIncrement: {
-                        settings.onlineInterval += settings.onlineInterval >= 5 ? 5 : 1
-                    } onDecrement: {
-                        settings.onlineInterval -= settings.onlineInterval == 0 ? 0 : settings.onlineInterval <= 5 ? 1 : 5
-                    }
-                    .foregroundColor(.cyan)
-                    .frame(maxWidth: 200)
-                    
-                    Spacer()
-                }
-            }
-            
-            Spacer()
-            
-            Button {
-                settings.selectedTab = (settings.preferredTransmitter != .none) ? .monitor : .console
-                app.main.rescan()
-            } label: {
-                Text("Rescan")
-                    .bold().padding(.horizontal, 4)
-                    .padding(2)
-                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
-            }
-            
-            Spacer()
-            
-            VStack {
-                HStack {
-                    Spacer()
-                    
-                    Picker("Unit", selection: $settings.displayingMillimoles) {
-                        ForEach(GlucoseUnit.allCases) { unit in
-                            Text(unit.description)
-                                .tag(unit == .mmoll)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                    .frame(width: 160)
-                    
-                    Spacer()
-                }
-                .padding(.bottom)
-                
-                VStack(spacing: 0) {
-                    Image(systemName: "hand.thumbsup.fill")
-                        .foregroundColor(.green)
-                        .padding(4)
-                    
-                    Text("\(settings.targetLow.units) - \(settings.targetHigh.units)")
-                        .foregroundColor(.green)
-                    
-                    HStack {
-                        Slider(value: $settings.targetLow,  in: 40 ... 99, step: 1)
-                        
-                        Slider(value: $settings.targetHigh, in: 120 ... 300, step: 1)
-                    }
-                }
-                .accentColor(.green)
-                
-                VStack(spacing: 0) {
-                    Image(systemName: "bell.fill")
-                        .foregroundColor(.red)
-                        .padding(4)
-                    
-                    Text("< \(settings.alarmLow.units)   > \(settings.alarmHigh.units)")
-                        .foregroundColor(.red)
-                    
-                    HStack {
-                        Slider(value: $settings.alarmLow,  in: 40 ... 99, step: 1)
-                        
-                        Slider(value: $settings.alarmHigh, in: 120 ... 300, step: 1)
-                    }
-                }
-                .accentColor(.red)
-            }
-            .padding(.horizontal, 40)
             
             HStack(spacing: 24) {
                 Button {
@@ -201,7 +182,10 @@ struct SettingsView: View {
                 
                 HStack(spacing: 0) {
                     Button {
-                        withAnimation { settings.disabledNotifications.toggle() }
+                        withAnimation {
+                            settings.disabledNotifications.toggle()
+                        }
+                        
                         if settings.disabledNotifications {
                             UNUserNotificationCenter.current().setBadgeCount(0)
                         } else {
@@ -217,7 +201,7 @@ struct SettingsView: View {
                     }
                     
                     if settings.disabledNotifications {
-                        Picker(selection: $settings.alarmSnoozeInterval, label: Text("")) {
+                        Picker("", selection: $settings.alarmSnoozeInterval) {
                             ForEach([5, 15, 30, 60, 120], id: \.self) { t in
                                 Text("\([5: "5 min", 15: "15 min", 30: "30 min", 60: "1 h", 120: "2 h"][t]!)")
                             }
@@ -252,7 +236,7 @@ struct SettingsView: View {
                         }
                         
                         Section {
-                            Picker(selection: $settings.calendarTitle, label: Text("Calendar")) {
+                            Picker("Calendar", selection: $settings.calendarTitle) {
                                 ForEach([""] + (app.main.eventKit?.calendarTitles ?? [""]), id: \.self) { title in
                                     Text(title != "" ? title : "None")
                                 }

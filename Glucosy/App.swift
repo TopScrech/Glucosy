@@ -35,11 +35,11 @@ struct GlucosyApp: App {
                 .environment(main.settings)
         }
         .onChange(of: scenePhase) {
-            if scenePhase == .active {
 #if !os(watchOS)
+            if scenePhase == .active {
                 UIApplication.shared.isIdleTimerDisabled = main.settings.caffeinated
-#endif
             }
+#endif
             
             if scenePhase == .background {
                 if main.settings.userLevel >= .devel {

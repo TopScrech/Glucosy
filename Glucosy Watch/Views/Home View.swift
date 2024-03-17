@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Environment(AppState.self) var app: AppState
-    @Environment(Log.self) var log: Log
-    @Environment(History.self) var history: History
-    @Environment(Settings.self) var settings: Settings
+    @Environment(AppState.self) private var app: AppState
+    @Environment(Log.self) private var log: Log
+    @Environment(History.self) private var history: History
+    @Environment(Settings.self) private var settings: Settings
     
     var body: some View {
         @Bindable var settings = settings

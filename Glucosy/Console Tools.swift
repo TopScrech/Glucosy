@@ -5,9 +5,9 @@ import TabularData
 // TODO: rename to Copilot when smarter :-)
 
 struct ShellView: View {
-    @Environment(AppState.self) var app: AppState
-    @Environment(Log.self) var log: Log
-    @Environment(Settings.self) var settings: Settings
+    @Environment(AppState.self) private var app: AppState
+    @Environment(Log.self) private var log: Log
+    @Environment(Settings.self) private var settings: Settings
     
     @State private var showingStack = false
     

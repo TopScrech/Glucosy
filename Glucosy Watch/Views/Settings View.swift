@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Environment(AppState.self) var app: AppState
-    @Environment(Settings.self) var settings: Settings
+    @Environment(AppState.self) private var app: AppState
+    @Environment(Settings.self) private var settings: Settings
     
     @State private var showingCalendarPicker = false
     
@@ -37,7 +37,7 @@ struct SettingsView: View {
                 }
                 .padding(.horizontal, -8)
                 
-                Picker(selection: $settings.preferredTransmitter, label: Text("Preferred")) {
+                Picker("Preferred", selection: $settings.preferredTransmitter) {
                     ForEach(TransmitterType.allCases) { t in
                         Text(t.name)
                             .tag(t)
@@ -67,7 +67,7 @@ struct SettingsView: View {
                         app.main.rescan()
                     })
                     
-                    Picker(selection: $settings.readingInterval, label: Text("")) {
+                    Picker("", selection: $settings.readingInterval) {
                         ForEach(Array(stride(from: 1,
                                              through: settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ? 1 :
                                                 settings.preferredTransmitter == .dexcom || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.dexcom)) ? 5
@@ -95,9 +95,8 @@ struct SettingsView: View {
                         .foregroundColor(.cyan)
                 }
                 
-                Picker(selection: $settings.onlineInterval, label: Text("")) {
-                    ForEach([0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 45, 60],
-                            id: \.self) { t in
+                Picker("", selection: $settings.onlineInterval) {
+                    ForEach([0, 1, 2, 3, 4, 5, 10, 15, 20, 30, 45, 60], id: \.self) { t in
                         Text(t != 0 ? "\(t) min" : "offline")
                     }
                 }
@@ -119,6 +118,7 @@ struct SettingsView: View {
                         
                         Spacer().frame(width: 20)
                     }
+                    
                     HStack {
                         Slider(value: $settings.targetLow, in: 40 ... 99, step: 1)
                             .frame(height: 20)

@@ -59,7 +59,7 @@
 		C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
 		C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
 		C5E4005929825C930021C6B7 /* DataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004E29825C930021C6B7 /* DataView.swift */; };
-		C5E4005A29825C930021C6B7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004F29825C930021C6B7 /* SettingsView.swift */; };
+		C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004F29825C930021C6B7 /* Settings View.swift */; };
 		C5E4005B29825C930021C6B7 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005029825C930021C6B7 /* Details.swift */; };
 		C5E4005C29825C930021C6B7 /* View Representables.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005129825C930021C6B7 /* View Representables.swift */; };
 		C5E4005D29825C930021C6B7 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005229825C930021C6B7 /* Console.swift */; };
@@ -142,6 +142,7 @@
 		F35AFC912BA508A60065145A /* Carbohydrates Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */; };
 		F35AFC922BA508A60065145A /* Apple Health View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8C2BA508A60065145A /* Apple Health View.swift */; };
 		F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8D2BA508A60065145A /* HealthKit Card.swift */; };
+		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,7 +230,7 @@
 		C5E4004529825C710021C6B7 /* alarm_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_low.mp3; sourceTree = "<group>"; };
 		C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_signal_loss.mp3; sourceTree = "<group>"; };
 		C5E4004E29825C930021C6B7 /* DataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataView.swift; sourceTree = "<group>"; };
-		C5E4004F29825C930021C6B7 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C5E4004F29825C930021C6B7 /* Settings View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Settings View.swift"; sourceTree = "<group>"; };
 		C5E4005029825C930021C6B7 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		C5E4005129825C930021C6B7 /* View Representables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View Representables.swift"; sourceTree = "<group>"; };
 		C5E4005229825C930021C6B7 /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
@@ -279,6 +280,7 @@
 		F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Carbohydrates Card.swift"; sourceTree = "<group>"; };
 		F35AFC8C2BA508A60065145A /* Apple Health View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apple Health View.swift"; sourceTree = "<group>"; };
 		F35AFC8D2BA508A60065145A /* HealthKit Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthKit Card.swift"; sourceTree = "<group>"; };
+		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,9 +395,8 @@
 				C5AAA6182981CF7000CA3EC1 /* App.swift */,
 				F35AFC562BA490FF0065145A /* Logging.swift */,
 				F35AFC502BA4908B0065145A /* History.swift */,
-				F35AFC7B2BA4FFF70065145A /* Insulin Delivery.swift */,
-				F35AFC7E2BA500130065145A /* Carbohydrates.swift */,
 				F35AFC4D2BA490100065145A /* UI Tests.swift */,
+				F3E69B412BA5FD1E00A5469A /* Models */,
 				F35AFC5F2BA4917E0065145A /* Enums */,
 				F35AFC6C2BA492080065145A /* SwiftData */,
 				C5E4004D29825C930021C6B7 /* Views */,
@@ -454,9 +455,10 @@
 				C5E4005529825C930021C6B7 /* Monitor.swift */,
 				C5E4005329825C930021C6B7 /* Graph.swift */,
 				C5E4005029825C930021C6B7 /* Details.swift */,
+				F3E69B422BA65A4200A5469A /* Known Devices List.swift */,
 				C5E4005429825C930021C6B7 /* Online View.swift */,
 				C5E4005229825C930021C6B7 /* Console.swift */,
-				C5E4004F29825C930021C6B7 /* SettingsView.swift */,
+				C5E4004F29825C930021C6B7 /* Settings View.swift */,
 				C5E4004E29825C930021C6B7 /* DataView.swift */,
 				C5E4005629825C930021C6B7 /* Plan.swift */,
 				C5E4005129825C930021C6B7 /* View Representables.swift */,
@@ -515,6 +517,15 @@
 				F35AFC892BA508A50065145A /* TIme from date.swift */,
 			);
 			path = "Apple Health";
+			sourceTree = "<group>";
+		};
+		F3E69B412BA5FD1E00A5469A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F35AFC7B2BA4FFF70065145A /* Insulin Delivery.swift */,
+				F35AFC7E2BA500130065145A /* Carbohydrates.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -766,6 +777,7 @@
 				F35AFC5A2BA4913B0065145A /* Trend Arrow.swift in Sources */,
 				F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */,
 				C568696A2B30469000B11687 /* NFCTools.swift in Sources */,
+				F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */,
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,
 				C5E4008229825E8B0021C6B7 /* Libre2.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
@@ -793,7 +805,7 @@
 				F35AFC642BA4919F0065145A /* GlycemicAlarm.swift in Sources */,
 				C5E4006329825C930021C6B7 /* HamburgerMenu.swift in Sources */,
 				C5E4007429825E050021C6B7 /* Main Delegate.swift in Sources */,
-				C5E4005A29825C930021C6B7 /* SettingsView.swift in Sources */,
+				C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */,
 				C5E4007629825E370021C6B7 /* Glucose.swift in Sources */,
 				C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */,
 				C5E4009629825F120021C6B7 /* LibreLink.swift in Sources */,

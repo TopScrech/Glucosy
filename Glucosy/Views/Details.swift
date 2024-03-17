@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct Details: View {
-    @Environment(AppState.self) var app: AppState
-    @Environment(Settings.self) var settings: Settings
+    @Environment(AppState.self) private var app: AppState
+    @Environment(Settings.self) private var settings: Settings
     
     @State private var showingNFCAlert = false
     @State private var showingRePairConfirmationDialog = false
@@ -413,44 +413,8 @@ struct Details: View {
                 //     .callout()
                 // }
                 
-                Section("Known Devices") {
-                    List {
-                        ForEach(app.main.bluetoothDelegate.knownDevices.sorted(by: { $0.key < $1.key }), id: \.key) { uuid, device in
-                            HStack {
-                                Text(device.name)
-                                    .callout()
-                                    .foregroundColor((app.device != nil) && uuid == app.device!.peripheral!.identifier.uuidString ? .yellow : .blue)
-                                    .onTapGesture {
-                                        // TODO: navigate to peripheral details
-                                        if let peripheral = app.main.centralManager.retrievePeripherals(withIdentifiers: [UUID(uuidString: uuid)!]).first {
-                                            if let appDevice = app.device {
-                                                app.main.centralManager.cancelPeripheralConnection(appDevice.peripheral!)
-                                            }
-                                            
-                                            app.main.log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
-                                            app.main.settings.preferredTransmitter = .none
-                                            app.main.bluetoothDelegate.centralManager(app.main.centralManager, didDiscover: peripheral, advertisementData: [:], rssi: 0)
-                                        }
-                                    }
-                                
-                                if !device.isConnectable {
-                                    Spacer()
-                                    
-                                    Image(systemName: "nosign")
-                                        .foregroundColor(.red)
-                                    
-                                } else if device.isIgnored {
-                                    Spacer()
-                                    
-                                    Image(systemName: "hand.raised.slash.fill")
-                                        .foregroundColor(.red)
-                                        .onTapGesture {
-                                            app.main.bluetoothDelegate.knownDevices[uuid]!.isIgnored.toggle()
-                                        }
-                                }
-                            }
-                        }
-                    }
+                Section {
+                    KnownDevicesList()
                 }
             }
             .foregroundColor(.secondary)
@@ -463,10 +427,14 @@ struct Details: View {
                 VStack(spacing: 0) {
                     Button {
                         app.main.rescan()
+                        
                         self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
                         self.minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
                     } label: {
-                        Image(systemName: "arrow.clockwise.circle").resizable().frame(width: 32, height: 32).foregroundColor(.accentColor)
+                        Image(systemName: "arrow.clockwise.circle")
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .foregroundColor(.accentColor)
                     }
                     
                     Text(!app.deviceState.isEmpty && app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
@@ -483,6 +451,7 @@ struct Details: View {
                 Button {
                     if app.device != nil {
                         app.main.bluetoothDelegate.knownDevices[app.device.peripheral!.identifier.uuidString]!.isIgnored = true
+                        
                         app.main.centralManager.cancelPeripheralConnection(app.device.peripheral!)
                     }
                 } label: {
@@ -500,19 +469,13 @@ struct Details: View {
         }
         .onAppear {
             if app.sensor != nil {
-                minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate)/60)
+                minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate) / 60)
+                
             } else if app.lastReadingDate != Date.distantPast {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate)/60)
             }
         }
     }
-}
-
-#Preview {
-    Details()
-        .preferredColorScheme(.dark)
-        .environment(AppState.test(tab: .monitor))
-        .environment(Settings())
 }
 
 #Preview {

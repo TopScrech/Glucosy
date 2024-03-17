@@ -383,7 +383,11 @@ final class HexDataFormatter: Formatter {
     
     override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
         var str = string.filter(\.isHexDigit)
-        if str.count % 2 == 1 { str = "0" + str}
+        
+        if str.count % 2 == 1 {
+            str = "0" + str
+        }
+        
         obj?.pointee = str.bytes as AnyObject
         
         return true

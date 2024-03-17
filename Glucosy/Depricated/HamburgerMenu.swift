@@ -1,7 +1,7 @@
 //import SwiftUI
 //
 //struct HamburgerMenu: View {
-//    @Environment(\.colorScheme) var colorScheme
+//    @Environment(\.colorScheme) private var colorScheme
 //    
 //    @Binding var showingHamburgerMenu: Bool
 //    

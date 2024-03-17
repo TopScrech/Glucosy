@@ -5,7 +5,7 @@ import HealthKit
 // TODO: async / await
 // TODO: Observers
 
-class HealthKit: Logging {
+final class HealthKit: Logging {
     var main: MainDelegate!
     var store: HKHealthStore?
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L is unavailible
@@ -13,7 +13,7 @@ class HealthKit: Logging {
     
     private let glucoseType = HKQuantityType.quantityType(forIdentifier: .bloodGlucose)
     private let insulinType = HKQuantityType.quantityType(forIdentifier: .insulinDelivery)
-    private let carbsType = HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates)
+    private let carbsType   = HKQuantityType.quantityType(forIdentifier: .dietaryCarbohydrates)
     
     init() {
         if isAvailable {
@@ -25,7 +25,7 @@ class HealthKit: Logging {
         HKHealthStore.isHealthDataAvailable()
     }
     
-    private var healthKitTypes: Set<HKQuantityType> {
+    private var dataTypes: Set<HKQuantityType> {
         guard let glucoseType, let insulinType, let carbsType else {
             return []
         }
@@ -34,7 +34,7 @@ class HealthKit: Logging {
     }
     
     func authorize(_ handler: @escaping (Bool) -> Void) {
-        store?.requestAuthorization(toShare: healthKitTypes, read: healthKitTypes) { success, error in
+        store?.requestAuthorization(dataTypes) { success, error in
             guard let error else {
                 return handler(success)
             }
@@ -53,7 +53,7 @@ class HealthKit: Logging {
     }
     
     func getAuthorizationState(_ handler: @escaping (Bool) -> Void) {
-        store?.getRequestStatusForAuthorization(toShare: healthKitTypes, read: healthKitTypes) { status, error in
+        store?.getRequestStatusForAuthorization(dataTypes) { status, error in
             guard let error else {
                 return handler(status == .unnecessary)
             }

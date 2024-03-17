@@ -86,7 +86,9 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         eventKit?.sync()
         
         UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in
+            
+        }
         
         let numberFormatter = NumberFormatter()
         numberFormatter.minimumFractionDigits = 8
@@ -147,6 +149,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
     //    public func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
     //        let sceneConfiguration = UISceneConfiguration(name: "LaunchConfiguration", sessionRole: connectingSceneSession.role)
     //        sceneConfiguration.delegateClass = MainDelegate.self
+    //
     //        return sceneConfiguration
     //    }
     

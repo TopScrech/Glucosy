@@ -82,6 +82,7 @@ struct MealtimeView: View {
             }
             .padding(.horizontal)
         }
+        .padding(.top)
     }
     
     private func saveData() {

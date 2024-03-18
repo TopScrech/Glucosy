@@ -10,7 +10,18 @@ struct MealtimeSelector: View {
     }
     
     var body: some View {
-        HStack(spacing: 50) {
+        HStack(spacing: 10) {
+            if value > 10 {
+                Button {
+                    value -= 5
+                } label: {
+                    Text("-5")
+                        .padding()
+                        .foregroundStyle(.white)
+                        .background(.red.gradient, in: .rect(cornerRadius: 16))
+                }
+            }
+            
             Button {
                 value -= 1
             } label: {
@@ -21,9 +32,8 @@ struct MealtimeSelector: View {
             }
             
             Text(Int(value))
+                .padding()
                 .monospaced()
-//                .animation(.default, value: amountInsulin)
-            //                    .modifier(NumericContentTransitionModifier(newValue: amountInsulin, oldValue: vm.previousValue))
             
             Button {
                 value += 1
@@ -32,6 +42,17 @@ struct MealtimeSelector: View {
                     .padding()
                     .foregroundStyle(.white)
                     .background(.green.gradient, in: .rect(cornerRadius: 16))
+            }
+            
+            if value > 10 {
+                Button {
+                    value += 5
+                } label: {
+                    Text("+5")
+                        .padding()
+                        .foregroundStyle(.white)
+                        .background(.green.gradient, in: .rect(cornerRadius: 16))
+                }
             }
         }
         .title(.semibold)

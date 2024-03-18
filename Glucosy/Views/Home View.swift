@@ -1,10 +1,12 @@
-import SwiftUI
+import ScrechKit
 
 struct HomeView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Log.self) private var log: Log
     @Environment(History.self) private var history: History
     @Environment(Settings.self) private var settings: Settings
+    
+    @State private var sheetMealtime = false
     
     var body: some View {
         @Bindable var settings = settings
@@ -67,6 +69,14 @@ struct HomeView: View {
             }
         }
         .toolbarRole(.navigationStack)
+        .onChange(of: app.main.app.currentGlucose) { _, _ in
+            delay(3) {
+                sheetMealtime = true
+            }
+        }
+        .sheet($sheetMealtime) {
+            Text("Mealtime")
+        }
     }
 }
 

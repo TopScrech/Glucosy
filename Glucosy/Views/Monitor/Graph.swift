@@ -142,7 +142,10 @@ struct Graph: View {
                         let yScale = (height - 20) / yMax()
                         let xScale = width / Double(count - 1)
                         var startingVoid = v[count - 1] < 1 ? true : false
-                        if !startingVoid { path.move(to: .init(x: 0 + 30, y: height - Double(v[count - 1]) * yScale)) }
+                        
+                        if !startingVoid {
+                            path.move(to: .init(x: 0 + 30, y: height - Double(v[count - 1]) * yScale))
+                        }
                         
                         for i in 1 ..< count {
                             if v[count - i - 1] > 0 {

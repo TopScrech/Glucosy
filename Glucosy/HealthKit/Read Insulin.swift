@@ -48,7 +48,6 @@ extension HealthKit {
             
             for sample in insulinSamples {
                 let insulinUnit = sample.quantity.doubleValue(for: .internationalUnit())
-                print("Insulin Delivered: \(insulinUnit) IU, Date: \(sample.startDate) \(sample.metadata?.description ?? "")")
                 
                 if let insulinMetadata = sample.metadata,
                     let insulinCategory = insulinMetadata["HKInsulinDeliveryReason"] as? Int {

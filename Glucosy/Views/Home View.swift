@@ -6,10 +6,9 @@ struct HomeView: View {
     @Environment(History.self) private var history: History
     @Environment(Settings.self) private var settings: Settings
     
-    @State private var sheetMealtime = false
-    
     var body: some View {
         @Bindable var settings = settings
+        @Bindable var app = app
         
         TabView(selection: $settings.selectedTab) {
             NavigationView {
@@ -71,11 +70,11 @@ struct HomeView: View {
         .toolbarRole(.navigationStack)
         .onChange(of: app.main.app.currentGlucose) { _, _ in
             delay(3) {
-                sheetMealtime = true
+                app.sheetMealtime = true
             }
         }
-        .sheet($sheetMealtime) {
-            Text("Mealtime")
+        .sheet($app.sheetMealtime) {
+            MealtimeView()
         }
     }
 }

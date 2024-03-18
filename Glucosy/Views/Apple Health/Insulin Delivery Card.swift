@@ -24,7 +24,8 @@ struct InsulinDeliveryCard: View {
                 .footnote()
                 .foregroundStyle(.secondary)
         }
-    }    
+        .monospacedDigit()
+    }
 }
 
 #Preview {

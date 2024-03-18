@@ -39,7 +39,7 @@ struct Monitor: View {
                     minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
                 }
                 
-                Text(app.currentGlucose > 0 ? "\(app.currentGlucose.units) " : "--- ")
+                Text(app.currentGlucose > 0 ? "\(app.currentGlucose.units)" : "---")
                     .font(.system(size: 42, weight: .black))
                     .monospacedDigit()
                     .foregroundColor(.black)

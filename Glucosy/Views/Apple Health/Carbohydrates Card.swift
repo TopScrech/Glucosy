@@ -15,6 +15,7 @@ struct CarbohydratesCard: View {
             
             Text(carbs.date, format: .dateTime)
         }
+        .monospacedDigit()
     }
 }
 

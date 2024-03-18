@@ -52,7 +52,7 @@ struct DataView: View {
                             Text("OOP history (values)")
                                 .bold()
                             
-                            ScrollView {
+                            ScrollView(showsIndicators: false) {
                                 ForEach(history.values) { glucose in
                                     HStack {
                                         Text("\(glucose.id) \(glucose.date.shortDateTime)")
@@ -74,7 +74,7 @@ struct DataView: View {
                             Text("History (factoryValues)")
                                 .bold()
                             
-                            ScrollView {
+                            ScrollView(showsIndicators: false) {
                                 ForEach(history.factoryValues) { glucose in
                                     HStack {
                                         Text("\(glucose.id) \(glucose.date.shortDateTime)")
@@ -97,7 +97,7 @@ struct DataView: View {
                         Text("Raw history (rawValues)")
                             .bold()
                         
-                        ScrollView {
+                        ScrollView(showsIndicators: false) {
                             ForEach(history.rawValues) { glucose in
                                 HStack {
                                     Text("\(glucose.id) \(glucose.date.shortDateTime)")
@@ -121,7 +121,7 @@ struct DataView: View {
                         Text("Trend (factoryTrend)")
                             .bold()
                         
-                        ScrollView {
+                        ScrollView(showsIndicators: false) {
                             ForEach(history.factoryTrend) { glucose in
                                 HStack {
                                     Text("\(glucose.id) \(glucose.date.shortDateTime)")
@@ -143,7 +143,7 @@ struct DataView: View {
                         Text("Raw trend (rawTrend)")
                             .bold()
                         
-                        ScrollView {
+                        ScrollView(showsIndicators: false) {
                             ForEach(history.rawTrend) { glucose in
                                 HStack {
                                     Text("\(glucose.id) \(glucose.date.shortDateTime)")

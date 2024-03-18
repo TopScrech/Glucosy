@@ -4,12 +4,16 @@ struct AppleHealthView: View {
     @Environment(AppState.self) private var app
     @Environment(History.self) private var history
     
+    @AppStorage("is_expanded_glucose") private var isExpandedGlucose = false
+    @AppStorage("is_expanded_insulin") private var isExpandedInsulin = false
+    @AppStorage("is_expanded_carbs") private var isExpandedCarbs = false
+    
     var body: some View {
         List {
             HealthKitLink()
             
             Section {
-                DisclosureGroup("Glucose") {
+                DisclosureGroup("Glucose", isExpanded: $isExpandedGlucose) {
                     ForEach(history.storedValues) { glucose in
                         HealthKitCard(glucose)
                     }
@@ -20,7 +24,7 @@ struct AppleHealthView: View {
             }
             
             Section {
-                DisclosureGroup("Insulin Delivery") {
+                DisclosureGroup("Insulin Delivery", isExpanded: $isExpandedInsulin) {
                     ForEach(history.insulinDeliveries, id: \.self) { insulin in
                         InsulinDeliveryCard(insulin)
                     }
@@ -31,7 +35,7 @@ struct AppleHealthView: View {
             }
             
             Section {
-                DisclosureGroup("Carbohydrates") {
+                DisclosureGroup("Carbohydrates", isExpanded: $isExpandedCarbs) {
                     ForEach(history.consumedCarbohydrates, id: \.self) { carbs in
                         CarbohydratesCard(carbs)
                     }
@@ -41,11 +45,6 @@ struct AppleHealthView: View {
                     .bold()
             }
         }
-        //        .overlay {
-        //            if history.storedValues.count > 0 {
-        //                ContentUnavailableView("No data found", systemImage: "hammer", description: Text("123"))
-        //            }
-        //        }
         .refreshableTask {
             if let healthKit = app.main?.healthKit {
                 healthKit.readGlucose()
@@ -53,10 +52,16 @@ struct AppleHealthView: View {
                 healthKit.readCarbs()
             }
         }
+        .toolbar {
+            Button("New record") {
+                app.sheetMealtime = true
+            }
+            .tint(.green)
+        }
     }
 }
 
 #Preview {
-    AppleHealthView()
-        .glucosyPreview()
+    HomeView()
+        .glucosyPreview(.healthKit)
 }

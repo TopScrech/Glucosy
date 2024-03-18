@@ -106,6 +106,7 @@
 		F31C70942BA7916C00A5BFCD /* Crc Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */; };
 		F31C70962BA7B01800A5BFCD /* Mealtime View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70952BA7B01800A5BFCD /* Mealtime View.swift */; };
 		F31C70982BA7B9A300A5BFCD /* Notification Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */; };
+		F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */; };
 		F35AFC472BA48CBC0065145A /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC462BA48CBC0065145A /* ScrechKit */; };
 		F35AFC4A2BA48CCD0065145A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC492BA48CCD0065145A /* Algorithms */; };
 		F35AFC4C2BA48D7F0065145A /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC4B2BA48D7F0065145A /* ScrechKit */; };
@@ -274,6 +275,7 @@
 		F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crc Calculator.swift"; sourceTree = "<group>"; };
 		F31C70952BA7B01800A5BFCD /* Mealtime View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime View.swift"; sourceTree = "<group>"; };
 		F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Manager.swift"; sourceTree = "<group>"; };
+		F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime Selector.swift"; sourceTree = "<group>"; };
 		F35AFC4D2BA490100065145A /* UI Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI Tests.swift"; sourceTree = "<group>"; };
 		F35AFC502BA4908B0065145A /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		F35AFC532BA490C70065145A /* App State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App State.swift"; sourceTree = "<group>"; };
@@ -409,7 +411,6 @@
 				C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */,
 				C53F77C529894478004F275A /* Info.plist */,
 				C5AAA61E2981CF7200CA3EC1 /* Glucosy.entitlements */,
-				F35AFC6D2BA4E5360065145A /* Depricated */,
 				C5E4004329825C710021C6B7 /* Media */,
 				C5AAA6182981CF7000CA3EC1 /* App.swift */,
 				F35AFC532BA490C70065145A /* App State.swift */,
@@ -443,6 +444,7 @@
 				C535AEB72AB343AE00AB61AD /* Realm.swift */,
 				C5E4009529825F120021C6B7 /* LibreLink.swift */,
 				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
+				F35AFC6D2BA4E5360065145A /* Depricated */,
 			);
 			path = Glucosy;
 			sourceTree = "<group>";
@@ -471,6 +473,7 @@
 			children = (
 				C5E4005729825C930021C6B7 /* Home View.swift */,
 				F31C70952BA7B01800A5BFCD /* Mealtime View.swift */,
+				F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */,
 				F35AFC872BA5086B0065145A /* Apple Health */,
 				F31C70992BA8577D00A5BFCD /* Monitor */,
 				F31C709A2BA8578700A5BFCD /* Details */,
@@ -848,6 +851,7 @@
 				F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */,
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,
 				C5E4008229825E8B0021C6B7 /* Libre2.swift in Sources */,
+				F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
 				F35AFC902BA508A60065145A /* Insulin Delivery Card.swift in Sources */,
 				F35AFC612BA491910065145A /* OnlineService.swift in Sources */,

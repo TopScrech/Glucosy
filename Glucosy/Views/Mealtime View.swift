@@ -5,87 +5,110 @@ struct MealtimeView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @AppStorage("amount_insulin") private var amountInsulin = 5.0
+    @AppStorage("rapid_insulin") private var rapidInsulin = 5.0
+    @AppStorage("long_insulin") private var longInsulin = 5.0
+    @AppStorage("carbs") private var carbs = 50.0
     @AppStorage("selected_insulin") private var selectedInsulin: InsulinType = .bolus
     
-    private let insulinTypes: [InsulinType] = [
-        .basal, // Long
-        .bolus  // Short
-    ]
-    
-    @State private var recordDate = Date()
-    @State private var previousValue = 0.0
+    @State private var date = Date()
     
     private var timeDifference: String {
-        timeDifferenceFromNow(recordDate)
+        timeDifferenceFromNow(date)
     }
+    
+    //    @State private var includeGlucose = false
+    @State private var includeRapidInsulin = false
+    @State private var includeLongInsulin = false
+    @State private var includeCarbs = false
     
     var body: some View {
         VStack(spacing: 25) {
-            Spacer()
-            
-            DatePicker("Date and time", selection: $recordDate)
+            DatePicker("Record time", selection: $date)
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
             
             Text(timeDifference)
             
-            Picker("Insulin Type", selection: $selectedInsulin) {
-                ForEach(insulinTypes, id: \.self) { type in
-                    Text(type.rawValue)
-                        .tag(type)
+            VStack(alignment: .leading) {
+                Button {
+                    includeRapidInsulin.toggle()
+                } label: {
+                    Label("Rapid-acting insulin", systemImage: includeRapidInsulin ? "checkmark.square" : "square")
+                        .foregroundStyle(.foreground)
                 }
             }
-            .pickerStyle(.segmented)
-            .padding(.horizontal)
             
-            HStack(spacing: 50) {
+            if includeRapidInsulin {
+                MealtimeSelector($rapidInsulin)
+            }
+            
+            VStack(alignment: .leading) {
                 Button {
-                    previousValue = amountInsulin
-                    amountInsulin -= 1
+                    includeLongInsulin.toggle()
                 } label: {
-                    Text("-1")
-                        .padding()
-                        .foregroundStyle(.white)
-                        .background(.red, in: .rect(cornerRadius: 16))
-                }
-                
-                Text(amountInsulin)
-                    .monospaced()
-                    .animation(.default, value: amountInsulin)
-//                    .modifier(NumericContentTransitionModifier(newValue: amountInsulin, oldValue: vm.previousValue))
-                
-                Button {
-                    previousValue = amountInsulin
-                    amountInsulin += 1
-                } label: {
-                    Text("+1")
-                        .padding()
-                        .foregroundStyle(.white)
-                        .background(.green, in: .rect(cornerRadius: 16))
+                    Label("Long-acting insulin", systemImage: includeLongInsulin ? "checkmark.square" : "square")
+                        .foregroundStyle(.foreground)
                 }
             }
-            .title(.semibold)
+            
+            if includeLongInsulin {
+                MealtimeSelector($longInsulin)
+            }
+            
+            VStack(alignment: .leading) {
+                Button {
+                    includeCarbs.toggle()
+                } label: {
+                    Label("Carbs", systemImage: includeCarbs ? "checkmark.square" : "square")
+                        .foregroundStyle(.foreground)
+                }
+            }
+            
+            if includeCarbs {
+                MealtimeSelector($carbs)
+            }
             
             Spacer()
             
             Button {
-//                app.main.healthKit?.writeInsulinDelivery([])
-//                vm.saveInsulinDelivery(amount: amountInsulin, type: selectedInsulin, date: vm.recordDate) // METADATA
-                dismiss()
+                saveData()
             } label: {
                 Text("Save")
                     .title3(.semibold)
                     .foregroundStyle(.white)
-                    .frame(width: .infinity, height: 60)
+                    .frame(height: 60)
                     .frame(maxWidth: .infinity)
                     .background(.blue, in: .rect(cornerRadius: 20))
             }
             .padding(.horizontal)
         }
-        .task {
-            previousValue = amountInsulin
+    }
+    
+    private func saveData() {
+        if includeRapidInsulin {
+            let rapidInsulinDelivery = InsulinDelivery(value: Int(rapidInsulin), type: .bolus, date: date)
+            
+            app.main.healthKit?.writeInsulinDelivery([rapidInsulinDelivery])
         }
+        
+        if includeLongInsulin {
+            let longInsulinDelivery = InsulinDelivery(value: Int(longInsulin), type: .basal, date: date)
+            
+            app.main.healthKit?.writeInsulinDelivery([longInsulinDelivery])
+        }
+        
+        if includeRapidInsulin || includeLongInsulin {
+            app.main.healthKit?.readInsulin()
+        }
+        
+        if includeCarbs {
+            let carbohydrates = Carbohydrates(value: Int(carbs), date: date)
+            
+            app.main.healthKit?.writeCarbs([carbohydrates])
+            app.main.healthKit?.readCarbs()
+        }
+        
+        dismiss()
     }
     
     private func timeDifferenceFromNow(_ date2: Date) -> String {

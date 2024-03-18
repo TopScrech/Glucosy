@@ -28,6 +28,7 @@ struct HealthKitCard: View {
                 .footnote()
                 .foregroundStyle(.secondary)
         }
+        .monospacedDigit()
     }
 }
 

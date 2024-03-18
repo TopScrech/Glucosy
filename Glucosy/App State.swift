@@ -21,4 +21,6 @@ final class AppState {
     var showingJavaScriptConfirmAlert = false
     var JavaScriptConfirmAlertMessage = ""
     var JavaScriptAlertReturn = ""
+    
+    var sheetMealtime = false
 }

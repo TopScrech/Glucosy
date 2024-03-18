@@ -16,7 +16,7 @@ extension HealthKit {
                 start: $0.date,
                 end: $0.date,
                 metadata: [
-                    "insulinType": $0.type == .basal ? 1 : 2
+                    "HKInsulinDeliveryReason": $0.type == .basal ? 1 : 2
                 ]
             )
         }

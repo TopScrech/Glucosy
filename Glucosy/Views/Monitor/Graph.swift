@@ -18,10 +18,10 @@ struct Graph: View {
     var body: some View {
         ZStack {
             // Glucose range rect in the background
-            GeometryReader { geometry in
+            GeometryReader { geo in
                 Path { path in
-                    let width  = geometry.size.width - 60
-                    let height = geometry.size.height
+                    let width  = geo.size.width - 60
+                    let height = geo.size.height
                     let yScale = (height - 20) / yMax()
                     
                     path.addRect(CGRect(x: 1 + 30, y: height - settings.targetHigh * yScale + 1.0, width: width - 2, height: (settings.targetHigh - settings.targetLow) * yScale - 1))
@@ -31,13 +31,13 @@ struct Graph: View {
             }
             
             // Target glucose low and high labels at the right, timespan on the left
-            GeometryReader { geometry in
+            GeometryReader { geo in
                 ZStack {
                     Text("\(settings.targetHigh.units)")
-                        .position(x: geometry.size.width - 15, y: geometry.size.height - (geometry.size.height - 20) / yMax() * settings.targetHigh)
+                        .position(x: geo.size.width - 15, y: geo.size.height - (geo.size.height - 20) / yMax() * settings.targetHigh)
                     
                     Text("\(settings.targetLow.units)")
-                        .position(x: geometry.size.width - 15, y: geometry.size.height - (geometry.size.height - 20) / yMax() * settings.targetLow)
+                        .position(x: geo.size.width - 15, y: geo.size.height - (geo.size.height - 20) / yMax() * settings.targetLow)
                     
                     let count = history.rawValues.count
                     
@@ -46,14 +46,14 @@ struct Graph: View {
                         let minutes = count % 4 * 15
                         
                         Text((hours > 0 ? "\(hours) h\n" : "") + (minutes != 0 ? "\(minutes) min" : ""))
-                            .position(x: 5, y: geometry.size.height - geometry.size.height / 2)
+                            .position(x: 5, y: geo.size.height - geo.size.height / 2)
                     } else {
                         // TODO: factory data coming from LLU
                         let count = history.factoryValues.count
                         
                         if count > 0 {
                             Text("12 h\n\n\(count) /\n144")
-                                .position(x: 5, y: geometry.size.height - geometry.size.height / 2 - 8)
+                                .position(x: 5, y: geo.size.height - geo.size.height / 2 - 8)
                         }
                     }
                 }
@@ -62,13 +62,13 @@ struct Graph: View {
             }
             
             // Historic raw values
-            GeometryReader { geometry in
+            GeometryReader { geo in
                 let count = history.rawValues.count
                 
                 if count > 0 {
                     Path { path in
-                        let width  = geometry.size.width - 60
-                        let height = geometry.size.height
+                        let width  = geo.size.width - 60
+                        let height = geo.size.height
                         let v = history.rawValues.map(\.value)
                         let yScale = (height - 20) / yMax()
                         let xScale = width / Double(count - 1)
@@ -96,13 +96,13 @@ struct Graph: View {
             }
             
             // Historic factory values
-            GeometryReader { geometry in
+            GeometryReader { geo in
                 let count = history.factoryValues.count
                 
                 if count > 0 {
                     Path { path in
-                        let width  = geometry.size.width - 60
-                        let height = geometry.size.height
+                        let width  = geo.size.width - 60
+                        let height = geo.size.height
                         let v = history.factoryValues.map(\.value)
                         let yScale = (height - 20) / yMax()
                         let xScale = width / Double(count - 1)
@@ -130,10 +130,10 @@ struct Graph: View {
             }
             
             // Frame and historic OOP values
-            GeometryReader { geometry in
+            GeometryReader { geo in
                 Path { path in
-                    let width  = geometry.size.width - 60
-                    let height = geometry.size.height
+                    let width  = geo.size.width - 60
+                    let height = geo.size.height
                     path.addRoundedRect(in: CGRect(x: 0 + 30, y: 0, width: width, height: height), cornerSize: CGSize(width: 8, height: 8))
                     let count = history.values.count
                     

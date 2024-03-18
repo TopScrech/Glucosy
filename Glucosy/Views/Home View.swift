@@ -36,6 +36,14 @@ struct HomeView: View {
             }
             
             NavigationView {
+                SettingsView()
+            }
+            .tag(Tab.settings)
+            .tabItem {
+                Label("Settings", systemImage: "gear")
+            }
+            
+            NavigationView {
                 OnlineView()
             }
             .tag(Tab.online)
@@ -49,14 +57,6 @@ struct HomeView: View {
             .tag(Tab.plan)
             .tabItem {
                 Label("Plan", systemImage: "map")
-            }
-            
-            NavigationView {
-                SettingsView()
-            }
-            .tag(Tab.settings)
-            .tabItem {
-                Label("Settings", systemImage: "gear")
             }
             
             NavigationView {

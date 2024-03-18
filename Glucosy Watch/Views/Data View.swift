@@ -9,7 +9,7 @@ struct DataView: View {
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ScrollView {

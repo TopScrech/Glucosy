@@ -6,11 +6,11 @@ import ActivityKit
 
 struct GlucosyWidgetAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
-        // Dynamic stateful properties about your activity go here
+        // Dynamic stateful properties
         var emoji: String
     }
     
-    // Fixed non-changing properties about your activity go here
+    // Fixed non-changing properties
     var name: String
 }
 
@@ -25,8 +25,6 @@ struct GlucosyWidgetLiveActivity: Widget {
             .activitySystemActionForegroundColor(.black)
         } dynamicIsland: { context in
             DynamicIsland {
-                // Expanded UI goes here.  Compose the expanded UI through
-                // various regions, like leading/trailing/center/bottom
                 DynamicIslandExpandedRegion(.leading) {
                     Text("Leading")
                 }
@@ -37,17 +35,19 @@ struct GlucosyWidgetLiveActivity: Widget {
                 
                 DynamicIslandExpandedRegion(.bottom) {
                     Text("Bottom \(context.state.emoji)")
-                    // more content
                 }
+                
             } compactLeading: {
                 Text("L")
+                
             } compactTrailing: {
                 Text("T \(context.state.emoji)")
+                
             } minimal: {
                 Text(context.state.emoji)
             }
             .widgetURL(URL(string: "http://www.apple.com"))
-            .keylineTint(Color.red)
+            .keylineTint(.red)
         }
     }
 }

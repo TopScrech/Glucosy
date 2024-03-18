@@ -11,7 +11,7 @@ struct Console: View {
     @State private var showingFilterField = false
     @State private var filterText = ""
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack(spacing: 0) {
@@ -63,7 +63,8 @@ struct Console: View {
                                 }
                             } else {
                                 let pattern = filterText.lowercased()
-                                let entries = log.entries.filter { 
+                                
+                                let entries = log.entries.filter {
                                     $0.message.lowercased().contains(pattern)
                                 }
                                 
@@ -123,12 +124,10 @@ struct Console: View {
                     Button {
                         app.main.rescan()
                     } label: {
-                        VStack {
-                            Image(.bluetooth)
-                                .renderingMode(.template)
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                        }
+                        Image(.bluetooth)
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 24, height: 24)
                     }
                 }
                 .foregroundColor(.blue)
@@ -144,9 +143,9 @@ struct Console: View {
                             .frame(width: 24, height: 24)
                             .overlay(
                                 Image(systemName: "hand.raised.fill")
-                                .resizable()
-                                .frame(width: 12, height: 12)
-                                .offset(x: 1)
+                                    .resizable()
+                                    .frame(width: 12, height: 12)
+                                    .offset(x: 1)
                             )
                     }
                     .foregroundColor(.red)
@@ -155,6 +154,7 @@ struct Console: View {
                     Button {
                         if app.device != nil {
                             app.main.bluetoothDelegate.knownDevices[app.device.peripheral!.identifier.uuidString]!.isIgnored = true
+                            
                             app.main.centralManager.cancelPeripheralConnection(app.device.peripheral!)
                         }
                     } label: {
@@ -218,7 +218,8 @@ struct Console: View {
                     settings.userLevel = UserLevel(rawValue:(settings.userLevel.rawValue + 1) % UserLevel.allCases.count)!
                 } label: {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 5).fill(settings.userLevel != .basic ? .blue : .clear)
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(settings.userLevel != .basic ? .blue : .clear)
                         
                         Image(systemName: ["doc.plaintext", "ladybug", "testtube.2"][settings.userLevel.rawValue])
                             .resizable()
@@ -246,12 +247,10 @@ struct Console: View {
                     log.labels = []
                     print("Log cleared \(Date().local)")
                 } label: {
-                    VStack {
-                        Image(systemName: "clear")
-                            .resizable()
-                            .foregroundColor(.blue)
-                            .frame(width: 24, height: 24)
-                    }
+                    Image(systemName: "clear")
+                        .resizable()
+                        .foregroundColor(.blue)
+                        .frame(width: 24, height: 24)
                 }
                 
                 Button {
@@ -274,14 +273,13 @@ struct Console: View {
                 
                 Button {
                     settings.logging.toggle()
+                    
                     app.main.log("\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")
                 } label: {
-                    VStack {
-                        Image(systemName: settings.logging ? "stop.circle" : "play.circle")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                            .foregroundColor(settings.logging ? .red : .green)
-                    }
+                    Image(systemName: settings.logging ? "stop.circle" : "play.circle")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(settings.logging ? .red : .green)
                 }
             }
             .footnote()

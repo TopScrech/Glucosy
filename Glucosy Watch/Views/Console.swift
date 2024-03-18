@@ -245,7 +245,9 @@ struct Console: View {
                 Button {
                     log.entries = [LogEntry(message: "Log cleared \(Date().local)")]
                     log.labels = []
+                    
                     print("Log cleared \(Date().local)")
+                    
                 } label: {
                     Image(systemName: "clear")
                         .resizable()
@@ -265,7 +267,8 @@ struct Console: View {
                             .stroke(settings.reversedLog ? .clear : .blue, lineWidth: 2)
                         
                         Image(systemName: "backward.fill")
-                            .resizable().frame(width: 12, height: 12)
+                            .resizable()
+                            .frame(width: 12, height: 12)
                             .foregroundColor(settings.reversedLog ? .black : .blue)
                     }
                     .frame(width: 24, height: 24)

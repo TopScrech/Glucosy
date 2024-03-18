@@ -188,6 +188,7 @@ struct OnlineView: View {
                             .onSubmit {
                                 settings.libreLinkUpPatientId = ""
                                 libreLinkUpResponse = "[Logging in...]"
+                                
                                 Task {
                                     await reloadLibreLinkUp()
                                 }
@@ -206,17 +207,15 @@ struct OnlineView: View {
                 }
                 .footnote()
                 
-                Toggle(isOn: $settings.libreLinkUpFollowing) {
-                    Text("Follower")
-                }
-                .onChange(of: settings.libreLinkUpFollowing) {
-                    settings.libreLinkUpPatientId = ""
-                    libreLinkUpResponse = "[Logging in...]"
-                    
-                    Task {
-                        await reloadLibreLinkUp()
+                Toggle("Follower", isOn: $settings.libreLinkUpFollowing)
+                    .onChange(of: settings.libreLinkUpFollowing) {
+                        settings.libreLinkUpPatientId = ""
+                        libreLinkUpResponse = "[Logging in...]"
+                        
+                        Task {
+                            await reloadLibreLinkUp()
+                        }
                     }
-                }
             }
             
             if settings.selectedService == .nightscout {
@@ -225,6 +224,7 @@ struct OnlineView: View {
                         if history.nightscoutValues.count > 0 {
                             let twelveHours = Double(12 * 60 * 60)  // TODO: the same as LLU
                             let now = Date()
+                            
                             let nightscoutHistory = history.nightscoutValues.filter {
                                 now.timeIntervalSince($0.date) <= twelveHours
                             }
@@ -288,7 +288,10 @@ struct OnlineView: View {
                                     
                                     AxisTick()
                                     
-                                    AxisValueLabel(format: .dateTime.hour(.defaultDigits(amPM: .omitted)).minute(), anchor: .top)
+                                    AxisValueLabel(
+                                        format: .dateTime.hour(.defaultDigits(amPM: .omitted)).minute(),
+                                        anchor: .top
+                                    )
                                 }
                             }
                             .padding()
@@ -299,6 +302,7 @@ struct OnlineView: View {
                             List {
                                 ForEach(libreLinkUpHistory) { lluGlucose in
                                     let glucose = lluGlucose.glucose
+                                    
                                     (Text("\(!settings.libreLinkUpScrapingLogbook ? String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)]) + " " : "")\(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow?.symbol ?? "").font(.title3))
                                         .foregroundColor(lluGlucose.color.color)
                                         .padding(.vertical, 1)

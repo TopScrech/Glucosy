@@ -20,10 +20,12 @@ struct Plan: View {
             if app.status.hasPrefix("Scanning") {
                 Text("Scanning...")
                     .foregroundColor(.orange)
+                
             } else {
                 HStack {
                     if !app.deviceState.isEmpty && app.deviceState != "Connected" {
-                        Text(app.deviceState).foregroundColor(.red)
+                        Text(app.deviceState)
+                            .foregroundColor(.red)
                     }
                     
                     Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?

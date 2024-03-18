@@ -98,16 +98,29 @@ struct HamburgerMenu: View {
                     }
                     
                     // TODO: Help and About sheets
-                    // HStack(spacing: 10) {
-                    //     VStack {
-                    //         Image(systemName: "questionmark.circle").resizable().frame(width: 40, height: 40).offset(y: 4)
-                    //         Text("Help").bold().foregroundColor(.blue)
-                    //     }.frame(maxWidth: .infinity)
-                    //     VStack {
-                    //         Image(systemName: "info.circle").resizable().frame(width: 40, height: 40).offset(y: 4)
-                    //         Text("About").bold().foregroundColor(.blue)
-                    //     }.frame(maxWidth: .infinity)
-                    // }
+                    //                    HStack(spacing: 10) {
+                    //                        VStack {
+                    //                            Image(systemName: "questionmark.circle")
+                    //                                .resizable()
+                    //                                .frame(width: 40, height: 40)
+                    //                                .offset(y: 4)
+                    //                            Text("Help")
+                    //                                .bold()
+                    //                                .foregroundColor(.blue)
+                    //                        }
+                    //                        .frame(maxWidth: .infinity)
+                    //
+                    //                        VStack {
+                    //                            Image(systemName: "info.circle")
+                    //                                .resizable()
+                    //                                .frame(width: 40, height: 40)
+                    //                                .offset(y: 4)
+                    //                            Text("About")
+                    //                                .bold()
+                    //                                .foregroundColor(.blue)
+                    //                        }
+                    //                        .frame(maxWidth: .infinity)
+                    //                    }
                 }
                 .foregroundColor(.red)
                 

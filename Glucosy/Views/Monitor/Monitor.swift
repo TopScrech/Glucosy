@@ -10,10 +10,7 @@ struct Monitor: View {
     
     @State private var readingCountdown = 0
     @State private var minutesSinceLastReading = 0
-    
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    
+        
     var body: some View {
         VStack {
             HStack {
@@ -25,7 +22,7 @@ struct Monitor: View {
                         Text("\(minutesSinceLastReading) min ago")
                             .footnote()
                             .monospacedDigit()
-                            .onReceive(minuteTimer) { _ in
+                            .onReceive(app.minuteTimer) { _ in
                                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
                             }
                     } else {
@@ -88,7 +85,7 @@ struct Monitor: View {
                     .callout()
                     .monospacedDigit()
                     .foregroundColor(.orange)
-                    .onReceive(timer) { _ in
+                    .onReceive(app.secondTimer) { _ in
                         readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                     }
                 }
@@ -180,6 +177,7 @@ struct Monitor: View {
                 if (app.status.hasPrefix("Scanning") || app.status.hasSuffix("retrying...")) && app.main.centralManager.state != .poweredOff {
                     Button {
                         app.main.centralManager.stopScan()
+                        
                         app.main.status("Stopped scanning")
                         app.main.log("Bluetooth: stopped scanning")
                     } label: {
@@ -195,16 +193,9 @@ struct Monitor: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Monitor")
         .onAppear {
-            timer =         Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-            minuteTimer =   Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-            
             if app.lastReadingDate != Date.distantPast {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
             }
-        }
-        .onDisappear {
-            timer.upstream.connect().cancel()
-            minuteTimer.upstream.connect().cancel()
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

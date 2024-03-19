@@ -288,9 +288,7 @@ struct ConsoleSidebar: View {
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+        
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
             Spacer()
@@ -370,7 +368,7 @@ struct ConsoleSidebar: View {
                     .caption()
                     .monospacedDigit()
                     .foregroundColor(.orange)
-                    .onReceive(timer) { _ in
+                    .onReceive(app.secondTimer) { _ in
                         readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                     }
                 } else {
@@ -386,7 +384,7 @@ struct ConsoleSidebar: View {
                     .foregroundColor(.cyan)
                     .caption()
                     .monospacedDigit()
-                    .onReceive(timer) { _ in
+                    .onReceive(app.secondTimer) { _ in
                         onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
                     }
             }

@@ -8,9 +8,7 @@ struct DataView: View {
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
-    
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+        
     var body: some View {
         VStack {
             let dateTime = (app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime
@@ -32,7 +30,7 @@ struct DataView: View {
                         Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                              "\(readingCountdown) s" : " ")
                         .foregroundColor(.orange)
-                        .onReceive(timer) { _ in
+                        .onReceive(app.secondTimer) { _ in
                             readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                         }
                     }
@@ -40,9 +38,6 @@ struct DataView: View {
                 
                 Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
                     .foregroundColor(.cyan)
-                    .onReceive(timer) { _ in
-                        onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
-                    }
             }
             
             HStack {
@@ -167,6 +162,9 @@ struct DataView: View {
         .caption(design: .monospaced)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Data")
+        .onReceive(app.secondTimer) { _ in
+            onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
+        }
     }
 }
 

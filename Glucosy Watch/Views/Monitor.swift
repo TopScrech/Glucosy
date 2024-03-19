@@ -12,10 +12,7 @@ struct Monitor: View {
     
     @State private var readingCountdown = 0
     @State private var minutesSinceLastReading = 0
-    
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    
+        
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -30,7 +27,7 @@ struct Monitor: View {
                                     .fontSize(10)
                                     .monospacedDigit()
                                     .lineLimit(1)
-                                    .onReceive(minuteTimer) { _ in
+                                    .onReceive(app.minuteTimer) { _ in
                                         minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
                                     }
                             } else {
@@ -105,7 +102,7 @@ struct Monitor: View {
                             .footnote()
                             .monospacedDigit()
                             .foregroundColor(.orange)
-                            .onReceive(timer) { _ in
+                            .onReceive(app.secondTimer) { _ in
                                 // workaround: watchOS fails converting the interval to an Int32
                                 if app.lastConnectionDate == Date.distantPast {
                                     readingCountdown = 0
@@ -221,16 +218,9 @@ struct Monitor: View {
         .multilineTextAlignment(.center)
         //        .navigationTitle("Monitor")
         .onAppear {
-            timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-            minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-            
             if app.lastReadingDate != Date.distantPast {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
             }
-        }
-        .onDisappear {
-            timer.upstream.connect().cancel()
-            minuteTimer.upstream.connect().cancel()
         }
         // TODO:
         .toolbarBackground(.hidden, for: .navigationBar)

@@ -8,9 +8,7 @@ struct DataView: View {
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
-    
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+        
     var body: some View {
         ScrollView {
             let dateTime = (app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime
@@ -34,8 +32,9 @@ struct DataView: View {
                         .foregroundColor(.orange)
                         // .caption()
                         // .monospacedDigit()
-                        .onReceive(timer) { _ in
+                        .onReceive(app.secondTimer) { _ in
                             // workaround: watchOS fails converting the interval to an Int32
+                            
                             if app.lastConnectionDate == Date.distantPast {
                                 readingCountdown = 0
                             } else {
@@ -46,8 +45,9 @@ struct DataView: View {
                     
                     Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
                         .foregroundColor(.cyan)
-                        .onReceive(timer) { _ in
+                        .onReceive(app.secondTimer) { _ in
                             // workaround: watchOS fails converting the interval to an Int32
+                            
                             if settings.lastOnlineDate == Date.distantPast {
                                 onlineCountdown = 0
                             } else {
@@ -73,7 +73,6 @@ struct DataView: View {
                                         
                                         Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
                                             .bold()
-                                        //                                                .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                 }
                             }
@@ -96,7 +95,6 @@ struct DataView: View {
                                         
                                         Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
                                             .bold()
-                                        //                                                .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                 }
                             }
@@ -151,7 +149,6 @@ struct DataView: View {
                                     
                                     Text("  \(glucose.value, specifier: "%3d")")
                                         .bold()
-                                    //                                    .fixedSize(horizontal: false, vertical: true)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -184,7 +181,6 @@ struct DataView: View {
                                         Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
                                             .bold()
                                     }
-                                    //                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -207,7 +203,6 @@ struct DataView: View {
                                         Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
                                             .bold()
                                     }
-                                    //                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -231,7 +226,6 @@ struct DataView: View {
                                     Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
                                         .bold()
                                 }
-                                //                                .frame(maxWidth: .infinity, alignment: .leading)
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .topLeading)
@@ -244,9 +238,9 @@ struct DataView: View {
         .padding(.top, -4)
         .edgesIgnoringSafeArea([.bottom])
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .footnote()
         // .footnote(design: .monospaced)
         // .foregroundColor(Color(.lightGray))
-        .footnote()
         .tint(.blue)
         .navigationTitle("Data")
     }

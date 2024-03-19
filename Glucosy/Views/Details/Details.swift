@@ -11,10 +11,7 @@ struct Details: View {
     @State private var readingCountdown = 0
     @State private var secondsSinceLastConnection = 0
     @State private var minutesSinceLastReading = 0
-    
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    
+        
     // TODO:
     @ViewBuilder func Row(_ label: String, _ value: String, foregroundColor: Color? = .yellow) -> some View {
         if !(value.isEmpty || value == "unknown") {
@@ -62,12 +59,8 @@ struct Details: View {
                 } else {
                     if app.device == nil && app.sensor == nil {
                         HStack {
-                            Spacer()
-                            
                             Text("No device connected")
                                 .foregroundColor(.red)
-                            
-                            Spacer()
                         }
                     }
                 }
@@ -89,7 +82,7 @@ struct Details: View {
                                     Text("\(secondsSinceLastConnection.minsAndSecsFormattedInterval)")
                                         .monospacedDigit()
                                         .foregroundColor(app.device.state == .connected ? .yellow : .red)
-                                        .onReceive(timer) { _ in
+                                        .onReceive(app.secondTimer) { _ in
                                             if let device = app.device {
                                                 secondsSinceLastConnection = Int(Date().timeIntervalSince(device.lastConnectionDate))
                                             } else {
@@ -175,7 +168,7 @@ struct Details: View {
                                 
                                 Row("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
                             }
-                            .onReceive(minuteTimer) { _ in
+                            .onReceive(app.minuteTimer) { _ in
                                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate) / 60)
                             }
                         }
@@ -429,9 +422,6 @@ struct Details: View {
                 VStack(spacing: 0) {
                     Button {
                         app.main.rescan()
-                        
-                        self.timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                        self.minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
                     } label: {
                         Image(systemName: "arrow.clockwise.circle")
                             .title()
@@ -443,7 +433,7 @@ struct Details: View {
                     .foregroundColor(.orange)
                     .caption()
                     .monospacedDigit()
-                    .onReceive(timer) { _ in
+                    .onReceive(app.secondTimer) { _ in
                         readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                     }
                 }

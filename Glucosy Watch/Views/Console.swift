@@ -10,9 +10,7 @@ struct Console: View {
     
     @State private var showingFilterField = false
     @State private var filterText = ""
-    
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+        
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
@@ -186,8 +184,9 @@ struct Console: View {
                     .frame(width: 24, height: 24)
                     .allowsTightening(true)
                     .fixedSize()
-                    .onReceive(timer) { _ in
+                    .onReceive(app.secondTimer) { _ in
                         // workaround: watchOS fails converting the interval to an Int32
+                        
                         if app.lastConnectionDate == Date.distantPast {
                             readingCountdown = 0
                         } else {
@@ -203,8 +202,9 @@ struct Console: View {
                     .foregroundColor(.cyan)
                     .footnote()
                     .monospacedDigit()
-                    .onReceive(timer) { _ in
+                    .onReceive(app.secondTimer) { _ in
                         // workaround: watchOS fails converting the interval to an Int32
+                        
                         if settings.lastOnlineDate == Date.distantPast {
                             onlineCountdown = 0
                         } else {

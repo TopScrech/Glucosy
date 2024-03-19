@@ -13,10 +13,7 @@ struct OnlineView: View {
     @State private var libreLinkUpHistory: [LibreLinkUpGlucose] = []
     @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
     @State private var showingCredentials = false
-    
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    
+        
     func reloadLibreLinkUp() async {
         if let libreLinkUp = await app.main?.libreLinkUp {
             var dataString = ""
@@ -61,7 +58,10 @@ struct OnlineView: View {
                             }
                             
                             // keep only the latest 22 minutes considering the 17-minute latency of the historic values update
-                            trend = trend.filter { lastMeasurement.id - $0.id < 22 }
+                            trend = trend.filter {
+                                lastMeasurement.id - $0.id < 22
+                            }
+                            
                             history.factoryTrend = trend
                             // TODO: merge and update sensor history / trend
                             app.main.didParseSensor(app.sensor)
@@ -132,8 +132,9 @@ struct OnlineView: View {
                             .foregroundColor(.cyan)
                             .footnote()
                             .monospacedDigit()
-                            .onReceive(timer) { _ in
+                            .onReceive(app.secondTimer) { _ in
                                 // workaround: watchOS fails converting the interval to an Int32
+                                
                                 if settings.lastOnlineDate == Date.distantPast {
                                     onlineCountdown = 0
                                 } else {
@@ -160,8 +161,9 @@ struct OnlineView: View {
                     .foregroundColor(.orange)
                     .footnote()
                     .monospacedDigit()
-                    .onReceive(timer) { _ in
+                    .onReceive(app.secondTimer) { _ in
                         // workaround: watchOS fails converting the interval to an Int32
+                        
                         if app.lastConnectionDate == Date.distantPast {
                             readingCountdown = 0
                         } else {
@@ -311,11 +313,12 @@ struct OnlineView: View {
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                             }
                             // TODO: respect onlineInterval
-                            .onReceive(minuteTimer) { _ in
+                            .onReceive(app.minuteTimer) { _ in
                                 Task {
                                     app.main.debugLog("DEBUG: fired onlineView minuteTimer: timeInterval: \(Int(Date().timeIntervalSince(settings.lastOnlineDate)))")
                                     
                                     if settings.onlineInterval > 0 && Int(Date().timeIntervalSince(settings.lastOnlineDate)) >= settings.onlineInterval * 60 - 5 {
+                                        
                                         await reloadLibreLinkUp()
                                     }
                                 }

@@ -8,9 +8,7 @@ struct Plan: View {
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
-    
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+        
     var body: some View {
         VStack {
             let dateTime = (app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime
@@ -31,7 +29,7 @@ struct Plan: View {
                     Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
                          "\(readingCountdown) s" : " ")
                     .foregroundColor(.orange)
-                    .onReceive(timer) { _ in
+                    .onReceive(app.secondTimer) { _ in
                         readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                     }
                 }
@@ -39,9 +37,6 @@ struct Plan: View {
             
             Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
                 .foregroundColor(.cyan)
-                .onReceive(timer) { _ in
-                    onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
-                }
         }
         .monospacedDigit()
 #if targetEnvironment(macCatalyst)
@@ -49,6 +44,9 @@ struct Plan: View {
 #endif
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Plan")
+        .onReceive(app.secondTimer) { _ in
+            onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
+        }
     }
 }
 

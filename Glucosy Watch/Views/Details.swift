@@ -9,10 +9,7 @@ struct Details: View {
     @State private var readingCountdown = 0
     @State private var secondsSinceLastConnection = 0
     @State private var minutesSinceLastReading = 0
-    
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    
+        
     // TODO:
     @ViewBuilder func Row(_ label: String, _ value: String, foregroundColor: Color? = .yellow) -> some View {
         if !(value.isEmpty || value == "unknown") {
@@ -35,6 +32,7 @@ struct Details: View {
                 if app.status.starts(with: "Scanning") {
                     Text("\(app.status)")
                         .footnote()
+                    
                 } else {
                     if app.device == nil && app.sensor == nil {
                         Text("No device connected")
@@ -59,7 +57,7 @@ struct Details: View {
                                     Text("\(secondsSinceLastConnection.minsAndSecsFormattedInterval)")
                                         .monospacedDigit()
                                         .foregroundColor(app.device.state == .connected ? .yellow : .red)
-                                        .onReceive(timer) { _ in
+                                        .onReceive(app.secondTimer) { _ in
                                             if let device = app.device {
                                                 // workaround: watchOS fails converting the interval to an Int32
                                                 if device.lastConnectionDate != .distantPast {
@@ -121,6 +119,7 @@ struct Details: View {
                             let fram = app.sensor.fram
                             let errorCode = fram[6]
                             let failureAge = Int(fram[7]) + Int(fram[8]) << 8
+                            
                             let failureInterval = failureAge == 0 ? "an unknown time" : "\(failureAge.formattedInterval)"
                             
                             Row("Failure", "\(decodeFailure(error: errorCode).capitalized) (0x\(errorCode.hex)) at \(failureInterval)",
@@ -150,7 +149,7 @@ struct Details: View {
                                 
                                 Row("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
                             }
-                            .onReceive(minuteTimer) { _ in
+                            .onReceive(app.minuteTimer) { _ in
                                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate) / 60)
                             }
                         }
@@ -421,8 +420,9 @@ struct Details: View {
                         .foregroundColor(.orange)
                         .footnote()
                         .monospacedDigit()
-                        .onReceive(timer) { _ in
+                        .onReceive(app.secondTimer) { _ in
                             // workaround: watchOS fails converting the interval to an Int32
+                            
                             if app.lastConnectionDate == Date.distantPast {
                                 readingCountdown = 0
                             } else {

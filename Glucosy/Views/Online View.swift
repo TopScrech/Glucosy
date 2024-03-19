@@ -16,9 +16,6 @@ struct OnlineView: View {
     @State private var libreLinkUpHistory:        [LibreLinkUpGlucose] = []
     @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
     
-    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    
     func reloadLibreLinkUp() async {
         if let libreLinkUp = await app.main?.libreLinkUp {
             var dataString = ""
@@ -190,7 +187,7 @@ struct OnlineView: View {
                             .foregroundColor(.cyan)
                             .caption()
                             .monospacedDigit()
-                            .onReceive(timer) { _ in
+                            .onReceive(app.secondTimer) { _ in
                                 onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
                             }
                     }
@@ -214,7 +211,7 @@ struct OnlineView: View {
                         .foregroundColor(.orange)
                         .caption()
                         .monospacedDigit()
-                        .onReceive(timer) { _ in
+                        .onReceive(app.secondTimer) { _ in
                             readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                         }
                     }
@@ -331,11 +328,12 @@ struct OnlineView: View {
                                 .frame(maxWidth: .infinity, alignment: .topLeading)
                             }
                             // TODO: respect onlineInterval
-                            .onReceive(minuteTimer) { _ in
+                            .onReceive(app.minuteTimer) { _ in
                                 Task {
                                     app.main.debugLog("DEBUG: fired onlineView minuteTimer: timeInterval: \(Int(Date().timeIntervalSince(settings.lastOnlineDate)))")
                                     
                                     if settings.onlineInterval > 0 && Int(Date().timeIntervalSince(settings.lastOnlineDate)) >= settings.onlineInterval * 60 - 5 {
+                                        
                                         await reloadLibreLinkUp()
                                     }
                                 }

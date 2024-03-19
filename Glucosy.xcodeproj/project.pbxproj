@@ -106,6 +106,9 @@
 		F31C70942BA7916C00A5BFCD /* Crc Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */; };
 		F31C70962BA7B01800A5BFCD /* Mealtime View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70952BA7B01800A5BFCD /* Mealtime View.swift */; };
 		F31C70982BA7B9A300A5BFCD /* Notification Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */; };
+		F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67D2BA98AEF003EE8F2 /* Extension.swift */; };
+		F31FF6802BA98F67003EE8F2 /* Mealtime Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */; };
+		F31FF6812BA9B39F003EE8F2 /* Notification Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */; };
 		F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */; };
 		F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */; };
 		F32ED8F62BA8B11900CD234C /* Delete Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F52BA8B11900CD234C /* Delete Carbs.swift */; };
@@ -278,6 +281,8 @@
 		F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crc Calculator.swift"; sourceTree = "<group>"; };
 		F31C70952BA7B01800A5BFCD /* Mealtime View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime View.swift"; sourceTree = "<group>"; };
 		F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Manager.swift"; sourceTree = "<group>"; };
+		F31FF67D2BA98AEF003EE8F2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime Notification.swift"; sourceTree = "<group>"; };
 		F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime Selector.swift"; sourceTree = "<group>"; };
 		F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Glucose.swift"; sourceTree = "<group>"; };
 		F32ED8F52BA8B11900CD234C /* Delete Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Carbs.swift"; sourceTree = "<group>"; };
@@ -395,6 +400,7 @@
 				C5AAA6172981CF7000CA3EC1 /* Glucosy */,
 				C59960E02981E381005999C2 /* Glucosy Watch */,
 				C581D5892B0E699C002A4633 /* Widgets */,
+				F31FF67C2BA98AD5003EE8F2 /* In App Notification */,
 				C5AAA6162981CF7000CA3EC1 /* Products */,
 				C5BE8E5A29916D3600604237 /* Frameworks */,
 			);
@@ -450,6 +456,7 @@
 				C535AEB72AB343AE00AB61AD /* Realm.swift */,
 				C5E4009529825F120021C6B7 /* LibreLink.swift */,
 				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
+				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
 				F35AFC6D2BA4E5360065145A /* Depricated */,
 			);
 			path = Glucosy;
@@ -478,6 +485,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E4005729825C930021C6B7 /* Home View.swift */,
+				F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */,
 				F31C70952BA7B01800A5BFCD /* Mealtime View.swift */,
 				F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */,
 				F35AFC872BA5086B0065145A /* Apple Health */,
@@ -531,6 +539,14 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		F31FF67C2BA98AD5003EE8F2 /* In App Notification */ = {
+			isa = PBXGroup;
+			children = (
+				F31FF67D2BA98AEF003EE8F2 /* Extension.swift */,
+			);
+			path = "In App Notification";
+			sourceTree = "<group>";
+		};
 		F35AFC5F2BA4917E0065145A /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,7 +571,6 @@
 			isa = PBXGroup;
 			children = (
 				C5E4005829825C930021C6B7 /* HamburgerMenu.swift */,
-				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
 			);
 			path = Depricated;
 			sourceTree = "<group>";
@@ -787,6 +802,7 @@
 				F35AFC7D2BA4FFFE0065145A /* Insulin Delivery.swift in Sources */,
 				F35AFC842BA500B60065145A /* Write Glucose.swift in Sources */,
 				C5ADF5832B00E65E00E29632 /* Gen2.swift in Sources */,
+				F31FF6812BA9B39F003EE8F2 /* Notification Manager.swift in Sources */,
 				C5E4006629825D1F0021C6B7 /* Extensions.swift in Sources */,
 				C5916E5029827E860051AC06 /* Details.swift in Sources */,
 				F35AFC4F2BA490470065145A /* UI Tests.swift in Sources */,
@@ -863,6 +879,7 @@
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,
 				C5E4008229825E8B0021C6B7 /* Libre2.swift in Sources */,
 				F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */,
+				F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
 				F35AFC902BA508A60065145A /* Insulin Delivery Card.swift in Sources */,
 				F35AFC612BA491910065145A /* OnlineService.swift in Sources */,
@@ -870,6 +887,7 @@
 				C5E4006829825DCD0021C6B7 /* Settings.swift in Sources */,
 				F35AFC672BA491BB0065145A /* UserLevel.swift in Sources */,
 				F35AFC7C2BA4FFF70065145A /* Insulin Delivery.swift in Sources */,
+				F31FF6802BA98F67003EE8F2 /* Mealtime Notification.swift in Sources */,
 				C5E4005F29825C930021C6B7 /* Online View.swift in Sources */,
 				C5E4006E29825DEA0021C6B7 /* Device.swift in Sources */,
 				F35AFC5D2BA4916C0065145A /* Tabs.swift in Sources */,

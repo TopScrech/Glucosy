@@ -4,10 +4,37 @@ struct SettingsView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Settings.self) private var settings: Settings
     
+    @State private var scheduledNotifications: [UNNotificationRequest] = []
+    
     var body: some View {
         @Bindable var settings = settings
         
         List {
+            Section("Scheduled notifications") {
+                Button("Cancel all") {
+                    NotificationManager.shared.removeAllPending()
+                }
+                
+                ForEach(scheduledNotifications, id: \.identifier) { notification in
+                    VStack {
+                        Text(notification.content.title)
+                        
+                        Text(notification.content.subtitle)
+                        
+                        if let trigger = notification.trigger as? UNTimeIntervalNotificationTrigger {
+                            Text("Interval: \(trigger.timeInterval)")
+                        }
+                    }
+                    .contextMenu {
+                        Button(role: .destructive) {
+                            NotificationManager.shared.removePending([notification.identifier])
+                        } label: {
+                            Label("Cancel", systemImage: "trash")
+                        }
+                    }
+                }
+            }
+            
             Section {
                 Toggle(isOn: $settings.caffeinated) {
                     Label("Iced caramel latte",
@@ -141,6 +168,9 @@ struct SettingsView: View {
         .monospacedDigit()
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Settings")
+        .refreshableTask {
+            scheduledNotifications = await NotificationManager.shared.fetchScheduledNotifications()
+        }
         .toolbar {
             Button {
                 settings.mutedAudio.toggle()

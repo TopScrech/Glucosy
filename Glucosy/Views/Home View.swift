@@ -68,9 +68,12 @@ struct HomeView: View {
             }
         }
         .toolbarRole(.navigationStack)
-        .onChange(of: app.main.app.currentGlucose) { _, _ in
+        .onChange(of: app.main.app.currentGlucose) {
             delay(3) {
-                app.sheetMealtime = true
+                UIApplication.shared.inAppNotification(isDynamicIsland: true, timeout: 10, swipeToClose: true) { _ in // isDynamicIsland
+                    MealtimeNotification($app.sheetMealtime)
+                        .environment(app)
+                }
             }
         }
         .sheet($app.sheetMealtime) {

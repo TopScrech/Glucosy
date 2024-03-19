@@ -176,9 +176,9 @@ struct SettingsView: View {
                 .foregroundColor(.blue)
             }
         }
+        .tint(.blue)
         .monospacedDigit()
         .navigationTitle("Settings")
-        .tint(.blue)
     }
 }
 

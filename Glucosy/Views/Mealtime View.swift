@@ -21,6 +21,8 @@ struct MealtimeView: View {
     @State private var includeLongInsulin = false
     @State private var includeCarbs = false
     
+    @State private var setReminder = false
+    
     var body: some View {
         VStack(spacing: 25) {
             DatePicker("Record time", selection: $date)
@@ -68,6 +70,8 @@ struct MealtimeView: View {
                 MealtimeSelector($carbs)
             }
             
+            Toggle("Set measure reminder in 2 hours", isOn: $setReminder)
+            
             Spacer()
             
             Button {
@@ -107,6 +111,10 @@ struct MealtimeView: View {
             
             app.main.healthKit?.writeCarbs([carbohydrates])
             app.main.healthKit?.readCarbs()
+        }
+        
+        if setReminder {
+            NotificationManager.shared.scheduleScanReminder()
         }
         
         dismiss()

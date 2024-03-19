@@ -25,6 +25,10 @@ struct GlucosyApp: App {
         }
     }
     
+#if os(iOS)
+    @State private var overlayWindow: PassThroughWindow?
+#endif
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
@@ -33,6 +37,27 @@ struct GlucosyApp: App {
                 .environment(main.log)
                 .environment(main.history)
                 .environment(main.settings)
+#if os(iOS)
+                .onAppear {
+                    if overlayWindow == nil {
+                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                            let overlayWindow = PassThroughWindow(windowScene: windowScene)
+                            overlayWindow.backgroundColor = .clear
+                            overlayWindow.tag = 0320
+                            
+                            let controller = StatusBarBasedController()
+                            controller.view.backgroundColor = .clear
+                            
+                            overlayWindow.rootViewController = controller
+                            overlayWindow.isHidden = false
+                            overlayWindow.isUserInteractionEnabled = true
+                            self.overlayWindow = overlayWindow
+                            
+                            print("Overlay Window Created")
+                        }
+                    }
+                }
+#endif
         }
         .onChange(of: scenePhase) {
 #if !os(watchOS)

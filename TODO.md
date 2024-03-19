@@ -13,9 +13,9 @@ TODO
   - workout and extended runtime background sessions, complications
   - ["Get timely alerts from Bluetooth devices in watchOS" - WWDC 2022](https://developer.apple.com/wwdc22/10135/)
 * switch from `DispatchQueue.main.async` to `Task { @MainActor }`
-* use TimelineViews
+* TimelineViews
 * scrollable graph, offline trend arrow, landscape mode
 * smooth the historic values and project the trend ones (see [LibreTransmitter](https://github.com/dabear/LibreTransmitter/commit/49b50d7995955b76861440e5e34a0accd064d18f))
 * log: limit to a number of readings, prepend time, Share menu, record to a file
-* new iOS 16 Widgets and App Intents (see [Glucose Direct](https://github.com/creepymonster/GlucoseDirect))
+* Widgets, LiveActivity and App Intents (see [Glucose Direct](https://github.com/creepymonster/GlucoseDirect))
 * SwiftData and/or TabularData as persistence layers (see [Glupreview](https://github.com/solanovisitor/glupreview) for CoreML use)

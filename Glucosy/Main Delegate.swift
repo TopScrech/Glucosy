@@ -17,7 +17,7 @@ extension Logging {
     var settings: Settings          { main.settings }
 }
 
-public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
+class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
     var app: AppState
     var logger: Logger
     var log: Log
@@ -70,8 +70,8 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                 log("HealthKit: \( $0 ? "" : "not ")authorized")
                 
                 if healthKit.isAuthorized {
-                    healthKit.readGlucose() {
-                        [self] in debugLog("HealthKit last 12 stored values: \($0[..<(min(12, $0.count))])")
+                    healthKit.readGlucose() { [self] in
+                        debugLog("HealthKit last 12 stored values: \($0[..<(min(12, $0.count))])")
                     }
                 }
             }
@@ -189,19 +189,37 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             } else {
                 if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Libre3.UUID.data.rawValue)]).first {
                     log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
-                    bluetoothDelegate.centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Libre3.UUID.data.rawValue)]], rssi: 0)
+                    bluetoothDelegate.centralManager(
+                        centralManager,
+                        didDiscover: peripheral,
+                        advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Libre3.UUID.data.rawValue)]],
+                        rssi: 0
+                    )
                     
                 } else if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Abbott.dataServiceUUID)]).first {
                     log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
-                    bluetoothDelegate.centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Abbott.dataServiceUUID)]], rssi: 0)
+                    
+                    bluetoothDelegate.centralManager(
+                        centralManager,
+                        didDiscover: peripheral,
+                        advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Abbott.dataServiceUUID)]],
+                        rssi: 0
+                    )
                     
                 } else if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]).first {
                     log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
-                    bluetoothDelegate.centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]], rssi: 0)
+                    
+                    bluetoothDelegate.centralManager(
+                        centralManager,
+                        didDiscover: peripheral,
+                        advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]],
+                        rssi: 0
+                    )
                     
                 } else {
                     log("Bluetooth: scanning for a Libre/Dexcom...")
                     status("Scanning for a Libre/Dexcom...")
+                    
                     centralManager.scanForPeripherals(withServices: nil, options: nil)
                 }
             }
@@ -218,7 +236,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         
         if !settings.mutedAudio {
             do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.duckOthers])
+                try AVAudioSession.sharedInstance().setCategory(.playback, options: [.duckOthers])
                 try AVAudioSession.sharedInstance().setActive(true)
             } catch {
                 log("Audio Session error: \(error)")
@@ -263,25 +281,54 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             history.rawTrend = sensor.trend
             log("Raw trend: \(sensor.trend.map(\.rawValue))")
             debugLog("Raw trend temperatures: \(sensor.trend.map(\.rawTemperature))")
+            
             let factoryTrend = sensor.factoryTrend
             history.factoryTrend = factoryTrend
             log("Factory trend: \(factoryTrend.map(\.value))")
-            log("Trend temperatures: \(factoryTrend.map { Double(String(format: "%.1f", $0.temperature))! }))")
+            
+            let trendTemperatures = factoryTrend.map {
+                Double(String(format: "%.1f", $0.temperature))!
+            }
+            
+            log("Trend temperatures: \(trendTemperatures))")
+            
             history.rawValues = sensor.history
             log("Raw history: \(sensor.history.map(\.rawValue))")
+            
             debugLog("Raw historic temperatures: \(sensor.history.map(\.rawTemperature))")
+            
             let factoryHistory = sensor.factoryHistory
             history.factoryValues = factoryHistory
             log("Factory history: \(factoryHistory.map(\.value))")
-            log("Historic temperatures: \(factoryHistory.map { Double(String(format: "%.1f", $0.temperature))! })")
+            
+            let historicTemperatures = factoryHistory.map {
+                Double(String(format: "%.1f", $0.temperature))!
+            }
+            
+            log("Historic temperatures: \(historicTemperatures)")
             
             // TODO
             debugLog("Trend has errors: \(sensor.trend.map(\.hasError))")
-            debugLog("Trend data quality: [\n\(sensor.trend.map(\.dataQuality.description).joined(separator: ",\n"))\n]")
-            debugLog("Trend quality flags: [\(sensor.trend.map { "0" + String($0.dataQualityFlags,radix: 2).suffix(2) }.joined(separator: ", "))]")
+            
+            let trendDataQuality = sensor.trend.map(\.dataQuality.description).joined(separator: ",\n")
+            debugLog("Trend data quality: [\n\(trendDataQuality)\n]")
+            
+            let trendQualityFlags = sensor.trend.map {
+                "0" + String($0.dataQualityFlags,radix: 2).suffix(2)
+            }.joined(separator: ", ")
+            
+            debugLog("Trend quality flags: [\(trendQualityFlags)]")
+            
             debugLog("History has errors: \(sensor.history.map(\.hasError))")
-            debugLog("History data quality: [\n\(sensor.history.map(\.dataQuality.description).joined(separator: ",\n"))\n]")
-            debugLog("History quality flags: [\(sensor.history.map { "0" + String($0.dataQualityFlags,radix: 2).suffix(2) }.joined(separator: ", "))]")
+            
+            let historyDataQuality = sensor.history.map(\.dataQuality.description).joined(separator: ",\n")
+            debugLog("History data quality: [\n\(historyDataQuality)\n]")
+            
+            let historyQualityFlags = sensor.history.map {
+                "0" + String($0.dataQualityFlags,radix: 2).suffix(2)
+            }.joined(separator: ", ")
+            
+            debugLog("History quality flags: [\(historyQualityFlags)]")
         }
         
         debugLog("Sensor uid: \(sensor.uid.hex), saved uid: \(settings.patchUid.hex), patch info: \(sensor.patchInfo.hex.count > 0 ? sensor.patchInfo.hex : "<nil>"), saved patch info: \(settings.patchInfo.hex)")
@@ -323,6 +370,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
         if history.factoryTrend.count > 6 {
             let deltaMinutes = history.factoryTrend[5].value > 0 ? 5 : 6
             let delta = (history.factoryTrend[0].value > 0 ? history.factoryTrend[0].value : (history.factoryTrend[1].value > 0 ? history.factoryTrend[1].value : history.factoryTrend[2].value)) - history.factoryTrend[deltaMinutes].value
+            
             app.trendDeltaMinutes = deltaMinutes
             app.trendDelta = delta
         }
@@ -348,6 +396,7 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                         if currentGlucose > Int(settings.alarmHigh) {
                             title += "  HIGH"
                         }
+                        
                         if currentGlucose < Int(settings.alarmLow) {
                             title += "  LOW"
                         }
@@ -362,10 +411,15 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
                     let content = UNMutableNotificationContent()
                     content.title = title
                     content.subtitle = ""
-                    content.sound = UNNotificationSound.default
+                    content.sound = .default
                     
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-                    let request = UNNotificationRequest(identifier: "Glucosy", content: content, trigger: trigger)
+                    let request = UNNotificationRequest(
+                        identifier: "Glucosy",
+                        content: content,
+                        trigger: trigger
+                    )
+                    
                     UNUserNotificationCenter.current().add(request)
                 }
             }
@@ -400,9 +454,9 @@ public class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDele
             }
             
             // TODO
-            let newEntries = (entries.filter {
+            let newEntries = entries.filter {
                 $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())!
-            })
+            }
             
             if newEntries.count > 0 {
                 healthKit?.writeGlucose(newEntries)

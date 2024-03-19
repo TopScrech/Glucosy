@@ -60,6 +60,7 @@ struct Details: View {
                                         .onReceive(app.secondTimer) { _ in
                                             if let device = app.device {
                                                 // workaround: watchOS fails converting the interval to an Int32
+                                                
                                                 if device.lastConnectionDate != .distantPast {
                                                     secondsSinceLastConnection = Int(Date().timeIntervalSince(device.lastConnectionDate))
                                                 } else {

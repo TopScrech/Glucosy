@@ -104,6 +104,7 @@ struct Monitor: View {
                             .foregroundColor(.orange)
                             .onReceive(app.secondTimer) { _ in
                                 // workaround: watchOS fails converting the interval to an Int32
+                                
                                 if app.lastConnectionDate == Date.distantPast {
                                     readingCountdown = 0
                                 } else {

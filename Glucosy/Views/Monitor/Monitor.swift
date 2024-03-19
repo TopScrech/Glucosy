@@ -98,9 +98,9 @@ struct Monitor: View {
             //            Text("values: \(Double(history.values.last?.value ?? 0) / 18.0182)")
             //            Text("factoryValues: \(Double(history.factoryValues.last?.value ?? 0) / 18.0182)") // orange
             //            Text("rawValues: \(Double(history.rawValues.last?.value ?? 0) / 18.0182)")         // yellow
-            //            Text("factoryTrend: \(Double(history.factoryTrend.last?.value ?? 0) / 18.0182)")
-            //            Text("rawTrend: \(Double(history.rawTrend.last?.value ?? 0) / 18.0182)")
-            //            Text("storedValues: \(Double(history.storedValues.last?.value ?? 0) / 18.0182)")
+            //            Text("factoryTrend: \(Double(history.factoryTrend.last?.value ?? 0)   / 18.0182)")
+            //            Text("rawTrend: \(Double(history.rawTrend.last?.value ?? 0)           / 18.0182)")
+            //            Text("storedValues: \(Double(history.storedValues.last?.value ?? 0)   / 18.0182)")
             //
             //            let factoryValues = history.factoryValues.map(\.value).map {
             //                Double($0) / 18.0182

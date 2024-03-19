@@ -21,7 +21,7 @@
 //        let content = UNMutableNotificationContent()
 //        content.title = "Reminder"
 //        content.body = "Don't forget to check the app!"
-//        content.sound = UNNotificationSound.default
+//        content.sound = .default
 //        
 //        // 5 seconds delay trigger
 //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)

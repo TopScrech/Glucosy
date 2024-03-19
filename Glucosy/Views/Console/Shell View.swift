@@ -172,7 +172,9 @@ struct ShellView: View {
                                                                 // swift repl
                                                                 // import Foundation
                                                                 // let unwrappedInt8: [Int8] = [<unwrapped>]
-                                                                // let unwrappedUInt8: [UInt8] = unwrappedInt8.map { UInt8(bitPattern: $0) }
+                                                                // let unwrappedUInt8: [UInt8] = unwrappedInt8.map {
+                                                                //      UInt8(bitPattern: $0)
+                                                                //  }
                                                                 // print(Data(unwrappedUInt8).reduce("", { $0 + String(format: "%02x", $1)}))
                                                                 
                                                                 // TODO: parse rest of libre3Plist
@@ -193,8 +195,8 @@ struct ShellView: View {
                                                 var realm: Realm
                                                 
                                                 var config = Realm.Configuration.defaultConfiguration
-                                                config.fileURL = URL(filePath: "\(tridentContainer)/Documents/\(file)")
                                                 config.schemaVersion = 8  // as for RealmStudio 14
+                                                config.fileURL = URL(filePath: "\(tridentContainer)/Documents/\(file)")
                                                 
                                                 do {
                                                     if !file.contains("decrypted") {
@@ -221,6 +223,7 @@ struct ShellView: View {
                                                     }))
                                                     
                                                     let libre3WrappedKAuth = realm.object(ofType: AppConfigEntity.self, forPrimaryKey: "Libre3WrappedKAuth")!["_configValue"]!
+                                                    
                                                     app.main.log("Realm: libre3WrappedKAuth: \(libre3WrappedKAuth)")
                                                     // TODO
                                                     

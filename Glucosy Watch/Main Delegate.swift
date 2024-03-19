@@ -4,17 +4,20 @@ import AVFoundation
 import os.log
 
 protocol Logging {
-    var main: MainDelegate! { get set }
+    var main: MainDelegate! {
+        get set
+    }
 }
 
 extension Logging {
     func log(_ msg: String)         { main?.log(msg) }
     func debugLog(_ msg: String)    { main?.debugLog(msg) }
+    
     var app: AppState               { main.app }
     var settings: Settings          { main.settings }
 }
 
-public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDelegate {
+class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDelegate {
     var app: AppState
     var logger: Logger
     var log: Log
@@ -81,6 +84,7 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
         
         let numberFormatter = NumberFormatter()
         numberFormatter.minimumFractionDigits = 8
+        
         settings.numberFormatter = numberFormatter
         
         // features currently in beta testing
@@ -154,16 +158,31 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
                 if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Libre3.UUID.data.rawValue)]).first {
                     log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
                     
-                    bluetoothDelegate.centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Libre3.UUID.data.rawValue)]], rssi: 0)
+                    bluetoothDelegate.centralManager(
+                        centralManager, didDiscover: peripheral,
+                        advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Libre3.UUID.data.rawValue)]], 
+                        rssi: 0
+                    )
                     
                 } else if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Abbott.dataServiceUUID)]).first {
                     log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
                     
-                    bluetoothDelegate.centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Abbott.dataServiceUUID)]], rssi: 0)
+                    bluetoothDelegate.centralManager(
+                        centralManager,
+                        didDiscover: peripheral,
+                        advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Abbott.dataServiceUUID)]],
+                        rssi: 0
+                    )
                     
                 } else if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]).first {
                     log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
-                    bluetoothDelegate.centralManager(centralManager, didDiscover: peripheral, advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]], rssi: 0)
+                    
+                    bluetoothDelegate.centralManager(
+                        centralManager,
+                        didDiscover: peripheral,
+                        advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]],
+                        rssi: 0
+                    )
                     
                 } else {
                     log("Bluetooth: scanning for a Libre/Dexcom...")
@@ -184,7 +203,7 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
         
         if !settings.mutedAudio {
             do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.duckOthers])
+                try AVAudioSession.sharedInstance().setCategory(.playback, options: [.duckOthers])
                 try AVAudioSession.sharedInstance().setActive(true)
             } catch {
                 log("Audio Session error: \(error)")
@@ -208,6 +227,7 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
         if !settings.disabledNotifications {
             let hapticDirection: WKHapticType = currentGlucose > Int(settings.alarmHigh) ? .directionUp : .directionDown
             WKInterfaceDevice.current().play(hapticDirection)
+            
             let times = currentGlucose > Int(settings.alarmHigh) ? 3 : 4
             let pause = times == 3 ? 1.0 : 5.0 / 6
             
@@ -232,13 +252,16 @@ public class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSes
             history.rawTrend = sensor.trend
             log("Raw trend: \(sensor.trend.map(\.rawValue))")
             debugLog("Raw trend temperatures: \(sensor.trend.map(\.rawTemperature))")
+            
             let factoryTrend = sensor.factoryTrend
             history.factoryTrend = factoryTrend
             log("Factory trend: \(factoryTrend.map(\.value))")
             log("Trend temperatures: \(factoryTrend.map { Double(String(format: "%.1f", $0.temperature))! }))")
+            
             history.rawValues = sensor.history
             log("Raw history: \(sensor.history.map(\.rawValue))")
             debugLog("Raw historic temperatures: \(sensor.history.map(\.rawTemperature))")
+            
             let factoryHistory = sensor.factoryHistory
             history.factoryValues = factoryHistory
             log("Factory history: \(factoryHistory.map(\.value))")

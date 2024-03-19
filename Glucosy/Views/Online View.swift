@@ -220,9 +220,7 @@ struct OnlineView: View {
                         if app.main.nfc.isAvailable {
                             app.main.nfc.startSession()
                             
-                            if let healthKit = app.main.healthKit {
-                                healthKit.readGlucose()
-                            }
+                            app.main.healthKit?.readGlucose()
                             
                             if let nightscout = app.main.nightscout {
                                 nightscout.read()

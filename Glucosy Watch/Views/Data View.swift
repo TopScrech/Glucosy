@@ -129,9 +129,7 @@ struct DataView: View {
                     }
                     .foregroundColor(.red)
                     .onAppear {
-                        if let healthKit = app.main?.healthKit {
-                            healthKit.readGlucose()
-                        }
+                        app.main.healthKit?.readGlucose()
                     }
                 }
                 

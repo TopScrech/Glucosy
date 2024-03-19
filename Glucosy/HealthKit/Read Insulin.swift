@@ -31,7 +31,9 @@ extension HealthKit {
             predicate: predicate,
             limit: HKObjectQueryNoLimit,
             sortDescriptors: [sortDescriptor]
+            
         ) { query, results, error in
+            
             if let error {
                 print("Error retrieving insulin delivery data: \(error.localizedDescription)")
                 return
@@ -50,7 +52,7 @@ extension HealthKit {
                 let insulinUnit = sample.quantity.doubleValue(for: .internationalUnit())
                 
                 if let insulinMetadata = sample.metadata,
-                    let insulinCategory = insulinMetadata["HKInsulinDeliveryReason"] as? Int {
+                   let insulinCategory = insulinMetadata["HKInsulinDeliveryReason"] as? Int {
                     
                     var insulinType: InsulinType
                     insulinType = insulinCategory == 1 ? .basal : .bolus

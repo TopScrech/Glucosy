@@ -17,7 +17,9 @@ extension HealthKit {
             predicate: nil,
             limit: limit,
             sortDescriptors: [sortDescriptor]
+            
         ) { [self] query, results, error in
+            
             guard let results = results as? [HKQuantitySample] else {
                 if let error {
                     log("HealthKit error: \(error.localizedDescription)")

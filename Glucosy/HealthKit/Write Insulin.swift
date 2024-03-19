@@ -1,7 +1,7 @@
 import HealthKit
 
 extension HealthKit {
-    func writeInsulinDelivery(_ data: [InsulinDelivery]) {
+    func writeInsulinDelivery(_ data: InsulinDelivery...) {
         guard let insulinType else {
             return
         }

@@ -91,15 +91,23 @@ struct MealtimeView: View {
     
     private func saveData() {
         if includeRapidInsulin {
-            let rapidInsulinDelivery = InsulinDelivery(value: Int(rapidInsulin), type: .bolus, date: date)
+            let rapidInsulinDelivery = InsulinDelivery(
+                value: Int(rapidInsulin),
+                type: .bolus,
+                date: date
+            )
             
-            app.main.healthKit?.writeInsulinDelivery([rapidInsulinDelivery])
+            app.main.healthKit?.writeInsulinDelivery(rapidInsulinDelivery)
         }
         
         if includeLongInsulin {
-            let longInsulinDelivery = InsulinDelivery(value: Int(longInsulin), type: .basal, date: date)
+            let longInsulinDelivery = InsulinDelivery(
+                value: Int(longInsulin),
+                type: .basal,
+                date: date
+            )
             
-            app.main.healthKit?.writeInsulinDelivery([longInsulinDelivery])
+            app.main.healthKit?.writeInsulinDelivery(longInsulinDelivery)
         }
         
         if includeRapidInsulin || includeLongInsulin {

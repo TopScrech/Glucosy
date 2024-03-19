@@ -31,7 +31,9 @@ extension HealthKit {
             predicate: predicate,
             limit: HKObjectQueryNoLimit,
             sortDescriptors: [sortDescriptor]
+            
         ) { query, results, error in
+            
             if let error {
                 print("Error retrieving insulin delivery data: \(error.localizedDescription)")
                 return

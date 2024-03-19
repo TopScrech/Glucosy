@@ -15,8 +15,8 @@
 		C55D12B429ACB5E00050F567 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55D12B329ACB5E00050F567 /* Crypto.swift */; };
 		C55D12B529ACB5E00050F567 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55D12B329ACB5E00050F567 /* Crypto.swift */; };
 		C55D12B729ACB9CB0050F567 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C55D12B629ACB9CB0050F567 /* CryptoSwift */; };
-		C568696A2B30469000B11687 /* NFCTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56869692B30469000B11687 /* NFCTools.swift */; };
-		C568696B2B30469000B11687 /* NFCTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56869692B30469000B11687 /* NFCTools.swift */; };
+		C568696A2B30469000B11687 /* NFC Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56869692B30469000B11687 /* NFC Tools.swift */; };
+		C568696B2B30469000B11687 /* NFC Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56869692B30469000B11687 /* NFC Tools.swift */; };
 		C581D5862B0E699C002A4633 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C581D5852B0E699C002A4633 /* WidgetKit.framework */; };
 		C581D5882B0E699C002A4633 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C581D5872B0E699C002A4633 /* SwiftUI.framework */; };
 		C581D58B2B0E699C002A4633 /* GlucosyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58A2B0E699C002A4633 /* GlucosyWidgetBundle.swift */; };
@@ -38,8 +38,8 @@
 		C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
 		C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AAA6182981CF7000CA3EC1 /* App.swift */; };
 		C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */; };
-		C5ADF5822B00E65E00E29632 /* Gen2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ADF5812B00E65E00E29632 /* Gen2.swift */; };
-		C5ADF5832B00E65E00E29632 /* Gen2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ADF5812B00E65E00E29632 /* Gen2.swift */; };
+		C5ADF5822B00E65E00E29632 /* Gen 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ADF5812B00E65E00E29632 /* Gen 2.swift */; };
+		C5ADF5832B00E65E00E29632 /* Gen 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ADF5812B00E65E00E29632 /* Gen 2.swift */; };
 		C5B7CE322AEE498F00227392 /* Dexcom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B7CE312AEE498F00227392 /* Dexcom.swift */; };
 		C5B7CE332AEE498F00227392 /* Dexcom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B7CE312AEE498F00227392 /* Dexcom.swift */; };
 		C5BE8E5B29916D3600604237 /* Glucosy Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C59960DF2981E381005999C2 /* Glucosy Watch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -86,15 +86,15 @@
 		C5E4007A29825E450021C6B7 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007829825E450021C6B7 /* Sensor.swift */; };
 		C5E4007C29825E4E0021C6B7 /* Abbott.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007B29825E4E0021C6B7 /* Abbott.swift */; };
 		C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4007B29825E4E0021C6B7 /* Abbott.swift */; };
-		C5E4008229825E8B0021C6B7 /* Libre2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008129825E8B0021C6B7 /* Libre2.swift */; };
-		C5E4008329825E8B0021C6B7 /* Libre2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008129825E8B0021C6B7 /* Libre2.swift */; };
-		C5E4008529825E990021C6B7 /* Libre3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008429825E990021C6B7 /* Libre3.swift */; };
-		C5E4008629825E990021C6B7 /* Libre3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008429825E990021C6B7 /* Libre3.swift */; };
+		C5E4008229825E8B0021C6B7 /* Libre 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008129825E8B0021C6B7 /* Libre 2.swift */; };
+		C5E4008329825E8B0021C6B7 /* Libre 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008129825E8B0021C6B7 /* Libre 2.swift */; };
+		C5E4008529825E990021C6B7 /* Libre 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008429825E990021C6B7 /* Libre 3.swift */; };
+		C5E4008629825E990021C6B7 /* Libre 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008429825E990021C6B7 /* Libre 3.swift */; };
 		C5E4008B29825EC40021C6B7 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008A29825EC40021C6B7 /* Events.swift */; };
 		C5E4009029825EEE0021C6B7 /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008F29825EED0021C6B7 /* NFC.swift */; };
 		C5E4009129825EEE0021C6B7 /* NFC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008F29825EED0021C6B7 /* NFC.swift */; };
-		C5E4009629825F120021C6B7 /* LibreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009529825F120021C6B7 /* LibreLink.swift */; };
-		C5E4009729825F120021C6B7 /* LibreLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009529825F120021C6B7 /* LibreLink.swift */; };
+		C5E4009629825F120021C6B7 /* Libre Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009529825F120021C6B7 /* Libre Link.swift */; };
+		C5E4009729825F120021C6B7 /* Libre Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009529825F120021C6B7 /* Libre Link.swift */; };
 		C5E4009929825F1C0021C6B7 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009829825F1C0021C6B7 /* Nightscout.swift */; };
 		C5E4009A29825F1C0021C6B7 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009829825F1C0021C6B7 /* Nightscout.swift */; };
 		C5E4009F29825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
@@ -109,6 +109,7 @@
 		F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67D2BA98AEF003EE8F2 /* Extension.swift */; };
 		F31FF6802BA98F67003EE8F2 /* Mealtime Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */; };
 		F31FF6812BA9B39F003EE8F2 /* Notification Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */; };
+		F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF6822BA9D25C003EE8F2 /* Debug View.swift */; };
 		F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */; };
 		F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */; };
 		F32ED8F62BA8B11900CD234C /* Delete Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F52BA8B11900CD234C /* Delete Carbs.swift */; };
@@ -211,7 +212,7 @@
 		C535AEB72AB343AE00AB61AD /* Realm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		C53F77C529894478004F275A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C55D12B329ACB5E00050F567 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
-		C56869692B30469000B11687 /* NFCTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFCTools.swift; sourceTree = "<group>"; };
+		C56869692B30469000B11687 /* NFC Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NFC Tools.swift"; sourceTree = "<group>"; };
 		C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GlucosyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C581D5852B0E699C002A4633 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C581D5872B0E699C002A4633 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -236,7 +237,7 @@
 		C5AAA6182981CF7000CA3EC1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5AAA61E2981CF7200CA3EC1 /* Glucosy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Glucosy.entitlements; sourceTree = "<group>"; };
-		C5ADF5812B00E65E00E29632 /* Gen2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gen2.swift; sourceTree = "<group>"; };
+		C5ADF5812B00E65E00E29632 /* Gen 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Gen 2.swift"; sourceTree = "<group>"; };
 		C5B7CE312AEE498F00227392 /* Dexcom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dexcom.swift; sourceTree = "<group>"; };
 		C5DB4E4D2B168E08005AD792 /* Libre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Libre.swift; sourceTree = "<group>"; };
 		C5DED87529899B8A00164AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -267,12 +268,12 @@
 		C5E4007529825E370021C6B7 /* Glucose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
 		C5E4007829825E450021C6B7 /* Sensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
 		C5E4007B29825E4E0021C6B7 /* Abbott.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Abbott.swift; sourceTree = "<group>"; };
-		C5E4008129825E8B0021C6B7 /* Libre2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Libre2.swift; sourceTree = "<group>"; };
-		C5E4008429825E990021C6B7 /* Libre3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Libre3.swift; sourceTree = "<group>"; };
+		C5E4008129825E8B0021C6B7 /* Libre 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Libre 2.swift"; sourceTree = "<group>"; };
+		C5E4008429825E990021C6B7 /* Libre 3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Libre 3.swift"; sourceTree = "<group>"; };
 		C5E4008A29825EC40021C6B7 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		C5E4008C29825ED00021C6B7 /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		C5E4008F29825EED0021C6B7 /* NFC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NFC.swift; sourceTree = "<group>"; };
-		C5E4009529825F120021C6B7 /* LibreLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibreLink.swift; sourceTree = "<group>"; };
+		C5E4009529825F120021C6B7 /* Libre Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Libre Link.swift"; sourceTree = "<group>"; };
 		C5E4009829825F1C0021C6B7 /* Nightscout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nightscout.swift; sourceTree = "<group>"; };
 		C5E4009E29825F580021C6B7 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_ids.json; sourceTree = "<group>"; };
 		F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Calendar.swift"; sourceTree = "<group>"; };
@@ -283,6 +284,7 @@
 		F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Manager.swift"; sourceTree = "<group>"; };
 		F31FF67D2BA98AEF003EE8F2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime Notification.swift"; sourceTree = "<group>"; };
+		F31FF6822BA9D25C003EE8F2 /* Debug View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debug View.swift"; sourceTree = "<group>"; };
 		F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime Selector.swift"; sourceTree = "<group>"; };
 		F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Glucose.swift"; sourceTree = "<group>"; };
 		F32ED8F52BA8B11900CD234C /* Delete Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Carbs.swift"; sourceTree = "<group>"; };
@@ -447,14 +449,14 @@
 				C5B7CE312AEE498F00227392 /* Dexcom.swift */,
 				C5E4007B29825E4E0021C6B7 /* Abbott.swift */,
 				C5DB4E4D2B168E08005AD792 /* Libre.swift */,
-				C5E4008129825E8B0021C6B7 /* Libre2.swift */,
-				C5ADF5812B00E65E00E29632 /* Gen2.swift */,
-				C5E4008429825E990021C6B7 /* Libre3.swift */,
+				C5E4008129825E8B0021C6B7 /* Libre 2.swift */,
+				C5ADF5812B00E65E00E29632 /* Gen 2.swift */,
+				C5E4008429825E990021C6B7 /* Libre 3.swift */,
 				C5E4008A29825EC40021C6B7 /* Events.swift */,
 				C5E4008F29825EED0021C6B7 /* NFC.swift */,
-				C56869692B30469000B11687 /* NFCTools.swift */,
+				C56869692B30469000B11687 /* NFC Tools.swift */,
 				C535AEB72AB343AE00AB61AD /* Realm.swift */,
-				C5E4009529825F120021C6B7 /* LibreLink.swift */,
+				C5E4009529825F120021C6B7 /* Libre Link.swift */,
 				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
 				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
 				F35AFC6D2BA4E5360065145A /* Depricated */,
@@ -488,6 +490,7 @@
 				F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */,
 				F31C70952BA7B01800A5BFCD /* Mealtime View.swift */,
 				F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */,
+				F31FF6822BA9D25C003EE8F2 /* Debug View.swift */,
 				F35AFC872BA5086B0065145A /* Apple Health */,
 				F31C70992BA8577D00A5BFCD /* Monitor */,
 				F31C709A2BA8578700A5BFCD /* Details */,
@@ -794,14 +797,14 @@
 				F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */,
 				C5916E4E29827E860051AC06 /* Data View.swift in Sources */,
 				C5916E5429827E860051AC06 /* Monitor.swift in Sources */,
-				C5E4008629825E990021C6B7 /* Libre3.swift in Sources */,
+				C5E4008629825E990021C6B7 /* Libre 3.swift in Sources */,
 				C5E4007729825E370021C6B7 /* Glucose.swift in Sources */,
 				F35AFC652BA4919F0065145A /* GlycemicAlarm.swift in Sources */,
 				C5916E5729827EB10051AC06 /* Main Delegate.swift in Sources */,
 				F3E69B492BA6E67000A5469A /* Write Insulin.swift in Sources */,
 				F35AFC7D2BA4FFFE0065145A /* Insulin Delivery.swift in Sources */,
 				F35AFC842BA500B60065145A /* Write Glucose.swift in Sources */,
-				C5ADF5832B00E65E00E29632 /* Gen2.swift in Sources */,
+				C5ADF5832B00E65E00E29632 /* Gen 2.swift in Sources */,
 				F31FF6812BA9B39F003EE8F2 /* Notification Manager.swift in Sources */,
 				C5E4006629825D1F0021C6B7 /* Extensions.swift in Sources */,
 				C5916E5029827E860051AC06 /* Details.swift in Sources */,
@@ -813,16 +816,16 @@
 				F35AFC622BA491910065145A /* OnlineService.swift in Sources */,
 				C5916E5229827E860051AC06 /* Graph.swift in Sources */,
 				F35AFC682BA491BB0065145A /* UserLevel.swift in Sources */,
-				C568696B2B30469000B11687 /* NFCTools.swift in Sources */,
+				C568696B2B30469000B11687 /* NFC Tools.swift in Sources */,
 				C5E4007A29825E450021C6B7 /* Sensor.swift in Sources */,
 				C5DB4E4F2B168E08005AD792 /* Libre.swift in Sources */,
 				F35AFC802BA500130065145A /* Carbohydrates.swift in Sources */,
-				C5E4009729825F120021C6B7 /* LibreLink.swift in Sources */,
+				C5E4009729825F120021C6B7 /* Libre Link.swift in Sources */,
 				C5E165052ACBE5E600970835 /* Hamburger Menu.swift in Sources */,
 				F35AFC582BA490FF0065145A /* Logging.swift in Sources */,
 				F35AFC5B2BA4913B0065145A /* Trend Arrow.swift in Sources */,
 				F35AFC5E2BA4916C0065145A /* Tabs.swift in Sources */,
-				C5E4008329825E8B0021C6B7 /* Libre2.swift in Sources */,
+				C5E4008329825E8B0021C6B7 /* Libre 2.swift in Sources */,
 				C5E4006F29825DEA0021C6B7 /* Device.swift in Sources */,
 				C5E4009129825EEE0021C6B7 /* NFC.swift in Sources */,
 				C5E4006929825DCD0021C6B7 /* Settings.swift in Sources */,
@@ -848,7 +851,7 @@
 				C5E4008B29825EC40021C6B7 /* Events.swift in Sources */,
 				F35AFC572BA490FF0065145A /* Logging.swift in Sources */,
 				F32ED8F62BA8B11900CD234C /* Delete Carbs.swift in Sources */,
-				C5ADF5822B00E65E00E29632 /* Gen2.swift in Sources */,
+				C5ADF5822B00E65E00E29632 /* Gen 2.swift in Sources */,
 				F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */,
 				F35AFC8F2BA508A60065145A /* TIme from date.swift in Sources */,
 				F35AFC782BA4FF9E0065145A /* Read Glucose.swift in Sources */,
@@ -873,11 +876,11 @@
 				F35AFC5A2BA4913B0065145A /* Trend Arrow.swift in Sources */,
 				F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */,
 				F3E69B482BA6E67000A5469A /* Write Insulin.swift in Sources */,
-				C568696A2B30469000B11687 /* NFCTools.swift in Sources */,
+				C568696A2B30469000B11687 /* NFC Tools.swift in Sources */,
 				F31C70902BA78F5700A5BFCD /* Glossy Preview.swift in Sources */,
 				F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */,
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,
-				C5E4008229825E8B0021C6B7 /* Libre2.swift in Sources */,
+				C5E4008229825E8B0021C6B7 /* Libre 2.swift in Sources */,
 				F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */,
 				F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
@@ -899,7 +902,7 @@
 				C5E4006529825D1F0021C6B7 /* Extensions.swift in Sources */,
 				F35AFC6A2BA491FC0065145A /* Pen.swift in Sources */,
 				C5E4006029825C930021C6B7 /* Monitor.swift in Sources */,
-				C5E4008529825E990021C6B7 /* Libre3.swift in Sources */,
+				C5E4008529825E990021C6B7 /* Libre 3.swift in Sources */,
 				F31C70942BA7916C00A5BFCD /* Crc Calculator.swift in Sources */,
 				C5DB4E4E2B168E08005AD792 /* Libre.swift in Sources */,
 				F35AFC7A2BA4FF9E0065145A /* Read Carbs.swift in Sources */,
@@ -912,7 +915,8 @@
 				C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */,
 				C5E4007629825E370021C6B7 /* Glucose.swift in Sources */,
 				C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */,
-				C5E4009629825F120021C6B7 /* LibreLink.swift in Sources */,
+				F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */,
+				C5E4009629825F120021C6B7 /* Libre Link.swift in Sources */,
 				F35AFC512BA4908B0065145A /* History.swift in Sources */,
 				C50B9AD32AA7396500FF1EA3 /* Shell View.swift in Sources */,
 				C5E4007C29825E4E0021C6B7 /* Abbott.swift in Sources */,

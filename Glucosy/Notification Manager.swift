@@ -9,10 +9,10 @@ final class NotificationManager {
     
     func requestPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, .criticalAlert]) { granted, error in
-            if granted {
-                print("Notification permission granted")
-            } else if let error {
+            if let error {
                 print("Notification permission denied because: \(error.localizedDescription).")
+            } else {
+                print("Notification permission granted: \(granted)")
             }
         }
     }
@@ -43,17 +43,11 @@ final class NotificationManager {
         }
     }
     
-//    func fetchScheduledNotifications(completion: @escaping ([UNNotificationRequest]) -> Void) {
-//        UNUserNotificationCenter.current().getPendingNotificationRequests { scheduledNotifications in
-//            completion(scheduledNotifications)
-//        }
-//    }
-    
     func removeAllPending() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
-    func removePending(_ identifiers: [String]) {
+    func removePending(_ identifiers: String...) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
     }
     
@@ -65,17 +59,4 @@ final class NotificationManager {
             }
         }
     }
-
-//    var scheduledNotifications: [UNNotificationRequest] {
-//        var notifications: [UNNotificationRequest] = []
-//        
-//        NotificationManager.shared.fetchScheduledNotifications { scheduledNotifications in
-//            for notification in scheduledNotifications {
-//                print(notification.identifier)
-//                notifications.append(notification)
-//            }
-//        }
-//        
-//        return notifications
-//    }
 }

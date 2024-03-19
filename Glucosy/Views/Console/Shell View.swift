@@ -42,7 +42,10 @@ struct ShellView: View {
                         ) { result in
                             switch result {
                             case .success(let file):
-                                if !file.startAccessingSecurityScopedResource() { return }
+                                if !file.startAccessingSecurityScopedResource() { 
+                                    return
+                                }
+                                
                                 libreviewCSV = file.path
                                 let fileManager = FileManager.default
                                 
@@ -53,6 +56,7 @@ struct ShellView: View {
                                     do {
                                         var options = CSVReadingOptions()
                                         options.addDateParseStrategy(Date.ParseStrategy(format: "\(day: .twoDigits)-\(month: .twoDigits)-\(year: .defaultDigits) \(hour: .twoDigits(clock: .twentyFourHour, hourCycle: .zeroBased)):\(minute: .twoDigits)", timeZone: .current))
+                                        
                                         let dataFrame = try DataFrame(csvData: csvData, options: options)
                                         // ["Device", "Serial Number", "Device Timestamp", "Record Type", "Historic Glucose mg/dL", "Scan Glucose mg/dL", "Non-numeric Rapid-Acting Insulin", "Rapid-Acting Insulin (units)", "Non-numeric Food", "Carbohydrates (grams)", "Carbohydrates (servings)", "Non-numeric Long-Acting Insulin", "Long-Acting Insulin (units)", "Notes", "Strip Glucose mg/dL", "Ketone mmol/L", "Meal Insulin (units)", "Correction Insulin (units)", "User Change Insulin (units)"]
                                         app.main.log("TabularData: column names: \(dataFrame.columns.map(\.name))")

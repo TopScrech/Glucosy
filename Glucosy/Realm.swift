@@ -257,7 +257,7 @@ class ReminderEntity: Object {
     @objc dynamic var _timeZone = ""
     
     override static func primaryKey() -> String? {
-        return "_id"
+        "_id"
     }
 }
 

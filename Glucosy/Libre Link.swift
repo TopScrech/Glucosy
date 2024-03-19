@@ -69,7 +69,7 @@ struct GlucoseMeasurement: Codable {
     }
 }
 
-struct LibreLinkUpGlucose: Identifiable, Codable {
+struct LibreLinkUpGlucose: Identifiable {
     let glucose: Glucose
     let color: MeasurementColor
     let trendArrow: TrendArrow?
@@ -455,7 +455,9 @@ class LibreLinkUp: Logging {
                            let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
                             let date = dateFormatter.date(from: measurement.timestamp)!
                             let lifeCount = Int(round(date.timeIntervalSince(activationDate) / 60))
-                            let lastGlucose = LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: lifeCount, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow)
+                            
+                            let lastGlucose = LibreLinkUpGlucose(glucose: .init(measurement.valueInMgPerDl, id: lifeCount, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow)
+                            
                             debugLog("LibreLinkUp: last glucose measurement: \(measurement) (JSON: \(lastGlucoseMeasurement))")
                             
                             if lastGlucose.trendArrow != nil {
@@ -585,6 +587,7 @@ class LibreLinkUp: Logging {
                                             }
                                         }
                                     }
+                                    
                                     // TODO: merge with history and display trend arrow
                                     log("LibreLinkUp: logbook values: \(logbookHistory.map { ($0.glucose.id, $0.glucose.value, $0.glucose.date.shortDateTime, $0.color, $0.trendArrow!.symbol) }), alarms: \(logbookAlarms.map(\.description))")
                                 }
@@ -592,7 +595,9 @@ class LibreLinkUp: Logging {
                         }
                     }
                 }
+                
                 return (data, response, history, logbookData, logbookHistory, logbookAlarms)
+                
             } catch {
                 log("LibreLinkUp: error while decoding response: \(error.localizedDescription)")
                 throw LibreLinkUpError.jsonDecoding

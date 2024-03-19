@@ -34,9 +34,7 @@ final class HealthKit: Logging {
     }
     
     func authorize(_ handler: @escaping (Bool) -> Void) {
-        
         store?.requestAuthorization(dataTypes) { success, error in
-            
             guard let error else {
                 return handler(success)
             }

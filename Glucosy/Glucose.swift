@@ -41,7 +41,7 @@ struct CalibrationInfo: Codable, Equatable {
     static var empty = CalibrationInfo()
 }
 
-struct Glucose: Identifiable, Codable {
+struct Glucose: Hashable {
     // enum iSAS.DataQuality {
     //     case ok
     //     case sd14FifoOverflow
@@ -59,7 +59,7 @@ struct Glucose: Identifiable, Codable {
     //     case invalidData
     // }
     
-    struct DataQuality: OptionSet, Codable, CustomStringConvertible {
+    struct DataQuality: OptionSet, Hashable, Codable, CustomStringConvertible {
         let rawValue: Int
         
         static let OK = DataQuality([])
@@ -124,7 +124,7 @@ struct Glucose: Identifiable, Codable {
     var trendRate = 0.0
     var trendArrow = 0  // TODO: enum
     var source = "Glucosy"
-//    var sample: HKQuantitySampleHKQuantitySample
+    var sample: HKQuantitySample?
     
     init(rawValue: Int, rawTemperature: Int = 0, temperatureAdjustment: Int = 0, trendRate: Double = 0, trendArrow: Int = 0, id: Int = 0, date: Date = Date(), hasError: Bool = false, dataQuality: DataQuality = .OK, dataQualityFlags: Int = 0) {
         self.id = id
@@ -143,16 +143,28 @@ struct Glucose: Identifiable, Codable {
     init(bytes: [UInt8], id: Int = 0, date: Date = Date()) {
         let rawValue = Int(bytes[0]) + Int(bytes[1] & 0x1F) << 8
         let rawTemperature = Int(bytes[3]) + Int(bytes[4] & 0x3F) << 8
+        
         // TODO: temperatureAdjustment
         self.init(rawValue: rawValue, rawTemperature: rawTemperature, id: id, date: date)
     }
     
-    init(_ value: Int, temperature: Double = 0, trendRate: Double = 0, trendArrow: Int = 0, id: Int = 0, date: Date = Date(), dataQuality: Glucose.DataQuality = .OK, source: String = "Glucosy") {
+    init(
+        _ value: Int,
+        temperature: Double = 0,
+        trendRate: Double = 0,
+        trendArrow: Int = 0,
+        id: Int = 0,
+        date: Date = Date(),
+        dataQuality: Glucose.DataQuality = .OK,
+        source: String = "Glucosy",
+        sample: HKQuantitySample? = nil
+    ) {
         self.init(rawValue: value * 10, id: id, date: date, dataQuality: dataQuality)
         self.temperature = temperature
         self.trendRate = trendRate
         self.trendArrow = trendArrow
         self.source = source
+        self.sample = sample
     }
 }
 

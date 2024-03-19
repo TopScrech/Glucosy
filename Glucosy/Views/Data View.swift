@@ -48,7 +48,7 @@ struct DataView: View {
                                 .bold()
                             
                             ScrollView(showsIndicators: false) {
-                                ForEach(history.values) { glucose in
+                                ForEach(history.values, id: \.self) { glucose in
                                     HStack {
                                         Text("\(glucose.id) \(glucose.date.shortDateTime)")
                                         
@@ -70,7 +70,7 @@ struct DataView: View {
                                 .bold()
                             
                             ScrollView(showsIndicators: false) {
-                                ForEach(history.factoryValues) { glucose in
+                                ForEach(history.factoryValues, id: \.self) { glucose in
                                     HStack {
                                         Text("\(glucose.id) \(glucose.date.shortDateTime)")
                                         
@@ -93,7 +93,7 @@ struct DataView: View {
                             .bold()
                         
                         ScrollView(showsIndicators: false) {
-                            ForEach(history.rawValues) { glucose in
+                            ForEach(history.rawValues, id: \.self) { glucose in
                                 HStack {
                                     Text("\(glucose.id) \(glucose.date.shortDateTime)")
                                     
@@ -117,7 +117,7 @@ struct DataView: View {
                             .bold()
                         
                         ScrollView(showsIndicators: false) {
-                            ForEach(history.factoryTrend) { glucose in
+                            ForEach(history.factoryTrend, id: \.self) { glucose in
                                 HStack {
                                     Text("\(glucose.id) \(glucose.date.shortDateTime)")
                                     
@@ -139,7 +139,7 @@ struct DataView: View {
                             .bold()
                         
                         ScrollView(showsIndicators: false) {
-                            ForEach(history.rawTrend) { glucose in
+                            ForEach(history.rawTrend, id: \.self) { glucose in
                                 HStack {
                                     Text("\(glucose.id) \(glucose.date.shortDateTime)")
                                     

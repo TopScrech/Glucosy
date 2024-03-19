@@ -7,9 +7,10 @@ final class History {
     var rawTrend:                [Glucose] = []
     var factoryValues:           [Glucose] = []
     var factoryTrend:            [Glucose] = []
-    var storedValues:            [Glucose] = []
     var nightscoutValues:        [Glucose] = []
     
+    // HealthKit
+    var storedValues:            [Glucose] = []
     var insulinDeliveries:       [InsulinDelivery] = []
     var consumedCarbohydrates:   [Carbohydrates] = []
 }

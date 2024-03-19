@@ -27,7 +27,9 @@ class EventKit: Logging {
                 .filter(\.allowsContentModifications)
                 .map(\.title)
             
-            guard settings.calendarTitle != "" else { return }
+            guard settings.calendarTitle != "" else {
+                return
+            }
             
             var calendar: EKCalendar?
             

@@ -79,6 +79,7 @@ class Nightscout: NSObject, Logging {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data)
+                
                 if let array = json as? [Any] {
                     return (array, response)
                 }

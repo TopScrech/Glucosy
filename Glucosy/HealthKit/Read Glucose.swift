@@ -33,18 +33,19 @@ extension HealthKit {
             self.lastDate = results.first?.endDate
             
             if results.count > 0 {
-                let values = results.enumerated().map {
-                    Glucose(
-                        Int($0.1.quantity.doubleValue(for: self.glucoseUnit)),
-                        id: $0.0,
-                        date: $0.1.endDate,
-                        source: $0.1.sourceRevision.source.name + " " + $0.1.sourceRevision.source.bundleIdentifier
-                    )
+                let samples = results.enumerated().map { index, sample -> Glucose in
+                        .init(
+                            Int(sample.quantity.doubleValue(for: self.glucoseUnit)),
+                            id: index,
+                            date: sample.endDate,
+                            source: "\(sample.sourceRevision.source.name) \(sample.sourceRevision.source.bundleIdentifier)",
+                            sample: sample
+                        )
                 }
                 
                 DispatchQueue.main.async {
-                    self.main.history.storedValues = values
-                    handler?(values)
+                    self.main.history.storedValues = samples
+                    handler?(samples)
                 }
             }
         }

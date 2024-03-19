@@ -90,7 +90,7 @@ struct OnlineView: View {
                     Image(settings.selectedService.rawValue)
                         .resizable()
                         .frame(width: 32, height: 32)
-                        .shadow(color: .cyan, radius: 4.0 )
+                        .shadow(color: .cyan, radius: 4)
                 }
                 
                 VStack(spacing: 0) {
@@ -231,7 +231,7 @@ struct OnlineView: View {
                                 now.timeIntervalSince($0.date) <= twelveHours
                             }
                             
-                            Chart(nightscoutHistory) {
+                            Chart(nightscoutHistory, id: \.self) {
                                 PointMark(
                                     x: .value("Time", $0.date),
                                     y: .value("Glucose", $0.value)
@@ -253,7 +253,7 @@ struct OnlineView: View {
                         }
                         
                         List {
-                            ForEach(history.nightscoutValues) { glucose in
+                            ForEach(history.nightscoutValues, id: \.self) { glucose in
                                 (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
                                     .fixedSize(horizontal: false, vertical: true)
                             }

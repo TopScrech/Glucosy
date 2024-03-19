@@ -781,7 +781,10 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         } else {
             log("\(msg) string: \"\(data.string)\"")
             
-            if app.device == nil { return }     // the connection timed out in the meantime
+            // the connection timed out in the meantime
+            if app.device == nil {
+                return
+            }
             
             app.device.lastConnectionDate = Date()
             

@@ -42,7 +42,7 @@ extension UIApplication {
                 )
                 /// Maximum Notification Height will be 120
                 .frame(width: frame.width - (checkForDynamicIsland ? 20 : 30), height: 100, alignment: .top)
-//                .frame(width: frame.width - (checkForDynamicIsland ? 20 : 30), height: 120, alignment: .top)
+                //                .frame(width: frame.width - (checkForDynamicIsland ? 20 : 30), height: 120, alignment: .top)
                 .contentShape(.rect)
             }
             
@@ -146,10 +146,10 @@ fileprivate struct AnimatedNotificationView <Content: View>: View {
     
     var offsetY: CGFloat {
         if isDynamicIsland {
-            return animateNotification ? 0 : 1.33
+            animateNotification ? 0 : 1.33
+        } else {
+            animateNotification ? 10 : -(safeArea.top + 130)
         }
-        
-        return animateNotification ? 10 : -(safeArea.top + 130)
     }
     
     func removeNotificationViewFromWindow() {
@@ -198,7 +198,7 @@ class StatusBarBasedController: UIViewController {
     var statusBarStyle: UIStatusBarStyle = .default
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return statusBarStyle
+        statusBarStyle
     }
 }
 

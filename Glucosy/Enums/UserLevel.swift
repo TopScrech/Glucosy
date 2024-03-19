@@ -4,6 +4,6 @@ public enum UserLevel: Int, CaseIterable, Comparable {
     case test  = 2
     
     public static func < (lhs: UserLevel, rhs: UserLevel) -> Bool {
-        return lhs.rawValue < rhs.rawValue
+        lhs.rawValue < rhs.rawValue
     }
 }

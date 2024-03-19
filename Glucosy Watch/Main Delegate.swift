@@ -229,7 +229,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
             WKInterfaceDevice.current().play(hapticDirection)
             
             let times = currentGlucose > Int(settings.alarmHigh) ? 3 : 4
-            let pause = times == 3 ? 1.0 : 5.0 / 6
+            let pause = times == 3 ? 1 : 5.0 / 6
             
             for s in 0 ..< times {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(s) * pause) {

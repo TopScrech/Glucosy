@@ -112,7 +112,7 @@
 		F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF6822BA9D25C003EE8F2 /* Debug View.swift */; };
 		F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */; };
 		F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */; };
-		F32ED8F62BA8B11900CD234C /* Delete Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F52BA8B11900CD234C /* Delete Carbs.swift */; };
+		F32ED8F62BA8B11900CD234C /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F52BA8B11900CD234C /* Delete.swift */; };
 		F32ED8F82BA8B13A00CD234C /* Delete Inulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */; };
 		F35AFC472BA48CBC0065145A /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC462BA48CBC0065145A /* ScrechKit */; };
 		F35AFC4A2BA48CCD0065145A /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F35AFC492BA48CCD0065145A /* Algorithms */; };
@@ -152,7 +152,7 @@
 		F35AFC832BA500B40065145A /* Read Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC752BA4FF9E0065145A /* Read Insulin.swift */; };
 		F35AFC842BA500B60065145A /* Write Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC732BA4FF9E0065145A /* Write Glucose.swift */; };
 		F35AFC8E2BA508A60065145A /* HealthKit Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC882BA508A50065145A /* HealthKit Link.swift */; };
-		F35AFC8F2BA508A60065145A /* TIme from date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC892BA508A50065145A /* TIme from date.swift */; };
+		F35AFC8F2BA508A60065145A /* Time from date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC892BA508A50065145A /* Time from date.swift */; };
 		F35AFC902BA508A60065145A /* Insulin Delivery Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8A2BA508A60065145A /* Insulin Delivery Card.swift */; };
 		F35AFC912BA508A60065145A /* Carbohydrates Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */; };
 		F35AFC922BA508A60065145A /* Apple Health View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8C2BA508A60065145A /* Apple Health View.swift */; };
@@ -287,7 +287,7 @@
 		F31FF6822BA9D25C003EE8F2 /* Debug View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debug View.swift"; sourceTree = "<group>"; };
 		F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime Selector.swift"; sourceTree = "<group>"; };
 		F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Glucose.swift"; sourceTree = "<group>"; };
-		F32ED8F52BA8B11900CD234C /* Delete Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Carbs.swift"; sourceTree = "<group>"; };
+		F32ED8F52BA8B11900CD234C /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Inulin.swift"; sourceTree = "<group>"; };
 		F35AFC4D2BA490100065145A /* UI Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI Tests.swift"; sourceTree = "<group>"; };
 		F35AFC502BA4908B0065145A /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 		F35AFC7B2BA4FFF70065145A /* Insulin Delivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Insulin Delivery.swift"; sourceTree = "<group>"; };
 		F35AFC7E2BA500130065145A /* Carbohydrates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carbohydrates.swift; sourceTree = "<group>"; };
 		F35AFC882BA508A50065145A /* HealthKit Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthKit Link.swift"; sourceTree = "<group>"; };
-		F35AFC892BA508A50065145A /* TIme from date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TIme from date.swift"; sourceTree = "<group>"; };
+		F35AFC892BA508A50065145A /* Time from date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Time from date.swift"; sourceTree = "<group>"; };
 		F35AFC8A2BA508A60065145A /* Insulin Delivery Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Insulin Delivery Card.swift"; sourceTree = "<group>"; };
 		F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Carbohydrates Card.swift"; sourceTree = "<group>"; };
 		F35AFC8C2BA508A60065145A /* Apple Health View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apple Health View.swift"; sourceTree = "<group>"; };
@@ -590,7 +590,7 @@
 				F3E69B442BA6E66500A5469A /* Write Carbs.swift */,
 				F35AFC732BA4FF9E0065145A /* Write Glucose.swift */,
 				F3E69B472BA6E67000A5469A /* Write Insulin.swift */,
-				F32ED8F52BA8B11900CD234C /* Delete Carbs.swift */,
+				F32ED8F52BA8B11900CD234C /* Delete.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";
@@ -603,7 +603,7 @@
 				F35AFC8D2BA508A60065145A /* HealthKit Card.swift */,
 				F35AFC8A2BA508A60065145A /* Insulin Delivery Card.swift */,
 				F35AFC882BA508A50065145A /* HealthKit Link.swift */,
-				F35AFC892BA508A50065145A /* TIme from date.swift */,
+				F35AFC892BA508A50065145A /* Time from date.swift */,
 			);
 			path = "Apple Health";
 			sourceTree = "<group>";
@@ -850,10 +850,10 @@
 				F35AFC7F2BA500130065145A /* Carbohydrates.swift in Sources */,
 				C5E4008B29825EC40021C6B7 /* Events.swift in Sources */,
 				F35AFC572BA490FF0065145A /* Logging.swift in Sources */,
-				F32ED8F62BA8B11900CD234C /* Delete Carbs.swift in Sources */,
+				F32ED8F62BA8B11900CD234C /* Delete.swift in Sources */,
 				C5ADF5822B00E65E00E29632 /* Gen 2.swift in Sources */,
 				F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */,
-				F35AFC8F2BA508A60065145A /* TIme from date.swift in Sources */,
+				F35AFC8F2BA508A60065145A /* Time from date.swift in Sources */,
 				F35AFC782BA4FF9E0065145A /* Read Glucose.swift in Sources */,
 				C5E4005E29825C930021C6B7 /* Graph.swift in Sources */,
 				C5E4007929825E450021C6B7 /* Sensor.swift in Sources */,

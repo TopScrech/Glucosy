@@ -262,7 +262,7 @@ struct OnlineView: View {
                         }
                     
                     List {
-                        ForEach(history.nightscoutValues) { glucose in
+                        ForEach(history.nightscoutValues, id: \.self) { glucose in
                             (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d")").bold())
                                 .fixedSize(horizontal: false, vertical: true)
                                 .listRowInsets(EdgeInsets())

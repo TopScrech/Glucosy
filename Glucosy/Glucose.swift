@@ -1,4 +1,4 @@
-import Foundation
+import HealthKit
 
 enum GlucoseUnit: String, CustomStringConvertible, CaseIterable, Identifiable {
     case mgdl,
@@ -124,6 +124,7 @@ struct Glucose: Identifiable, Codable {
     var trendRate = 0.0
     var trendArrow = 0  // TODO: enum
     var source = "Glucosy"
+//    var sample: HKQuantitySampleHKQuantitySample
     
     init(rawValue: Int, rawTemperature: Int = 0, temperatureAdjustment: Int = 0, trendRate: Double = 0, trendArrow: Int = 0, id: Int = 0, date: Date = Date(), hasError: Bool = false, dataQuality: DataQuality = .OK, dataQualityFlags: Int = 0) {
         self.id = id

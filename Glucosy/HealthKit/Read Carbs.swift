@@ -51,7 +51,8 @@ extension HealthKit {
                 
                 loadedRecords.append(.init(
                     value: Int(carbsUnit),
-                    date: sample.startDate
+                    date: sample.startDate,
+                    sample: sample
                 ))
                 
                 DispatchQueue.main.async {

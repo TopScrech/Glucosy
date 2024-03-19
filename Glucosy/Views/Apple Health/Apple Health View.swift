@@ -28,6 +28,7 @@ struct AppleHealthView: View {
                     ForEach(history.insulinDeliveries, id: \.self) { insulin in
                         InsulinDeliveryCard(insulin)
                     }
+                    .onDelete(perform: deleteCarbs)
                 }
             } header: {
                 Text("\(history.insulinDeliveries.count) records")
@@ -39,6 +40,7 @@ struct AppleHealthView: View {
                     ForEach(history.consumedCarbohydrates, id: \.self) { carbs in
                         CarbohydratesCard(carbs)
                     }
+                    .onDelete(perform: deleteCarbs)
                 }
             } header: {
                 Text("\(history.consumedCarbohydrates.count) records")
@@ -59,6 +61,43 @@ struct AppleHealthView: View {
             .tint(.green)
         }
     }
+    
+    private func deleteCarbs(at offsets: IndexSet) {
+        offsets.forEach { index in
+            guard let sampleToDelete = history.insulinDeliveries[index].sample else {
+                return
+            }
+            
+            app.main.healthKit?.delete(sampleToDelete) { success, error in
+                if success {
+                    Task { @MainActor in
+                        history.insulinDeliveries.remove(atOffsets: offsets)
+                    }
+                } else if let error {
+                    print("Error deleting from HealthKit: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
+//    private func deleteGlucose(at offsets: IndexSet) {
+//        offsets.forEach { index in
+//            guard let sampleToDelete = history.consumedCarbohydrates[index].sample else {
+//                print("Error deleting carbs: nil sample")
+//                return
+//            }
+//            
+//            app.main.healthKit?.delete(sampleToDelete) { success, error in
+//                if success {
+//                    Task { @MainActor in
+//                        history.consumedCarbohydrates.remove(atOffsets: offsets)
+//                    }
+//                } else if let error {
+//                    print("Error deleting carbs: \(error.localizedDescription)")
+//                }
+//            }
+//        }
+//    }
 }
 
 #Preview {

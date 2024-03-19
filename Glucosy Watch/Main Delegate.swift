@@ -316,6 +316,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
         if history.factoryTrend.count > 6 {
             let deltaMinutes = history.factoryTrend[5].value > 0 ? 5 : 6
             let delta = (history.factoryTrend[0].value > 0 ? history.factoryTrend[0].value : (history.factoryTrend[1].value > 0 ? history.factoryTrend[1].value : history.factoryTrend[2].value)) - history.factoryTrend[deltaMinutes].value
+            
             app.trendDeltaMinutes = deltaMinutes
             app.trendDelta = delta
         }
@@ -346,10 +347,14 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
             }
             
             entries += history.factoryTrend.dropFirst() + [Glucose(currentGlucose, date: sensor.lastReadingDate)]
-            entries = entries.filter { $0.value > 0 && $0.id > -1 }
+            entries = entries.filter {
+                $0.value > 0 && $0.id > -1
+            }
             
             // TODO
-            let newEntries = (entries.filter { $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())! })
+            let newEntries = entries.filter {
+                $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())!
+            }
             
             if newEntries.count > 0 {
                 healthKit?.writeGlucose(newEntries)

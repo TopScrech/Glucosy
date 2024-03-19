@@ -1,16 +1,10 @@
 import HealthKit
 
 extension HealthKit {
-    func deleteCarbohydrate(completion: @escaping (Bool, Error?) -> Void) {
-        guard let carbsType else {
-            return
-        }
+    func delete(_ sample: HKQuantitySample, completion: @escaping (Bool, Error?) -> Void) {
+        let carbsType = sample.sampleType
         
-        let predicate = HKQuery.predicateForSamples(
-            withStart: Date.distantPast,
-            end: Date(),
-            options: .strictStartDate
-        )
+        let predicate = HKQuery.predicateForObjects(with: [sample.uuid])
         
         let query = HKSampleQuery(
             sampleType: carbsType,

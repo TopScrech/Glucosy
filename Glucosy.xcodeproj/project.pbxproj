@@ -573,6 +573,8 @@
 		F35AFC6D2BA4E5360065145A /* Depricated */ = {
 			isa = PBXGroup;
 			children = (
+				F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */,
+				F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */,
 				C5E4005829825C930021C6B7 /* HamburgerMenu.swift */,
 			);
 			path = Depricated;
@@ -589,8 +591,6 @@
 				F35AFC732BA4FF9E0065145A /* Write Glucose.swift */,
 				F3E69B472BA6E67000A5469A /* Write Insulin.swift */,
 				F32ED8F52BA8B11900CD234C /* Delete Carbs.swift */,
-				F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */,
-				F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */,
 			);
 			path = HealthKit;
 			sourceTree = "<group>";

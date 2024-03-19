@@ -117,7 +117,7 @@ struct MealtimeView: View {
         if includeCarbs {
             let carbohydrates = Carbohydrates(value: Int(carbs), date: date)
             
-            app.main.healthKit?.writeCarbs([carbohydrates])
+            app.main.healthKit?.writeCarbs(carbohydrates)
             app.main.healthKit?.readCarbs()
         }
         

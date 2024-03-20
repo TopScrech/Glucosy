@@ -5,11 +5,8 @@ struct LockscreenProvider: TimelineProvider {
     let userDefaults = UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!
     
     var date: Date {
-//        Date()
-        
         let storedDate = userDefaults.double(forKey: "widgetDate")
-//                let storedDate = UserDefaults.standard.double(forKey: "widgetDate")
-//
+        
         if storedDate != 0 {
             return Date(timeIntervalSinceReferenceDate: storedDate)
         } else {
@@ -19,7 +16,6 @@ struct LockscreenProvider: TimelineProvider {
     
     var glucose: String {
         userDefaults.string(forKey: "currentGlucose") ?? "-"
-//        UserDefaults.standard.string(forKey: "currentGlucose") ?? "-"
     }
     
     func placeholder(in context: Context) -> GlucoseEntry {
@@ -66,10 +62,11 @@ struct LockScreenWidgetEntryView: View {
         VStack(spacing: 0) {
             Text(entry.measureDate, format: .dateTime.hour().minute())
                 .footnote()
-                .foregroundStyle(.tertiary)
+                .foregroundStyle(.secondary)
             
             Text(entry.glucose)
-                .largeTitle()
+                .fontWeight(.heavy)
+                .fontSize(50)
                 .scaledToFit()
                 .minimumScaleFactor(0.01)
                 .lineLimit(1)
@@ -99,5 +96,9 @@ struct SimpleWidget: Widget {
 #Preview(as: .accessoryCircular) {
     SimpleWidget()
 } timeline: {
-    GlucoseEntry("16.4", measureDate: Date(), date: Date())
+    GlucoseEntry(
+        "16.4",
+        measureDate: Date(timeIntervalSinceReferenceDate: -3600),
+        date: Date()
+    )
 }

@@ -119,10 +119,10 @@ struct DataView: View {
                                     
                                     Spacer()
                                     
-                                    Text("  \(glucose.value, specifier: "%3d")")
+                                    Text(glucose.value.units)
                                         .bold()
                                 }
-                                //                                    .fixedSize(horizontal: false, vertical: true)
+                                .monospacedDigit()
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .topLeading)

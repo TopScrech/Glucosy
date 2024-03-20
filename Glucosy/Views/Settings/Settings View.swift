@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 struct SettingsView: View {
     @Environment(AppState.self) private var app: AppState
@@ -8,6 +9,12 @@ struct SettingsView: View {
         @Bindable var settings = settings
         
         List {
+            Section("Widgets") {
+                Button("Reload all widgets") {
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
+            }
+            
             Section {
                 Toggle(isOn: $settings.caffeinated) {
                     Label("Iced caramel latte",

@@ -32,6 +32,7 @@ struct GlucosyApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .defaultAppStorage(.init(suiteName: "group.dev.topscrech.Health-Point")!)
                 .modelContainer(container)
                 .environment(main.app)
                 .environment(main.log)

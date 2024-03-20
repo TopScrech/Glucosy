@@ -23,7 +23,6 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
     var log: Log
     var history: History
     var settings: Settings
-    
     var extendedSession: WKExtendedRuntimeSession! // TODO
     
     var centralManager: CBCentralManager

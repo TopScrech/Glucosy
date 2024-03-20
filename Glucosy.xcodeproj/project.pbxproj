@@ -159,6 +159,7 @@
 		F35AFC912BA508A60065145A /* Carbohydrates Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */; };
 		F35AFC922BA508A60065145A /* Apple Health View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8C2BA508A60065145A /* Apple Health View.swift */; };
 		F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8D2BA508A60065145A /* HealthKit Card.swift */; };
+		F3B069572BAB9F150095EFEE /* LockScreen Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069562BAB9F150095EFEE /* LockScreen Configuration.swift */; };
 		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
 		F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
 		F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
@@ -315,6 +316,7 @@
 		F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Carbohydrates Card.swift"; sourceTree = "<group>"; };
 		F35AFC8C2BA508A60065145A /* Apple Health View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apple Health View.swift"; sourceTree = "<group>"; };
 		F35AFC8D2BA508A60065145A /* HealthKit Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthKit Card.swift"; sourceTree = "<group>"; };
+		F3B069562BAB9F150095EFEE /* LockScreen Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LockScreen Configuration.swift"; sourceTree = "<group>"; };
 		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
 		F3E69B442BA6E66500A5469A /* Write Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Carbs.swift"; sourceTree = "<group>"; };
 		F3E69B472BA6E67000A5469A /* Write Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Insulin.swift"; sourceTree = "<group>"; };
@@ -361,7 +363,7 @@
 				C581D58A2B0E699C002A4633 /* GlucosyWidgetBundle.swift */,
 				C581D58C2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift */,
 				C581D58E2B0E699C002A4633 /* GlucosyWidget.swift */,
-				F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */,
+				F3B069552BAB9F030095EFEE /* Lockscreen */,
 				C581D5902B0E699C002A4633 /* AppIntent.swift */,
 				C581D5922B0E699D002A4633 /* Assets.xcassets */,
 				C581D5942B0E699D002A4633 /* Info.plist */,
@@ -613,6 +615,15 @@
 			path = "Apple Health";
 			sourceTree = "<group>";
 		};
+		F3B069552BAB9F030095EFEE /* Lockscreen */ = {
+			isa = PBXGroup;
+			children = (
+				F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */,
+				F3B069562BAB9F150095EFEE /* LockScreen Configuration.swift */,
+			);
+			path = Lockscreen;
+			sourceTree = "<group>";
+		};
 		F3E69B412BA5FD1E00A5469A /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -788,6 +799,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C581D58F2B0E699C002A4633 /* GlucosyWidget.swift in Sources */,
+				F3B069572BAB9F150095EFEE /* LockScreen Configuration.swift in Sources */,
 				C581D5912B0E699C002A4633 /* AppIntent.swift in Sources */,
 				C581D58B2B0E699C002A4633 /* GlucosyWidgetBundle.swift in Sources */,
 				C581D58D2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift in Sources */,

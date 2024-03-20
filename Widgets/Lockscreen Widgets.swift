@@ -2,36 +2,44 @@ import WidgetKit
 import SwiftUI
 
 struct LockscreenProvider: TimelineProvider {
-    let userDefaults = UserDefaults(suiteName: "group.dev.topscrech.Health-Point")
+    let userDefaults = UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!
+    
+    var date: Date {
+//        Date()
+        
+        let storedDate = userDefaults.double(forKey: "widgetDate")
+//                let storedDate = UserDefaults.standard.double(forKey: "widgetDate")
+//
+        if storedDate != 0 {
+            return Date(timeIntervalSinceReferenceDate: storedDate)
+        } else {
+            return Date(timeIntervalSinceReferenceDate: -3600)
+        }
+    }
+    
+    var glucose: String {
+        userDefaults.string(forKey: "currentGlucose") ?? "-"
+//        UserDefaults.standard.string(forKey: "currentGlucose") ?? "-"
+    }
     
     func placeholder(in context: Context) -> GlucoseEntry {
-        let glucose = userDefaults?.string(forKey: "currentGlucose") ?? "-"
-        
-        return GlucoseEntry(glucose, date: Date())
+        GlucoseEntry(glucose, measureDate: date, date: Date())
     }
     
     func getSnapshot(in context: Context, completion: @escaping (GlucoseEntry) -> ()) {
-        let glucose = userDefaults?.string(forKey: "currentGlucose") ?? "-"
-        
-        let entry = GlucoseEntry(glucose, date: Date())
+        let entry = GlucoseEntry(glucose, measureDate: date, date: Date())
         
         completion(entry)
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        let glucose = userDefaults?.string(forKey: "currentGlucose") ?? "-"
-        
-        var entries: [GlucoseEntry] = []
         let currentDate = Date()
         
-        for hourOffset in 0..<5 {
-            let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset, to: currentDate)!
-            let entry = GlucoseEntry(glucose, date: entryDate)
-            entries.append(entry)
-        }
+        let entryDate = Calendar.current.date(byAdding: .minute, value: 10, to: currentDate)!
+        let entry = GlucoseEntry(glucose, measureDate: date, date: entryDate)
         
         let timeline = Timeline(
-            entries: [GlucoseEntry(glucose, date: Date())],
+            entries: [entry, entry],
             policy: .atEnd
         )
         
@@ -41,10 +49,12 @@ struct LockscreenProvider: TimelineProvider {
 
 struct GlucoseEntry: TimelineEntry {
     let glucose: String
+    let measureDate: Date
     let date: Date
     
-    init(_ glucose: String, date: Date) {
+    init(_ glucose: String, measureDate: Date, date: Date) {
         self.glucose = glucose
+        self.measureDate = measureDate
         self.date = date
     }
 }
@@ -54,7 +64,7 @@ struct LockScreenWidgetEntryView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Text(entry.date, format: .dateTime.hour().minute())
+            Text(entry.measureDate, format: .dateTime.hour().minute())
                 .footnote()
                 .foregroundStyle(.tertiary)
             
@@ -89,5 +99,5 @@ struct SimpleWidget: Widget {
 #Preview(as: .accessoryCircular) {
     SimpleWidget()
 } timeline: {
-    GlucoseEntry("16.4", date: Date())
+    GlucoseEntry("16.4", measureDate: Date(), date: Date())
 }

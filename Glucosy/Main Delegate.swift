@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 import CoreBluetooth
 import AVFoundation
 import os.log
@@ -359,7 +360,20 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate, U
         }
         
         if history.factoryTrend.count > 0 {
-            app.currentGlucose = history.factoryTrend[0].value
+            let currentGlucose = history.factoryTrend[0].value
+            app.currentGlucose = currentGlucose
+            
+            let userDefaults = UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!
+            
+            userDefaults.setValue(currentGlucose.units, forKey: "currentGlucose")
+            userDefaults.setValue(Date().timeIntervalSinceReferenceDate, forKey: "widgetDate")
+            
+            WidgetCenter.shared.reloadAllTimelines()
+            
+            //            print("GOVNO: \(history.rawTrend[0])") // TODO: LibreLink adds 1 to the value
+            //            print("GOVNO: \(history.rawValues[0])")
+            //            print("GOVNO: \(history.factoryTrend[0])")
+            //            print("GOVNO: \(history.factoryValues[0])")
         }
         
         let currentGlucose = app.currentGlucose
@@ -453,7 +467,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate, U
                 $0.value > 0 && $0.id > -1
             }
             
-            // TODO
+            // TODO:
             let newEntries = entries.filter {
                 $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())!
             }

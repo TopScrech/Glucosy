@@ -1,4 +1,5 @@
 import ScrechKit
+import WidgetKit
 
 struct Monitor: View {
     @Environment(AppState.self) private var app: AppState
@@ -92,7 +93,7 @@ struct Monitor: View {
             }
             
             Graph()
-                .frame(height: 200)
+                .frame(height: 400)
                 .padding(.horizontal)
             
             //            Text("values: \(Double(history.values.last?.value ?? 0) / 18.0182)")
@@ -208,6 +209,32 @@ struct Monitor: View {
             }
             
             ToolbarItem(placement: .navigationBarTrailing) {
+#if DEBUG
+                Menu {
+                    Button {
+                        history.factoryValues = History.test.factoryValues
+                        history.rawValues = History.test.rawValues
+                        history.storedValues = History.test.storedValues
+                        app.currentGlucose = Int.random(in: 1...10)
+                        
+                        UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.setValue("\(Int.random(in: 1...10))", forKey: "currentGlucose")
+                        UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.setValue(Date().timeIntervalSinceReferenceDate, forKey: "widgetDate")
+                        WidgetCenter.shared.reloadAllTimelines()
+                    } label: {
+                        Label("Test", systemImage: "hammer")
+                    }
+                    
+                } label: {
+                    Image(systemName: "sensor.tag.radiowaves.forward.fill")
+                    
+                } primaryAction: {
+                    if app.main.nfc.isAvailable {
+                        app.main.nfc.startSession()
+                    } else {
+                        showingNFCAlert = true
+                    }
+                }
+#else
                 SFButton("sensor.tag.radiowaves.forward.fill") {
                     if app.main.nfc.isAvailable {
                         app.main.nfc.startSession()
@@ -215,6 +242,7 @@ struct Monitor: View {
                         showingNFCAlert = true
                     }
                 }
+#endif
             }
         }
         .alert("NFC not supported", isPresented: $showingNFCAlert) {

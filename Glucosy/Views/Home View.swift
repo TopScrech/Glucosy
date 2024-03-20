@@ -6,9 +6,7 @@ struct HomeView: View {
     @Environment(Log.self) private var log: Log
     @Environment(History.self) private var history: History
     @Environment(Settings.self) private var settings: Settings
-    
-    @AppStorage("currentGlucose") private var widgetGlucose = ""
-    
+        
     var body: some View {
         @Bindable var settings = settings
         @Bindable var app = app
@@ -72,9 +70,6 @@ struct HomeView: View {
         }
         .toolbarRole(.navigationStack)
         .onChange(of: app.main.app.currentGlucose) { _, newValue in
-            widgetGlucose = newValue.units
-            WidgetCenter.shared.reloadAllTimelines()
-            
             delay(3) {
                 UIApplication.shared.inAppNotification(isDynamicIsland: true, timeout: 10, swipeToClose: true) { _ in // isDynamicIsland
                     MealtimeNotification($app.sheetMealtime)

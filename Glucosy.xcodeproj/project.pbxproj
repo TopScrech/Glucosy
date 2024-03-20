@@ -99,6 +99,8 @@
 		C5E4009A29825F1C0021C6B7 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009829825F1C0021C6B7 /* Nightscout.swift */; };
 		C5E4009F29825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
 		C5E400A029825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
+		F316DCC82BAADE9B00A8B6CF /* Lockscreen Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */; };
+		F316DCCA2BAADFB200A8B6CF /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F316DCC92BAADFB200A8B6CF /* ScrechKit */; };
 		F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */; };
 		F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */; };
 		F31C70902BA78F5700A5BFCD /* Glossy Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */; };
@@ -276,6 +278,7 @@
 		C5E4009529825F120021C6B7 /* Libre Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Libre Link.swift"; sourceTree = "<group>"; };
 		C5E4009829825F1C0021C6B7 /* Nightscout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nightscout.swift; sourceTree = "<group>"; };
 		C5E4009E29825F580021C6B7 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_ids.json; sourceTree = "<group>"; };
+		F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lockscreen Widgets.swift"; sourceTree = "<group>"; };
 		F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Calendar.swift"; sourceTree = "<group>"; };
 		F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Notification.swift"; sourceTree = "<group>"; };
 		F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glossy Preview.swift"; sourceTree = "<group>"; };
@@ -322,6 +325,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F316DCCA2BAADFB200A8B6CF /* ScrechKit in Frameworks */,
 				C581D5882B0E699C002A4633 /* SwiftUI.framework in Frameworks */,
 				C581D5862B0E699C002A4633 /* WidgetKit.framework in Frameworks */,
 			);
@@ -357,6 +361,7 @@
 				C581D58A2B0E699C002A4633 /* GlucosyWidgetBundle.swift */,
 				C581D58C2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift */,
 				C581D58E2B0E699C002A4633 /* GlucosyWidget.swift */,
+				F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */,
 				C581D5902B0E699C002A4633 /* AppIntent.swift */,
 				C581D5922B0E699D002A4633 /* Assets.xcassets */,
 				C581D5942B0E699D002A4633 /* Info.plist */,
@@ -633,6 +638,9 @@
 			dependencies = (
 			);
 			name = GlucosyWidgetExtension;
+			packageProductDependencies = (
+				F316DCC92BAADFB200A8B6CF /* ScrechKit */,
+			);
 			productName = DiaBLEWidgetExtension;
 			productReference = C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -783,6 +791,7 @@
 				C581D5912B0E699C002A4633 /* AppIntent.swift in Sources */,
 				C581D58B2B0E699C002A4633 /* GlucosyWidgetBundle.swift in Sources */,
 				C581D58D2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift in Sources */,
+				F316DCC82BAADE9B00A8B6CF /* Lockscreen Widgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1416,6 +1425,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C55D12B029ACAE8F0050F567 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
+		};
+		F316DCC92BAADFB200A8B6CF /* ScrechKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F35AFC452BA48CBC0065145A /* XCRemoteSwiftPackageReference "ScrechKit" */;
+			productName = ScrechKit;
 		};
 		F35AFC462BA48CBC0065145A /* ScrechKit */ = {
 			isa = XCSwiftPackageProductDependency;

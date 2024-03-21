@@ -17,17 +17,15 @@ struct SettingsCalendar: View {
         .popover(isPresented: $showingCalendarPicker, arrowEdge: .bottom) {
             VStack {
                 Section {
-                    Button {
+                    Button("None") {
                         settings.calendarTitle = ""
                         showingCalendarPicker = false
                         app.main.eventKit?.sync()
-                    } label: {
-                        Text("None")
-                            .bold()
-                            .padding(.horizontal, 4)
-                            .padding(2)
-                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
                     }
+                    .bold()
+                    .padding(.horizontal, 4)
+                    .padding(2)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
                     .disabled(settings.calendarTitle == "")
                 }
                 
@@ -54,17 +52,15 @@ struct SettingsCalendar: View {
                 }
                 
                 Section {
-                    Button {
+                    Button(settings.calendarTitle == "" ? "Don't remind" : "Remind") {
                         showingCalendarPicker = false
                         app.main.eventKit?.sync()
-                    } label: {
-                        Text(settings.calendarTitle == "" ? "Don't remind" : "Remind")
-                            .bold()
-                            .padding(.horizontal, 4)
-                            .padding(2)
-                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
-                            .animation(.default, value: settings.calendarTitle)
                     }
+                    .bold()
+                    .padding(.horizontal, 4)
+                    .padding(2)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
+                    .animation(.default, value: settings.calendarTitle)
                 }
                 .padding(.top, 40)
             }

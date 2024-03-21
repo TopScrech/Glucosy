@@ -9,7 +9,7 @@ struct Details: View {
     @State private var readingCountdown = 0
     @State private var secondsSinceLastConnection = 0
     @State private var minutesSinceLastReading = 0
-        
+    
     // TODO:
     @ViewBuilder func Row(_ label: String, _ value: String, foregroundColor: Color? = .yellow) -> some View {
         if !(value.isEmpty || value == "unknown") {
@@ -266,23 +266,15 @@ struct Details: View {
                                                 .foregroundColor(.blue)
                                         }
                                         
-                                        HStack {
-                                            Spacer()
-                                            
-                                            Button {
-                                                showingCalibrationInfoForm = false
-                                            } label: {
-                                                Text("Set")
-                                                    .bold()
-                                                    .foregroundColor(.accentColor)
-                                                    .padding(.horizontal, 4)
-                                                    .padding(2)
-                                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
-                                            }
-                                            .tint(.blue)
-                                            
-                                            Spacer()
+                                        Button("Set") {
+                                            showingCalibrationInfoForm = false
                                         }
+                                        .bold()
+                                        .foregroundColor(.accentColor)
+                                        .padding(.horizontal, 4)
+                                        .padding(2)
+                                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
+                                        .tint(.blue)
                                     }
                                 }
                                 .toolbar {

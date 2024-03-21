@@ -463,11 +463,9 @@ struct ConsoleSidebar: View {
                 settings.logging.toggle()
                 app.main.log("\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")
             } label: {
-                VStack {
-                    Image(systemName: settings.logging ? "stop.circle" : "play.circle")
-                        .resizable()
-                        .frame(width: 32, height: 32)
-                }
+                Image(systemName: settings.logging ? "stop.circle" : "play.circle")
+                    .resizable()
+                    .frame(width: 32, height: 32)
             }
             .foregroundColor(settings.logging ? .red : .green)
             

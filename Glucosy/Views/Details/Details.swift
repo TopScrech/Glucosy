@@ -278,16 +278,14 @@ struct Details: View {
                                         HStack {
                                             Spacer()
                                             
-                                            Button {
+                                            Button("Set") {
                                                 showingCalibrationInfoForm = false
-                                            } label: {
-                                                Text("Set")
-                                                    .bold()
-                                                    .foregroundColor(.accentColor)
-                                                    .padding(.horizontal, 4)
-                                                    .padding(2)
-                                                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
                                             }
+                                            .bold()
+                                            .foregroundColor(.accentColor)
+                                            .padding(.horizontal, 4)
+                                            .padding(2)
+                                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
                                             
                                             Spacer()
                                         }

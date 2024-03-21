@@ -79,16 +79,14 @@ struct MealtimeView: View {
             
             Spacer()
             
-            Button {
+            Button("Save") {
                 saveData()
-            } label: {
-                Text("Save")
-                    .title3(.semibold)
-                    .foregroundStyle(.white)
-                    .frame(height: 60)
-                    .frame(maxWidth: .infinity)
-                    .background(.blue, in: .rect(cornerRadius: 20))
             }
+            .title3(.semibold)
+            .foregroundStyle(.white)
+            .frame(height: 60)
+            .frame(maxWidth: .infinity)
+            .background(.blue, in: .rect(cornerRadius: 20))
             .padding(.horizontal)
         }
         .padding(.top)

@@ -10,7 +10,7 @@ struct Console: View {
     
     @State private var showingFilterField = false
     @State private var filterText = ""
-        
+    
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
@@ -41,13 +41,11 @@ struct Console: View {
                         let labels = Array(log.labels)
                         
                         ForEach(labels, id: \.self) { label in
-                            Button {
+                            Button(label) {
                                 filterText = label
-                            } label: {
-                                Text(label)
-                                    .caption()
-                                    .foregroundColor(.blue)
                             }
+                            .caption()
+                            .foregroundColor(.blue)
                         }
                     }
                 }

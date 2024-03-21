@@ -42,7 +42,7 @@ struct ShellView: View {
                         ) { result in
                             switch result {
                             case .success(let file):
-                                if !file.startAccessingSecurityScopedResource() { 
+                                if !file.startAccessingSecurityScopedResource() {
                                     return
                                 }
                                 
@@ -278,10 +278,8 @@ struct ShellView: View {
                 HStack {
                     Spacer()
                     
-                    Button {
+                    Button("Cancel") {
                         showingRealmKeyPrompt = false
-                    } label: {
-                        Text("Cancel")
                     }
                     
                     Button {

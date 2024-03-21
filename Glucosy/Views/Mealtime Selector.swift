@@ -12,47 +12,39 @@ struct MealtimeSelector: View {
     var body: some View {
         HStack(spacing: 10) {
             if value > 10 {
-                Button {
+                Button("-5") {
                     value -= 5
-                } label: {
-                    Text("-5")
-                        .padding()
-                        .foregroundStyle(.white)
-                        .background(.red.gradient, in: .rect(cornerRadius: 16))
                 }
+                .padding()
+                .foregroundStyle(.white)
+                .background(.red.gradient, in: .rect(cornerRadius: 16))
             }
             
-            Button {
+            Button("-1") {
                 value -= 1
-            } label: {
-                Text("-1")
-                    .padding()
-                    .foregroundStyle(.white)
-                    .background(.red.gradient, in: .rect(cornerRadius: 16))
             }
+            .padding()
+            .foregroundStyle(.white)
+            .background(.red.gradient, in: .rect(cornerRadius: 16))
             
             Text(Int(value))
                 .padding()
                 .monospaced()
             
-            Button {
+            Button("+1") {
                 value += 1
-            } label: {
-                Text("+1")
-                    .padding()
-                    .foregroundStyle(.white)
-                    .background(.green.gradient, in: .rect(cornerRadius: 16))
             }
+            .padding()
+            .foregroundStyle(.white)
+            .background(.green.gradient, in: .rect(cornerRadius: 16))
             
             if value > 10 {
-                Button {
+                Button("+5") {
                     value += 5
-                } label: {
-                    Text("+5")
-                        .padding()
-                        .foregroundStyle(.white)
-                        .background(.green.gradient, in: .rect(cornerRadius: 16))
                 }
+                .padding()
+                .foregroundStyle(.white)
+                .background(.green.gradient, in: .rect(cornerRadius: 16))
             }
         }
         .title(.semibold)

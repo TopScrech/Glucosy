@@ -108,12 +108,10 @@
 //                    .navigationTitle("About")
 //                    .navigationViewStyle(.stack)
 //                    .toolbar {
-//                        Button {
+//                        Button("Close") {
 //                            withAnimation {
 //                                showingAbout = false
 //                            }
-//                        } label: {
-//                            Text("Close")
 //                        }
 //                    }
 //                }

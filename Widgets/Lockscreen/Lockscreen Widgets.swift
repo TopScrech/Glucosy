@@ -58,12 +58,16 @@ struct GlucoseEntry: TimelineEntry {
 struct LockScreenWidgetEntryView: View {
     var entry: LockscreenProvider.Entry
     
+    private var deepLink: String {
+        entry.configuration.startNfc ? "action/scan" : ""
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             if entry.configuration.showMeasureTime {
                 Text(entry.measureDate, format: .dateTime.hour().minute())
                     .footnote()
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.tertiary)
             }
             
             Text(entry.glucose)
@@ -81,7 +85,7 @@ struct LockScreenWidgetEntryView: View {
             }
         }
         .containerBackground(.clear, for: .widget)
-        .widgetURL(URL(string: "action/scan"))
+        .widgetURL(URL(string: deepLink))
     }
 }
 

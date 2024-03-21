@@ -64,7 +64,7 @@
 		C5E4005C29825C930021C6B7 /* Web View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005129825C930021C6B7 /* Web View.swift */; };
 		C5E4005D29825C930021C6B7 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005229825C930021C6B7 /* Console.swift */; };
 		C5E4005E29825C930021C6B7 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005329825C930021C6B7 /* Graph.swift */; };
-		C5E4005F29825C930021C6B7 /* Online View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005429825C930021C6B7 /* Online View.swift */; };
+		C5E4005F29825C930021C6B7 /* OnlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005429825C930021C6B7 /* OnlineView.swift */; };
 		C5E4006029825C930021C6B7 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005529825C930021C6B7 /* Monitor.swift */; };
 		C5E4006129825C930021C6B7 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005629825C930021C6B7 /* Plan.swift */; };
 		C5E4006229825C930021C6B7 /* Home View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005729825C930021C6B7 /* Home View.swift */; };
@@ -264,7 +264,7 @@
 		C5E4005129825C930021C6B7 /* Web View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Web View.swift"; sourceTree = "<group>"; };
 		C5E4005229825C930021C6B7 /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
 		C5E4005329825C930021C6B7 /* Graph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
-		C5E4005429825C930021C6B7 /* Online View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Online View.swift"; sourceTree = "<group>"; };
+		C5E4005429825C930021C6B7 /* OnlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineView.swift; sourceTree = "<group>"; };
 		C5E4005529825C930021C6B7 /* Monitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
 		C5E4005629825C930021C6B7 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		C5E4005729825C930021C6B7 /* Home View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Home View.swift"; sourceTree = "<group>"; };
@@ -510,10 +510,11 @@
 				F31C70952BA7B01800A5BFCD /* Mealtime View.swift */,
 				F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */,
 				F31FF6822BA9D25C003EE8F2 /* Debug View.swift */,
+				C5E4005529825C930021C6B7 /* Monitor.swift */,
 				F35AFC872BA5086B0065145A /* Apple Health */,
 				F31C70992BA8577D00A5BFCD /* Monitor */,
 				F31C709A2BA8578700A5BFCD /* Details */,
-				C5E4005429825C930021C6B7 /* Online View.swift */,
+				C5E4005429825C930021C6B7 /* OnlineView.swift */,
 				F31C70922BA7915100A5BFCD /* Console */,
 				F31C708A2BA750AF00A5BFCD /* Settings */,
 				C5E4004E29825C930021C6B7 /* Data View.swift */,
@@ -546,7 +547,6 @@
 		F31C70992BA8577D00A5BFCD /* Monitor */ = {
 			isa = PBXGroup;
 			children = (
-				C5E4005529825C930021C6B7 /* Monitor.swift */,
 				C5E4005329825C930021C6B7 /* Graph.swift */,
 			);
 			path = Monitor;
@@ -954,7 +954,7 @@
 				F35AFC672BA491BB0065145A /* UserLevel.swift in Sources */,
 				F35AFC7C2BA4FFF70065145A /* Insulin Delivery.swift in Sources */,
 				F31FF6802BA98F67003EE8F2 /* Mealtime Notification.swift in Sources */,
-				C5E4005F29825C930021C6B7 /* Online View.swift in Sources */,
+				C5E4005F29825C930021C6B7 /* OnlineView.swift in Sources */,
 				C5E4006E29825DEA0021C6B7 /* Device.swift in Sources */,
 				F35AFC5D2BA4916C0065145A /* Tabs.swift in Sources */,
 				C5E4006129825C930021C6B7 /* Plan.swift in Sources */,

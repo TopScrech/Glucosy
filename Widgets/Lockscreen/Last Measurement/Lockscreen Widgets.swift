@@ -2,56 +2,6 @@ import SwiftUI
 import WidgetKit
 import Intents
 
-//struct ACCarbsProvider: AppIntentTimelineProvider {
-//    private let userDefaults = UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!
-//
-//    private var date: Date {
-//        let storedDate = userDefaults.double(forKey: "widgetDate")
-//        return storedDate != 0 ? Date(timeIntervalSinceReferenceDate: storedDate) : Date()
-//    }
-//
-//    private var glucose: String {
-//        userDefaults.string(forKey: "currentGlucose") ?? "-"
-//    }
-//
-//    // Xcode previews
-//    func placeholder(in context: Context) -> GlucoseEntry {
-//        GlucoseEntry(glucose: "-", measureDate: Date(), date: Date(), configuration: ACGlucoseConfiguration())
-//    }
-//
-//    // Widget gallery
-//    func snapshot(
-//        for configuration: ACGlucoseConfiguration,
-//        in context: Context
-//    ) async -> GlucoseEntry {
-//        GlucoseEntry(glucose: glucose, measureDate: date, date: Date(), configuration: configuration)
-//    }
-//
-//    // Timeline generation with user configuration
-//    func timeline(
-//        for configuration: ACGlucoseConfiguration,
-//        in context: Context
-//    ) async -> Timeline<GlucoseEntry> {
-//        let currentDate = Date()
-//
-//        let entryDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
-//
-//        let carbsRecords = await HealthKit().readCarbsForToday()
-//
-//        var timeline: Timeline<GlucoseEntry>
-//            let entry = GlucoseEntry(
-//                glucose: "\(String(describing: carbsRecords.last?.value))",
-//                measureDate: date,
-//                date: entryDate,
-//                configuration: configuration
-//            )
-//
-//            timeline = Timeline(entries: [entry], policy: .after(entryDate))
-//
-//        return timeline
-//    }
-//}
-
 struct ACGlucoseProvider: AppIntentTimelineProvider {
     private let userDefaults = UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!
     
@@ -97,13 +47,6 @@ struct ACGlucoseProvider: AppIntentTimelineProvider {
         
         return timeline
     }
-}
-
-struct GlucoseEntry: TimelineEntry {
-    let glucose: String
-    let measureDate: Date
-    let date: Date
-    let configuration: ACGlucoseConfiguration
 }
 
 struct LockScreenWidgetEntryView: View {

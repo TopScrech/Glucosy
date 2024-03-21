@@ -162,6 +162,11 @@
 		F3B069572BAB9F150095EFEE /* AC Glucose Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */; };
 		F3B069602BABB7000095EFEE /* Read Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0695F2BABB7000095EFEE /* Read Carbs.swift */; };
 		F3B069622BABB7430095EFEE /* Carbohydrates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC7E2BA500130065145A /* Carbohydrates.swift */; };
+		F3B069642BAC13310095EFEE /* AC Carbs Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069632BAC13310095EFEE /* AC Carbs Configuration.swift */; };
+		F3B069662BAC13650095EFEE /* AC Carbs Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069652BAC13650095EFEE /* AC Carbs Provider.swift */; };
+		F3B069682BAC13930095EFEE /* Glucose Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069672BAC13930095EFEE /* Glucose Entry.swift */; };
+		F3B0696A2BAC13B50095EFEE /* Carbs Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069692BAC13B50095EFEE /* Carbs Entry.swift */; };
+		F3B0696E2BAC15900095EFEE /* AC Carbs Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */; };
 		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
 		F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
 		F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
@@ -320,6 +325,11 @@
 		F35AFC8D2BA508A60065145A /* HealthKit Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthKit Card.swift"; sourceTree = "<group>"; };
 		F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Glucose Configuration.swift"; sourceTree = "<group>"; };
 		F3B0695F2BABB7000095EFEE /* Read Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read Carbs.swift"; sourceTree = "<group>"; };
+		F3B069632BAC13310095EFEE /* AC Carbs Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Carbs Configuration.swift"; sourceTree = "<group>"; };
+		F3B069652BAC13650095EFEE /* AC Carbs Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Carbs Provider.swift"; sourceTree = "<group>"; };
+		F3B069672BAC13930095EFEE /* Glucose Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucose Entry.swift"; sourceTree = "<group>"; };
+		F3B069692BAC13B50095EFEE /* Carbs Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Carbs Entry.swift"; sourceTree = "<group>"; };
+		F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Carbs Widget.swift"; sourceTree = "<group>"; };
 		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
 		F3E69B442BA6E66500A5469A /* Write Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Carbs.swift"; sourceTree = "<group>"; };
 		F3E69B472BA6E67000A5469A /* Write Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Insulin.swift"; sourceTree = "<group>"; };
@@ -621,11 +631,32 @@
 		F3B069552BAB9F030095EFEE /* Lockscreen */ = {
 			isa = PBXGroup;
 			children = (
-				F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */,
-				F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */,
-				F3B0695F2BABB7000095EFEE /* Read Carbs.swift */,
+				F3B0696C2BAC15510095EFEE /* Last Measurement */,
+				F3B0696B2BAC15350095EFEE /* Carbs */,
 			);
 			path = Lockscreen;
+			sourceTree = "<group>";
+		};
+		F3B0696B2BAC15350095EFEE /* Carbs */ = {
+			isa = PBXGroup;
+			children = (
+				F3B069632BAC13310095EFEE /* AC Carbs Configuration.swift */,
+				F3B069652BAC13650095EFEE /* AC Carbs Provider.swift */,
+				F3B069692BAC13B50095EFEE /* Carbs Entry.swift */,
+				F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */,
+				F3B0695F2BABB7000095EFEE /* Read Carbs.swift */,
+			);
+			path = Carbs;
+			sourceTree = "<group>";
+		};
+		F3B0696C2BAC15510095EFEE /* Last Measurement */ = {
+			isa = PBXGroup;
+			children = (
+				F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */,
+				F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */,
+				F3B069672BAC13930095EFEE /* Glucose Entry.swift */,
+			);
+			path = "Last Measurement";
 			sourceTree = "<group>";
 		};
 		F3E69B412BA5FD1E00A5469A /* Models */ = {
@@ -802,10 +833,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3B069642BAC13310095EFEE /* AC Carbs Configuration.swift in Sources */,
 				F3B069622BABB7430095EFEE /* Carbohydrates.swift in Sources */,
+				F3B069662BAC13650095EFEE /* AC Carbs Provider.swift in Sources */,
 				C581D58F2B0E699C002A4633 /* GlucosyWidget.swift in Sources */,
+				F3B069682BAC13930095EFEE /* Glucose Entry.swift in Sources */,
+				F3B0696A2BAC13B50095EFEE /* Carbs Entry.swift in Sources */,
 				F3B069572BAB9F150095EFEE /* AC Glucose Configuration.swift in Sources */,
 				C581D5912B0E699C002A4633 /* AppIntent.swift in Sources */,
+				F3B0696E2BAC15900095EFEE /* AC Carbs Widget.swift in Sources */,
 				C581D58B2B0E699C002A4633 /* GlucosyWidgetBundle.swift in Sources */,
 				F3B069602BABB7000095EFEE /* Read Carbs.swift in Sources */,
 				C581D58D2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift in Sources */,

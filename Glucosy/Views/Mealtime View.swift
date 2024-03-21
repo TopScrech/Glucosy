@@ -1,4 +1,5 @@
 import SwiftUI
+import WidgetKit
 
 struct MealtimeView: View {
     @Environment(AppState.self) private var app: AppState
@@ -124,6 +125,8 @@ struct MealtimeView: View {
         if setReminder {
             NotificationManager.shared.scheduleScanReminder()
         }
+        
+        WidgetCenter.shared.reloadAllTimelines()
         
         dismiss()
     }

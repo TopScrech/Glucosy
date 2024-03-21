@@ -1,6 +1,12 @@
 <p align="center"><img src="./DiaBLE/Assets.xcassets/AppIcon.appiconset/Icon.png" width="25%" /> &nbsp; &nbsp; <img src="https://github.com/gui-dos/DiaBLE/assets/7220550/901ad341-edfb-426e-9617-6763cf377447" width="20.5%"/> &nbsp; &nbsp; <img src="https://github.com/gui-dos/DiaBLE/assets/7220550/57aa2b5f-6458-42a8-8d86-23eeb5260206" width="20.5%" /></p>
 <br><br>
 
+**ChangeLog:**
+* 20/1/2024 - [Build 88](https://github.com/gui-dos/DiaBLE/commit/d1333f3)  
+  - Shell: import and dump LibreView CSV files by using TabularData:
+<p align="center"><img src="https://github.com/gui-dos/DiaBLE/assets/7220550/01050cf3-2f75-4034-8861-5e33475c972b" width="75%"/>
+<br><br>
+
 To build the project you have to duplicate the file _DiaBLE.xcconfig_, rename the copy to _DiaBLEOverride.xcconfig_ (the missing reference displayed by Xcode in red should then point to it) and edit it by deleting the last line `#include?... ` and replacing `##TEAM_ID##` with your Apple Team ID so that the first line should read for example `DEVELOPMENT_TEAM = Z25SC9UDC8`.
 
 The NFC capabilities require a paid Apple Developer Program annual membership but a public beta is availaBLE at **[TestFlight](https://testflight.apple.com/join/H48doU3l)** anyway. If you own an iPad you can also download the [zipped archive](https://github.com/gui-dos/DiaBLE/archive/refs/heads/main.zip) of this repository and just tap _DiaBLE Playground.swiftpm_.

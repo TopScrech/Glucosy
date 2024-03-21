@@ -288,7 +288,7 @@ struct ConsoleSidebar: View {
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
-        
+    
     var body: some View {
         VStack(alignment: .center, spacing: 8) {
             Spacer()

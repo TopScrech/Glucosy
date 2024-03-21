@@ -248,11 +248,7 @@ struct Monitor: View {
                                 showingNFCAlert = true
                             }
                         } label: {
-                            VStack(spacing: 0) {
-                                // original: .frame(width: 39, height: 27
-                                Image("NFC").renderingMode(.template).resizable().frame(width: 26, height: 18)
-                                Text("Scan").font(.footnote)
-                            }
+                            Image(systemName: "sensor.tag.radiowaves.forward.fill")
                         }
                     }
                 }

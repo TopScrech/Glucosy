@@ -6,7 +6,7 @@ struct HomeView: View {
     @Environment(Log.self) private var log: Log
     @Environment(History.self) private var history: History
     @Environment(Settings.self) private var settings: Settings
-        
+    
     var body: some View {
         @Bindable var settings = settings
         @Bindable var app = app

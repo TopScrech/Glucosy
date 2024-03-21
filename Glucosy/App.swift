@@ -39,6 +39,15 @@ struct GlucosyApp: App {
                 .environment(main.history)
                 .environment(main.settings)
 #if os(iOS)
+                .onOpenURL { url in
+                    if url.description == "action/scan" {
+                        if main.nfc.isAvailable {
+                            main.nfc.startSession()
+                        } else {
+                            print("NFC is unavailible")
+                        }
+                    }
+                }
                 .onAppear {
                     if overlayWindow == nil {
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {

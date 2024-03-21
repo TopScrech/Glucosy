@@ -1,6 +1,6 @@
 import AppIntents
 
-struct LockScreenConfiguration: WidgetConfigurationIntent {
+struct ACGlucoseConfiguration: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Configuration"
     static var description = IntentDescription("This is an example widget.")
     

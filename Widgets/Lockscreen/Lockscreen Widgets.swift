@@ -1,35 +1,8 @@
-import WidgetKit
 import SwiftUI
+import WidgetKit
 import Intents
 
 struct LockscreenProvider: AppIntentTimelineProvider {
-    // Xcode previews
-    func placeholder(in context: Context) -> GlucoseEntry {
-        GlucoseEntry(glucose: "-", measureDate: Date(), date: Date(), configuration: LockScreenConfiguration())
-    }
-    
-    // Widget gallery
-    func snapshot(
-        for configuration: LockScreenConfiguration,
-        in context: Context
-    ) async -> GlucoseEntry {
-        GlucoseEntry(glucose: glucose, measureDate: date, date: Date(), configuration: configuration)
-    }
-    
-    // Timeline generation with user configuration
-    func timeline(
-        for configuration: LockScreenConfiguration,
-        in context: Context
-    ) async -> Timeline<GlucoseEntry> {
-        let currentDate = Date()
-        
-        let entryDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
-        let entry = GlucoseEntry(glucose: glucose, measureDate: date, date: entryDate, configuration: configuration)
-        
-        let timeline = Timeline(entries: [entry], policy: .after(entryDate))
-        return timeline
-    }
-    
     private let userDefaults = UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!
     
     private var date: Date {
@@ -40,13 +13,46 @@ struct LockscreenProvider: AppIntentTimelineProvider {
     private var glucose: String {
         userDefaults.string(forKey: "currentGlucose") ?? "-"
     }
+    
+    // Xcode previews
+    func placeholder(in context: Context) -> GlucoseEntry {
+        GlucoseEntry(glucose: "-", measureDate: Date(), date: Date(), configuration: ACGlucoseConfiguration())
+    }
+    
+    // Widget gallery
+    func snapshot(
+        for configuration: ACGlucoseConfiguration,
+        in context: Context
+    ) async -> GlucoseEntry {
+        GlucoseEntry(glucose: glucose, measureDate: date, date: Date(), configuration: configuration)
+    }
+    
+    // Timeline generation with user configuration
+    func timeline(
+        for configuration: ACGlucoseConfiguration,
+        in context: Context
+    ) async -> Timeline<GlucoseEntry> {
+        let currentDate = Date()
+        
+        let entryDate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
+        
+        let entry = GlucoseEntry(
+            glucose: glucose,
+            measureDate: date, 
+            date: entryDate,
+            configuration: configuration
+        )
+        
+        let timeline = Timeline(entries: [entry], policy: .after(entryDate))
+        return timeline
+    }
 }
 
 struct GlucoseEntry: TimelineEntry {
     let glucose: String
     let measureDate: Date
     let date: Date
-    let configuration: LockScreenConfiguration
+    let configuration: ACGlucoseConfiguration
 }
 
 struct LockScreenWidgetEntryView: View {
@@ -75,16 +81,17 @@ struct LockScreenWidgetEntryView: View {
             }
         }
         .containerBackground(.clear, for: .widget)
+        .widgetURL(URL(string: "action/scan"))
     }
 }
 
-struct SimpleWidget: Widget {
-    let kind = "SimpleWidget"
+struct ACGlucoseWidget: Widget {
+    let kind = "Glucose Widget"
     
     var body: some WidgetConfiguration {
         AppIntentConfiguration(
             kind: kind,
-            intent: LockScreenConfiguration.self,
+            intent: ACGlucoseConfiguration.self,
             provider: LockscreenProvider()
         ) { entry in
             LockScreenWidgetEntryView(entry: entry)
@@ -96,12 +103,12 @@ struct SimpleWidget: Widget {
 }
 
 #Preview(as: .accessoryCircular) {
-    SimpleWidget()
+    ACGlucoseWidget()
 } timeline: {
     GlucoseEntry(
         glucose: "16.4",
         measureDate: Date(timeIntervalSinceReferenceDate: -3600),
         date: Date(),
-        configuration: LockScreenConfiguration()
+        configuration: ACGlucoseConfiguration()
     )
 }

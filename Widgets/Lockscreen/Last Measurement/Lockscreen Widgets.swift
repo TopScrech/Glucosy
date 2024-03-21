@@ -57,7 +57,7 @@ struct LockScreenWidgetEntryView: View {
     }
     
     private var deepLink: String {
-        entry.configuration.startNfc ? "action/scan" : ""
+        entry.configuration.startNfc ? "action/nfc" : ""
     }
     
     var body: some View {

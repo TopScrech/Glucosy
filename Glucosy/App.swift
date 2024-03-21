@@ -40,12 +40,19 @@ struct GlucosyApp: App {
                 .environment(main.settings)
 #if os(iOS)
                 .onOpenURL { url in
-                    if url.description == "action/scan" {
+                    switch url.description {
+                    case "action/nfc":
                         if main.nfc.isAvailable {
                             main.nfc.startSession()
                         } else {
                             print("NFC is unavailible")
                         }
+                        
+                    case "action/new_record":
+                        main.app.sheetMealtime = true
+                        
+                    default:
+                        print("Deeplinking")
                     }
                 }
                 .onAppear {

@@ -9,7 +9,7 @@ struct ACCarbsWidgetView: View {
     }
     
     private var deepLink: String {
-        entry.configuration.startNfc ? "action/scan" : ""
+        entry.configuration.action.rawValue
     }
     
     var body: some View {

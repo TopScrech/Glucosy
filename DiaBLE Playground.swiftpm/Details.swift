@@ -277,7 +277,7 @@ struct Details: View {
                                 }
                             } label: {
                                 VStack(spacing: 0) {
-                                    Image("NFC").renderingMode(.template).resizable().frame(width: 26, height: 18) .padding(.horizontal, 12).padding( .vertical, 6)
+                                    Image(systemName: "sensor.tag.radiowaves.forward.fill").padding(.horizontal, 12).padding(.vertical, 6)
                                     Text("RePair").font(.footnote).bold().padding(.bottom, 4)
                                 }.overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.accentColor, lineWidth: 2.5))
                             }

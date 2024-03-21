@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 import Charts
 
@@ -99,7 +98,7 @@ struct OnlineView: View {
             GeometryReader { _ in
                 VStack(spacing: 0) {
 
-                    HStack(alignment: .top) {
+                    HStack(alignment: .top, spacing: 2) {
 
                         Button {
                             settings.selectedService = settings.selectedService == .nightscout ? .libreLinkUp : .nightscout
@@ -120,49 +119,43 @@ struct OnlineView: View {
                                         .textContentType(.URL)
                                         .autocorrectionDisabled(true)
                                 }
-                                HStack(alignment: .firstTextBaseline) {
-                                    Text("token:").foregroundColor(Color(.lightGray))
-                                    SecureField("token", text: $settings.nightscoutToken)
-                                }
+                                SecureField("token", text: $settings.nightscoutToken)
+
 
                             } else if settings.selectedService == .libreLinkUp {
-                                HStack(alignment: .firstTextBaseline, spacing: 0) {
-                                    Text("email: ").foregroundColor(Color(.lightGray))
-                                    TextField("email", text: $settings.libreLinkUpEmail)
-                                        .keyboardType(.emailAddress)
-                                        .textContentType(.emailAddress)
-                                        .textInputAutocapitalization(.never)
-                                        .autocorrectionDisabled(true)
-                                        .onSubmit {
-                                            settings.libreLinkUpPatientId = ""
-                                            libreLinkUpResponse = "[Logging in...]"
-                                            Task {
-                                                await reloadLibreLinkUp()
-                                            }
+                                TextField("email", text: $settings.libreLinkUpEmail)
+                                    .keyboardType(.emailAddress)
+                                    .textContentType(.emailAddress)
+                                    .textInputAutocapitalization(.never)
+                                    .autocorrectionDisabled(true)
+                                    .onSubmit {
+                                        settings.libreLinkUpPatientId = ""
+                                        libreLinkUpResponse = "[Logging in...]"
+                                        Task {
+                                            await reloadLibreLinkUp()
                                         }
-                                }
-                                HStack(alignment: .firstTextBaseline) {
-                                    Text("password:").lineLimit(1).foregroundColor(Color(.lightGray))
-                                    SecureField("password", text: $settings.libreLinkUpPassword)
-                                }
-                                .onSubmit {
-                                    settings.libreLinkUpPatientId = ""
-                                    libreLinkUpResponse = "[Logging in...]"
-                                    Task {
-                                        await reloadLibreLinkUp()
                                     }
-                                }
+                                SecureField("password", text: $settings.libreLinkUpPassword)
+                                    .onSubmit {
+                                        settings.libreLinkUpPatientId = ""
+                                        libreLinkUpResponse = "[Logging in...]"
+                                        Task {
+                                            await reloadLibreLinkUp()
+                                        }
+                                    }
                             }
                         }
 
+                        Spacer()
+
                         Button {
                             withAnimation { settings.libreLinkUpFollowing.toggle() }
-                                libreLinkUpResponse = "[...]"
-                                Task {
-                                    await reloadLibreLinkUp()
+                            libreLinkUpResponse = "[...]"
+                            Task {
+                                await reloadLibreLinkUp()
                             }
                         } label: {
-                            Image(systemName: settings.libreLinkUpFollowing ? "f.circle.fill" : "f.circle").resizable().frame(width: 32, height: 32).foregroundColor(.blue)
+                            Image(systemName: settings.libreLinkUpFollowing ? "f.circle.fill" : "f.circle").font(.title)
                         }
 
                         VStack(spacing: 0) {
@@ -176,18 +169,16 @@ struct OnlineView: View {
                                     }
                                 }
                             } label: {
-                                Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.circle.fill" : "book.closed.circle").resizable().frame(width: 32, height: 32).foregroundColor(.blue)
+                                Image(systemName: settings.libreLinkUpScrapingLogbook ? "book.closed.circle.fill" : "book.closed.circle").font(.title)
                             }
 
                             Text(onlineCountdown > -1 ? "\(onlineCountdown) s" : "...")
                                 .fixedSize()
-                                .foregroundColor(.cyan).font(Font.caption.monospacedDigit())
+                                .foregroundColor(.cyan).font(.caption.monospacedDigit())
                                 .onReceive(timer) { _ in
                                     onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
                                 }
                         }
-
-                        Spacer()
 
                         VStack(spacing: 0) {
 
@@ -196,7 +187,7 @@ struct OnlineView: View {
                             Button {
                                 app.main.rescan()
                             } label: {
-                                Image(systemName: "arrow.clockwise.circle").resizable().frame(width: 32, height: 32).foregroundColor(.accentColor)
+                                Image(systemName: "arrow.clockwise.circle").font(.title)
                             }
 
                             Text(!app.deviceState.isEmpty && app.deviceState != "Disconnected" && (readingCountdown > 0 || app.deviceState == "Reconnecting...") ?
@@ -217,7 +208,7 @@ struct OnlineView: View {
                                 showingNFCAlert = true
                             }
                         } label: {
-                            Image("NFC").renderingMode(.template).resizable().frame(width: 39, height: 27)
+                            Image(systemName: "sensor.tag.radiowaves.forward.fill").font(.title)
                         }
                         .alert("NFC not supported", isPresented: $showingNFCAlert) {
                         } message: {
@@ -225,11 +216,12 @@ struct OnlineView: View {
                         }
                         .padding(.top, 2)
 
-                    }.foregroundColor(.accentColor)
-                        .padding(.bottom, 4)
-#if targetEnvironment(macCatalyst)
-                        .padding(.horizontal, 15)
-#endif
+                    }
+                    .foregroundColor(.accentColor)
+                    .padding(.bottom, 4)
+                    #if targetEnvironment(macCatalyst)
+                    .padding(.horizontal, 15)
+                    #endif
 
                     if settings.selectedService == .nightscout {
 
@@ -253,9 +245,9 @@ struct OnlineView: View {
                         }
                         .listStyle(.plain)
                         .font(.system(.caption, design: .monospaced)).foregroundColor(.cyan)
-#if targetEnvironment(macCatalyst)
+                        #if targetEnvironment(macCatalyst)
                         .padding(.leading, 15)
-#endif
+                        #endif
                         .onAppear { if let nightscout = app.main?.nightscout { nightscout.read() } }
                     }
 
@@ -267,9 +259,9 @@ struct OnlineView: View {
                                     .font(.system(.footnote, design: .monospaced)).foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
                                     .textSelection(.enabled)
                             }
-#if targetEnvironment(macCatalyst)
+                            #if targetEnvironment(macCatalyst)
                             .padding()
-#endif
+                            #endif
 
                             if libreLinkUpHistory.count > 0 {
                                 Chart(libreLinkUpHistory) {
@@ -329,9 +321,9 @@ struct OnlineView: View {
                         .task {
                             await reloadLibreLinkUp()
                         }
-#if targetEnvironment(macCatalyst)
+                        #if targetEnvironment(macCatalyst)
                         .padding(.leading, 15)
-#endif
+                        #endif
 
                     }
                 }

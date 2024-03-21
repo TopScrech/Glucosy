@@ -164,11 +164,7 @@ struct Console: View {
                             showingNFCAlert = true
                         }
                     } label: {
-                        Label {
-                            Text("RePair Streaming")
-                        } icon: {
-                            Image("NFC").renderingMode(.template).resizable().frame(width: 26, height: 18)
-                        }
+                        Label("RePair Streaming", systemImage: "sensor.tag.radiowaves.forward.fill")
                     }
 
                     Button {
@@ -315,7 +311,7 @@ struct ConsoleSidebar: View {
                         showingNFCAlert = true
                     }
                 } label: {
-                    Image("NFC").renderingMode(.template).resizable().frame(width: 26, height: 18).padding(EdgeInsets(top: 10, leading: 6, bottom: 14, trailing: 0))
+                    Image(systemName: "sensor.tag.radiowaves.forward.fill").resizable().frame(width: 26, height: 18).padding(.init(top: 10, leading: 6, bottom: 14, trailing: 0))
                 }
 
                 Button {

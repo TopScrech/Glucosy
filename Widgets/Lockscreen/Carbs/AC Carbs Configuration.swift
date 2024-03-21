@@ -32,16 +32,13 @@ struct ACCarbsConfiguration: WidgetConfigurationIntent {
 enum IntentAction: String, CaseIterable, AppEnum {
     static var typeDisplayRepresentation: TypeDisplayRepresentation = .init(name: "Action")
     
-    case nfc = "action/nfc",
+    case nfc =       "action/nfc",
          newRecord = "action/new_record"
     
     var displayRepresentation: DisplayRepresentation {
         switch self {
-        case .nfc:
-            DisplayRepresentation(title: "NFC")
-            
-        case .newRecord:
-            DisplayRepresentation(title: "New Record")
+        case .nfc:       .init(title: "NFC")
+        case .newRecord: .init(title: "New Record")
         }
     }
     
@@ -52,7 +49,7 @@ enum IntentAction: String, CaseIterable, AppEnum {
     
     var title: String {
         switch self {
-        case .nfc: "NFC"
+        case .nfc:       "NFC"
         case .newRecord: "New Record"
         }
     }

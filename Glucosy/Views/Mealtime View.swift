@@ -23,6 +23,7 @@ struct MealtimeView: View {
     @State private var includeCarbs = false
     
     @State private var setReminder = false
+    @State private var isAlertCritical = false
     
     var body: some View {
         VStack(spacing: 25) {
@@ -72,6 +73,9 @@ struct MealtimeView: View {
             }
             
             Toggle("Set measure reminder in 2 hours", isOn: $setReminder)
+            
+            Toggle("Critical alert", isOn: $isAlertCritical)
+                .disabled(!setReminder)
             
             Spacer()
             
@@ -123,7 +127,9 @@ struct MealtimeView: View {
         }
         
         if setReminder {
-            NotificationManager.shared.scheduleScanReminder()
+            NotificationManager.shared.scheduleScanReminder(
+                isAlertCritical ? .critical : .timeSensitive
+            )
         }
         
         WidgetCenter.shared.reloadAllTimelines()

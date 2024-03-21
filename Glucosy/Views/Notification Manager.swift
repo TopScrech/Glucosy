@@ -17,12 +17,12 @@ final class NotificationManager {
         }
     }
     
-    func scheduleScanReminder() {
+    func scheduleScanReminder(_ interruptionLevel: UNNotificationInterruptionLevel = .timeSensitive) {
         let content = UNMutableNotificationContent()
         content.title = "Measure your glucose"
         content.body = "Don't forget to complete your task!"
         content.categoryIdentifier = "REMINDER"
-        content.interruptionLevel = .timeSensitive
+        content.interruptionLevel = interruptionLevel
         content.sound = .defaultCritical
         
         let trigger = UNTimeIntervalNotificationTrigger(

@@ -110,7 +110,6 @@
 		F31C70982BA7B9A300A5BFCD /* Notification Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */; };
 		F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67D2BA98AEF003EE8F2 /* Extension.swift */; };
 		F31FF6802BA98F67003EE8F2 /* Mealtime Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */; };
-		F31FF6812BA9B39F003EE8F2 /* Notification Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */; };
 		F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF6822BA9D25C003EE8F2 /* Debug View.swift */; };
 		F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */; };
 		F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */; };
@@ -477,7 +476,6 @@
 				C535AEB72AB343AE00AB61AD /* Realm.swift */,
 				C5E4009529825F120021C6B7 /* Libre Link.swift */,
 				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
-				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
 				F35AFC6D2BA4E5360065145A /* Depricated */,
 			);
 			path = Glucosy;
@@ -510,6 +508,7 @@
 				F31C70952BA7B01800A5BFCD /* Mealtime View.swift */,
 				F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */,
 				F31FF6822BA9D25C003EE8F2 /* Debug View.swift */,
+				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
 				F35AFC872BA5086B0065145A /* Apple Health */,
 				F31C70992BA8577D00A5BFCD /* Monitor */,
 				F31C709A2BA8578700A5BFCD /* Details */,
@@ -868,7 +867,6 @@
 				F35AFC7D2BA4FFFE0065145A /* Insulin Delivery.swift in Sources */,
 				F35AFC842BA500B60065145A /* Write Glucose.swift in Sources */,
 				C5ADF5832B00E65E00E29632 /* Gen 2.swift in Sources */,
-				F31FF6812BA9B39F003EE8F2 /* Notification Manager.swift in Sources */,
 				C5E4006629825D1F0021C6B7 /* Extensions.swift in Sources */,
 				C5916E5029827E860051AC06 /* Details.swift in Sources */,
 				F35AFC4F2BA490470065145A /* UI Tests.swift in Sources */,

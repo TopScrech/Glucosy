@@ -35,7 +35,7 @@ struct ACCarbsWidgetView: View {
             }
         }
         .containerBackground(.clear, for: .widget)
-        .widgetURL(URL(string: deepLink))
+        .widgetURL(deepLink)
     }
 }
 

@@ -49,15 +49,15 @@ struct ACGlucoseProvider: AppIntentTimelineProvider {
     }
 }
 
-struct LockScreenWidgetEntryView: View {
+struct ACGlucoseWidgetView: View {
     var entry: ACGlucoseProvider.Entry
     
     init(_ entry: ACGlucoseProvider.Entry) {
         self.entry = entry
     }
     
-    private var deepLink: String {
-        entry.configuration.startNfc ? "action/nfc" : ""
+    private var deepLink: URL? {
+        URL(string: entry.configuration.action.rawValue)
     }
     
     var body: some View {
@@ -83,7 +83,7 @@ struct LockScreenWidgetEntryView: View {
             }
         }
         .containerBackground(.clear, for: .widget)
-        .widgetURL(URL(string: deepLink))
+        .widgetURL(deepLink)
     }
 }
 
@@ -96,7 +96,7 @@ struct ACGlucoseWidget: Widget {
             intent: ACGlucoseConfiguration.self,
             provider: ACGlucoseProvider()
         ) { entry in
-            LockScreenWidgetEntryView(entry)
+            ACGlucoseWidgetView(entry)
         }
         .configurationDisplayName("Lock Screen Widget")
         .description("Shows a simple lock message")

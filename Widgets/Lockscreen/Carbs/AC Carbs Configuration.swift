@@ -20,13 +20,12 @@ struct ACCarbsConfiguration: WidgetConfigurationIntent {
     var action: IntentAction
     
     init() {
-        self.action = .nfc
+        self.action = .newRecord
     }
     
     init(action: IntentAction) {
         self.action = action
     }
-    
 }
 
 enum IntentAction: String, CaseIterable, AppEnum {

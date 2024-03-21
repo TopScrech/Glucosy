@@ -8,8 +8,8 @@ struct ACCarbsWidgetView: View {
         self.entry = entry
     }
     
-    private var deepLink: String {
-        entry.configuration.action.rawValue
+    private var deepLink: URL? {
+        URL(string: entry.configuration.action.rawValue)
     }
     
     var body: some View {

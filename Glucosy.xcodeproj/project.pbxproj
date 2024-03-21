@@ -19,9 +19,9 @@
 		C568696B2B30469000B11687 /* NFC Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56869692B30469000B11687 /* NFC Tools.swift */; };
 		C581D5862B0E699C002A4633 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C581D5852B0E699C002A4633 /* WidgetKit.framework */; };
 		C581D5882B0E699C002A4633 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C581D5872B0E699C002A4633 /* SwiftUI.framework */; };
-		C581D58B2B0E699C002A4633 /* GlucosyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58A2B0E699C002A4633 /* GlucosyWidgetBundle.swift */; };
+		C581D58B2B0E699C002A4633 /* Glucosy Widget Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58A2B0E699C002A4633 /* Glucosy Widget Bundle.swift */; };
 		C581D58D2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58C2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift */; };
-		C581D58F2B0E699C002A4633 /* GlucosyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* GlucosyWidget.swift */; };
+		C581D58F2B0E699C002A4633 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		C581D5912B0E699C002A4633 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D5902B0E699C002A4633 /* AppIntent.swift */; };
 		C581D5932B0E699D002A4633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C581D5922B0E699D002A4633 /* Assets.xcassets */; };
 		C581D5972B0E699D002A4633 /* GlucosyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -99,7 +99,7 @@
 		C5E4009A29825F1C0021C6B7 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009829825F1C0021C6B7 /* Nightscout.swift */; };
 		C5E4009F29825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
 		C5E400A029825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
-		F316DCC82BAADE9B00A8B6CF /* Lockscreen Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */; };
+		F316DCC82BAADE9B00A8B6CF /* AC Glucose Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F316DCC72BAADE9B00A8B6CF /* AC Glucose Widget.swift */; };
 		F316DCCA2BAADFB200A8B6CF /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F316DCC92BAADFB200A8B6CF /* ScrechKit */; };
 		F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */; };
 		F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */; };
@@ -226,9 +226,9 @@
 		C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GlucosyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C581D5852B0E699C002A4633 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C581D5872B0E699C002A4633 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		C581D58A2B0E699C002A4633 /* GlucosyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucosyWidgetBundle.swift; sourceTree = "<group>"; };
+		C581D58A2B0E699C002A4633 /* Glucosy Widget Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widget Bundle.swift"; sourceTree = "<group>"; };
 		C581D58C2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucosyWidgetLiveActivity.swift; sourceTree = "<group>"; };
-		C581D58E2B0E699C002A4633 /* GlucosyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucosyWidget.swift; sourceTree = "<group>"; };
+		C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widget.swift"; sourceTree = "<group>"; };
 		C581D5902B0E699C002A4633 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		C581D5922B0E699D002A4633 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C581D5942B0E699D002A4633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 		C5E4009529825F120021C6B7 /* Libre Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Libre Link.swift"; sourceTree = "<group>"; };
 		C5E4009829825F1C0021C6B7 /* Nightscout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nightscout.swift; sourceTree = "<group>"; };
 		C5E4009E29825F580021C6B7 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_ids.json; sourceTree = "<group>"; };
-		F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lockscreen Widgets.swift"; sourceTree = "<group>"; };
+		F316DCC72BAADE9B00A8B6CF /* AC Glucose Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Glucose Widget.swift"; sourceTree = "<group>"; };
 		F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Calendar.swift"; sourceTree = "<group>"; };
 		F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Notification.swift"; sourceTree = "<group>"; };
 		F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glossy Preview.swift"; sourceTree = "<group>"; };
@@ -373,9 +373,9 @@
 		C581D5892B0E699C002A4633 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				C581D58A2B0E699C002A4633 /* GlucosyWidgetBundle.swift */,
+				C581D58A2B0E699C002A4633 /* Glucosy Widget Bundle.swift */,
 				C581D58C2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift */,
-				C581D58E2B0E699C002A4633 /* GlucosyWidget.swift */,
+				C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */,
 				F3B069552BAB9F030095EFEE /* Lockscreen */,
 				C581D5902B0E699C002A4633 /* AppIntent.swift */,
 				C581D5922B0E699D002A4633 /* Assets.xcassets */,
@@ -653,7 +653,7 @@
 			isa = PBXGroup;
 			children = (
 				F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */,
-				F316DCC72BAADE9B00A8B6CF /* Lockscreen Widgets.swift */,
+				F316DCC72BAADE9B00A8B6CF /* AC Glucose Widget.swift */,
 				F3B069672BAC13930095EFEE /* Glucose Entry.swift */,
 			);
 			path = "Last Measurement";
@@ -836,16 +836,16 @@
 				F3B069642BAC13310095EFEE /* AC Carbs Configuration.swift in Sources */,
 				F3B069622BABB7430095EFEE /* Carbohydrates.swift in Sources */,
 				F3B069662BAC13650095EFEE /* AC Carbs Provider.swift in Sources */,
-				C581D58F2B0E699C002A4633 /* GlucosyWidget.swift in Sources */,
+				C581D58F2B0E699C002A4633 /* Glucosy Widget.swift in Sources */,
 				F3B069682BAC13930095EFEE /* Glucose Entry.swift in Sources */,
 				F3B0696A2BAC13B50095EFEE /* Carbs Entry.swift in Sources */,
 				F3B069572BAB9F150095EFEE /* AC Glucose Configuration.swift in Sources */,
 				C581D5912B0E699C002A4633 /* AppIntent.swift in Sources */,
 				F3B0696E2BAC15900095EFEE /* AC Carbs Widget.swift in Sources */,
-				C581D58B2B0E699C002A4633 /* GlucosyWidgetBundle.swift in Sources */,
+				C581D58B2B0E699C002A4633 /* Glucosy Widget Bundle.swift in Sources */,
 				F3B069602BABB7000095EFEE /* Read Carbs.swift in Sources */,
 				C581D58D2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift in Sources */,
-				F316DCC82BAADE9B00A8B6CF /* Lockscreen Widgets.swift in Sources */,
+				F316DCC82BAADE9B00A8B6CF /* AC Glucose Widget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

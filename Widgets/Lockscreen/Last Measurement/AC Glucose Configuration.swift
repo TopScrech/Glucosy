@@ -10,6 +10,14 @@ struct ACGlucoseConfiguration: WidgetConfigurationIntent {
     @Parameter(title: "Show Unit", default: true)
     var showUnit: Bool
     
-    @Parameter(title: "Start NFC scan after opening", default: true)
-    var startNfc: Bool
+    @Parameter(title: "Action after opening the app", optionsProvider: ActionOptionsProvider())
+    var action: IntentAction
+    
+    init() {
+        self.action = .nfc
+    }
+    
+    init(action: IntentAction) {
+        self.action = action
+    }
 }

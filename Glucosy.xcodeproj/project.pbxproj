@@ -443,7 +443,6 @@
 				F35AFC5F2BA4917E0065145A /* Enums */,
 				F35AFC6C2BA492080065145A /* SwiftData */,
 				C5E4004D29825C930021C6B7 /* Views */,
-				F35AFC722BA4FE940065145A /* HealthKit */,
 				C5E4006429825D1F0021C6B7 /* Extensions.swift */,
 				C5E4006729825DCD0021C6B7 /* Settings.swift */,
 				C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */,
@@ -605,6 +604,7 @@
 		F35AFC872BA5086B0065145A /* Apple Health */ = {
 			isa = PBXGroup;
 			children = (
+				F35AFC722BA4FE940065145A /* HealthKit */,
 				F35AFC8C2BA508A60065145A /* Apple Health View.swift */,
 				F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */,
 				F35AFC8D2BA508A60065145A /* HealthKit Card.swift */,

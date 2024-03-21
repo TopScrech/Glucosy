@@ -44,6 +44,7 @@ struct LockscreenProvider: AppIntentTimelineProvider {
         )
         
         let timeline = Timeline(entries: [entry], policy: .after(entryDate))
+        
         return timeline
     }
 }
@@ -57,6 +58,10 @@ struct GlucoseEntry: TimelineEntry {
 
 struct LockScreenWidgetEntryView: View {
     var entry: LockscreenProvider.Entry
+    
+    init(_ entry: LockscreenProvider.Entry) {
+        self.entry = entry
+    }
     
     private var deepLink: String {
         entry.configuration.startNfc ? "action/scan" : ""
@@ -98,7 +103,7 @@ struct ACGlucoseWidget: Widget {
             intent: ACGlucoseConfiguration.self,
             provider: LockscreenProvider()
         ) { entry in
-            LockScreenWidgetEntryView(entry: entry)
+            LockScreenWidgetEntryView(entry)
         }
         .configurationDisplayName("Lock Screen Widget")
         .description("Shows a simple lock message")

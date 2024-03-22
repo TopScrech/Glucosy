@@ -91,9 +91,8 @@ struct ACGlucoseWidgetView: View {
                         .largeTitle()
                         .widgetAccentable()
                     
-                    Text(entry.glucose)
+                    Text(">2h ago")
                         .footnote()
-                        .foregroundStyle(.secondary)
                 } else {
                     if entry.configuration.showMeasureTime {
                         Text(entry.measureDate, format: .dateTime.hour().minute())

@@ -33,7 +33,7 @@ struct SimpleEntry: TimelineEntry {
     let configuration: ConfigurationAppIntent
 }
 
-struct GlucosyWidgetEntryView : View {
+struct GlucosyWidgetEntryView: View {
     var entry: Provider.Entry
     
     var body: some View {
@@ -60,26 +60,22 @@ struct GlucosyWidget: Widget {
     }
 }
 
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        
-        return intent
-    }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
+extension ACGlucoseConfiguration {
+    fileprivate static var preview: ACGlucoseConfiguration {
+        let intent = ACGlucoseConfiguration()
         
         return intent
     }
 }
 
-#Preview(as: .systemSmall) {
+#Preview(as: .accessoryCircular) {
     GlucosyWidget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    
-    SimpleEntry(date: .now, configuration: .starEyes)
+    GlucoseEntry(
+        glucose: "16.4",
+        measureDate: Date(),
+        unit: "mmol/L",
+        date: Date(),
+        configuration: .preview
+    )
 }

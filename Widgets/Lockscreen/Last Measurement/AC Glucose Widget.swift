@@ -85,24 +85,36 @@ struct ACGlucoseWidgetView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if entry.configuration.showMeasureTime {
-                Text(entry.measureDate, format: .dateTime.hour().minute())
-                    .footnote()
-                    .foregroundStyle(.tertiary)
-            }
-            
-            Text(entry.glucose)
-                .fontWeight(.heavy)
-                .fontSize(100)
-                .scaledToFit()
-                .minimumScaleFactor(0.01)
-                .lineLimit(1)
-                .widgetAccentable()
-            
-            if entry.configuration.showUnit {
-                Text(entry.unit)
-                    .footnote()
-                    .foregroundStyle(.secondary)
+            if entry.configuration.glucoseMeasurementReminder {
+                if showReminder(Date(), entry.measureDate) {
+                    Image(systemName: "sensor.tag.radiowaves.forward")
+                        .largeTitle()
+                        .widgetAccentable()
+                    
+                    Text(entry.glucose)
+                        .footnote()
+                        .foregroundStyle(.secondary)
+                } else {
+                    if entry.configuration.showMeasureTime {
+                        Text(entry.measureDate, format: .dateTime.hour().minute())
+                            .footnote()
+                            .foregroundStyle(.tertiary)
+                    }
+                    
+                    Text(entry.glucose)
+                        .fontWeight(.heavy)
+                        .fontSize(100)
+                        .scaledToFit()
+                        .minimumScaleFactor(0.01)
+                        .lineLimit(1)
+                        .widgetAccentable()
+                    
+                    if entry.configuration.showUnit {
+                        Text(entry.unit)
+                            .footnote()
+                            .foregroundStyle(.secondary)
+                    }
+                }
             }
         }
         .containerBackground(.clear, for: .widget)
@@ -127,14 +139,22 @@ struct ACGlucoseWidget: Widget {
     }
 }
 
+extension ACGlucoseConfiguration {
+    fileprivate static var preview: ACGlucoseConfiguration {
+        let intent = ACGlucoseConfiguration()
+        
+        return intent
+    }
+}
+
 #Preview(as: .accessoryCircular) {
     ACGlucoseWidget()
 } timeline: {
     GlucoseEntry(
         glucose: "16.4",
-        measureDate: Date(timeIntervalSinceReferenceDate: -3600),
+        measureDate: Date().addingTimeInterval(-7200),
         unit: "mmol/L",
         date: Date(),
-        configuration: ACGlucoseConfiguration()
+        configuration: .preview
     )
 }

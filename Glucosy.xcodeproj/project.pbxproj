@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -161,10 +161,10 @@
 		F3B069682BAC13930095EFEE /* Glucose Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069672BAC13930095EFEE /* Glucose Entry.swift */; };
 		F3B0696A2BAC13B50095EFEE /* Carbs Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069692BAC13B50095EFEE /* Carbs Entry.swift */; };
 		F3B0696E2BAC15900095EFEE /* AC Carbs Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */; };
+		F3CA0ACB2BAE45E20055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACA2BAE45E20055398F /* ScrechKit */; };
+		F3CA0ACD2BAE45EA0055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACC2BAE45EA0055398F /* ScrechKit */; };
+		F3CA0ACF2BAE45EE0055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACE2BAE45EE0055398F /* ScrechKit */; };
 		F3D781212BADDCE900C2DE1E /* Date Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C98AED2BAD86E700723DA8 /* Date Difference.swift */; };
-		F3D7812C2BAE402400C2DE1E /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3D7812B2BAE402400C2DE1E /* ScrechKit */; };
-		F3D7812E2BAE402F00C2DE1E /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3D7812D2BAE402F00C2DE1E /* ScrechKit */; };
-		F3D781302BAE403200C2DE1E /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3D7812F2BAE403200C2DE1E /* ScrechKit */; };
 		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
 		F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
 		F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
@@ -339,7 +339,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3D781302BAE403200C2DE1E /* ScrechKit in Frameworks */,
+				F3CA0ACF2BAE45EE0055398F /* ScrechKit in Frameworks */,
 				C581D5882B0E699C002A4633 /* SwiftUI.framework in Frameworks */,
 				C581D5862B0E699C002A4633 /* WidgetKit.framework in Frameworks */,
 			);
@@ -350,7 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C55D12B729ACB9CB0050F567 /* CryptoSwift in Frameworks */,
-				F3D7812E2BAE402F00C2DE1E /* ScrechKit in Frameworks */,
+				F3CA0ACB2BAE45E20055398F /* ScrechKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +358,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3D7812C2BAE402400C2DE1E /* ScrechKit in Frameworks */,
+				F3CA0ACD2BAE45EA0055398F /* ScrechKit in Frameworks */,
 				F35AFC4A2BA48CCD0065145A /* Algorithms in Frameworks */,
 				C55D12B229ACAE8F0050F567 /* CryptoSwift in Frameworks */,
 			);
@@ -691,7 +691,7 @@
 			);
 			name = GlucosyWidgetExtension;
 			packageProductDependencies = (
-				F3D7812F2BAE403200C2DE1E /* ScrechKit */,
+				F3CA0ACE2BAE45EE0055398F /* ScrechKit */,
 			);
 			productName = DiaBLEWidgetExtension;
 			productReference = C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */;
@@ -712,7 +712,7 @@
 			name = "Glucosy Watch";
 			packageProductDependencies = (
 				C55D12B629ACB9CB0050F567 /* CryptoSwift */,
-				F3D7812D2BAE402F00C2DE1E /* ScrechKit */,
+				F3CA0ACA2BAE45E20055398F /* ScrechKit */,
 			);
 			productName = "DiaBLE Watch Watch App";
 			productReference = C59960DF2981E381005999C2 /* Glucosy Watch.app */;
@@ -738,7 +738,7 @@
 			packageProductDependencies = (
 				C55D12B129ACAE8F0050F567 /* CryptoSwift */,
 				F35AFC492BA48CCD0065145A /* Algorithms */,
-				F3D7812B2BAE402400C2DE1E /* ScrechKit */,
+				F3CA0ACC2BAE45EA0055398F /* ScrechKit */,
 			);
 			productName = DiaBLE;
 			productReference = C5AAA6152981CF7000CA3EC1 /* Glucosy.app */;
@@ -778,7 +778,7 @@
 			packageReferences = (
 				C55D12B029ACAE8F0050F567 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				F35AFC482BA48CCD0065145A /* XCRemoteSwiftPackageReference "swift-algorithms" */,
-				F3D7812A2BAE402400C2DE1E /* XCLocalSwiftPackageReference "../../SPM/ScrechKit" */,
+				F3CA0AC72BAE45D60055398F /* XCRemoteSwiftPackageReference "ScrechKit" */,
 			);
 			productRefGroup = C5AAA6162981CF7000CA3EC1 /* Products */;
 			projectDirPath = "";
@@ -1428,13 +1428,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		F3D7812A2BAE402400C2DE1E /* XCLocalSwiftPackageReference "../../SPM/ScrechKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../SPM/ScrechKit;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
 		C55D12B029ACAE8F0050F567 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1450,6 +1443,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.2.0;
+			};
+		};
+		F3CA0AC72BAE45D60055398F /* XCRemoteSwiftPackageReference "ScrechKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TopScrech/ScrechKit";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1470,18 +1471,19 @@
 			package = F35AFC482BA48CCD0065145A /* XCRemoteSwiftPackageReference "swift-algorithms" */;
 			productName = Algorithms;
 		};
-		F3D7812B2BAE402400C2DE1E /* ScrechKit */ = {
+		F3CA0ACA2BAE45E20055398F /* ScrechKit */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = F3CA0AC72BAE45D60055398F /* XCRemoteSwiftPackageReference "ScrechKit" */;
 			productName = ScrechKit;
 		};
-		F3D7812D2BAE402F00C2DE1E /* ScrechKit */ = {
+		F3CA0ACC2BAE45EA0055398F /* ScrechKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F3D7812A2BAE402400C2DE1E /* XCLocalSwiftPackageReference "../../SPM/ScrechKit" */;
+			package = F3CA0AC72BAE45D60055398F /* XCRemoteSwiftPackageReference "ScrechKit" */;
 			productName = ScrechKit;
 		};
-		F3D7812F2BAE403200C2DE1E /* ScrechKit */ = {
+		F3CA0ACE2BAE45EE0055398F /* ScrechKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F3D7812A2BAE402400C2DE1E /* XCLocalSwiftPackageReference "../../SPM/ScrechKit" */;
+			package = F3CA0AC72BAE45D60055398F /* XCRemoteSwiftPackageReference "ScrechKit" */;
 			productName = ScrechKit;
 		};
 /* End XCSwiftPackageProductDependency section */

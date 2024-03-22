@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C50B9AD32AA7396500FF1EA3 /* Shell View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50B9AD22AA7396500FF1EA3 /* Shell View.swift */; };
-		C535AEB42AB3431F00AB61AD /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C535AEB32AB3431F00AB61AD /* Realm */; };
-		C535AEB62AB3431F00AB61AD /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C535AEB52AB3431F00AB61AD /* RealmSwift */; };
 		C535AEB82AB343AE00AB61AD /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535AEB72AB343AE00AB61AD /* Realm.swift */; };
 		C55D12B229ACAE8F0050F567 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C55D12B129ACAE8F0050F567 /* CryptoSwift */; };
 		C55D12B429ACB5E00050F567 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55D12B329ACB5E00050F567 /* Crypto.swift */; };
@@ -360,9 +358,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C535AEB62AB3431F00AB61AD /* RealmSwift in Frameworks */,
 				F35AFC472BA48CBC0065145A /* ScrechKit in Frameworks */,
-				C535AEB42AB3431F00AB61AD /* Realm in Frameworks */,
 				F35AFC4A2BA48CCD0065145A /* Algorithms in Frameworks */,
 				C55D12B229ACAE8F0050F567 /* CryptoSwift in Frameworks */,
 			);
@@ -475,7 +471,6 @@
 				C5E4008A29825EC40021C6B7 /* Events.swift */,
 				C5E4008F29825EED0021C6B7 /* NFC.swift */,
 				C56869692B30469000B11687 /* NFC Tools.swift */,
-				C535AEB72AB343AE00AB61AD /* Realm.swift */,
 				C5E4009529825F120021C6B7 /* Libre Link.swift */,
 				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
 				F35AFC6D2BA4E5360065145A /* Depricated */,
@@ -538,8 +533,6 @@
 			isa = PBXGroup;
 			children = (
 				C5E4005229825C930021C6B7 /* Console.swift */,
-				C50B9AD22AA7396500FF1EA3 /* Shell View.swift */,
-				F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */,
 			);
 			path = Console;
 			sourceTree = "<group>";
@@ -593,6 +586,7 @@
 		F35AFC6D2BA4E5360065145A /* Depricated */ = {
 			isa = PBXGroup;
 			children = (
+				F3D781222BAE314A00C2DE1E /* Shell and Realm */,
 				F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */,
 				F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */,
 				C5E4005829825C930021C6B7 /* HamburgerMenu.swift */,
@@ -659,6 +653,16 @@
 				F3B069672BAC13930095EFEE /* Glucose Entry.swift */,
 			);
 			path = "Last Measurement";
+			sourceTree = "<group>";
+		};
+		F3D781222BAE314A00C2DE1E /* Shell and Realm */ = {
+			isa = PBXGroup;
+			children = (
+				F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */,
+				C50B9AD22AA7396500FF1EA3 /* Shell View.swift */,
+				C535AEB72AB343AE00AB61AD /* Realm.swift */,
+			);
+			path = "Shell and Realm";
 			sourceTree = "<group>";
 		};
 		F3E69B412BA5FD1E00A5469A /* Models */ = {
@@ -733,8 +737,6 @@
 			name = Glucosy;
 			packageProductDependencies = (
 				C55D12B129ACAE8F0050F567 /* CryptoSwift */,
-				C535AEB32AB3431F00AB61AD /* Realm */,
-				C535AEB52AB3431F00AB61AD /* RealmSwift */,
 				F35AFC462BA48CBC0065145A /* ScrechKit */,
 				F35AFC492BA48CCD0065145A /* Algorithms */,
 			);
@@ -774,7 +776,6 @@
 			mainGroup = C5AAA60C2981CF7000CA3EC1;
 			packageReferences = (
 				C55D12B029ACAE8F0050F567 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
-				C535AEB22AB3431F00AB61AD /* XCRemoteSwiftPackageReference "realm-swift" */,
 				F35AFC452BA48CBC0065145A /* XCRemoteSwiftPackageReference "ScrechKit" */,
 				F35AFC482BA48CCD0065145A /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
@@ -1427,14 +1428,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C535AEB22AB3431F00AB61AD /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		C55D12B029ACAE8F0050F567 /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
@@ -1462,16 +1455,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C535AEB32AB3431F00AB61AD /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C535AEB22AB3431F00AB61AD /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		C535AEB52AB3431F00AB61AD /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C535AEB22AB3431F00AB61AD /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		C55D12B129ACAE8F0050F567 /* CryptoSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C55D12B029ACAE8F0050F567 /* XCRemoteSwiftPackageReference "CryptoSwift" */;

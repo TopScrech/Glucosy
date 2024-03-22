@@ -13,7 +13,7 @@ final class Settings {
         
         "readingInterval": 5,
         
-        "displayingMillimoles": false,
+        "displayingMillimoles": true,
         "targetLow": 80.0,
         "targetHigh": 170.0,
         
@@ -125,9 +125,9 @@ final class Settings {
         }
     }
     
-    var displayingMillimoles = UserDefaults.standard.bool(forKey: "displayingMillimoles") {
+    var displayingMillimoles = UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.bool(forKey: "displayingMillimoles") {
         didSet {
-            UserDefaults.standard.set(self.displayingMillimoles, forKey: "displayingMillimoles")
+            UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.set(self.displayingMillimoles, forKey: "displayingMillimoles")
         }
     }
     

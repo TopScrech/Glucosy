@@ -166,6 +166,7 @@
 		F3B069682BAC13930095EFEE /* Glucose Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069672BAC13930095EFEE /* Glucose Entry.swift */; };
 		F3B0696A2BAC13B50095EFEE /* Carbs Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069692BAC13B50095EFEE /* Carbs Entry.swift */; };
 		F3B0696E2BAC15900095EFEE /* AC Carbs Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */; };
+		F3D781202BADD5A700C2DE1E /* Date Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C98AED2BAD86E700723DA8 /* Date Color.swift */; };
 		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
 		F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
 		F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
@@ -329,6 +330,7 @@
 		F3B069672BAC13930095EFEE /* Glucose Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucose Entry.swift"; sourceTree = "<group>"; };
 		F3B069692BAC13B50095EFEE /* Carbs Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Carbs Entry.swift"; sourceTree = "<group>"; };
 		F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Carbs Widget.swift"; sourceTree = "<group>"; };
+		F3C98AED2BAD86E700723DA8 /* Date Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Color.swift"; sourceTree = "<group>"; };
 		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
 		F3E69B442BA6E66500A5469A /* Write Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Carbs.swift"; sourceTree = "<group>"; };
 		F3E69B472BA6E67000A5469A /* Write Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Insulin.swift"; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 		F35AFC6D2BA4E5360065145A /* Depricated */ = {
 			isa = PBXGroup;
 			children = (
+				F3C98AED2BAD86E700723DA8 /* Date Color.swift */,
 				F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */,
 				F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */,
 				C5E4005829825C930021C6B7 /* HamburgerMenu.swift */,
@@ -942,6 +945,7 @@
 				F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */,
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,
 				C5E4008229825E8B0021C6B7 /* Libre 2.swift in Sources */,
+				F3D781202BADD5A700C2DE1E /* Date Color.swift in Sources */,
 				F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */,
 				F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,

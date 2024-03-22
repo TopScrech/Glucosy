@@ -11,7 +11,7 @@ struct ACCarbsWidgetView: View {
     private var deepLink: URL? {
         URL(string: entry.configuration.action.rawValue)
     }
-    
+        
     var body: some View {
         VStack(spacing: 0) {
             if entry.configuration.showDate {

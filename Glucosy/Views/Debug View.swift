@@ -3,11 +3,13 @@ import SwiftUI
 struct DebugView: View {
     @State private var scheduledNotifications: [UNNotificationRequest] = []
     
+    var notificationManager = NotificationManager()
+    
     var body: some View {
         List {
             Section("Scheduled notifications") {
                 Button("Cancel all") {
-                    NotificationManager.shared.removeAllPending()
+                    notificationManager.removeAllPending()
                 }
                 
                 ForEach(scheduledNotifications, id: \.identifier) { notification in
@@ -22,7 +24,7 @@ struct DebugView: View {
                     }
                     .contextMenu {
                         Button(role: .destructive) {
-                            NotificationManager.shared.removePending(notification.identifier)
+                            notificationManager.removePending(notification.identifier)
                         } label: {
                             Label("Cancel", systemImage: "trash")
                         }
@@ -32,7 +34,7 @@ struct DebugView: View {
         }
         .navigationTitle("Debug")
         .refreshableTask {
-            scheduledNotifications = await NotificationManager.shared.fetchScheduledNotifications()
+            scheduledNotifications = await notificationManager.fetchScheduledNotifications()
         }
     }
 }

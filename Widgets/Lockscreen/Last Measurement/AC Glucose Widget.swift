@@ -14,9 +14,25 @@ struct ACGlucoseProvider: AppIntentTimelineProvider {
         userDefaults.string(forKey: "currentGlucose") ?? "-"
     }
     
+    private var unit: String {
+        let displayingMillimoles = userDefaults.bool(forKey: "displayingMillimoles")
+        
+        if displayingMillimoles {
+            return "mmol/L"
+        } else {
+            return "mg/dL"
+        }
+    }
+    
     // Xcode previews
     func placeholder(in context: Context) -> GlucoseEntry {
-        GlucoseEntry(glucose: "-", measureDate: Date(), date: Date(), configuration: ACGlucoseConfiguration())
+        GlucoseEntry(
+            glucose: "-",
+            measureDate: Date(),
+            unit: unit,
+            date: Date(),
+            configuration: ACGlucoseConfiguration()
+        )
     }
     
     // Widget gallery
@@ -24,7 +40,13 @@ struct ACGlucoseProvider: AppIntentTimelineProvider {
         for configuration: ACGlucoseConfiguration,
         in context: Context
     ) async -> GlucoseEntry {
-        GlucoseEntry(glucose: glucose, measureDate: date, date: Date(), configuration: configuration)
+        GlucoseEntry(
+            glucose: glucose,
+            measureDate: date,
+            unit: unit,
+            date: Date(),
+            configuration: configuration
+        )
     }
     
     // Timeline generation with user configuration
@@ -39,6 +61,7 @@ struct ACGlucoseProvider: AppIntentTimelineProvider {
         let entry = GlucoseEntry(
             glucose: glucose,
             measureDate: date,
+            unit: unit,
             date: entryDate,
             configuration: configuration
         )
@@ -77,7 +100,7 @@ struct ACGlucoseWidgetView: View {
                 .widgetAccentable()
             
             if entry.configuration.showUnit {
-                Text("mmol/L")
+                Text(entry.unit)
                     .footnote()
                     .foregroundStyle(.secondary)
             }
@@ -110,6 +133,7 @@ struct ACGlucoseWidget: Widget {
     GlucoseEntry(
         glucose: "16.4",
         measureDate: Date(timeIntervalSinceReferenceDate: -3600),
+        unit: "mmol/L",
         date: Date(),
         configuration: ACGlucoseConfiguration()
     )

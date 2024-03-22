@@ -405,7 +405,7 @@ struct ConsoleSidebar: View {
                         .offset(y: -4)
                 }
             }
-            .background(settings.userLevel != .basic ? Color.accentColor : Color.clear)
+            .background(settings.userLevel != .basic ? Color.accentColor : .clear)
             .clipShape(.rect(cornerRadius: 5))
             .foregroundColor(settings.userLevel != .basic ? Color(.systemBackground) : .accentColor)
             .padding(.bottom, 6)

@@ -5,5 +5,6 @@ enum Tab: String {
          settings,
          data,
          plan,
-         healthKit
+         healthKit,
+         debug
 }

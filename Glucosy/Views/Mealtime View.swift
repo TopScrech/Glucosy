@@ -125,7 +125,7 @@ struct MealtimeView: View {
         }
         
         if setReminder {
-            NotificationManager.shared.scheduleScanReminder(
+            NotificationManager().scheduleScanReminder(
                 isAlertCritical ? .critical : .timeSensitive
             )
         }

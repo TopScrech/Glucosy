@@ -18,14 +18,14 @@ enum GlucoseUnit: String, CustomStringConvertible, CaseIterable, Identifiable {
 
 extension Int {
     var units: String {
-        UserDefaults.standard.bool(forKey: "displayingMillimoles") ?
+        UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.bool(forKey: "displayingMillimoles") ?
         String(format: "%.1f", Double(self) / 18.0182) : String(self)
     }
 }
 
 extension Double {
     var units: String {
-        UserDefaults.standard.bool(forKey: "displayingMillimoles") ?
+        UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.bool(forKey: "displayingMillimoles") ?
         String(format: "%.1f", self / 18.0182) : String(format: "%.0f", self)
     }
 }

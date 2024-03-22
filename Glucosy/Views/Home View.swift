@@ -67,6 +67,14 @@ struct HomeView: View {
             .tabItem {
                 Label("Console", systemImage: "terminal")
             }
+            
+            NavigationView {
+                DebugView()
+            }
+            .tag(Tab.debug)
+            .tabItem {
+                Label("Debug", systemImage: "hammer")
+            }
         }
         .toolbarRole(.navigationStack)
         .onChange(of: app.main.app.currentGlucose) { _, newValue in

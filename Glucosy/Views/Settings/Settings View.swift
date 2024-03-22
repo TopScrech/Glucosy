@@ -32,6 +32,9 @@ struct SettingsView: View {
                 }
             }
             .pickerStyle(.inline)
+            .onChange(of: settings.displayingMillimoles) {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
             
             let range = settings.preferredTransmitter == .abbott || (settings.preferredTransmitter == .none && app.transmitter != nil && app.transmitter.type == .transmitter(.abbott)) ?
             1...1:

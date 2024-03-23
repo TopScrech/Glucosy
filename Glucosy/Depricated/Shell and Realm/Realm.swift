@@ -419,10 +419,10 @@
 //    }
 //    
 //    struct GlucoseAlarmState {
-//        var isPresented: Bool
-//        var isInEpisode: Bool
-//        var isDismissed: Bool
-//        var isCleared: Bool
+//        var isPresented:   Bool
+//        var isInEpisode:   Bool
+//        var isDismissed:   Bool
+//        var isCleared:     Bool
 //        var isUserCleared: Bool
 //    }
 //    
@@ -435,10 +435,10 @@
 //    }
 //    
 //    struct AlarmStates {
-//        let lowGlucose:         GlucoseAlarmState
-//        let highGlucose:        GlucoseAlarmState
-//        let fixedLowGlucose:    GlucoseAlarmState
-//        let signalLoss:         SignalLossAlarmState
+//        let lowGlucose:      GlucoseAlarmState
+//        let highGlucose:     GlucoseAlarmState
+//        let fixedLowGlucose: GlucoseAlarmState
+//        let signalLoss:      SignalLossAlarmState
 //    }
 //    
 //    struct AlarmStateDictionary {
@@ -463,164 +463,164 @@
 //    ]
 //    
 //    // class Libre3.AlarmConfigEntity {
-//    //     var _id: Swift.Int32
-//    //     var _alarmType: Swift.Int32
-//    //     var _enabled: Swift.Bool
-//    //     var _threshold: Swift.Double
-//    //     var _soundType: Swift.Int32
-//    //     var _soundSetting: Swift.String
-//    //     var _tolerance: Swift.Double
-//    //     var _f_high: Swift.Double
-//    //     var _overrideDND: Swift.Bool
+//    //     var _id:           Int32
+//    //     var _alarmType:    Int32
+//    //     var _enabled:      Bool
+//    //     var _threshold:    Double
+//    //     var _soundType:    Int32
+//    //     var _soundSetting: String
+//    //     var _tolerance:    Double
+//    //     var _f_high:       Double
+//    //     var _overrideDND:  Bool
 //    // }
 //    
 //    // class Libre3.AppConfigEntity {
-//    //     var _id: Swift.Int32
-//    //     var _configName: Swift.String
-//    //     var _configType: Swift.Int32
-//    //     var _configValue: Swift.String
-//    //     var _source: Swift.Int32
+//    //     var _id:          Int32
+//    //     var _configName:  String
+//    //     var _configType:  Int32
+//    //     var _configValue: String
+//    //     var _source:      Int32
 //    // }
 //    
 //    // class Libre3.AppEventEntity {
-//    //     var _id: Swift.Int32
-//    //     var _eventType: Swift.Int32
-//    //     var _eventErrorCode: Swift.Int32
-//    //     var _timestampUTC: Swift.Int64
-//    //     var _timestampLocal: Swift.Int64
-//    //     var _timeZone: Swift.String
-//    //     var _eventParams: Swift.String
-//    //     var _eventData: Swift.String
-//    //     var _display: Swift.Bool
+//    //     var _id:             Int32
+//    //     var _eventType:      Int32
+//    //     var _eventErrorCode: Int32
+//    //     var _timestampUTC:   Int64
+//    //     var _timestampLocal: Int64
+//    //     var _timeZone:       String
+//    //     var _eventParams:    String
+//    //     var _eventData:      String
+//    //     var _display:        Bool
 //    // }
 //    
 //    // class Libre3.GlucoseReadingEntity {
-//    //     var _id: Swift.Int32
-//    //     var _sensor: Libre3.SensorEntity?
-//    //     var _lifeCount: Swift.Int32
-//    //     var _timestampUTC: Swift.Int64
-//    //     var _timestampLocal: Swift.Int64
-//    //     var _timeZone: Swift.String
-//    //     var _currentGlucose: Swift.Double
-//    //     var _uncappedGlucose: Swift.Double
-//    //     var _historicGlucose: Swift.Double
-//    //     var _trend: Swift.Int32
-//    //     var _rateOfChange: Swift.Double
-//    //     var _dqFlag: Swift.Int32
-//    //     var _historicDqFlag: Swift.Int32
-//    //     var _actionable: Swift.Int32
-//    //     var _sensorCondition: Swift.Int32
-//    //     var _esaDuration: Swift.Int32
-//    //     var _alarmPresentFlag: Swift.Int16
-//    //     var _alarmRemoveFlag: Swift.Int16
-//    //     var _alarmEpisodeFlag: Swift.Int16
-//    //     var _glycemicAlarmStatus: Swift.Int32
-//    //     var _projectedGlucose: Swift.Double
-//    //     var _resultRange: Swift.Int32
-//    //     var _notes: RealmSwift.List<Libre3.NotesEntity>
-//    //     var _temperature: Swift.Int32
-//    //     var _rawData: Swift.String
-//    //     var _viewed: Swift.Bool
-//    //     var _extendedUDOflag: Swift.Int16
-//    //     var _rssi: Swift.Int32
-//    //     var _isWarmup: Swift.Bool
-//    //     var _uncappedHistoric: Swift.Double
-//    //     var _userResultRange: Swift.Int32
-//    //     var _compositeKey: Swift.Int64
-//    //     var _stateMap: RealmSwift.List<Swift.Int8>
-//    //     var _isHistoric: Swift.Bool
+//    //     var _id:                  Int32
+//    //     var _sensor:              Libre3.SensorEntity?
+//    //     var _lifeCount:           Int32
+//    //     var _timestampUTC:        Int64
+//    //     var _timestampLocal:      Int64
+//    //     var _timeZone:            String
+//    //     var _currentGlucose:      Double
+//    //     var _uncappedGlucose:     Double
+//    //     var _historicGlucose:     Double
+//    //     var _trend:               Int32
+//    //     var _rateOfChange:        Double
+//    //     var _dqFlag:              Int32
+//    //     var _historicDqFlag:      Int32
+//    //     var _actionable:          Int32
+//    //     var _sensorCondition:     Int32
+//    //     var _esaDuration:         Int32
+//    //     var _alarmPresentFlag:    Int16
+//    //     var _alarmRemoveFlag:     Int16
+//    //     var _alarmEpisodeFlag:    Int16
+//    //     var _glycemicAlarmStatus: Int32
+//    //     var _projectedGlucose:    Double
+//    //     var _resultRange:         Int32
+//    //     var _notes:               RealmSwift.List<Libre3.NotesEntity>
+//    //     var _temperature:         Int32
+//    //     var _rawData:             String
+//    //     var _viewed:              Bool
+//    //     var _extendedUDOflag:     Int16
+//    //     var _rssi:                Int32
+//    //     var _isWarmup:            Bool
+//    //     var _uncappedHistoric:    Double
+//    //     var _userResultRange:     Int32
+//    //     var _compositeKey:        Int64
+//    //     var _stateMap:            RealmSwift.List<Swift.Int8>
+//    //     var _isHistoric:          Bool
 //    // }
 //    
 //    // class Libre3.NoteElementEntity {
-//    //     var _id: Swift.Int32
-//    //     var _noteType: Libre3.NoteItemType
-//    //     var _subType: Swift.Int32
-//    //     var _value: Swift.Double
-//    //     var _servingSize: Swift.Double
+//    //     var _id:          Int32
+//    //     var _noteType:    Libre3.NoteItemType
+//    //     var _subType:     Int32
+//    //     var _value:       Double
+//    //     var _servingSize: Double
 //    // }
 //    
 //    // class Libre3.NotesEntity {
-//    //     var _id: Swift.Int32
-//    //     var _timestampUTC: Swift.Int64
-//    //     var _timestampLocal: Swift.Int64
-//    //     var _timeZone: Swift.String
-//    //     var _comment: Swift.String?
-//    //     var _glucoseReading: Libre3.GlucoseReadingEntity?
-//    //     var _noteElements: RealmSwift.List<Libre3.NoteElementEntity>
-//    //     var _isDeleted: Swift.Bool
-//    //     var reading: Libre3.Reading?
-//    //     let glucoseReading: RealmSwift.LinkingObjects<Libre3.GlucoseReadingEntity>
+//    //     var _id:               Int32
+//    //     var _timestampUTC:     Int64
+//    //     var _timestampLocal:   Int64
+//    //     var _timeZone:         String
+//    //     var _comment:          String?
+//    //     var _glucoseReading:   Libre3.GlucoseReadingEntity?
+//    //     var _noteElements:     RealmSwift.List<Libre3.NoteElementEntity>
+//    //     var _isDeleted:        Bool
+//    //     var reading:           Libre3.Reading?
+//    //     let glucoseReading:    RealmSwift.LinkingObjects<Libre3.GlucoseReadingEntity>
 //    // }
 //    
 //    // class Libre3.ReminderEntity {
-//    //     var _id: Swift.Int32
-//    //     var _reminderType: Swift.Int32
-//    //     var _enabled: Swift.Bool
-//    //     var _reminderCode: Swift.Int32
-//    //     var _repeatType: Swift.Int32
-//    //     var _description: Swift.String
-//    //     var _interval: Swift.Int32
-//    //     var _intervalType: Swift.Int32
-//    //     var _createdTime: Swift.Int64
-//    //     var _timeZone: Swift.String
+//    //     var _id:           Int32
+//    //     var _reminderType: Int32
+//    //     var _enabled:      Bool
+//    //     var _reminderCode: Int32
+//    //     var _repeatType:   Int32
+//    //     var _description:  String
+//    //     var _interval:     Int32
+//    //     var _intervalType: Int32
+//    //     var _createdTime:  Int64
+//    //     var _timeZone:     String
 //    // }
 //    
 //    // class Libre3.SensorEntity {
-//    //     var _id: Swift.Int32
-//    //     var _serialNumber: Swift.String
-//    //     var _sensorUID: Swift.String
-//    //     var _productType: Swift.Int32
-//    //     var _localization: Swift.Int32
-//    //     var _generation: Swift.Int32
-//    //     var _hwVersion: Swift.String
-//    //     var _swVersion: Swift.String
-//    //     var _fwVersion: Swift.String
-//    //     var _activationDateUtc: Swift.Int64
-//    //     var _blePIN: Swift.String
-//    //     var _warmupDuration: Swift.Int32
-//    //     var _wearDuration: Swift.Int32
-//    //     var _currentLifeCount: Swift.Int32
-//    //     var _lastHistoricReading: Swift.Int32
-//    //     var _status: Swift.Int32
-//    //     var _receiverID: Swift.Int64
-//    //     var _factoryData: Swift.String
-//    //     var _securityVersion: Swift.Int32
-//    //     var _lastEvent: Swift.Int32
+//    //     var _id:                  Int32
+//    //     var _serialNumber:        String
+//    //     var _sensorUID:           String
+//    //     var _productType:         Int32
+//    //     var _localization:        Int32
+//    //     var _generation:          Int32
+//    //     var _hwVersion:           String
+//    //     var _swVersion:           String
+//    //     var _fwVersion:           String
+//    //     var _activationDateUtc:   Int64
+//    //     var _blePIN:              String
+//    //     var _warmupDuration:      Int32
+//    //     var _wearDuration:        Int32
+//    //     var _currentLifeCount:    Int32
+//    //     var _lastHistoricReading: Int32
+//    //     var _status:              Int32
+//    //     var _receiverID:          Int64
+//    //     var _factoryData:         String
+//    //     var _securityVersion:     Int32
+//    //     var _lastEvent:           Int32
 //    // }
 //    
 //    // class Libre3.SensorEventEntity {
-//    //     var _id: Swift.Int32
-//    //     var _sensor: Libre3.SensorEntity?
-//    //     var _lifeCount: Swift.Int32
-//    //     var _timestampUTC: Swift.Int64
-//    //     var _eventCode: Swift.Int32
-//    //     var _eventValue: Swift.Double
+//    //     var _id:           Int32
+//    //     var _sensor:       Libre3.SensorEntity?
+//    //     var _lifeCount:    Int32
+//    //     var _timestampUTC: Int64
+//    //     var _eventCode:    Int32
+//    //     var _eventValue:   Double
 //    // }
 //    
 //    // class Libre3.SequenceEntity {
-//    //     var _id: Swift.Int32
-//    //     var _nextSensorId: Swift.Int32
-//    //     var _nextGlucoseReadingId: Swift.Int32
-//    //     var _nextSensorEventId: Swift.Int32
-//    //     var _nextNoteId: Swift.Int32
-//    //     var _nextNoteElementId: Swift.Int32
-//    //     var _nextAppConfigId: Swift.Int32
-//    //     var _nextAppEventId: Swift.Int32
-//    //     var _nextAlarmConfigId: Swift.Int32
-//    //     var _nextReminderId: Swift.Int32
-//    //     var _nextUploadQueueId: Swift.Int32
+//    //     var _id:                   Int32
+//    //     var _nextSensorId:         Int32
+//    //     var _nextGlucoseReadingId: Int32
+//    //     var _nextSensorEventId:    Int32
+//    //     var _nextNoteId:           Int32
+//    //     var _nextNoteElementId:    Int32
+//    //     var _nextAppConfigId:      Int32
+//    //     var _nextAppEventId:       Int32
+//    //     var _nextAlarmConfigId:    Int32
+//    //     var _nextReminderId:       Int32
+//    //     var _nextUploadQueueId:    Int32
 //    // }
 //    
 //    // class Libre3.UploadQueueRecordEntity {
-//    //     var _id: Swift.Int32
-//    //     var _recordNumber: Swift.Int64
-//    //     var _recordType: Swift.String
+//    //     var _id:           Int32
+//    //     var _recordNumber: Int64
+//    //     var _recordType:   String
 //    // }
 //    
 //    // TODO: parse flatted JSON: https://github.com/WebReflection/flatted
 //    
 //    func parseRealmFlattedJson(data: Data) {
-//        var entityRowsCount: [String: Int] = [:]
+//        var entityRowsCount:  [String: Int] = [:]
 //        var entityStartIndex: [String: Int] = [:]
 //        
 //        if let json = try? JSONSerialization.jsonObject(with: data) as? [Any] {

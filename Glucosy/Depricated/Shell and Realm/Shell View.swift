@@ -6,8 +6,8 @@
 //
 //struct ShellView: View {
 //    @Environment(AppState.self) private var app: AppState
-//    @Environment(Log.self) private var log: Log
 //    @Environment(Settings.self) private var settings: Settings
+//    @Environment(Log.self)      private var log: Log
 //    
 //    @State private var showingStack = false
 //    

@@ -66,7 +66,7 @@
 		C5E4006029825C930021C6B7 /* Monitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005529825C930021C6B7 /* Monitor.swift */; };
 		C5E4006129825C930021C6B7 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005629825C930021C6B7 /* Plan.swift */; };
 		C5E4006229825C930021C6B7 /* Home View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005729825C930021C6B7 /* Home View.swift */; };
-		C5E4006329825C930021C6B7 /* HamburgerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005829825C930021C6B7 /* HamburgerMenu.swift */; };
+		C5E4006329825C930021C6B7 /* Hamburger Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005829825C930021C6B7 /* Hamburger Menu.swift */; };
 		C5E4006529825D1F0021C6B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006429825D1F0021C6B7 /* Extensions.swift */; };
 		C5E4006629825D1F0021C6B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006429825D1F0021C6B7 /* Extensions.swift */; };
 		C5E4006829825DCD0021C6B7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4006729825DCD0021C6B7 /* Settings.swift */; };
@@ -266,7 +266,7 @@
 		C5E4005529825C930021C6B7 /* Monitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monitor.swift; sourceTree = "<group>"; };
 		C5E4005629825C930021C6B7 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		C5E4005729825C930021C6B7 /* Home View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Home View.swift"; sourceTree = "<group>"; };
-		C5E4005829825C930021C6B7 /* HamburgerMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerMenu.swift; sourceTree = "<group>"; };
+		C5E4005829825C930021C6B7 /* Hamburger Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hamburger Menu.swift"; sourceTree = "<group>"; };
 		C5E4006429825D1F0021C6B7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C5E4006729825DCD0021C6B7 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
@@ -589,7 +589,7 @@
 				F3D781222BAE314A00C2DE1E /* Shell and Realm */,
 				F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */,
 				F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */,
-				C5E4005829825C930021C6B7 /* HamburgerMenu.swift */,
+				C5E4005829825C930021C6B7 /* Hamburger Menu.swift */,
 			);
 			path = Depricated;
 			sourceTree = "<group>";
@@ -976,7 +976,7 @@
 				F35AFC922BA508A60065145A /* Apple Health View.swift in Sources */,
 				C535AEB82AB343AE00AB61AD /* Realm.swift in Sources */,
 				F35AFC642BA4919F0065145A /* GlycemicAlarm.swift in Sources */,
-				C5E4006329825C930021C6B7 /* HamburgerMenu.swift in Sources */,
+				C5E4006329825C930021C6B7 /* Hamburger Menu.swift in Sources */,
 				F31C70962BA7B01800A5BFCD /* Mealtime View.swift in Sources */,
 				C5E4007429825E050021C6B7 /* Main Delegate.swift in Sources */,
 				C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */,

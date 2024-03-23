@@ -9,48 +9,51 @@ struct MealtimeNotification: View {
         _sheetMeal = sheetMeal
     }
     
+    private var trendArrow: String {
+        app.trendArrow.symbol
+    }
+    
     var body: some View {
-        HStack {
-            Text(app.trendArrow.symbol)
+        HStack(spacing: 0) {
+            Text(app.currentGlucose.units)
                 .title()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 40, height: 40)
-                .clipShape(.circle)
+                .bold()
+                .foregroundStyle(.white)
             
-            VStack(alignment: .leading, spacing: 6) {
-                Text(app.currentGlucose.units)
-                    .bold()
-                    .foregroundStyle(.white)
-                
-                Text(app.sensor.type.rawValue)
-                    .textScale(.secondary)
-                    .foregroundStyle(.gray)
+            if trendArrow != "---" {
+                Text(app.trendArrow.symbol)
+                    .title()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 40, height: 40)
+                    .clipShape(.circle)
             }
-            .padding(.top, 20)
             
-            Spacer(minLength: 0)
+            Spacer()
             
             Group {
-                Button {
-                    sheetMeal = true
-                } label: {
-                    Image(systemName: "syringe.fill")
+                HStack(spacing: 0) {
+                    Button {
+                        sheetMeal = true
+                    } label: {
+                        Image(systemName: "syringe.fill")
+                            .frame(width: 25, height: 25)
+                    }
+                    .tint(.purple)
+                    
+                    Button {
+                        sheetMeal = true
+                    } label: {
+                        Image(systemName: "fork.knife")
+                            .frame(width: 25, height: 25)
+                    }
+                    .tint(.orange)
                 }
-                .tint(.purple)
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.circle)
-                
-                Button {
-                    sheetMeal = true
-                } label: {
-                    Image(systemName: "fork.knife")
-                }
-                .tint(.orange)
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.circle)
+                .padding(4)
+                .background(.tertiary.opacity(0.3), in: .capsule)
             }
             .title2()
-            .offset(y: 8)
         }
         .padding(15)
         .background {
@@ -61,6 +64,9 @@ struct MealtimeNotification: View {
 }
 
 #Preview {
-    MealtimeNotification(.constant(false))
-        .glucosyPreview()
+    GeometryReader { _ in
+        MealtimeNotification(.constant(false))
+    }
+    .background(.gray)
+    .glucosyPreview()
 }

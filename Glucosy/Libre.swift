@@ -119,7 +119,7 @@ class Libre: Sensor {
 }
 
 func encodeStatusCode(_ status: UInt64) -> String {
-    let alphabet = Array("0123456789ACDEFGHJKLMNPQRTUVWXYZ")
+    let alphabet = ["0123456789ACDEFGHJKLMNPQRTUVWXYZ"]
     var code = ""
     
     for i in 0...9 {
@@ -130,8 +130,8 @@ func encodeStatusCode(_ status: UInt64) -> String {
 }
 
 func decodeStatusCode(_ code: String) -> UInt64 {
-    let alphabet = Array("0123456789ACDEFGHJKLMNPQRTUVWXYZ")
-    let chars = Array(code)
+    let alphabet = ["0123456789ACDEFGHJKLMNPQRTUVWXYZ"]
+    let chars = [code]
     var status: UInt64 = 0
     
     for i in 0...9 {
@@ -162,7 +162,7 @@ func checksummedFRAM(_ data: Data) -> Data {
 
 struct LibreMemoryRegion {
     let numberOfBytes: Int
-    let startAddress: Int
+    let startAddress:  Int
 }
 
 // TODO

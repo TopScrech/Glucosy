@@ -2,8 +2,8 @@ import SwiftUI
 
 struct Console: View {
     @Environment(AppState.self) private var app: AppState
-    @Environment(Log.self) private var log: Log
     @Environment(Settings.self) private var settings: Settings
+    @Environment(Log.self)      private var log: Log
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
@@ -29,9 +29,9 @@ struct Console: View {
                                     filterText = ""
                                 } label: {
                                     Image(systemName: "xmark.circle.fill")
+                                        .frame(maxWidth: 24)
+                                        .padding(0)
                                 }
-                                .frame(maxWidth: 24)
-                                .padding(0)
                                 .buttonStyle(.plain)
                                 .foregroundColor(.blue)
                             }
@@ -137,12 +137,12 @@ struct Console: View {
                         Image(systemName: "octagon")
                             .resizable()
                             .frame(width: 24, height: 24)
-                            .overlay(
+                            .overlay {
                                 Image(systemName: "hand.raised.fill")
                                     .resizable()
                                     .frame(width: 12, height: 12)
                                     .offset(x: 1)
-                            )
+                            }
                     }
                     .foregroundColor(.red)
                     

@@ -331,11 +331,12 @@ struct ConsoleSidebar: View {
                     Image(systemName: "octagon")
                         .resizable()
                         .frame(width: 32, height: 32)
-                        .overlay((Image(systemName: "hand.raised.fill")
-                            .resizable()
-                            .frame(width: 18, height: 18)
-                            .offset(x: 1))
-                        )
+                        .overlay {
+                            Image(systemName: "hand.raised.fill")
+                                .resizable()
+                                .frame(width: 18, height: 18)
+                                .offset(x: 1)
+                        }
                 }
                 .foregroundColor(.red)
                 
@@ -428,6 +429,7 @@ struct ConsoleSidebar: View {
                     log.entries = [LogEntry(message: "Log cleared \(Date().local)")]
                     log.labels = []
                     print("Log cleared \(Date().local)")
+                    
                 } label: {
                     VStack {
                         Image(systemName: "clear")

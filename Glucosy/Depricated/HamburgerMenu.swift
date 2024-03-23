@@ -64,7 +64,9 @@
 //            }
 //            
 //            Button {
-//                withAnimation { showingAbout = true }
+//                withAnimation {
+//                      showingAbout = true
+//                }
 //            } label: {
 //                Label("About", systemImage: "info.circle")
 //            }

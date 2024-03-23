@@ -500,7 +500,7 @@ final class Libre3: Libre {
     var buffer = Data()
     var currentControlCommand:  ControlCommand?
     var currentSecurityCommand: SecurityCommand?
-    var lastSecurityEvent: SecurityEvent = .unknown
+    var lastSecurityEvent:      SecurityEvent = .unknown
     var expectedStreamSize = 0
     
     var outCryptoSequence: UInt16 = 0
@@ -556,7 +556,10 @@ final class Libre3: Libre {
             str += data[offset + 1 ..< offsetEnd].hexBytes
             payload += data[offset + 1 ..< offsetEnd]
             _ = data.formIndex(&offset, offsetBy: 20, limitedBy: endIndex)
-            if offset < endIndex { str += "\n" }
+            
+            if offset < endIndex {
+                str += "\n"
+            }
         }
         
         return (payload, str)
@@ -1057,7 +1060,7 @@ final class Libre3: Libre {
         //   byte[] bytes = str.getBytes(C6581d.UTF_8);
         //   int process1 = Libre3SKBCryptoLib.process1(11, bytes, null);
         //
-        // Frida-> var buffer = Java.array('byte', new Array(256).fill(0))
+        // Frida-> var buffer = Java.array('byte', new [256].fill(0))
         // Frida-> p = crypto_lib.process1(11, Array.from("/data/data/com.freestylelibre3.app.it/files/diagnotics.elog", c => c.charCodeAt(0)), buffer)
     }
     

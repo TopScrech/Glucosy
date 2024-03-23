@@ -25,8 +25,11 @@ struct SettingsCalendar: View {
                     .bold()
                     .padding(.horizontal, 4)
                     .padding(2)
-                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
                     .disabled(settings.calendarTitle == "")
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.accentColor, lineWidth: 2)
+                    }
                 }
                 
                 Section {
@@ -59,7 +62,10 @@ struct SettingsCalendar: View {
                     .bold()
                     .padding(.horizontal, 4)
                     .padding(2)
-                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.accentColor, lineWidth: 2)
+                    }
                     .animation(.default, value: settings.calendarTitle)
                 }
                 .padding(.top, 40)

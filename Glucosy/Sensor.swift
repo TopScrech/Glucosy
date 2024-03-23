@@ -26,7 +26,15 @@ enum SensorType: String, CustomStringConvertible {
     }
     
     var isALibre: Bool {
-        self == .libre3 || self == .libre2 || self == .libre1 || self == .libreUS14day || self == .libreProH || self == .libre2US || self == .libre2CA || self == .libre2RU || self == .libreSense
+        self == .libre3 || 
+        self == .libre2 ||
+        self == .libre1 ||
+        self == .libreUS14day ||
+        self == .libreProH ||
+        self == .libre2US ||
+        self == .libre2CA ||
+        self == .libre2RU ||
+        self == .libreSense
     }
 }
 
@@ -103,7 +111,7 @@ enum SensorState: UInt8, CustomStringConvertible {
     var main: MainDelegate!
     
     var state: SensorState = .unknown
-    var lastReadingDate = Date.distantPast
+    var lastReadingDate: Date = .distantPast
     var activationTime: UInt32 = 0
     var age = 0
     var maxLife = 0
@@ -159,13 +167,22 @@ enum SensorState: UInt8, CustomStringConvertible {
         }
     }
     
-    var trend: [Glucose] = []
+    var trend:   [Glucose] = []
     var history: [Glucose] = []
     
     var calibrationInfo = CalibrationInfo()
     
-    var factoryTrend: [Glucose] { trend.map { factoryGlucose(rawGlucose: $0, calibrationInfo: calibrationInfo) }}
-    var factoryHistory: [Glucose] { history.map { factoryGlucose(rawGlucose: $0, calibrationInfo: calibrationInfo) }}
+    var factoryTrend: [Glucose] {
+        trend.map {
+            factoryGlucose(rawGlucose: $0, calibrationInfo: calibrationInfo)
+        }
+    }
+    
+    var factoryHistory: [Glucose] {
+        history.map {
+            factoryGlucose(rawGlucose: $0, calibrationInfo: calibrationInfo)
+        }
+    }
     
     var encryptedFram = Data()
     
@@ -189,7 +206,7 @@ enum SensorState: UInt8, CustomStringConvertible {
     
     // Libre 2 and BLE streaming parameters
     var initialPatchInfo: PatchInfo = Data()
-    var streamingUnlockCode: UInt32 = 42
+    var streamingUnlockCode:  UInt32 = 42
     var streamingUnlockCount: UInt16 = 0
     
     // Gen2
@@ -246,13 +263,13 @@ enum SensorState: UInt8, CustomStringConvertible {
             }
             
             let offset = 28 + j * 6         // body[4 ..< 100]
-            let rawValue = readBits(fram, offset, 0, 0xe)
-            let quality = UInt16(readBits(fram, offset, 0xe, 0xb)) & 0x1FF
-            let qualityFlags = (readBits(fram, offset, 0xe, 0xb) & 0x600) >> 9
-            let hasError = readBits(fram, offset, 0x19, 0x1) != 0
-            let rawTemperature = readBits(fram, offset, 0x1a, 0xc) << 2
+            let rawValue =              readBits(fram, offset, 0, 0xe)
+            let quality =               UInt16(readBits(fram, offset, 0xe, 0xb)) & 0x1FF
+            let qualityFlags =          (readBits(fram, offset, 0xe, 0xb) & 0x600) >> 9
+            let hasError =              readBits(fram, offset, 0x19, 0x1) != 0
+            let rawTemperature =        readBits(fram, offset, 0x1a, 0xc) << 2
             var temperatureAdjustment = readBits(fram, offset, 0x26, 0x9) << 2
-            let negativeAdjustment = readBits(fram, offset, 0x2f, 0x1)
+            let negativeAdjustment =    readBits(fram, offset, 0x2f, 0x1)
             
             if negativeAdjustment != 0 {
                 temperatureAdjustment = -temperatureAdjustment
@@ -261,7 +278,16 @@ enum SensorState: UInt8, CustomStringConvertible {
             let id = age - i
             let date = startDate + Double(age - i) * 60
             
-            trend.append(Glucose(rawValue: rawValue, rawTemperature: rawTemperature, temperatureAdjustment: temperatureAdjustment, id: id, date: date, hasError: hasError, dataQuality: Glucose.DataQuality(rawValue: Int(quality)), dataQualityFlags: qualityFlags))
+            trend.append(Glucose(
+                rawValue: rawValue, 
+                rawTemperature: rawTemperature,
+                temperatureAdjustment: temperatureAdjustment,
+                id: id,
+                date: date,
+                hasError: hasError,
+                dataQuality: .init(rawValue: Int(quality)),
+                dataQualityFlags: qualityFlags
+            ))
         }
         
         // FRAM is updated with a 3 minutes delay:
@@ -300,7 +326,16 @@ enum SensorState: UInt8, CustomStringConvertible {
             let id = age - delay - i * 15
             let date = id > -1 ? readingDate - Double(i) * 15 * 60 : startDate
             
-            history.append(Glucose(rawValue: rawValue, rawTemperature: rawTemperature, temperatureAdjustment: temperatureAdjustment, id: id, date: date, hasError: hasError, dataQuality: Glucose.DataQuality(rawValue: Int(quality)), dataQualityFlags: qualityFlags))
+            history.append(Glucose(
+                rawValue: rawValue, 
+                rawTemperature: rawTemperature,
+                temperatureAdjustment: temperatureAdjustment,
+                id: id,
+                date: date,
+                hasError: hasError,
+                dataQuality: .init(rawValue: Int(quality)),
+                dataQualityFlags: qualityFlags
+            ))
         }
         
         guard fram.count >= 344 else { 
@@ -319,9 +354,9 @@ enum SensorState: UInt8, CustomStringConvertible {
         let i2 = readBits(fram, 2, 3, 0xa)
         let i3 = readBits(fram, 0x150, 0, 8)    // footer[-8]
         let i4 = readBits(fram, 0x150, 8, 0xe)
-        let negativei3 = readBits(fram, 0x150, 0x21, 1) != 0
         let i5 = readBits(fram, 0x150, 0x28, 0xc) << 2
         let i6 = readBits(fram, 0x150, 0x34, 0xc) << 2
+        let negativei3 = readBits(fram, 0x150, 0x21, 1) != 0
         
         calibrationInfo = CalibrationInfo(i1: i1, i2: i2, i3: negativei3 ? -i3 : i3, i4: i4, i5: i5, i6: i6)
         
@@ -337,6 +372,7 @@ enum SensorState: UInt8, CustomStringConvertible {
         
         if crcReport.count > 0 {
             log(crcReport)
+            
             if !crcReport.contains("OK") {
                 if history.count > 0 && type != .libre2 { // bogus raw data with Libre 1
                     main?.errorStatus("Error while validating sensor data")

@@ -125,7 +125,10 @@ fileprivate struct AnimatedNotificationView <Content: View>: View {
             )
             .onAppear {
                 Task {
-                    guard !animateNotification else { return }
+                    guard !animateNotification else { 
+                        return
+                    }
+                    
                     withAnimation(.smooth) {
                         animateNotification = true
                     }
@@ -133,7 +136,9 @@ fileprivate struct AnimatedNotificationView <Content: View>: View {
                     /// Timeout For Notification
                     try await Task.sleep(for: .seconds(timeout < 1 ? 1 : timeout))
                     
-                    guard animateNotification else { return }
+                    guard animateNotification else { 
+                        return
+                    }
                     
                     withAnimation(.smooth, completionCriteria: .logicallyComplete) {
                         animateNotification = false

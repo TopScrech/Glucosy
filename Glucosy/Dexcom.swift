@@ -9,7 +9,7 @@ import CoreBluetooth
 // https://github.com/NightscoutFoundation/xDrip/blob/master/app/src/main/java/com/eveningoutpost/dexdrip/services/Ob1G5CollectionService.java
 // https://github.com/NightscoutFoundation/xDrip/tree/master/libkeks/src/main/java/jamorham/keks
 
-@Observable 
+@Observable
 class Dexcom: Transmitter {
     override class var type: DeviceType {
         DeviceType.transmitter(.dexcom)
@@ -124,12 +124,12 @@ class Dexcom: Transmitter {
         
         case keepAliveRx = 0xFF
         
-        var data: Data { 
+        var data: Data {
             Data([rawValue])
         }
     }
     
-    var activationDate = Date.distantPast
+    var activationDate: Date = .distantPast
     
     var authenticated = false
     var bonded = false
@@ -364,15 +364,16 @@ class Dexcom: Transmitter {
                 
             case .calibrationDataRx:  // G6Bounds
                 // TODO: i.e. 3300325000440114005802000000000000018ba4
-                let weight = data[2]
+                let weight =         data[2]
                 let calBoundError1 = UInt16(data[3...4])
                 let calBoundError0 = UInt16(data[5...6])
-                let calBoundMin = UInt16(data[7...8])
-                let calBoundMax = UInt16(data[9...10])
-                let lastBGValue = UInt16(data[11...12])
+                let calBoundMin =    UInt16(data[7...8])
+                let calBoundMax =    UInt16(data[9...10])
+                let lastBGValue =    UInt16(data[11...12])
+                let crc =            UInt16(data[18...19])
                 let lastCalibrationTimeSeconds = UInt32(data[13...16])
-                let autoCalibration: Bool = data[17] == 1
-                let crc = UInt16(data[18...19])
+                let autoCalibration = data[17] == 1
+                
                 log("\(name): bounds response (TODO): weight: \(weight), calBoundError1: \(calBoundError1), calBoundError0: \(calBoundError0), calBoundMin: \(calBoundMin), calBoundMax: \(calBoundMax), lastBGValue: \(lastBGValue), lastCalibrationTimeSeconds: \(lastCalibrationTimeSeconds.formattedInterval), autoCalibration: \(autoCalibration), CRC: \(crc.hex), valid CRC: \(data.dropLast(2).crc == crc)")
                 
             case .calibrateGlucoseTx:  // G7
@@ -410,7 +411,9 @@ class Dexcom: Transmitter {
                     let bufferLength = UInt32(data[12...15])
                     let bufferCRC = UInt16(data[16...17])
                     let crc = UInt16(data[18...19])
+                    
                     log("\(name): backfill: status: \(status), backfill status: \(backfillStatus), identifier: \(identifier), start time: \(startTime.formattedInterval), end time: \(endTime.formattedInterval), buffer length: \(bufferLength), buffer CRC: \(bufferCRC.hex), valid buffer CRC: \(bufferCRC == buffer.crc), CRC: \(crc.hex), valid CRC: \(data.dropLast(2).crc == crc)")
+                    
                     var packets = [Data]()
                     
                     for i in 0 ..< (buffer.count + 19) / 20 {
@@ -431,13 +434,16 @@ class Dexcom: Transmitter {
                         let glucose = Int(glucoseBytes & 0xfff)
                         let state = data[6]  // CalibrationState, AlgorithmState
                         let trend = Int8(bitPattern: data[7])
+                        
                         log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose), is display only: \(glucoseIsDisplayOnly), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend)")
+                        
                         let item = Glucose(glucose, trendRate: Double(trend), id: Int(Double(timestamp) / 60 / 5), date: date)
                         // TODO: manage trend and state
                         history.append(item)
                     }
                     
                     log("\(name): backfilled history (\(history.count) values): \(history)")
+                    
                     // TODO: merge last three hours; move to bluetoothDelegata main.didParseSensor(app.transmitter.sensor!)
                     main.history.factoryValues = history.reversed()
                 }
@@ -448,14 +454,17 @@ class Dexcom: Transmitter {
             case .backfillFinished:  // G7 Tx/Rx
                 // TODO: i. e. 59E2960200EA9D0200, 5900003F000000AB933802E2960200EA9D0200 (19 bytes)
                 let status = data[1]
+                
                 // TODO: enum TxControllerG7.EGVBackfillResult { case success, noRecord, oversized }
                 let backfillStatus = Int(data[2])
-                let length = UInt32(data[3...6])
-                let crc = UInt16(data[7...8])
+                let length =         UInt32(data[3...6])
+                let crc =            UInt16(data[7...8])
                 let firstSequenceNumber = UInt16(data[9...10])
                 let firstTimestamp = TimeInterval(UInt32(data[11...14]))
                 let lastTimestamp = TimeInterval(UInt32(data[15...18]))
+                
                 log("\(name): backfill response: status: \(status), backfill status: \(["success", "no record", "oversized"][backfillStatus]), buffer length: \(length), buffer CRC: \(crc.hex), valid CRC: \(crc == buffer.crc), first sequence number: \(firstSequenceNumber), first timestamp: \(firstTimestamp.formattedInterval), last timestamp: \(lastTimestamp.formattedInterval)")
+                
                 var packets = [Data]()
                 
                 for i in 0 ..< (buffer.count / 9) {
@@ -465,7 +474,6 @@ class Dexcom: Transmitter {
                 var history = [Glucose]()
                 
                 for data in packets {
-                    
                     // TODO
                     
                     // https://github.com/LoopKit/G7SensorKit/blob/main/G7SensorKit/G7CGMManager/G7BackfillMessage.swift
@@ -481,6 +489,7 @@ class Dexcom: Transmitter {
                     let glucoseIsDisplayOnly: Bool? = glucoseBytes != 0xffff ? (glucoseBytes & 0xf000) > 0 : nil
                     let state = data[6]
                     let trend: Double? = data[8] != 0x7f ? Double(Int8(bitPattern: data[8])) / 10 : nil
+                    
                     log("\(name): backfilled glucose: timestamp: \(timestamp.formattedInterval), date: \(date.local), glucose: \(glucose != nil ? String(glucose!) : "nil"), is display only: \(glucoseIsDisplayOnly != nil ? String(glucoseIsDisplayOnly!) : "nil"), state: \(AlgorithmState(rawValue: state)?.description ?? "unknown") (0x\(state.hex)), trend: \(trend != nil ? String(trend!) : "nil")")
                     
                     if let glucose {
@@ -491,6 +500,7 @@ class Dexcom: Transmitter {
                 }
                 
                 log("\(name): backfilled history (\(history.count) values): \(history)")
+                
                 // TODO: merge last three hours; move to bluetoothDelegata main.didParseSensor(app.transmitter.sensor!)
                 main.history.factoryValues = history.reversed()
                 buffer = Data()
@@ -568,7 +578,7 @@ class Dexcom: Transmitter {
             case .unknown1_G7:
                 // TODO: i.e. ea00030100000000000200000045ffffff
                 break
-                   
+                
             default:
                 break
             }
@@ -633,85 +643,85 @@ class Dexcom: Transmitter {
     //     case sessionFailedOutOfRange
     // }
     //
-    // enum TxControllerG7.G7AlgorithmState.WarmupSecondary {
-    //     case sivPassed
-    //     case parametersUpdated
-    //     case signalProcessing
-    //     case error
-    // }
+    //     enum TxControllerG7.G7AlgorithmState.WarmupSecondary {
+    //         case sivPassed,
+    //              parametersUpdated,
+    //              signalProcessing,
+    //              error
+    //     }
     //
-    // enum TxControllerG7.G7AlgorithmState.InSessionSecondary {
-    //     case low
-    //     case lowNoPrediction
-    //     case lowNoTrend
-    //     case lowNoTrendOrPrediction
-    //     case inRange
-    //     case inRangeNoPrediction
-    //     case inRangeNoTrend
-    //     case inRangeNoTrendOrPrediction
-    //     case high
-    //     case highNoPrediction
-    //     case highNoTrend
-    //     case highNoTrendOrPrediction
-    //     case bgTriggered
-    //     case bgTriggeredNoPrediction
-    //     case bgTriggeredNoTrend
-    //     case bgTriggeredNoTrendOrPrediction
-    //     case bgTriggeredLow
-    //     case bgTriggeredLowNoPrediction
-    //     case bgTriggeredLowNoTrend
-    //     case bgTriggeredLowNoTrendOrPrediction
-    //     case bgTriggeredHigh
-    //     case bgTriggeredHighNoPrediction
-    //     case bgTriggeredHighNoTrend
-    //     case bgTriggeredHighNoTrendOrPrediction
-    //     case error
-    // }
+    //    enum TxControllerG7.G7AlgorithmState.InSessionSecondary {
+    //        case low,
+    //             lowNoPrediction,
+    //             lowNoTrend,
+    //             lowNoTrendOrPrediction,
+    //             inRange,
+    //             inRangeNoPrediction,
+    //             inRangeNoTrend,
+    //             inRangeNoTrendOrPrediction,
+    //             high,
+    //             highNoPrediction,
+    //             highNoTrend,
+    //             highNoTrendOrPrediction,
+    //             bgTriggered,
+    //             bgTriggeredNoPrediction,
+    //             bgTriggeredNoTrend,
+    //             bgTriggeredNoTrendOrPrediction,
+    //             bgTriggeredLow,
+    //             bgTriggeredLowNoPrediction,
+    //             bgTriggeredLowNoTrend,
+    //             bgTriggeredLowNoTrendOrPrediction,
+    //             bgTriggeredHigh,
+    //             bgTriggeredHighNoPrediction,
+    //             bgTriggeredHighNoTrend,
+    //             bgTriggeredHighNoTrendOrPrediction,
+    //             error
+    //    }
     //
-    // enum TxControllerG7.G7AlgorithmState.InSessionInvalidSecondary {
-    //     case invalid
-    //     case validPrediction
-    //     case validTrend
-    //     case validTrendAndPrediction
-    //     case bgInvalid
-    //     case bgInvalidValidPrediction
-    //     case bgInvalidValidTrend
-    //     case bgInvalidValidTrendAndPrediction
-    //     case error
-    // }
+    //    enum TxControllerG7.G7AlgorithmState.InSessionInvalidSecondary {
+    //        case invalid,
+    //             validPrediction,
+    //             validTrend,
+    //             validTrendAndPrediction,
+    //             bgInvalid,
+    //             bgInvalidValidPrediction,
+    //             bgInvalidValidTrend,
+    //             bgInvalidValidTrendAndPrediction,
+    //             error
+    //    }
     //
-    // enum TxControllerG7.G7AlgorithmState.SessionExpiredSecondary {
-    //     case validEgv
-    //     case validEgvNoPrediction
-    //     case validEgvNoTrend
-    //     case validEgvNoTrendOrPrediction
-    //     case invalidEgv
-    //     case invalidEgvNoPrediction
-    //     case invalidEgvNoTrend
-    //     case invalidEgvNoTrendOrPrediction
-    //     case error
-    // }
+    //    enum TxControllerG7.G7AlgorithmState.SessionExpiredSecondary {
+    //        case validEgv,
+    //             validEgvNoPrediction,
+    //             validEgvNoTrend,
+    //             validEgvNoTrendOrPrediction,
+    //             invalidEgv,
+    //             invalidEgvNoPrediction,
+    //             invalidEgvNoTrend,
+    //             invalidEgvNoTrendOrPrediction,
+    //             error
+    //    }
     //
-    // enum TxControllerG7.G7AlgorithmState.SessionFailedSecondary {
-    //     case unspecified
-    //     case sensorFailure
-    //     case algorithmFailure
-    //     case unexpectedAlgorithmFailure
-    //     case noData
-    //     case error
-    // }
+    //    enum TxControllerG7.G7AlgorithmState.SessionFailedSecondary {
+    //        case unspecified,
+    //             sensorFailure,
+    //             algorithmFailure,
+    //             unexpectedAlgorithmFailure,
+    //             noData,
+    //             error
+    //    }
     //
-    // enum TxControllerG7.G7AlgorithmState.ManuallyStoppedSecondary {
-    //     case none
-    //     case skip
-    //     case other
-    //     case bestTimingForMe
-    //     case inaccurate
-    //     case noReadings
-    //     case sensorFellOff
-    //     case discomfort
-    //     case error
-    // }
+    //    enum TxControllerG7.G7AlgorithmState.ManuallyStoppedSecondary {
+    //        case none,
+    //             skip,
+    //             other,
+    //             bestTimingForMe,
+    //             inaccurate,
+    //             noReadings,
+    //             sensorFellOff,
+    //             discomfort,
+    //             error
+    //    }
     
     // TODO: https://github.com/JohanDegraeve/xdripswift/blob/master/xdrip/BluetoothTransmitter/CGM/Dexcom/Generic/DexcomAlgorithmState.swift
     
@@ -758,35 +768,35 @@ class Dexcom: Transmitter {
         
         public var description: String {
             switch self {
-            case .none:                                         "none"
-            case .sessionStopped:                               "session stopped"
-            case .sensorWarmup:                                 "sensor warmup"
-            case .excessNoise:                                  "excess noise"
-            case .firstOfTwoBGsNeeded:                          "first of two BGs needed"
-            case .secondOfTwoBGsNeeded:                         "second of two BGs needed"
-            case .okay:                                         "OK"
-            case .needsCalibration:                             "needs calibration"
-            case .calibrationError1:                            "calibration error 1"
-            case .calibrationError2:                            "calibration error 2"
-            case .calibrationLinearityFitFailure:               "calibration linearity fit failure"
-            case .sensorFailedDuetoCountsAberration:            "sensor failed due to counts aberration"
-            case .sensorFailedDuetoResidualAberration:          "sensor failed due to residual aberration"
-            case .outOfCalibrationDueToOutlier:                 "out of calibration due to outlier"
-            case .outlierCalibrationRequest:                    "outlier calibration request"
-            case .sessionExpired:                               "session expired"
-            case .sessionFailedDueToUnrecoverableError:         "session failed due to unrecoverable error"
-            case .sessionFailedDueToTransmitterError:           "session failed due to transmitter error"
-            case .temporarySensorIssue:                         "temporary sensor issue"
-            case .sensorFailedDueToProgressiveSensorDecline:    "sensor failed due to progressive sensor decline"
-            case .sensorFailedDueToHighCountsAberration:        "sensor failed due to high counts aberration"
-            case .sensorFailedDueToLowCountsAberration:         "sensor failed due to low counts aberration"
-            case .sensorFailedDueToRestart:                     "sensor failed due to restart"
+            case .none:                                      "none"
+            case .sessionStopped:                            "session stopped"
+            case .sensorWarmup:                              "sensor warmup"
+            case .excessNoise:                               "excess noise"
+            case .firstOfTwoBGsNeeded:                       "first of two BGs needed"
+            case .secondOfTwoBGsNeeded:                      "second of two BGs needed"
+            case .okay:                                      "OK"
+            case .needsCalibration:                          "needs calibration"
+            case .calibrationError1:                         "calibration error 1"
+            case .calibrationError2:                         "calibration error 2"
+            case .calibrationLinearityFitFailure:            "calibration linearity fit failure"
+            case .sensorFailedDuetoCountsAberration:         "sensor failed due to counts aberration"
+            case .sensorFailedDuetoResidualAberration:       "sensor failed due to residual aberration"
+            case .outOfCalibrationDueToOutlier:              "out of calibration due to outlier"
+            case .outlierCalibrationRequest:                 "outlier calibration request"
+            case .sessionExpired:                            "session expired"
+            case .sessionFailedDueToUnrecoverableError:      "session failed due to unrecoverable error"
+            case .sessionFailedDueToTransmitterError:        "session failed due to transmitter error"
+            case .temporarySensorIssue:                      "temporary sensor issue"
+            case .sensorFailedDueToProgressiveSensorDecline: "sensor failed due to progressive sensor decline"
+            case .sensorFailedDueToHighCountsAberration:     "sensor failed due to high counts aberration"
+            case .sensorFailedDueToLowCountsAberration:      "sensor failed due to low counts aberration"
+            case .sensorFailedDueToRestart:                  "sensor failed due to restart"
             }
         }
     }
     
     enum PakePhase: UInt8 {
-        case zero  = 0
+        case zero = 0
         case one
         case two
     }
@@ -860,7 +870,7 @@ class DexcomONE: Sensor {
     }
 }
 
-@Observable 
+@Observable
 class DexcomONEPlus: Sensor {
     /// called by Dexcom Transmitter class
     func read(_ data: Data, for uuid: String) {
@@ -892,7 +902,7 @@ extension Data {
         return crc
     }
     
-    var appendingCRC: Data { 
+    var appendingCRC: Data {
         self + self.crc.data
     }
 }

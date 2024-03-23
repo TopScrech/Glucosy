@@ -304,6 +304,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 } else if retry >= maxRetries {
                     session.invalidate(errorMessage: "Error while getting system info")
                     log("NFC: stopped retrying to get the system info after \(retry) reattempts")
+                    
                     return
                 }
             }

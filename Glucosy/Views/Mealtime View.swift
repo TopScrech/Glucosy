@@ -6,9 +6,9 @@ struct MealtimeView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @AppStorage("rapid_insulin") private var rapidInsulin = 5.0
-    @AppStorage("long_insulin") private var longInsulin = 5.0
-    @AppStorage("carbs") private var carbs = 50.0
+    @AppStorage("rapid_insulin")    private var rapidInsulin = 5.0
+    @AppStorage("long_insulin")     private var longInsulin = 5.0
+    @AppStorage("carbs")            private var carbs = 50.0
     @AppStorage("selected_insulin") private var selectedInsulin: InsulinType = .bolus
     
     @State private var date = Date()
@@ -79,15 +79,17 @@ struct MealtimeView: View {
             
             Spacer()
             
-            Button("Save") {
+            Button {
                 saveData()
+            } label: {
+                Text("Save")
+                    .title3(.semibold)
+                    .foregroundStyle(.white)
+                    .frame(height: 60)
+                    .frame(maxWidth: .infinity)
+                    .background(.blue, in: .rect(cornerRadius: 20))
+                    .padding(.horizontal)
             }
-            .title3(.semibold)
-            .foregroundStyle(.white)
-            .frame(height: 60)
-            .frame(maxWidth: .infinity)
-            .background(.blue, in: .rect(cornerRadius: 20))
-            .padding(.horizontal)
         }
         .padding(.top)
     }

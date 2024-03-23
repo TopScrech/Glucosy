@@ -273,7 +273,10 @@ struct Details: View {
                                         .foregroundColor(.accentColor)
                                         .padding(.horizontal, 4)
                                         .padding(2)
-                                        .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.accentColor, lineWidth: 2))
+                                        .overlay {
+                                            RoundedRectangle(cornerRadius: 5)
+                                                .stroke(Color.accentColor, lineWidth: 2)
+                                        }
                                         .tint(.blue)
                                     }
                                 }

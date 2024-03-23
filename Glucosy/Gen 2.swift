@@ -127,6 +127,7 @@ class Gen2 {
         output = result.data!
         let manufacturerCode = !uid.isEmpty ? uid[6] : 0x07
         output[0 ... 3] = Data([2, 0xA1, manufacturerCode, UInt8(command)])
+        
         return authContext
     }
     
@@ -214,7 +215,9 @@ class Gen2 {
             }
             
             let extendedChallenge = sensor.streamingAuthenticationData.prefix(10) + challenge
+            
             sensor.streamingContext = getNfcAuthenticatedCommandBLE(command: GEN_SECURITY_CMD_GET_SESSION_INFO, uid: sensor.uid, i2: i, challenge: extendedChallenge, output: &payload)
+            
         } catch {
             
         }
@@ -232,6 +235,7 @@ class Gen2 {
         }
         
         output = result.data!
+        
         return output.count
     }
     

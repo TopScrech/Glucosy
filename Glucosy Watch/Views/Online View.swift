@@ -10,7 +10,7 @@ struct OnlineView: View {
     @State private var readingCountdown = 0
     
     @State private var libreLinkUpResponse = "[...]"
-    @State private var libreLinkUpHistory: [LibreLinkUpGlucose] = []
+    @State private var libreLinkUpHistory:        [LibreLinkUpGlucose] = []
     @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
     @State private var showingCredentials = false
         
@@ -37,6 +37,7 @@ struct OnlineView: View {
                     let (data, _, graphHistory, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
                     dataString = (data as! Data).string
                     libreLinkUpResponse = dataString + (logbookData as! Data).string
+                    
                     // TODO: just merge with newer values
                     libreLinkUpHistory = graphHistory.reversed()
                     libreLinkUpLogbookHistory = logbookHistory
@@ -63,6 +64,7 @@ struct OnlineView: View {
                             }
                             
                             history.factoryTrend = trend
+                            
                             // TODO: merge and update sensor history / trend
                             app.main.didParseSensor(app.sensor)
                         }

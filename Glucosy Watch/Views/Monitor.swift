@@ -12,104 +12,102 @@ struct Monitor: View {
     
     @State private var readingCountdown = 0
     @State private var minutesSinceLastReading = 0
-        
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                VStack(spacing: 0) {
-                    HStack {
-                        VStack(spacing: 0) {
-                            if app.lastReadingDate != Date.distantPast {
-                                Text(app.lastReadingDate.shortTime)
-                                    .monospacedDigit()
-                                
-                                Text("\(minutesSinceLastReading) min ago")
-                                    .fontSize(10)
-                                    .monospacedDigit()
-                                    .lineLimit(1)
-                                    .onReceive(app.minuteTimer) { _ in
-                                        minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
-                                    }
-                            } else {
-                                Text("---")
-                            }
-                        }
-                        .footnote()
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .foregroundColor(Color(.lightGray))
-                        .onChange(of: app.lastReadingDate) {
-                            minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
-                        }
-                        
-                        Text(app.currentGlucose > 0 ? "\(app.currentGlucose.units)" : "---")
-                            .font(.system(size: 26, weight: .black))
-                            .monospacedDigit()
-                        // avoid truncation in 40 mm models
-                            .scaledToFill()
-                            .minimumScaleFactor(0.85)
-                            .foregroundColor(.black)
-                            .padding(.vertical, 0)
-                            .padding(.horizontal, 4)
-                            .background(app.currentGlucose > 0 && (app.currentGlucose > Int(settings.alarmHigh) || app.currentGlucose < Int(settings.alarmLow)) ? .red : .blue)
-                            .cornerRadius(6)
-                        
-                        // TODO: display both delta and trend arrow
-                        Group {
-                            if app.trendDeltaMinutes > 0 {
-                                VStack(spacing: -6) {
-                                    Text("\(app.trendDelta > 0 ? "+ " : app.trendDelta < 0 ? "- " : "")\(app.trendDelta == 0 ? "→" : abs(app.trendDelta).units)")
-                                        .fontWeight(.black)
-                                        .fixedSize()
-                                    
-                                    Text("\(app.trendDeltaMinutes)m")
-                                        .footnote()
+                HStack {
+                    VStack(spacing: 0) {
+                        if app.lastReadingDate != Date.distantPast {
+                            Text(app.lastReadingDate.shortTime)
+                                .monospacedDigit()
+                            
+                            Text("\(minutesSinceLastReading) min ago")
+                                .fontSize(10)
+                                .monospacedDigit()
+                                .lineLimit(1)
+                                .onReceive(app.minuteTimer) { _ in
+                                    minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
                                 }
+                        } else {
+                            Text("---")
+                        }
+                    }
+                    .footnote()
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .foregroundColor(Color(.lightGray))
+                    .onChange(of: app.lastReadingDate) {
+                        minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
+                    }
+                    
+                    Text(app.currentGlucose > 0 ? "\(app.currentGlucose.units)" : "---")
+                        .font(.system(size: 26, weight: .black))
+                        .monospacedDigit()
+                    // avoid truncation in 40 mm models
+                        .scaledToFill()
+                        .minimumScaleFactor(0.85)
+                        .foregroundColor(.black)
+                        .padding(.vertical, 0)
+                        .padding(.horizontal, 4)
+                        .background(app.currentGlucose > 0 && (app.currentGlucose > Int(settings.alarmHigh) || app.currentGlucose < Int(settings.alarmLow)) ? .red : .blue)
+                        .cornerRadius(6)
+                    
+                    // TODO: display both delta and trend arrow
+                    Group {
+                        if app.trendDeltaMinutes > 0 {
+                            VStack(spacing: -6) {
+                                Text("\(app.trendDelta > 0 ? "+ " : app.trendDelta < 0 ? "- " : "")\(app.trendDelta == 0 ? "→" : abs(app.trendDelta).units)")
+                                    .fontWeight(.black)
+                                    .fixedSize()
+                                
+                                Text("\(app.trendDeltaMinutes)m")
+                                    .footnote()
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 10)
+                        } else {
+                            Text(app.trendArrow.symbol)
+                                .fontSize(28)
+                                .bold()
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, 10)
-                            } else {
-                                Text(app.trendArrow.symbol)
-                                    .fontSize(28)
-                                    .bold()
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.leading, 10)
-                            }
                         }
+                    }
+                    .foregroundColor(app.currentGlucose > 0 && ((app.currentGlucose > Int(settings.alarmHigh) && (app.trendDelta > 0 || app.trendArrow == .rising || app.trendArrow == .risingQuickly)) || (app.currentGlucose < Int(settings.alarmLow) && (app.trendDelta < 0 || app.trendArrow == .falling || app.trendArrow == .fallingQuickly))) ?
+                        .red : .blue)
+                }
+                
+                if app.glycemicAlarm.description.count + app.trendArrow.description.count != 0 {
+                    Text("\(app.glycemicAlarm.description.replacingOccurrences(of: "_", with: " "))\(app.glycemicAlarm.description != "" ? " - " : "")\(app.trendArrow.description.replacingOccurrences(of: "_", with: " "))")
+                        .footnote()
                         .foregroundColor(app.currentGlucose > 0 && ((app.currentGlucose > Int(settings.alarmHigh) && (app.trendDelta > 0 || app.trendArrow == .rising || app.trendArrow == .risingQuickly)) || (app.currentGlucose < Int(settings.alarmLow) && (app.trendDelta < 0 || app.trendArrow == .falling || app.trendArrow == .fallingQuickly))) ?
                             .red : .blue)
-                    }
-                    
-                    if app.glycemicAlarm.description.count + app.trendArrow.description.count != 0 {
-                        Text("\(app.glycemicAlarm.description.replacingOccurrences(of: "_", with: " "))\(app.glycemicAlarm.description != "" ? " - " : "")\(app.trendArrow.description.replacingOccurrences(of: "_", with: " "))")
+                        .lineLimit(1)
+                        .padding(.vertical, -3)
+                }
+                
+                HStack {
+                    if !app.deviceState.isEmpty {
+                        Text(app.deviceState)
+                            .foregroundColor(app.deviceState == "Connected" ? .green : .red)
                             .footnote()
-                            .foregroundColor(app.currentGlucose > 0 && ((app.currentGlucose > Int(settings.alarmHigh) && (app.trendDelta > 0 || app.trendArrow == .rising || app.trendArrow == .risingQuickly)) || (app.currentGlucose < Int(settings.alarmLow) && (app.trendDelta < 0 || app.trendArrow == .falling || app.trendArrow == .fallingQuickly))) ?
-                                .red : .blue)
-                            .lineLimit(1)
-                            .padding(.vertical, -3)
-                    }
-                    
-                    HStack {
-                        if !app.deviceState.isEmpty {
-                            Text(app.deviceState)
-                                .foregroundColor(app.deviceState == "Connected" ? .green : .red)
-                                .footnote()
-                                .fixedSize()
-                        }
-                        
-                        if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
-                            Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
-                                 "\(readingCountdown) s" : "")
                             .fixedSize()
-                            .footnote()
-                            .monospacedDigit()
-                            .foregroundColor(.orange)
-                            .onReceive(app.secondTimer) { _ in
-                                // workaround: watchOS fails converting the interval to an Int32
-                                
-                                if app.lastConnectionDate == Date.distantPast {
-                                    readingCountdown = 0
-                                } else {
-                                    readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
-                                }
+                    }
+                    
+                    if !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
+                        Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
+                             "\(readingCountdown) s" : "")
+                        .fixedSize()
+                        .footnote()
+                        .monospacedDigit()
+                        .foregroundColor(.orange)
+                        .onReceive(app.secondTimer) { _ in
+                            // workaround: watchOS fails converting the interval to an Int32
+                            
+                            if app.lastConnectionDate == Date.distantPast {
+                                readingCountdown = 0
+                            } else {
+                                readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                             }
                         }
                     }
@@ -193,7 +191,9 @@ struct Monitor: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: Details()) {
+                    NavigationLink {
+                        Details()
+                    } label: {
                         Image(systemName: "info.circle")
                             .resizable()
                             .frame(width: 16, height: 16)
@@ -228,7 +228,9 @@ struct Monitor: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                NavigationLink(destination: HamburgerMenu()) {
+                NavigationLink {
+                    HamburgerMenu()
+                } label: {
                     Image(systemName: "line.horizontal.3")
                         .foregroundColor(.blue)
                 }

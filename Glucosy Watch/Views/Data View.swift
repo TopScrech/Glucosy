@@ -2,9 +2,9 @@ import SwiftUI
 
 struct DataView: View {
     @Environment(AppState.self) private var app: AppState
-    @Environment(History.self) private var history: History
-    @Environment(Log.self) private var log: Log
+    @Environment(History.self)  private var history: History
     @Environment(Settings.self) private var settings: Settings
+    @Environment(Log.self)      private var log: Log
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
@@ -237,7 +237,7 @@ struct DataView: View {
         .edgesIgnoringSafeArea([.bottom])
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .footnote()
-        // .footnote(design: .monospaced)
+        // .monospaced()
         // .foregroundColor(Color(.lightGray))
         .tint(.blue)
         .navigationTitle("Data")

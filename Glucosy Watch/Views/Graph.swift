@@ -32,10 +32,10 @@ struct Graph: View {
             // Target glucose low and high labels at the right, timespan on the left
             GeometryReader { geo in
                 ZStack {
-                    Text("\(settings.targetHigh.units)")
+                    Text(settings.targetHigh.units)
                         .position(x: geo.size.width - 15, y: geo.size.height - (geo.size.height - 20) / yMax() * settings.targetHigh)
                     
-                    Text("\(settings.targetLow.units)")
+                    Text(settings.targetLow.units)
                         .position(x: geo.size.width - 15, y: geo.size.height - (geo.size.height - 20) / yMax() * settings.targetLow)
                     
                     let count = history.rawValues.count

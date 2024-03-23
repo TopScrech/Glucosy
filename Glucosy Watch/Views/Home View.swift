@@ -43,7 +43,7 @@ struct HomeView: View {
             }
             .toolbarBackground(.hidden, for: .navigationBar)
             // FIXME: often hangs
-             .tabViewStyle(.verticalPage)
+            .tabViewStyle(.verticalPage)
         }
     }
 }

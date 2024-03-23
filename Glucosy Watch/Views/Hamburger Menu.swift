@@ -6,7 +6,9 @@ struct HamburgerMenu: View {
             ScrollView {
                 VStack(spacing: 4) {
                     HStack(spacing: 10) {
-                        NavigationLink(destination: Monitor()) {
+                        NavigationLink {
+                            Monitor()
+                        } label: {
                             VStack {
                                 Image(systemName: "gauge")
                                     .resizable()
@@ -20,7 +22,9 @@ struct HamburgerMenu: View {
                             .frame(maxWidth: .infinity)
                         }
                         
-                        NavigationLink(destination: Details()) {
+                        NavigationLink {
+                            Details()
+                        } label: {
                             VStack {
                                 Image(.bluetooth)
                                     .renderingMode(.template)
@@ -38,7 +42,9 @@ struct HamburgerMenu: View {
                     .padding(.top, -4)
                     
                     HStack(spacing: 10) {
-                        NavigationLink(destination: Console()) {
+                        NavigationLink {
+                            Console()
+                        } label: {
                             VStack {
                                 Image(systemName: "terminal")
                                     .resizable()
@@ -52,7 +58,9 @@ struct HamburgerMenu: View {
                             .frame(maxWidth: .infinity)
                         }
                         
-                        NavigationLink(destination: SettingsView()) {
+                        NavigationLink {
+                            SettingsView()
+                        } label: {
                             VStack {
                                 Image(systemName: "gear")
                                     .resizable()
@@ -68,7 +76,9 @@ struct HamburgerMenu: View {
                     }
                     
                     HStack(spacing: 10) {
-                        NavigationLink(destination: DataView()) {
+                        NavigationLink {
+                            DataView()
+                        } label: {
                             VStack {
                                 Image(systemName: "tray.full.fill")
                                     .resizable()
@@ -82,7 +92,9 @@ struct HamburgerMenu: View {
                             .frame(maxWidth: .infinity)
                         }
                         
-                        NavigationLink(destination: OnlineView()) {
+                        NavigationLink {
+                            OnlineView()
+                        } label: {
                             VStack {
                                 Image(systemName: "globe")
                                     .resizable()

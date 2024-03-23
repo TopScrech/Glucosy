@@ -135,8 +135,8 @@ struct Console: View {
                 .padding(.trailing, 15)
 #endif
         }
-        .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Console")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {

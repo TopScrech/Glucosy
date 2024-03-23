@@ -39,8 +39,8 @@
 //                        
 //                        Spacer()
 //                    }
-//                    .navigationBarTitleDisplayMode(.inline)
 //                    .navigationTitle("Help")
+//                    .navigationBarTitleDisplayMode(.inline)
 //                    .navigationViewStyle(.stack)
 //                    .toolbar {
 //                        Button("Close") {
@@ -106,8 +106,8 @@
 //                            Link("PayPal", destination: URL(string: Data(base64Encoded: "aHR0cHM6Ly9wYXlwYWwubWUvZ3Vpc29y")!.string)!)
 //                        }
 //                    }
-//                    .navigationBarTitleDisplayMode(.inline)
 //                    .navigationTitle("About")
+//                    .navigationBarTitleDisplayMode(.inline)
 //                    .navigationViewStyle(.stack)
 //                    .toolbar {
 //                        Button("Close") {

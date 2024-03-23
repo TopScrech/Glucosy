@@ -159,9 +159,9 @@ struct DataView: View {
             .padding(.leading, 15)
 #endif
         }
+        .navigationTitle("Data")
         .caption(design: .monospaced)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Data")
         .onReceive(app.secondTimer) { _ in
             onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
         }

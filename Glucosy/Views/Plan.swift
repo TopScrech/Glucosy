@@ -38,12 +38,12 @@ struct Plan: View {
             Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
                 .foregroundColor(.cyan)
         }
+        .navigationTitle("Plan")
         .monospacedDigit()
 #if targetEnvironment(macCatalyst)
         .padding(.horizontal, 15)
 #endif
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Plan")
         .onReceive(app.secondTimer) { _ in
             onlineCountdown = settings.onlineInterval * 60 - Int(Date().timeIntervalSince(settings.lastOnlineDate))
         }

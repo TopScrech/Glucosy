@@ -446,8 +446,8 @@ struct Details: View {
             .padding(.vertical, -40)
             .offset(y: 38)
         }
-        .buttonStyle(.plain)
         .navigationTitle("Details")
+        .buttonStyle(.plain)
         .tint(.blue)
         .onAppear {
             if app.sensor != nil {

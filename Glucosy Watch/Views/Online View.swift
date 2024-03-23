@@ -355,10 +355,10 @@ struct OnlineView: View {
                 }
             }
         }
+        .navigationTitle("Online")
         .padding(.top, -4)
         .edgesIgnoringSafeArea([.bottom])
         .buttonStyle(.plain)
-        .navigationTitle("Online")
         .tint(.blue)
     }
 }

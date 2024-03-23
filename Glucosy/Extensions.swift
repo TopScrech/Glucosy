@@ -221,7 +221,10 @@ extension Int {
         
         return "\(days) \(hours)"
     }
-    var minsAndSecsFormattedInterval: String { "\(self / 60 > 0 ? "\(self / 60) m  " : "")\(self % 60) s" }
+    
+    var minsAndSecsFormattedInterval: String {
+        "\(self / 60 > 0 ? "\(self / 60)m " : "")\(self % 60)s"
+    }
 }
 
 extension Date {

@@ -150,9 +150,9 @@ struct SettingsView: View {
             
             SettingsCalendar()
         }
+        .navigationTitle("Settings")
         .monospacedDigit()
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Settings")
         .toolbar {
             Button {
                 settings.mutedAudio.toggle()

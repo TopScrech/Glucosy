@@ -8,7 +8,7 @@ struct DataView: View {
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
-        
+    
     var body: some View {
         ScrollView {
             let dateTime = (app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime
@@ -233,14 +233,14 @@ struct DataView: View {
             }
             .frame(idealHeight: 300)
         }
+        .navigationTitle("Data")
         .padding(.top, -4)
         .edgesIgnoringSafeArea([.bottom])
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .footnote()
-        // .monospaced()
-        // .foregroundColor(Color(.lightGray))
+        //        .monospaced()
+        //        .foregroundColor(Color(.lightGray))
         .tint(.blue)
-        .navigationTitle("Data")
     }
 }
 

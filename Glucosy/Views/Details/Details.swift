@@ -11,7 +11,7 @@ struct Details: View {
     @State private var readingCountdown = 0
     @State private var secondsSinceLastConnection = 0
     @State private var minutesSinceLastReading = 0
-        
+    
     // TODO:
     @ViewBuilder func Row(_ label: String, _ value: String, foregroundColor: Color? = .yellow) -> some View {
         if !(value.isEmpty || value == "unknown") {
@@ -48,20 +48,14 @@ struct Details: View {
     
     var body: some View {
         VStack {
-            Spacer()
-            
             Form {
                 if app.status.starts(with: "Scanning") {
-                    HStack {
-                        Text("\(app.status)")
-                            .footnote()
-                    }
+                    Text("\(app.status)")
+                        .footnote()
                 } else {
                     if app.device == nil && app.sensor == nil {
-                        HStack {
-                            Text("No device connected")
-                                .foregroundColor(.red)
-                        }
+                        Text("No device connected")
+                            .foregroundColor(.red)
                     }
                 }
                 
@@ -276,8 +270,6 @@ struct Details: View {
                                         }
                                         
                                         HStack {
-                                            Spacer()
-                                            
                                             Button("Set") {
                                                 showingCalibrationInfoForm = false
                                             }
@@ -289,8 +281,6 @@ struct Details: View {
                                                 RoundedRectangle(cornerRadius: 5)
                                                     .stroke(Color.accentColor, lineWidth: 2)
                                             }
-                                            
-                                            Spacer()
                                         }
                                     }
                                 }
@@ -313,28 +303,13 @@ struct Details: View {
                                     .multilineTextAlignment(.trailing)
                                     .foregroundColor(.blue)
                             }
-                            
                         }
                         
                         HStack {
-                            Spacer()
-                            
                             Button {
                                 repair()
                             } label: {
-                                VStack(spacing: 0) {
-                                    Image(systemName: "sensor.tag.radiowaves.forward.fill")
-                                        .padding(.horizontal, 12)
-                                        .padding(.vertical, 6)
-                                    
-                                    Text("RePair")
-                                        .footnote(.bold)
-                                        .padding(.bottom, 4)
-                                }
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.accentColor, lineWidth: 2.5)
-                                }
+                                Label("RePair", systemImage: "sensor.tag.radiowaves.forward.fill")
                             }
                             .foregroundColor(.accentColor)
                             .alert("NFC not supported", isPresented: $showingNFCAlert) {
@@ -347,8 +322,6 @@ struct Details: View {
                                     app.main.nfc.taskRequest = .enableStreaming
                                 }
                             }
-                            
-                            Spacer()
                         }
                         .padding(.vertical, 4)
                     }
@@ -377,33 +350,27 @@ struct Details: View {
                                 .foregroundColor(.blue)
                         }
                         
-                        HStack {
-                            Spacer()
-                            
-                            Button {
-                                // TODO
-                                app.main.rescan()
-                            } label: {
-                                VStack(spacing: 0) {
-                                    Image(.bluetooth)
-                                        .renderingMode(.template)
-                                        .resizable()
-                                        .frame(width: 32, height: 32)
-                                        .padding(.horizontal, 12)
-                                    
-                                    Text("RePair")
-                                        .footnote(.bold)
-                                        .padding(.bottom, 4)
-                                }
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .stroke(Color.accentColor, lineWidth: 2.5)
-                                }
+                        Button {
+                            // TODO
+                            app.main.rescan()
+                        } label: {
+                            VStack(spacing: 0) {
+                                Image(.bluetooth)
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .frame(width: 32, height: 32)
+                                    .padding(.horizontal, 12)
+                                
+                                Text("RePair")
+                                    .footnote(.bold)
+                                    .padding(.bottom, 4)
                             }
-                            .foregroundColor(.accentColor)
-                            
-                            Spacer()
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.accentColor, lineWidth: 2.5)
+                            }
                         }
+                        .foregroundColor(.accentColor)
                         .padding(.vertical, 4)
                     }
                     .callout()
@@ -421,11 +388,7 @@ struct Details: View {
             }
             .foregroundColor(.secondary)
             
-            Spacer()
-            
             HStack(alignment: .top, spacing: 40) {
-                Spacer()
-                
                 VStack(spacing: 0) {
                     Button {
                         app.main.rescan()
@@ -455,12 +418,10 @@ struct Details: View {
                     Image(systemName: "escape")
                         .title()
                 }
-                
-                Spacer()
             }
+            .navigationTitle("Details")
             .padding(.bottom, 8)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Details")
         }
         .onAppear {
             if app.sensor != nil {

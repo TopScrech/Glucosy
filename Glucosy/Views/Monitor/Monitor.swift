@@ -193,9 +193,9 @@ struct Monitor: View {
             }
             .padding(.bottom, 8)
         }
+        .navigationTitle("Monitor")
         .multilineTextAlignment(.center)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Monitor")
         .onAppear {
             if app.lastReadingDate != Date.distantPast {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)

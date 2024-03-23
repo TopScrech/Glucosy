@@ -213,11 +213,11 @@ struct Monitor: View {
                     .frame(maxWidth: .infinity)
             }
         }
+        //        .navigationTitle("Monitor")
         .edgesIgnoringSafeArea([.bottom])
         .padding(.top, -26)
         .buttonStyle(.plain)
         .multilineTextAlignment(.center)
-        //        .navigationTitle("Monitor")
         .onAppear {
             if app.lastReadingDate != Date.distantPast {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)

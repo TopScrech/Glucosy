@@ -285,10 +285,11 @@ struct Console: View {
             }
             .footnote()
         }
+        .navigationTitle("Console")
+        
         // FIXME: Filter toolbar item disappearing
         // .padding(.top, -4)
         .edgesIgnoringSafeArea(.bottom)
-        .navigationTitle("Console")
         .tint(.blue)
     }
 }

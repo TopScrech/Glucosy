@@ -172,8 +172,8 @@ struct HamburgerMenu: View {
                 }
                 .foregroundColor(.white)
             }
-            .buttonStyle(.borderless)
             .navigationTitle("Glucosy")
+            .buttonStyle(.borderless)
             .tint(.blue)
             .navigationBarTitleDisplayMode(.inline)
         }

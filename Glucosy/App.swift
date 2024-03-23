@@ -5,10 +5,10 @@ import SwiftData
 struct GlucosyApp: App {
     @Environment(\.scenePhase) private var scenePhase
     
-#if !os(watchOS)
-    @UIApplicationDelegateAdaptor(MainDelegate.self) private var main
-#else
+#if os(watchOS)
     @WKApplicationDelegateAdaptor(MainDelegate.self) private var main
+#else
+    @UIApplicationDelegateAdaptor(MainDelegate.self) private var main
 #endif
     
     private let container: ModelContainer
@@ -40,22 +40,9 @@ struct GlucosyApp: App {
                 .environment(main.settings)
 #if os(iOS)
                 .onOpenURL { url in
-                    switch url.description {
-                    case "action/nfc":
-                        if main.nfc.isAvailable {
-                            main.nfc.startSession()
-                        } else {
-                            print("NFC is unavailible")
-                        }
-                        
-                    case "action/new_record":
-                        main.app.sheetMealtime = true
-                        
-                    default:
-                        print("Deeplinking")
-                    }
+                    main.processDeepLink(url)
                 }
-                .onAppear {
+                .task {
                     if overlayWindow == nil {
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                             let overlayWindow = PassThroughWindow(windowScene: windowScene)

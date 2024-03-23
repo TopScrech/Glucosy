@@ -3,7 +3,7 @@ import SwiftUI
 struct DebugView: View {
     @State private var scheduledNotifications: [UNNotificationRequest] = []
     
-    var notificationManager = NotificationManager()
+    private var notificationManager = NotificationManager()
     
     var body: some View {
         List {

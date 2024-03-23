@@ -101,6 +101,23 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate, U
         }
     }
     
+    func processDeepLink(_ url: URL) {
+        switch url.description {
+        case "action/nfc":
+            if nfc.isAvailable {
+                nfc.startSession()
+            } else {
+                print("NFC is unavailible")
+            }
+            
+        case "action/new_record":
+            app.sheetMealtime = true
+            
+        default:
+            print("Deeplinking")
+        }
+    }
+    
     public func log(_ msg: String, level: LogLevel = .info, label: String = "") {
         if settings.logging || msg.hasPrefix("Log") {
             let entry = LogEntry(message: msg, level: level, label: label)

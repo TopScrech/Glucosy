@@ -91,7 +91,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
             Libre3.testAESCCM()
         }
     }
-    
+        
     public func log(_ msg: String, level: LogLevel = .info, label: String = "") {
         if settings.logging || msg.hasPrefix("Log") {
             let entry = LogEntry(message: msg, level: level, label: label)

@@ -18,9 +18,9 @@
 		C581D5862B0E699C002A4633 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C581D5852B0E699C002A4633 /* WidgetKit.framework */; };
 		C581D5882B0E699C002A4633 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C581D5872B0E699C002A4633 /* SwiftUI.framework */; };
 		C581D58B2B0E699C002A4633 /* Glucosy Widget Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58A2B0E699C002A4633 /* Glucosy Widget Bundle.swift */; };
-		C581D58D2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58C2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift */; };
+		C581D58D2B0E699C002A4633 /* Glucosy Widget LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58C2B0E699C002A4633 /* Glucosy Widget LiveActivity.swift */; };
 		C581D58F2B0E699C002A4633 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
-		C581D5912B0E699C002A4633 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D5902B0E699C002A4633 /* AppIntent.swift */; };
+		C581D5912B0E699C002A4633 /* App Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D5902B0E699C002A4633 /* App Intent.swift */; };
 		C581D5932B0E699D002A4633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C581D5922B0E699D002A4633 /* Assets.xcassets */; };
 		C581D5972B0E699D002A4633 /* GlucosyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5916E4E29827E860051AC06 /* Data View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4629827E860051AC06 /* Data View.swift */; };
@@ -225,9 +225,9 @@
 		C581D5852B0E699C002A4633 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C581D5872B0E699C002A4633 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		C581D58A2B0E699C002A4633 /* Glucosy Widget Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widget Bundle.swift"; sourceTree = "<group>"; };
-		C581D58C2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucosyWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		C581D58C2B0E699C002A4633 /* Glucosy Widget LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widget LiveActivity.swift"; sourceTree = "<group>"; };
 		C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widget.swift"; sourceTree = "<group>"; };
-		C581D5902B0E699C002A4633 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		C581D5902B0E699C002A4633 /* App Intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Intent.swift"; sourceTree = "<group>"; };
 		C581D5922B0E699D002A4633 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C581D5942B0E699D002A4633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C581D5982B0E699D002A4633 /* GlucosyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlucosyWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -371,10 +371,10 @@
 			isa = PBXGroup;
 			children = (
 				C581D58A2B0E699C002A4633 /* Glucosy Widget Bundle.swift */,
-				C581D58C2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift */,
+				C581D58C2B0E699C002A4633 /* Glucosy Widget LiveActivity.swift */,
 				C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */,
 				F3B069552BAB9F030095EFEE /* Lockscreen */,
-				C581D5902B0E699C002A4633 /* AppIntent.swift */,
+				C581D5902B0E699C002A4633 /* App Intent.swift */,
 				C581D5922B0E699D002A4633 /* Assets.xcassets */,
 				C581D5942B0E699D002A4633 /* Info.plist */,
 				C581D5982B0E699D002A4633 /* GlucosyWidgetExtension.entitlements */,
@@ -845,11 +845,11 @@
 				F3B069682BAC13930095EFEE /* Glucose Entry.swift in Sources */,
 				F3B0696A2BAC13B50095EFEE /* Carbs Entry.swift in Sources */,
 				F3B069572BAB9F150095EFEE /* AC Glucose Configuration.swift in Sources */,
-				C581D5912B0E699C002A4633 /* AppIntent.swift in Sources */,
+				C581D5912B0E699C002A4633 /* App Intent.swift in Sources */,
 				F3B0696E2BAC15900095EFEE /* AC Carbs Widget.swift in Sources */,
 				C581D58B2B0E699C002A4633 /* Glucosy Widget Bundle.swift in Sources */,
 				F3B069602BABB7000095EFEE /* Read Carbs.swift in Sources */,
-				C581D58D2B0E699C002A4633 /* GlucosyWidgetLiveActivity.swift in Sources */,
+				C581D58D2B0E699C002A4633 /* Glucosy Widget LiveActivity.swift in Sources */,
 				F316DCC82BAADE9B00A8B6CF /* AC Glucose Widget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

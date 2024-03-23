@@ -23,6 +23,7 @@ struct GlucosyWidgetLiveActivity: Widget {
             }
             .activityBackgroundTint(.cyan)
             .activitySystemActionForegroundColor(.black)
+            
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
@@ -46,7 +47,6 @@ struct GlucosyWidgetLiveActivity: Widget {
             } minimal: {
                 Text(context.state.emoji)
             }
-            .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(.red)
         }
     }

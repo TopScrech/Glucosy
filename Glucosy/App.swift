@@ -6,9 +6,9 @@ struct GlucosyApp: App {
     @Environment(\.scenePhase) private var scenePhase
     
 #if !os(watchOS)
-    @UIApplicationDelegateAdaptor(MainDelegate.self) var main
+    @UIApplicationDelegateAdaptor(MainDelegate.self) private var main
 #else
-    @WKApplicationDelegateAdaptor(MainDelegate.self) var main
+    @WKApplicationDelegateAdaptor(MainDelegate.self) private var main
 #endif
     
     private let container: ModelContainer

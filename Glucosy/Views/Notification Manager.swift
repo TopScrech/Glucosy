@@ -55,6 +55,7 @@ final class NotificationManager {
         await withCheckedContinuation { continuation in
             UNUserNotificationCenter.current().getPendingNotificationRequests { scheduledNotifications in
                 print(scheduledNotifications.count)
+                
                 continuation.resume(returning: scheduledNotifications)
             }
         }

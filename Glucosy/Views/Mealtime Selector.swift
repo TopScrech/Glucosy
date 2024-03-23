@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MealtimeSelector<Value>: View where Value: Numeric & Comparable, Value: Strideable, Value.Stride: FloatingPoint {
+struct MealtimeSelector <Value> : View where Value: Numeric & Comparable, Value: Strideable, Value.Stride: FloatingPoint {
     @Binding private var value: Value
     private var step: Value
     private var largeStep: Value

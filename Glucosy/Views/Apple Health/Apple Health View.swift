@@ -6,7 +6,7 @@ struct AppleHealthView: View {
     
     @AppStorage("is_expanded_glucose") private var isExpandedGlucose = false
     @AppStorage("is_expanded_insulin") private var isExpandedInsulin = false
-    @AppStorage("is_expanded_carbs") private var isExpandedCarbs = false
+    @AppStorage("is_expanded_carbs")   private var isExpandedCarbs = false
     
     var body: some View {
         List {
@@ -104,7 +104,7 @@ struct AppleHealthView: View {
             guard let sampleToDelete = history.storedValues[index].sample else {
                 return
             }
-                        
+            
             app.main.healthKit?.delete(sampleToDelete) { success, error in
                 if success {
                     Task { @MainActor in

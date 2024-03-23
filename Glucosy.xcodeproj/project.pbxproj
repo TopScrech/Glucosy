@@ -125,12 +125,12 @@
 		F35AFC5B2BA4913B0065145A /* Trend Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC592BA4913B0065145A /* Trend Arrow.swift */; };
 		F35AFC5D2BA4916C0065145A /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC5C2BA4916C0065145A /* Tabs.swift */; };
 		F35AFC5E2BA4916C0065145A /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC5C2BA4916C0065145A /* Tabs.swift */; };
-		F35AFC612BA491910065145A /* OnlineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC602BA491910065145A /* OnlineService.swift */; };
-		F35AFC622BA491910065145A /* OnlineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC602BA491910065145A /* OnlineService.swift */; };
-		F35AFC642BA4919F0065145A /* GlycemicAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC632BA4919F0065145A /* GlycemicAlarm.swift */; };
-		F35AFC652BA4919F0065145A /* GlycemicAlarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC632BA4919F0065145A /* GlycemicAlarm.swift */; };
-		F35AFC672BA491BB0065145A /* UserLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC662BA491BB0065145A /* UserLevel.swift */; };
-		F35AFC682BA491BB0065145A /* UserLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC662BA491BB0065145A /* UserLevel.swift */; };
+		F35AFC612BA491910065145A /* Online Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC602BA491910065145A /* Online Service.swift */; };
+		F35AFC622BA491910065145A /* Online Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC602BA491910065145A /* Online Service.swift */; };
+		F35AFC642BA4919F0065145A /* Glycemic Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC632BA4919F0065145A /* Glycemic Alarm.swift */; };
+		F35AFC652BA4919F0065145A /* Glycemic Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC632BA4919F0065145A /* Glycemic Alarm.swift */; };
+		F35AFC672BA491BB0065145A /* User Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC662BA491BB0065145A /* User Level.swift */; };
+		F35AFC682BA491BB0065145A /* User Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC662BA491BB0065145A /* User Level.swift */; };
 		F35AFC6A2BA491FC0065145A /* Pen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC692BA491FC0065145A /* Pen.swift */; };
 		F35AFC6B2BA491FC0065145A /* Pen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC692BA491FC0065145A /* Pen.swift */; };
 		F35AFC702BA4FE640065145A /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4008C29825ED00021C6B7 /* HealthKit.swift */; };
@@ -304,9 +304,9 @@
 		F35AFC562BA490FF0065145A /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		F35AFC592BA4913B0065145A /* Trend Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trend Arrow.swift"; sourceTree = "<group>"; };
 		F35AFC5C2BA4916C0065145A /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
-		F35AFC602BA491910065145A /* OnlineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineService.swift; sourceTree = "<group>"; };
-		F35AFC632BA4919F0065145A /* GlycemicAlarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlycemicAlarm.swift; sourceTree = "<group>"; };
-		F35AFC662BA491BB0065145A /* UserLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLevel.swift; sourceTree = "<group>"; };
+		F35AFC602BA491910065145A /* Online Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Online Service.swift"; sourceTree = "<group>"; };
+		F35AFC632BA4919F0065145A /* Glycemic Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glycemic Alarm.swift"; sourceTree = "<group>"; };
+		F35AFC662BA491BB0065145A /* User Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User Level.swift"; sourceTree = "<group>"; };
 		F35AFC692BA491FC0065145A /* Pen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pen.swift; sourceTree = "<group>"; };
 		F35AFC6E2BA4F94F0065145A /* Glucosy Watch.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "Glucosy Watch.entitlements"; sourceTree = "<group>"; };
 		F35AFC732BA4FF9E0065145A /* Write Glucose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Write Glucose.swift"; sourceTree = "<group>"; };
@@ -568,9 +568,9 @@
 			children = (
 				F35AFC5C2BA4916C0065145A /* Tabs.swift */,
 				F35AFC592BA4913B0065145A /* Trend Arrow.swift */,
-				F35AFC662BA491BB0065145A /* UserLevel.swift */,
-				F35AFC632BA4919F0065145A /* GlycemicAlarm.swift */,
-				F35AFC602BA491910065145A /* OnlineService.swift */,
+				F35AFC662BA491BB0065145A /* User Level.swift */,
+				F35AFC632BA4919F0065145A /* Glycemic Alarm.swift */,
+				F35AFC602BA491910065145A /* Online Service.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -867,7 +867,7 @@
 				C5916E5429827E860051AC06 /* Monitor.swift in Sources */,
 				C5E4008629825E990021C6B7 /* Libre 3.swift in Sources */,
 				C5E4007729825E370021C6B7 /* Glucose.swift in Sources */,
-				F35AFC652BA4919F0065145A /* GlycemicAlarm.swift in Sources */,
+				F35AFC652BA4919F0065145A /* Glycemic Alarm.swift in Sources */,
 				C5916E5729827EB10051AC06 /* Main Delegate.swift in Sources */,
 				F3E69B492BA6E67000A5469A /* Write Insulin.swift in Sources */,
 				F35AFC7D2BA4FFFE0065145A /* Insulin Delivery.swift in Sources */,
@@ -880,9 +880,9 @@
 				F35AFC6B2BA491FC0065145A /* Pen.swift in Sources */,
 				F35AFC832BA500B40065145A /* Read Insulin.swift in Sources */,
 				C55D12B529ACB5E00050F567 /* Crypto.swift in Sources */,
-				F35AFC622BA491910065145A /* OnlineService.swift in Sources */,
+				F35AFC622BA491910065145A /* Online Service.swift in Sources */,
 				C5916E5229827E860051AC06 /* Graph.swift in Sources */,
-				F35AFC682BA491BB0065145A /* UserLevel.swift in Sources */,
+				F35AFC682BA491BB0065145A /* User Level.swift in Sources */,
 				C568696B2B30469000B11687 /* NFC Tools.swift in Sources */,
 				C5E4007A29825E450021C6B7 /* Sensor.swift in Sources */,
 				C5DB4E4F2B168E08005AD792 /* Libre.swift in Sources */,
@@ -952,10 +952,10 @@
 				F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
 				F35AFC902BA508A60065145A /* Insulin Delivery Card.swift in Sources */,
-				F35AFC612BA491910065145A /* OnlineService.swift in Sources */,
+				F35AFC612BA491910065145A /* Online Service.swift in Sources */,
 				C5E4005C29825C930021C6B7 /* Web View.swift in Sources */,
 				C5E4006829825DCD0021C6B7 /* Settings.swift in Sources */,
-				F35AFC672BA491BB0065145A /* UserLevel.swift in Sources */,
+				F35AFC672BA491BB0065145A /* User Level.swift in Sources */,
 				F35AFC7C2BA4FFF70065145A /* Insulin Delivery.swift in Sources */,
 				F31FF6802BA98F67003EE8F2 /* Mealtime Notification.swift in Sources */,
 				C5E4005F29825C930021C6B7 /* Online View.swift in Sources */,
@@ -975,7 +975,7 @@
 				F35AFC7A2BA4FF9E0065145A /* Read Carbs.swift in Sources */,
 				F35AFC922BA508A60065145A /* Apple Health View.swift in Sources */,
 				C535AEB82AB343AE00AB61AD /* Realm.swift in Sources */,
-				F35AFC642BA4919F0065145A /* GlycemicAlarm.swift in Sources */,
+				F35AFC642BA4919F0065145A /* Glycemic Alarm.swift in Sources */,
 				C5E4006329825C930021C6B7 /* Hamburger Menu.swift in Sources */,
 				F31C70962BA7B01800A5BFCD /* Mealtime View.swift in Sources */,
 				C5E4007429825E050021C6B7 /* Main Delegate.swift in Sources */,

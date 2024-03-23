@@ -331,7 +331,10 @@ struct Details: View {
                                         .footnote(.bold)
                                         .padding(.bottom, 4)
                                 }
-                                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.accentColor, lineWidth: 2.5))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(Color.accentColor, lineWidth: 2.5)
+                                }
                             }
                             .foregroundColor(.accentColor)
                             .alert("NFC not supported", isPresented: $showingNFCAlert) {

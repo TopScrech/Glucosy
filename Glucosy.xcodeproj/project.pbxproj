@@ -103,12 +103,12 @@
 		F31C70902BA78F5700A5BFCD /* Glossy Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */; };
 		F31C70912BA78F5A00A5BFCD /* Glossy Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */; };
 		F31C70942BA7916C00A5BFCD /* Crc Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */; };
-		F31C70962BA7B01800A5BFCD /* Mealtime View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70952BA7B01800A5BFCD /* Mealtime View.swift */; };
+		F31C70962BA7B01800A5BFCD /* New Record View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70952BA7B01800A5BFCD /* New Record View.swift */; };
 		F31C70982BA7B9A300A5BFCD /* Notification Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */; };
 		F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67D2BA98AEF003EE8F2 /* Extension.swift */; };
-		F31FF6802BA98F67003EE8F2 /* Mealtime Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */; };
+		F31FF6802BA98F67003EE8F2 /* New Record Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */; };
 		F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF6822BA9D25C003EE8F2 /* Debug View.swift */; };
-		F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */; };
+		F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* New Record Selector.swift */; };
 		F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */; };
 		F32ED8F62BA8B11900CD234C /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F52BA8B11900CD234C /* Delete.swift */; };
 		F32ED8F82BA8B13A00CD234C /* Delete Inulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */; };
@@ -289,12 +289,12 @@
 		F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Notification.swift"; sourceTree = "<group>"; };
 		F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glossy Preview.swift"; sourceTree = "<group>"; };
 		F31C70932BA7916C00A5BFCD /* Crc Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crc Calculator.swift"; sourceTree = "<group>"; };
-		F31C70952BA7B01800A5BFCD /* Mealtime View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime View.swift"; sourceTree = "<group>"; };
+		F31C70952BA7B01800A5BFCD /* New Record View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record View.swift"; sourceTree = "<group>"; };
 		F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Manager.swift"; sourceTree = "<group>"; };
 		F31FF67D2BA98AEF003EE8F2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime Notification.swift"; sourceTree = "<group>"; };
+		F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Notification.swift"; sourceTree = "<group>"; };
 		F31FF6822BA9D25C003EE8F2 /* Debug View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debug View.swift"; sourceTree = "<group>"; };
-		F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mealtime Selector.swift"; sourceTree = "<group>"; };
+		F32ED8F12BA8921D00CD234C /* New Record Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Selector.swift"; sourceTree = "<group>"; };
 		F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Glucose.swift"; sourceTree = "<group>"; };
 		F32ED8F52BA8B11900CD234C /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Inulin.swift"; sourceTree = "<group>"; };
@@ -449,6 +449,7 @@
 				F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */,
 				F35AFC502BA4908B0065145A /* History.swift */,
 				F35AFC4D2BA490100065145A /* UI Tests.swift */,
+				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
 				F3E69B412BA5FD1E00A5469A /* Models */,
 				F35AFC5F2BA4917E0065145A /* Enums */,
 				F35AFC6C2BA492080065145A /* SwiftData */,
@@ -501,11 +502,10 @@
 			isa = PBXGroup;
 			children = (
 				C5E4005729825C930021C6B7 /* Home View.swift */,
-				F31FF67F2BA98F67003EE8F2 /* Mealtime Notification.swift */,
-				F31C70952BA7B01800A5BFCD /* Mealtime View.swift */,
-				F32ED8F12BA8921D00CD234C /* Mealtime Selector.swift */,
-				F31FF6822BA9D25C003EE8F2 /* Debug View.swift */,
-				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
+				F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */,
+				F31C70952BA7B01800A5BFCD /* New Record View.swift */,
+				F32ED8F12BA8921D00CD234C /* New Record Selector.swift */,
+				F3D384BD2BB0029100F03C35 /* Debug */,
 				F35AFC872BA5086B0065145A /* Apple Health */,
 				F31C70992BA8577D00A5BFCD /* Monitor */,
 				F31C709A2BA8578700A5BFCD /* Details */,
@@ -653,6 +653,14 @@
 				F3B069672BAC13930095EFEE /* Glucose Entry.swift */,
 			);
 			path = "Last Measurement";
+			sourceTree = "<group>";
+		};
+		F3D384BD2BB0029100F03C35 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				F31FF6822BA9D25C003EE8F2 /* Debug View.swift */,
+			);
+			path = Debug;
 			sourceTree = "<group>";
 		};
 		F3D781222BAE314A00C2DE1E /* Shell and Realm */ = {
@@ -948,7 +956,7 @@
 				F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */,
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,
 				C5E4008229825E8B0021C6B7 /* Libre 2.swift in Sources */,
-				F32ED8F22BA8921D00CD234C /* Mealtime Selector.swift in Sources */,
+				F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */,
 				F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
 				F35AFC902BA508A60065145A /* Insulin Delivery Card.swift in Sources */,
@@ -957,7 +965,7 @@
 				C5E4006829825DCD0021C6B7 /* Settings.swift in Sources */,
 				F35AFC672BA491BB0065145A /* User Level.swift in Sources */,
 				F35AFC7C2BA4FFF70065145A /* Insulin Delivery.swift in Sources */,
-				F31FF6802BA98F67003EE8F2 /* Mealtime Notification.swift in Sources */,
+				F31FF6802BA98F67003EE8F2 /* New Record Notification.swift in Sources */,
 				C5E4005F29825C930021C6B7 /* Online View.swift in Sources */,
 				C5E4006E29825DEA0021C6B7 /* Device.swift in Sources */,
 				F35AFC5D2BA4916C0065145A /* Tabs.swift in Sources */,
@@ -977,7 +985,7 @@
 				C535AEB82AB343AE00AB61AD /* Realm.swift in Sources */,
 				F35AFC642BA4919F0065145A /* Glycemic Alarm.swift in Sources */,
 				C5E4006329825C930021C6B7 /* Hamburger Menu.swift in Sources */,
-				F31C70962BA7B01800A5BFCD /* Mealtime View.swift in Sources */,
+				F31C70962BA7B01800A5BFCD /* New Record View.swift in Sources */,
 				C5E4007429825E050021C6B7 /* Main Delegate.swift in Sources */,
 				C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */,
 				C5E4007629825E370021C6B7 /* Glucose.swift in Sources */,

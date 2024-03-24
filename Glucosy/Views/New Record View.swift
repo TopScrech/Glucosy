@@ -1,7 +1,7 @@
 import SwiftUI
 import WidgetKit
 
-struct MealtimeView: View {
+struct NewRecordView: View {
     @Environment(AppState.self) private var app: AppState
     
     @Environment(\.dismiss) private var dismiss
@@ -43,7 +43,7 @@ struct MealtimeView: View {
             }
             
             if includeRapidInsulin {
-                MealtimeSelector($rapidInsulin)
+                NewRecordSelector($rapidInsulin)
             }
             
             VStack(alignment: .leading) {
@@ -56,7 +56,7 @@ struct MealtimeView: View {
             }
             
             if includeLongInsulin {
-                MealtimeSelector($longInsulin)
+                NewRecordSelector($longInsulin)
             }
             
             VStack(alignment: .leading) {
@@ -69,7 +69,7 @@ struct MealtimeView: View {
             }
             
             if includeCarbs {
-                MealtimeSelector($carbs)
+                NewRecordSelector($carbs)
             }
             
             Toggle("Set measure reminder in 2 hours", isOn: $setReminder)
@@ -176,6 +176,6 @@ struct MealtimeView: View {
 }
 
 #Preview {
-    MealtimeView()
+    NewRecordView()
         .glucosyPreview()
 }

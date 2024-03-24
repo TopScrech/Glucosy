@@ -77,17 +77,16 @@ struct HomeView: View {
                     Label("Debug", systemImage: "hammer")
                 }
             }
-//            .toolbarRole(.navigationStack)
             .onChange(of: app.main.app.currentGlucose) { _, newValue in
                 delay(3) {
                     UIApplication.shared.inAppNotification(isDynamicIsland: true, timeout: 10, swipeToClose: true) { _ in // isDynamicIsland
-                        MealtimeNotification($app.sheetMealtime)
+                        NewRecordNotification($app.sheetMealtime)
                             .environment(app)
                     }
                 }
             }
             .sheet($app.sheetMealtime) {
-                MealtimeView()
+                NewRecordView()
             }
         }
     }

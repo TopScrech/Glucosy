@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MealtimeNotification: View {
+struct NewRecordNotification: View {
     @Environment(AppState.self) private var app: AppState
     
     @Binding private var sheetMeal: Bool
@@ -60,13 +60,15 @@ struct MealtimeNotification: View {
             RoundedRectangle(cornerRadius: 15)
                 .fill(.black)
         }
+        .padding(.horizontal, 5)
     }
 }
 
 #Preview {
     GeometryReader { _ in
-        MealtimeNotification(.constant(false))
+        NewRecordNotification(.constant(false))
     }
+    .ignoresSafeArea()
     .background(.gray)
     .glucosyPreview()
 }

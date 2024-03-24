@@ -1,11 +1,11 @@
 import Foundation
 
-@Observable 
+@Observable
 final class AppState {
-    var device: Device!
+    var device:      Device!
     var transmitter: Transmitter!
-    var sensor: Sensor!
-    var main: MainDelegate!
+    var sensor:      Sensor!
+    var main:        MainDelegate!
     
     let secondTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let minuteTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()

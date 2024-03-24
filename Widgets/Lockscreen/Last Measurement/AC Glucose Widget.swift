@@ -86,12 +86,12 @@ struct ACGlucoseWidgetView: View {
     var body: some View {
         VStack(spacing: 0) {
             if entry.configuration.glucoseMeasurementReminder {
-                if showReminder(Date(), entry.measureDate) {
+                if let difference = showReminder(Date(), entry.measureDate) {
                     Image(systemName: "sensor.tag.radiowaves.forward")
                         .largeTitle()
                         .widgetAccentable()
                     
-                    Text(">2h ago")
+                    Text("\(difference)h ago")
                         .footnote()
                 } else {
                     if entry.configuration.showMeasureTime {

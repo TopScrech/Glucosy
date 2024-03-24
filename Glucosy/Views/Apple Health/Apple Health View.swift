@@ -4,13 +4,36 @@ struct AppleHealthView: View {
     @Environment(AppState.self) private var app
     @Environment(History.self)  private var history
     
-    @AppStorage("is_expanded_glucose") private var isExpandedGlucose = false
-    @AppStorage("is_expanded_insulin") private var isExpandedInsulin = false
-    @AppStorage("is_expanded_carbs")   private var isExpandedCarbs = false
+    @AppStorage("is_expanded_glucose")     private var isExpandedGlucose = false
+    @AppStorage("is_expanded_insulin")     private var isExpandedInsulin = false
+    @AppStorage("is_expanded_carbs")       private var isExpandedCarbs = false
+    @AppStorage("is_expanded_temperature") private var isExpandedTemperature = false
     
     var body: some View {
         List {
             HealthKitLink()
+            
+            Section {
+                DisclosureGroup("Body Temperature", isExpanded: $isExpandedTemperature) {
+                    ForEach(history.bodyTemperature, id: \.self) { temperature in
+                        Text(temperature.value)
+                    }
+                    // TODO: .onDelete(perform: deleteTemperature)
+                }
+            } header: {
+                HStack {
+                    Text("\(history.bodyTemperature.count) records")
+                        .bold()
+                    
+                    Spacer()
+                    
+                    NavigationLink("View all") {
+                        
+                    }
+                    .footnote()
+                    .foregroundStyle(.latte)
+                }
+            }
             
             Section {
                 DisclosureGroup("Glucose", isExpanded: $isExpandedGlucose) {
@@ -83,6 +106,7 @@ struct AppleHealthView: View {
                 healthKit.readGlucose()
                 healthKit.readInsulin()
                 healthKit.readCarbs()
+                healthKit.readTemperature()
             }
         }
         .toolbar {

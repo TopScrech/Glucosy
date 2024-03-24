@@ -21,7 +21,7 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
         
         switch response.actionIdentifier {
         case "START_NEW_SCAN":
-            startNewScan()
+            app.main.nfc.startSession()
             
         default:
             print("Unknown identifier")
@@ -29,9 +29,5 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
         }
         
         completionHandler()
-    }
-    
-    func startNewScan() {
-        app.main.nfc.startSession()
     }
 }

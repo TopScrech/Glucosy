@@ -1,8 +1,8 @@
 import HealthKit
 
 extension HealthKit {
-    func readBMI() {
-        guard let bmiType else {
+    func readTemperature() {
+        guard let bodyTemperatureType else {
             return
         }
         
@@ -26,7 +26,7 @@ extension HealthKit {
         )
         
         let query = HKSampleQuery(
-            sampleType: bmiType,
+            sampleType: bodyTemperatureType,
             predicate: predicate,
             limit: HKObjectQueryNoLimit,
             sortDescriptors: [sortDescriptor]
@@ -34,19 +34,19 @@ extension HealthKit {
         ) { query, results, error in
             
             if let error {
-                print("Error retrieving BMI data: \(error.localizedDescription)")
+                print("Error retrieving Body Temperature data: \(error.localizedDescription)")
                 return
             }
             
             guard let samples = results as? [HKQuantitySample] else {
-                print("Could not fetch BMI samples")
+                print("Could not fetch Body Temperature samples")
                 return
             }
             
-            var loadedRecords: [BMI] = []
+            var loadedRecords: [BodyTemperature] = []
             
             for sample in samples {
-                let value = sample.quantity.doubleValue(for: .count())
+                let value = sample.quantity.doubleValue(for: .degreeCelsius())
                 
                 loadedRecords.append(.init(
                     value:  value,
@@ -55,7 +55,7 @@ extension HealthKit {
                 ))
                 
                 DispatchQueue.main.async { [self] in
-                    main.history.bmi = loadedRecords
+                    main.history.bodyTemperature = loadedRecords
                 }
             }
         }

@@ -126,7 +126,18 @@ struct Glucose: Hashable {
     var source = "Glucosy"
     var sample: HKQuantitySample?
     
-    init(rawValue: Int, rawTemperature: Int = 0, temperatureAdjustment: Int = 0, trendRate: Double = 0, trendArrow: Int = 0, id: Int = 0, date: Date = Date(), hasError: Bool = false, dataQuality: DataQuality = .OK, dataQualityFlags: Int = 0) {
+    init(
+        rawValue: Int,
+        rawTemperature: Int = 0,
+        temperatureAdjustment: Int = 0,
+        trendRate: Double = 0,
+        trendArrow: Int = 0,
+        id: Int = 0,
+        date: Date = Date(),
+        hasError: Bool = false,
+        dataQuality: DataQuality = .OK,
+        dataQualityFlags: Int = 0
+    ) {
         self.id = id
         self.date = date
         self.rawValue = rawValue
@@ -177,7 +188,7 @@ func factoryGlucose(rawGlucose: Glucose, calibrationInfo: CalibrationInfo) -> Gl
         return rawGlucose
     }
     
-    let x = 1000.0 + 71500
+    let x = 72500.0
     let y = 1000.0
     
     let ca = 0.0009180023

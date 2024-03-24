@@ -57,7 +57,11 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         
         let welcomeMessage = "Welcome to Glucosy!\n\nTip: switch from [Basic] to [Test] mode to sniff incoming BLE data running side-by-side with Trident and other apps.\n\nHint: better [Stop] me to avoid excessive logging during normal use.\n\nWarning: edit out your sensitive personal data after [Copy]ing and before pasting into your reports."
         
-        log.entries = [LogEntry(message: "\(welcomeMessage)"), LogEntry(message: "\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")]
+        log.entries = [
+            .init(message: "\(welcomeMessage)"),
+            .init(message: "\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")
+        ]
+        
         debugLog("User defaults: \(Settings.defaults.keys.map { [$0, UserDefaults.standard.dictionaryRepresentation()[$0]!] }.sorted{($0[0] as! String) < ($1[0] as! String) })")
         
         app.main = self
@@ -99,11 +103,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
     func processDeepLink(_ url: URL) {
         switch url.description {
         case "action/nfc":
-            if nfc.isAvailable {
-                nfc.startSession()
-            } else {
-                print("NFC is unavailible")
-            }
+            nfc.startSession()
             
         case "action/new_record":
             app.sheetMealtime = true
@@ -160,9 +160,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let shortcutItem = connectionOptions.shortcutItem {
             if shortcutItem.type == "NFC" {
-                if nfc.isAvailable {
-                    nfc.startSession()
-                }
+                nfc.startSession()
             }
         }
     }
@@ -301,6 +299,12 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             
             log("Historic temperatures: \(historicTemperatures)")
             
+            let temperatureAdjustments = factoryHistory.map {
+                Double(String(format: "%.1f", $0.temperatureAdjustment))!
+            }
+            
+            log("Temperatures adjustments: \(temperatureAdjustments)")
+            
             // TODO
             debugLog("Trend has errors: \(sensor.trend.map(\.hasError))")
             
@@ -308,7 +312,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             debugLog("Trend data quality: [\n\(trendDataQuality)\n]")
             
             let trendQualityFlags = sensor.trend.map {
-                "0" + String($0.dataQualityFlags,radix: 2).suffix(2)
+                "0" + String($0.dataQualityFlags, radix: 2).suffix(2)
             }.joined(separator: ", ")
             
             debugLog("Trend quality flags: [\(trendQualityFlags)]")
@@ -319,7 +323,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             debugLog("History data quality: [\n\(historyDataQuality)\n]")
             
             let historyQualityFlags = sensor.history.map {
-                "0" + String($0.dataQualityFlags,radix: 2).suffix(2)
+                "0" + String($0.dataQualityFlags, radix: 2).suffix(2)
             }.joined(separator: ", ")
             
             debugLog("History quality flags: [\(historyQualityFlags)]")
@@ -467,6 +471,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             
             if newEntries.count > 0 {
                 healthKit?.writeGlucose(newEntries)
+                healthKit?.writeTemperature(newEntries)
                 healthKit?.readGlucose()
             }
             

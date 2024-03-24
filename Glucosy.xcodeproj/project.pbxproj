@@ -111,6 +111,12 @@
 		F329496B2BB0AFBC00328C6A /* Dynamic Shortcurts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496A2BB0AFBC00328C6A /* Dynamic Shortcurts.swift */; };
 		F329496D2BB0C08500328C6A /* App Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496C2BB0C08500328C6A /* App Init.swift */; };
 		F329496E2BB0C08700328C6A /* App Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496C2BB0C08500328C6A /* App Init.swift */; };
+		F32949702BB0DA6500328C6A /* Write Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496F2BB0DA6500328C6A /* Write Temperature.swift */; };
+		F32949712BB0DA6500328C6A /* Write Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496F2BB0DA6500328C6A /* Write Temperature.swift */; };
+		F32949732BB0DCAC00328C6A /* Read Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32949722BB0DCAC00328C6A /* Read Temperature.swift */; };
+		F32949742BB0DCAC00328C6A /* Read Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32949722BB0DCAC00328C6A /* Read Temperature.swift */; };
+		F32949762BB0DD2200328C6A /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32949752BB0DD2200328C6A /* Temperature.swift */; };
+		F32949772BB0DD2200328C6A /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32949752BB0DD2200328C6A /* Temperature.swift */; };
 		F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* New Record Selector.swift */; };
 		F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */; };
 		F32ED8F62BA8B11900CD234C /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F52BA8B11900CD234C /* Delete.swift */; };
@@ -311,6 +317,9 @@
 		F31FF6822BA9D25C003EE8F2 /* Debug View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debug View.swift"; sourceTree = "<group>"; };
 		F329496A2BB0AFBC00328C6A /* Dynamic Shortcurts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dynamic Shortcurts.swift"; sourceTree = "<group>"; };
 		F329496C2BB0C08500328C6A /* App Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Init.swift"; sourceTree = "<group>"; };
+		F329496F2BB0DA6500328C6A /* Write Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Temperature.swift"; sourceTree = "<group>"; };
+		F32949722BB0DCAC00328C6A /* Read Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read Temperature.swift"; sourceTree = "<group>"; };
+		F32949752BB0DD2200328C6A /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		F32ED8F12BA8921D00CD234C /* New Record Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Selector.swift"; sourceTree = "<group>"; };
 		F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Glucose.swift"; sourceTree = "<group>"; };
 		F32ED8F52BA8B11900CD234C /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
@@ -638,6 +647,8 @@
 				F3B812172BB014DF0005C114 /* Read BMI.swift */,
 				F35AFC742BA4FF9E0065145A /* Read Glucose.swift */,
 				F35AFC752BA4FF9E0065145A /* Read Insulin.swift */,
+				F32949722BB0DCAC00328C6A /* Read Temperature.swift */,
+				F329496F2BB0DA6500328C6A /* Write Temperature.swift */,
 				F3E69B442BA6E66500A5469A /* Write Carbs.swift */,
 				F35AFC732BA4FF9E0065145A /* Write Glucose.swift */,
 				F3E69B472BA6E67000A5469A /* Write Insulin.swift */,
@@ -717,6 +728,7 @@
 				F35AFC7B2BA4FFF70065145A /* Insulin Delivery.swift */,
 				F3B8121A2BB023DC0005C114 /* Insulin Type.swift */,
 				F35AFC7E2BA500130065145A /* Carbohydrates.swift */,
+				F32949752BB0DD2200328C6A /* Temperature.swift */,
 				F3B812112BB00EBF0005C114 /* Body Mass.swift */,
 				F3B812142BB00EC70005C114 /* BMI.swift */,
 			);
@@ -909,6 +921,7 @@
 			files = (
 				C59184462981E73400A6DA89 /* App.swift in Sources */,
 				F3B812132BB00EBF0005C114 /* Body Mass.swift in Sources */,
+				F32949772BB0DD2200328C6A /* Temperature.swift in Sources */,
 				F329496E2BB0C08700328C6A /* App Init.swift in Sources */,
 				C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */,
 				C5916E5529827E860051AC06 /* Home View.swift in Sources */,
@@ -918,9 +931,11 @@
 				C5916E5429827E860051AC06 /* Monitor.swift in Sources */,
 				C5E4008629825E990021C6B7 /* Libre 3.swift in Sources */,
 				C5E4007729825E370021C6B7 /* Glucose.swift in Sources */,
+				F32949712BB0DA6500328C6A /* Write Temperature.swift in Sources */,
 				F35AFC652BA4919F0065145A /* Glycemic Alarm.swift in Sources */,
 				F3B8121C2BB023DC0005C114 /* Insulin Type.swift in Sources */,
 				C5916E5729827EB10051AC06 /* Main Delegate.swift in Sources */,
+				F32949742BB0DCAC00328C6A /* Read Temperature.swift in Sources */,
 				F3B812162BB00EC70005C114 /* BMI.swift in Sources */,
 				F3E69B492BA6E67000A5469A /* Write Insulin.swift in Sources */,
 				F3B812102BB00DBC0005C114 /* Read Body Mass.swift in Sources */,
@@ -992,6 +1007,7 @@
 				F35AFC912BA508A60065145A /* Carbohydrates Card.swift in Sources */,
 				F35AFC772BA4FF9E0065145A /* Write Glucose.swift in Sources */,
 				F35AFC542BA490C70065145A /* App State.swift in Sources */,
+				F32949702BB0DA6500328C6A /* Write Temperature.swift in Sources */,
 				F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */,
 				F3B812152BB00EC70005C114 /* BMI.swift in Sources */,
 				F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */,
@@ -1043,8 +1059,10 @@
 				C5E4006329825C930021C6B7 /* Hamburger Menu.swift in Sources */,
 				F31C70962BA7B01800A5BFCD /* New Record View.swift in Sources */,
 				C5E4007429825E050021C6B7 /* Main Delegate.swift in Sources */,
+				F32949732BB0DCAC00328C6A /* Read Temperature.swift in Sources */,
 				C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */,
 				C5E4007629825E370021C6B7 /* Glucose.swift in Sources */,
+				F32949762BB0DD2200328C6A /* Temperature.swift in Sources */,
 				C5AAA6192981CF7000CA3EC1 /* App.swift in Sources */,
 				F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */,
 				C5E4009629825F120021C6B7 /* Libre Link.swift in Sources */,
@@ -1380,7 +1398,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -1432,7 +1451,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";

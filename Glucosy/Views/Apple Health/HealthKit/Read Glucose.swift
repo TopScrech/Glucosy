@@ -3,7 +3,6 @@ import HealthKit
 extension HealthKit {
     func readGlucose(limit: Int = 100, handler: (([Glucose]) -> Void)? = nil) {
         guard let glucoseType else {
-            log("HealthKit error: unable to create glucose quantity type")
             return
         }
         

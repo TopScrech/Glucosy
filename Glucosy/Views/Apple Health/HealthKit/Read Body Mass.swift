@@ -3,7 +3,6 @@ import HealthKit
 extension HealthKit {
     func readBodyMass() {
         guard let bodyMassType else {
-            print("Body Mass Type is unavailable in HealthKit")
             return
         }
         

@@ -14,11 +14,7 @@ struct ConsoleSidebar: View {
             
             VStack(spacing: 0) {
                 Button {
-                    if app.main.nfc.isAvailable {
-                        app.main.nfc.startSession()
-                    } else {
-                        app.showingNfcAlert = true
-                    }
+                    app.main.nfc.startSession()
                 } label: {
                     Image(systemName: "sensor.tag.radiowaves.forward.fill")
                         .resizable()

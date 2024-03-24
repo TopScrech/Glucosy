@@ -3,7 +3,6 @@ import HealthKit
 extension HealthKit {
     func readCarbs() {
         guard let carbsType else {
-            print("Carbohydrates Type is unavailable in HealthKit")
             return
         }
         

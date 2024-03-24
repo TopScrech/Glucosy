@@ -12,11 +12,12 @@ final class HealthKit: Logging {
     var lastDate: Date?
     
     // TODO: Add workouts
-    let glucoseType:  HKQuantityType? = .bloodGlucose()
-    let insulinType:  HKQuantityType? = .insulinDelivery()
-    let carbsType:    HKQuantityType? = .dietaryCarbohydrates()
-    let bodyMassType: HKQuantityType? = .bodyMass()
-    let bmiType:      HKQuantityType? = .bodyMassIndex()
+    let glucoseType:         HKQuantityType? = .bloodGlucose()
+    let insulinType:         HKQuantityType? = .insulinDelivery()
+    let carbsType:           HKQuantityType? = .dietaryCarbohydrates()
+    let bodyMassType:        HKQuantityType? = .bodyMass()
+    let bmiType:             HKQuantityType? = .bodyMassIndex()
+    let bodyTemperatureType: HKQuantityType? = .bodyTemperature()
     
     init() {
         if isAvailable {
@@ -29,11 +30,17 @@ final class HealthKit: Logging {
     }
     
     private var dataTypes: Set<HKQuantityType> {
-        guard let glucoseType, let insulinType, let carbsType else {
+        guard let glucoseType, 
+                let insulinType,
+                let carbsType,
+                let bodyTemperatureType,
+                let bodyMassType,
+                let bmiType
+        else {
             return []
         }
         
-        return Set([glucoseType, insulinType, carbsType])
+        return Set([glucoseType, insulinType, carbsType, bodyTemperatureType, bodyMassType, bmiType])
     }
     
     func authorize(_ handler: @escaping (Bool) -> Void) {

@@ -32,7 +32,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
     var libreLinkUp: LibreLinkUp?
     var nightscout: Nightscout?
     var eventKit: EventKit?
-        
+    
     override init() {
         UserDefaults.standard.register(defaults: Settings.defaults)
         
@@ -113,7 +113,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         }
     }
     
-    public func log(_ msg: String, level: LogLevel = .info, label: String = "") {
+    func log(_ msg: String, level: LogLevel = .info, label: String = "") {
         if settings.logging || msg.hasPrefix("Log") {
             let entry = LogEntry(message: msg, level: level, label: label)
             
@@ -137,27 +137,27 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         }
     }
     
-    public func debugLog(_ msg: String) {
+    func debugLog(_ msg: String) {
         if settings.userLevel > .basic {
             log(msg, level: .debug)
         }
     }
     
-    public func status(_ text: String) {
+    func status(_ text: String) {
         Task { @MainActor in
             app.status = text
         }
     }
     
-    public func errorStatus(_ text: String) {
+    func errorStatus(_ text: String) {
         if !app.status.contains(text) {
             Task { @MainActor in
                 app.status.append("\n\(text)")
             }
         }
     }
-        
-    public func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let shortcutItem = connectionOptions.shortcutItem {
             if shortcutItem.type == "NFC" {
                 if nfc.isAvailable {
@@ -167,7 +167,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         }
     }
     
-    public func rescan() {
+    func rescan() {
         if let device = app.device {
             centralManager.cancelPeripheralConnection(device.peripheral!)
         }
@@ -225,7 +225,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         nightscout?.read()
     }
     
-    public func playAlarm() {
+    func playAlarm() {
         let currentGlucose = app.currentGlucose
         
         if !settings.mutedAudio {

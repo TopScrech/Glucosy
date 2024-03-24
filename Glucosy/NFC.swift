@@ -230,11 +230,11 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
         }
     }
     
-    public func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
+    func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {
         log("NFC: session did become active")
     }
     
-    public func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
+    func tagReaderSession(_ session: NFCTagReaderSession, didInvalidateWithError error: Error) {
         if let readerError = error as? NFCReaderError {
             if readerError.code != .readerSessionInvalidationErrorUserCanceled {
                 session.invalidate(errorMessage: "Connection failure: \(readerError.localizedDescription)")
@@ -243,7 +243,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
         }
     }
     
-    public func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
+    func tagReaderSession(_ session: NFCTagReaderSession, didDetect tags: [NFCTag]) {
         log("NFC: did detect tags")
         
         guard let firstTag = tags.first else {
@@ -262,7 +262,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             
             for retry in 0 ... maxRetries {
                 if retry > 0 {
-                    AudioServicesPlaySystemSound(1520)    // "pop" vibration
+                    AudioServicesPlaySystemSound(1520) /// "pop" vibration
                     log("NFC: retry # \(retry)...")
                     
                     try await Task.sleep(nanoseconds: 250_000_000)

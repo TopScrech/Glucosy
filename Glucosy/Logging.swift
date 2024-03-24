@@ -12,7 +12,7 @@ final class Log {
 }
 
 /// https://github.com/apple/swift-log/blob/main/Sources/Logging/Logging.swift
-public enum LogLevel: UInt8, Codable, CaseIterable {
+enum LogLevel: UInt8, Codable, CaseIterable {
     case trace,
          debug,
          info,

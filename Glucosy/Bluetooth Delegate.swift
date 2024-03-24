@@ -10,7 +10,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
     /// [uuid: (name, peripheral, isConnectable, isIgnored)]
     @Published var knownDevices: [String: (name: String, peripheral: CBPeripheral, isConnectable: Bool, isIgnored: Bool)] = [:]
     
-    public func centralManagerDidUpdateState(_ manager: CBCentralManager) {
+    func centralManagerDidUpdateState(_ manager: CBCentralManager) {
         switch manager.state {
         case .poweredOff:
             log("Bluetooth: state: powered off")
@@ -68,7 +68,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         }
     }
     
-    public func centralManager(_ manager: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData advertisement: [String: Any], rssi: NSNumber) {
+    func centralManager(_ manager: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData advertisement: [String: Any], rssi: NSNumber) {
         peripheral.delegate = self
         var name = peripheral.name
         let manufacturerData = advertisement[CBAdvertisementDataManufacturerDataKey] as? Data
@@ -280,7 +280,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         app.deviceState = app.device.state.description.capitalized + "..."
     }
     
-    public func centralManager(_ manager: CBCentralManager, didConnect peripheral: CBPeripheral) {
+    func centralManager(_ manager: CBCentralManager, didConnect peripheral: CBPeripheral) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var msg = "Bluetooth: \(name) has connected"
         
@@ -294,11 +294,11 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         log(msg)
     }
     
-    public func centralManager(_ manager: CBCentralManager, willRestoreState dict: [String: Any]) {
+    func centralManager(_ manager: CBCentralManager, willRestoreState dict: [String: Any]) {
         log("Bluetooth: will restore state to \(dict.debugDescription)")
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         let name = peripheral.name ?? "unnamed peripheral"
         
         if app.device.name == "Unnamed peripheral" && name != "unnamed peripheral" {
@@ -338,7 +338,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         }
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics else {
             log("Bluetooth: unable to retrieve service characteristics")
             return
@@ -572,7 +572,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         }
     }
     
-    public func centralManager(_ manager: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+    func centralManager(_ manager: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         app.device?.state = peripheral.state
         app.deviceState = peripheral.state.description.capitalized
@@ -622,7 +622,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         }
     }
     
-    public func centralManager(_ manager: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+    func centralManager(_ manager: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var msg = "Bluetooth: failed to connect to \(name)"
         var errorCode: CBError.Code?
@@ -644,7 +644,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
     }
     
     
-    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var characteristicString = characteristic.uuid.uuidString
         
@@ -672,7 +672,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         }
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var characteristicString = characteristic.uuid.uuidString
         
@@ -706,7 +706,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         log(msg)
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didReadRSSI rssi: NSNumber, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didReadRSSI rssi: NSNumber, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         
         if let error {
@@ -717,7 +717,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
         }
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let name = peripheral.name ?? "an unnamed peripheral"
         var characteristicString = characteristic.uuid.uuidString
         

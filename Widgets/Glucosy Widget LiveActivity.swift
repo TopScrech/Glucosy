@@ -5,7 +5,7 @@ import WidgetKit
 import ActivityKit
 
 struct GlucosyWidgetAttributes: ActivityAttributes {
-    public struct ContentState: Codable, Hashable {
+    struct ContentState: Codable, Hashable {
         // Dynamic stateful properties
         var emoji: String
     }

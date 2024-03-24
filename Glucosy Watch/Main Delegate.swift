@@ -92,7 +92,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
         }
     }
         
-    public func log(_ msg: String, level: LogLevel = .info, label: String = "") {
+    func log(_ msg: String, level: LogLevel = .info, label: String = "") {
         if settings.logging || msg.hasPrefix("Log") {
             let entry = LogEntry(message: msg, level: level, label: label)
             
@@ -116,19 +116,19 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
         }
     }
     
-    public func debugLog(_ msg: String) {
+    func debugLog(_ msg: String) {
         if settings.userLevel > .basic {
             log(msg, level: .debug)
         }
     }
     
-    public func status(_ text: String) {
+    func status(_ text: String) {
         Task { @MainActor in
             app.status = text
         }
     }
     
-    public func errorStatus(_ text: String) {
+    func errorStatus(_ text: String) {
         if !app.status.contains(text) {
             Task { @MainActor in
                 app.status.append("\n\(text)")
@@ -136,11 +136,11 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
         }
     }
     
-    public func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
+    func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         log("TODO: handling background tasks")
     }
     
-    public func rescan() {
+    func rescan() {
         if let device = app.device {
             centralManager.cancelPeripheralConnection(device.peripheral!)
         }
@@ -197,7 +197,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
         nightscout?.read()
     }
     
-    public func playAlarm() {
+    func playAlarm() {
         let currentGlucose = app.currentGlucose
         
         if !settings.mutedAudio {
@@ -377,15 +377,15 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
         log("Watch: extended session to be started in \(Double(settings.readingInterval * 60) - 5.0) seconds")
     }
     
-    public func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
+    func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         debugLog("Watch: extended session did start")
     }
     
-    public func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
+    func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
         debugLog("Watch: extended session will expire")
     }
     
-    public func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {
+    func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {
         let errorDescription = error != nil ? error!.localizedDescription : "undefined"
         debugLog("Watch: extended session did invalidate: reason: \(reason), error: \(errorDescription)")
     }

@@ -127,7 +127,7 @@ struct NewRecordView: View {
         }
         
         if setReminder {
-            NotificationManager().scheduleScanReminder(
+            NotificationManager.shared.scheduleScanReminder(
                 isAlertCritical ? .critical : .timeSensitive
             )
         }

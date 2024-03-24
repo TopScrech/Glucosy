@@ -789,7 +789,7 @@ class Dexcom: Transmitter {
         // CalStateLinearityFitDisplay(142),
         // CalStateSessionNotInProgress(143);
         
-        public var description: String {
+        var description: String {
             switch self {
             case .none:                                      "none"
             case .sessionStopped:                            "session stopped"

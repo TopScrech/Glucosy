@@ -42,7 +42,7 @@ final class NotificationManager {
         UNUserNotificationCenter.current().setNotificationCategories([reminderCategory])
         
         let trigger = UNTimeIntervalNotificationTrigger(
-            timeInterval: 3,
+            timeInterval: 7200,
             repeats: false
         )
         

@@ -25,8 +25,24 @@ final class NotificationManager {
         content.interruptionLevel = interruptionLevel
         content.sound = .defaultCritical
         
+        let startNewScanAction = UNNotificationAction(
+            identifier: "START_NEW_SCAN",
+            title: "Start new Scan",
+            options: [.foreground, .authenticationRequired]
+        )
+        
+        let reminderCategory = UNNotificationCategory(
+            identifier: "REMINDER",
+            actions: [startNewScanAction],
+            intentIdentifiers: [],
+            hiddenPreviewsBodyPlaceholder: "",
+            options: .customDismissAction
+        )
+        
+        UNUserNotificationCenter.current().setNotificationCategories([reminderCategory])
+        
         let trigger = UNTimeIntervalNotificationTrigger(
-            timeInterval: 7200,
+            timeInterval: 3,
             repeats: false
         )
         

@@ -14,14 +14,14 @@ struct AppleHealthView: View {
             
             Section {
                 DisclosureGroup("Glucose", isExpanded: $isExpandedGlucose) {
-                    ForEach(history.healthKitGlucose, id: \.self) { glucose in
+                    ForEach(history.glucose, id: \.self) { glucose in
                         HealthKitCard(glucose)
                     }
                     .onDelete(perform: deleteGlucose)
                 }
             } header: {
                 HStack {
-                    Text("\(history.healthKitGlucose.count) records")
+                    Text("\(history.glucose.count) records")
                         .bold()
                     
                     Spacer()
@@ -36,14 +36,14 @@ struct AppleHealthView: View {
             
             Section {
                 DisclosureGroup("Insulin Delivery", isExpanded: $isExpandedInsulin) {
-                    ForEach(history.insulinDeliveries, id: \.self) { insulin in
+                    ForEach(history.insulin, id: \.self) { insulin in
                         InsulinDeliveryCard(insulin)
                     }
                     .onDelete(perform: deleteInsulin)
                 }
             } header: {
                 HStack {
-                    Text("\(history.insulinDeliveries.count) records")
+                    Text("\(history.insulin.count) records")
                         .bold()
                     
                     Spacer()
@@ -58,14 +58,14 @@ struct AppleHealthView: View {
             
             Section {
                 DisclosureGroup("Carbohydrates", isExpanded: $isExpandedCarbs) {
-                    ForEach(history.consumedCarbohydrates, id: \.self) { carbs in
+                    ForEach(history.carbs, id: \.self) { carbs in
                         CarbohydratesCard(carbs)
                     }
                     .onDelete(perform: deleteCarbs)
                 }
             } header: {
                 HStack {
-                    Text("\(history.consumedCarbohydrates.count) records")
+                    Text("\(history.carbs.count) records")
                         .bold()
                     
                     Spacer()
@@ -95,14 +95,14 @@ struct AppleHealthView: View {
     
     private func deleteInsulin(_ offsets: IndexSet) {
         offsets.forEach { index in
-            guard let sampleToDelete = history.insulinDeliveries[index].sample else {
+            guard let sampleToDelete = history.insulin[index].sample else {
                 return
             }
             
             app.main.healthKit?.delete(sampleToDelete) { success, error in
                 if success {
                     Task { @MainActor in
-                        history.insulinDeliveries.remove(atOffsets: offsets)
+                        history.insulin.remove(atOffsets: offsets)
                     }
                 } else if let error {
                     print("Error deleting from HealthKit: \(error.localizedDescription)")
@@ -113,14 +113,14 @@ struct AppleHealthView: View {
     
     private func deleteCarbs(_ offsets: IndexSet) {
         offsets.forEach { index in
-            guard let sampleToDelete = history.consumedCarbohydrates[index].sample else {
+            guard let sampleToDelete = history.carbs[index].sample else {
                 return
             }
             
             app.main.healthKit?.delete(sampleToDelete) { success, error in
                 if success {
                     Task { @MainActor in
-                        history.consumedCarbohydrates.remove(atOffsets: offsets)
+                        history.carbs.remove(atOffsets: offsets)
                     }
                 } else if let error {
                     print("Error deleting from HealthKit: \(error.localizedDescription)")
@@ -131,14 +131,14 @@ struct AppleHealthView: View {
     
     private func deleteGlucose(_ offsets: IndexSet) {
         offsets.forEach { index in
-            guard let sampleToDelete = history.healthKitGlucose[index].sample else {
+            guard let sampleToDelete = history.glucose[index].sample else {
                 return
             }
             
             app.main.healthKit?.delete(sampleToDelete) { success, error in
                 if success {
                     Task { @MainActor in
-                        history.healthKitGlucose.remove(atOffsets: offsets)
+                        history.glucose.remove(atOffsets: offsets)
                     }
                 } else if let error {
                     print("Error deleting glucose: \(error.localizedDescription)")

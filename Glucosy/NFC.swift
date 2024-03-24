@@ -216,10 +216,18 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
     }
     
     func startSession() {
-        // execute in the .main queue because of publishing changes to main's observables
-        session = NFCTagReaderSession(pollingOption: [.iso15693], delegate: self, queue: .main)
-        session?.alertMessage = "Hold the top of your iPhone near the Libre sensor until the second longer vibration"
-        session?.begin()
+        if isAvailable {
+            // execute in the .main queue because of publishing changes to main's observables
+            session = NFCTagReaderSession(pollingOption: [.iso15693], delegate: self, queue: .main)
+            session?.alertMessage = "Hold the top of your iPhone near the Libre sensor until the second longer vibration"
+            session?.begin()
+            
+            if let nightscout = app.main.nightscout {
+                nightscout.read()
+            }
+        } else {
+            main.app.showingNfcAlert = true
+        }
     }
     
     public func tagReaderSessionDidBecomeActive(_ session: NFCTagReaderSession) {

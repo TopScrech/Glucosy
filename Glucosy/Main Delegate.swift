@@ -18,7 +18,7 @@ extension Logging {
     var settings: Settings          { main.settings }
 }
 
-class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
+class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
     var app: AppState
     var logger: Logger
     var log: Log
@@ -85,11 +85,6 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate, U
         nightscout!.read()
         eventKit = EventKit(main: self)
         eventKit?.sync()
-        
-        UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in
-            
-        }
         
         let numberFormatter = NumberFormatter()
         numberFormatter.minimumFractionDigits = 8

@@ -22,6 +22,7 @@ final class AppState {
     var status = "Welcome to Glucosy!"
     
     var showingJavaScriptConfirmAlert = false
+    var showingNfcAlert = false
     var JavaScriptConfirmAlertMessage = ""
     var JavaScriptAlertReturn = ""
     

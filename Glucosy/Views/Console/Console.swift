@@ -7,7 +7,6 @@ struct Console: View {
     
     @Environment(\.colorScheme) private var colorScheme
     
-    @State private var showingNFCAlert = false
     @State private var showingRePairConfirmationDialog = false
     @State private var showingUnlockConfirmationDialog = false
     @State private var showingResetConfirmationDialog = false
@@ -21,7 +20,7 @@ struct Console: View {
         ((app.device as? Abbott)?.sensor as? Libre3)?.pair()
         
         guard app.main.nfc.isAvailable else {
-            showingNFCAlert = true
+            app.showingNfcAlert = true
             return
         }
         
@@ -130,7 +129,7 @@ struct Console: View {
             .padding(.horizontal, 15)
 #endif
             
-            ConsoleSidebar(showingNFCAlert: $showingNFCAlert)
+            ConsoleSidebar()
 #if targetEnvironment(macCatalyst)
                 .padding(.trailing, 15)
 #endif
@@ -172,7 +171,7 @@ struct Console: View {
                             settings.logging = true
                             app.main.nfc.taskRequest = .readFRAM
                         } else {
-                            showingNFCAlert = true
+                            app.showingNfcAlert = true
                         }
                     } label: {
                         Label("Read FRAM", systemImage: "memorychip")
@@ -184,7 +183,7 @@ struct Console: View {
                                 settings.logging = true
                                 showingUnlockConfirmationDialog = true
                             } else {
-                                showingNFCAlert = true
+                                app.showingNfcAlert = true
                             }
                         } label: {
                             Label("Unlock", systemImage: "lock.open")
@@ -195,7 +194,7 @@ struct Console: View {
                                 settings.logging = true
                                 showingResetConfirmationDialog = true
                             } else {
-                                showingNFCAlert = true
+                                app.showingNfcAlert = true
                             }
                         } label: {
                             Label("Reset", systemImage: "00.circle")
@@ -206,7 +205,7 @@ struct Console: View {
                                 settings.logging = true
                                 showingProlongConfirmationDialog = true
                             } else {
-                                showingNFCAlert = true
+                                app.showingNfcAlert = true
                             }
                         } label: {
                             Label("Prolong", systemImage: "infinity.circle")
@@ -217,7 +216,7 @@ struct Console: View {
                                 settings.logging = true
                                 showingActivateConfirmationDialog = true
                             } else {
-                                showingNFCAlert = true
+                                app.showingNfcAlert = true
                             }
                         } label: {
                             Label("Activate", systemImage: "bolt.circle")
@@ -231,7 +230,7 @@ struct Console: View {
                             settings.logging = true
                             app.main.nfc.taskRequest = .dump
                         } else {
-                            showingNFCAlert = true
+                            app.showingNfcAlert = true
                         }
                     } label: {
                         Label("Dump Memory", systemImage: "cpu")
@@ -245,11 +244,6 @@ struct Console: View {
                     }
                 }
             }
-        }
-        .alert("NFC not supported", isPresented: $showingNFCAlert) {
-            
-        } message: {
-            Text("This device doesn't allow scanning the Libre.")
         }
         .confirmationDialog("Pairing a Libre 2 with this device will break LibreLink and other apps' pairings and you will have to uninstall and reinstall them to get their alarms back again.", isPresented: $showingRePairConfirmationDialog, titleVisibility: .visible) {
             Button("RePair", role: .destructive) {

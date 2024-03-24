@@ -5,8 +5,6 @@ struct ConsoleSidebar: View {
     @Environment(Log.self)      private var log: Log
     @Environment(Settings.self) private var settings: Settings
     
-    @Binding var showingNFCAlert: Bool
-    
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
     
@@ -19,7 +17,7 @@ struct ConsoleSidebar: View {
                     if app.main.nfc.isAvailable {
                         app.main.nfc.startSession()
                     } else {
-                        showingNFCAlert = true
+                        app.showingNfcAlert = true
                     }
                 } label: {
                     Image(systemName: "sensor.tag.radiowaves.forward.fill")

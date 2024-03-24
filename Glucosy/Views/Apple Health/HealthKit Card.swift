@@ -34,7 +34,7 @@ struct HealthKitCard: View {
 
 #Preview {
     List {
-        HealthKitCard(History.test.healthKitGlucose.first!)
+        HealthKitCard(History.test.glucose.first!)
     }
     .darkSchemePreferred()
 }

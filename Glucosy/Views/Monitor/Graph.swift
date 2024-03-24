@@ -214,7 +214,7 @@ struct Graph: View {
                     .foregroundStyle(.orange)
                 }
                 
-                ForEach(history.healthKitGlucose, id: \.self) { value in
+                ForEach(history.glucose, id: \.self) { value in
                     LineMark(
                         x: .value("Time", value.date),
                         y: .value("Glucose", value.value)
@@ -224,8 +224,8 @@ struct Graph: View {
                     
                 //                        path.addRect(CGRect(x: 31, y: height - settings.targetHigh * yScale + 1.0, width: width - 2, height: (settings.targetHigh - settings.targetLow) * yScale - 1))
                 
-                if let last = history.healthKitGlucose.last?.date,
-                   let first = history.healthKitGlucose.first?.date,
+                if let last = history.glucose.last?.date,
+                   let first = history.glucose.first?.date,
                    let targetLow = Int(settings.targetLow.units),
                    let targetHigh = Int(settings.targetHigh.units) {
                     RectangleMark(

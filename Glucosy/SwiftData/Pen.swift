@@ -13,7 +13,3 @@ final class Pen {
         self.expiration = expiration
     }
 }
-
-enum InsulinType: String, Codable {
-    case bolus, basal
-}

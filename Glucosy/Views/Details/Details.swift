@@ -4,7 +4,6 @@ struct Details: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Settings.self) private var settings: Settings
     
-    @State private var showingNFCAlert = false
     @State private var showingRePairConfirmationDialog = false
     @State private var showingCalibrationInfoForm = false
     
@@ -32,7 +31,7 @@ struct Details: View {
         ((app.device as? Abbott)?.sensor as? Libre3)?.pair()
         
         guard app.main.nfc.isAvailable else {
-            showingNFCAlert = true
+            app.showingNfcAlert = true
             return
         }
         
@@ -312,11 +311,6 @@ struct Details: View {
                                 Label("RePair", systemImage: "sensor.tag.radiowaves.forward.fill")
                             }
                             .foregroundColor(.accentColor)
-                            .alert("NFC not supported", isPresented: $showingNFCAlert) {
-                                
-                            } message: {
-                                Text("This device doesn't allow scanning the Libre.")
-                            }
                             .confirmationDialog("Pairing a Libre 2 with this device will break LibreLink and other apps' pairings and you will have to uninstall and reinstall them to get their alarms back again.", isPresented: $showingRePairConfirmationDialog, titleVisibility: .visible) {
                                 Button("RePair", role: .destructive) {
                                     app.main.nfc.taskRequest = .enableStreaming

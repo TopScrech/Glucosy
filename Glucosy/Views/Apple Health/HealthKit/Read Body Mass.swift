@@ -1,9 +1,9 @@
 import HealthKit
 
 extension HealthKit {
-    func readCarbs() {
-        guard let carbsType else {
-            print("Carbohydrates Type is unavailable in HealthKit")
+    func readBodyMass() {
+        guard let bodyMassType else {
+            print("Body Mass Type is unavailable in HealthKit")
             return
         }
         
@@ -27,7 +27,7 @@ extension HealthKit {
         )
         
         let query = HKSampleQuery(
-            sampleType: carbsType,
+            sampleType: bodyMassType,
             predicate: predicate,
             limit: HKObjectQueryNoLimit,
             sortDescriptors: [sortDescriptor]
@@ -35,28 +35,28 @@ extension HealthKit {
         ) { query, results, error in
             
             if let error {
-                print("Error retrieving insulin delivery data: \(error.localizedDescription)")
+                print("Error retrieving body mass data: \(error.localizedDescription)")
                 return
             }
             
             guard let samples = results as? [HKQuantitySample] else {
-                print("Could not fetch insulin delivery samples")
+                print("Could not fetch body mass samples")
                 return
             }
             
-            var records: [Carbohydrates] = []
+            var records: [BodyMass] = []
             
             for sample in samples {
-                let value = sample.quantity.doubleValue(for: .gram())
+                let value = sample.quantity.doubleValue(for: .kilogram())
                 
                 records.append(.init(
-                    value:  Int(value),
+                    value:  value,
                     date:   sample.startDate,
                     sample: sample
                 ))
                 
                 DispatchQueue.main.async { [self] in
-                    main.history.carbs = records
+                    main.history.bodyMass = records
                 }
             }
         }

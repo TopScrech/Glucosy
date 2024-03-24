@@ -107,13 +107,13 @@ struct DataView: View {
             }
             
             HStack {
-                if history.healthKitGlucose.count > 0 {
+                if history.glucose.count > 0 {
                     VStack(spacing: 4) {
                         Text("HealthKit")
                             .bold()
                         
                         List {
-                            ForEach(history.healthKitGlucose, id: \.self) { glucose in
+                            ForEach(history.glucose, id: \.self) { glucose in
                                 HStack {
                                     Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)")
                                     

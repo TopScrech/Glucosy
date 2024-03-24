@@ -161,6 +161,17 @@
 		F3B069682BAC13930095EFEE /* Glucose Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069672BAC13930095EFEE /* Glucose Entry.swift */; };
 		F3B0696A2BAC13B50095EFEE /* Carbs Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069692BAC13B50095EFEE /* Carbs Entry.swift */; };
 		F3B0696E2BAC15900095EFEE /* AC Carbs Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */; };
+		F3B8120F2BB00DBC0005C114 /* Read Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */; };
+		F3B812102BB00DBC0005C114 /* Read Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */; };
+		F3B812122BB00EBF0005C114 /* Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B812112BB00EBF0005C114 /* Body Mass.swift */; };
+		F3B812132BB00EBF0005C114 /* Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B812112BB00EBF0005C114 /* Body Mass.swift */; };
+		F3B812152BB00EC70005C114 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B812142BB00EC70005C114 /* BMI.swift */; };
+		F3B812162BB00EC70005C114 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B812142BB00EC70005C114 /* BMI.swift */; };
+		F3B812182BB014DF0005C114 /* Read BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B812172BB014DF0005C114 /* Read BMI.swift */; };
+		F3B812192BB014DF0005C114 /* Read BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B812172BB014DF0005C114 /* Read BMI.swift */; };
+		F3B8121B2BB023DC0005C114 /* Insulin Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8121A2BB023DC0005C114 /* Insulin Type.swift */; };
+		F3B8121C2BB023DC0005C114 /* Insulin Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8121A2BB023DC0005C114 /* Insulin Type.swift */; };
+		F3B8121E2BB07AC90005C114 /* Notification Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8121D2BB07AC90005C114 /* Notification Delegate.swift */; };
 		F3CA0ACB2BAE45E20055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACA2BAE45E20055398F /* ScrechKit */; };
 		F3CA0ACD2BAE45EA0055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACC2BAE45EA0055398F /* ScrechKit */; };
 		F3CA0ACF2BAE45EE0055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACE2BAE45EE0055398F /* ScrechKit */; };
@@ -329,6 +340,12 @@
 		F3B069672BAC13930095EFEE /* Glucose Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucose Entry.swift"; sourceTree = "<group>"; };
 		F3B069692BAC13B50095EFEE /* Carbs Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Carbs Entry.swift"; sourceTree = "<group>"; };
 		F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Carbs Widget.swift"; sourceTree = "<group>"; };
+		F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read Body Mass.swift"; sourceTree = "<group>"; };
+		F3B812112BB00EBF0005C114 /* Body Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Body Mass.swift"; sourceTree = "<group>"; };
+		F3B812142BB00EC70005C114 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
+		F3B812172BB014DF0005C114 /* Read BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read BMI.swift"; sourceTree = "<group>"; };
+		F3B8121A2BB023DC0005C114 /* Insulin Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Insulin Type.swift"; sourceTree = "<group>"; };
+		F3B8121D2BB07AC90005C114 /* Notification Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Delegate.swift"; sourceTree = "<group>"; };
 		F3C98AED2BAD86E700723DA8 /* Date Difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Difference.swift"; sourceTree = "<group>"; };
 		F3D384BE2BB004B100F03C35 /* Console Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Sidebar.swift"; sourceTree = "<group>"; };
 		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
@@ -446,13 +463,14 @@
 				C5AAA61E2981CF7200CA3EC1 /* Glucosy.entitlements */,
 				C5E4004329825C710021C6B7 /* Media */,
 				C5AAA6182981CF7000CA3EC1 /* App.swift */,
+				C5E4007329825E050021C6B7 /* Main Delegate.swift */,
+				F3B8121D2BB07AC90005C114 /* Notification Delegate.swift */,
 				F35AFC532BA490C70065145A /* App State.swift */,
 				F35AFC562BA490FF0065145A /* Logging.swift */,
 				F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */,
 				F35AFC502BA4908B0065145A /* History.swift */,
 				F35AFC4D2BA490100065145A /* UI Tests.swift */,
 				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
-				F3E69B412BA5FD1E00A5469A /* Models */,
 				F35AFC5F2BA4917E0065145A /* Enums */,
 				F35AFC6C2BA492080065145A /* SwiftData */,
 				C5E4004D29825C930021C6B7 /* Views */,
@@ -461,7 +479,6 @@
 				C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */,
 				C5E4006D29825DEA0021C6B7 /* Device.swift */,
 				C5E4007029825DF50021C6B7 /* Bluetooth Delegate.swift */,
-				C5E4007329825E050021C6B7 /* Main Delegate.swift */,
 				C5E4007529825E370021C6B7 /* Glucose.swift */,
 				C5E4007829825E450021C6B7 /* Sensor.swift */,
 				C55D12B329ACB5E00050F567 /* Crypto.swift */,
@@ -602,6 +619,8 @@
 			children = (
 				C5E4008C29825ED00021C6B7 /* HealthKit.swift */,
 				F35AFC762BA4FF9E0065145A /* Read Carbs.swift */,
+				F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */,
+				F3B812172BB014DF0005C114 /* Read BMI.swift */,
 				F35AFC742BA4FF9E0065145A /* Read Glucose.swift */,
 				F35AFC752BA4FF9E0065145A /* Read Insulin.swift */,
 				F3E69B442BA6E66500A5469A /* Write Carbs.swift */,
@@ -615,13 +634,14 @@
 		F35AFC872BA5086B0065145A /* Apple Health */ = {
 			isa = PBXGroup;
 			children = (
-				F35AFC722BA4FE940065145A /* HealthKit */,
 				F35AFC8C2BA508A60065145A /* Apple Health View.swift */,
 				F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */,
 				F35AFC8D2BA508A60065145A /* HealthKit Card.swift */,
 				F35AFC8A2BA508A60065145A /* Insulin Delivery Card.swift */,
 				F35AFC882BA508A50065145A /* HealthKit Link.swift */,
 				F35AFC892BA508A50065145A /* Time from date.swift */,
+				F3E69B412BA5FD1E00A5469A /* HealthKit Models */,
+				F35AFC722BA4FE940065145A /* HealthKit */,
 			);
 			path = "Apple Health";
 			sourceTree = "<group>";
@@ -676,13 +696,16 @@
 			path = "Shell and Realm";
 			sourceTree = "<group>";
 		};
-		F3E69B412BA5FD1E00A5469A /* Models */ = {
+		F3E69B412BA5FD1E00A5469A /* HealthKit Models */ = {
 			isa = PBXGroup;
 			children = (
 				F35AFC7B2BA4FFF70065145A /* Insulin Delivery.swift */,
+				F3B8121A2BB023DC0005C114 /* Insulin Type.swift */,
 				F35AFC7E2BA500130065145A /* Carbohydrates.swift */,
+				F3B812112BB00EBF0005C114 /* Body Mass.swift */,
+				F3B812142BB00EC70005C114 /* BMI.swift */,
 			);
-			path = Models;
+			path = "HealthKit Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -870,6 +893,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C59184462981E73400A6DA89 /* App.swift in Sources */,
+				F3B812132BB00EBF0005C114 /* Body Mass.swift in Sources */,
 				C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */,
 				C5916E5529827E860051AC06 /* Home View.swift in Sources */,
 				C5E4006C29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
@@ -879,8 +903,11 @@
 				C5E4008629825E990021C6B7 /* Libre 3.swift in Sources */,
 				C5E4007729825E370021C6B7 /* Glucose.swift in Sources */,
 				F35AFC652BA4919F0065145A /* Glycemic Alarm.swift in Sources */,
+				F3B8121C2BB023DC0005C114 /* Insulin Type.swift in Sources */,
 				C5916E5729827EB10051AC06 /* Main Delegate.swift in Sources */,
+				F3B812162BB00EC70005C114 /* BMI.swift in Sources */,
 				F3E69B492BA6E67000A5469A /* Write Insulin.swift in Sources */,
+				F3B812102BB00DBC0005C114 /* Read Body Mass.swift in Sources */,
 				F35AFC7D2BA4FFFE0065145A /* Insulin Delivery.swift in Sources */,
 				F35AFC842BA500B60065145A /* Write Glucose.swift in Sources */,
 				C5ADF5832B00E65E00E29632 /* Gen 2.swift in Sources */,
@@ -896,6 +923,7 @@
 				F35AFC682BA491BB0065145A /* User Level.swift in Sources */,
 				C568696B2B30469000B11687 /* NFC Tools.swift in Sources */,
 				C5E4007A29825E450021C6B7 /* Sensor.swift in Sources */,
+				F3B812192BB014DF0005C114 /* Read BMI.swift in Sources */,
 				C5DB4E4F2B168E08005AD792 /* Libre.swift in Sources */,
 				F35AFC802BA500130065145A /* Carbohydrates.swift in Sources */,
 				C5E4009729825F120021C6B7 /* Libre Link.swift in Sources */,
@@ -937,6 +965,7 @@
 				C5E4007929825E450021C6B7 /* Sensor.swift in Sources */,
 				C5E4009029825EEE0021C6B7 /* NFC.swift in Sources */,
 				C55D12B429ACB5E00050F567 /* Crypto.swift in Sources */,
+				F3B8120F2BB00DBC0005C114 /* Read Body Mass.swift in Sources */,
 				C5E4006B29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
 				F35AFC8E2BA508A60065145A /* HealthKit Link.swift in Sources */,
 				C5E4007129825DF50021C6B7 /* Bluetooth Delegate.swift in Sources */,
@@ -948,20 +977,24 @@
 				F35AFC772BA4FF9E0065145A /* Write Glucose.swift in Sources */,
 				F35AFC542BA490C70065145A /* App State.swift in Sources */,
 				F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */,
+				F3B812152BB00EC70005C114 /* BMI.swift in Sources */,
 				F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */,
 				F35AFC712BA4FE640065145A /* HealthKit.swift in Sources */,
 				F31C70982BA7B9A300A5BFCD /* Notification Manager.swift in Sources */,
 				F35AFC5A2BA4913B0065145A /* Trend Arrow.swift in Sources */,
 				F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */,
 				F3E69B482BA6E67000A5469A /* Write Insulin.swift in Sources */,
+				F3B8121B2BB023DC0005C114 /* Insulin Type.swift in Sources */,
 				C568696A2B30469000B11687 /* NFC Tools.swift in Sources */,
 				F31C70902BA78F5700A5BFCD /* Glossy Preview.swift in Sources */,
+				F3B812122BB00EBF0005C114 /* Body Mass.swift in Sources */,
 				F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */,
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,
 				C5E4008229825E8B0021C6B7 /* Libre 2.swift in Sources */,
 				F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */,
 				F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
+				F3B8121E2BB07AC90005C114 /* Notification Delegate.swift in Sources */,
 				F35AFC902BA508A60065145A /* Insulin Delivery Card.swift in Sources */,
 				F35AFC612BA491910065145A /* Online Service.swift in Sources */,
 				C5E4005C29825C930021C6B7 /* Web View.swift in Sources */,
@@ -985,6 +1018,7 @@
 				F31C70942BA7916C00A5BFCD /* Crc Calculator.swift in Sources */,
 				C5DB4E4E2B168E08005AD792 /* Libre.swift in Sources */,
 				F35AFC7A2BA4FF9E0065145A /* Read Carbs.swift in Sources */,
+				F3B812182BB014DF0005C114 /* Read BMI.swift in Sources */,
 				F35AFC922BA508A60065145A /* Apple Health View.swift in Sources */,
 				C535AEB82AB343AE00AB61AD /* Realm.swift in Sources */,
 				F35AFC642BA4919F0065145A /* Glycemic Alarm.swift in Sources */,

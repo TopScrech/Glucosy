@@ -75,8 +75,8 @@ extension History {
         }
         
         let healthKitGlucose = [231, 252, 253, 254, 245, 196, 177, 128]
-//        let healthKitGlucose = [231, 252, 253, 254, 245, 196, 177, 128, 149, 150, 101, 122, 133, 144, 155, 166, 177, 178, 149, 140, 141, 142, 143, 144, 155, 166, 177, 178, 169, 150, 141, 132]
-        history.healthKitGlucose = healthKitGlucose.enumerated().map {
+//        let glucose = [231, 252, 253, 254, 245, 196, 177, 128, 149, 150, 101, 122, 133, 144, 155, 166, 177, 178, 149, 140, 141, 142, 143, 144, 155, 166, 177, 178, 169, 150, 141, 132]
+        history.glucose = healthKitGlucose.enumerated().map {
             Glucose($0.1, id: $0.0, date: Date() - Double($0.1) * 15 * 60, source: "SourceApp com.example.sourceapp")
         }
         
@@ -85,12 +85,12 @@ extension History {
             Glucose($0.1, id: $0.0, date: Date() - Double($0.1) * 15 * 60, source: "Device")
         }
         
-        history.consumedCarbohydrates = [
+        history.carbs = [
             .init(value: 16, date: Date()),
             .init(value: 50, date: Date.distantFuture)
         ]
         
-        history.insulinDeliveries = [
+        history.insulin = [
             .init(value: 16, type: .basal, date: Date()),
             .init(value: 16, type: .bolus, date: Date.distantPast),
         ]

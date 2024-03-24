@@ -4,7 +4,6 @@ import SwiftData
 @main
 struct GlucosyApp: App {
     @Environment(\.scenePhase) private var scenePhase
-    
 #if os(watchOS)
     @WKApplicationDelegateAdaptor(MainDelegate.self) private var main
 #else
@@ -12,7 +11,7 @@ struct GlucosyApp: App {
 #endif
     
     private let container: ModelContainer
-    
+
     init() {
         let schema = Schema([
             Pen.self

@@ -8,12 +8,15 @@ import HealthKit
 final class HealthKit: Logging {
     var main: MainDelegate!
     var store: HKHealthStore?
-    var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L is unavailible
+    var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L unavailible
     var lastDate: Date?
     
-    let glucoseType: HKQuantityType? = .bloodGlucose()
-    let insulinType: HKQuantityType? = .insulinDelivery()
-    let carbsType:   HKQuantityType? = .dietaryCarbohydrates()
+    // TODO: Add workouts
+    let glucoseType:  HKQuantityType? = .bloodGlucose()
+    let insulinType:  HKQuantityType? = .insulinDelivery()
+    let carbsType:    HKQuantityType? = .dietaryCarbohydrates()
+    let bodyMassType: HKQuantityType? = .bodyMass()
+    let bmiType:      HKQuantityType? = .bodyMassIndex()
     
     init() {
         if isAvailable {

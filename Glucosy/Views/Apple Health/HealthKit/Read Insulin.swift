@@ -26,7 +26,7 @@ extension HealthKit {
             ascending: false
         )
         
-        let insulinQuery = HKSampleQuery(
+        let query = HKSampleQuery(
             sampleType: insulinType,
             predicate: predicate,
             limit: HKObjectQueryNoLimit,
@@ -39,7 +39,7 @@ extension HealthKit {
                 return
             }
             
-            guard let insulinSamples = results as? [HKQuantitySample] else {
+            guard let samples = results as? [HKQuantitySample] else {
                 print("Could not fetch insulin delivery samples")
                 return
             }
@@ -48,8 +48,8 @@ extension HealthKit {
             
             // MARK: Metadata example: ["HKInsulinDeliveryReason": 2, "HKWasUserEntered": 1]
             
-            for sample in insulinSamples {
-                let insulinUnit = sample.quantity.doubleValue(for: .internationalUnit())
+            for sample in samples {
+                let unit = sample.quantity.doubleValue(for: .internationalUnit())
                 
                 if let insulinMetadata = sample.metadata,
                    let insulinCategory = insulinMetadata["HKInsulinDeliveryReason"] as? Int {
@@ -58,19 +58,19 @@ extension HealthKit {
                     insulinType = insulinCategory == 1 ? .basal : .bolus
                     
                     loadedRecords.append(.init(
-                        value: Int(insulinUnit),
+                        value: Int(unit),
                         type: insulinType,
                         date: sample.startDate,
                         sample: sample
                     ))
                     
                     DispatchQueue.main.async {
-                        self.main.history.insulinDeliveries = loadedRecords
+                        self.main.history.insulin = loadedRecords
                     }
                 }
             }
         }
         
-        store?.execute(insulinQuery)
+        store?.execute(query)
     }
 }

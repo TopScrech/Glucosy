@@ -8,7 +8,6 @@ struct OnlineView: View {
     
     @Environment(\.colorScheme) private var colorScheme
     
-    @State private var showingNFCAlert = false
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
     
@@ -226,16 +225,11 @@ struct OnlineView: View {
                                 nightscout.read()
                             }
                         } else {
-                            showingNFCAlert = true
+                            app.showingNfcAlert = true
                         }
                     } label: {
                         Image(systemName: "sensor.tag.radiowaves.forward.fill")
                             .title()
-                    }
-                    .alert("NFC not supported", isPresented: $showingNFCAlert) {
-                        
-                    } message: {
-                        Text("This device doesn't allow scanning the Libre.")
                     }
                     .padding(.top, 2)
                 }

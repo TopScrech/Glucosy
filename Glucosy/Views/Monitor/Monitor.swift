@@ -6,9 +6,7 @@ struct Monitor: View {
     @Environment(Log.self)      private var log: Log
     @Environment(History.self)  private var history: History
     @Environment(Settings.self) private var settings: Settings
-    
-    @State private var showingNFCAlert = false
-    
+        
     @State private var readingCountdown = 0
     @State private var minutesSinceLastReading = 0
         
@@ -101,7 +99,7 @@ struct Monitor: View {
             //            Text("rawValues: \(Double(history.rawValues.last?.value ?? 0) / 18.0182)")         // yellow
             //            Text("factoryTrend: \(Double(history.factoryTrend.last?.value ?? 0)   / 18.0182)")
             //            Text("rawTrend: \(Double(history.rawTrend.last?.value ?? 0)           / 18.0182)")
-            //            Text("healthKitGlucose: \(Double(history.healthKitGlucose.last?.value ?? 0)   / 18.0182)")
+            //            Text("glucose: \(Double(history.glucose.last?.value ?? 0)   / 18.0182)")
             //
             //            let factoryValues = history.factoryValues.map(\.value).map {
             //                Double($0) / 18.0182
@@ -217,7 +215,7 @@ struct Monitor: View {
                     Button {
                         history.factoryValues = History.test.factoryValues
                         history.rawValues = History.test.rawValues
-                        history.healthKitGlucose = History.test.healthKitGlucose
+                        history.glucose = History.test.glucose
                         app.currentGlucose = Int.random(in: 1...10)
                         
                         UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.setValue("\(Int.random(in: 1...10))", forKey: "currentGlucose")
@@ -231,27 +229,14 @@ struct Monitor: View {
                     Image(systemName: "sensor.tag.radiowaves.forward.fill")
                     
                 } primaryAction: {
-                    if app.main.nfc.isAvailable {
-                        app.main.nfc.startSession()
-                    } else {
-                        showingNFCAlert = true
-                    }
+                    app.main.nfc.startSession()
                 }
 #else
                 SFButton("sensor.tag.radiowaves.forward.fill") {
-                    if app.main.nfc.isAvailable {
-                        app.main.nfc.startSession()
-                    } else {
-                        showingNFCAlert = true
-                    }
+                    app.main.nfc.startSession()
                 }
 #endif
             }
-        }
-        .alert("NFC not supported", isPresented: $showingNFCAlert) {
-            
-        } message: {
-            Text("This device doesn't allow scanning the Libre.")
         }
     }
 }

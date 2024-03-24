@@ -14,8 +14,8 @@ extension HealthKit {
         
         let query = HKSampleQuery(
             sampleType: glucoseType,
-            predicate: nil,
-            limit: limit,
+            predicate:  nil,
+            limit:      limit,
             sortDescriptors: [sortDescriptor]
             
         ) { [self] query, results, error in
@@ -43,8 +43,8 @@ extension HealthKit {
                         )
                 }
                 
-                DispatchQueue.main.async {
-                    self.main.history.healthKitGlucose = samples
+                DispatchQueue.main.async { [self] in
+                    main.history.glucose = samples
                     handler?(samples)
                 }
             }

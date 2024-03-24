@@ -10,19 +10,7 @@ struct GlucosyApp: App {
     @UIApplicationDelegateAdaptor(MainDelegate.self) private var main
 #endif
     
-    private let container: ModelContainer
-    
-    init() {
-        let schema = Schema([
-            Pen.self
-        ])
-        
-        do {
-            container = try ModelContainer(for: schema)
-        } catch {
-            fatalError("Failed to create model container")
-        }
-    }
+    let container: ModelContainer
     
 #if os(iOS)
     @State private var overlayWindow: PassThroughWindow?

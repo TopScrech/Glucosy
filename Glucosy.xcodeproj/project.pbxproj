@@ -109,6 +109,8 @@
 		F31FF6802BA98F67003EE8F2 /* New Record Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */; };
 		F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF6822BA9D25C003EE8F2 /* Debug View.swift */; };
 		F329496B2BB0AFBC00328C6A /* Dynamic Shortcurts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496A2BB0AFBC00328C6A /* Dynamic Shortcurts.swift */; };
+		F329496D2BB0C08500328C6A /* App Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496C2BB0C08500328C6A /* App Init.swift */; };
+		F329496E2BB0C08700328C6A /* App Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496C2BB0C08500328C6A /* App Init.swift */; };
 		F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* New Record Selector.swift */; };
 		F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */; };
 		F32ED8F62BA8B11900CD234C /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F52BA8B11900CD234C /* Delete.swift */; };
@@ -308,6 +310,7 @@
 		F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Notification.swift"; sourceTree = "<group>"; };
 		F31FF6822BA9D25C003EE8F2 /* Debug View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debug View.swift"; sourceTree = "<group>"; };
 		F329496A2BB0AFBC00328C6A /* Dynamic Shortcurts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dynamic Shortcurts.swift"; sourceTree = "<group>"; };
+		F329496C2BB0C08500328C6A /* App Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Init.swift"; sourceTree = "<group>"; };
 		F32ED8F12BA8921D00CD234C /* New Record Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Selector.swift"; sourceTree = "<group>"; };
 		F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Glucose.swift"; sourceTree = "<group>"; };
 		F32ED8F52BA8B11900CD234C /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
@@ -465,6 +468,7 @@
 				C5AAA61E2981CF7200CA3EC1 /* Glucosy.entitlements */,
 				C5E4004329825C710021C6B7 /* Media */,
 				C5AAA6182981CF7000CA3EC1 /* App.swift */,
+				F329496C2BB0C08500328C6A /* App Init.swift */,
 				F32949692BB0AFA800328C6A /* Delegate */,
 				F35AFC532BA490C70065145A /* App State.swift */,
 				F35AFC562BA490FF0065145A /* Logging.swift */,
@@ -905,6 +909,7 @@
 			files = (
 				C59184462981E73400A6DA89 /* App.swift in Sources */,
 				F3B812132BB00EBF0005C114 /* Body Mass.swift in Sources */,
+				F329496E2BB0C08700328C6A /* App Init.swift in Sources */,
 				C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */,
 				C5916E5529827E860051AC06 /* Home View.swift in Sources */,
 				C5E4006C29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
@@ -992,6 +997,7 @@
 				F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */,
 				F35AFC712BA4FE640065145A /* HealthKit.swift in Sources */,
 				F31C70982BA7B9A300A5BFCD /* Notification Manager.swift in Sources */,
+				F329496D2BB0C08500328C6A /* App Init.swift in Sources */,
 				F35AFC5A2BA4913B0065145A /* Trend Arrow.swift in Sources */,
 				F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */,
 				F3E69B482BA6E67000A5469A /* Write Insulin.swift in Sources */,

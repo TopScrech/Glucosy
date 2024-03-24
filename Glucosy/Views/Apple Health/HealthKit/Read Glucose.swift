@@ -44,7 +44,7 @@ extension HealthKit {
                 }
                 
                 DispatchQueue.main.async {
-                    self.main.history.storedValues = samples
+                    self.main.history.healthKitGlucose = samples
                     handler?(samples)
                 }
             }

@@ -7,13 +7,19 @@ struct CarbohydratesCard: View {
         self.carbs = carbs
     }
     
+    private var date: String {
+        carbs.date.shortDateTime
+    }
+    
     var body: some View {
         HStack {
             Text(carbs.value)
             
             Spacer()
             
-            Text(carbs.date, format: .dateTime)
+            Text("\(date)")
+                .footnote()
+                .foregroundStyle(.secondary)
         }
         .monospacedDigit()
     }

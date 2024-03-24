@@ -7,11 +7,11 @@ struct HealthKitCard: View {
         self.glucose = glucose
     }
     
-    var date: String {
+    private var date: String {
         glucose.date.shortDateTime
     }
     
-    var source: String {
+    private var source: String {
         String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])
     }
     
@@ -34,7 +34,7 @@ struct HealthKitCard: View {
 
 #Preview {
     List {
-        HealthKitCard(History.test.storedValues.first!)
+        HealthKitCard(History.test.healthKitGlucose.first!)
     }
     .darkSchemePreferred()
 }

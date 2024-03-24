@@ -18,7 +18,7 @@ struct HealthKitLink: View {
                 
                 Image(systemName: "link")
                     .semibold()
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(.red)
             }
         }
         .foregroundStyle(.foreground)

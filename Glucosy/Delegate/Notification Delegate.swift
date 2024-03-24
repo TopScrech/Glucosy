@@ -31,7 +31,7 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
     
-    private func startNewScan() {
+    func startNewScan() {
         app.main.nfc.startSession()
     }
 }

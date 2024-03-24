@@ -1,5 +1,10 @@
 import SwiftUI
 
+// MARK: Workaround for double instantiation of MainDelegate
+#if os(iOS)
+var shortcutItemToProcess: UIApplicationShortcutItem?
+#endif
+
 extension MainDelegate {
     func addQuickActions() {
         UIApplication.shared.shortcutItems = [
@@ -18,7 +23,8 @@ extension MainDelegate {
             shortcutItemToProcess = shortcutItem
         }
         
-        let sceneConfiguration = UISceneConfiguration(name: "Custom Configuration", sessionRole: connectingSceneSession.role)
+        let sceneConfiguration = UISceneConfiguration(name: "Launch Configuration", sessionRole: connectingSceneSession.role)
+        
         sceneConfiguration.delegateClass = MainDelegate.self
         
         return sceneConfiguration
@@ -26,12 +32,15 @@ extension MainDelegate {
     
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         shortcutItemToProcess = shortcutItem
-        switch shortcutItem.type {
+    }
+    
+    func processDynamicShortcut(_ type: String) {
+        switch type {
         case "NFC":
-            nfc.startSession()
+            startNewScan()
             
         default:
-            print("Unknown dynamic shortcut: \(shortcutItem.type)")
+            print("Unknown dynamic shortcut: \(type)")
         }
     }
 }

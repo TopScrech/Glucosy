@@ -67,6 +67,12 @@ struct GlucosyApp: App {
             case .active :
                 /// Change dunamic shortcuts settings here
                 print("App in active")
+#if os(iOS)
+                if let type = shortcutItemToProcess?.type {
+                    main.processDynamicShortcut(type)
+                    shortcutItemToProcess = nil
+                }
+#endif
                 
 #if !os(watchOS)
                 UIApplication.shared.isIdleTimerDisabled = main.settings.caffeinated
@@ -76,8 +82,6 @@ struct GlucosyApp: App {
                 print("App is inactive")
                 
             case .background:
-                print("App in Back ground")
-                
 #if os(iOS)
                 main.addQuickActions()
 #endif

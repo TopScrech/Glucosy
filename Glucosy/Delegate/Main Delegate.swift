@@ -32,9 +32,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
     var libreLinkUp: LibreLinkUp?
     var nightscout: Nightscout?
     var eventKit: EventKit?
-    
-    var shortcutItemToProcess: UIApplicationShortcutItem?
-    
+        
     override init() {
         UserDefaults.standard.register(defaults: Settings.defaults)
         
@@ -158,16 +156,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             }
         }
     }
-    
-    // FIXME: causes double instantiation of MainDelegate
-    
-    //    public func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-    //        let sceneConfiguration = UISceneConfiguration(name: "LaunchConfiguration", sessionRole: connectingSceneSession.role)
-    //        sceneConfiguration.delegateClass = MainDelegate.self
-    //
-    //        return sceneConfiguration
-    //    }
-    
+        
     public func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let shortcutItem = connectionOptions.shortcutItem {
             if shortcutItem.type == "NFC" {

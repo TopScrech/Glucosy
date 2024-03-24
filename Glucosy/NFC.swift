@@ -264,6 +264,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 if retry > 0 {
                     AudioServicesPlaySystemSound(1520)    // "pop" vibration
                     log("NFC: retry # \(retry)...")
+                    
                     try await Task.sleep(nanoseconds: 250_000_000)
                 }
                 
@@ -271,6 +272,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     try await session.connect(to: firstTag)
                     connectedTag = tag
                     break
+                    
                 } catch {
                     if retry >= maxRetries {
                         session.invalidate(errorMessage: "Connection failure: \(error.localizedDescription)")

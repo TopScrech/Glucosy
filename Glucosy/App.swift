@@ -11,7 +11,7 @@ struct GlucosyApp: App {
 #endif
     
     private let container: ModelContainer
-
+    
     init() {
         let schema = Schema([
             Pen.self
@@ -63,16 +63,31 @@ struct GlucosyApp: App {
 #endif
         }
         .onChange(of: scenePhase) {
+            switch scenePhase {
+            case .active :
+                /// Change dunamic shortcuts settings here
+                print("App in active")
+                
 #if !os(watchOS)
-            if scenePhase == .active {
                 UIApplication.shared.isIdleTimerDisabled = main.settings.caffeinated
-            }
 #endif
-            
-            if scenePhase == .background {
+                
+            case .inactive:
+                print("App is inactive")
+                
+            case .background:
+                print("App in Back ground")
+                
+#if os(iOS)
+                main.addQuickActions()
+#endif
+                
                 if main.settings.userLevel >= .devel {
                     main.debugLog("DEBUG: app went background at \(Date.now.shortTime)")
                 }
+                
+            @unknown default:
+                print("default")
             }
         }
     }

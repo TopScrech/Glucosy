@@ -108,6 +108,7 @@
 		F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67D2BA98AEF003EE8F2 /* Extension.swift */; };
 		F31FF6802BA98F67003EE8F2 /* New Record Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */; };
 		F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF6822BA9D25C003EE8F2 /* Debug View.swift */; };
+		F329496B2BB0AFBC00328C6A /* Dynamic Shortcurts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496A2BB0AFBC00328C6A /* Dynamic Shortcurts.swift */; };
 		F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* New Record Selector.swift */; };
 		F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */; };
 		F32ED8F62BA8B11900CD234C /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F52BA8B11900CD234C /* Delete.swift */; };
@@ -306,6 +307,7 @@
 		F31FF67D2BA98AEF003EE8F2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Notification.swift"; sourceTree = "<group>"; };
 		F31FF6822BA9D25C003EE8F2 /* Debug View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debug View.swift"; sourceTree = "<group>"; };
+		F329496A2BB0AFBC00328C6A /* Dynamic Shortcurts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dynamic Shortcurts.swift"; sourceTree = "<group>"; };
 		F32ED8F12BA8921D00CD234C /* New Record Selector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Selector.swift"; sourceTree = "<group>"; };
 		F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Delete Glucose.swift"; sourceTree = "<group>"; };
 		F32ED8F52BA8B11900CD234C /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
@@ -463,8 +465,7 @@
 				C5AAA61E2981CF7200CA3EC1 /* Glucosy.entitlements */,
 				C5E4004329825C710021C6B7 /* Media */,
 				C5AAA6182981CF7000CA3EC1 /* App.swift */,
-				C5E4007329825E050021C6B7 /* Main Delegate.swift */,
-				F3B8121D2BB07AC90005C114 /* Notification Delegate.swift */,
+				F32949692BB0AFA800328C6A /* Delegate */,
 				F35AFC532BA490C70065145A /* App State.swift */,
 				F35AFC562BA490FF0065145A /* Logging.swift */,
 				F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */,
@@ -581,6 +582,16 @@
 				F31FF67D2BA98AEF003EE8F2 /* Extension.swift */,
 			);
 			path = "In App Notification";
+			sourceTree = "<group>";
+		};
+		F32949692BB0AFA800328C6A /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4007329825E050021C6B7 /* Main Delegate.swift */,
+				F3B8121D2BB07AC90005C114 /* Notification Delegate.swift */,
+				F329496A2BB0AFBC00328C6A /* Dynamic Shortcurts.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		F35AFC5F2BA4917E0065145A /* Enums */ = {
@@ -990,6 +1001,7 @@
 				F3B812122BB00EBF0005C114 /* Body Mass.swift in Sources */,
 				F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */,
 				C5E4006229825C930021C6B7 /* Home View.swift in Sources */,
+				F329496B2BB0AFBC00328C6A /* Dynamic Shortcurts.swift in Sources */,
 				C5E4008229825E8B0021C6B7 /* Libre 2.swift in Sources */,
 				F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */,
 				F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */,

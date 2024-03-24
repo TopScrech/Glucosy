@@ -33,6 +33,8 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
     var nightscout: Nightscout?
     var eventKit: EventKit?
     
+    var shortcutItemToProcess: UIApplicationShortcutItem?
+    
     override init() {
         UserDefaults.standard.register(defaults: Settings.defaults)
         
@@ -174,16 +176,6 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
                 }
             }
         }
-    }
-    
-    public func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        if shortcutItem.type == "NFC" {
-            if nfc.isAvailable {
-                nfc.startSession()
-            }
-        }
-        
-        completionHandler(true)
     }
     
     public func rescan() {

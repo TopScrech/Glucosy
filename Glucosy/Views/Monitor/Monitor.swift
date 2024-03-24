@@ -3,8 +3,8 @@ import WidgetKit
 
 struct Monitor: View {
     @Environment(AppState.self) private var app: AppState
-    @Environment(Log.self) private var log: Log
-    @Environment(History.self) private var history: History
+    @Environment(Log.self)      private var log: Log
+    @Environment(History.self)  private var history: History
     @Environment(Settings.self) private var settings: Settings
     
     @State private var showingNFCAlert = false

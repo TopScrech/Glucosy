@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AppleHealthView: View {
     @Environment(AppState.self) private var app
-    @Environment(History.self) private var history
+    @Environment(History.self)  private var history
     
     @AppStorage("is_expanded_glucose") private var isExpandedGlucose = false
     @AppStorage("is_expanded_insulin") private var isExpandedInsulin = false

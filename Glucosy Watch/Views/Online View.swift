@@ -3,7 +3,7 @@ import Charts
 
 struct OnlineView: View {
     @Environment(AppState.self) private var app: AppState
-    @Environment(History.self) private var history: History
+    @Environment(History.self)  private var history: History
     @Environment(Settings.self) private var settings: Settings
     
     @State private var onlineCountdown = 0

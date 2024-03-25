@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct DebugView: View {
+    @Environment(AppState.self) private var app
+    @Environment(History.self)  private var history
+    
     @State private var scheduledNotifications: [UNNotificationRequest] = []
     
     private var notificationManager = NotificationManager()
@@ -31,6 +34,15 @@ struct DebugView: View {
                     }
                 }
             }
+            
+            // TODO: Delete all temperature data
+            //            Section("Delete HealthKit data") {
+            //                Button {
+            //
+            //                } label: {
+            //                    Text("")
+            //                }
+            //            }
         }
         .navigationTitle("Debug")
         .refreshableTask {
@@ -41,4 +53,5 @@ struct DebugView: View {
 
 #Preview {
     DebugView()
+        .glucosyPreview()
 }

@@ -424,7 +424,11 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
                     content.subtitle = ""
                     content.sound = .default
                     
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                    let trigger = UNTimeIntervalNotificationTrigger(
+                        timeInterval: 1,
+                        repeats: false
+                    )
+                    
                     let request = UNNotificationRequest(
                         identifier: "Glucosy",
                         content: content,
@@ -475,7 +479,9 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             }
             
             nightscout?.read { [self] values in
-                let newEntries = values.count > 0 ? entries.filter { $0.date > values[0].date } : entries
+                let newEntries = values.count > 0 ? entries.filter {
+                    $0.date > values[0].date
+                } : entries
                 
                 if newEntries.count > 0 {
                     nightscout?.post(entries: newEntries) { [self] data, response, error in

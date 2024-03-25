@@ -15,6 +15,10 @@ final class NotificationManager {
         }
     }
     
+    func scheduleNotification(_ request: UNNotificationRequest) {
+        UNUserNotificationCenter.current().add(request)
+    }
+    
     func scheduleScanReminder(_ interruptionLevel: UNNotificationInterruptionLevel = .timeSensitive) {
         let content = UNMutableNotificationContent()
         content.title = "Measure your glucose"

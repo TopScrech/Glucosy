@@ -471,7 +471,6 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             
             if newEntries.count > 0 {
                 healthKit?.writeGlucose(newEntries)
-                healthKit?.writeTemperature(newEntries)
                 healthKit?.readGlucose()
             }
             

@@ -226,6 +226,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 nightscout.read()
             }
         } else {
+            print("NFC unavailible")
             main.app.showingNfcAlert = true
         }
     }

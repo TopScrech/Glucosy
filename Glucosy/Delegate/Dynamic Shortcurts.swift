@@ -5,12 +5,6 @@ import SwiftUI
 var shortcutItemToProcess: UIApplicationShortcutItem?
 #endif
 
-final class DynamicShortcutsDelegate: UIResponder, UIWindowSceneDelegate {
-    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        shortcutItemToProcess = shortcutItem
-    }
-}
-
 extension MainDelegate {
     func addQuickActions() {
         UIApplication.shared.shortcutItems = [
@@ -24,6 +18,10 @@ extension MainDelegate {
         ]
     }
     
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        shortcutItemToProcess = shortcutItem
+    }
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         if let shortcutItem = options.shortcutItem {
             shortcutItemToProcess = shortcutItem
@@ -31,7 +29,7 @@ extension MainDelegate {
         
         let sceneConfiguration = UISceneConfiguration(name: "Launch Configuration", sessionRole: connectingSceneSession.role)
         
-        sceneConfiguration.delegateClass = DynamicShortcutsDelegate.self
+        sceneConfiguration.delegateClass = MainDelegate.self
         
         return sceneConfiguration
     }
@@ -39,7 +37,7 @@ extension MainDelegate {
     func processDynamicShortcut(_ type: String) {
         switch type {
         case "NFC":
-            startNewScan()
+            app.main.nfc.startSession()
             
         default:
             print("Unknown dynamic shortcut: \(type)")

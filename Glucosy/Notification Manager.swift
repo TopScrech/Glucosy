@@ -8,7 +8,7 @@ final class NotificationManager {
     }
     
     func requestPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, .criticalAlert]) { granted, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .criticalAlert]) { granted, error in
             if let error {
                 print("Notification permission denied: \(error.localizedDescription).")
             }

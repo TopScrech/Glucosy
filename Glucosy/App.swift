@@ -58,7 +58,6 @@ struct GlucosyApp: App {
 #if os(iOS)
                 if let type = shortcutItemToProcess?.type {
                     main.processDynamicShortcut(type)
-                    shortcutItemToProcess = nil
                 }
 #endif
                 

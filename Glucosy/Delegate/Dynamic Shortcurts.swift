@@ -1,9 +1,6 @@
 import SwiftUI
 
-// MARK: Workaround for double instantiation of MainDelegate
-#if os(iOS)
 var shortcutItemToProcess: UIApplicationShortcutItem?
-#endif
 
 extension MainDelegate {
     func addQuickActions() {
@@ -42,5 +39,7 @@ extension MainDelegate {
         default:
             print("Unknown dynamic shortcut: \(type)")
         }
+        
+        shortcutItemToProcess = nil
     }
 }

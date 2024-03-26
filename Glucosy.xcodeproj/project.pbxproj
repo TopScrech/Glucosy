@@ -456,7 +456,6 @@
 				C5AAA6172981CF7000CA3EC1 /* Glucosy */,
 				C59960E02981E381005999C2 /* Glucosy Watch */,
 				C581D5892B0E699C002A4633 /* Widgets */,
-				F31FF67C2BA98AD5003EE8F2 /* In App Notification */,
 				C5AAA6162981CF7000CA3EC1 /* Products */,
 				C5BE8E5A29916D3600604237 /* Frameworks */,
 			);
@@ -634,6 +633,7 @@
 		F35AFC6D2BA4E5360065145A /* Depricated */ = {
 			isa = PBXGroup;
 			children = (
+				F31FF67C2BA98AD5003EE8F2 /* In App Notification */,
 				F3D781222BAE314A00C2DE1E /* Shell and Realm */,
 				F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */,
 				F32ED8F72BA8B13A00CD234C /* Delete Inulin.swift */,

@@ -17,18 +17,37 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
     
     // Handle notification actions
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print(response.actionIdentifier)
+        let categoryIdentifier = response.notification.request.content.categoryIdentifier
         
-        switch response.actionIdentifier {
-        case "START_NEW_SCAN":
-            app.main.nfc.startSession()
+        if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
             
-        case "NEW_RECORD":
-            app.sheetMealtime = true
+            //MARK: Default Actions
             
-        default:
-            print("Unknown identifier")
-            break
+            switch categoryIdentifier {
+            case "ALARM":
+                app.sheetMealtime = true
+                
+            case "REMINDER":
+                app.main.nfc.startSession()
+                
+            default:
+                break
+            }
+        } else {
+            
+            //MARK: Custom Actions
+            
+            switch response.actionIdentifier {
+            case "START_NEW_SCAN":
+                app.main.nfc.startSession()
+                
+            case "NEW_RECORD":
+                app.sheetMealtime = true
+                
+            default:
+                print("Unknown identifier \(response.actionIdentifier)")
+                print(categoryIdentifier)
+            }
         }
         
         completionHandler()

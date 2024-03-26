@@ -29,6 +29,7 @@ struct HomeView: View {
                     Label("Data", systemImage: "tray.full.fill")
                 }
                 
+#if !os(macOS) && !targetEnvironment(macCatalyst)
                 NavigationView {
                     AppleHealthView()
                 }
@@ -36,6 +37,7 @@ struct HomeView: View {
                 .tabItem {
                     Label("Apple Health", systemImage: "heart")
                 }
+#endif
                 
                 NavigationView {
                     SettingsView()

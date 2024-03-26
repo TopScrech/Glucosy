@@ -380,62 +380,50 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         
         if history.factoryTrend.count > 6 {
             let deltaMinutes = history.factoryTrend[5].value > 0 ? 5 : 6
+            
             let delta = (history.factoryTrend[0].value > 0 ? history.factoryTrend[0].value : (history.factoryTrend[1].value > 0 ? history.factoryTrend[1].value : history.factoryTrend[2].value)) - history.factoryTrend[deltaMinutes].value
             
             app.trendDeltaMinutes = deltaMinutes
             app.trendDelta = delta
         }
         
-        var title = currentGlucose > 0 ? currentGlucose.units : "---"
-        
         let snoozed = settings.lastAlarmDate.timeIntervalSinceNow >= -Double(settings.alarmSnoozeInterval * 60) && settings.disabledNotifications
         
         if currentGlucose > 0 && (currentGlucose > Int(settings.alarmHigh) || currentGlucose < Int(settings.alarmLow)) {
+            
             log("ALARM: current glucose: \(currentGlucose.units) (settings: high: \(settings.alarmHigh.units), low: \(settings.alarmLow.units), muted audio: \(settings.mutedAudio ? "yes" : "no")), \(snoozed ? "" : "not ")snoozed")
             
             if !snoozed {
                 playAlarm()
                 
-                if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications { // TODO: notifications settings
-                    title += "  \(settings.displayingMillimoles ? GlucoseUnit.mmoll : GlucoseUnit.mgdl)"
+                // TODO: notifications settings
+                if (settings.calendarTitle == "" || !settings.calendarAlarmIsOn) && !settings.disabledNotifications {
                     
+                    let glucose = currentGlucose > 0 ? currentGlucose.units : "---"
+                    
+                    let unit = settings.displayingMillimoles ? GlucoseUnit.mmoll.rawValue : GlucoseUnit.mgdl.rawValue
+                    
+                    var titleAlarm = ""
                     let alarm = app.glycemicAlarm
                     
                     if alarm != .unknown {
-                        title += "  \(alarm.shortDescription)"
+                        titleAlarm = alarm.shortDescription
                     } else {
                         if currentGlucose > Int(settings.alarmHigh) {
-                            title += "  HIGH"
+                            titleAlarm = "HIGH"
                         }
                         
                         if currentGlucose < Int(settings.alarmLow) {
-                            title += "  LOW"
+                            titleAlarm = "LOW"
                         }
                     }
                     
                     let trendArrow = app.trendArrow
+                    let trend = trendArrow != .unknown ? trendArrow.symbol : ""
+                                        
+                    let title = "\(glucose) \(unit) \(titleAlarm) \(trend)"
                     
-                    if trendArrow != .unknown {
-                        title += "  \(trendArrow.symbol)"
-                    }
-                    
-                    let content = UNMutableNotificationContent()
-                    content.title = title
-                    content.subtitle = ""
-                    content.sound = .default
-                    
-                    let trigger = UNTimeIntervalNotificationTrigger(
-                        timeInterval: 1,
-                        repeats: false
-                    )
-                    
-                    let request = UNNotificationRequest(
-                        identifier: "Glucosy",
-                        content: content,
-                        trigger: trigger
-                    )
-                    
-                    UNUserNotificationCenter.current().add(request)
+                    NotificationManager.shared.scheduleAlarmReminder(title)
                 }
             }
         }

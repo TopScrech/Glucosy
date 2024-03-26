@@ -162,6 +162,8 @@
 		F35AFC912BA508A60065145A /* Carbohydrates Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */; };
 		F35AFC922BA508A60065145A /* Apple Health View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8C2BA508A60065145A /* Apple Health View.swift */; };
 		F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8D2BA508A60065145A /* HealthKit Card.swift */; };
+		F35BE2722BB34E4C0015A745 /* Alarm Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */; };
+		F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2752BB359E90015A745 /* Reminder Notification.swift */; };
 		F3B069572BAB9F150095EFEE /* AC Glucose Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */; };
 		F3B069602BABB7000095EFEE /* Read Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0695F2BABB7000095EFEE /* Read Carbs.swift */; };
 		F3B069622BABB7430095EFEE /* Carbohydrates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC7E2BA500130065145A /* Carbohydrates.swift */; };
@@ -347,6 +349,8 @@
 		F35AFC8B2BA508A60065145A /* Carbohydrates Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Carbohydrates Card.swift"; sourceTree = "<group>"; };
 		F35AFC8C2BA508A60065145A /* Apple Health View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Apple Health View.swift"; sourceTree = "<group>"; };
 		F35AFC8D2BA508A60065145A /* HealthKit Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthKit Card.swift"; sourceTree = "<group>"; };
+		F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alarm Notification.swift"; sourceTree = "<group>"; };
+		F35BE2752BB359E90015A745 /* Reminder Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder Notification.swift"; sourceTree = "<group>"; };
 		F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Glucose Configuration.swift"; sourceTree = "<group>"; };
 		F3B0695F2BABB7000095EFEE /* Read Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read Carbs.swift"; sourceTree = "<group>"; };
 		F3B069632BAC13310095EFEE /* AC Carbs Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Carbs Configuration.swift"; sourceTree = "<group>"; };
@@ -484,7 +488,7 @@
 				F35AFC502BA4908B0065145A /* History.swift */,
 				F35AFC4D2BA490100065145A /* UI Tests.swift */,
 				F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */,
-				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
+				F35BE2702BB34E210015A745 /* Notifications */,
 				F35AFC5F2BA4917E0065145A /* Enums */,
 				F35AFC6C2BA492080065145A /* SwiftData */,
 				C5E4004D29825C930021C6B7 /* Views */,
@@ -670,6 +674,16 @@
 				F35AFC722BA4FE940065145A /* HealthKit */,
 			);
 			path = "Apple Health";
+			sourceTree = "<group>";
+		};
+		F35BE2702BB34E210015A745 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
+				F35BE2752BB359E90015A745 /* Reminder Notification.swift */,
+				F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		F3B069552BAB9F030095EFEE /* Lockscreen */ = {
@@ -985,6 +999,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F35AFC7F2BA500130065145A /* Carbohydrates.swift in Sources */,
+				F35BE2722BB34E4C0015A745 /* Alarm Notification.swift in Sources */,
 				C5E4008B29825EC40021C6B7 /* Events.swift in Sources */,
 				F35AFC572BA490FF0065145A /* Logging.swift in Sources */,
 				F32ED8F62BA8B11900CD234C /* Delete.swift in Sources */,
@@ -1059,6 +1074,7 @@
 				C5E4006329825C930021C6B7 /* Hamburger Menu.swift in Sources */,
 				F31C70962BA7B01800A5BFCD /* New Record View.swift in Sources */,
 				C5E4007429825E050021C6B7 /* Main Delegate.swift in Sources */,
+				F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */,
 				F32949732BB0DCAC00328C6A /* Read Temperature.swift in Sources */,
 				C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */,
 				C5E4007629825E370021C6B7 /* Glucose.swift in Sources */,

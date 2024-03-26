@@ -7,10 +7,15 @@ extension MainDelegate {
         UIApplication.shared.shortcutItems = [
             .init(
                 type: "NFC",
-                localizedTitle: "New Scan",
-                localizedSubtitle: "Start a new NFC scan",
-                icon: .init(systemImageName: "sensor.tag.radiowaves.forward.fill"),
-                userInfo: nil
+                localizedTitle: "Scan",
+                localizedSubtitle: "",
+                icon: .init(systemImageName: "sensor.tag.radiowaves.forward.fill")
+            ),
+            .init(
+                type: "NEW_RECORD",
+                localizedTitle: "New record",
+                localizedSubtitle: "",
+                icon: .init(systemImageName: "note.text.badge.plus")
             )
         ]
     }
@@ -35,6 +40,9 @@ extension MainDelegate {
         switch type {
         case "NFC":
             app.main.nfc.startSession()
+            
+        case "NEW_RECORD":
+            app.sheetMealtime = true
             
         default:
             print("Unknown dynamic shortcut: \(type)")

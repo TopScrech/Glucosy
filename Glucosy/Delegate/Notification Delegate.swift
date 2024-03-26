@@ -23,6 +23,9 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
         case "START_NEW_SCAN":
             app.main.nfc.startSession()
             
+        case "NEW_RECORD":
+            app.sheetMealtime = true
+            
         default:
             print("Unknown identifier")
             break

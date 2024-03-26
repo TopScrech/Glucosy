@@ -2,6 +2,12 @@ import SwiftUI
 
 var shortcutItemToProcess: UIApplicationShortcutItem?
 
+final class DynamicShortcutsDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        shortcutItemToProcess = shortcutItem
+    }
+}
+
 extension MainDelegate {
     func addQuickActions() {
         UIApplication.shared.shortcutItems = [
@@ -20,10 +26,6 @@ extension MainDelegate {
         ]
     }
     
-    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        shortcutItemToProcess = shortcutItem
-    }
-    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         if let shortcutItem = options.shortcutItem {
             shortcutItemToProcess = shortcutItem
@@ -31,7 +33,7 @@ extension MainDelegate {
         
         let sceneConfiguration = UISceneConfiguration(name: "Launch Configuration", sessionRole: connectingSceneSession.role)
         
-        sceneConfiguration.delegateClass = MainDelegate.self
+        sceneConfiguration.delegateClass = DynamicShortcutsDelegate.self
         
         return sceneConfiguration
     }

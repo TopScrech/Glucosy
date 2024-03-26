@@ -10,7 +10,7 @@ extension HealthKit {
             $0.temperature != 0
         }
         
-        let samples = data.map { glucose in
+        let samples = nonZeroData.map { glucose in
             HKQuantitySample(
                 type: bodyTemperatureType,
                 quantity: HKQuantity(

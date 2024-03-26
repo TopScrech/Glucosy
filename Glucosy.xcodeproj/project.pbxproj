@@ -22,7 +22,7 @@
 		C581D58F2B0E699C002A4633 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		C581D5912B0E699C002A4633 /* App Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D5902B0E699C002A4633 /* App Intent.swift */; };
 		C581D5932B0E699D002A4633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C581D5922B0E699D002A4633 /* Assets.xcassets */; };
-		C581D5972B0E699D002A4633 /* GlucosyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C581D5972B0E699D002A4633 /* Glucosy Widget Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C581D5842B0E699C002A4633 /* Glucosy Widget Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5916E4E29827E860051AC06 /* Data View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4629827E860051AC06 /* Data View.swift */; };
 		C5916E4F29827E860051AC06 /* Settings View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4729827E860051AC06 /* Settings View.swift */; };
 		C5916E5029827E860051AC06 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5916E4829827E860051AC06 /* Details.swift */; };
@@ -219,7 +219,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C581D5972B0E699D002A4633 /* GlucosyWidgetExtension.appex in Embed Foundation Extensions */,
+				C581D5972B0E699D002A4633 /* Glucosy Widget Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,7 +244,7 @@
 		C53F77C529894478004F275A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C55D12B329ACB5E00050F567 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		C56869692B30469000B11687 /* NFC Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NFC Tools.swift"; sourceTree = "<group>"; };
-		C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GlucosyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C581D5842B0E699C002A4633 /* Glucosy Widget Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Glucosy Widget Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C581D5852B0E699C002A4633 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C581D5872B0E699C002A4633 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		C581D58A2B0E699C002A4633 /* Glucosy Widget Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widget Bundle.swift"; sourceTree = "<group>"; };
@@ -466,7 +466,7 @@
 			children = (
 				C5AAA6152981CF7000CA3EC1 /* Glucosy.app */,
 				C59960DF2981E381005999C2 /* Glucosy Watch.app */,
-				C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */,
+				C581D5842B0E699C002A4633 /* Glucosy Widget Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -752,9 +752,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C581D5832B0E699C002A4633 /* GlucosyWidgetExtension */ = {
+		C581D5832B0E699C002A4633 /* Glucosy Widget Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C581D59C2B0E699D002A4633 /* Build configuration list for PBXNativeTarget "GlucosyWidgetExtension" */;
+			buildConfigurationList = C581D59C2B0E699D002A4633 /* Build configuration list for PBXNativeTarget "Glucosy Widget Extension" */;
 			buildPhases = (
 				C581D5802B0E699C002A4633 /* Sources */,
 				C581D5812B0E699C002A4633 /* Frameworks */,
@@ -764,12 +764,12 @@
 			);
 			dependencies = (
 			);
-			name = GlucosyWidgetExtension;
+			name = "Glucosy Widget Extension";
 			packageProductDependencies = (
 				F3CA0ACE2BAE45EE0055398F /* ScrechKit */,
 			);
 			productName = DiaBLEWidgetExtension;
-			productReference = C581D5842B0E699C002A4633 /* GlucosyWidgetExtension.appex */;
+			productReference = C581D5842B0E699C002A4633 /* Glucosy Widget Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		C59960DE2981E381005999C2 /* Glucosy Watch */ = {
@@ -861,7 +861,7 @@
 			targets = (
 				C5AAA6142981CF7000CA3EC1 /* Glucosy */,
 				C59960DE2981E381005999C2 /* Glucosy Watch */,
-				C581D5832B0E699C002A4633 /* GlucosyWidgetExtension */,
+				C581D5832B0E699C002A4633 /* Glucosy Widget Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -1093,7 +1093,7 @@
 /* Begin PBXTargetDependency section */
 		C581D5962B0E699D002A4633 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C581D5832B0E699C002A4633 /* GlucosyWidgetExtension */;
+			target = C581D5832B0E699C002A4633 /* Glucosy Widget Extension */;
 			targetProxy = C581D5952B0E699D002A4633 /* PBXContainerItemProxy */;
 		};
 		C5BE8E5D29916D3600604237 /* PBXTargetDependency */ = {
@@ -1490,7 +1490,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C581D59C2B0E699D002A4633 /* Build configuration list for PBXNativeTarget "GlucosyWidgetExtension" */ = {
+		C581D59C2B0E699D002A4633 /* Build configuration list for PBXNativeTarget "Glucosy Widget Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C581D59A2B0E699D002A4633 /* Debug */,

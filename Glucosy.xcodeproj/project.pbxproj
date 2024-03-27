@@ -164,6 +164,7 @@
 		F35AFC932BA508A60065145A /* HealthKit Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8D2BA508A60065145A /* HealthKit Card.swift */; };
 		F35BE2722BB34E4C0015A745 /* Alarm Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */; };
 		F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2752BB359E90015A745 /* Reminder Notification.swift */; };
+		F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */; };
 		F3B069572BAB9F150095EFEE /* AC Glucose Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */; };
 		F3B069602BABB7000095EFEE /* Read Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0695F2BABB7000095EFEE /* Read Carbs.swift */; };
 		F3B069622BABB7430095EFEE /* Carbohydrates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC7E2BA500130065145A /* Carbohydrates.swift */; };
@@ -351,6 +352,7 @@
 		F35AFC8D2BA508A60065145A /* HealthKit Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HealthKit Card.swift"; sourceTree = "<group>"; };
 		F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alarm Notification.swift"; sourceTree = "<group>"; };
 		F35BE2752BB359E90015A745 /* Reminder Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder Notification.swift"; sourceTree = "<group>"; };
+		F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Functions.swift"; sourceTree = "<group>"; };
 		F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Glucose Configuration.swift"; sourceTree = "<group>"; };
 		F3B0695F2BABB7000095EFEE /* Read Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read Carbs.swift"; sourceTree = "<group>"; };
 		F3B069632BAC13310095EFEE /* AC Carbs Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Carbs Configuration.swift"; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 			children = (
 				C5E4005529825C930021C6B7 /* Monitor.swift */,
 				C5E4005329825C930021C6B7 /* Graph.swift */,
+				F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */,
 			);
 			path = Monitor;
 			sourceTree = "<group>";
@@ -1073,6 +1076,7 @@
 				F35AFC642BA4919F0065145A /* Glycemic Alarm.swift in Sources */,
 				C5E4006329825C930021C6B7 /* Hamburger Menu.swift in Sources */,
 				F31C70962BA7B01800A5BFCD /* New Record View.swift in Sources */,
+				F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */,
 				C5E4007429825E050021C6B7 /* Main Delegate.swift in Sources */,
 				F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */,
 				F32949732BB0DCAC00328C6A /* Read Temperature.swift in Sources */,

@@ -143,6 +143,7 @@ struct Console: View {
                     UIApplication.shared.isIdleTimerDisabled = settings.caffeinated
                 } label: {
                     Image(systemName: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer" )
+                        .tint(.latte)
                 }
             }
             ToolbarItemGroup(placement: .navigationBarTrailing) {

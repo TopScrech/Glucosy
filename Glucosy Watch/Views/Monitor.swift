@@ -241,7 +241,7 @@ struct Monitor: View {
                     settings.caffeinated.toggle()
                 } label: {
                     Image(systemName: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer")
-                        .foregroundColor(.blue)
+                        .tint(.latte)
                 }
             }
         }

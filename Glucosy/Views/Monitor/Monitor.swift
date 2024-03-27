@@ -117,10 +117,13 @@ struct Monitor: View {
                     }
                 }
                 
-                if app.device != nil && (app.device.battery > -1 || app.device.rssi != 0) {
+                let battery = app.device.battery
+                let rssi = app.device.rssi
+                
+                if app.device != nil && (battery > -1 || rssi != 0) {
                     VStack {
-                        if app.device.battery > -1 {
-                            let battery = app.device.battery
+                        if battery > -1 {
+                            let battery = battery
                             
                             HStack(spacing: 4) {
                                 let ext = battery > 95 ? 100 :
@@ -130,16 +133,9 @@ struct Monitor: View {
                                 
                                 Image(systemName: "battery.\(ext)")
                                 
-                                Text("\(app.device.battery)%")
+                                Text("\(battery)%")
                             }
-                            .foregroundColor(app.device.battery > 10 ? .green : .red)
-                        }
-                        
-                        if app.device.rssi != 0 {
-                            Text("RSSI: ")
-                                .foregroundColor(Color(.lightGray)) +
-                            
-                            Text("\(app.device.rssi) dB")
+                            .foregroundColor(battery > 10 ? .green : .red)
                         }
                     }
                 }
@@ -206,6 +202,7 @@ struct Monitor: View {
                     UIApplication.shared.isIdleTimerDisabled = settings.caffeinated
                 } label: {
                     Image(systemName: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer")
+                        .tint(.latte)
                 }
             }
             

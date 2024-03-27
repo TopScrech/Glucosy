@@ -2,6 +2,7 @@ import SwiftUI
 import Charts
 
 struct Graph: View {
+    @Environment(AppState.self) private var app: AppState
     @Environment(History.self) private var history: History
     @Environment(Settings.self) private var settings: Settings
     
@@ -197,59 +198,140 @@ struct Graph: View {
             //    //            }
             //            }
             
+            Button {
+                print(history.glucose)
+            } label: {
+                Text("Test")
+            }
+            
             Chart {
-                ForEach(history.factoryValues, id: \.self) { value in
-                    LineMark(
-                        x: .value("Time", value.date),
-                        y: .value("Glucose", value.value)
-                    )
-                    .foregroundStyle(.yellow)
+                let yesterday = Date().addingTimeInterval(-86400)
+                
+                let last24Insulin = history.insulin.filter { insulin in
+                    insulin.date > yesterday
                 }
                 
-                ForEach(history.rawValues, id: \.self) { value in
-                    LineMark(
-                        x: .value("Time", value.date),
-                        y: .value("Glucose", value.value)
-                    )
-                    .foregroundStyle(.orange)
+                let last24Glucose = history.glucose.filter { glucose in
+                    glucose.date > yesterday
                 }
                 
-                ForEach(history.glucose, id: \.self) { value in
-                    LineMark(
-                        x: .value("Time", value.date),
-                        y: .value("Glucose", value.value)
-                    )
-                    .foregroundStyle(.red)
+                let last24Carbs = history.carbs.filter { carbs in
+                    carbs.date > yesterday
                 }
+                
+                ForEach(last24Glucose, id: \.self) { glucose in
+                    if let value = Double(glucose.value.units) {
+                        LineMark(
+                            x: .value("Time", glucose.date),
+                            y: .value("Glucose", value)
+                        )
+                        .foregroundStyle(.pink)
+                    }
+                }
+                
+                ForEach(last24Carbs, id: \.self) { carbs in
+                    PointMark(
+                        x: .value("Date", carbs.date),
+                        y: .value("Carbs", 0)
+                    )
+                    .opacity(0)
+                    .foregroundStyle(.green)
+                    .annotation(overflowResolution: .automatic) {
+                        VStack(spacing: 2) {
+                            Text(carbs.value)
+                                .fontSize(8)
+                            
+                            Image(systemName: "fork.knife")
+                                .foregroundStyle(.green)
+                        }
+                    }
+                }
+                
+                ForEach(last24Insulin, id: \.self) { insulin in
+                    PointMark(
+                        x: .value("Date", insulin.date),
+                        y: .value("Insulin", -2)
+                    )
+                    .opacity(0)
+                    .foregroundStyle(insulin.type == .basal ? .purple : .yellow)
+                    .annotation {
+                        VStack(spacing: 2) {
+                            Text(insulin.value)
+                                .fontSize(8)
+                            
+                            Image(systemName: insulin.type == .basal ? "syringe.fill" : "syringe")
+                                .foregroundStyle(insulin.type == .basal ? .purple : .yellow)
+                        }
+                    }
                     
+                    // BarMark(
+                    //     x: .value("Time", insulin.date),
+                    //     y: .value("Insulin", insulin.value)
+                    // )
+                    // .foregroundStyle(insulin.type == .basal ? .purple : .yellow)
+                    
+                    // RuleMark(
+                    //     x: .value("Time", value.date)
+                    // )
+                    // .foregroundStyle(.yellow)
+                    
+                    // LineMark(
+                    //     x: .value("Time", insulin.date),
+                    //     y: .value("Insulin", insulin.value)
+                    // )
+                }
+                
+                //                ForEach(history.rawValues, id: \.self) { value in
+                //                    LineMark(
+                //                        x: .value("Time", value.date),
+                //                        y: .value("Glucose", value.value.units)
+                //                    )
+                //                    .foregroundStyle(.orange)
+                //                }
+                //
+                //                ForEach(history.glucose, id: \.self) { value in
+                //                    LineMark(
+                //                        x: .value("Time", value.date),
+                //                        y: .value("Glucose", value.value.units)
+                //                    )
+                //                    .foregroundStyle(.red)
+                //                }
+                
                 //                        path.addRect(CGRect(x: 31, y: height - settings.targetHigh * yScale + 1.0, width: width - 2, height: (settings.targetHigh - settings.targetLow) * yScale - 1))
                 
-                if let last = history.glucose.last?.date,
-                   let first = history.glucose.first?.date,
-                   let targetLow = Int(settings.targetLow.units),
-                   let targetHigh = Int(settings.targetHigh.units) {
-                    RectangleMark(
-                        xStart: .value("Start", first),
-                        xEnd: .value("End", last),
-                        yStart: .value("Low", targetLow),
-                        yEnd: .value("High", targetHigh)
-//                        yEnd: .value("High", 15 * 18.0182)
-                    )
-                    .foregroundStyle(.green.opacity(0.15))
-                }
+                //                if let last = history.glucose.last?.date,
+                //                   let first = history.glucose.first?.date,
+                //                   let targetLow = Int(settings.targetLow.units),
+                //                   let targetHigh = Int(settings.targetHigh.units) {
+                //                    RectangleMark(
+                //                        xStart: .value("Start", first),
+                //                        xEnd: .value("End", last),
+                //                        yStart: .value("Low", targetLow),
+                //                        yEnd: .value("High", targetHigh)
+                //                        //                        yEnd: .value("High", 15 * 18.0182)
+                //                    )
+                //                    .foregroundStyle(.green.opacity(0.15))
+                //                }
                 
-//                RectangleMark(
-//                    x: .value("", 0),
-//                    y: .value("", 3.9 * 18.0182),
-//                    width: .automatic,
-//                    height: .fixed((15 - 3.9) * 18.0182)
-//                )
-//                .foregroundStyle(.green.opacity(0.15))
+                RuleMark(y: .value("Alarm Low", Double(settings.alarmLow.units)!))
+                    .foregroundStyle(.red.opacity(0.5))
                 
-                //                AreaMark(
-                //                    x: .value("", settings.targetHigh),
-//                    y: .value("", 0)
-//                )
+                RuleMark(y: .value("Alarm High", Double(settings.alarmHigh.units)!))
+                    .foregroundStyle(.red.opacity(0.5))
+                
+                RectangleMark(
+                    xStart: .value("", Date().addingTimeInterval(-86400)),
+                    xEnd: .value("", Date()),
+                    yStart: .value("Min", Double(settings.targetLow.units)!),
+                    yEnd: .value("Max", Double(settings.targetHigh.units)!)
+                )
+                .foregroundStyle(.green.opacity(0.15))
+            }
+            .chartYScale(domain: -2...20)
+            .task {
+                app.main.healthKit?.readGlucose(limit: 1000)
+                app.main.healthKit?.readCarbs()
+                app.main.healthKit?.readInsulin()
             }
         }
     }

@@ -6,10 +6,10 @@ struct Monitor: View {
     @Environment(Log.self)      private var log: Log
     @Environment(History.self)  private var history: History
     @Environment(Settings.self) private var settings: Settings
-        
+    
     @State private var readingCountdown = 0
     @State private var minutesSinceLastReading = 0
-        
+    
     var body: some View {
         VStack {
             HStack {
@@ -91,19 +91,7 @@ struct Monitor: View {
             }
             
             Graph()
-                .frame(height: 400)
                 .padding(.horizontal)
-            
-            //            Text("values: \(Double(history.values.last?.value ?? 0) / 18.0182)")
-            //            Text("factoryValues: \(Double(history.factoryValues.last?.value ?? 0) / 18.0182)") // orange
-            //            Text("rawValues: \(Double(history.rawValues.last?.value ?? 0) / 18.0182)")         // yellow
-            //            Text("factoryTrend: \(Double(history.factoryTrend.last?.value ?? 0)   / 18.0182)")
-            //            Text("rawTrend: \(Double(history.rawTrend.last?.value ?? 0)           / 18.0182)")
-            //            Text("glucose: \(Double(history.glucose.last?.value ?? 0)   / 18.0182)")
-            //
-            //            let factoryValues = history.factoryValues.map(\.value).map {
-            //                Double($0) / 18.0182
-            //            }
             
             HStack(spacing: 12) {
                 if app.sensor != nil && (app.sensor.state != .unknown || app.sensor.serial != "") {
@@ -138,12 +126,12 @@ struct Monitor: View {
                             .foregroundColor(battery > 10 ? .green : .red)
                         }
                         
-                        if app.device.rssi != 0 {
-                            Text("RSSI: ")
-                                .foregroundColor(Color(.lightGray)) +
-                            
-                            Text("\(app.device.rssi) dB")
-                        }
+                        //                        if app.device.rssi != 0 {
+                        //                            Text("RSSI: ")
+                        //                                .foregroundColor(Color(.lightGray)) +
+                        //
+                        //                            Text("\(app.device.rssi) dB")
+                        //                        }
                     }
                 }
             }

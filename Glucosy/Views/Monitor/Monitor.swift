@@ -117,13 +117,13 @@ struct Monitor: View {
                     }
                 }
                 
-                let battery = app.device.battery
-                let rssi = app.device.rssi
+                // let battery = app.device.battery
+                // let battery = app.device.battery
                 
-                if app.device != nil && (battery > -1 || rssi != 0) {
+                if app.device != nil && (app.device.battery > -1 || app.device.rssi != 0) {
                     VStack {
-                        if battery > -1 {
-                            let battery = battery
+                        if app.device.battery > -1 {
+                            let battery = app.device.battery
                             
                             HStack(spacing: 4) {
                                 let ext = battery > 95 ? 100 :
@@ -136,6 +136,13 @@ struct Monitor: View {
                                 Text("\(battery)%")
                             }
                             .foregroundColor(battery > 10 ? .green : .red)
+                        }
+                        
+                        if app.device.rssi != 0 {
+                            Text("RSSI: ")
+                                .foregroundColor(Color(.lightGray)) +
+                            
+                            Text("\(app.device.rssi) dB")
                         }
                     }
                 }

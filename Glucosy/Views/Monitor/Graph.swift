@@ -17,6 +17,10 @@ struct Graph: View {
     //        return Double(maxValues.max()!)
     //    }
     
+    var maxGlucose: Glucose? {
+        history.glucose.max(by: { $0.value > $1.value })
+    }
+    
     var body: some View {
         VStack {
             //            ZStack {
@@ -199,7 +203,7 @@ struct Graph: View {
             //            }
             
             Button {
-                print(history.glucose)
+                print(maxGlucose)
             } label: {
                 Text("Test")
             }
@@ -218,6 +222,7 @@ struct Graph: View {
                 let last24Carbs = history.carbs.filter { carbs in
                     carbs.date > yesterday
                 }
+                
                 
                 ForEach(last24Glucose, id: \.self) { glucose in
                     if let value = Double(glucose.value.units) {

@@ -54,6 +54,9 @@ struct Graph: View {
             }
             
             ForEach(last24Carbs, id: \.self) { carbs in
+                RuleMark(x: .value("Carbs", carbs.date))
+                    .foregroundStyle(.green.opacity(0.25))
+                
                 PointMark(
                     x: .value("Date", carbs.date),
                     y: .value("Carbs", 0)
@@ -79,6 +82,10 @@ struct Graph: View {
             }
             
             ForEach(last24Insulin, id: \.self) { insulin in
+                RuleMark(x: .value("Insulin", insulin.date))
+                    .foregroundStyle(insulin.type == .basal ? .purple : .yellow)
+                    .opacity(0.25)
+                
                 PointMark(
                     x: .value("Date", insulin.date),
                     y: .value("Insulin", -2)
@@ -93,48 +100,7 @@ struct Graph: View {
                         .foregroundStyle(insulin.type == .basal ? .purple : .yellow)
                         .footnote()
                 }
-                
-                // BarMark(
-                //     x: .value("Time", insulin.date),
-                //     y: .value("Insulin", insulin.value)
-                // )
-                // .foregroundStyle(insulin.type == .basal ? .purple : .yellow)
-                
-                // RuleMark(
-                //     x: .value("Time", value.date)
-                // )
-                // .foregroundStyle(.yellow)
             }
-            
-            //  ForEach(history.rawValues, id: \.self) { value in
-            //      LineMark(
-            //          x: .value("Time", value.date),
-            //          y: .value("Glucose", value.value.units)
-            //      )
-            //      .foregroundStyle(.orange)
-            //  }
-            //
-            //  ForEach(history.glucose, id: \.self) { value in
-            //      LineMark(
-            //          x: .value("Time", value.date),
-            //          y: .value("Glucose", value.value.units)
-            //      )
-            //      .foregroundStyle(.red)
-            //  }
-            //
-            //  if let last = history.glucose.last?.date,
-            //     let first = history.glucose.first?.date,
-            //     let targetLow = Int(settings.targetLow.units),
-            //     let targetHigh = Int(settings.targetHigh.units) {
-            //      RectangleMark(
-            //          xStart: .value("Start", first),
-            //          xEnd: .value("End", last),
-            //          yStart: .value("Low", targetLow),
-            //          yEnd: .value("High", targetHigh)
-            //          //                        yEnd: .value("High", 15 * 18.0182)
-            //      )
-            //      .foregroundStyle(.green.opacity(0.15))
-            //  }
             
             RuleMark(y: .value("Alarm Low", Double(settings.alarmLow.units)!))
                 .foregroundStyle(.red.opacity(0.5))
@@ -156,8 +122,6 @@ struct Graph: View {
                     
                     AxisValueLabel {
                         Text(hour)
-                        // Text(date, style: .time)
-                        //     .rotate(-90)
                     }
                     
                     AxisGridLine()

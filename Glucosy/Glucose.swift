@@ -122,7 +122,7 @@ struct Glucose: Hashable {
     var value = 0
     var temperature = 0.0
     var trendRate = 0.0
-    var trendArrow = 0  // TODO: enum
+    var trendArrow = 0 // TODO: enum
     var source = "Glucosy"
     var sample: HKQuantitySample?
     

@@ -235,11 +235,11 @@ struct DataView: View {
         }
         .navigationTitle("Data")
         .padding(.top, -4)
-        .edgesIgnoringSafeArea([.bottom])
+        .edgesIgnoringSafeArea(.bottom)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .footnote()
-        //        .monospaced()
-        //        .foregroundColor(Color(.lightGray))
+        // .monospaced()
+        // .foregroundColor(Color(.lightGray))
         .tint(.blue)
     }
 }

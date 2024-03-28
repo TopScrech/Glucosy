@@ -357,7 +357,7 @@ struct OnlineView: View {
         }
         .navigationTitle("Online")
         .padding(.top, -4)
-        .edgesIgnoringSafeArea([.bottom])
+        .edgesIgnoringSafeArea(.bottom)
         .buttonStyle(.plain)
         .tint(.blue)
     }

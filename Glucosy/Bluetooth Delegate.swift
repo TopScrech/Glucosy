@@ -803,8 +803,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
                 }
                 
             } else if app.device.type == .transmitter(.dexcom) {
-                // TODO:
-                // main.didParseSensor(app.transmitter.sensor!)
+                // TODO: main.didParseSensor(app.transmitter.sensor!)
                 return
                 
             } else if app.transmitter?.sensor != nil {

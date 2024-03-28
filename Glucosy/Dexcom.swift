@@ -75,7 +75,7 @@ class Dexcom: Transmitter {
         // Control
         case disconnectTx = 0x09
         
-        case exchangePakePayload = 0x0a  // Auth ONE/G7: 0A00, 0A01, 0A02 sent during initial pairing
+        case exchangePakePayload = 0x0a // Auth ONE/G7: 0A00, 0A01, 0A02 sent during initial pairing
         case changeAppLevelKeyTx = 0x0f
         case appLevelKeyAcceptedTx = 0x10
         
@@ -97,9 +97,9 @@ class Dexcom: Transmitter {
         
         case glucoseTx = 0x30
         case glucoseRx = 0x31
-        case calibrationDataTx = 0x32   // G6Bounds Tx/Rx
+        case calibrationDataTx = 0x32 // G6Bounds Tx/Rx
         case calibrationDataRx = 0x33
-        case calibrateGlucoseTx = 0x34  // G7 Tx/Rx
+        case calibrateGlucoseTx = 0x34 // G7 Tx/Rx
         case calibrateGlucoseRx = 0x35
         
         case glucoseHistoryTx = 0x3e
@@ -107,20 +107,20 @@ class Dexcom: Transmitter {
         case resetTx = 0x42
         case resetRx = 0x43
         
-        case transmitterVersionTx = 0x4a  // G7 Tx/Rx
+        case transmitterVersionTx = 0x4a // G7 Tx/Rx
         case transmitterVersionRx = 0x4b
         
-        case glucoseG6Tx = 0x4e  // TODO: rename to G7 .glucoseTx/Rx / .egv
+        case glucoseG6Tx = 0x4e // TODO: rename to G7 .glucoseTx/Rx / .egv
         case glucoseG6Rx = 0x4f
         
-        case glucoseBackfillTx = 0x50  // DataStream
-        case glucoseBackfillRx = 0x51  // Tx/Rx start/end of stream
+        case glucoseBackfillTx = 0x50 // DataStream
+        case glucoseBackfillRx = 0x51 // Tx/Rx start/end of stream
         
         case transmitterVersionExtended = 0x52  // G7 Tx/Rx
         case transmitterVersionExtendedRx = 0x53
         
-        case backfillFinished = 0x59  // G7 Tx/Rx
-        case unknown1_G7 = 0xEA       // TODO: Tx/Rx EA00
+        case backfillFinished = 0x59 // G7 Tx/Rx
+        case unknown1_G7 = 0xEA      // TODO: Tx/Rx EA00
         
         case keepAliveRx = 0xFF
         
@@ -567,7 +567,7 @@ class Dexcom: Transmitter {
                 let firmwareVersion = "\(versionMajor).\(versionMinor).\(versionRevision).\(versionBuild)"
                 sensor?.firmware = firmwareVersion
                 let swNumber = UInt32(data[6...9])
-                // TODO:
+                // TODO
                 // let storageModeDays: UInt16
                 // let apiVersion: UInt8
                 // let maxRuntimeDays: UInt16
@@ -592,7 +592,7 @@ class Dexcom: Transmitter {
                 // TODO: i.e. 53 00 0a 0f0000000000303235302d50726f 771a (19 bytes)
                 let status = data[1]
                 let sessionLength = data[2]
-                // TODO:
+                // TODO
                 // featureFlag: UInt16
                 // warmUpLength: UInt16
                 let crc = UInt16(data[17...18])

@@ -9,6 +9,7 @@ struct Graph: View {
             history.rawValues.map(\.value).max() ?? 0,
             history.factoryValues.map(\.value).max() ?? 0,
             history.values.map(\.value).max() ?? 0,
+            
             Int(settings.targetHigh + 20)
         ]
         
@@ -23,6 +24,7 @@ struct Graph: View {
                     let width  = geo.size.width - 60
                     let height = geo.size.height
                     let yScale = (height - 20) / yMax()
+                    
                     path.addRect(.init(
                         x: 31,
                         y: height - settings.targetHigh * yScale + 1.0,
@@ -38,10 +40,16 @@ struct Graph: View {
             GeometryReader { geo in
                 ZStack {
                     Text(settings.targetHigh.units)
-                        .position(x: geo.size.width - 15, y: geo.size.height - (geo.size.height - 20) / yMax() * settings.targetHigh)
+                        .position(
+                            x: geo.size.width - 15,
+                            y: geo.size.height - (geo.size.height - 20) / yMax() * settings.targetHigh
+                        )
                     
                     Text(settings.targetLow.units)
-                        .position(x: geo.size.width - 15, y: geo.size.height - (geo.size.height - 20) / yMax() * settings.targetLow)
+                        .position(
+                            x: geo.size.width - 15,
+                            y: geo.size.height - (geo.size.height - 20) / yMax() * settings.targetLow
+                        )
                     
                     let count = history.rawValues.count
                     
@@ -50,13 +58,14 @@ struct Graph: View {
                         let minutes = count % 4 * 15
                         
                         Text((hours > 0 ? "\(hours)h\n" : "") + (minutes != 0 ? "\(minutes)m" : ""))
-                            .position(x: 13, y: geo.size.height - geo.size.height / 2)
-                    } else { // factory data coming from LLU: TODO
+                            .position(x: 13, y: geo.size.height / 2)
+                    } else {
+                        // TODO: factory data coming from LLU
                         let count  = history.factoryValues.count
                         
                         if count > 0 {
                             Text("12h\n\n\(count)/\n144")
-                                .position(x: 13, y: geo.size.height - geo.size.height / 2)
+                                .position(x: 13, y: geo.size.height / 2)
                         }
                     }
                 }
@@ -118,7 +127,10 @@ struct Graph: View {
                         
                         for i in 1..<count {
                             if v[count - i - 1] > 0 {
-                                let point = CGPoint(x: Double(i) * xScale + 30.0, y: height - Double(v[count - i - 1]) * yScale)
+                                let point = CGPoint(
+                                    x: Double(i) * xScale + 30,
+                                    y: height - Double(v[count - i - 1]) * yScale
+                                )
                                 
                                 if !startingVoid  {
                                     path.addLine(to: point)
@@ -139,7 +151,9 @@ struct Graph: View {
                 Path { path in
                     let width  = geo.size.width - 60
                     let height = geo.size.height
+                    
                     path.addRoundedRect(in: CGRect(x: 30, y: 0, width: width, height: height), cornerSize: CGSize(width: 8, height: 8))
+                    
                     let count = history.values.count
                     
                     if count > 0 {
@@ -155,6 +169,7 @@ struct Graph: View {
                         for i in 1..<count {
                             if v[count - i - 1] > 0 {
                                 let point = CGPoint(x: Double(i) * xScale + 30.0, y: height - Double(v[count - i - 1]) * yScale)
+                                
                                 if !startingVoid {
                                     path.addLine(to: point)
                                 } else {

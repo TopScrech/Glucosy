@@ -10,7 +10,7 @@ struct Details: View {
     @State private var secondsSinceLastConnection = 0
     @State private var minutesSinceLastReading = 0
     
-    // TODO:
+    // TODO
     @ViewBuilder func Row(_ label: String, _ value: String, foregroundColor: Color? = .yellow) -> some View {
         if !(value.isEmpty || value == "unknown") {
             HStack {
@@ -90,10 +90,10 @@ struct Details: View {
                             }
                             
                             Row("Manufacturer", app.device.manufacturer)
-                            Row("Model", app.device.model)
-                            Row("Firmware", app.device.firmware)
-                            Row("Hardware", app.device.hardware)
-                            Row("Software", app.device.software)
+                            Row("Model",        app.device.model)
+                            Row("Firmware",     app.device.firmware)
+                            Row("Hardware",     app.device.hardware)
+                            Row("Software",     app.device.software)
                         }
                         
                         if app.device.macAddress.count > 0 {
@@ -364,14 +364,18 @@ struct Details: View {
                                     .callout()
                                     .foregroundColor((app.device != nil) && uuid == app.device!.peripheral!.identifier.uuidString ? .yellow : .blue)
                                     .onTapGesture {
+                                        
                                         // TODO: navigate to peripheral details
                                         if let peripheral = app.main.centralManager.retrievePeripherals(withIdentifiers: [UUID(uuidString: uuid)!]).first {
+                                            
                                             if let appDevice = app.device {
                                                 app.main.centralManager.cancelPeripheralConnection(appDevice.peripheral!)
                                             }
                                             
                                             app.main.log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
+                                            
                                             app.main.settings.preferredTransmitter = .none
+                                            
                                             app.main.bluetoothDelegate.centralManager(app.main.centralManager, didDiscover: peripheral, advertisementData: [:], rssi: 0)
                                         }
                                     }
@@ -399,8 +403,6 @@ struct Details: View {
             .foregroundColor(.secondary)
             
             HStack(alignment: .top, spacing: 32) {
-                Spacer()
-                
                 Button {
                     app.main.rescan()
                 } label: {
@@ -439,8 +441,6 @@ struct Details: View {
                         .frame(width: 22, height: 22)
                         .foregroundColor(.blue)
                 }
-                
-                Spacer()
             }
             .edgesIgnoringSafeArea(.bottom)
             .padding(.vertical, -40)

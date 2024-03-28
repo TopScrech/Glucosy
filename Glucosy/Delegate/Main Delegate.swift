@@ -456,7 +456,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
                 $0.value > 0 && $0.id > -1
             }
             
-            // TODO:
+            // TODO
             let newEntries = entries.filter {
                 $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())!
             }

@@ -315,7 +315,7 @@ class Nightscout: NSObject, Logging {
         }.resume()
     }
     
-    // TODO:
+    // TODO
     func test(handler: (((Data?, URLResponse?, Error?) -> Void))? = nil) {
         var request = URLRequest(url: URL(string: "https://\(settings.nightscoutSite)/api/v1/entries.json?token=\(settings.nightscoutToken)")!)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

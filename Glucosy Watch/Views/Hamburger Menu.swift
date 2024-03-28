@@ -110,29 +110,29 @@ struct HamburgerMenu: View {
                     }
                     
                     // TODO: Help and About sheets
-                    //                    HStack(spacing: 10) {
-                    //                        VStack {
-                    //                            Image(systemName: "questionmark.circle")
-                    //                                .resizable()
-                    //                                .frame(width: 40, height: 40)
-                    //                                .offset(y: 4)
-                    //                            Text("Help")
-                    //                                .bold()
-                    //                                .foregroundColor(.blue)
-                    //                        }
-                    //                        .frame(maxWidth: .infinity)
+                    // HStack(spacing: 10) {
+                    //     VStack {
+                    //         Image(systemName: "questionmark.circle")
+                    //             .resizable()
+                    //             .frame(width: 40, height: 40)
+                    //             .offset(y: 4)
+                    //         Text("Help")
+                    //             .bold()
+                    //             .foregroundColor(.blue)
+                    //     }
+                    //     .frame(maxWidth: .infinity)
                     //
-                    //                        VStack {
-                    //                            Image(systemName: "info.circle")
-                    //                                .resizable()
-                    //                                .frame(width: 40, height: 40)
-                    //                                .offset(y: 4)
-                    //                            Text("About")
-                    //                                .bold()
-                    //                                .foregroundColor(.blue)
-                    //                        }
-                    //                        .frame(maxWidth: .infinity)
-                    //                    }
+                    //     VStack {
+                    //         Image(systemName: "info.circle")
+                    //             .resizable()
+                    //             .frame(width: 40, height: 40)
+                    //             .offset(y: 4)
+                    //         Text("About")
+                    //             .bold()
+                    //             .foregroundColor(.blue)
+                    //     }
+                    //     .frame(maxWidth: .infinity)
+                    // }
                 }
                 .foregroundColor(.red)
                 
@@ -140,7 +140,7 @@ struct HamburgerMenu: View {
                 
                 VStack(spacing: 20) {
                     VStack {
-                        Text("Glucosy  \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)  (\(Bundle.main.infoDictionary!["CFBundleVersion"] as! String))")
+                        Text("Glucosy \(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)  (\(Bundle.main.infoDictionary!["CFBundleVersion"] as! String))")
                         
                         // TODO: get AppIcon 1024x1024
                         // Image("AppIcon").resizable().frame(width: 100, height: 100)
@@ -178,7 +178,7 @@ struct HamburgerMenu: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .padding(.top, -4)
-        .edgesIgnoringSafeArea([.bottom])
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

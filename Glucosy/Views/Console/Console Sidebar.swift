@@ -108,7 +108,7 @@ struct ConsoleSidebar: View {
             Spacer()
             
             Button {
-                settings.userLevel = UserLevel(rawValue: (settings.userLevel.rawValue + 1) % UserLevel.allCases.count)!
+                settings.userLevel = .init(rawValue: (settings.userLevel.rawValue + 1) % UserLevel.allCases.count)!
             } label: {
                 VStack {
                     Image(systemName: ["doc.plaintext", "ladybug", "testtube.2"][settings.userLevel.rawValue])

@@ -190,6 +190,7 @@
 		F3CA0ACF2BAE45EE0055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACE2BAE45EE0055398F /* ScrechKit */; };
 		F3D384BF2BB004B100F03C35 /* Console Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D384BE2BB004B100F03C35 /* Console Sidebar.swift */; };
 		F3D781212BADDCE900C2DE1E /* Date Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C98AED2BAD86E700723DA8 /* Date Difference.swift */; };
+		F3E592E72BB622FB00CE4FE4 /* Monitor Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592E62BB622FB00CE4FE4 /* Monitor Properties.swift */; };
 		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
 		F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
 		F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
@@ -370,6 +371,7 @@
 		F3B8121D2BB07AC90005C114 /* Notification Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Delegate.swift"; sourceTree = "<group>"; };
 		F3C98AED2BAD86E700723DA8 /* Date Difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Difference.swift"; sourceTree = "<group>"; };
 		F3D384BE2BB004B100F03C35 /* Console Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Sidebar.swift"; sourceTree = "<group>"; };
+		F3E592E62BB622FB00CE4FE4 /* Monitor Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Monitor Properties.swift"; sourceTree = "<group>"; };
 		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
 		F3E69B442BA6E66500A5469A /* Write Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Carbs.swift"; sourceTree = "<group>"; };
 		F3E69B472BA6E67000A5469A /* Write Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Insulin.swift"; sourceTree = "<group>"; };
@@ -427,9 +429,8 @@
 			isa = PBXGroup;
 			children = (
 				C5916E4D29827E860051AC06 /* Home View.swift */,
-				C5916E4C29827E860051AC06 /* Monitor.swift */,
+				F3E592E52BB61D4800CE4FE4 /* Monitor */,
 				C5E165042ACBE5E600970835 /* Hamburger Menu.swift */,
-				C5916E4A29827E860051AC06 /* Graph.swift */,
 				C5916E4829827E860051AC06 /* Details.swift */,
 				C5916E4B29827E860051AC06 /* Online View.swift */,
 				C5916E4929827E860051AC06 /* Console.swift */,
@@ -742,6 +743,16 @@
 			path = "Shell and Realm";
 			sourceTree = "<group>";
 		};
+		F3E592E52BB61D4800CE4FE4 /* Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				C5916E4C29827E860051AC06 /* Monitor.swift */,
+				F3E592E62BB622FB00CE4FE4 /* Monitor Properties.swift */,
+				C5916E4A29827E860051AC06 /* Graph.swift */,
+			);
+			path = Monitor;
+			sourceTree = "<group>";
+		};
 		F3E69B412BA5FD1E00A5469A /* HealthKit Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -990,6 +1001,7 @@
 				C5916E5129827E860051AC06 /* Console.swift in Sources */,
 				F35AFC522BA4908B0065145A /* History.swift in Sources */,
 				C5E4007229825DF50021C6B7 /* Bluetooth Delegate.swift in Sources */,
+				F3E592E72BB622FB00CE4FE4 /* Monitor Properties.swift in Sources */,
 				C5916E5329827E860051AC06 /* Online View.swift in Sources */,
 				F35AFC822BA500B20065145A /* Read Glucose.swift in Sources */,
 				F35AFC812BA500B00065145A /* Read Carbs.swift in Sources */,

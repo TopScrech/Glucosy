@@ -27,7 +27,10 @@ final class HealthKit {
     }
     
     private var dataTypes: Set<HKQuantityType> {
-        guard let glucoseType, let insulinType, let carbsType else {
+        guard let glucoseType,
+              let insulinType,
+              let carbsType
+        else {
             return []
         }
         
@@ -70,7 +73,8 @@ final class HealthKit {
 extension HealthKit {
     func readCarbsForToday() async -> [Carbohydrates] {
         guard let store = self.store,
-              let carbsType = HKQuantityType.dietaryCarbohydrates() else {
+              let carbsType = HKQuantityType.dietaryCarbohydrates()
+        else {
             print("HealthKit Store is not initialized or Carbohydrates Type is unavailable in HealthKit")
             return []
         }

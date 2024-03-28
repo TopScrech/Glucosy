@@ -11,7 +11,7 @@ struct Details: View {
     @State private var secondsSinceLastConnection = 0
     @State private var minutesSinceLastReading = 0
     
-    // TODO:
+    // TODO
     @ViewBuilder func Row(_ label: String, _ value: String, foregroundColor: Color? = .yellow) -> some View {
         if !(value.isEmpty || value == "unknown") {
             HStack {

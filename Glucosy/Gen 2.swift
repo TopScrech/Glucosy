@@ -196,7 +196,7 @@ class Gen2 {
         return sensor.streamingContext
     }
     
-    // TODO:
+    // TODO
     static func getStreamingUnlockPayload(sensor: Sensor, challenge: Data) -> Data {
         if sensor.streamingContext > 0 {
             _ = endSession(context: sensor.streamingContext)
@@ -209,7 +209,8 @@ class Gen2 {
             if sensor.streamingAuthenticationData.count == 12 {
                 i = Int(UInt16(sensor.streamingAuthenticationData[10...11]))
             } else if sensor.streamingAuthenticationData.count < 10 {
-                throw Gen2Error(0) // TODO: "unexpected auth data size"
+                throw Gen2Error(0) 
+                // TODO: "unexpected auth data size"
             } else {
                 i = -1
             }

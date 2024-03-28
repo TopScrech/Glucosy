@@ -213,7 +213,7 @@ struct Console: View {
                 Spacer()
                 
                 Button {
-                    settings.userLevel = UserLevel(rawValue:(settings.userLevel.rawValue + 1) % UserLevel.allCases.count)!
+                    settings.userLevel = .init(rawValue:(settings.userLevel.rawValue + 1) % UserLevel.allCases.count)!
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)

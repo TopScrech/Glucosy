@@ -603,7 +603,7 @@ final class Libre3: Libre {
                         packets.append(Data(buffer[i * 20...min(i * 20 + 17, buffer.count - 3)]))
                     }
                     
-                    // TODO:
+                    // TODO
                     // when reactivating a sensor received 20 * 10 + 17 bytes
                     // otherwise receiving 20 * 11 + 12 bytes with the latest firmwares
                     if buffer.count == 217 || buffer.count == 232 {
@@ -695,8 +695,7 @@ final class Libre3: Libre {
                     if settings.userLevel < .test { // not sniffing Trident
                         log("\(type) \(transmitter!.peripheral!.name!): patch certificate: \(payload.hex)")
                         send(securityCommand: .security_0D)
-                        // TODO:
-                        // write 65-byte ephemeral key
+                        // TODO: write 65-byte ephemeral key
                         let ephemeralKey = Data((0 ..< 65 ).map { _ in UInt8.random(in: UInt8.min...UInt8.max) })  // TEST random ephemeral
                         write(ephemeralKey, for: .certificateData)
                         send(securityCommand: .ephemeralLoadDone)
@@ -721,8 +720,7 @@ final class Libre3: Libre {
                     let r2 = Data((0..<16).map { _ in UInt8.random(in: UInt8.min...UInt8.max) })
                     debugLog("\(type): r1: \(r1.hex), r2: \(r2.hex), nonce1: \(nonce1.hex)")
                     
-                    // TODO:
-                    // let response = process2(command: 7, nonce1, Data(r1 + r2 + blePIN)) // CRYPTO_EXTENSION_ENCRYPT
+                    // TODO: let response = process2(command: 7, nonce1, Data(r1 + r2 + blePIN)) // CRYPTO_EXTENSION_ENCRYPT
                     
                     if settings.userLevel < .test { // not sniffing Trident
                         log("\(type) \(transmitter!.peripheral!.name!): writing 40-zero challenge response")
@@ -736,9 +734,12 @@ final class Libre3: Libre {
                 case .challengeLoadDone:
                     let first = payload.subdata(in:  0..<60)
                     let nonce = payload.subdata(in: 60..<67)
+                    
                     outCryptoSequence = UInt16(payload[60...61])
+                    
                     log("\(type) \(transmitter!.peripheral!.name!): encrypted KAuth: \(first.hex), nonce: \(nonce.hex) (crypto sequence #: \(outCryptoSequence.hex))")
-                    // TODO:
+                    
+                    // TODO
                     // https://github.com/j-kaltes/Juggluco/blob/primary/Common/src/libre3/java/tk/glucodata/Libre3GattCallback.java
                     // https://github.dev/j-kaltes/Juggluco/blob/primary/Common/src/main/cpp/bcrypt/bcrypt.cpp
                     // let decr = process2(8, nonce, first)     // CRYPTO_EXTENSION_DECRYPT
@@ -746,8 +747,11 @@ final class Libre3: Libre {
                     // let r1    = decr.subdata(in: 16..<32)
                     // let kEnc  = decr.subdata(in: 32..<48)
                     // let ivEnc = decr.subdata(in: 48..<56)
+                    
                     transmitter!.peripheral?.setNotifyValue(true, for: transmitter!.characteristics[UUID.patchStatus.rawValue]!)
+                    
                     log("\(type) \(transmitter!.peripheral!.name!): enabling notifications on the patch status characteristic")
+                    
                     currentSecurityCommand = nil
                     
                 default:
@@ -759,17 +763,18 @@ final class Libre3: Libre {
             }
             
         default:
-            break  // uuid
+            break // uuid
         }
     }
     
-    func parseCurrentReading(_ data: Data) {  // -> GlucoseData
+    func parseCurrentReading(_ data: Data) { // -> GlucoseData
         // TODO
     }
     
     // TODO: separate CMD_ACTIVATE_SENSOR and CMD_SWITCH_RECEIVER
     var activationNFCCommand: NFCCommand {
-        // TODO:
+        
+        // TODO
         if receiverId == 0 && settings.libreLinkUpPatientId == "" {
             log("WARNING: the current receiverId and patientId are null: a successful login to LibreLinkUp is very probably required first.")
         }

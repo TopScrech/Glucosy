@@ -6,7 +6,9 @@ enum DeviceType: CaseIterable, Hashable, Identifiable {
     case watch(WatchType)
     
     static var allCases: [DeviceType] {
-        TransmitterType.allCases.map { .transmitter($0) } // + WatchType.allCases.map{ .watch($0) }
+        TransmitterType.allCases.map { 
+            .transmitter($0)
+        } // + WatchType.allCases.map{ .watch($0) }
     }
     
     var id: String {
@@ -32,8 +34,8 @@ class Device: Logging {
     class var name: String { "Unknown" }
     
     class var knownUUIDs: [String] { [] }
-    class var dataServiceUUID: String { "" }
-    class var dataReadCharacteristicUUID: String { "" }
+    class var dataServiceUUID:             String { "" }
+    class var dataReadCharacteristicUUID:  String { "" }
     class var dataWriteCharacteristicUUID: String { "" }
     
     var type: DeviceType = .none
@@ -100,6 +102,7 @@ class Device: Logging {
     func readValue(for uuid: String = "") {
         if let characteristic = characteristics[uuid] ?? readCharacteristic {
             peripheral?.readValue(for: characteristic)
+            
             debugLog("\(name): requested value for \(!uuid.isEmpty ? uuid : "read") characteristic")
         } else {
             debugLog("\(name): cannot read value for unknown characteristic \(uuid)")
@@ -124,16 +127,16 @@ enum TransmitterType: String, CaseIterable, Hashable, Codable, Identifiable {
     
     var name: String {
         switch self {
-        case .none:     "Any"
-        case .abbott:   Abbott.name
-        case .dexcom:   Dexcom.name
+        case .none:   "Any"
+        case .abbott: Abbott.name
+        case .dexcom: Dexcom.name
         }
     }
     var type: AnyClass {
         switch self {
-        case .none:     Transmitter.self
-        case .abbott:   Abbott.self
-        case .dexcom:   Dexcom.self
+        case .none:   Transmitter.self
+        case .abbott: Abbott.self
+        case .dexcom: Dexcom.self
         }
     }
 }

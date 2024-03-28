@@ -78,12 +78,11 @@ enum SensorRegion: Int, CustomStringConvertible {
 
 enum SensorState: UInt8, CustomStringConvertible {
     case unknown      = 0x00
-    
     case notActivated = 0x01
-    case warmingUp    = 0x02    // 60 minutes
-    case active       = 0x03    // ≈ 14.5 days
-    case expired      = 0x04    // 12 hours more; Libre 2: Bluetooth shutdown
-    case shutdown     = 0x05    // 15th day onwards
+    case warmingUp    = 0x02 // 60 minutes
+    case active       = 0x03 // ≈ 14.5 days
+    case expired      = 0x04 // 12 hours more; Libre 2: Bluetooth shutdown
+    case shutdown     = 0x05 // 15th day onwards
     case failure      = 0x06
     
     var description: String {
@@ -193,6 +192,7 @@ enum SensorState: UInt8, CustomStringConvertible {
             
             if (family == .libre2 || type == .libreUS14day) && UInt16(fram[0...1]) != crc16(fram[2...23]) {
                 encryptedFram = fram
+                
                 if fram.count >= 344 {
                     if let decryptedFRAM = try? Libre2.decryptFRAM(type: type, id: uid, info: patchInfo, data: fram) {
                         fram = decryptedFRAM
@@ -246,14 +246,16 @@ enum SensorState: UInt8, CustomStringConvertible {
             return
         }
         
-        age = Int(fram[316]) + Int(fram[317]) << 8    // body[-4]
+        age = Int(fram[316]) + Int(fram[317]) << 8 // body[-4]
+        
         let startDate = lastReadingDate - Double(age) * 60
         initializations = Int(fram[318])
         
         trend = []
         history = []
-        let trendIndex = Int(fram[26])      // body[2]
-        let historyIndex = Int(fram[27])    // body[3]
+        
+        let trendIndex = Int(fram[26])   // body[2]
+        let historyIndex = Int(fram[27]) // body[3]
         
         for i in 0...15 {
             var j = trendIndex - 1 - i
@@ -352,7 +354,7 @@ enum SensorState: UInt8, CustomStringConvertible {
         
         let i1 = readBits(fram, 2, 0, 3)
         let i2 = readBits(fram, 2, 3, 0xa)
-        let i3 = readBits(fram, 0x150, 0, 8)    // footer[-8]
+        let i3 = readBits(fram, 0x150, 0, 8) // footer[-8]
         let i4 = readBits(fram, 0x150, 8, 0xe)
         let i5 = readBits(fram, 0x150, 0x28, 0xc) << 2
         let i6 = readBits(fram, 0x150, 0x34, 0xc) << 2
@@ -431,6 +433,7 @@ enum SensorState: UInt8, CustomStringConvertible {
             if fram.count >= 1904 { /// 344 + 195 * 8
                 let commandsCRC = UInt16(fram[344...345])
                 let computedCommandsCRC = crc16(fram[346..<1904]) /// 344 + 195 * 8
+                ///
                 report += "\nSensor commands CRC16: \(commandsCRC.hex), computed: \(computedCommandsCRC.hex) -> \(commandsCRC == computedCommandsCRC ? "OK" : "FAILED")"
             }
             

@@ -28,7 +28,7 @@ struct AppleHealthView: View {
                     Spacer()
                     
                     NavigationLink("View all") {
-                        
+                        // TODO
                     }
                     .footnote()
                     .foregroundStyle(.latte)
@@ -50,7 +50,7 @@ struct AppleHealthView: View {
                     Spacer()
                     
                     NavigationLink("View all") {
-                        
+                        // TODO
                     }
                     .footnote()
                     .foregroundStyle(.latte)
@@ -72,7 +72,7 @@ struct AppleHealthView: View {
                     Spacer()
                     
                     NavigationLink("View all") {
-                        
+                        // TODO
                     }
                     .footnote()
                     .foregroundStyle(.latte)
@@ -94,7 +94,7 @@ struct AppleHealthView: View {
                     Spacer()
                     
                     NavigationLink("View all") {
-                        
+                        // TODO
                     }
                     .footnote()
                     .foregroundStyle(.latte)

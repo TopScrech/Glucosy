@@ -91,20 +91,20 @@ struct Glucose: Hashable {
         var description: String {
             var d = [String: Bool]()
             
-            d["OK"]                  = self == .OK
-            d["SD14_FIFO_OVERFLOW"]  = self.contains(.SD14_FIFO_OVERFLOW)
-            d["FILTER_DELTA"]        = self.contains(.FILTER_DELTA)
-            d["WORK_VOLTAGE"]        = self.contains(.WORK_VOLTAGE)
-            d["PEAK_DELTA_EXCEEDED"] = self.contains(.PEAK_DELTA_EXCEEDED)
-            d["AVG_DELTA_EXCEEDED"]  = self.contains(.AVG_DELTA_EXCEEDED)
-            d["RF"]                  = self.contains(.RF)
-            d["REF_R"]               = self.contains(.REF_R)
-            d["SIGNAL_SATURATED"]    = self.contains(.SIGNAL_SATURATED)
-            d["SENSOR_SIGNAL_LOW"]   = self.contains(.SENSOR_SIGNAL_LOW)
+            d["OK"]                      = self == .OK
+            d["SD14_FIFO_OVERFLOW"]      = self.contains(.SD14_FIFO_OVERFLOW)
+            d["FILTER_DELTA"]            = self.contains(.FILTER_DELTA)
+            d["WORK_VOLTAGE"]            = self.contains(.WORK_VOLTAGE)
+            d["PEAK_DELTA_EXCEEDED"]     = self.contains(.PEAK_DELTA_EXCEEDED)
+            d["AVG_DELTA_EXCEEDED"]      = self.contains(.AVG_DELTA_EXCEEDED)
+            d["RF"]                      = self.contains(.RF)
+            d["REF_R"]                   = self.contains(.REF_R)
+            d["SIGNAL_SATURATED"]        = self.contains(.SIGNAL_SATURATED)
+            d["SENSOR_SIGNAL_LOW"]       = self.contains(.SENSOR_SIGNAL_LOW)
             d["THERMISTOR_OUT_OF_RANGE"] = self.contains(.THERMISTOR_OUT_OF_RANGE)
-            d["TEMP_HIGH"]           = self.contains(.TEMP_HIGH)
-            d["TEMP_LOW"]            = self.contains(.TEMP_LOW)
-            d["INVALID_DATA"]        = self.contains(.INVALID_DATA)
+            d["TEMP_HIGH"]               = self.contains(.TEMP_HIGH)
+            d["TEMP_LOW"]                = self.contains(.TEMP_LOW)
+            d["INVALID_DATA"]            = self.contains(.INVALID_DATA)
             
             return "0x\(rawValue.hex): \(d.filter{$1}.keys.joined(separator: ", "))"
         }
@@ -152,6 +152,7 @@ struct Glucose: Hashable {
     }
     
     init(bytes: [UInt8], id: Int = 0, date: Date = Date()) {
+        
         let rawValue = Int(bytes[0]) + Int(bytes[1] & 0x1F) << 8
         let rawTemperature = Int(bytes[3]) + Int(bytes[4] & 0x3F) << 8
         

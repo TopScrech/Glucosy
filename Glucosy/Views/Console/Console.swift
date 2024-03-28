@@ -20,7 +20,7 @@ struct Console: View {
         ((app.device as? Abbott)?.sensor as? Libre3)?.pair()
         
         guard app.main.nfc.isAvailable else {
-            app.showingNfcAlert = true
+            app.alertNfc = true
             return
         }
         
@@ -172,7 +172,7 @@ struct Console: View {
                             settings.logging = true
                             app.main.nfc.taskRequest = .readFRAM
                         } else {
-                            app.showingNfcAlert = true
+                            app.alertNfc = true
                         }
                     } label: {
                         Label("Read FRAM", systemImage: "memorychip")
@@ -184,7 +184,7 @@ struct Console: View {
                                 settings.logging = true
                                 showingUnlockConfirmationDialog = true
                             } else {
-                                app.showingNfcAlert = true
+                                app.alertNfc = true
                             }
                         } label: {
                             Label("Unlock", systemImage: "lock.open")
@@ -195,7 +195,7 @@ struct Console: View {
                                 settings.logging = true
                                 showingResetConfirmationDialog = true
                             } else {
-                                app.showingNfcAlert = true
+                                app.alertNfc = true
                             }
                         } label: {
                             Label("Reset", systemImage: "00.circle")
@@ -206,7 +206,7 @@ struct Console: View {
                                 settings.logging = true
                                 showingProlongConfirmationDialog = true
                             } else {
-                                app.showingNfcAlert = true
+                                app.alertNfc = true
                             }
                         } label: {
                             Label("Prolong", systemImage: "infinity.circle")
@@ -217,7 +217,7 @@ struct Console: View {
                                 settings.logging = true
                                 showingActivateConfirmationDialog = true
                             } else {
-                                app.showingNfcAlert = true
+                                app.alertNfc = true
                             }
                         } label: {
                             Label("Activate", systemImage: "bolt.circle")
@@ -231,7 +231,7 @@ struct Console: View {
                             settings.logging = true
                             app.main.nfc.taskRequest = .dump
                         } else {
-                            app.showingNfcAlert = true
+                            app.alertNfc = true
                         }
                     } label: {
                         Label("Dump Memory", systemImage: "cpu")

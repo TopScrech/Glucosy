@@ -10,10 +10,10 @@ final class History {
     var nightscoutValues: [Glucose] = []
     
     // HealthKit
-    var glucose:          [Glucose]         = []
-    var insulin:          [InsulinDelivery] = []
-    var carbs:            [Carbohydrates]   = []
-    var bmi:              [BMI]             = []
-    var bodyMass:         [BodyMass]        = []
-    var bodyTemperature:  [BodyTemperature] = []
+    var glucose:         [Glucose]         = []
+    var insulin:         [InsulinDelivery] = []
+    var carbs:           [Carbohydrates]   = []
+    var bmi:             [BMI]             = []
+    var bodyMass:        [BodyMass]        = []
+    var bodyTemperature: [BodyTemperature] = []
 }

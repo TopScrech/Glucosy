@@ -36,7 +36,7 @@ struct LogEntry: Identifiable {
         self.time = Date()
         
         if label.isEmpty {
-            label = String(message[message.startIndex ..< (message.firstIndex(of: ":") ?? message.startIndex)])
+            label = String(message[message.startIndex..<(message.firstIndex(of: ":") ?? message.startIndex)])
             label = !label.contains(" ") ? label : ""
         }
         

@@ -638,9 +638,9 @@
 //                switch entity.key {
 //                    
 //                case "AppConfigEntity":
-//                    for i in 0 ..< rowsCount {
-//                        let entityJson = json[entityStartIndex[entity.key]! + i] as! [String: Any]
-//                        let configName = json[Int(entityJson["_configName"]! as! String)!] as! String
+//                    for i in 0..<rowsCount {
+//                        let entityJson =  json[entityStartIndex[entity.key]! + i] as! [String: Any]
+//                        let configName =  json[Int(entityJson["_configName"]! as! String)!] as! String
 //                        let configValue = json[Int(entityJson["_configValue"]! as! String)!] as! String
 //                        log("Realm: \(entity.key) #\(i+1) of \(rowsCount) JSON: \(entityJson), configName = \(configName), configValue = \(configValue)")
 //                    }
@@ -648,7 +648,7 @@
 //                case "GlucoseReadingEntity":
 //                    var sensorsCount: Int64 = 0
 //                    
-//                    for i in 0 ..< rowsCount {
+//                    for i in 0..<rowsCount {
 //                        let j = rowsCount - i - 1
 //                        let entityJson = json[entityStartIndex[entity.key]! + j] as! [String: Any]
 //                        let compositeKey = entityJson["_compositeKey"]! as! Int64
@@ -680,16 +680,16 @@
 //                    }
 //                    
 //                case "SensorEntity":
-//                    for i in 0 ..< rowsCount {
-//                        let entityJson = json[entityStartIndex[entity.key]! + i] as! [String: Any]
+//                    for i in 0..<rowsCount {
+//                        let entityJson   = json[entityStartIndex[entity.key]! + i] as! [String: Any]
 //                        let serialNumber = json[Int(entityJson["_serialNumber"]! as! String)!] as! String
-//                        let sensorUID = json[Int(entityJson["_sensorUID"]! as! String)!] as! String
-//                        let hwVersion = json[Int(entityJson["_hwVersion"]! as! String)!] as! String
-//                        let swVersion = json[Int(entityJson["_swVersion"]! as! String)!] as! String
-//                        let fwVersion = json[Int(entityJson["_fwVersion"]! as! String)!] as! String
-//                        let blePIN = (json[Int(entityJson["_blePIN"]! as! String)!] as! String).trimmingCharacters(in: .whitespaces)
-//                        let factoryData = (json[Int(entityJson["_factoryData"]! as! String)!] as! String).trimmingCharacters(in: .whitespaces)
-//                        
+//                        let sensorUID    = json[Int(entityJson["_sensorUID"]! as! String)!] as! String
+//                        let hwVersion    = json[Int(entityJson["_hwVersion"]! as! String)!] as! String
+//                        let swVersion    = json[Int(entityJson["_swVersion"]! as! String)!] as! String
+//                        let fwVersion    = json[Int(entityJson["_fwVersion"]! as! String)!] as! String
+//                        let blePIN       = (json[Int(entityJson["_blePIN"]! as! String)!] as! String).trimmingCharacters(in: .whitespaces)
+//                        let factoryData  = (json[Int(entityJson["_factoryData"]! as! String)!] as! String).trimmingCharacters(in: .whitespaces)
+//
 //                        log("Realm: \(entity.key) #\(i+1) of \(rowsCount) JSON: \(entityJson), serialNumber: \(serialNumber), sensorUID: \(sensorUID), hwVersion: \(hwVersion), swVersion: \(swVersion), fwVersion: \(fwVersion),  blePIN: \(blePIN), factoryData: \(factoryData)")
 //                    }
 //                    

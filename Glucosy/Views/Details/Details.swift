@@ -31,7 +31,7 @@ struct Details: View {
         ((app.device as? Abbott)?.sensor as? Libre3)?.pair()
         
         guard app.main.nfc.isAvailable else {
-            app.showingNfcAlert = true
+            app.alertNfc = true
             return
         }
         

@@ -23,7 +23,12 @@ struct Graph: View {
                     let width  = geo.size.width - 60
                     let height = geo.size.height
                     let yScale = (height - 20) / yMax()
-                    path.addRect(CGRect(x: 1 + 30, y: height - settings.targetHigh * yScale + 1.0, width: width - 2, height: (settings.targetHigh - settings.targetLow) * yScale - 1))
+                    path.addRect(.init(
+                        x: 31,
+                        y: height - settings.targetHigh * yScale + 1.0,
+                        width: width - 2,
+                        height: (settings.targetHigh - settings.targetLow) * yScale - 1)
+                    )
                 }
                 .fill(.green)
                 .opacity(0.15)
@@ -73,10 +78,10 @@ struct Graph: View {
                         var startingVoid = v[count - 1] < 1 ? true : false
                         
                         if !startingVoid {
-                            path.move(to: .init(x: 0 + 30, y: height - Double(v[count - 1]) * yScale))
+                            path.move(to: .init(x: 30, y: height - Double(v[count - 1]) * yScale))
                         }
                         
-                        for i in 1 ..< count {
+                        for i in 1..<count {
                             if v[count - i - 1] > 0 {
                                 let point = CGPoint(x: Double(i) * xScale + 30.0, y: height - Double(v[count - i - 1]) * yScale)
                                 
@@ -111,7 +116,7 @@ struct Graph: View {
                             path.move(to: .init(x: 0 + 30, y: height - Double(v[count - 1]) * yScale))
                         }
                         
-                        for i in 1 ..< count {
+                        for i in 1..<count {
                             if v[count - i - 1] > 0 {
                                 let point = CGPoint(x: Double(i) * xScale + 30.0, y: height - Double(v[count - i - 1]) * yScale)
                                 
@@ -134,7 +139,7 @@ struct Graph: View {
                 Path { path in
                     let width  = geo.size.width - 60
                     let height = geo.size.height
-                    path.addRoundedRect(in: CGRect(x: 0 + 30, y: 0, width: width, height: height), cornerSize: CGSize(width: 8, height: 8))
+                    path.addRoundedRect(in: CGRect(x: 30, y: 0, width: width, height: height), cornerSize: CGSize(width: 8, height: 8))
                     let count = history.values.count
                     
                     if count > 0 {
@@ -144,10 +149,10 @@ struct Graph: View {
                         var startingVoid = v[count - 1] < 1 ? true : false
                         
                         if !startingVoid {
-                            path.move(to: .init(x: 0 + 30, y: height - Double(v[count - 1]) * yScale))
+                            path.move(to: .init(x: 30, y: height - Double(v[count - 1]) * yScale))
                         }
                         
-                        for i in 1 ..< count {
+                        for i in 1..<count {
                             if v[count - i - 1] > 0 {
                                 let point = CGPoint(x: Double(i) * xScale + 30.0, y: height - Double(v[count - i - 1]) * yScale)
                                 if !startingVoid {

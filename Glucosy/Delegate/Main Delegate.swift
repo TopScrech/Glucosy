@@ -252,7 +252,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             let times = currentGlucose > Int(settings.alarmHigh) ? 3 : 4
             let pause = times == 3 ? 1 : 5.0 / 6
             
-            for s in 0 ..< times {
+            for s in 0..<times {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(s) * pause) {
                     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 }
@@ -420,7 +420,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
                     
                     let trendArrow = app.trendArrow
                     let trend = trendArrow != .unknown ? trendArrow.symbol : ""
-                                        
+                    
                     let title = "\(glucose) \(unit) \(titleAlarm) \(trend)"
                     
                     NotificationManager.shared.scheduleAlarmReminder(title)

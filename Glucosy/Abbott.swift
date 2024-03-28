@@ -172,7 +172,7 @@ class Abbott: Transmitter {
                         if main.history.values.count > 0 {
                             let missingCount = (sensor!.history[0].id - main.history.values[0].id) / 15
                             var history = [Glucose](main.history.rawValues.prefix(missingCount) + main.history.values.prefix(32 - missingCount))
-                            for i in 0 ..< missingCount { history[i].value = -1 }
+                            for i in 0..<missingCount { history[i].value = -1 }
                             main.history.values = history
                         }
                     }

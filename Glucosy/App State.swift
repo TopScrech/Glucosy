@@ -13,7 +13,7 @@ final class AppState {
     var currentGlucose = 0
     var lastReadingDate: Date = .distantPast
     var glycemicAlarm: GlycemicAlarm = .unknown
-    var trendArrow: TrendArrow = .unknown
+    var trendArrow:    TrendArrow    = .unknown
     var trendDelta = 0
     var trendDeltaMinutes = 0
     
@@ -22,9 +22,9 @@ final class AppState {
     var status = "Welcome to Glucosy!"
     
     var showingJavaScriptConfirmAlert = false
-    var showingNfcAlert = false
     var JavaScriptConfirmAlertMessage = ""
     var JavaScriptAlertReturn = ""
     
+    var alertNfc = false
     var sheetMealtime = false
 }

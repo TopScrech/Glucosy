@@ -152,15 +152,15 @@ class Dexcom: Transmitter {
                 // https://github.com/NightscoutFoundation/xDrip/blob/master/libkeks/src/main/java/jamorham/keks/Calc.java
                 // https://github.com/NightscoutFoundation/xDrip/blob/master/libkeks/src/main/java/jamorham/keks/Plugin.java
                 
-                let tokenHash = data.subdata(in: 1 ..< 9)
-                let challenge = data.subdata(in: 9 ..< 17)
+                let tokenHash = data.subdata(in: 1..<9)
+                let challenge = data.subdata(in: 9..<17)
                 log("\(name): tokenHash: \(tokenHash.hex), challenge: \(challenge.hex)")
                 
                 if settings.userLevel < .test { // not sniffing
                     let doubleChallenge = challenge + challenge
                     let cryptKey = "00\(serial)00\(serial)".data(using: .utf8)!
                     let encrypted = doubleChallenge.aes128Encrypt(keyData: cryptKey)!
-                    let challengeResponse = Opcode.authChallengeTx.data + encrypted[0 ..< 8]
+                    let challengeResponse = Opcode.authChallengeTx.data + encrypted[0..<8]
                     log("\(name): replying to challenge for transmitter serial \(serial): doubled challenge: \(doubleChallenge.hex), key: \(cryptKey.hex), encrypted: \(encrypted.hex), response: \(challengeResponse.hex)")
                     write(challengeResponse, for: UUID.authentication.rawValue, .withResponse)
                 }
@@ -217,8 +217,8 @@ class Dexcom: Transmitter {
                 let phase = data[2]
                 var packets = [Data]()
                 
-                for i in 0 ..< (buffer.count + 19) / 20 {
-                    packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
+                for i in 0..<(buffer.count + 19) / 20 {
+                    packets.append(Data(buffer[i * 20..<min((i + 1) * 20, buffer.count)]))
                 }
                 
                 log("\(name): J-PAKE payload (TODO): status: \(status), phase: \(phase), buffer length: \(buffer.count), 20-byte packets: \(packets.count)")
@@ -409,8 +409,8 @@ class Dexcom: Transmitter {
                     
                     var packets = [Data]()
                     
-                    for i in 0 ..< (buffer.count + 19) / 20 {
-                        packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
+                    for i in 0..<(buffer.count + 19) / 20 {
+                        packets.append(Data(buffer[i * 20..<min((i + 1) * 20, buffer.count)]))
                     }
                     
                     log("\(name): backfilled stream (TODO): buffer length: \(buffer.count), valid CRC: \(bufferCRC == buffer.crc), 20-byte packets: \(packets.count)")
@@ -431,16 +431,16 @@ class Dexcom: Transmitter {
                     
                     var packets = [Data]()
                     
-                    for i in 0 ..< (buffer.count + 19) / 20 {
-                        packets.append(Data(buffer[i * 20 ..< min((i + 1) * 20, buffer.count)]))
+                    for i in 0..<(buffer.count + 19) / 20 {
+                        packets.append(Data(buffer[i * 20..<min((i + 1) * 20, buffer.count)]))
                     }
                     
                     // Drop the first 2 bytes from each frame and the first 4 bytes from the combined message
                     let glucoseData = Data(packets.reduce(into: Data(), { $0.append($1.dropFirst(2)) }).dropFirst(4))
                     var history = [Glucose]()
                     
-                    for i in 0 ..< glucoseData.count / 8 {
-                        let data = glucoseData.subdata(in: i * 8 ..< (i + 1) * 8)
+                    for i in 0..<glucoseData.count / 8 {
+                        let data = glucoseData.subdata(in: i * 8..<(i + 1) * 8)
                         // extract same fields as in .glucoseG6Rx
                         let timestamp = UInt32(data[0..<4])
                         let date = activationDate + TimeInterval(timestamp)
@@ -483,8 +483,8 @@ class Dexcom: Transmitter {
                 
                 var packets = [Data]()
                 
-                for i in 0 ..< (buffer.count / 9) {
-                    packets.append(Data(buffer[i * 9 ..< min((i + 1) * 9, buffer.count)]))
+                for i in 0..<(buffer.count / 9) {
+                    packets.append(Data(buffer[i * 9..<min((i + 1) * 9, buffer.count)]))
                 }
                 
                 var history = [Glucose]()

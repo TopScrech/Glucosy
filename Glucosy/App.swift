@@ -12,9 +12,9 @@ struct GlucosyApp: App {
     
     let container: ModelContainer
     
-    //#if os(iOS)
-    //    @State private var overlayWindow: PassThroughWindow?
-    //#endif
+    // #if os(iOS)
+    //     @State private var overlayWindow: PassThroughWindow?
+    // #endif
     
     var body: some Scene {
         WindowGroup {
@@ -29,25 +29,25 @@ struct GlucosyApp: App {
                 .onOpenURL { url in
                     main.processDeepLink(url)
                 }
-            //                .task {
-            //                    if overlayWindow == nil {
-            //                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            //                            let overlayWindow = PassThroughWindow(windowScene: windowScene)
-            //                            overlayWindow.backgroundColor = .clear
-            //                            overlayWindow.tag = 0320
+            // .task {
+            //     if overlayWindow == nil {
+            //         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            //             let overlayWindow = PassThroughWindow(windowScene: windowScene)
+            //             overlayWindow.backgroundColor = .clear
+            //             overlayWindow.tag = 0320
             //
-            //                            let controller = StatusBarBasedController()
-            //                            controller.view.backgroundColor = .clear
+            //             let controller = StatusBarBasedController()
+            //             controller.view.backgroundColor = .clear
             //
-            //                            overlayWindow.rootViewController = controller
-            //                            overlayWindow.isHidden = false
-            //                            overlayWindow.isUserInteractionEnabled = true
-            //                            self.overlayWindow = overlayWindow
+            //             overlayWindow.rootViewController = controller
+            //             overlayWindow.isHidden = false
+            //             overlayWindow.isUserInteractionEnabled = true
+            //             self.overlayWindow = overlayWindow
             //
-            //                            print("Overlay Window Created")
-            //                        }
-            //                    }
-            //                }
+            //             print("Overlay Window Created")
+            //         }
+            //     }
+            // }
 #endif
         }
         .onChange(of: scenePhase) {

@@ -230,7 +230,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
             let times = currentGlucose > Int(settings.alarmHigh) ? 3 : 4
             let pause = times == 3 ? 1 : 5.0 / 6
             
-            for s in 0 ..< times {
+            for s in 0..<times {
                 DispatchQueue.main.asyncAfter(deadline: .now() + Double(s) * pause) {
                     WKInterfaceDevice.current().play(.notification)
                 }
@@ -299,8 +299,8 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
     
     func didParseSensor(_ sensor: Sensor?) {
         guard let sensor else {
-            extendedSession.start(at: max(app.lastReadingDate, app.lastConnectionDate) + Double(settings.readingInterval * 60) - 5.0)
-            log("Watch: extended session to be started in \(Double(settings.readingInterval * 60) - 5.0) seconds")
+            extendedSession.start(at: max(app.lastReadingDate, app.lastConnectionDate) + Double(settings.readingInterval * 60) - 5)
+            log("Watch: extended session to be started in \(Double(settings.readingInterval * 60) - 5) seconds")
             return
         }
         
@@ -373,8 +373,8 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
         }
         
         // TODO:
-        extendedSession.start(at: max(app.lastReadingDate, app.lastConnectionDate) + Double(settings.readingInterval * 60) - 5.0)
-        log("Watch: extended session to be started in \(Double(settings.readingInterval * 60) - 5.0) seconds")
+        extendedSession.start(at: max(app.lastReadingDate, app.lastConnectionDate) + Double(settings.readingInterval * 60) - 5)
+        log("Watch: extended session to be started in \(Double(settings.readingInterval * 60) - 5) seconds")
     }
     
     func extendedRuntimeSessionDidStart(_ extendedRuntimeSession: WKExtendedRuntimeSession) {

@@ -191,7 +191,7 @@ final class Libre3: Libre {
         //     uint16_t readingMgDl;
         //     uint16_t historicMgDl;
         //     int getHistoricLifeCount() const {
-        //         return round((lifeCount-19.0)/5.0)*5; //  - 17-minute latency?
+        //         return round((lifeCount-19.0)/5)*5; //  - 17-minute latency?
         //     };
         // }
         //
@@ -517,7 +517,7 @@ final class Libre3: Libre {
         maxLife = Int(UInt16(wearDuration))
         log("Libre 3: wear duration: \(maxLife) minutes (\(maxLife.formattedInterval), 0x\(maxLife.hex))")
         
-        let fwVersion = patchInfo.subdata(in: 8 ..< 12)
+        let fwVersion = patchInfo.subdata(in: 8..<12)
         firmware = "\(fwVersion[3]).\(fwVersion[2]).\(fwVersion[1]).\(fwVersion[0])"
         log("Libre 3: firmware version: \(firmware)")
         
@@ -568,11 +568,13 @@ final class Libre3: Libre {
     func write(_ data: Data, for uuid: UUID = .challengeData) {
         let packets = (data.count - 1) / 18 + 1
         
-        for i in 0 ... packets - 1 {
+        for i in 0...packets - 1 {
             let offset = i * 18
             let id = Data([UInt8(offset & 0xFF), UInt8(offset >> 8)])
-            let packet = id + data[offset ... min(offset + 17, data.count - 1)]
+            let packet = id + data[offset...min(offset + 17, data.count - 1)]
+            
             debugLog("Bluetooth: writing packet \(packet.hexBytes) to \(transmitter!.peripheral!.name!)'s \(uuid.description) characteristic")
+            
             transmitter!.write(packet, for: uuid.rawValue, .withResponse)
         }
     }
@@ -597,9 +599,10 @@ final class Libre3: Libre {
                 } else {
                     var packets = [Data]()
                     
-                    for i in 0 ..< (buffer.count + 19) / 20 {
-                        packets.append(Data(buffer[i * 20 ... min(i * 20 + 17, buffer.count - 3)]))
+                    for i in 0..<(buffer.count + 19) / 20 {
+                        packets.append(Data(buffer[i * 20...min(i * 20 + 17, buffer.count - 3)]))
                     }
+                    
                     // TODO:
                     // when reactivating a sensor received 20 * 10 + 17 bytes
                     // otherwise receiving 20 * 11 + 12 bytes with the latest firmwares
@@ -694,7 +697,7 @@ final class Libre3: Libre {
                         send(securityCommand: .security_0D)
                         // TODO:
                         // write 65-byte ephemeral key
-                        let ephemeralKey = Data((0 ..< 65 ).map { _ in UInt8.random(in: UInt8.min ... UInt8.max) })  // TEST random ephemeral
+                        let ephemeralKey = Data((0 ..< 65 ).map { _ in UInt8.random(in: UInt8.min...UInt8.max) })  // TEST random ephemeral
                         write(ephemeralKey, for: .certificateData)
                         send(securityCommand: .ephemeralLoadDone)
                     }
@@ -715,7 +718,7 @@ final class Libre3: Libre {
                     
                     let r1 = payload.prefix(16)
                     let nonce1 = payload.suffix(7)
-                    let r2 = Data((0 ..< 16).map { _ in UInt8.random(in: UInt8.min ... UInt8.max) })
+                    let r2 = Data((0..<16).map { _ in UInt8.random(in: UInt8.min...UInt8.max) })
                     debugLog("\(type): r1: \(r1.hex), r2: \(r2.hex), nonce1: \(nonce1.hex)")
                     
                     // TODO:
@@ -731,18 +734,18 @@ final class Libre3: Libre {
                     }
                     
                 case .challengeLoadDone:
-                    let first = payload.subdata(in:  0 ..< 60)
-                    let nonce = payload.subdata(in: 60 ..< 67)
-                    outCryptoSequence = UInt16(payload[60 ... 61])
+                    let first = payload.subdata(in:  0..<60)
+                    let nonce = payload.subdata(in: 60..<67)
+                    outCryptoSequence = UInt16(payload[60...61])
                     log("\(type) \(transmitter!.peripheral!.name!): encrypted KAuth: \(first.hex), nonce: \(nonce.hex) (crypto sequence #: \(outCryptoSequence.hex))")
                     // TODO:
                     // https://github.com/j-kaltes/Juggluco/blob/primary/Common/src/libre3/java/tk/glucodata/Libre3GattCallback.java
                     // https://github.dev/j-kaltes/Juggluco/blob/primary/Common/src/main/cpp/bcrypt/bcrypt.cpp
                     // let decr = process2(8, nonce, first)     // CRYPTO_EXTENSION_DECRYPT
-                    // let r2    = decr.subdata(in:  0 ..< 16)
-                    // let r1    = decr.subdata(in: 16 ..< 32)
-                    // let kEnc  = decr.subdata(in: 32 ..< 48)
-                    // let ivEnc = decr.subdata(in: 48 ..< 56)
+                    // let r2    = decr.subdata(in:  0..<16)
+                    // let r1    = decr.subdata(in: 16..<32)
+                    // let kEnc  = decr.subdata(in: 32..<48)
+                    // let ivEnc = decr.subdata(in: 48..<56)
                     transmitter!.peripheral?.setNotifyValue(true, for: transmitter!.characteristics[UUID.patchStatus.rawValue]!)
                     log("\(type) \(transmitter!.peripheral!.name!): enabling notifications on the patch status characteristic")
                     currentSecurityCommand = nil
@@ -806,13 +809,13 @@ final class Libre3: Libre {
             // APP_CRC16 = 09 F0
             
             let activationResponse = ActivationResponse(
-                bdAddress: Data(output[1 ..< 7].reversed()),
-                BLE_Pin:   output.subdata(in: 7 ..< 11),
-                activationTime: UInt32(output.subdata(in: 11 ..< 15))
+                bdAddress: Data(output[1..<7].reversed()),
+                BLE_Pin:   output.subdata(in: 7..<11),
+                activationTime: UInt32(output.subdata(in: 11..<15))
             )
             
-            let crc = UInt16(output[15 ... 16])
-            let computedCrc = output[1 ... 14].crc16
+            let crc = UInt16(output[15...16])
+            let computedCrc = output[1...14].crc16
             
             log("NFC: Libre 3 activation response: \(activationResponse), BLE address: \(activationResponse.bdAddress.hexAddress), BLE PIN: \(activationResponse.BLE_Pin.hex), activation time: \(Date(timeIntervalSince1970: Double(activationResponse.activationTime))), CRC: \(crc.hex), computed CRC: \(computedCrc.hex)")
             

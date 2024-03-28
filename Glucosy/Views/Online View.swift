@@ -225,7 +225,7 @@ struct OnlineView: View {
                                 nightscout.read()
                             }
                         } else {
-                            app.showingNfcAlert = true
+                            app.alertNfc = true
                         }
                     } label: {
                         Image(systemName: "sensor.tag.radiowaves.forward.fill")

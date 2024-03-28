@@ -227,7 +227,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             }
         } else {
             print("NFC unavailible")
-            main.app.showingNfcAlert = true
+            main.app.alertNfc = true
         }
     }
     
@@ -261,7 +261,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             var patchInfo: PatchInfo = Data()
             let maxRetries = 5
             
-            for retry in 0 ... maxRetries {
+            for retry in 0...maxRetries {
                 if retry > 0 {
                     AudioServicesPlaySystemSound(1520) /// "pop" vibration
                     log("NFC: retry # \(retry)...")
@@ -285,8 +285,8 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 }
             }
             
-            for retry in 0 ... maxRetries {
-                AudioServicesPlaySystemSound(1520)    // "pop" vibration
+            for retry in 0...maxRetries {
+                AudioServicesPlaySystemSound(1520) // "pop" vibration
                 
                 if retry > 0 {
                     log("NFC: retry # \(retry)...")
@@ -326,7 +326,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             // Libre 3: extract the 24-byte patchInfo trimming the leading (A5)+ 00 dummy bytes and verifying the final CRC16
             if patchInfo.count >= 28 && patchInfo[0] == 0xA5 {
                 let crc = UInt16(patchInfo.suffix(2))
-                let info = Data(patchInfo[patchInfo.count - 26 ... patchInfo.count - 3])
+                let info = Data(patchInfo[patchInfo.count - 26...patchInfo.count - 3])
                 let computedCrc = info.crc16
                 
                 if crc == computedCrc {
@@ -526,8 +526,15 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
         
         do {
             debugLog("NFC: sending \(sensor.type) '\(cmd.code.hex)\(cmd.parameters.count == 0 ? "" : " \(cmd.parameters.hex)")' custom command\(cmd.description == "" ? "" : " (\(cmd.description))")")
-            let output = try await connectedTag?.customCommand(requestFlags: .highDataRate, customCommandCode: cmd.code, customRequestParameters: cmd.parameters)
+            
+            let output = try await connectedTag?.customCommand(
+                requestFlags: .highDataRate,
+                customCommandCode: cmd.code,
+                customRequestParameters: cmd.parameters
+            )
+            
             data = Data(output!)
+            
         } catch {
             log("NFC: \(sensor.type) '\(cmd.description) \(cmd.code.hex)\(cmd.parameters.count == 0 ? "" : " \(cmd.parameters.hex)")' custom command error: \(error.localizedDescription) (ISO 15693 error 0x\(error.iso15693Code.hex): \(error.iso15693Description))")
             throw error
@@ -547,7 +554,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             let blockToRead = start + buffer.count / 8
             
             do {
-                let dataArray = try await connectedTag?.readMultipleBlocks(requestFlags: .highDataRate, blockRange: NSRange(blockToRead ... blockToRead + requested - 1))
+                let dataArray = try await connectedTag?.readMultipleBlocks(requestFlags: .highDataRate, blockRange: NSRange(blockToRead...blockToRead + requested - 1))
                 
                 for data in dataArray! {
                     buffer += data
@@ -585,6 +592,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
     func readBlocks(from start: Int, count blocks: Int, requesting: Int = 3) async throws -> (Int, Data) {
         if sensor.securityGeneration < 1 {
             debugLog("readBlocks() B3 command not supported by \(sensor.type)")
+            
             throw NFCError.commandNotSupported
         }
         
@@ -638,8 +646,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     log("NFC: error while reading multiple blocks #\(blockToRead.hex) - #\((blockToRead + requested - 1).hex) (\(blockToRead)-\(blockToRead + requested - 1)): \(error.localizedDescription) (ISO 15693 error 0x\(error.iso15693Code.hex): \(error.iso15693Description))")
                 }
                 
-                throw
-                NFCError.readBlocks
+                throw NFCError.readBlocks
             }
         }
         
@@ -651,6 +658,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
     func readRaw(_ address: Int, _ bytes: Int) async throws -> (Int, Data) {
         if sensor.type != .libre1 && sensor.type != .libreProH {
             debugLog("readRaw() A3 command not supported by \(sensor.type)")
+            
             throw NFCError.commandNotSupported
         }
         
@@ -665,7 +673,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             
             var remainingWords = remainingBytes / 2
             
-            if remainingBytes % 2 == 1 || ( remainingBytes % 2 == 0 && addressToRead % 2 == 1 ) {
+            if remainingBytes % 2 == 1 || (remainingBytes % 2 == 0 && addressToRead % 2 == 1) {
                 remainingWords += 1
             }
             
@@ -681,8 +689,13 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 let output = try await connectedTag?.customCommand(requestFlags: .highDataRate, customCommandCode: readRawCommand.code, customRequestParameters: readRawCommand.parameters)
                 var data = Data(output!)
                 
-                if addressToRead % 2 == 1 { data = data.subdata(in: 1 ..< data.count) }
-                if data.count - bytesToRead == 1 { data = data.subdata(in: 0 ..< data.count - 1) }
+                if addressToRead % 2 == 1 {
+                    data = data.subdata(in: 1 ..< data.count)
+                }
+                
+                if data.count - bytesToRead == 1 {
+                    data = data.subdata(in: 0 ..< data.count - 1)
+                }
                 
                 buffer += data
                 remainingBytes -= data.count
@@ -695,6 +708,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 if retry <= retries {
                     AudioServicesPlaySystemSound(1520)    // "pop" vibration
                     log("NFC: retry # \(retry)...")
+                    
                     try await Task.sleep(nanoseconds: 250_000_000)
                     
                 } else {
@@ -733,18 +747,19 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             let blocks = bytesToWrite.count / 8
             
             if address >= 0xF860 {    // write to FRAM blocks
-                let requestBlocks = 2    // 3 doesn't work
+                let requestBlocks = 2 // 3 doesn't work
                 
                 let requests = Int(ceil(Double(blocks) / Double(requestBlocks)))
                 let remainder = blocks % requestBlocks
                 var blocksToWrite = [Data](repeating: Data(), count: blocks)
                 
-                for i in 0 ..< blocks {
-                    blocksToWrite[i] = Data(bytesToWrite[i * 8 ... i * 8 + 7])
+                for i in 0..<blocks {
+                    blocksToWrite[i] = Data(bytesToWrite[i * 8...i * 8 + 7])
                 }
                 
-                for i in 0 ..< requests {
+                for i in 0..<requests {
                     let startIndex = startBlock - 0xF860 / 8 + i * requestBlocks
+                    
                     // TODO: simplify by using min()
                     let endIndex = startIndex + (i == requests - 1 ? (remainder == 0 ? requestBlocks : remainder) : requestBlocks) - (requestBlocks > 1 ? 1 : 0)
                     let blockRange = NSRange(startIndex...endIndex)
@@ -782,8 +797,8 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             let endIndex = min(startIndex + requestBlocks - 1, endBlock)
             var dataBlocks = [Data]()
             
-            for i in startIndex ... endIndex {
-                dataBlocks.append(Data(data[(i - startBlock) * 8 ... (i - startBlock) * 8 + 7]))
+            for i in startIndex...endIndex {
+                dataBlocks.append(Data(data[(i - startBlock) * 8...(i - startBlock) * 8 + 7]))
             }
             
             let blockRange = NSRange(startIndex...endIndex)
@@ -818,7 +833,8 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             if sensor.type == .libre3 {
                 for c in [0xAA, 0xAB, 0xAC] {
                     do {
-                        var output = try await send(NFCCommand(code: c))
+                        var output = try await send(.init(code: c))
+                        
                         var msg = "NFC: Libre 3 `\(c.hex)` command output: \(output.hexBytes)"
                         
                         if output.count > 2 && output.count != 64 {
@@ -829,8 +845,9 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                             msg += ", CRC: \(Data(output.suffix(2).reversed()).hex), computed CRC: \(output.prefix(output.count-2).crc16.hex), string: \"\(output.string)\""
                             
                             if c == 0xAB {
-                                let fwVersion = output.subdata(in: 8 ..< 12)
+                                let fwVersion = output.subdata(in: 8..<12)
                                 let firmware = "\(fwVersion[3]).\(fwVersion[2]).\(fwVersion[1]).\(fwVersion[0])"
+                                
                                 msg += ", firmware version: \(firmware) (0x\(fwVersion.hex))"
                             }
                         }
@@ -848,15 +865,15 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 sensor.nfcCommand(.readChallenge)
             ]
             
-            for c in 0xA0 ... 0xDF {
-                commands.append(NFCCommand(code: c, parameters: Data(), description: c.hex))
+            for c in 0xA0...0xDF {
+                commands.append(.init(code: c, parameters: Data(), description: c.hex))
             }
             
             let params = "01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10".bytes
             
             for c in [0xA9, 0xC8, 0xC9] {
-                for p in 1 ... 16 {
-                    commands.append(NFCCommand(code: c, parameters: params.prefix(p), description: "\(c.hex) \(params.prefix(p).hex)"))
+                for p in 1...16 {
+                    commands.append(.init(code: c, parameters: params.prefix(p), description: "\(c.hex) \(params.prefix(p).hex)"))
                 }
             }
             
@@ -864,12 +881,18 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                 log("NFC: sending \(sensor.type) '\(cmd.description)' command: code: 0x\(cmd.code.hex), parameters: \(cmd.parameters.count == 0 ? "[]" : "0x\(cmd.parameters.hex)")")
                 
                 do {
-                    let output = try await connectedTag!.customCommand(requestFlags: .highDataRate, customCommandCode: cmd.code, customRequestParameters: cmd.parameters)
+                    let output = try await connectedTag!.customCommand(
+                        requestFlags: .highDataRate,
+                        customCommandCode: cmd.code,
+                        customRequestParameters: cmd.parameters
+                    )
+                    
                     log("NFC: '\(cmd.description)' command output (\(output.count) bytes): 0x\(output.hex)")
                     
                     if sensor.securityGeneration == 2 && output.count == 6 { // .readAttribute
                         let state = SensorState(rawValue: output[0]) ?? .unknown
                         sensor.state = state
+                        
                         log("\(sensor.type) state: \(state.description.lowercased()) (0x\(state.rawValue.hex))")
                     }
                     

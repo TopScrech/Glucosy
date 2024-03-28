@@ -150,7 +150,7 @@ final class Libre2: Libre {
         
         var result = [UInt8]()
         
-        for i in 0 ..< 43 {
+        for i in 0..<43 {
             let input = prepareVariables(id: id, x: UInt16(i), y: getArg(block: i))
             let blockKey = processCrypto(input: input)
             
@@ -297,7 +297,7 @@ final class Libre2: Libre {
         var key = [UInt8]()
         var initialKey = processCrypto(input: prepareVariables(id: id, x: x, y: y))
         
-        for _ in 0 ..< 8 {
+        for _ in 0..<8 {
             key.append(UInt8(truncatingIfNeeded: initialKey[0]))
             key.append(UInt8(truncatingIfNeeded: initialKey[0] >> 8))
             key.append(UInt8(truncatingIfNeeded: initialKey[1]))

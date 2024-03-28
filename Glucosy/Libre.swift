@@ -33,7 +33,7 @@ extension SensorType {
 // https://github.com/UPetersen/LibreMonitor/blob/Swift4/LibreMonitor/Model/SensorSerialNumber.swift
 
 func serialNumber(uid: SensorUid, family: SensorFamily = .libre1) -> String {
-    let lookupTable = ["0","1","2","3","4","5","6","7","8","9","A","C","D","E","F","G","H","J","K","L","M","N","P","Q","R","T","U","V","W","X","Y","Z"]
+    let lookupTable = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "T", "U", "V", "W", "X", "Y", "Z"]
     
     guard uid.count == 8 else {
         return ""
@@ -42,16 +42,16 @@ func serialNumber(uid: SensorUid, family: SensorFamily = .libre1) -> String {
     let bytes = Array(uid.reversed().suffix(6))
     
     var fiveBitsArray = [UInt8]()
-    fiveBitsArray.append( bytes[0] >> 3 )
-    fiveBitsArray.append( bytes[0] << 2 + bytes[1] >> 6 )
-    fiveBitsArray.append( bytes[1] >> 1 )
-    fiveBitsArray.append( bytes[1] << 4 + bytes[2] >> 4 )
-    fiveBitsArray.append( bytes[2] << 1 + bytes[3] >> 7 )
-    fiveBitsArray.append( bytes[3] >> 2 )
-    fiveBitsArray.append( bytes[3] << 3 + bytes[4] >> 5 )
-    fiveBitsArray.append( bytes[4] )
-    fiveBitsArray.append( bytes[5] >> 3 )
-    fiveBitsArray.append( bytes[5] << 2 )
+    fiveBitsArray.append(bytes[0] >> 3)
+    fiveBitsArray.append(bytes[0] << 2 + bytes[1] >> 6)
+    fiveBitsArray.append(bytes[1] >> 1)
+    fiveBitsArray.append(bytes[1] << 4 + bytes[2] >> 4)
+    fiveBitsArray.append(bytes[2] << 1 + bytes[3] >> 7)
+    fiveBitsArray.append(bytes[3] >> 2)
+    fiveBitsArray.append(bytes[3] << 3 + bytes[4] >> 5)
+    fiveBitsArray.append(bytes[4])
+    fiveBitsArray.append(bytes[5] >> 3)
+    fiveBitsArray.append(bytes[5] << 2)
     
     return fiveBitsArray.reduce("\(family.rawValue)", {
         $0 + lookupTable[ Int(0x1F & $1) ]
@@ -69,7 +69,7 @@ func crc16(_ data: Data) -> UInt16 {
     
     var reverseCrc = UInt16(0)
     
-    for _ in 0 ..< 16 {
+    for _ in 0..<16 {
         reverseCrc = reverseCrc << 1 | crc & 1
         crc >>= 1
     }
@@ -86,7 +86,7 @@ func readBits(_ buffer: Data, _ byteOffset: Int, _ bitOffset: Int, _ bitCount: I
     
     var res = 0
     
-    for i in 0 ..< bitCount {
+    for i in 0..<bitCount {
         let totalBitOffset = byteOffset * 8 + bitOffset + i
         let byte = Int(floor(Float(totalBitOffset) / 8))
         let bit = totalBitOffset % 8
@@ -102,11 +102,12 @@ func readBits(_ buffer: Data, _ byteOffset: Int, _ bitOffset: Int, _ bitCount: I
 func writeBits(_ buffer: Data, _ byteOffset: Int, _ bitOffset: Int, _ bitCount: Int, _ value: Int) -> Data {
     var res = buffer
     
-    for i in 0 ..< bitCount {
+    for i in 0..<bitCount {
         let totalBitOffset = byteOffset * 8 + bitOffset + i
         let byte = Int(floor(Double(totalBitOffset) / 8))
         let bit = totalBitOffset % 8
         let bitValue = (value >> i) & 0x1
+        
         res[byte] = (res[byte] & ~(1 << bit) | (UInt8(bitValue) << bit))
     }
     
@@ -144,17 +145,17 @@ func decodeStatusCode(_ code: String) -> UInt64 {
 func checksummedFRAM(_ data: Data) -> Data {
     var fram = data
     
-    let headerCRC = crc16(fram[         2 ..<  3 * 8])
-    let bodyCRC =   crc16(fram[ 3 * 8 + 2 ..< 40 * 8])
-    let footerCRC = crc16(fram[40 * 8 + 2 ..< 43 * 8])
+    let headerCRC = crc16(fram[         2 ..<  24]) /// 3 * 8
+    let bodyCRC   = crc16(fram[ 3 * 8 + 2 ..< 320]) /// 40 * 8
+    let footerCRC = crc16(fram[40 * 8 + 2 ..< 344]) /// 43 * 8
     
-    fram[0 ... 1] = headerCRC.data
-    fram[3 * 8 ... 3 * 8 + 1] = bodyCRC.data
-    fram[40 * 8 ... 40 * 8 + 1] = footerCRC.data
+    fram[0...1]               = headerCRC.data
+    fram[24...25]   = bodyCRC.data /// 3 * 8...3 * 8 + 1
+    fram[320...321] = footerCRC.data /// 40 * 8...40 * 8 + 1
     
-    if fram.count > 43 * 8 {
+    if fram.count > 344 { /// 43 * 8
         let commandsCRC = crc16(fram[43 * 8 + 2 ..< (244 - 6) * 8]) // Libre 1 DF: 429e, A2: f9ae
-        fram[43 * 8 ... 43 * 8 + 1] = commandsCRC.data
+        fram[43 * 8...43 * 8 + 1] = commandsCRC.data
     }
     
     return fram

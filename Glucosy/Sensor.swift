@@ -255,14 +255,14 @@ enum SensorState: UInt8, CustomStringConvertible {
         let trendIndex = Int(fram[26])      // body[2]
         let historyIndex = Int(fram[27])    // body[3]
         
-        for i in 0 ... 15 {
+        for i in 0...15 {
             var j = trendIndex - 1 - i
             
             if j < 0 {
                 j += 16
             }
             
-            let offset = 28 + j * 6         // body[4 ..< 100]
+            let offset = 28 + j * 6     // body[4..<100]
             let rawValue =              readBits(fram, offset, 0, 0xe)
             let quality =               UInt16(readBits(fram, offset, 0xe, 0xb)) & 0x1FF
             let qualityFlags =          (readBits(fram, offset, 0xe, 0xb) & 0x600) >> 9
@@ -278,8 +278,8 @@ enum SensorState: UInt8, CustomStringConvertible {
             let id = age - i
             let date = startDate + Double(age - i) * 60
             
-            trend.append(Glucose(
-                rawValue: rawValue, 
+            trend.append(.init(
+                rawValue: rawValue,
                 rawTemperature: rawTemperature,
                 temperatureAdjustment: temperatureAdjustment,
                 id: id,
@@ -298,35 +298,35 @@ enum SensorState: UInt8, CustomStringConvertible {
         var readingDate = lastReadingDate
         
         if preciseHistoryIndex == historyIndex {
-            readingDate.addTimeInterval(60.0 * -Double(delay))
+            readingDate.addTimeInterval(60 * -Double(delay))
         } else {
-            readingDate.addTimeInterval(60.0 * -Double(delay - 15))
+            readingDate.addTimeInterval(60 * -Double(delay - 15))
         }
         
-        for i in 0 ... 31 {
+        for i in 0...31 {
             var j = historyIndex - 1 - i
             
             if j < 0 {
                 j += 32
             }
             
-            let offset = 124 + j * 6    // body[100 ..< 292]
-            let rawValue = readBits(fram, offset, 0, 0xe)
-            let quality = UInt16(readBits(fram, offset, 0xe, 0xb)) & 0x1FF
-            let qualityFlags = (readBits(fram, offset, 0xe, 0xb) & 0x600) >> 9
-            let hasError = readBits(fram, offset, 0x19, 0x1) != 0
-            let rawTemperature = readBits(fram, offset, 0x1a, 0xc) << 2
+            let offset =                124 + j * 6 // body[100..<292]
+            let rawValue =              readBits(fram, offset, 0, 0xe)
+            let quality =               UInt16(readBits(fram, offset, 0xe, 0xb)) & 0x1FF
+            let qualityFlags =          (readBits(fram, offset, 0xe, 0xb) & 0x600) >> 9
+            let hasError =              readBits(fram, offset, 0x19, 0x1) != 0
+            let rawTemperature =        readBits(fram, offset, 0x1a, 0xc) << 2
             var temperatureAdjustment = readBits(fram, offset, 0x26, 0x9) << 2
-            let negativeAdjustment = readBits(fram, offset, 0x2f, 0x1)
+            let negativeAdjustment =    readBits(fram, offset, 0x2f, 0x1)
             
             if negativeAdjustment != 0 {
                 temperatureAdjustment = -temperatureAdjustment
             }
             
             let id = age - delay - i * 15
-            let date = id > -1 ? readingDate - Double(i) * 15 * 60 : startDate
+            let date = id > -1 ? readingDate - Double(i) * 900 : startDate /// 15 * 60
             
-            history.append(Glucose(
+            history.append(.init(
                 rawValue: rawValue, 
                 rawTemperature: rawTemperature,
                 temperatureAdjustment: temperatureAdjustment,
@@ -428,9 +428,9 @@ enum SensorState: UInt8, CustomStringConvertible {
             report += "\nSensor body CRC16: \(bodyCRC.hex), computed: \(computedBodyCRC.hex) -> \(bodyCRC == computedBodyCRC ? "OK" : "FAILED")"
             report += "\nSensor footer CRC16: \(footerCRC.hex), computed: \(computedFooterCRC.hex) -> \(footerCRC == computedFooterCRC ? "OK" : "FAILED")"
             
-            if fram.count >= 344 + 195 * 8 {
+            if fram.count >= 1904 { /// 344 + 195 * 8
                 let commandsCRC = UInt16(fram[344...345])
-                let computedCommandsCRC = crc16(fram[346 ..< 344 + 195 * 8])
+                let computedCommandsCRC = crc16(fram[346..<1904]) /// 344 + 195 * 8
                 report += "\nSensor commands CRC16: \(commandsCRC.hex), computed: \(computedCommandsCRC.hex) -> \(commandsCRC == computedCommandsCRC ? "OK" : "FAILED")"
             }
             

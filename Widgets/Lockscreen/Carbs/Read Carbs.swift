@@ -78,8 +78,16 @@ extension HealthKit {
         let endDate = Date()
         let startDate = Calendar.current.startOfDay(for: endDate)
         
-        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        let predicate = HKQuery.predicateForSamples(
+            withStart: startDate,
+            end: endDate,
+            options: .strictStartDate
+        )
+        
+        let sortDescriptor = NSSortDescriptor(
+            key: HKSampleSortIdentifierStartDate,
+            ascending: false
+        )
         
         return await withCheckedContinuation { continuation in
             let carbsQuery = HKSampleQuery(sampleType: carbsType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { _, results, error in
@@ -94,9 +102,15 @@ extension HealthKit {
                 if let carbsSamples = results as? [HKQuantitySample] {
                     for sample in carbsSamples {
                         let carbsValue = sample.quantity.doubleValue(for: .gram())
-                        loadedRecords.append(Carbohydrates(value: Int(carbsValue), date: sample.startDate, sample: sample))
+                        
+                        loadedRecords.append(.init(
+                            value: Int(carbsValue),
+                            date: sample.startDate,
+                            sample: sample
+                        ))
                     }
                 }
+                
                 continuation.resume(returning: loadedRecords)
             }
             

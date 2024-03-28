@@ -255,7 +255,7 @@ class LibreLinkUp: Logging {
                                    let data = json["data"] as? [String: Any],
                                    let server = data["lslApi"] as? String {
                                     let regionIndex = server.firstIndex(of: "-")
-                                    let region = regionIndex == nil ? defaultRegion : String(server[server.index(regionIndex!, offsetBy: 1) ... server.index(regionIndex!, offsetBy: 2)])
+                                    let region = regionIndex == nil ? defaultRegion : String(server[server.index(regionIndex!, offsetBy: 1)...server.index(regionIndex!, offsetBy: 2)])
                                     log("LibreLinkUp: regional server: \(server), saved default region: \(region)")
                                     
                                     DispatchQueue.main.async { [self] in
@@ -483,13 +483,24 @@ class LibreLinkUp: Logging {
                                             lifeCount -= 1
                                         }
                                         
-                                        history.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: lifeCount, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
+                                        history.append(.init(
+                                            glucose: .init(
+                                                measurement.valueInMgPerDl,
+                                                id: lifeCount,
+                                                date: date,
+                                                source: "LibreLinkUp"
+                                            ),
+                                            color: measurement.measurementColor,
+                                            trendArrow: measurement.trendArrow
+                                        ))
+                                        
                                         debugLog("LibreLinkUp: graph measurement # \(i) of \(graphData.count): \(measurement) (JSON: \(glucoseMeasurement)), lifeCount = \(lifeCount)")
                                     }
                                 }
                             }
                             
                             history.append(lastGlucose)
+                            
                             log("LibreLinkUp: graph values: \(history.map { ($0.glucose.id, $0.glucose.value, $0.glucose.date.shortDateTime, $0.color) })")
                             
                             // TODO: https://api-eu.libreview.io/glucoseHistory?from=1700092800&numPeriods=5&period=14
@@ -540,6 +551,7 @@ class LibreLinkUp: Logging {
                                             
                                             for block in blocks {
                                                 j += 1
+                                                
                                                 debugLog("LibreView: block # \(j) of period # \(i): \(block.count) percentiles times: \(block.map { $0["time"] as! Int })")
                                             }
                                         }
@@ -573,8 +585,20 @@ class LibreLinkUp: Logging {
                                             if let measurementData = try? JSONSerialization.data(withJSONObject: entry),
                                                let measurement = try? JSONDecoder().decode(GlucoseMeasurement.self, from: measurementData) {
                                                 i += 1
+                                                
                                                 let date = dateFormatter.date(from: measurement.timestamp)!
-                                                logbookHistory.append(LibreLinkUpGlucose(glucose: Glucose(measurement.valueInMgPerDl, id: i, date: date, source: "LibreLinkUp"), color: measurement.measurementColor, trendArrow: measurement.trendArrow))
+                                                
+                                                logbookHistory.append(.init(
+                                                    glucose: .init(
+                                                        measurement.valueInMgPerDl,
+                                                        id: i,
+                                                        date: date,
+                                                        source: "LibreLinkUp"
+                                                    ),
+                                                    color: measurement.measurementColor,
+                                                    trendArrow: measurement.trendArrow
+                                                ))
+                                                
                                                 debugLog("LibreLinkUp: logbook measurement # \(i - history.count) of \(data.count): \(measurement) (JSON: \(entry))")
                                             }
                                             
@@ -583,6 +607,7 @@ class LibreLinkUp: Logging {
                                                var alarm = try? JSONDecoder().decode(LibreLinkUpAlarm.self, from: alarmData) {
                                                 alarm.date = dateFormatter.date(from: alarm.timestamp)!
                                                 logbookAlarms.append(alarm)
+                                                
                                                 debugLog("LibreLinkUp: logbook alarm: \(alarm) (JSON: \(entry))")
                                             }
                                         }

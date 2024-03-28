@@ -88,8 +88,8 @@ extension NFC {
                     var i = offset + 2
                     
                     while offset < bytes - 3 && i < bytes - 1 {
-                        if UInt16(data[offset ... offset + 1]) == data[offset + 2 ... i + 1].crc16 {
-                            log("CRC matches for \(i - offset + 2) bytes at #\((offset / 8).hex) [\(offset + 2)...\(i + 1)] \(data[offset ... offset + 1].hex) = \(data[offset + 2 ... i + 1].crc16.hex)\n\(data[offset ... i + 1].hexDump(header: "\(libre2DumpMap[offset]?.1 ?? "[???]"):", address: 0))")
+                        if UInt16(data[offset...offset + 1]) == data[offset + 2...i + 1].crc16 {
+                            log("CRC matches for \(i - offset + 2) bytes at #\((offset / 8).hex) [\(offset + 2)...\(i + 1)] \(data[offset...offset + 1].hex) = \(data[offset + 2...i + 1].crc16.hex)\n\(data[offset...i + 1].hexDump(header: "\(libre2DumpMap[offset]?.1 ?? "[???]"):", address: 0))")
                             offset = i + 2
                             i = offset
                         }
@@ -114,18 +114,18 @@ extension NFC {
                 
                 let e0Offset = 0xFFB6 - commandsFramAddress
                 let a1Offset = 0xFFC6 - commandsFramAddress
-                let e0Address = UInt16(commmandsFram[e0Offset ... e0Offset + 1])
-                let a1Address = UInt16(commmandsFram[a1Offset ... a1Offset + 1])
+                let e0Address = UInt16(commmandsFram[e0Offset...e0Offset + 1])
+                let a1Address = UInt16(commmandsFram[a1Offset...a1Offset + 1])
                 
                 debugLog("E0 and A1 commands' addresses: \(e0Address.hex) \(a1Address.hex) (should be fbae and f9ba)")
                 
-                let originalCRC = crc16(commmandsFram[2 ..< 195 * 8])
+                let originalCRC = crc16(commmandsFram[2..<1560]) /// 195 * 8
                 debugLog("Commands section CRC: \(UInt16(commmandsFram[0...1]).hex), computed: \(originalCRC.hex) (should be 429e or f9ae for a Libre 1 A2)")
                 
                 var patchedFram = Data(commmandsFram)
-                patchedFram[a1Offset ... a1Offset + 1] = e0Address.data
-                let patchedCRC = crc16(patchedFram[2 ..< 195 * 8])
-                patchedFram[0 ... 1] = patchedCRC.data
+                patchedFram[a1Offset...a1Offset + 1] = e0Address.data
+                let patchedCRC = crc16(patchedFram[2..<1560]) /// 195 * 8
+                patchedFram[0...1] = patchedCRC.data
                 
                 debugLog("CRC after replacing the A1 command address with E0: \(patchedCRC.hex) (should be 6e01 or d531 for a Libre 1 A2)")
                 
@@ -165,7 +165,7 @@ extension NFC {
                     // age, trend and history indexes
                     try await write(fromBlock: 0x09, Data([0xBD, 0xD1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))
                     // trend
-                    for b in 0x0A ... 0x15 {
+                    for b in 0x0A...0x15 {
                         try await write(fromBlock: b, Data([0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))
                     }
                     
@@ -204,12 +204,12 @@ extension NFC {
             log("\(sensor.type) current maximum life: \(maxLife) minutes (\(maxLife.formattedInterval))")
             
             var patchedFram = Data(footerFram)
-            patchedFram[maxLifeOffset ... maxLifeOffset + 1] = Data([0xFF, 0xFF])
-            let patchedCRC = crc16(patchedFram[2 ..< 3 * 8])
-            patchedFram[0 ... 1] = patchedCRC.data
+            patchedFram[maxLifeOffset...maxLifeOffset + 1] = Data([0xFF, 0xFF])
+            let patchedCRC = crc16(patchedFram[2..<24]) /// 3 * 8
+            patchedFram[0...1] = patchedCRC.data
             
             do {
-                try await writeRaw(footerAddress + maxLifeOffset, patchedFram[maxLifeOffset ... maxLifeOffset + 1])
+                try await writeRaw(footerAddress + maxLifeOffset, patchedFram[maxLifeOffset...maxLifeOffset + 1])
                 try await writeRaw(footerAddress, patchedCRC.data)
                 
                 let (_, data) = try await read(fromBlock: 0, count: 43)

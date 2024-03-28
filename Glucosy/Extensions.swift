@@ -175,7 +175,9 @@ extension String {
     func matches(_ pattern: String) -> Bool {
         self.split(separator: " ").contains { substring in
             pattern.split(separator: " ").contains {
-                substring.lowercased().contains($0.lowercased())
+                substring
+                    .lowercased()
+                    .contains($0.lowercased())
             }
         }
     }

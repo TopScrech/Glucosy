@@ -106,6 +106,7 @@ class Nightscout: NSObject, Logging {
             for item in array {
                 if let dict = item as? [String: Any] {
                     // watchOS doesn't recognize dict["date"] as Int
+                    
                     if let value = dict["sgv"] as? Int, let id = dict["date"] as? NSNumber, let device = dict["device"] as? String {
                         values.append(Glucose(value, id: Int(truncating: id), date: Date(timeIntervalSince1970: Double(truncating: id)/1000), source: device))
                     }
@@ -130,6 +131,7 @@ class Nightscout: NSObject, Logging {
         if let array = data as? [[String: Any]?] {
             for dict in array {
                 // watchOS doesn't recognize dict["date"] as Int
+                
                 if let value = dict?["sgv"] as? Int, let id = dict?["date"] as? NSNumber, let device = dict?["device"] as? String {
                     values.append(Glucose(value, id: Int(truncating: id), date: Date(timeIntervalSince1970: Double(truncating: id)/1000), source: device))
                 }
@@ -352,9 +354,10 @@ extension Nightscout: WKNavigationDelegate, WKUIDelegate {
     
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         log("Nightscout: create veb view for action: \(navigationAction)")
-        //        if navigationAction.targetFrame == nil {
+        // if navigationAction.targetFrame == nil {
         webView.load(navigationAction.request)
-        //        }
+        // }
+        
         return nil
     }
     
@@ -362,6 +365,7 @@ extension Nightscout: WKNavigationDelegate, WKUIDelegate {
         log("Nightscout: JavaScript alert panel message: \(message)")
         app.JavaScriptConfirmAlertMessage = message
         app.showingJavaScriptConfirmAlert = true
+        
         // TODO: block web page updates
         completionHandler()
     }
@@ -370,9 +374,10 @@ extension Nightscout: WKNavigationDelegate, WKUIDelegate {
         log("Nightscout: TODO: JavaScript confirm panel message: \(message)")
         app.JavaScriptConfirmAlertMessage = message
         app.showingJavaScriptConfirmAlert = true
+        
         // TODO: block web page updates
         completionHandler(true)
     }
 }
 
-#endif
+#endif /// !os(watchOS)

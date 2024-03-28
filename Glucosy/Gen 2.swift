@@ -181,7 +181,7 @@ class Gen2 {
         return context
     }
     
-#endif
+#endif /// !os(watchOS)
     
     static func decrytpNfcData(context: Int, fromBlock: Int, count: Int, data: Data) -> Result {
         p2(command: GEN2_CMD_DECRYPT_NFC_STREAM, p1: context, Data([UInt8(fromBlock), UInt8(count)]), data)

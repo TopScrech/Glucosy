@@ -211,7 +211,9 @@ struct Monitor: View {
                         app.currentGlucose = Int.random(in: 1...10)
                         
                         UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.setValue("\(Int.random(in: 1...10))", forKey: "currentGlucose")
+                        
                         UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.setValue(Date().timeIntervalSinceReferenceDate, forKey: "widgetDate")
+                        
                         WidgetCenter.shared.reloadAllTimelines()
                     } label: {
                         Label("Test", systemImage: "hammer")

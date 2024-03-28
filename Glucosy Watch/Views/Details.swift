@@ -354,9 +354,9 @@ struct Details: View {
                 
                 Section("Known Devices") {
                     List {
-                        let knownDevices = app.main.bluetoothDelegate.knownDevices.sorted(by: {
+                        let knownDevices = app.main.bluetoothDelegate.knownDevices.sorted {
                             $0.key < $1.key
-                        })
+                        }
                         
                         ForEach(knownDevices, id: \.key) { uuid, device in
                             HStack {

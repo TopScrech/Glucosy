@@ -77,4 +77,4 @@ extension GlucosyWidgetAttributes.ContentState {
     GlucosyWidgetAttributes.ContentState.starEyes
 }
 
-#endif // canImport(ActivityKit)
+#endif /// canImport(ActivityKit)

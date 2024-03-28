@@ -881,4 +881,4 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
     }
 }
 
-#endif // !os(watchOS)
+#endif /// !os(watchOS)

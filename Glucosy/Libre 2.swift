@@ -48,7 +48,7 @@ let libre2DumpMap = [
 
 // https://github.com/ivalkou/LibreTools/blob/master/Sources/LibreTools/Sensor/Libre2.swift
 
-@Observable 
+@Observable
 final class Libre2: Libre {
     static let key: [UInt16] = [0xA0C5, 0x6860, 0x0000, 0x14C6]
     static let secret: UInt16 = 0x1b6a
@@ -139,10 +139,10 @@ final class Libre2: Libre {
                 }
                 
                 return UInt16(info[5], info[4])
-            
+                
             case .libre2:
                 return UInt16(info[5], info[4]) ^ 0x44
-            
+                
             default:
                 fatalError("Unsupported sensor type")
             }
@@ -225,7 +225,7 @@ final class Libre2: Libre {
         }
     }
     
-#endif    // #if !os(watchOS)
+#endif /// #if !os(watchOS)
     
     static func prepareVariables2(id: SensorUid, i1: UInt16, i2: UInt16, i3: UInt16, i4: UInt16) -> [UInt16] {
         let s1 = UInt16(truncatingIfNeeded: UInt(UInt16(id[5], id[4])) + UInt(i1))
@@ -260,9 +260,11 @@ final class Libre2: Libre {
         
         // TODO extract if secret
         let t31 = crc16(Data([0xc1, 0xc4, 0xc3, 0xc0, 0xd4, 0xe1, 0xe7, 0xba, UInt8(t2[0] & 0xFF), UInt8((t2[0] >> 8) & 0xFF)]))
-        let t32 = crc16(Data([UInt8(t2[1] & 0xFF), UInt8((t2[1] >> 8) & 0xFF),
-                              UInt8(t2[2] & 0xFF), UInt8((t2[2] >> 8) & 0xFF),
-                              UInt8(t2[3] & 0xFF), UInt8((t2[3] >> 8) & 0xFF)]))
+        let t32 = crc16(Data([
+            UInt8(t2[1] & 0xFF), UInt8((t2[1] >> 8) & 0xFF),
+            UInt8(t2[2] & 0xFF), UInt8((t2[2] >> 8) & 0xFF),
+            UInt8(t2[3] & 0xFF), UInt8((t2[3] >> 8) & 0xFF)
+        ]))
         let t33 = crc16(Data([ad[0], ad[1], ad[2], ad[3], ed[0], ed[1]]))
         let t34 = crc16(Data([ed[2], ed[3], b[0], b[1], b[2], b[3]]))
         
@@ -329,7 +331,7 @@ extension Sensor {
     func parseBLEData( _ data: Data) -> [Glucose] {
         let wearTimeMinutes = Int(UInt16(data[40...41]))
         
-        if state == .unknown { 
+        if state == .unknown {
             state = .active
         }
         
@@ -340,7 +342,7 @@ extension Sensor {
         var bleTrend = [Glucose]()
         var bleHistory = [Glucose]()
         
-        for i in 0 ..< 10 {
+        for i in 0..<10 {
             let rawValue = readBits(data, i * 4, 0, 0xe)
             let rawTemperature = readBits(data, i * 4, 0xe, 0xc) << 2
             var temperatureAdjustment = readBits(data, i * 4, 0x1a, 0x5) << 2
@@ -394,7 +396,7 @@ extension Sensor {
         // Merge trend values setting them to -1 for missing ids
         var trendDict = [Int: Glucose]()
         
-        for i in 0 ... 15 {
+        for i in 0...15 {
             let id = wearTimeMinutes - i
             let date = readingDate - Double(i * 60)
             
@@ -407,29 +409,31 @@ extension Sensor {
             }
         }
         
-        trend = [Glucose](trendDict.values.sorted(by: { $0.id > $1.id }).prefix(16))
+        trend = [Glucose](trendDict.values.sorted {
+            $0.id > $1.id
+        }.prefix(16))
         
         // Merge historic values setting them to -1 for missing ids
         var historyDict = [Int: Glucose]()
         let lastHistoryId = bleHistory[0].id
         let lastHistoryDate = bleHistory[0].date
         
-        for i in 0 ... 31 {
+        for i in 0...31 {
             let id = lastHistoryId - i * 15
-            let date = lastHistoryDate - Double(i * (60 * 15))
+            let date = lastHistoryDate - Double(i * 900) /// 60 * 15
             
             historyDict[id] = Glucose(-1, id: id, date: date)
         }
         
         for glucose in (history + bleHistory) {
-            if glucose.id > lastHistoryId - (32 * 15) {
+            if glucose.id > lastHistoryId - 480 { /// 32 * 15
                 historyDict[glucose.id] = glucose
             }
         }
         
         history = [Glucose](historyDict.values
-            .sorted(by: { $0.id < $1.id })
-            .drop(while: { $0.value == -1 })
+            .sorted { $0.id < $1.id }
+            .drop { $0.value == -1 }
             .reversed()
             .prefix(32))
         

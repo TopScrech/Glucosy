@@ -10,6 +10,17 @@ struct Graph: View {
     
     var body: some View {
         Chart {
+            if let lastGlucose {
+                PointMark(
+                    x: .value("Date", lastGlucose.date),
+                    y: .value("Glucose", Double(lastGlucose.value.units)!)
+                )
+                .foregroundStyle(.red)
+                .annotation(position: .trailing) {
+                    Text(lastGlucose.value.units)
+                }
+            }
+            
             if let maxGlucose {
                 PointMark(
                     x: .value("Date", maxGlucose.date),

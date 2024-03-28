@@ -285,4 +285,4 @@ extension NFC {
     }
 }
 
-#endif // !os(watchOS)
+#endif /// !os(watchOS)

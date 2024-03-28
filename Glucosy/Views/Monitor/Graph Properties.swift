@@ -1,6 +1,10 @@
 import Foundation
 
 extension Graph {
+    var lastGlucose: Glucose? {
+        history.glucose.first
+    }
+    
     var last24Glucose: [Glucose] {
         history.glucose.filter { glucose in
             glucose.date > yesterday
@@ -22,14 +26,14 @@ extension Graph {
     }
     
     var maxGlucose: Glucose? {
-        last24Glucose.max(by: {
+        last24Glucose.max {
             $0.value < $1.value
-        })
+        }
     }
     
     var minGlucose: Glucose? {
-        last24Glucose.min(by: {
+        last24Glucose.min {
             $0.value < $1.value
-        })
+        }
     }
 }

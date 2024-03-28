@@ -44,7 +44,7 @@ extension MainDelegate {
             app.main.nfc.startSession()
             
         case "NEW_RECORD":
-            app.sheetMealtime = true
+            app.sheetNewRecord = true
             
         default:
             print("Unknown dynamic shortcut: \(type)")

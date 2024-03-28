@@ -309,6 +309,7 @@ struct Details: View {
                                 repair()
                             } label: {
                                 Label("RePair", systemImage: "sensor.tag.radiowaves.forward.fill")
+                                    .symbolEffect(.variableColor.reversing)
                             }
                             .foregroundColor(.accentColor)
                             .confirmationDialog("Pairing a Libre 2 with this device will break LibreLink and other apps' pairings and you will have to uninstall and reinstall them to get their alarms back again.", isPresented: $showingRePairConfirmationDialog, titleVisibility: .visible) {

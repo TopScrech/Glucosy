@@ -125,13 +125,6 @@ struct Monitor: View {
                             }
                             .foregroundColor(battery > 10 ? .green : .red)
                         }
-                        
-                        //                        if app.device.rssi != 0 {
-                        //                            Text("RSSI: ")
-                        //                                .foregroundColor(Color(.lightGray)) +
-                        //
-                        //                            Text("\(app.device.rssi) dB")
-                        //                        }
                     }
                 }
             }
@@ -158,7 +151,6 @@ struct Monitor: View {
                     app.main.rescan()
                 } label: {
                     Image(systemName: "arrow.clockwise")
-                        .title()
                 }
                 
                 if (app.status.hasPrefix("Scanning") || app.status.hasSuffix("retrying...")) && app.main.centralManager.state != .poweredOff {
@@ -167,63 +159,23 @@ struct Monitor: View {
                         
                         app.main.status("Stopped scanning")
                         app.main.log("Bluetooth: stopped scanning")
+                        
                     } label: {
                         Image(systemName: "stop.circle")
-                            .title()
                     }
                     .foregroundColor(.red)
                 }
             }
+            .title()
             .padding(.bottom, 8)
         }
         .navigationTitle("Monitor")
         .multilineTextAlignment(.center)
         .navigationBarTitleDisplayMode(.inline)
+        .standartToolbar()
         .onAppear {
             if app.lastReadingDate != Date.distantPast {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    settings.caffeinated.toggle()
-                    UIApplication.shared.isIdleTimerDisabled = settings.caffeinated
-                } label: {
-                    Image(systemName: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer")
-                        .tint(.latte)
-                }
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-#if DEBUG
-                Menu {
-                    Button {
-                        history.factoryValues = History.test.factoryValues
-                        history.rawValues = History.test.rawValues
-                        history.glucose = History.test.glucose
-                        app.currentGlucose = Int.random(in: 1...10)
-                        
-                        UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.setValue("\(Int.random(in: 1...10))", forKey: "currentGlucose")
-                        
-                        UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.setValue(Date().timeIntervalSinceReferenceDate, forKey: "widgetDate")
-                        
-                        WidgetCenter.shared.reloadAllTimelines()
-                    } label: {
-                        Label("Test", systemImage: "hammer")
-                    }
-                    
-                } label: {
-                    Image(systemName: "sensor.tag.radiowaves.forward.fill")
-                    
-                } primaryAction: {
-                    app.main.nfc.startSession()
-                }
-#else
-                SFButton("sensor.tag.radiowaves.forward.fill") {
-                    app.main.nfc.startSession()
-                }
-#endif
             }
         }
     }
@@ -231,7 +183,7 @@ struct Monitor: View {
 
 #Preview {
     NavigationView {
-        Monitor()
+        HomeView()
     }
-    .glucosyPreview()
+    .glucosyPreview(.monitor)
 }

@@ -25,7 +25,7 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
             
             switch categoryIdentifier {
             case "ALARM":
-                app.sheetMealtime = true
+                app.sheetNewRecord = true
                 
             case "REMINDER":
                 app.main.nfc.startSession()
@@ -42,7 +42,7 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
                 app.main.nfc.startSession()
                 
             case "NEW_RECORD":
-                app.sheetMealtime = true
+                app.sheetNewRecord = true
                 
             default:
                 print("Unknown identifier \(response.actionIdentifier)")

@@ -87,7 +87,7 @@ struct HomeView: View {
             //                    }
             //                }
             //            }
-            .sheet($app.sheetMealtime) {
+            .sheet($app.sheetNewRecord) {
                 NewRecordView()
             }
         }

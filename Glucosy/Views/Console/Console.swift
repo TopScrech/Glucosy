@@ -165,6 +165,7 @@ struct Console: View {
                         repair()
                     } label: {
                         Label("RePair Streaming", systemImage: "sensor.tag.radiowaves.forward.fill")
+                            .symbolEffect(.variableColor.reversing)
                     }
                     
                     Button {

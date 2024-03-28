@@ -153,6 +153,7 @@ struct SettingsView: View {
         .navigationTitle("Settings")
         .monospacedDigit()
         .navigationBarTitleDisplayMode(.inline)
+        .standartToolbar()
         .toolbar {
             Button {
                 settings.mutedAudio.toggle()

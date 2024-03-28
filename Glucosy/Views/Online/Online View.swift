@@ -4,7 +4,7 @@ import Charts
 struct OnlineView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(History.self)  private var history: History
-    @Environment(Settings.self) private var settings: Settings
+    @Environment(Settings.self)         var settings: Settings
     
     @Environment(\.colorScheme) private var colorScheme
     
@@ -88,9 +88,9 @@ struct OnlineView: View {
             VStack(spacing: 0) {
                 HStack(alignment: .top) {
                     Button {
-                        settings.selectedService = settings.selectedService == .nightscout ? .libreLinkUp : .nightscout
+                        settings.selectedService.toggle()
                     } label: {
-                        Image(settings.selectedService.rawValue)
+                        Image(selectedService.rawValue)
                             .resizable()
                             .frame(width: 32, height: 32)
                             .shadow(color: .cyan, radius: 4)
@@ -101,7 +101,7 @@ struct OnlineView: View {
                     VStack(spacing: 0) {
                         @Bindable var settings = settings
                         
-                        if settings.selectedService == .nightscout {
+                        if selectedService == .nightscout {
                             HStack(alignment: .firstTextBaseline, spacing: 0) {
                                 Text("https://")
                                     .foregroundColor(Color(.lightGray))
@@ -119,7 +119,7 @@ struct OnlineView: View {
                                 SecureField("token", text: $settings.nightscoutToken)
                             }
                             
-                        } else if settings.selectedService == .libreLinkUp {
+                        } else if selectedService == .libreLinkUp {
                             TextField("email", text: $settings.libreLinkUpEmail)
                                 .keyboardType(.emailAddress)
                                 .textContentType(.emailAddress)
@@ -214,31 +214,13 @@ struct OnlineView: View {
                             readingCountdown = settings.readingInterval * 60 - Int(Date().timeIntervalSince(app.lastConnectionDate))
                         }
                     }
-                    
-                    Button {
-                        if app.main.nfc.isAvailable {
-                            app.main.nfc.startSession()
-                            
-                            app.main.healthKit?.readGlucose()
-                            
-                            if let nightscout = app.main.nightscout {
-                                nightscout.read()
-                            }
-                        } else {
-                            app.alertNfc = true
-                        }
-                    } label: {
-                        Image(systemName: "sensor.tag.radiowaves.forward.fill")
-                            .title()
-                    }
-                    .padding(.top, 2)
                 }
                 .foregroundColor(.accentColor)
                 .padding(.bottom, 4)
 #if targetEnvironment(macCatalyst)
                 .padding(.horizontal, 15)
 #endif
-                if settings.selectedService == .nightscout {
+                if selectedService == .nightscout {
                     @Bindable var app = app
                     
                     WebView(site: settings.nightscoutSite, query: "token=\(settings.nightscoutToken)", delegate: app.main?.nightscout )
@@ -276,7 +258,7 @@ struct OnlineView: View {
                     }
                 }
                 
-                if settings.selectedService == .libreLinkUp {
+                if selectedService == .libreLinkUp {
                     VStack {
                         ScrollView(showsIndicators: true) {
                             Text(libreLinkUpResponse)
@@ -360,6 +342,7 @@ struct OnlineView: View {
         }
         .navigationTitle("Online")
         .navigationBarTitleDisplayMode(.inline)
+        .standartToolbar()
     }
 }
 

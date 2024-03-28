@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct AppleHealthView: View {
     @Environment(AppState.self) private var app
@@ -101,6 +101,7 @@ struct AppleHealthView: View {
                 }
             }
         }
+        .standartToolbar()
         .refreshableTask {
             if let healthKit = app.main?.healthKit {
                 healthKit.readGlucose()
@@ -108,12 +109,6 @@ struct AppleHealthView: View {
                 healthKit.readCarbs()
                 healthKit.readTemperature()
             }
-        }
-        .toolbar {
-            Button("New record") {
-                app.sheetMealtime = true
-            }
-            .tint(.green)
         }
     }
     

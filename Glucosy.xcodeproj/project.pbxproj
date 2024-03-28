@@ -191,6 +191,8 @@
 		F3D384BF2BB004B100F03C35 /* Console Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D384BE2BB004B100F03C35 /* Console Sidebar.swift */; };
 		F3D781212BADDCE900C2DE1E /* Date Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C98AED2BAD86E700723DA8 /* Date Difference.swift */; };
 		F3E592E72BB622FB00CE4FE4 /* Monitor Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592E62BB622FB00CE4FE4 /* Monitor Properties.swift */; };
+		F3E592E92BB633C300CE4FE4 /* Standard Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592E82BB633C300CE4FE4 /* Standard Toolbar.swift */; };
+		F3E592EE2BB6368900CE4FE4 /* Online View Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592ED2BB6368900CE4FE4 /* Online View Properties.swift */; };
 		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
 		F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
 		F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
@@ -372,6 +374,8 @@
 		F3C98AED2BAD86E700723DA8 /* Date Difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Difference.swift"; sourceTree = "<group>"; };
 		F3D384BE2BB004B100F03C35 /* Console Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Sidebar.swift"; sourceTree = "<group>"; };
 		F3E592E62BB622FB00CE4FE4 /* Monitor Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Monitor Properties.swift"; sourceTree = "<group>"; };
+		F3E592E82BB633C300CE4FE4 /* Standard Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Standard Toolbar.swift"; sourceTree = "<group>"; };
+		F3E592ED2BB6368900CE4FE4 /* Online View Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Online View Properties.swift"; sourceTree = "<group>"; };
 		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
 		F3E69B442BA6E66500A5469A /* Write Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Carbs.swift"; sourceTree = "<group>"; };
 		F3E69B472BA6E67000A5469A /* Write Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Insulin.swift"; sourceTree = "<group>"; };
@@ -543,19 +547,19 @@
 			isa = PBXGroup;
 			children = (
 				C5E4005729825C930021C6B7 /* Home View.swift */,
+				F3E592E82BB633C300CE4FE4 /* Standard Toolbar.swift */,
 				F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */,
 				F31C70952BA7B01800A5BFCD /* New Record View.swift */,
-				F32ED8F12BA8921D00CD234C /* New Record Selector.swift */,
 				F3D384BD2BB0029100F03C35 /* Debug */,
-				F35AFC872BA5086B0065145A /* Apple Health */,
 				F31C70992BA8577D00A5BFCD /* Monitor */,
+				F35AFC872BA5086B0065145A /* Apple Health */,
 				F31C709A2BA8578700A5BFCD /* Details */,
-				C5E4005429825C930021C6B7 /* Online View.swift */,
+				F3E592EC2BB634ED00CE4FE4 /* Online */,
 				F31C70922BA7915100A5BFCD /* Console */,
 				F31C708A2BA750AF00A5BFCD /* Settings */,
-				C5E4004E29825C930021C6B7 /* Data View.swift */,
-				C5E4005629825C930021C6B7 /* Plan.swift */,
-				C5E4005129825C930021C6B7 /* Web View.swift */,
+				F32ED8F12BA8921D00CD234C /* New Record Selector.swift */,
+				F3E592EA2BB634D300CE4FE4 /* Data */,
+				F3E592EB2BB634DA00CE4FE4 /* Plan */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -751,6 +755,32 @@
 				C5916E4A29827E860051AC06 /* Graph.swift */,
 			);
 			path = Monitor;
+			sourceTree = "<group>";
+		};
+		F3E592EA2BB634D300CE4FE4 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4004E29825C930021C6B7 /* Data View.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F3E592EB2BB634DA00CE4FE4 /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4005629825C930021C6B7 /* Plan.swift */,
+			);
+			path = Plan;
+			sourceTree = "<group>";
+		};
+		F3E592EC2BB634ED00CE4FE4 /* Online */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4005429825C930021C6B7 /* Online View.swift */,
+				F3E592ED2BB6368900CE4FE4 /* Online View Properties.swift */,
+				C5E4005129825C930021C6B7 /* Web View.swift */,
+			);
+			path = Online;
 			sourceTree = "<group>";
 		};
 		F3E69B412BA5FD1E00A5469A /* HealthKit Models */ = {
@@ -1032,6 +1062,7 @@
 				F3B8120F2BB00DBC0005C114 /* Read Body Mass.swift in Sources */,
 				C5E4006B29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
 				F35AFC8E2BA508A60065145A /* HealthKit Link.swift in Sources */,
+				F3E592EE2BB6368900CE4FE4 /* Online View Properties.swift in Sources */,
 				C5E4007129825DF50021C6B7 /* Bluetooth Delegate.swift in Sources */,
 				F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */,
 				C5B7CE322AEE498F00227392 /* Dexcom.swift in Sources */,
@@ -1103,6 +1134,7 @@
 				F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */,
 				C5E4009629825F120021C6B7 /* Libre Link.swift in Sources */,
 				F35AFC512BA4908B0065145A /* History.swift in Sources */,
+				F3E592E92BB633C300CE4FE4 /* Standard Toolbar.swift in Sources */,
 				C50B9AD32AA7396500FF1EA3 /* Shell View.swift in Sources */,
 				C5E4007C29825E4E0021C6B7 /* Abbott.swift in Sources */,
 			);

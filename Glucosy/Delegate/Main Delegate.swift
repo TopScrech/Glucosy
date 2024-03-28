@@ -106,7 +106,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             nfc.startSession()
             
         case "action/new_record":
-            app.sheetMealtime = true
+            app.sheetNewRecord = true
             
         default:
             print("Deeplinking")

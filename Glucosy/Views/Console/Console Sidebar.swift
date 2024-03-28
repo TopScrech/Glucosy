@@ -20,6 +20,7 @@ struct ConsoleSidebar: View {
                         .resizable()
                         .frame(width: 26, height: 18)
                         .padding(.init(top: 10, leading: 6, bottom: 14, trailing: 0))
+                        .symbolEffect(.variableColor.reversing)
                 }
                 
                 Button {

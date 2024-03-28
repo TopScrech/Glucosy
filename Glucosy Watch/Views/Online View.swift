@@ -34,7 +34,9 @@ struct OnlineView: View {
                 
                 if !(settings.libreLinkUpPatientId.isEmpty ||
                      settings.libreLinkUpToken.isEmpty) {
+                    
                     let (data, _, graphHistory, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
+                    
                     dataString = (data as! Data).string
                     libreLinkUpResponse = dataString + (logbookData as! Data).string
                     
@@ -49,6 +51,7 @@ struct OnlineView: View {
                             app.lastReadingDate = lastMeasurement.glucose.date
                             app.sensor?.lastReadingDate = app.lastReadingDate
                             app.currentGlucose = lastMeasurement.glucose.value
+                            
                             // TODO: keep the raw values filling the gaps with -1 values
                             history.rawValues = []
                             history.factoryValues = libreLinkUpHistory.dropFirst().map(\.glucose) // TEST
@@ -87,7 +90,7 @@ struct OnlineView: View {
         VStack {
             HStack {
                 Button {
-                    settings.selectedService = settings.selectedService == .nightscout ? .libreLinkUp : .nightscout
+                    settings.selectedService.toggle()
                 } label: {
                     Image(settings.selectedService.rawValue)
                         .resizable()
@@ -96,7 +99,7 @@ struct OnlineView: View {
                 }
                 
                 VStack(spacing: 0) {
-                    Text("\(settings.selectedService.rawValue)")
+                    Text(settings.selectedService.rawValue)
                         .foregroundColor(.accentColor)
                     
                     HStack {
@@ -118,6 +121,7 @@ struct OnlineView: View {
                             
                             if settings.libreLinkUpScrapingLogbook {
                                 libreLinkUpResponse = "[...]"
+                                
                                 Task {
                                     await reloadLibreLinkUp()
                                 }
@@ -331,6 +335,7 @@ struct OnlineView: View {
                                 List {
                                     ForEach(libreLinkUpLogbookHistory) { lluGlucose in
                                         let glucose = lluGlucose.glucose
+                                        
                                         (Text("\(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow!.symbol).font(.title3))
                                             .foregroundColor(lluGlucose.color.color)
                                             .padding(.vertical, 1)
@@ -347,7 +352,6 @@ struct OnlineView: View {
                             .footnote()
                             .foregroundColor(Color(.lightGray))
                         // .footnote(design: .monospaced)
-                        // .foregroundColor(Color(.lightGray))
                     }
                 }
                 .task {

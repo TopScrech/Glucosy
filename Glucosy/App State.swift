@@ -26,5 +26,5 @@ final class AppState {
     var JavaScriptAlertReturn = ""
     
     var alertNfc = false
-    var sheetMealtime = false
+    var sheetNewRecord = false
 }

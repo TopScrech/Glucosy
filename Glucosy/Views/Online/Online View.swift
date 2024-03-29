@@ -225,7 +225,7 @@ struct OnlineView: View {
                     
                     WebView(site: settings.nightscoutSite, query: "token=\(settings.nightscoutToken)", delegate: app.main?.nightscout )
                         .frame(height: UIScreen.main.bounds.size.height * 0.60)
-                        .alert("JavaScript", isPresented: $app.showingJavaScriptConfirmAlert) {
+                        .alert("JavaScript", isPresented: $app.alertJSConfirm) {
                             Button("OK") {
                                 app.main.log("JavaScript alert: selected OK")
                             }
@@ -234,7 +234,7 @@ struct OnlineView: View {
                                 app.main.log("JavaScript alert: selected Cancel")
                             }
                         } message: {
-                            Text(app.JavaScriptConfirmAlertMessage)
+                            Text(app.jsConfirmAlertMessage)
                         }
                     
                     List {

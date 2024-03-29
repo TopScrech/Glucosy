@@ -196,6 +196,8 @@
 		F3E592F02BB6C82E00CE4FE4 /* Console Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592EF2BB6C82E00CE4FE4 /* Console Tools.swift */; };
 		F3E592F72BB6CD5100CE4FE4 /* Console Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592F62BB6CD5100CE4FE4 /* Console Tools.swift */; };
 		F3E592F92BB6E43B00CE4FE4 /* Console Tools Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592F82BB6E43B00CE4FE4 /* Console Tools Properties.swift */; };
+		F3E592FB2BB6E8FB00CE4FE4 /* Data List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592FA2BB6E8FB00CE4FE4 /* Data List.swift */; };
+		F3E592FD2BB6F07F00CE4FE4 /* Data Service List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592FC2BB6F07E00CE4FE4 /* Data Service List.swift */; };
 		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
 		F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
 		F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
@@ -382,6 +384,8 @@
 		F3E592EF2BB6C82E00CE4FE4 /* Console Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Tools.swift"; sourceTree = "<group>"; };
 		F3E592F62BB6CD5100CE4FE4 /* Console Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Tools.swift"; sourceTree = "<group>"; };
 		F3E592F82BB6E43B00CE4FE4 /* Console Tools Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Tools Properties.swift"; sourceTree = "<group>"; };
+		F3E592FA2BB6E8FB00CE4FE4 /* Data List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data List.swift"; sourceTree = "<group>"; };
+		F3E592FC2BB6F07E00CE4FE4 /* Data Service List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data Service List.swift"; sourceTree = "<group>"; };
 		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
 		F3E69B442BA6E66500A5469A /* Write Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Carbs.swift"; sourceTree = "<group>"; };
 		F3E69B472BA6E67000A5469A /* Write Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Insulin.swift"; sourceTree = "<group>"; };
@@ -820,6 +824,8 @@
 			isa = PBXGroup;
 			children = (
 				C5916E4629827E860051AC06 /* Data View.swift */,
+				F3E592FA2BB6E8FB00CE4FE4 /* Data List.swift */,
+				F3E592FC2BB6F07E00CE4FE4 /* Data Service List.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1045,6 +1051,8 @@
 				F35AFC7D2BA4FFFE0065145A /* Insulin Delivery.swift in Sources */,
 				F35AFC842BA500B60065145A /* Write Glucose.swift in Sources */,
 				C5ADF5832B00E65E00E29632 /* Gen 2.swift in Sources */,
+				F3E592FD2BB6F07F00CE4FE4 /* Data Service List.swift in Sources */,
+				F3E592FB2BB6E8FB00CE4FE4 /* Data List.swift in Sources */,
 				C5E4006629825D1F0021C6B7 /* Extensions.swift in Sources */,
 				C5916E5029827E860051AC06 /* Details.swift in Sources */,
 				F35AFC4F2BA490470065145A /* UI Tests.swift in Sources */,

@@ -378,8 +378,8 @@ extension Nightscout: WKNavigationDelegate, WKUIDelegate {
     
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         log("Nightscout: JavaScript alert panel message: \(message)")
-        app.JavaScriptConfirmAlertMessage = message
-        app.showingJavaScriptConfirmAlert = true
+        app.jsConfirmAlertMessage = message
+        app.alertJSConfirm = true
         
         // TODO: block web page updates
         completionHandler()
@@ -387,8 +387,8 @@ extension Nightscout: WKNavigationDelegate, WKUIDelegate {
     
     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         log("Nightscout: TODO: JavaScript confirm panel message: \(message)")
-        app.JavaScriptConfirmAlertMessage = message
-        app.showingJavaScriptConfirmAlert = true
+        app.jsConfirmAlertMessage = message
+        app.alertJSConfirm = true
         
         // TODO: block web page updates
         completionHandler(true)

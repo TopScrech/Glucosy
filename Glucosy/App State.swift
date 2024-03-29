@@ -25,9 +25,9 @@ final class AppState {
     var filterText = ""
     var showingConsoleFilterField = false
     
-    var showingJavaScriptConfirmAlert = false
-    var JavaScriptConfirmAlertMessage = ""
-    var JavaScriptAlertReturn = ""
+    var alertJSConfirm = false
+    var jsConfirmAlertMessage = ""
+    // var jstAlertReturn = ""
     
     var alertNfc = false
     var sheetNewRecord = false

@@ -9,7 +9,7 @@ struct DataView: View {
     @State private var readingCountdown = 0
     
     var body: some View {
-        ScrollView {
+        VStack {
             let dateTime = (app.lastReadingDate != Date.distantPast ? app.lastReadingDate : Date()).dateTime
             
             Text(dateTime)
@@ -56,194 +56,61 @@ struct DataView: View {
                 }
             }
             
-            if history.factoryTrend.count + history.rawTrend.count > 0 {
-                HStack {
-                    if history.factoryTrend.count > 0 {
-                        VStack(spacing: 4) {
-                            Text("Trend")
-                                .bold()
-                            
-                            List {
-                                ForEach(history.factoryTrend, id: \.self) { glucose in
-                                    HStack {
-                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
-                                        
-                                        Spacer()
-                                        
-                                        Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
-                                            .bold()
-                                    }
-                                }
-                            }
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                        }
+            List {
+                NavigationLink("History") {
+                    DataList("History", data: history.factoryValues)
                         .foregroundColor(.orange)
-                    }
-                    
-                    if history.rawTrend.count > 0 {
-                        VStack(spacing: 4) {
-                            Text("Raw trend")
-                                .bold()
-                            
-                            List {
-                                ForEach(history.rawTrend, id: \.self) { glucose in
-                                    HStack {
-                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
-                                        
-                                        Spacer()
-                                        
-                                        Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
-                                            .bold()
-                                    }
-                                }
-                            }
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                        }
+                }
+                .foregroundColor(.orange)
+                
+                NavigationLink("Trend") {
+                    DataList("Trend", data: history.factoryTrend)
+                        .foregroundColor(.orange)
+                }
+                .foregroundColor(.orange)
+                
+                NavigationLink("Raw Trend") {
+                    DataList("Raw trend", data: history.rawTrend)
                         .foregroundColor(.yellow)
-                    }
                 }
-                .frame(idealHeight: 300)
-            }
-            
-            HStack {
-                if history.glucose.count > 0 {
-                    VStack(spacing: 4) {
-                        Text("HealthKit")
-                            .bold()
-                        
-                        List {
-                            ForEach(history.glucose, id: \.self) { glucose in
-                                HStack {
-                                    Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)")
-                                    
-                                    Spacer()
-                                    
-                                    Text(glucose.value.units)
-                                        .bold()
-                                }
-                                .monospacedDigit()
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                    }
-                    .foregroundColor(.red)
-                    .onAppear {
-                        app.main.healthKit?.readGlucose()
-                    }
-                }
+                .foregroundColor(.yellow)
                 
-                if history.nightscoutValues.count > 0 {
-                    VStack(spacing: 4) {
-                        Text("Nightscout")
-                            .bold()
-                        
-                        List {
-                            ForEach(history.nightscoutValues, id: \.self) { glucose in
-                                HStack {
-                                    Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)")
-                                    
-                                    Spacer()
-                                    
-                                    Text("  \(glucose.value, specifier: "%3d")")
-                                        .bold()
-                                }
-                            }
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                        }
-                    }
-                    .foregroundColor(.cyan)
-                    .onAppear {
-                        if let nightscout = app.main?.nightscout {
-                            nightscout.read()
-                        }
-                    }
+                NavigationLink("Raw Values") {
+                    DataList("Raw values", data: history.rawValues)
+                        .foregroundColor(.yellow)
                 }
-            }
-            .frame(idealHeight: 300)
-            
-            HStack {
-                VStack {
-                    if history.values.count > 0 {
-                        VStack(spacing: 4) {
-                            Text("OOP history")
-                                .bold()
-                            
-                            List {
-                                ForEach(history.values, id: \.self) { glucose in
-                                    HStack {
-                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
-                                        
-                                        Spacer()
-                                        
-                                        Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
-                                            .bold()
-                                    }
-                                }
-                            }
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                        }
+                .foregroundColor(.yellow)
+                
+                NavigationLink("OOP History") {
+                    DataList("OOP History", data: history.values)
                         .foregroundColor(.blue)
-                    }
-                    
-                    if history.factoryValues.count > 0 {
-                        VStack(spacing: 4) {
-                            Text("History")
-                                .bold()
-                            
-                            List {
-                                ForEach(history.factoryValues, id: \.self) { glucose in
-                                    HStack {
-                                        Text("\(glucose.id) \(glucose.date.shortDateTime)")
-                                        
-                                        Spacer()
-                                        
-                                        Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
-                                            .bold()
-                                    }
-                                }
-                            }
-                            .frame(maxWidth: .infinity, alignment: .topLeading)
-                        }
-                        .foregroundColor(.orange)
-                    }
                 }
+                .foregroundColor(.blue)
                 
-                if history.rawValues.count > 0 {
-                    VStack(spacing: 4) {
-                        Text("Raw history")
-                            .bold()
-                        
-                        List {
-                            ForEach(history.rawValues, id: \.self) { glucose in
-                                HStack {
-                                    Text("\(glucose.id) \(glucose.date.shortDateTime)")
-                                    
-                                    Spacer()
-                                    
-                                    Text(glucose.value > -1 ? "  \(glucose.value, specifier: "%3d")" : "   … ")
-                                        .bold()
-                                }
-                            }
-                        }
-                        .frame(maxWidth: .infinity, alignment: .topLeading)
-                    }
-                    .foregroundColor(.yellow)
+                NavigationLink("HealthKit") {
+                    DataServiceList("HealthKit", data: history.glucose)
+                        .foregroundColor(.red)
                 }
+                .foregroundColor(.red)
+                
+                NavigationLink("Nightscout") {
+                    DataServiceList("Nightscout", data: history.nightscoutValues)
+                        .foregroundColor(.cyan)
+                }
+                .foregroundColor(.cyan)
+                
+                // TODO: LLU
             }
-            .frame(idealHeight: 300)
         }
         .navigationTitle("Data")
-        .padding(.top, -4)
-        .edgesIgnoringSafeArea(.bottom)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .footnote()
         // .monospaced()
-        // .foregroundColor(Color(.lightGray))
-        .tint(.blue)
     }
 }
 
 #Preview {
-    DataView()
-        .glucosyPreview(.data)
+    NavigationView {
+        DataView()
+    }
+    .glucosyPreview(.data)
 }

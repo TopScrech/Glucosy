@@ -2,9 +2,9 @@ import SwiftUI
 
 struct Plan: View {
     @Environment(AppState.self) private var app: AppState
+    @Environment(Settings.self) private var settings: Settings
     @Environment(History.self)  private var history: History
     @Environment(Log.self)      private var log: Log
-    @Environment(Settings.self) private var settings: Settings
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0

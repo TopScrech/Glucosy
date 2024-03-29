@@ -442,7 +442,6 @@
 		C5916E4529827E860051AC06 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C5916E4D29827E860051AC06 /* Home View.swift */,
 				F3E592E52BB61D4800CE4FE4 /* Monitor */,
 				C5E165042ACBE5E600970835 /* Hamburger Menu.swift */,
 				F3E592F22BB6CC1A00CE4FE4 /* Online */,
@@ -456,6 +455,7 @@
 		C59960E02981E381005999C2 /* Glucosy Watch */ = {
 			isa = PBXGroup;
 			children = (
+				C5916E4D29827E860051AC06 /* Home View.swift */,
 				C5916E4529827E860051AC06 /* Views */,
 				C5916E5629827EB10051AC06 /* Main Delegate.swift */,
 				C5DED87529899B8A00164AEF /* Info.plist */,
@@ -508,26 +508,21 @@
 				F35BE2702BB34E210015A745 /* Notifications */,
 				F35AFC5F2BA4917E0065145A /* Enums */,
 				F35AFC6C2BA492080065145A /* SwiftData */,
-				C5E4004D29825C930021C6B7 /* Views */,
-				C5E4006429825D1F0021C6B7 /* Extensions.swift */,
-				C5E4006729825DCD0021C6B7 /* Settings.swift */,
-				C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */,
-				C5E4006D29825DEA0021C6B7 /* Device.swift */,
-				C5E4007029825DF50021C6B7 /* Bluetooth Delegate.swift */,
-				C5E4007529825E370021C6B7 /* Glucose.swift */,
-				C5E4007829825E450021C6B7 /* Sensor.swift */,
-				C55D12B329ACB5E00050F567 /* Crypto.swift */,
-				C5B7CE312AEE498F00227392 /* Dexcom.swift */,
-				C5E4007B29825E4E0021C6B7 /* Abbott.swift */,
-				C5DB4E4D2B168E08005AD792 /* Libre.swift */,
-				C5E4008129825E8B0021C6B7 /* Libre 2.swift */,
-				C5ADF5812B00E65E00E29632 /* Gen 2.swift */,
-				C5E4008429825E990021C6B7 /* Libre 3.swift */,
-				C5E4008A29825EC40021C6B7 /* Events.swift */,
-				C5E4008F29825EED0021C6B7 /* NFC.swift */,
-				C56869692B30469000B11687 /* NFC Tools.swift */,
-				C5E4009529825F120021C6B7 /* Libre Link.swift */,
-				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
+				C5E4005729825C930021C6B7 /* Home View.swift */,
+				F3E592E82BB633C300CE4FE4 /* Standard Toolbar.swift */,
+				F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */,
+				F31C70952BA7B01800A5BFCD /* New Record View.swift */,
+				F32ED8F12BA8921D00CD234C /* New Record Selector.swift */,
+				F3D384BD2BB0029100F03C35 /* Debug */,
+				F31C70992BA8577D00A5BFCD /* Monitor */,
+				F35AFC872BA5086B0065145A /* Apple Health */,
+				F31C709A2BA8578700A5BFCD /* Details */,
+				F3E592EC2BB634ED00CE4FE4 /* Online */,
+				F31C70922BA7915100A5BFCD /* Console */,
+				F31C708A2BA750AF00A5BFCD /* Settings */,
+				F3E592EA2BB634D300CE4FE4 /* Data */,
+				F3E592EB2BB634DA00CE4FE4 /* Plan */,
+				F3E592FE2BB6F2E300CE4FE4 /* Other */,
 				F35AFC6D2BA4E5360065145A /* Depricated */,
 			);
 			path = Glucosy;
@@ -550,27 +545,6 @@
 				C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */,
 			);
 			path = Media;
-			sourceTree = "<group>";
-		};
-		C5E4004D29825C930021C6B7 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C5E4005729825C930021C6B7 /* Home View.swift */,
-				F3E592E82BB633C300CE4FE4 /* Standard Toolbar.swift */,
-				F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */,
-				F31C70952BA7B01800A5BFCD /* New Record View.swift */,
-				F3D384BD2BB0029100F03C35 /* Debug */,
-				F31C70992BA8577D00A5BFCD /* Monitor */,
-				F35AFC872BA5086B0065145A /* Apple Health */,
-				F31C709A2BA8578700A5BFCD /* Details */,
-				F3E592EC2BB634ED00CE4FE4 /* Online */,
-				F31C70922BA7915100A5BFCD /* Console */,
-				F31C708A2BA750AF00A5BFCD /* Settings */,
-				F32ED8F12BA8921D00CD234C /* New Record Selector.swift */,
-				F3E592EA2BB634D300CE4FE4 /* Data */,
-				F3E592EB2BB634DA00CE4FE4 /* Plan */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		F31C708A2BA750AF00A5BFCD /* Settings */ = {
@@ -828,6 +802,32 @@
 				F3E592FC2BB6F07E00CE4FE4 /* Data Service List.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		F3E592FE2BB6F2E300CE4FE4 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4006429825D1F0021C6B7 /* Extensions.swift */,
+				C5E4006729825DCD0021C6B7 /* Settings.swift */,
+				C5E4006A29825DDD0021C6B7 /* Bluetooth.swift */,
+				C5E4006D29825DEA0021C6B7 /* Device.swift */,
+				C5E4007029825DF50021C6B7 /* Bluetooth Delegate.swift */,
+				C5E4007529825E370021C6B7 /* Glucose.swift */,
+				C5E4007829825E450021C6B7 /* Sensor.swift */,
+				C55D12B329ACB5E00050F567 /* Crypto.swift */,
+				C5B7CE312AEE498F00227392 /* Dexcom.swift */,
+				C5E4007B29825E4E0021C6B7 /* Abbott.swift */,
+				C5DB4E4D2B168E08005AD792 /* Libre.swift */,
+				C5E4008129825E8B0021C6B7 /* Libre 2.swift */,
+				C5ADF5812B00E65E00E29632 /* Gen 2.swift */,
+				C5E4008429825E990021C6B7 /* Libre 3.swift */,
+				C5E4008A29825EC40021C6B7 /* Events.swift */,
+				C5E4008F29825EED0021C6B7 /* NFC.swift */,
+				C56869692B30469000B11687 /* NFC Tools.swift */,
+				C5E4009529825F120021C6B7 /* Libre Link.swift */,
+				C5E4009829825F1C0021C6B7 /* Nightscout.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		F3E69B412BA5FD1E00A5469A /* HealthKit Models */ = {

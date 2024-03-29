@@ -41,7 +41,7 @@ struct Monitor: View {
                     .foregroundColor(.black)
                     .padding(5)
                     .background(app.currentGlucose > 0 && (app.currentGlucose > Int(settings.alarmHigh) || app.currentGlucose < Int(settings.alarmLow)) ? .red : .blue)
-                    .cornerRadius(8)
+                    .clipShape(.rect(cornerRadius: 8))
                 
                 // TODO: display both delta and trend arrow
                 
@@ -172,7 +172,7 @@ struct Monitor: View {
         .navigationTitle("Monitor")
         .multilineTextAlignment(.center)
         .navigationBarTitleDisplayMode(.inline)
-        .standartToolbar()
+        .standardToolbar()
         .onAppear {
             if app.lastReadingDate != Date.distantPast {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)

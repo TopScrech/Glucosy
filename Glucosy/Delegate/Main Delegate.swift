@@ -181,6 +181,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             } else {
                 if let peripheral = centralManager.retrieveConnectedPeripherals(withServices: [CBUUID(string: Libre3.UUID.data.rawValue)]).first {
                     log("Bluetooth: retrieved \(peripheral.name ?? "unnamed peripheral")")
+                    
                     bluetoothDelegate.centralManager(
                         centralManager,
                         didDiscover: peripheral,
@@ -235,7 +236,9 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             }
             
             let soundName = currentGlucose > Int(settings.alarmHigh) ? "alarm_high" : "alarm_low"
+            
             let audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: soundName, ofType: "mp3")!), fileTypeHint: "mp3")
+            
             audioPlayer.play()
             
             _ = Timer.scheduledTimer(withTimeInterval: 4, repeats: false) {

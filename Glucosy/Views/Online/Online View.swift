@@ -342,7 +342,7 @@ struct OnlineView: View {
         }
         .navigationTitle("Online")
         .navigationBarTitleDisplayMode(.inline)
-        .standartToolbar()
+        .standardToolbar()
     }
 }
 

@@ -30,7 +30,7 @@ extension Graph {
                 if let lastCarbs = tempArray.last {
                     let interval = carbs.date.timeIntervalSince(lastCarbs.date)
                     
-                    if interval <= 1800 { /// 30 min
+                    if interval <= 3600 { /// 1 hour
                         tempArray.append(carbs)
                     } else {
                         let combinedCarbs = processAndCombineCarbs(tempCarbs: tempArray)

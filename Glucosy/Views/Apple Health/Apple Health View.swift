@@ -101,7 +101,7 @@ struct AppleHealthView: View {
                 }
             }
         }
-        .standartToolbar()
+        .standardToolbar()
         .refreshableTask {
             if let healthKit = app.main?.healthKit {
                 healthKit.readGlucose()

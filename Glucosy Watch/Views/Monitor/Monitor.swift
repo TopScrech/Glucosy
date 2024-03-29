@@ -49,7 +49,7 @@ struct Monitor: View {
                     .padding(.vertical, 0)
                     .padding(.horizontal, 4)
                     .background(currentGlucose > 0 && (currentGlucose > Int(settings.alarmHigh) || currentGlucose < Int(settings.alarmLow)) ? .red : .blue)
-                    .cornerRadius(6)
+                    .clipShape(.rect(cornerRadius: 6))
                 
                 // TODO: display both delta and trend arrow
                 

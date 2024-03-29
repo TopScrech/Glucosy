@@ -21,6 +21,10 @@ final class AppState {
     var lastConnectionDate: Date = .distantPast
     var status = "Welcome to Glucosy!"
     
+    // Console
+    var filterText = ""
+    var showingConsoleFilterField = false
+    
     var showingJavaScriptConfirmAlert = false
     var JavaScriptConfirmAlertMessage = ""
     var JavaScriptAlertReturn = ""

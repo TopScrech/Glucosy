@@ -25,7 +25,7 @@ struct StandartToolbar: ViewModifier {
 }
 
 extension View {
-    func standartToolbar() -> some View {
+    func standardToolbar() -> some View {
         self
             .modifier(StandartToolbar())
     }

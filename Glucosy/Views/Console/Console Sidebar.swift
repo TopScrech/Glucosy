@@ -9,34 +9,40 @@ struct ConsoleSidebar: View {
     @State private var readingCountdown = 0
     
     var body: some View {
-        VStack(alignment: .center, spacing: 8) {
+        VStack {
             Spacer()
             
-            VStack(spacing: 0) {
-                Button {
-                    app.main.nfc.startSession()
-                } label: {
-                    Image(systemName: "sensor.tag.radiowaves.forward.fill")
-                        .resizable()
-                        .frame(width: 26, height: 18)
-                        .padding(.init(top: 10, leading: 6, bottom: 14, trailing: 0))
-                        .symbolEffect(.variableColor.reversing)
+            Button {
+                withAnimation {
+                    app.showingConsoleFilterField.toggle()
                 }
-                
-                Button {
-                    app.main.rescan()
-                } label: {
-                    VStack {
-                        Image(.bluetooth)
-                            .renderingMode(.template)
-                            .resizable()
-                            .frame(width: 32, height: 32)
-                        
-                        Text("Scan")
-                    }
+            } label: {
+                VStack {
+                    Image(systemName: app.filterText.isEmpty ? "line.horizontal.3.decrease.circle" : "line.horizontal.3.decrease.circle.fill")
+                        .title3()
+                    
+                    Text("Filter")
+                        .foregroundStyle(.gray)
                 }
             }
-            .foregroundColor(.accentColor)
+            
+            ConsoleTools()
+            
+            Spacer()
+            
+            Button {
+                app.main.rescan()
+            } label: {
+                VStack {
+                    Image(.bluetooth)
+                        .renderingMode(.template)
+                        .resizable()
+                        .frame(width: 32, height: 32)
+                    
+                    Text("Scan")
+                        .foregroundStyle(.gray)
+                }
+            }
             
             if (app.status.hasPrefix("Scanning") || app.status.hasSuffix("retrying...")) && app.main.centralManager.state != .poweredOff {
                 Button {
@@ -67,7 +73,6 @@ struct ConsoleSidebar: View {
                         .resizable()
                         .padding(5)
                         .frame(width: 32, height: 32)
-                        .foregroundColor(.blue)
                 }
                 
             } else {
@@ -108,36 +113,28 @@ struct ConsoleSidebar: View {
             
             Spacer()
             
-            Button {
-                settings.userLevel = .init(rawValue: (settings.userLevel.rawValue + 1) % UserLevel.allCases.count)!
-            } label: {
-                VStack {
-                    Image(systemName: ["doc.plaintext", "ladybug", "testtube.2"][settings.userLevel.rawValue])
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .offset(y: 2)
-                    
-                    Text(["Basic", "Devel", "Test  "][settings.userLevel.rawValue])
-                        .caption()
-                        .offset(y: -4)
+            VStack(spacing: 8) {
+                Button {
+                    settings.userLevel = .init(rawValue: (settings.userLevel.rawValue + 1) % UserLevel.allCases.count)!
+                } label: {
+                    VStack {
+                        Image(systemName: ["doc.plaintext", "ladybug", "testtube.2"][settings.userLevel.rawValue])
+                            .title2()
+                        
+                        Text(["Basic", "Devel", "Test"][settings.userLevel.rawValue])
+                            .foregroundStyle(.gray)
+                    }
                 }
-            }
-            .background(settings.userLevel != .basic ? Color.accentColor : .clear)
-            .clipShape(.rect(cornerRadius: 5))
-            .foregroundColor(settings.userLevel != .basic ? Color(.systemBackground) : .accentColor)
-            .padding(.bottom, 6)
-            
-            VStack(spacing: 0) {
+                
                 Button {
                     UIPasteboard.general.string = log.entries.map(\.message).joined(separator: "\n \n")
                 } label: {
                     VStack {
                         Image(systemName: "doc.on.doc")
-                            .resizable()
-                            .frame(width: 24, height: 24)
+                            .title2()
                         
                         Text("Copy")
-                            .offset(y: -6)
+                            .foregroundStyle(.gray)
                     }
                 }
                 
@@ -148,12 +145,11 @@ struct ConsoleSidebar: View {
                     
                 } label: {
                     VStack {
-                        Image(systemName: "clear")
-                            .resizable()
-                            .frame(width: 24, height: 24)
+                        Image(systemName: "delete.left")
+                            .title2()
                         
                         Text("Clear")
-                            .offset(y: -6)
+                            .foregroundStyle(.gray)
                     }
                 }
             }
@@ -164,17 +160,15 @@ struct ConsoleSidebar: View {
             } label: {
                 VStack {
                     Image(systemName: "backward.fill")
-                        .resizable()
-                        .frame(width: 12, height: 12)
-                        .offset(y: 5)
+                        .headline()
                     
-                    Text(" REV ")
-                        .offset(y: -2)
+                    Text("REV")
+                        .foregroundStyle(.gray)
                 }
+                .padding(3)
             }
-            .background(settings.reversedLog ? Color.accentColor : Color.clear)
-            .border(Color.accentColor, width: 3)
-            .cornerRadius(5)
+            .background(settings.reversedLog ? Color.accentColor : .clear)
+            .clipShape(.rect(cornerRadius: 5))
             .foregroundColor(settings.reversedLog ? Color(.systemBackground) : .accentColor)
             
             Button {
@@ -182,13 +176,11 @@ struct ConsoleSidebar: View {
                 app.main.log("\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")
             } label: {
                 Image(systemName: settings.logging ? "stop.circle" : "play.circle")
-                    .resizable()
-                    .frame(width: 32, height: 32)
+                    .title()
             }
             .foregroundColor(settings.logging ? .red : .green)
             
             Spacer()
-            
         }
         .footnote()
     }

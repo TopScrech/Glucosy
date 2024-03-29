@@ -129,7 +129,7 @@ struct Graph: View {
             }
         }
         .task {
-            app.main.healthKit?.readGlucose(limit: 1000)
+            app.main.healthKit?.readGlucose()
             app.main.healthKit?.readCarbs()
             app.main.healthKit?.readInsulin()
         }

@@ -126,12 +126,15 @@ struct SettingsView: View {
                         .renderingMode(.template)
                         .resizable()
                         .frame(width: 32, height: 32)
-                        .overlay(settings.stoppedBluetooth ? Image(systemName: "line.diagonal")
-                            .resizable()
-                            .foregroundColor(.red)
-                            .frame(width: 24, height: 24)
-                            .rotationEffect(.degrees(90)) : nil
-                        )
+                        .overlay {
+                            if settings.stoppedBluetooth {
+                                Image(systemName: "line.diagonal")
+                                    .resizable()
+                                    .foregroundColor(.red)
+                                    .frame(width: 24, height: 24)
+                                    .rotationEffect(.degrees(90))
+                            }
+                        }
                 }
                 
                 Picker("Preferred", selection: $settings.preferredTransmitter) {
@@ -153,7 +156,7 @@ struct SettingsView: View {
         .navigationTitle("Settings")
         .monospacedDigit()
         .navigationBarTitleDisplayMode(.inline)
-        .standartToolbar()
+        .standardToolbar()
         .toolbar {
             Button {
                 settings.mutedAudio.toggle()

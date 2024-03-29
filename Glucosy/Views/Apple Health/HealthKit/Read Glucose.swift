@@ -1,7 +1,7 @@
 import HealthKit
 
 extension HealthKit {
-    func readGlucose(limit: Int = 100, handler: (([Glucose]) -> Void)? = nil) {
+    func readGlucose(limit: Int = 1000, handler: (([Glucose]) -> Void)? = nil) {
         guard let glucoseType else {
             return
         }

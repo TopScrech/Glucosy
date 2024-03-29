@@ -346,6 +346,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
             }
             
             entries += history.factoryTrend.dropFirst() + [Glucose(currentGlucose, date: sensor.lastReadingDate)]
+            
             entries = entries.filter {
                 $0.value > 0 && $0.id > -1
             }
@@ -374,6 +375,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
         
         // TODO:
         extendedSession.start(at: max(app.lastReadingDate, app.lastConnectionDate) + Double(settings.readingInterval * 60) - 5)
+        
         log("Watch: extended session to be started in \(Double(settings.readingInterval * 60) - 5) seconds")
     }
     
@@ -387,6 +389,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
     
     func extendedRuntimeSession(_ extendedRuntimeSession: WKExtendedRuntimeSession, didInvalidateWith reason: WKExtendedRuntimeSessionInvalidationReason, error: Error?) {
         let errorDescription = error != nil ? error!.localizedDescription : "undefined"
+        
         debugLog("Watch: extended session did invalidate: reason: \(reason), error: \(errorDescription)")
     }
 }

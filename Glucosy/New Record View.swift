@@ -6,10 +6,9 @@ struct NewRecordView: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @AppStorage("rapid_insulin")    private var rapidInsulin = 5.0
-    @AppStorage("long_insulin")     private var longInsulin = 5.0
-    @AppStorage("carbs")            private var carbs = 50.0
-    @AppStorage("selected_insulin") private var selectedInsulin: InsulinType = .bolus
+    @AppStorage("rapid_insulin") private var bolus = 5.0
+    @AppStorage("long_insulin")  private var basal = 5.0
+    @AppStorage("carbs")         private var carbs = 50.0
     
     @State private var date = Date()
     
@@ -17,70 +16,133 @@ struct NewRecordView: View {
         timeDifferenceFromNow(date)
     }
     
-    //    @State private var includeGlucose = false
-    @State private var includeRapidInsulin = false
-    @State private var includeLongInsulin = false
-    @State private var includeCarbs = false
-    
     @State private var setReminder = false
     @State private var isAlertCritical = false
     
+    @State private var includeBolus = false
+    @State private var includeBasal = false
+    @State private var includeCarbs = false
+    
+    @State private var fieldBolus = ""
+    @State private var fieldBasal = ""
+    @State private var fieldCarbs = ""
+    
+    @FocusState private var focusBolus: Bool
+    @FocusState private var focusBasal: Bool
+    @FocusState private var focusCarbs: Bool
+    
     var body: some View {
-        VStack(spacing: 25) {
+        VStack(spacing: 32) {
             DatePicker("Record time", selection: $date)
                 .datePickerStyle(.compact)
                 .padding(.horizontal)
             
             Text(timeDifference)
             
-            VStack(alignment: .leading) {
+            VStack {
                 Button {
-                    includeRapidInsulin.toggle()
+                    includeBolus.toggle()
+                    
+                    if includeBolus {
+                        focusBolus = true
+                    }
                 } label: {
-                    Label("Rapid-acting insulin", systemImage: includeRapidInsulin ? "checkmark.square" : "square")
+                    Label("Rapid-acting insulin", systemImage: includeBolus ? "checkmark.square" : "square")
                         .foregroundStyle(.foreground)
+                    
+                    Image(systemName: "syringe")
+                        .tint(.yellow)
+                }
+                
+                if includeBolus {
+                    TextField("Rapid-acting insulin", text: $fieldBolus)
+                        .keyboardType(.numbersAndPunctuation)
+                        .focused($focusBolus)
+                        .onChange(of: fieldBolus) { _, newValue in
+                            bolus = Double(newValue) ?? 0
+                        }
                 }
             }
+            .title2()
+            .frame(maxWidth: .infinity, alignment: .leading)
             
-            if includeRapidInsulin {
-                NewRecordSelector($rapidInsulin)
-            }
-            
-            VStack(alignment: .leading) {
+            VStack {
                 Button {
-                    includeLongInsulin.toggle()
+                    includeBasal.toggle()
+                    
+                    if includeBasal {
+                        focusBasal = true
+                    }
                 } label: {
-                    Label("Long-acting insulin", systemImage: includeLongInsulin ? "checkmark.square" : "square")
+                    Label("Long-acting insulin", systemImage: includeBasal ? "checkmark.square" : "square")
                         .foregroundStyle(.foreground)
+                    
+                    Image(systemName: "syringe.fill")
+                        .tint(.purple)
+                }
+                
+                if includeBasal {
+                    TextField("Long-acting insulin", text: $fieldBasal)
+                        .keyboardType(.numbersAndPunctuation)
+                        .focused($focusBasal)
+                        .onChange(of: fieldBasal) { _, newValue in
+                            basal = Double(newValue) ?? 0
+                        }
                 }
             }
+            .title2()
+            .frame(maxWidth: .infinity, alignment: .leading)
             
-            if includeLongInsulin {
-                NewRecordSelector($longInsulin)
-            }
-            
-            VStack(alignment: .leading) {
+            VStack {
                 Button {
                     includeCarbs.toggle()
+                    
+                    if includeCarbs {
+                        focusCarbs = true
+                    }
                 } label: {
                     Label("Carbs", systemImage: includeCarbs ? "checkmark.square" : "square")
                         .foregroundStyle(.foreground)
+                    
+                    Image(systemName: "fork.knife")
+                        .tint(.green)
+                }
+                
+                if includeCarbs {
+                    TextField("Carbs", text: $fieldCarbs)
+                        .keyboardType(.numbersAndPunctuation)
+                        .focused($focusCarbs)
+                        .onChange(of: fieldCarbs) { _, newValue in
+                            carbs = Double(newValue) ?? 0
+                        }
                 }
             }
+            .title2()
+            .frame(maxWidth: .infinity, alignment: .leading)
             
-            if includeCarbs {
-                NewRecordSelector($carbs)
+            Toggle("Scan reminder in 2 hours", isOn: $setReminder)
+            
+            Toggle(isOn: $isAlertCritical) {
+                Label {
+                    Text("Critical alert")
+                    
+                    Image(systemName: "exclamationmark.triangle")
+                        .foregroundStyle(.red)
+                } icon: {
+                    
+                }
             }
-            
-            Toggle("Set measure reminder in 2 hours", isOn: $setReminder)
-            
-            Toggle("Critical alert", isOn: $isAlertCritical)
-                .disabled(!setReminder)
+            .disabled(!setReminder)
             
             Spacer()
             
-            Button {
-                saveData()
+            Menu {
+                Button {
+                    saveData()
+                    app.main.nfc.startSession()
+                } label: {
+                    Label("Save and scan", systemImage: "sensor.tag.radiowaves.forward.fill")
+                }
             } label: {
                 Text("Save")
                     .title3(.semibold)
@@ -89,38 +151,49 @@ struct NewRecordView: View {
                     .frame(maxWidth: .infinity)
                     .background(.blue, in: .rect(cornerRadius: 20))
                     .padding(.horizontal)
+            } primaryAction: {
+                saveData()
             }
         }
         .padding(.top)
+        .padding(.horizontal, 8)
+        .task {
+            bolus = Double(fieldBolus) ?? 0
+            basal = Double(fieldBasal) ?? 0
+            carbs = Double(fieldCarbs) ?? 0
+        }
     }
     
     private func saveData() {
-        if includeRapidInsulin {
-            let rapidInsulinDelivery = InsulinDelivery(
-                value: Int(rapidInsulin),
+        if includeBolus {
+            let bolusDelivery = InsulinDelivery(
+                value: Int(bolus),
                 type: .bolus,
                 date: date
             )
             
-            app.main.healthKit?.writeInsulinDelivery(rapidInsulinDelivery)
+            app.main.healthKit?.writeInsulinDelivery(bolusDelivery)
         }
         
-        if includeLongInsulin {
-            let longInsulinDelivery = InsulinDelivery(
-                value: Int(longInsulin),
+        if includeBasal {
+            let basalDelivery = InsulinDelivery(
+                value: Int(basal),
                 type: .basal,
                 date: date
             )
             
-            app.main.healthKit?.writeInsulinDelivery(longInsulinDelivery)
+            app.main.healthKit?.writeInsulinDelivery(basalDelivery)
         }
         
-        if includeRapidInsulin || includeLongInsulin {
+        if includeBolus || includeBasal {
             app.main.healthKit?.readInsulin()
         }
         
         if includeCarbs {
-            let carbohydrates = Carbohydrates(value: Int(carbs), date: date)
+            let carbohydrates = Carbohydrates(
+                value: Int(carbs),
+                date: date
+            )
             
             app.main.healthKit?.writeCarbs(carbohydrates)
             app.main.healthKit?.readCarbs()

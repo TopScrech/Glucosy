@@ -510,9 +510,7 @@
 				F35AFC6C2BA492080065145A /* SwiftData */,
 				C5E4005729825C930021C6B7 /* Home View.swift */,
 				F3E592E82BB633C300CE4FE4 /* Standard Toolbar.swift */,
-				F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */,
 				F31C70952BA7B01800A5BFCD /* New Record View.swift */,
-				F32ED8F12BA8921D00CD234C /* New Record Selector.swift */,
 				F3D384BD2BB0029100F03C35 /* Debug */,
 				F31C70992BA8577D00A5BFCD /* Monitor */,
 				F35AFC872BA5086B0065145A /* Apple Health */,
@@ -628,6 +626,8 @@
 		F35AFC6D2BA4E5360065145A /* Depricated */ = {
 			isa = PBXGroup;
 			children = (
+				F32ED8F12BA8921D00CD234C /* New Record Selector.swift */,
+				F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */,
 				F31FF67C2BA98AD5003EE8F2 /* In App Notification */,
 				F3D781222BAE314A00C2DE1E /* Shell and Realm */,
 				F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */,

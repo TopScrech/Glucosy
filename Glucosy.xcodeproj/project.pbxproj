@@ -195,6 +195,7 @@
 		F3E592EE2BB6368900CE4FE4 /* Online View Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592ED2BB6368900CE4FE4 /* Online View Properties.swift */; };
 		F3E592F02BB6C82E00CE4FE4 /* Console Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592EF2BB6C82E00CE4FE4 /* Console Tools.swift */; };
 		F3E592F72BB6CD5100CE4FE4 /* Console Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592F62BB6CD5100CE4FE4 /* Console Tools.swift */; };
+		F3E592F92BB6E43B00CE4FE4 /* Console Tools Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E592F82BB6E43B00CE4FE4 /* Console Tools Properties.swift */; };
 		F3E69B432BA65A4200A5469A /* Known Devices List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B422BA65A4200A5469A /* Known Devices List.swift */; };
 		F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
 		F3E69B462BA6E66500A5469A /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E69B442BA6E66500A5469A /* Write Carbs.swift */; };
@@ -380,6 +381,7 @@
 		F3E592ED2BB6368900CE4FE4 /* Online View Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Online View Properties.swift"; sourceTree = "<group>"; };
 		F3E592EF2BB6C82E00CE4FE4 /* Console Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Tools.swift"; sourceTree = "<group>"; };
 		F3E592F62BB6CD5100CE4FE4 /* Console Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Tools.swift"; sourceTree = "<group>"; };
+		F3E592F82BB6E43B00CE4FE4 /* Console Tools Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Tools Properties.swift"; sourceTree = "<group>"; };
 		F3E69B422BA65A4200A5469A /* Known Devices List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Known Devices List.swift"; sourceTree = "<group>"; };
 		F3E69B442BA6E66500A5469A /* Write Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Carbs.swift"; sourceTree = "<group>"; };
 		F3E69B472BA6E67000A5469A /* Write Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Write Insulin.swift"; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 			children = (
 				C5916E4929827E860051AC06 /* Console.swift */,
 				F3E592F62BB6CD5100CE4FE4 /* Console Tools.swift */,
+				F3E592F82BB6E43B00CE4FE4 /* Console Tools Properties.swift */,
 			);
 			path = Console;
 			sourceTree = "<group>";
@@ -1021,6 +1024,7 @@
 				C59184462981E73400A6DA89 /* App.swift in Sources */,
 				F3B812132BB00EBF0005C114 /* Body Mass.swift in Sources */,
 				F32949772BB0DD2200328C6A /* Temperature.swift in Sources */,
+				F3E592F92BB6E43B00CE4FE4 /* Console Tools Properties.swift in Sources */,
 				F329496E2BB0C08700328C6A /* App Init.swift in Sources */,
 				C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */,
 				C5916E5529827E860051AC06 /* Home View.swift in Sources */,

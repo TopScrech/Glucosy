@@ -3,7 +3,6 @@ import SwiftUI
 struct DataView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(History.self)  private var history: History
-    @Environment(Log.self)      private var log: Log
     @Environment(Settings.self) private var settings: Settings
     
     @State private var onlineCountdown = 0

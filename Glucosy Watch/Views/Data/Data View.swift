@@ -4,7 +4,6 @@ struct DataView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(History.self)  private var history: History
     @Environment(Settings.self) private var settings: Settings
-    @Environment(Log.self)      private var log: Log
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0

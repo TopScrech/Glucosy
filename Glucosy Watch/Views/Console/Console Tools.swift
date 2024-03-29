@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct ConsoleTools: View {
-    @Environment(AppState.self) private var app: AppState
     @Environment(Settings.self) private var settings: Settings
     @Environment(Log.self)      private var log: Log
+    @Environment(AppState.self)         var app: AppState
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
@@ -36,7 +36,7 @@ struct ConsoleTools: View {
                 }
                 .foregroundColor(.red)
                 
-            } else if app.deviceState == "Connected" || app.deviceState == "Reconnecting..." || app.status.hasSuffix("retrying...") {
+            } else if deviceState == "Connected" || deviceState == "Reconnecting..." || app.status.hasSuffix("retrying...") {
                 Button {
                     if app.device != nil {
                         app.main.bluetoothDelegate.knownDevices[app.device.peripheral!.identifier.uuidString]!.isIgnored = true
@@ -57,12 +57,12 @@ struct ConsoleTools: View {
                     .hidden()
             }
             
-            if onlineCountdown <= 0 && !app.deviceState.isEmpty && app.deviceState != "Disconnected" {
+            if onlineCountdown <= 0 && !deviceState.isEmpty && deviceState != "Disconnected" {
                 VStack(spacing: 0) {
-                    Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
+                    Text(readingCountdown > 0 || deviceState == "Reconnecting..." ?
                          "\(readingCountdown)" : " ")
                     
-                    Text(readingCountdown > 0 || app.deviceState == "Reconnecting..." ?
+                    Text(readingCountdown > 0 || deviceState == "Reconnecting..." ?
                          "s" : " ")
                 }
                 .monospacedDigit()

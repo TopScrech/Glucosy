@@ -227,6 +227,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             }
         } else {
             print("NFC unavailible")
+            
             main.app.alertNfc = true
         }
     }
@@ -628,6 +629,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     buffer += data
                 } else {
                     debugLog("'\(readCommand.code.hex) \(readCommand.parameters.hex) \(readCommand.description)' command output (\(data.count) bytes): 0x\(data.hex)")
+                    
                     buffer += data.suffix(data.count - 8)    // skip leading 0xA5 dummy bytes
                 }
                 
@@ -738,6 +740,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             
             let (readAddress, readData) = try await readRaw(addressToRead, blocksToRead * 8)
             var msg = readData.hexDump(header: "NFC: blocks to overwrite:", address: readAddress)
+            
             var bytesToWrite = readData
             bytesToWrite.replaceSubrange(startOffset ..< startOffset + data.count, with: data)
             msg += "\(bytesToWrite.hexDump(header: "\nwith blocks:", address: addressToRead))"
@@ -772,9 +775,12 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     
                     do {
                         try await connectedTag?.writeMultipleBlocks(requestFlags: .highDataRate, blockRange: blockRange, dataBlocks: dataBlocks)
+                        
                         debugLog("NFC: wrote blocks 0x\(startIndex.hex) - 0x\(endIndex.hex) \(dataBlocks.reduce("", { $0 + $1.hex })) at 0x\(((startBlock + i * requestBlocks) * 8).hex)")
+                        
                     } catch {
                         log("NFC: error while writing multiple blocks 0x\(startIndex.hex)-0x\(endIndex.hex) \(dataBlocks.reduce("", { $0 + $1.hex })) at 0x\(((startBlock + i * requestBlocks) * 8).hex): \(error.localizedDescription)")
+                        
                         throw NFCError.write
                     }
                 }
@@ -805,9 +811,12 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             
             do {
                 try await connectedTag?.writeMultipleBlocks(requestFlags: .highDataRate, blockRange: blockRange, dataBlocks: dataBlocks)
+                
                 debugLog("NFC: wrote blocks 0x\(startIndex.hex) - 0x\(endIndex.hex) \(dataBlocks.reduce("", { $0 + $1.hex }))")
+                
             } catch {
                 log("NFC: error while writing multiple blocks 0x\(startIndex.hex)-0x\(endIndex.hex) \(dataBlocks.reduce("", { $0 + $1.hex }))")
+                
                 throw NFCError.write
             }
             

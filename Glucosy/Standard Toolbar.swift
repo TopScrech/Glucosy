@@ -2,6 +2,7 @@ import ScrechKit
 
 struct StandartToolbar: ViewModifier {
     @Environment(AppState.self) private var app: AppState
+    @Environment(Settings.self) private var settings: Settings
     
     func body(content: Content) -> some View {
         content
@@ -14,11 +15,69 @@ struct StandartToolbar: ViewModifier {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    SFButton("sensor.tag.radiowaves.forward.fill") {
+                    Menu {
+                        Button {
+                            app.main.nfc.startSession()
+                        } label: {
+                            Label("Scan", systemImage: "sensor.tag.radiowaves.forward.fill")
+                        }
+                        
+                        Divider()
+                        
+                        Menu {
+                            Button {
+                                if app.main.nfc.isAvailable {
+                                    settings.logging = true
+                                    app.dialogUnlock = true
+                                } else {
+                                    app.alertNfc = true
+                                }
+                            } label: {
+                                Label("Unlock", systemImage: "lock.open")
+                            }
+                            
+                            Button {
+                                if app.main.nfc.isAvailable {
+                                    settings.logging = true
+                                    app.dialogReset = true
+                                } else {
+                                    app.alertNfc = true
+                                }
+                            } label: {
+                                Label("Reset", systemImage: "00.circle")
+                            }
+                            
+                            Button {
+                                if app.main.nfc.isAvailable {
+                                    settings.logging = true
+                                    app.dialogProlong = true
+                                } else {
+                                    app.alertNfc = true
+                                }
+                            } label: {
+                                Label("Prolong", systemImage: "infinity.circle")
+                            }
+                            
+                            Button {
+                                if app.main.nfc.isAvailable {
+                                    settings.logging = true
+                                    app.dialogActivate = true
+                                } else {
+                                    app.alertNfc = true
+                                }
+                            } label: {
+                                Label("Activate", systemImage: "bolt.circle")
+                            }
+                        } label: {
+                            Label("Hacks", systemImage: "wand.and.stars")
+                        }
+                    } label: {
+                        Image(systemName: "sensor.tag.radiowaves.forward.fill")
+                            .tint(.white)
+                            .symbolEffect(.variableColor.reversing)
+                    } primaryAction: {
                         app.main.nfc.startSession()
                     }
-                    .tint(.white)
-                    .symbolEffect(.variableColor.reversing)
                 }
             }
     }

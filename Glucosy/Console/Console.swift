@@ -109,17 +109,6 @@ struct Console: View {
         }
         .navigationTitle("Console")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    settings.caffeinated.toggle()
-                    UIApplication.shared.isIdleTimerDisabled = settings.caffeinated
-                } label: {
-                    Image(systemName: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer" )
-                        .tint(.latte)
-                }
-            }
-        }
         .standardToolbar()
     }
 }

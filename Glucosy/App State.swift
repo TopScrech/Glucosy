@@ -21,6 +21,13 @@ final class AppState {
     var lastConnectionDate: Date = .distantPast
     var status = "Welcome to Glucosy!"
     
+    // Hacks
+    var dialogRePair = false
+    var dialogUnlock = false
+    var dialogReset = false
+    var dialogProlong = false
+    var dialogActivate = false
+    
     // Console
     var filterText = ""
     var showingConsoleFilterField = false

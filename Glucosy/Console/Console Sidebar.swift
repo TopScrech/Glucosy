@@ -31,6 +31,14 @@ struct ConsoleSidebar: View {
             Spacer()
             
             Button {
+                settings.caffeinated.toggle()
+                UIApplication.shared.isIdleTimerDisabled = settings.caffeinated
+            } label: {
+                Image(systemName: settings.caffeinated ? "cup.and.saucer.fill" : "cup.and.saucer")
+                    .tint(.latte)
+            }
+            
+            Button {
                 app.main.rescan()
             } label: {
                 VStack {

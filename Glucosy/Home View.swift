@@ -79,7 +79,6 @@ struct HomeView: View {
                     Label("Debug", systemImage: "hammer")
                 }
             }
-            .standardToolbar()
             .sheet($app.sheetNewRecord) {
                 NewRecordView()
             }

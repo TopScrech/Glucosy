@@ -153,6 +153,7 @@ struct SettingsView: View {
             
             SettingsCalendar()
         }
+        .standardToolbar()
         .navigationTitle("Settings")
         .monospacedDigit()
         .navigationBarTitleDisplayMode(.inline)

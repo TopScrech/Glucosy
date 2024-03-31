@@ -2,85 +2,18 @@ import SwiftUI
 import Charts
 
 struct OnlineView: View {
-    @Environment(AppState.self) private var app: AppState
-    @Environment(History.self)  private var history: History
-    @Environment(Settings.self)         var settings: Settings
+    @Environment(AppState.self) var app: AppState
+    @Environment(History.self)  var history: History
+    @Environment(Settings.self) var settings: Settings
     
     @Environment(\.colorScheme) private var colorScheme
     
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
     
-    @State private var libreLinkUpResponse = "[...]"
-    @State private var libreLinkUpHistory:        [LibreLinkUpGlucose] = []
-    @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
-    
-    func reloadLibreLinkUp() async {
-        if let libreLinkUp = await app.main?.libreLinkUp {
-            var dataString = ""
-            var retries = 0
-        loop: repeat {
-            do {
-                if settings.libreLinkUpPatientId.isEmpty ||
-                    settings.libreLinkUpToken.isEmpty ||
-                    settings.libreLinkUpTokenExpirationDate < Date() ||
-                    retries == 1 {
-                    
-                    do {
-                        try await libreLinkUp.login()
-                    } catch {
-                        libreLinkUpResponse = error.localizedDescription.capitalized
-                    }
-                }
-                
-                if !(settings.libreLinkUpPatientId.isEmpty ||
-                     settings.libreLinkUpToken.isEmpty) {
-                    let (data, _, graphHistory, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
-                    dataString = (data as! Data).string
-                    libreLinkUpResponse = dataString + (logbookData as! Data).string
-                    // TODO: just merge with newer values
-                    libreLinkUpHistory = graphHistory.reversed()
-                    libreLinkUpLogbookHistory = logbookHistory
-                    
-                    if graphHistory.count > 0 {
-                        DispatchQueue.main.async {
-                            settings.lastOnlineDate = Date()
-                            let lastMeasurement = libreLinkUpHistory[0]
-                            app.lastReadingDate = lastMeasurement.glucose.date
-                            app.sensor?.lastReadingDate = app.lastReadingDate
-                            app.currentGlucose = lastMeasurement.glucose.value
-                            // TODO: keep the raw values filling the gaps with -1 values
-                            history.rawValues = []
-                            history.factoryValues = libreLinkUpHistory.dropFirst().map(\.glucose) // TEST
-                            var trend = history.factoryTrend
-                            
-                            if trend.isEmpty || lastMeasurement.id > trend[0].id {
-                                trend.insert(lastMeasurement.glucose, at: 0)
-                            }
-                            
-                            // keep only the latest 22 minutes considering the 17-minute latency of the historic values update
-                            trend = trend.filter {
-                                lastMeasurement.id - $0.id < 22
-                            }
-                            
-                            history.factoryTrend = trend
-                            // TODO: merge and update sensor history / trend
-                            app.main.didParseSensor(app.sensor)
-                        }
-                    }
-                    
-                    if dataString != "{\"message\":\"MissingCachedUser\"}\n" {
-                        break loop
-                    }
-                    
-                    retries += 1
-                }
-            } catch {
-                libreLinkUpResponse = error.localizedDescription.capitalized
-            }
-        } while retries == 1
-        }
-    }
+    @State var libreLinkUpResponse = "[...]"
+    @State var libreLinkUpHistory:        [LibreLinkUpGlucose] = []
+    @State var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
     
     var body: some View {
         // Workaround to avoid top textfields scrolling offscreen in iOS 14
@@ -130,7 +63,7 @@ struct OnlineView: View {
                                     libreLinkUpResponse = "[Logging in...]"
                                     
                                     Task {
-                                        await reloadLibreLinkUp()
+                                        await reloadLLU()
                                     }
                                 }
                             
@@ -140,7 +73,7 @@ struct OnlineView: View {
                                     libreLinkUpResponse = "[Logging in...]"
                                     
                                     Task {
-                                        await reloadLibreLinkUp()
+                                        await reloadLLU()
                                     }
                                 }
                         }
@@ -154,7 +87,7 @@ struct OnlineView: View {
                         libreLinkUpResponse = "[...]"
                         
                         Task {
-                            await reloadLibreLinkUp()
+                            await reloadLLU()
                         }
                     } label: {
                         Image(systemName: settings.libreLinkUpFollowing ? "f.circle.fill" : "f.circle")
@@ -172,7 +105,7 @@ struct OnlineView: View {
                                 libreLinkUpResponse = "[...]"
                                 
                                 Task {
-                                    await reloadLibreLinkUp()
+                                    await reloadLLU()
                                 }
                             }
                         } label: {
@@ -217,9 +150,9 @@ struct OnlineView: View {
                 }
                 .foregroundColor(.accentColor)
                 .padding(.bottom, 4)
-#if targetEnvironment(macCatalyst)
+//#if targetEnvironment(macCatalyst)
                 .padding(.horizontal, 15)
-#endif
+//#endif
                 if selectedService == .nightscout {
                     @Bindable var app = app
                     
@@ -308,7 +241,7 @@ struct OnlineView: View {
                                     
                                     if settings.onlineInterval > 0 && Int(Date().timeIntervalSince(settings.lastOnlineDate)) >= settings.onlineInterval * 60 - 5 {
                                         
-                                        await reloadLibreLinkUp()
+                                        await reloadLLU()
                                     }
                                 }
                             }
@@ -332,7 +265,7 @@ struct OnlineView: View {
                         .monospaced()
                     }
                     .task {
-                        await reloadLibreLinkUp()
+                        await reloadLLU()
                     }
 #if targetEnvironment(macCatalyst)
                     .padding(.leading, 15)
@@ -340,6 +273,7 @@ struct OnlineView: View {
                 }
             }
         }
+        .standardToolbar()
         .navigationTitle("Online")
         .navigationBarTitleDisplayMode(.inline)
     }

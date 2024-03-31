@@ -158,6 +158,7 @@ struct DataView: View {
             .padding(.leading, 15)
 #endif
         }
+        .standardToolbar()
         .navigationTitle("Data")
         .caption(design: .monospaced)
         .navigationBarTitleDisplayMode(.inline)

@@ -24,6 +24,7 @@ extension OnlineView {
                     let (data, _, graphHistory, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
                     dataString = (data as! Data).string
                     libreLinkUpResponse = dataString + (logbookData as! Data).string
+                    
                     // TODO: just merge with newer values
                     libreLinkUpHistory = graphHistory.reversed()
                     libreLinkUpLogbookHistory = logbookHistory
@@ -35,6 +36,7 @@ extension OnlineView {
                             app.lastReadingDate = lastMeasurement.glucose.date
                             app.sensor?.lastReadingDate = app.lastReadingDate
                             app.currentGlucose = lastMeasurement.glucose.value
+                            
                             // TODO: keep the raw values filling the gaps with -1 values
                             history.rawValues = []
                             history.factoryValues = libreLinkUpHistory.dropFirst().map(\.glucose) // TEST
@@ -50,6 +52,7 @@ extension OnlineView {
                             }
                             
                             history.factoryTrend = trend
+                            
                             // TODO: merge and update sensor history / trend
                             app.main.didParseSensor(app.sensor)
                         }

@@ -109,7 +109,6 @@ struct Console: View {
         }
         .navigationTitle("Console")
         .navigationBarTitleDisplayMode(.inline)
-        .standardToolbar()
     }
 }
 

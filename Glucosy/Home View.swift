@@ -88,17 +88,17 @@ struct HomeView: View {
             } message: {
                 Text("This device doesn't allow scanning the Libre.")
             }
-            .confirmationDialog("Pairing a Libre 2 with this device will break LibreLink and other apps' pairings and you will have to uninstall and reinstall them to get their alarms back again.", isPresented: $app.dialogRePair, titleVisibility: .visible) {
+            .confirmationDialog("Pairing a Libre 2 with this device will break LibreLink and other apps' pairings and you will have to uninstall and reinstall them to get their alarms back again", isPresented: $app.dialogRePair, titleVisibility: .visible) {
                 Button("RePair", role: .destructive) {
                     app.main.nfc.taskRequest = .enableStreaming
                 }
             }
-            .confirmationDialog("Unlocking the Libre 2 is not reversible and will make it unreadable by LibreLink and other apps.", isPresented: $app.dialogUnlock, titleVisibility: .visible) {
+            .confirmationDialog("Unlocking the Libre 2 is not reversible and will make it unreadable by LibreLink and other apps", isPresented: $app.dialogUnlock, titleVisibility: .visible) {
                 Button("Unlock", role: .destructive) {
                     app.main.nfc.taskRequest = .unlock
                 }
             }
-            .confirmationDialog("Resetting the sensor will clear its measurements memory and put it in an inactivated state.", isPresented: $app.dialogReset, titleVisibility: .visible) {
+            .confirmationDialog("Resetting the sensor will clear its measurements memory and put it in an inactivated state", isPresented: $app.dialogReset, titleVisibility: .visible) {
                 Button("Reset", role: .destructive) {
                     app.main.nfc.taskRequest = .reset
                 }
@@ -108,7 +108,7 @@ struct HomeView: View {
                     app.main.nfc.taskRequest = .prolong
                 }
             }
-            .confirmationDialog("Activating a fresh/ened sensor will put it in the usual warming-up state for 60 minutes.", isPresented: $app.dialogActivate, titleVisibility: .visible) {
+            .confirmationDialog("Activating a fresh/ened sensor will put it in the usual warming-up state for 60 minutes", isPresented: $app.dialogActivate, titleVisibility: .visible) {
                 Button("Activate", role: .destructive) {
                     app.main.nfc.taskRequest = .activate
                 }

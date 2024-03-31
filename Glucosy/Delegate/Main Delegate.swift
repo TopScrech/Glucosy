@@ -24,6 +24,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
     var log: Log
     var history: History
     var settings: Settings
+    var storage: Storage
     
     var centralManager: CBCentralManager
     var bluetoothDelegate: BluetoothDelegate
@@ -41,6 +42,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         log = Log()
         history = History()
         app = AppState()
+        storage = Storage()
         
         bluetoothDelegate = BluetoothDelegate()
         

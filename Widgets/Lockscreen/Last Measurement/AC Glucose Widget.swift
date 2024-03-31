@@ -140,9 +140,7 @@ struct ACGlucoseWidget: Widget {
 
 extension ACGlucoseConfiguration {
     fileprivate static var preview: ACGlucoseConfiguration {
-        let intent = ACGlucoseConfiguration()
-        
-        return intent
+        ACGlucoseConfiguration()
     }
 }
 
@@ -152,6 +150,14 @@ extension ACGlucoseConfiguration {
     GlucoseEntry(
         glucose: "16.4",
         measureDate: Date().addingTimeInterval(-7200),
+        unit: "mmol/L",
+        date: Date(),
+        configuration: .preview
+    )
+    
+    GlucoseEntry(
+        glucose: "16.4",
+        measureDate: Date(),
         unit: "mmol/L",
         date: Date(),
         configuration: .preview

@@ -13,6 +13,8 @@ struct AppleHealthView: View {
         List {
             HealthKitLink()
             
+            GlycatedHaemoglobinView(history.glucose)
+            
             Section {
                 DisclosureGroup("Body Temperature", isExpanded: $isExpandedTemperature) {
                     ForEach(history.bodyTemperature, id: \.self) { temperature in
@@ -38,7 +40,7 @@ struct AppleHealthView: View {
             Section {
                 DisclosureGroup("Glucose", isExpanded: $isExpandedGlucose) {
                     ForEach(history.glucose, id: \.self) { glucose in
-                        HealthKitCard(glucose)
+                        GlucoseCard(glucose)
                     }
                     .onDelete(perform: deleteGlucose)
                 }
@@ -60,7 +62,7 @@ struct AppleHealthView: View {
             Section {
                 DisclosureGroup("Insulin Delivery", isExpanded: $isExpandedInsulin) {
                     ForEach(history.insulin, id: \.self) { insulin in
-                        InsulinDeliveryCard(insulin)
+                        InsulinCard(insulin)
                     }
                     .onDelete(perform: deleteInsulin)
                 }

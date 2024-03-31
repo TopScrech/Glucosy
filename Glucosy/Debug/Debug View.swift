@@ -3,6 +3,7 @@ import SwiftUI
 struct DebugView: View {
     @Environment(AppState.self) private var app
     @Environment(History.self)  private var history
+    @EnvironmentObject          private var storage: Storage
     
     @State private var scheduledNotifications: [UNNotificationRequest] = []
     
@@ -10,6 +11,8 @@ struct DebugView: View {
     
     var body: some View {
         List {
+            Toggle("Debug mode", isOn: $storage.debugMode)
+            
             Section("Scheduled notifications") {
                 Button("Cancel all") {
                     notificationManager.removeAllPending()

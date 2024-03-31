@@ -56,7 +56,7 @@ struct NewRecordView: View {
                 
                 if includeBolus {
                     TextField("Rapid-acting insulin", text: $fieldBolus)
-                        .keyboardType(.numbersAndPunctuation)
+                        .keyboardType(.decimalPad)
                         .focused($focusBolus)
                         .onChange(of: fieldBolus) { _, newValue in
                             bolus = Double(newValue) ?? 0
@@ -83,7 +83,7 @@ struct NewRecordView: View {
                 
                 if includeBasal {
                     TextField("Long-acting insulin", text: $fieldBasal)
-                        .keyboardType(.numbersAndPunctuation)
+                        .keyboardType(.decimalPad)
                         .focused($focusBasal)
                         .onChange(of: fieldBasal) { _, newValue in
                             basal = Double(newValue) ?? 0
@@ -110,7 +110,7 @@ struct NewRecordView: View {
                 
                 if includeCarbs {
                     TextField("Carbs", text: $fieldCarbs)
-                        .keyboardType(.numbersAndPunctuation)
+                        .keyboardType(.decimalPad)
                         .focused($focusCarbs)
                         .onChange(of: fieldCarbs) { _, newValue in
                             carbs = Double(newValue) ?? 0
@@ -151,6 +151,7 @@ struct NewRecordView: View {
                     .frame(maxWidth: .infinity)
                     .background(.blue, in: .rect(cornerRadius: 20))
                     .padding(.horizontal)
+                
             } primaryAction: {
                 saveData()
             }

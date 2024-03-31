@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CarbohydratesCard: View {
-    private let carbs: Carbohydrates
+    let carbs: Carbohydrates
     
     init(_ carbs: Carbohydrates) {
         self.carbs = carbs
@@ -17,7 +17,7 @@ struct CarbohydratesCard: View {
             
             Spacer()
             
-            Text("\(date)")
+            Text(date)
                 .footnote()
                 .foregroundStyle(.secondary)
         }

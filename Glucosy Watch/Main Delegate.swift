@@ -23,6 +23,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
     var log: Log
     var history: History
     var settings: Settings
+    var storage: Storage
     var extendedSession: WKExtendedRuntimeSession! // TODO
     
     var centralManager: CBCentralManager
@@ -39,6 +40,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
         log = Log()
         history = History()
         app = AppState()
+        storage = Storage()
         
         extendedSession = WKExtendedRuntimeSession()
         

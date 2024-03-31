@@ -25,6 +25,7 @@ struct GlucosyApp: App {
                 .environment(main.log)
                 .environment(main.history)
                 .environment(main.settings)
+                .environmentObject(main.storage)
 #if os(iOS)
                 .onOpenURL { url in
                     main.processDeepLink(url)
@@ -55,6 +56,8 @@ struct GlucosyApp: App {
             case .active :
                 /// Change dunamic shortcuts settings here
                 print("App in active")
+                
+                main.healthKit?.readGlucose()
 #if os(iOS)
                 if let type = shortcutItemToProcess?.type {
                     main.processDynamicShortcut(type)

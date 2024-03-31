@@ -1,7 +1,7 @@
 import HealthKit
 
 extension HealthKit {
-    func readGlucose(limit: Int = 1000, handler: (([Glucose]) -> Void)? = nil) {
+    func readGlucose(handler: (([Glucose]) -> Void)? = nil) {
         guard let glucoseType else {
             return
         }
@@ -11,10 +11,24 @@ extension HealthKit {
             ascending: false
         )
         
+//        let endDate = Date()
+//        let startDate = Calendar.current.date(
+//            byAdding: .day,
+//            value: -7,
+//            to: Date()
+//        )
+//        
+//        let predicate = HKQuery.predicateForSamples(
+//            withStart: startDate,
+//            end:       endDate,
+//            options:   .strictStartDate
+//        )
+
         let query = HKSampleQuery(
             sampleType: glucoseType,
+//            predicate:  predicate,
             predicate:  nil,
-            limit:      limit,
+            limit:      HKObjectQueryNoLimit,
             sortDescriptors: [sortDescriptor]
             
         ) { [self] query, results, error in

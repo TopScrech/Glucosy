@@ -56,7 +56,9 @@ struct NewRecordView: View {
                 
                 if includeBolus {
                     TextField("Rapid-acting insulin", text: $fieldBolus)
+#if !os(macOS)
                         .keyboardType(.decimalPad)
+#endif
                         .focused($focusBolus)
                         .onChange(of: fieldBolus) { _, newValue in
                             bolus = Double(newValue) ?? 0
@@ -83,7 +85,9 @@ struct NewRecordView: View {
                 
                 if includeBasal {
                     TextField("Long-acting insulin", text: $fieldBasal)
+#if !os(macOS)
                         .keyboardType(.decimalPad)
+#endif
                         .focused($focusBasal)
                         .onChange(of: fieldBasal) { _, newValue in
                             basal = Double(newValue) ?? 0

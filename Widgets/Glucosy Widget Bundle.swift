@@ -7,6 +7,7 @@ struct GlucosyWidgetBundle: WidgetBundle {
         ACGlucoseWidget()
         ACCarbsWidget()
         SSGlucoseWidget()
+        SMChartWidget()
         
 #if canImport(ActivityKit)
         GlucosyWidgetLiveActivity()

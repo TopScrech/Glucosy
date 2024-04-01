@@ -136,7 +136,7 @@ extension Sensor {
     }
 }
 
-#if !os(watchOS)
+#if canImport(CoreNFC)
 
 import CoreNFC
 
@@ -913,4 +913,4 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
     }
 }
 
-#endif /// !os(watchOS)
+#endif /// canImport(CoreNFC)

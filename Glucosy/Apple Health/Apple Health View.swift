@@ -11,7 +11,7 @@ struct AppleHealthView: View {
     
     var body: some View {
         List {
-            HealthKitLinks()
+            HealthKitLink()
             
             GlycatedHaemoglobinView(history.glucose)
             

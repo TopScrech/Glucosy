@@ -1,6 +1,6 @@
 import Foundation
 
-#if canImport(CoreNFC)
+#if !os(watchOS)
 import CoreNFC
 #endif
 
@@ -441,7 +441,7 @@ enum SensorState: UInt8, CustomStringConvertible {
         }
     }
     
-#if canImport(CoreNFC)
+#if !os(watchOS)
     func execute(nfc: NFC, taskRequest: TaskRequest) async throws {
         
     }

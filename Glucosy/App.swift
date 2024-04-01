@@ -64,7 +64,7 @@ struct GlucosyApp: App {
                 }
 #endif
                 
-#if !os(watchOS) && !os(macOS)
+#if !os(watchOS)
                 UIApplication.shared.isIdleTimerDisabled = main.settings.caffeinated
 #endif
                 

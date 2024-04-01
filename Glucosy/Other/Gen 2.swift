@@ -1,6 +1,6 @@
 import Foundation
 
-#if canImport(CoreNFC)
+#if !os(watchOS)
 import CoreNFC
 #endif
 
@@ -131,7 +131,7 @@ class Gen2 {
         return authContext
     }
     
-#if canImport(CoreNFC)
+#if !os(watchOS)
     
     static func getAuthenticatedCommand(nfc: NFC, command: Int, output: inout Data) async throws -> Int {
         let attribute = try await nfc.send(nfc.sensor.nfcCommand(.readAttribute))
@@ -181,7 +181,7 @@ class Gen2 {
         return context
     }
     
-#endif /// canImport(CoreNFC)
+#endif /// !os(watchOS)
     
     static func decrytpNfcData(context: Int, fromBlock: Int, count: Int, data: Data) -> Result {
         p2(command: GEN2_CMD_DECRYPT_NFC_STREAM, p1: context, Data([UInt8(fromBlock), UInt8(count)]), data)

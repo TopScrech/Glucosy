@@ -1,6 +1,9 @@
 import ScrechKit
 
-struct HealthKitLinks: View {
+struct HealthKitLink: View {
+    private let mysurgID = "com.mysugr.companion.mySugr"
+    private let librelinkID = "com.abbott.librelink.nl"
+    
     var body: some View {
         Section {
             Button {
@@ -25,8 +28,12 @@ struct HealthKitLinks: View {
             .foregroundStyle(.foreground)
             
             Button {
-                openApp(BundleID.mySurg) {
-                    print("Failed to open \(BundleID.mySurg)")
+                let didOpen = openApp(mysurgID)
+                
+                if didOpen {
+                    print("Safari should now be open")
+                } else {
+                    print("Failed to open \(mysurgID)")
                 }
             } label: {
                 HStack {
@@ -49,8 +56,12 @@ struct HealthKitLinks: View {
             }
             
             Button {
-                openApp(BundleID.librelinkNL) {
-                    print("Failed to open \(BundleID.librelinkNL)")
+                let didOpen = openApp(librelinkID)
+                
+                if didOpen {
+                    print("Safari should now be open")
+                } else {
+                    print("Failed to open \(librelinkID)")
                 }
             } label: {
                 HStack {
@@ -73,11 +84,25 @@ struct HealthKitLinks: View {
             }
         }
     }
+    
+    func openApp(_ bundleID: String) -> Bool {
+        guard let LSApplicationWorkspace = objc_getClass("LSApplicationWorkspace") as? NSObject.Type else {
+            return false
+        }
+        
+        guard let workspace = LSApplicationWorkspace.perform(Selector(("defaultWorkspace")))?.takeUnretainedValue() as? NSObject else {
+            return false
+        }
+        
+        let open = workspace.perform(Selector(("openApplicationWithBundleID:")), with: bundleID) != nil
+        return open
+    }
+    
 }
 
 #Preview {
     List {
-        HealthKitLinks()
+        HealthKitLink()
     }
     .darkSchemePreferred()
 }

@@ -1,6 +1,6 @@
 import AVFoundation    // AudioServicesPlaySystemSound()
 
-#if canImport(CoreNFC)
+#if !os(watchOS)
 
 import CoreNFC
 
@@ -285,4 +285,4 @@ extension NFC {
     }
 }
 
-#endif /// canImport(CoreNFC)
+#endif /// !os(watchOS)

@@ -1,6 +1,6 @@
 import Foundation
 
-#if canImport(CoreNFC)
+#if !os(watchOS)
 import CoreNFC
 #endif
 

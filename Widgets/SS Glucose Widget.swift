@@ -97,7 +97,7 @@ struct SSGlucoseWidget: Widget {
         }
         .configurationDisplayName("Lock Screen Widget")
         .description("Shows a simple lock message")
-        .supportedFamilies([.accessoryCircular])
+        .supportedFamilies([.systemSmall])
     }
 }
 

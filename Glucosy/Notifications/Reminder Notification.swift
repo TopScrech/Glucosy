@@ -1,4 +1,4 @@
-import NotificationCenter
+import UserNotifications
 
 extension NotificationManager {
     func scheduleScanReminder(_ interruptionLevel: UNNotificationInterruptionLevel = .timeSensitive) {

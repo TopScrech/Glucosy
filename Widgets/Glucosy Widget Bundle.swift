@@ -6,8 +6,7 @@ struct GlucosyWidgetBundle: WidgetBundle {
         // Lock-screen
         ACGlucoseWidget()
         ACCarbsWidget()
-        
-        GlucosyWidget()
+        SSGlucoseWidget()
         
 #if canImport(ActivityKit)
         GlucosyWidgetLiveActivity()

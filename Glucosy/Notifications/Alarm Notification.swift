@@ -1,4 +1,4 @@
-import NotificationCenter
+import UserNotifications
 
 extension NotificationManager {
     func scheduleAlarmReminder(_ title: String, after interval: TimeInterval = 1) {

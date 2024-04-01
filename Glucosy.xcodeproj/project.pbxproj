@@ -19,7 +19,6 @@
 		C581D5882B0E699C002A4633 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C581D5872B0E699C002A4633 /* SwiftUI.framework */; };
 		C581D58B2B0E699C002A4633 /* Glucosy Widget Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58A2B0E699C002A4633 /* Glucosy Widget Bundle.swift */; };
 		C581D58D2B0E699C002A4633 /* Glucosy Widget LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58C2B0E699C002A4633 /* Glucosy Widget LiveActivity.swift */; };
-		C581D58F2B0E699C002A4633 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		C581D5912B0E699C002A4633 /* App Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D5902B0E699C002A4633 /* App Intent.swift */; };
 		C581D5932B0E699D002A4633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C581D5922B0E699D002A4633 /* Assets.xcassets */; };
 		C581D5972B0E699D002A4633 /* Glucosy Widget Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C581D5842B0E699C002A4633 /* Glucosy Widget Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -166,6 +165,7 @@
 		F35BE2722BB34E4C0015A745 /* Alarm Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */; };
 		F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2752BB359E90015A745 /* Reminder Notification.swift */; };
 		F3865BE22BB9F1D4005E82D4 /* Reload LLU.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */; };
+		F3865BF62BBACCCE005E82D4 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */; };
 		F39EC7DE2BB46BF4004319E9 /* Graph Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EC7DD2BB46BF4004319E9 /* Graph Properties.swift */; };
 		F3B069572BAB9F150095EFEE /* AC Glucose Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069562BAB9F150095EFEE /* AC Glucose Configuration.swift */; };
@@ -442,7 +442,6 @@
 			children = (
 				C581D58A2B0E699C002A4633 /* Glucosy Widget Bundle.swift */,
 				C581D58C2B0E699C002A4633 /* Glucosy Widget LiveActivity.swift */,
-				C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */,
 				C581D5922B0E699D002A4633 /* Assets.xcassets */,
 				C581D5942B0E699D002A4633 /* Info.plist */,
 				C581D5982B0E699D002A4633 /* GlucosyWidgetExtension.entitlements */,
@@ -640,6 +639,7 @@
 		F35AFC6D2BA4E5360065145A /* Depricated */ = {
 			isa = PBXGroup;
 			children = (
+				C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */,
 				F32ED8F12BA8921D00CD234C /* New Record Selector.swift */,
 				F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */,
 				F31FF67C2BA98AD5003EE8F2 /* In App Notification */,
@@ -1030,7 +1030,6 @@
 				F3B069622BABB7430095EFEE /* Carbohydrates.swift in Sources */,
 				F3D781212BADDCE900C2DE1E /* Date Difference.swift in Sources */,
 				F3B069662BAC13650095EFEE /* AC Carbs Provider.swift in Sources */,
-				C581D58F2B0E699C002A4633 /* Glucosy Widget.swift in Sources */,
 				F3B069682BAC13930095EFEE /* Glucose Entry.swift in Sources */,
 				F3B0696A2BAC13B50095EFEE /* Carbs Entry.swift in Sources */,
 				F3B069572BAB9F150095EFEE /* AC Glucose Configuration.swift in Sources */,
@@ -1181,6 +1180,7 @@
 				C5E4006E29825DEA0021C6B7 /* Device.swift in Sources */,
 				F35AFC5D2BA4916C0065145A /* Tabs.swift in Sources */,
 				C5E4006129825C930021C6B7 /* Plan.swift in Sources */,
+				F3865BF62BBACCCE005E82D4 /* Glucosy Widget.swift in Sources */,
 				C5E4009929825F1C0021C6B7 /* Nightscout.swift in Sources */,
 				C5E4005B29825C930021C6B7 /* Details.swift in Sources */,
 				F32ED8F82BA8B13A00CD234C /* Delete Inulin.swift in Sources */,

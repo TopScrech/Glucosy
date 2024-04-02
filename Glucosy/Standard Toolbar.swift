@@ -71,10 +71,12 @@ struct StandartToolbar: ViewModifier {
                         } label: {
                             Label("Hacks", systemImage: "wand.and.stars")
                         }
+                        
                     } label: {
                         Image(systemName: "sensor.tag.radiowaves.forward.fill")
                             .tint(.white)
                             .symbolEffect(.variableColor.reversing)
+                        
                     } primaryAction: {
                         app.main.nfc.startSession()
                     }

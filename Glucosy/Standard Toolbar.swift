@@ -28,6 +28,17 @@ struct StandartToolbar: ViewModifier {
                             Button {
                                 if app.main.nfc.isAvailable {
                                     settings.logging = true
+                                    app.dialogActivate = true
+                                } else {
+                                    app.alertNfc = true
+                                }
+                            } label: {
+                                Label("Activate", systemImage: "bolt")
+                            }
+                            
+                            Button {
+                                if app.main.nfc.isAvailable {
+                                    settings.logging = true
                                     app.dialogUnlock = true
                                 } else {
                                     app.alertNfc = true
@@ -44,7 +55,7 @@ struct StandartToolbar: ViewModifier {
                                     app.alertNfc = true
                                 }
                             } label: {
-                                Label("Reset", systemImage: "00.circle")
+                                Label("Reset", systemImage: "gearshape.arrow.triangle.2.circlepath")
                             }
                             
                             Button {
@@ -55,18 +66,7 @@ struct StandartToolbar: ViewModifier {
                                     app.alertNfc = true
                                 }
                             } label: {
-                                Label("Prolong", systemImage: "infinity.circle")
-                            }
-                            
-                            Button {
-                                if app.main.nfc.isAvailable {
-                                    settings.logging = true
-                                    app.dialogActivate = true
-                                } else {
-                                    app.alertNfc = true
-                                }
-                            } label: {
-                                Label("Activate", systemImage: "bolt.circle")
+                                Label("Prolong", systemImage: "infinity")
                             }
                         } label: {
                             Label("Hacks", systemImage: "wand.and.stars")

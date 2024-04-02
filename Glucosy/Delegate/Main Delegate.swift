@@ -361,6 +361,11 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             return
         }
         
+        guard sensor.state != .warmingUp, sensor.age > 0 else {
+            NotificationManager.shared.scheduleAlarmReminder("\(sensor.type) is warming up")
+            return
+        }
+        
         if history.factoryTrend.count > 0 {
             let currentGlucose = history.factoryTrend[0].value
             app.currentGlucose = currentGlucose

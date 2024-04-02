@@ -190,6 +190,7 @@
 		F3C863022BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F3C863012BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy */; };
 		F3C863032BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F3C863012BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy */; };
 		F3C863042BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F3C863012BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy */; };
+		F3C863062BBC645700DB4ED0 /* Date Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C863052BBC645700DB4ED0 /* Date Progress.swift */; };
 		F3CA0ACB2BAE45E20055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACA2BAE45E20055398F /* ScrechKit */; };
 		F3CA0ACD2BAE45EA0055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACC2BAE45EA0055398F /* ScrechKit */; };
 		F3CA0ACF2BAE45EE0055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACE2BAE45EE0055398F /* ScrechKit */; };
@@ -389,6 +390,7 @@
 		F3B8121A2BB023DC0005C114 /* Insulin Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Insulin Type.swift"; sourceTree = "<group>"; };
 		F3B8121D2BB07AC90005C114 /* Notification Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Delegate.swift"; sourceTree = "<group>"; };
 		F3C863012BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F3C863052BBC645700DB4ED0 /* Date Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Progress.swift"; sourceTree = "<group>"; };
 		F3C98AED2BAD86E700723DA8 /* Date Difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Difference.swift"; sourceTree = "<group>"; };
 		F3D384BE2BB004B100F03C35 /* Console Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Sidebar.swift"; sourceTree = "<group>"; };
 		F3E592E62BB622FB00CE4FE4 /* Monitor Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Monitor Properties.swift"; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E4005529825C930021C6B7 /* Monitor.swift */,
+				F3C863052BBC645700DB4ED0 /* Date Progress.swift */,
 				C5E4005329825C930021C6B7 /* Graph.swift */,
 				F39EC7DD2BB46BF4004319E9 /* Graph Properties.swift */,
 				F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */,
@@ -1211,6 +1214,7 @@
 				F31C70962BA7B01800A5BFCD /* New Record View.swift in Sources */,
 				F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */,
 				C5E4007429825E050021C6B7 /* Main Delegate.swift in Sources */,
+				F3C863062BBC645700DB4ED0 /* Date Progress.swift in Sources */,
 				F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */,
 				F32949732BB0DCAC00328C6A /* Read Temperature.swift in Sources */,
 				C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */,

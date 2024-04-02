@@ -12,6 +12,14 @@ struct Monitor: View {
     
     var body: some View {
         VStack {
+            if let sensor = app.sensor {
+                let maxLife = sensor.maxLife / 86400
+                
+                if maxLife - sensor.age - minutesSinceLastReading > 0 {
+                    Text("Ends in \((maxLife - sensor.age - minutesSinceLastReading).formattedInterval)")
+                }
+            }
+            
             HStack {
                 VStack {
                     if app.lastReadingDate != Date.distantPast {
@@ -21,9 +29,6 @@ struct Monitor: View {
                         Text("\(minutesSinceLastReading) min ago")
                             .footnote()
                             .monospacedDigit()
-                            .onReceive(app.minuteTimer) { _ in
-                                minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
-                            }
                     } else {
                         Text("---")
                     }
@@ -167,6 +172,9 @@ struct Monitor: View {
         .multilineTextAlignment(.center)
         .navigationBarTitleDisplayMode(.inline)
         .standardToolbar()
+        .onReceive(app.minuteTimer) { _ in
+            minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)
+        }
         .onAppear {
             if app.lastReadingDate != Date.distantPast {
                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.lastReadingDate) / 60)

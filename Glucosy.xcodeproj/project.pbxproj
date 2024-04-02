@@ -536,7 +536,6 @@
 				F3E592EC2BB634ED00CE4FE4 /* Online */,
 				F31C70922BA7915100A5BFCD /* Console */,
 				F31C708A2BA750AF00A5BFCD /* Settings */,
-				F3E592EA2BB634D300CE4FE4 /* Data */,
 				F3E592EB2BB634DA00CE4FE4 /* Plan */,
 				F3E592FE2BB6F2E300CE4FE4 /* Other */,
 				F35AFC6D2BA4E5360065145A /* Depricated */,
@@ -739,6 +738,7 @@
 			isa = PBXGroup;
 			children = (
 				F31FF6822BA9D25C003EE8F2 /* Debug View.swift */,
+				F3E592EA2BB634D300CE4FE4 /* Data */,
 			);
 			path = Debug;
 			sourceTree = "<group>";

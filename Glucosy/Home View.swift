@@ -21,14 +21,6 @@ struct HomeView: View {
                     Label("Monitor", systemImage: "gauge")
                 }
                 
-                NavigationView {
-                    DataView()
-                }
-                .tag(Tab.data)
-                .tabItem {
-                    Label("Data", systemImage: "tray.full.fill")
-                }
-                
 #if !os(macOS) && !targetEnvironment(macCatalyst)
                 NavigationView {
                     AppleHealthView()

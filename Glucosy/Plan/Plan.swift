@@ -38,6 +38,7 @@ struct Plan: View {
             Text(onlineCountdown > 0 ? "\(onlineCountdown) s" : "")
                 .foregroundColor(.cyan)
         }
+        .standardToolbar()
         .navigationTitle("Plan")
         .monospacedDigit()
 #if targetEnvironment(macCatalyst)

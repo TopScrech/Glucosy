@@ -11,7 +11,15 @@ struct DebugView: View {
     
     var body: some View {
         List {
-            Toggle("Debug mode", isOn: $storage.debugMode)
+            Section {
+                Toggle("Debug mode", isOn: $storage.debugMode)
+            }
+            
+            NavigationLink {
+                DataView()
+            } label: {
+                Label("Data", systemImage: "tray.full.fill")
+            }
             
             Section("Scheduled notifications") {
                 Button("Cancel all") {
@@ -37,15 +45,6 @@ struct DebugView: View {
                     }
                 }
             }
-            
-            // TODO: Delete all temperature data
-            //            Section("Delete HealthKit data") {
-            //                Button {
-            //
-            //                } label: {
-            //                    Text("")
-            //                }
-            //            }
         }
         .navigationTitle("Debug")
         .refreshableTask {

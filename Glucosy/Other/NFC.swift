@@ -36,10 +36,10 @@ extension Sensor {
     var activationCommand: NFCCommand {
         switch self.type {
         case .libre1:
-            NFCCommand(code: 0xA0, parameters: backdoor, description: "activate")
+                .init(code: 0xA0, parameters: backdoor, description: "activate")
             
         case .libreProH:
-            NFCCommand(code: 0xA0, parameters: backdoor + readerSerial, description: "activate")
+                .init(code: 0xA0, parameters: backdoor + readerSerial, description: "activate")
             
         case .libre2:
             nfcCommand(.activate)
@@ -48,52 +48,57 @@ extension Sensor {
             (self as! Libre3).activationNFCCommand
             
         default:
-            NFCCommand(code: 0x00)
+                .init(code: 0x00)
         }
     }
     
     var universalCommand: NFCCommand {
-        NFCCommand(code: 0xA1, description: "A1 universal prefix")
+        .init(code: 0xA1, description: "A1 universal prefix")
     }
+    
     var getPatchInfoCommand: NFCCommand {
-        NFCCommand(code: 0xA1, description: "get patch info")
+        .init(code: 0xA1, description: "get patch info")
     }
     
     // Libre 1
     var lockCommand: NFCCommand {
-        NFCCommand(code: 0xA2, parameters: backdoor, description: "lock")
+        .init(code: 0xA2, parameters: backdoor, description: "lock")
     }
+    
     var readRawCommand: NFCCommand {
-        NFCCommand(code: 0xA3, parameters: backdoor, description: "read raw")
+        .init(code: 0xA3, parameters: backdoor, description: "read raw")
     }
+    
     var unlockCommand: NFCCommand {
-        NFCCommand(code: 0xA4, parameters: backdoor, description: "unlock")
+        .init(code: 0xA4, parameters: backdoor, description: "unlock")
     }
     
     // Libre 2 / Pro
     // SEE: custom commands C0-C4 in TI RF430FRL15xH Firmware User's Guide
     var readBlockCommand: NFCCommand {
-        NFCCommand(code: 0xB0, description: "B0 read block")
+        .init(code: 0xB0, description: "B0 read block")
     }
     var readBlocksCommand: NFCCommand {
-        NFCCommand(code: 0xB3, description: "B3 read blocks")
+        .init(code: 0xB3, description: "B3 read blocks")
     }
     
     /// replies with error 0x12 (.contentCannotBeChanged)
     var writeBlockCommand: NFCCommand {
-        NFCCommand(code: 0xB1, description: "B1 write block")
+        .init(code: 0xB1, description: "B1 write block")
     }
     
     /// replies with errors 0x12 (.contentCannotBeChanged) or 0x0f (.unknown)
     /// writing three blocks is not supported because it exceeds the 32-byte input buffer
     var writeBlocksCommand: NFCCommand {
-        NFCCommand(code: 0xB4, description: "B4 write blocks")
+        .init(code: 0xB4, description: "B4 write blocks")
     }
     
     /// Usual 1252 blocks limit:
     /// block 04e3 => error 0x11 (.blockAlreadyLocked)
     /// block 04e4 => error 0x10 (.blockNotAvailable)
-    var lockBlockCommand: NFCCommand   { NFCCommand(code: 0xB2, description: "B2 lock block") }
+    var lockBlockCommand: NFCCommand {
+        .init(code: 0xB2, description: "B2 lock block")
+    }
     
     enum Subcommand: UInt8, CustomStringConvertible {
         case unlock          = 0x1a    // lets read FRAM in clear and dump further blocks with B0/B3
@@ -132,7 +137,13 @@ extension Sensor {
             parameters += Libre2.usefulFunction(id: uid, x: UInt16(code.rawValue), y: secret)
         }
         
-        return NFCCommand(code: 0xA1, parameters: Data([code.rawValue]) + parameters, description: code.description)
+        let command = NFCCommand(
+            code: 0xA1,
+            parameters: Data([code.rawValue]) + parameters,
+            description: code.description
+        )
+        
+        return command
     }
 }
 
@@ -482,6 +493,7 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             do {
                 if sensor.securityGeneration == 2 {
                     securityChallenge = try await send(sensor.nfcCommand(.readChallenge))
+                    
                     log("NFC: Gen2 security challenge: \(securityChallenge.hex)")
                 }
                 

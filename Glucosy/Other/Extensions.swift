@@ -58,7 +58,8 @@ extension Data {
     }
     
     func dump() {
-        try! self.write(to: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("dump.bin"))
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("dump.bin")
+        try! self.write(to: url)
     }
     
     var crc16: UInt16 {
@@ -157,6 +158,7 @@ extension String {
             while offset < self.endIndex {
                 let hex = self[offset...index(after: offset)]
                 bytes.append(UInt8(hex, radix: 16)!)
+                
                 formIndex(&offset, offsetBy: 2)
             }
         } else {
@@ -257,8 +259,8 @@ extension Date {
         formatter.timeZone = .current
         formatter.formatOptions = [
             .withFullDate,
-                .withFullTime,
-                .withDashSeparatorInDate,
+            .withFullTime,
+            .withDashSeparatorInDate,
             .withColonSeparatorInTime,
             .withSpaceBetweenDateAndTime,
             .withColonSeparatorInTimeZone

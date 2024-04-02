@@ -15,7 +15,7 @@ extension OnlineView {
                     do {
                         try await libreLinkUp.login()
                     } catch {
-                        libreLinkUpResponse = error.localizedDescription.capitalized
+                        lluResponse = error.localizedDescription.capitalized
                     }
                 }
                 
@@ -23,23 +23,23 @@ extension OnlineView {
                      settings.libreLinkUpToken.isEmpty) {
                     let (data, _, graphHistory, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
                     dataString = (data as! Data).string
-                    libreLinkUpResponse = dataString + (logbookData as! Data).string
+                    lluResponse = dataString + (logbookData as! Data).string
                     
                     // TODO: just merge with newer values
-                    libreLinkUpHistory = graphHistory.reversed()
-                    libreLinkUpLogbookHistory = logbookHistory
+                    lluHistory = graphHistory.reversed()
+                    lluLogbookHistory = logbookHistory
                     
                     if graphHistory.count > 0 {
                         DispatchQueue.main.async {
                             settings.lastOnlineDate = Date()
-                            let lastMeasurement = libreLinkUpHistory[0]
+                            let lastMeasurement = lluHistory[0]
                             app.lastReadingDate = lastMeasurement.glucose.date
                             app.sensor?.lastReadingDate = app.lastReadingDate
                             app.currentGlucose = lastMeasurement.glucose.value
                             
                             // TODO: keep the raw values filling the gaps with -1 values
                             history.rawValues = []
-                            history.factoryValues = libreLinkUpHistory.dropFirst().map(\.glucose) // TEST
+                            history.factoryValues = lluHistory.dropFirst().map(\.glucose) // TEST
                             var trend = history.factoryTrend
                             
                             if trend.isEmpty || lastMeasurement.id > trend[0].id {
@@ -65,7 +65,7 @@ extension OnlineView {
                     retries += 1
                 }
             } catch {
-                libreLinkUpResponse = error.localizedDescription.capitalized
+                lluResponse = error.localizedDescription.capitalized
             }
         } while retries == 1
         }

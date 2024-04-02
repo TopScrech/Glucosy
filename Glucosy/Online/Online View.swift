@@ -11,9 +11,9 @@ struct OnlineView: View {
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
     
-    @State var libreLinkUpResponse = "[...]"
-    @State var libreLinkUpHistory:        [LibreLinkUpGlucose] = []
-    @State var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
+    @State var lluResponse = "[...]"
+    @State var lluHistory:        [LibreLinkUpGlucose] = []
+    @State var lluLogbookHistory: [LibreLinkUpGlucose] = []
     
     var body: some View {
         VStack(spacing: 0) {
@@ -58,7 +58,7 @@ struct OnlineView: View {
                             .autocorrectionDisabled(true)
                             .onSubmit {
                                 settings.libreLinkUpPatientId = ""
-                                libreLinkUpResponse = "[Logging in...]"
+                                lluResponse = "[Logging in...]"
                                 
                                 Task {
                                     await reloadLLU()
@@ -68,7 +68,7 @@ struct OnlineView: View {
                         SecureField("password", text: $settings.libreLinkUpPassword)
                             .onSubmit {
                                 settings.libreLinkUpPatientId = ""
-                                libreLinkUpResponse = "[Logging in...]"
+                                lluResponse = "[Logging in...]"
                                 
                                 Task {
                                     await reloadLLU()
@@ -82,7 +82,7 @@ struct OnlineView: View {
                         settings.libreLinkUpFollowing.toggle()
                     }
                     
-                    libreLinkUpResponse = "[...]"
+                    lluResponse = "[...]"
                     
                     Task {
                         await reloadLLU()
@@ -100,7 +100,7 @@ struct OnlineView: View {
                         }
                         
                         if settings.libreLinkUpScrapingLogbook {
-                            libreLinkUpResponse = "[...]"
+                            lluResponse = "[...]"
                             
                             Task {
                                 await reloadLLU()
@@ -192,7 +192,7 @@ struct OnlineView: View {
             if selectedService == .libreLinkUp {
                 VStack {
                     ScrollView(showsIndicators: true) {
-                        Text(libreLinkUpResponse)
+                        Text(lluResponse)
                             .footnote(design: .monospaced)
                             .foregroundColor(colorScheme == .dark ? Color(.lightGray) : Color(.darkGray))
                             .textSelection(.enabled)
@@ -200,8 +200,8 @@ struct OnlineView: View {
 #if targetEnvironment(macCatalyst)
                     .padding()
 #endif
-                    if libreLinkUpHistory.count > 0 {
-                        Chart(libreLinkUpHistory) {
+                    if lluHistory.count > 0 {
+                        Chart(lluHistory) {
                             PointMark(
                                 x: .value("Time", $0.glucose.date),
                                 y: .value("Glucose", $0.glucose.value)
@@ -223,7 +223,7 @@ struct OnlineView: View {
                     
                     HStack {
                         List {
-                            ForEach(libreLinkUpHistory) { lluGlucose in
+                            ForEach(lluHistory) { lluGlucose in
                                 let glucose = lluGlucose.glucose
                                 (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow?.symbol ?? "").font(.subheadline))
                                     .foregroundColor(lluGlucose.color.color)
@@ -249,7 +249,7 @@ struct OnlineView: View {
                             // TODO: alarms
                             
                             List {
-                                ForEach(libreLinkUpLogbookHistory) { lluGlucose in
+                                ForEach(lluLogbookHistory) { lluGlucose in
                                     let glucose = lluGlucose.glucose
                                     (Text("\(String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)])) \(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow!.symbol).font(.subheadline))
                                         .foregroundColor(lluGlucose.color.color)

@@ -164,6 +164,9 @@
 		F35AFC932BA508A60065145A /* Glucose Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8D2BA508A60065145A /* Glucose Card.swift */; };
 		F35BE2722BB34E4C0015A745 /* Alarm Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */; };
 		F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2752BB359E90015A745 /* Reminder Notification.swift */; };
+		F37069962BBC075B00191607 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F37069952BBC075B00191607 /* PrivacyInfo.xcprivacy */; };
+		F37069972BBC075B00191607 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F37069952BBC075B00191607 /* PrivacyInfo.xcprivacy */; };
+		F37069982BBC075B00191607 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F37069952BBC075B00191607 /* PrivacyInfo.xcprivacy */; };
 		F3865BE22BB9F1D4005E82D4 /* Reload LLU.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */; };
 		F3865BF62BBACCCE005E82D4 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */; };
@@ -369,6 +372,7 @@
 		F35AFC8D2BA508A60065145A /* Glucose Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Glucose Card.swift"; sourceTree = "<group>"; };
 		F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alarm Notification.swift"; sourceTree = "<group>"; };
 		F35BE2752BB359E90015A745 /* Reminder Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder Notification.swift"; sourceTree = "<group>"; };
+		F37069952BBC075B00191607 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reload LLU.swift"; sourceTree = "<group>"; };
 		F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Functions.swift"; sourceTree = "<group>"; };
 		F39EC7DD2BB46BF4004319E9 /* Graph Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Properties.swift"; sourceTree = "<group>"; };
@@ -509,6 +513,7 @@
 				C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */,
 				C53F77C529894478004F275A /* Info.plist */,
 				C5AAA61E2981CF7200CA3EC1 /* Glucosy.entitlements */,
+				F37069952BBC075B00191607 /* PrivacyInfo.xcprivacy */,
 				C5E4004329825C710021C6B7 /* Media */,
 				C5AAA6182981CF7000CA3EC1 /* App.swift */,
 				F329496C2BB0C08500328C6A /* App Init.swift */,
@@ -984,6 +989,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F37069982BBC075B00191607 /* PrivacyInfo.xcprivacy in Resources */,
 				C581D5932B0E699D002A4633 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -995,6 +1001,7 @@
 				C5E015E12989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E400A029825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E42989B0F600F6EDF9 /* TODO.md in Resources */,
+				F37069972BBC075B00191607 /* PrivacyInfo.xcprivacy in Resources */,
 				C5E4004A29825C710021C6B7 /* alarm_low.mp3 in Resources */,
 				C5E015E72989B10500F6EDF9 /* LICENSE.md in Resources */,
 				C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
@@ -1010,6 +1017,7 @@
 				C5E015E02989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E4009F29825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E32989B0F600F6EDF9 /* TODO.md in Resources */,
+				F37069962BBC075B00191607 /* PrivacyInfo.xcprivacy in Resources */,
 				C5E4004929825C710021C6B7 /* alarm_low.mp3 in Resources */,
 				C5E015E62989B10500F6EDF9 /* LICENSE.md in Resources */,
 				C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,

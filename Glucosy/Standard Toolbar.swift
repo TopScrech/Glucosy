@@ -22,6 +22,12 @@ struct StandartToolbar: ViewModifier {
                         Label("Scan", systemImage: "sensor.tag.radiowaves.forward.fill")
                     }
                     
+                    NavigationLink {
+                        Details()
+                    } label: {
+                        Label("Details", systemImage: "info.circle")
+                    }
+                    
                     Divider()
                     
                     Menu {

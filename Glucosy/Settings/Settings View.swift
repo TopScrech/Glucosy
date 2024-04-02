@@ -4,7 +4,7 @@ import WidgetKit
 struct SettingsView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Settings.self) private var settings: Settings
-        
+    
     var body: some View {
         @Bindable var settings = settings
         
@@ -59,15 +59,48 @@ struct SettingsView: View {
             }
             .foregroundColor(.cyan)
             
-            Section {
+            Section("Bluetooth") {
                 Button("Rescan") {
                     settings.selectedTab = (settings.preferredTransmitter != .none) ? .monitor : .console
                     app.main.rescan()
                 }
                 
-                NavigationLink("Details") {
-                    Details()
+                Button {
+                    settings.stoppedBluetooth.toggle()
+                    
+                    if settings.stoppedBluetooth {
+                        app.main.centralManager.stopScan()
+                        app.main.status("Stopped scanning")
+                        app.main.log("Bluetooth: stopped scanning")
+                    } else {
+                        app.main.rescan()
+                    }
+                } label: {
+                    Image(.bluetooth)
+                        .renderingMode(.template)
+                        .resizable()
+                        .frame(width: 32, height: 32)
+                        .overlay {
+                            if settings.stoppedBluetooth {
+                                Image(systemName: "line.diagonal")
+                                    .resizable()
+                                    .foregroundColor(.red)
+                                    .frame(width: 24, height: 24)
+                                    .rotationEffect(.degrees(90))
+                            }
+                        }
                 }
+                
+                Picker("Preferred", selection: $settings.preferredTransmitter) {
+                    ForEach(TransmitterType.allCases) { t in
+                        Text(t.name)
+                            .tag(t)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .disabled(settings.stoppedBluetooth)
+                
+                TextField("device name pattern", text: $settings.preferredDevicePattern)
             }
             
             HStack {
@@ -109,45 +142,6 @@ struct SettingsView: View {
                 }
             }
             .tint(.red)
-            
-            Section {
-                Button {
-                    settings.stoppedBluetooth.toggle()
-                    
-                    if settings.stoppedBluetooth {
-                        app.main.centralManager.stopScan()
-                        app.main.status("Stopped scanning")
-                        app.main.log("Bluetooth: stopped scanning")
-                    } else {
-                        app.main.rescan()
-                    }
-                } label: {
-                    Image(.bluetooth)
-                        .renderingMode(.template)
-                        .resizable()
-                        .frame(width: 32, height: 32)
-                        .overlay {
-                            if settings.stoppedBluetooth {
-                                Image(systemName: "line.diagonal")
-                                    .resizable()
-                                    .foregroundColor(.red)
-                                    .frame(width: 24, height: 24)
-                                    .rotationEffect(.degrees(90))
-                            }
-                        }
-                }
-                
-                Picker("Preferred", selection: $settings.preferredTransmitter) {
-                    ForEach(TransmitterType.allCases) { t in
-                        Text(t.name)
-                            .tag(t)
-                    }
-                }
-                .pickerStyle(.segmented)
-                .disabled(settings.stoppedBluetooth)
-                
-                TextField("device name pattern", text: $settings.preferredDevicePattern)
-            }
             
             SettingsNotification()
             

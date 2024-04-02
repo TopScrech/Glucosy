@@ -141,12 +141,6 @@ struct Monitor: View {
             Spacer()
             
             HStack {
-                NavigationLink {
-                    Details()
-                } label: {
-                    Image(systemName: "info.circle")
-                }
-                
                 Button {
                     app.main.rescan()
                 } label: {

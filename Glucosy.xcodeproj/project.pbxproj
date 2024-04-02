@@ -164,9 +164,6 @@
 		F35AFC932BA508A60065145A /* Glucose Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8D2BA508A60065145A /* Glucose Card.swift */; };
 		F35BE2722BB34E4C0015A745 /* Alarm Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */; };
 		F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2752BB359E90015A745 /* Reminder Notification.swift */; };
-		F37069962BBC075B00191607 /* Privacy Info.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F37069952BBC075B00191607 /* Privacy Info.xcprivacy */; };
-		F37069972BBC075B00191607 /* Privacy Info.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F37069952BBC075B00191607 /* Privacy Info.xcprivacy */; };
-		F37069982BBC075B00191607 /* Privacy Info.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F37069952BBC075B00191607 /* Privacy Info.xcprivacy */; };
 		F3865BE22BB9F1D4005E82D4 /* Reload LLU.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */; };
 		F3865BF62BBACCCE005E82D4 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */; };
@@ -190,6 +187,9 @@
 		F3B8121B2BB023DC0005C114 /* Insulin Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8121A2BB023DC0005C114 /* Insulin Type.swift */; };
 		F3B8121C2BB023DC0005C114 /* Insulin Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8121A2BB023DC0005C114 /* Insulin Type.swift */; };
 		F3B8121E2BB07AC90005C114 /* Notification Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8121D2BB07AC90005C114 /* Notification Delegate.swift */; };
+		F3C863022BBC58BC00DB4ED0 /* Privacy Info.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F3C863012BBC58BC00DB4ED0 /* Privacy Info.xcprivacy */; };
+		F3C863032BBC58BC00DB4ED0 /* Privacy Info.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F3C863012BBC58BC00DB4ED0 /* Privacy Info.xcprivacy */; };
+		F3C863042BBC58BC00DB4ED0 /* Privacy Info.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F3C863012BBC58BC00DB4ED0 /* Privacy Info.xcprivacy */; };
 		F3CA0ACB2BAE45E20055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACA2BAE45E20055398F /* ScrechKit */; };
 		F3CA0ACD2BAE45EA0055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACC2BAE45EA0055398F /* ScrechKit */; };
 		F3CA0ACF2BAE45EE0055398F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3CA0ACE2BAE45EE0055398F /* ScrechKit */; };
@@ -372,7 +372,6 @@
 		F35AFC8D2BA508A60065145A /* Glucose Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Glucose Card.swift"; sourceTree = "<group>"; };
 		F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alarm Notification.swift"; sourceTree = "<group>"; };
 		F35BE2752BB359E90015A745 /* Reminder Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder Notification.swift"; sourceTree = "<group>"; };
-		F37069952BBC075B00191607 /* Privacy Info.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Privacy Info.xcprivacy"; sourceTree = "<group>"; };
 		F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reload LLU.swift"; sourceTree = "<group>"; };
 		F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Functions.swift"; sourceTree = "<group>"; };
 		F39EC7DD2BB46BF4004319E9 /* Graph Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Properties.swift"; sourceTree = "<group>"; };
@@ -389,6 +388,7 @@
 		F3B812172BB014DF0005C114 /* Read BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read BMI.swift"; sourceTree = "<group>"; };
 		F3B8121A2BB023DC0005C114 /* Insulin Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Insulin Type.swift"; sourceTree = "<group>"; };
 		F3B8121D2BB07AC90005C114 /* Notification Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Delegate.swift"; sourceTree = "<group>"; };
+		F3C863012BBC58BC00DB4ED0 /* Privacy Info.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Privacy Info.xcprivacy"; sourceTree = "<group>"; };
 		F3C98AED2BAD86E700723DA8 /* Date Difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Difference.swift"; sourceTree = "<group>"; };
 		F3D384BE2BB004B100F03C35 /* Console Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Console Sidebar.swift"; sourceTree = "<group>"; };
 		F3E592E62BB622FB00CE4FE4 /* Monitor Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Monitor Properties.swift"; sourceTree = "<group>"; };
@@ -512,8 +512,8 @@
 				C5E4009E29825F580021C6B7 /* company_ids.json */,
 				C5AAA61C2981CF7200CA3EC1 /* Assets.xcassets */,
 				C53F77C529894478004F275A /* Info.plist */,
+				F3C863012BBC58BC00DB4ED0 /* Privacy Info.xcprivacy */,
 				C5AAA61E2981CF7200CA3EC1 /* Glucosy.entitlements */,
-				F37069952BBC075B00191607 /* Privacy Info.xcprivacy */,
 				C5E4004329825C710021C6B7 /* Media */,
 				C5AAA6182981CF7000CA3EC1 /* App.swift */,
 				F329496C2BB0C08500328C6A /* App Init.swift */,
@@ -989,8 +989,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F37069982BBC075B00191607 /* Privacy Info.xcprivacy in Resources */,
 				C581D5932B0E699D002A4633 /* Assets.xcassets in Resources */,
+				F3C863042BBC58BC00DB4ED0 /* Privacy Info.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,12 +1001,12 @@
 				C5E015E12989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E400A029825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E42989B0F600F6EDF9 /* TODO.md in Resources */,
-				F37069972BBC075B00191607 /* Privacy Info.xcprivacy in Resources */,
 				C5E4004A29825C710021C6B7 /* alarm_low.mp3 in Resources */,
 				C5E015E72989B10500F6EDF9 /* LICENSE.md in Resources */,
 				C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
 				C5E4004829825C710021C6B7 /* alarm_high.mp3 in Resources */,
 				C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */,
+				F3C863032BBC58BC00DB4ED0 /* Privacy Info.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,12 +1017,12 @@
 				C5E015E02989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E4009F29825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E32989B0F600F6EDF9 /* TODO.md in Resources */,
-				F37069962BBC075B00191607 /* Privacy Info.xcprivacy in Resources */,
 				C5E4004929825C710021C6B7 /* alarm_low.mp3 in Resources */,
 				C5E015E62989B10500F6EDF9 /* LICENSE.md in Resources */,
 				C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
 				C5E4004729825C710021C6B7 /* alarm_high.mp3 in Resources */,
 				C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */,
+				F3C863022BBC58BC00DB4ED0 /* Privacy Info.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

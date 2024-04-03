@@ -7,8 +7,6 @@ struct DebugView: View {
     
     @State private var scheduledNotifications: [UNNotificationRequest] = []
     
-    private var notificationManager = NotificationManager()
-    
     var body: some View {
         List {
             Section {
@@ -23,7 +21,7 @@ struct DebugView: View {
             
             Section("Scheduled notifications") {
                 Button("Cancel all") {
-                    notificationManager.removeAllPending()
+                    NotificationManager.shared.removeAllPending()
                 }
                 
                 ForEach(scheduledNotifications, id: \.identifier) { notification in
@@ -38,7 +36,7 @@ struct DebugView: View {
                     }
                     .contextMenu {
                         Button(role: .destructive) {
-                            notificationManager.removePending(notification.identifier)
+                            NotificationManager.shared.removePending(notification.identifier)
                         } label: {
                             Label("Cancel", systemImage: "trash")
                         }
@@ -48,7 +46,7 @@ struct DebugView: View {
         }
         .navigationTitle("Debug")
         .refreshableTask {
-            scheduledNotifications = await notificationManager.fetchScheduledNotifications()
+            scheduledNotifications = await NotificationManager.shared.fetchScheduledNotifications()
         }
     }
 }

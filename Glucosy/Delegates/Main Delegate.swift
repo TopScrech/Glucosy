@@ -19,20 +19,20 @@ extension Logging {
 }
 
 class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
-    var app: AppState
-    var logger: Logger
-    var log: Log
-    var history: History
+    var app:      AppState
+    var logger:   Logger
+    var log:      Log
+    var history:  History
     var settings: Settings
-    var storage: Storage
+    var storage:  Storage
     
-    var centralManager: CBCentralManager
+    var centralManager:    CBCentralManager
     var bluetoothDelegate: BluetoothDelegate
-    var nfc: NFC
-    var healthKit: HealthKit?
-    var libreLinkUp: LibreLinkUp?
-    var nightscout: Nightscout?
-    var eventKit: EventKit?
+    var nfc:               NFC
+    var healthKit:         HealthKit?
+    var libreLinkUp:       LibreLinkUp?
+    var nightscout:        Nightscout?
+    var eventKit:          EventKit?
     
     override init() {
         UserDefaults.standard.register(defaults: Settings.defaults)
@@ -49,7 +49,9 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         centralManager = CBCentralManager(
             delegate: bluetoothDelegate,
             queue: nil,
-            options: [CBCentralManagerOptionRestoreIdentifierKey: "Glucosy"]
+            options: [
+                CBCentralManagerOptionRestoreIdentifierKey: "Glucosy"
+            ]
         )
         
         nfc = NFC()
@@ -60,7 +62,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         let welcomeMessage = "Welcome to Glucosy!\n\nTip: switch from [Basic] to [Test] mode to sniff incoming BLE data running side-by-side with Trident and other apps.\n\nHint: better [Stop] me to avoid excessive logging during normal use.\n\nWarning: edit out your sensitive personal data after [Copy]ing and before pasting into your reports."
         
         log.entries = [
-            .init(message: "\(welcomeMessage)"),
+            .init(message: welcomeMessage),
             .init(message: "\(settings.logging ? "Log started" : "Log stopped") \(Date().local)")
         ]
         
@@ -74,7 +76,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             healthKit.main = self
             
             healthKit.authorize { [self] in
-                log("HealthKit: \( $0 ? "" : "not ")authorized")
+                log("HealthKit: \($0 ? "" : "not ")authorized")
                 
                 if healthKit.isAuthorized {
                     healthKit.readGlucose() { [self] in
@@ -187,7 +189,9 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
                     bluetoothDelegate.centralManager(
                         centralManager,
                         didDiscover: peripheral,
-                        advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Libre3.UUID.data.rawValue)]],
+                        advertisementData: [
+                            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Libre3.UUID.data.rawValue)]
+                        ],
                         rssi: 0
                     )
                     
@@ -197,7 +201,9 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
                     bluetoothDelegate.centralManager(
                         centralManager,
                         didDiscover: peripheral,
-                        advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Abbott.dataServiceUUID)]],
+                        advertisementData: [
+                            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Abbott.dataServiceUUID)]
+                        ],
                         rssi: 0
                     )
                     
@@ -207,7 +213,9 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
                     bluetoothDelegate.centralManager(
                         centralManager,
                         didDiscover: peripheral,
-                        advertisementData: [CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]],
+                        advertisementData: [
+                            CBAdvertisementDataServiceUUIDsKey: [CBUUID(string: Dexcom.UUID.advertisement.rawValue)]
+                        ],
                         rssi: 0
                     )
                     
@@ -248,7 +256,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
                 do {
                     try AVAudioSession.sharedInstance().setActive(false)
                 } catch {
-                    
+                    // TODO: handle errors
                 }
             }
         }
@@ -290,9 +298,12 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             log("Trend temperatures: \(trendTemperatures))")
             
             history.rawValues = sensor.history
-            log("Raw history: \(sensor.history.map(\.rawValue))")
             
-            debugLog("Raw historic temperatures: \(sensor.history.map(\.rawTemperature))")
+            let rawHistory = sensor.history.map(\.rawValue)
+            log("Raw history: \(rawHistory)")
+            
+            let rawHistoricTemperature = sensor.history.map(\.rawTemperature)
+            debugLog("Raw historic temperatures: \(rawHistoricTemperature)")
             
             let factoryHistory = sensor.factoryHistory
             history.factoryValues = factoryHistory
@@ -311,7 +322,8 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             log("Temperatures adjustments: \(temperatureAdjustments)")
             
             // TODO
-            debugLog("Trend has errors: \(sensor.trend.map(\.hasError))")
+            let trendHasErrors = sensor.trend.map(\.hasError)
+            debugLog("Trend has errors: \(trendHasErrors)")
             
             let trendDataQuality = sensor.trend.map(\.dataQuality.description).joined(separator: ",\n")
             debugLog("Trend data quality: [\n\(trendDataQuality)\n]")
@@ -322,7 +334,8 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             
             debugLog("Trend quality flags: [\(trendQualityFlags)]")
             
-            debugLog("History has errors: \(sensor.history.map(\.hasError))")
+            let historyHasErrors = sensor.history.map(\.hasError)
+            debugLog("History has errors: \(historyHasErrors)")
             
             let historyDataQuality = sensor.history.map(\.dataQuality.description).joined(separator: ",\n")
             debugLog("History data quality: [\n\(historyDataQuality)\n]")
@@ -391,9 +404,6 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             WidgetCenter.shared.reloadAllTimelines()
             
             // print("GOVNO: \(history.rawTrend[0])") // TODO: LibreLink adds 1 to the value
-            // print("GOVNO: \(history.rawValues[0])")
-            // print("GOVNO: \(history.factoryTrend[0])")
-            // print("GOVNO: \(history.factoryValues[0])")
         }
         
         let currentGlucose = app.currentGlucose

@@ -67,7 +67,7 @@ class MainDelegate: NSObject, WKApplicationDelegate, WKExtendedRuntimeSessionDel
             healthKit.main = self
             
             healthKit.authorize { [self] in
-                log("HealthKit: \( $0 ? "" : "not ")authorized")
+                log("HealthKit: \($0 ? "" : "not ")authorized")
                 
                 if healthKit.isAuthorized {
                     healthKit.readGlucose() {

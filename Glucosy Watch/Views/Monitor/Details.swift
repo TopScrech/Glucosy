@@ -10,22 +10,6 @@ struct Details: View {
     @State private var secondsSinceLastConnection = 0
     @State private var minutesSinceLastReading = 0
     
-    // TODO
-    @ViewBuilder func Row(_ label: String, _ value: String, foregroundColor: Color? = .yellow) -> some View {
-        if !(value.isEmpty || value == "unknown") {
-            HStack {
-                Text(label)
-                
-                Spacer()
-                
-                Text(value)
-                    .foregroundColor(foregroundColor)
-            }
-        } else {
-            EmptyView()
-        }
-    }
-    
     var body: some View {
         VStack {
             Form {
@@ -43,9 +27,9 @@ struct Details: View {
                 if app.device != nil {
                     Section("Device") {
                         Group {
-                            Row("Name", app.device.peripheral?.name ?? app.device.name)
+                            ListRow("Name", app.device.peripheral?.name ?? app.device.name)
                             
-                            Row("State", (app.device.peripheral?.state ?? app.device.state).description.capitalized,
+                            ListRow("State", (app.device.peripheral?.state ?? app.device.state).description.capitalized,
                                 foregroundColor: (app.device.peripheral?.state ?? app.device.state) == .connected ? .green : .red)
                             
                             if app.device.lastConnectionDate != .distantPast {
@@ -74,38 +58,38 @@ struct Details: View {
                             }
                             
                             if settings.userLevel > .basic && app.device.peripheral != nil {
-                                Row("Identifier", app.device.peripheral!.identifier.uuidString)
+                                ListRow("Identifier", app.device.peripheral!.identifier.uuidString)
                             }
                             
                             if app.device.name != app.device.peripheral?.name ?? "Unnamed" {
-                                Row("Type", app.device.name)
+                                ListRow("Type", app.device.name)
                             }
                         }
                         
-                        Row("Serial", app.device.serial)
+                        ListRow("Serial", app.device.serial)
                         
                         Group {
                             if !app.device.company.isEmpty && app.device.company != "< Unknown >" {
-                                Row("Company", app.device.company)
+                                ListRow("Company", app.device.company)
                             }
                             
-                            Row("Manufacturer", app.device.manufacturer)
-                            Row("Model",        app.device.model)
-                            Row("Firmware",     app.device.firmware)
-                            Row("Hardware",     app.device.hardware)
-                            Row("Software",     app.device.software)
+                            ListRow("Manufacturer", app.device.manufacturer)
+                            ListRow("Model",        app.device.model)
+                            ListRow("Firmware",     app.device.firmware)
+                            ListRow("Hardware",     app.device.hardware)
+                            ListRow("Software",     app.device.software)
                         }
                         
                         if app.device.macAddress.count > 0 {
-                            Row("MAC Address", app.device.macAddress.hexAddress)
+                            ListRow("MAC Address", app.device.macAddress.hexAddress)
                         }
                         
                         if app.device.rssi != 0 {
-                            Row("RSSI", "\(app.device.rssi) dB")
+                            ListRow("RSSI", "\(app.device.rssi) dB")
                         }
                         
                         if app.device.battery > -1 {
-                            Row("Battery", "\(app.device.battery)%",
+                            ListRow("Battery", "\(app.device.battery)%",
                                 foregroundColor: app.device.battery > 10 ? .green : .red)
                         }
                     }
@@ -113,7 +97,7 @@ struct Details: View {
                 
                 if app.sensor != nil {
                     Section("Sensor") {
-                        Row("State", app.sensor.state.description,
+                        ListRow("State", app.sensor.state.description,
                             foregroundColor: app.sensor.state == .active ? .green : .red)
                         
                         if app.sensor.state == .failure && app.sensor.fram.count > 8 {
@@ -123,55 +107,55 @@ struct Details: View {
                             
                             let failureInterval = failureAge == 0 ? "an unknown time" : "\(failureAge.formattedInterval)"
                             
-                            Row("Failure", "\(decodeFailure(error: errorCode).capitalized) (0x\(errorCode.hex)) at \(failureInterval)",
+                            ListRow("Failure", "\(decodeFailure(error: errorCode).capitalized) (0x\(errorCode.hex)) at \(failureInterval)",
                                 foregroundColor: .red)
                         }
                         
-                        Row("Type", "\(app.sensor.type.description)\(app.sensor.patchInfo.hex.hasPrefix("a2") ? " (new 'A2' kind)" : "")")
+                        ListRow("Type", "\(app.sensor.type.description)\(app.sensor.patchInfo.hex.hasPrefix("a2") ? " (new 'A2' kind)" : "")")
                         
-                        Row("Serial", app.sensor.serial)
+                        ListRow("Serial", app.sensor.serial)
                         
-                        Row("Reader Serial", app.sensor.readerSerial.count >= 16 ? app.sensor.readerSerial[...13].string : "")
+                        ListRow("Reader Serial", app.sensor.readerSerial.count >= 16 ? app.sensor.readerSerial[...13].string : "")
                         
-                        Row("Region", app.sensor.region.description)
+                        ListRow("Region", app.sensor.region.description)
                         
                         if app.sensor.maxLife > 0 {
-                            Row("Maximum Life", app.sensor.maxLife.formattedInterval)
+                            ListRow("Maximum Life", app.sensor.maxLife.formattedInterval)
                         }
                         
                         if app.sensor.age > 0 {
                             Group {
-                                Row("Age", (app.sensor.age + minutesSinceLastReading).formattedInterval)
+                                ListRow("Age", (app.sensor.age + minutesSinceLastReading).formattedInterval)
                                 
                                 if app.sensor.maxLife - app.sensor.age - minutesSinceLastReading > 0 {
-                                    Row("Ends in", (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading).formattedInterval,
+                                    ListRow("Ends in", (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading).formattedInterval,
                                         foregroundColor: (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading) > 360 ? .green : .red)
                                 }
                                 
-                                Row("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
+                                ListRow("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
                             }
                             .onReceive(app.minuteTimer) { _ in
                                 minutesSinceLastReading = Int(Date().timeIntervalSince(app.sensor.lastReadingDate) / 60)
                             }
                         }
                         
-                        Row("UID", app.sensor.uid.hex)
+                        ListRow("UID", app.sensor.uid.hex)
                         
                         Group {
                             if app.sensor.type == .libre3 && (app.sensor as? Libre3)?.receiverId ?? 0 != 0 {
-                                Row("Receiver ID", "\((app.sensor as! Libre3).receiverId)")
+                                ListRow("Receiver ID", (app.sensor as! Libre3).receiverId)
                             }
                             
                             if app.sensor.type == .libre3 && ((app.sensor as? Libre3)?.blePIN ?? Data()).count != 0 {
-                                Row("BLE PIN", "\((app.sensor as! Libre3).blePIN.hex)")
+                                ListRow("BLE PIN", (app.sensor as! Libre3).blePIN.hex)
                             }
                             
                             if !app.sensor.patchInfo.isEmpty {
-                                Row("Patch Info", app.sensor.patchInfo.hex)
+                                ListRow("Patch Info", app.sensor.patchInfo.hex)
                                 
-                                Row("Firmware", app.sensor.firmware)
+                                ListRow("Firmware", app.sensor.firmware)
                                 
-                                Row("Security Generation", "\(app.sensor.securityGeneration)")
+                                ListRow("Security Generation", app.sensor.securityGeneration)
                             }
                         }
                     }
@@ -197,8 +181,9 @@ struct Details: View {
                                 
                                 Spacer()
                                 
-                                Text("[\(settings.activeSensorCalibrationInfo.i1), \(settings.activeSensorCalibrationInfo.i2), \(settings.activeSensorCalibrationInfo.i3), \(settings.activeSensorCalibrationInfo.i4), \(settings.activeSensorCalibrationInfo.i5), \(settings.activeSensorCalibrationInfo.i6)]")
-                                    .foregroundColor(.blue)
+                                Text("[\(settings.activeSensorCalibrationInfo.i1), \(settings.activeSensorCalibrationInfo.i2), \(settings.activeSensorCalibrationInfo.i3), \(settings.activeSensorCalibrationInfo.i4), \(settings.activeSensorCalibrationInfo.i5), \(settings.activeSensorCalibrationInfo.i6)]"
+                                )
+                                .foregroundColor(.blue)
                             }
                             .onTapGesture {
                                 showingCalibrationInfoForm.toggle()

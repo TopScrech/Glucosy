@@ -49,9 +49,9 @@ struct GlycatedHaemoglobinTable: View {
         //
         //            TableColumn("Level", value: \.level)
         //        } rows: {
-        //            TableRow(Row("1", level: "11"))
-        //            TableRow(Row("2", level: "22"))
-        //            TableRow(Row("3", level: "33"))
+        //            TableRow(ListRow("1", level: "11"))
+        //            TableRow(ListRow("2", level: "22"))
+        //            TableRow(ListRow("3", level: "33"))
         //        }
     }
 }

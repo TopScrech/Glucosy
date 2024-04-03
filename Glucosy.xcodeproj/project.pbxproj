@@ -164,6 +164,8 @@
 		F35AFC932BA508A60065145A /* Glucose Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AFC8D2BA508A60065145A /* Glucose Card.swift */; };
 		F35BE2722BB34E4C0015A745 /* Alarm Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */; };
 		F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2752BB359E90015A745 /* Reminder Notification.swift */; };
+		F3781E942BBD2D3300EF4A9B /* List Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E932BBD2D3300EF4A9B /* List Row.swift */; };
+		F3781E952BBD2D8A00EF4A9B /* List Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E932BBD2D3300EF4A9B /* List Row.swift */; };
 		F3865BE22BB9F1D4005E82D4 /* Reload LLU.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */; };
 		F3865BF62BBACCCE005E82D4 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */; };
@@ -373,6 +375,7 @@
 		F35AFC8D2BA508A60065145A /* Glucose Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Glucose Card.swift"; sourceTree = "<group>"; };
 		F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alarm Notification.swift"; sourceTree = "<group>"; };
 		F35BE2752BB359E90015A745 /* Reminder Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder Notification.swift"; sourceTree = "<group>"; };
+		F3781E932BBD2D3300EF4A9B /* List Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List Row.swift"; sourceTree = "<group>"; };
 		F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reload LLU.swift"; sourceTree = "<group>"; };
 		F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Functions.swift"; sourceTree = "<group>"; };
 		F39EC7DD2BB46BF4004319E9 /* Graph Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Properties.swift"; sourceTree = "<group>"; };
@@ -600,6 +603,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E4005029825C930021C6B7 /* Details.swift */,
+				F3781E932BBD2D3300EF4A9B /* List Row.swift */,
 				F3E69B422BA65A4200A5469A /* Known Devices List.swift */,
 			);
 			path = Details;
@@ -1060,6 +1064,7 @@
 				C59184462981E73400A6DA89 /* App.swift in Sources */,
 				F3B812132BB00EBF0005C114 /* Body Mass.swift in Sources */,
 				F32949772BB0DD2200328C6A /* Temperature.swift in Sources */,
+				F3781E952BBD2D8A00EF4A9B /* List Row.swift in Sources */,
 				F3E592F92BB6E43B00CE4FE4 /* Console Tools Properties.swift in Sources */,
 				F329496E2BB0C08700328C6A /* App Init.swift in Sources */,
 				C5E4007D29825E4E0021C6B7 /* Abbott.swift in Sources */,
@@ -1176,6 +1181,7 @@
 				C5E4008229825E8B0021C6B7 /* Libre 2.swift in Sources */,
 				F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */,
 				F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */,
+				F3781E942BBD2D3300EF4A9B /* List Row.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
 				F3B8121E2BB07AC90005C114 /* Notification Delegate.swift in Sources */,
 				F3E5930C2BB772F700CE4FE4 /* Glycated Haemoglobin Table.swift in Sources */,

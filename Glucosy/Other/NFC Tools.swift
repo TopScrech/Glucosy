@@ -215,6 +215,7 @@ extension NFC {
                 let (_, data) = try await read(fromBlock: 0, count: 43)
                 log(Data(data.suffix(3 * 8)).hexDump(header: "NFC: did overwite FRAM footer:", startBlock: 40))
                 sensor.fram = Data(data)
+                
             } catch {
                 // TODO: manage errors and verify integrity
             }

@@ -4,7 +4,7 @@ extension NotificationManager {
     func scheduleAlarmReminder(
         _ title: String,
         subtitle: String = "",
-        after interval: TimeInterval = 1
+        after interval: TimeInterval = 0.01
     ) {
         let content = UNMutableNotificationContent()
         content.title = title

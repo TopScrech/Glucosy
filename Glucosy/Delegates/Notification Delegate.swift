@@ -30,6 +30,9 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
             case "REMINDER":
                 app.main.nfc.startSession()
                 
+            case "ACTIVATED":
+                app.main.nfc.startSession()
+                
             default:
                 break
             }
@@ -39,6 +42,9 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
             
             switch response.actionIdentifier {
             case "NEW_SCAN":
+                app.main.nfc.startSession()
+                
+            case "ACTIVATED":
                 app.main.nfc.startSession()
                 
             case "NEW_RECORD":

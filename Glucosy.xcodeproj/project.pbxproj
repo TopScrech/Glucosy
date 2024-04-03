@@ -170,6 +170,7 @@
 		F3781E992BBD4AF200EF4A9B /* Save New Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E982BBD4AF200EF4A9B /* Save New Data.swift */; };
 		F3781E9B2BBD506700EF4A9B /* Notification Expired.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E9A2BBD506700EF4A9B /* Notification Expired.swift */; };
 		F3781E9D2BBD8A9400EF4A9B /* Notification Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E9C2BBD8A9400EF4A9B /* Notification Actions.swift */; };
+		F3781E9F2BBDECB000EF4A9B /* Notification Activation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E9E2BBDECB000EF4A9B /* Notification Activation.swift */; };
 		F3865BE22BB9F1D4005E82D4 /* Reload LLU.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */; };
 		F3865BF62BBACCCE005E82D4 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */; };
@@ -384,6 +385,7 @@
 		F3781E982BBD4AF200EF4A9B /* Save New Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Save New Data.swift"; sourceTree = "<group>"; };
 		F3781E9A2BBD506700EF4A9B /* Notification Expired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Expired.swift"; sourceTree = "<group>"; };
 		F3781E9C2BBD8A9400EF4A9B /* Notification Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Actions.swift"; sourceTree = "<group>"; };
+		F3781E9E2BBDECB000EF4A9B /* Notification Activation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Activation.swift"; sourceTree = "<group>"; };
 		F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reload LLU.swift"; sourceTree = "<group>"; };
 		F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Functions.swift"; sourceTree = "<group>"; };
 		F39EC7DD2BB46BF4004319E9 /* Graph Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Properties.swift"; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 				F35BE2752BB359E90015A745 /* Reminder Notification.swift */,
 				F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */,
 				F3781E9A2BBD506700EF4A9B /* Notification Expired.swift */,
+				F3781E9E2BBDECB000EF4A9B /* Notification Activation.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -1175,6 +1178,7 @@
 				F35AFC772BA4FF9E0065145A /* Write Glucose.swift in Sources */,
 				F35AFC542BA490C70065145A /* App State.swift in Sources */,
 				F32949702BB0DA6500328C6A /* Write Temperature.swift in Sources */,
+				F3781E9F2BBDECB000EF4A9B /* Notification Activation.swift in Sources */,
 				F3781E992BBD4AF200EF4A9B /* Save New Data.swift in Sources */,
 				F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */,
 				F3B812152BB00EC70005C114 /* BMI.swift in Sources */,

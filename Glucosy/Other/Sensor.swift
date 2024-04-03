@@ -410,7 +410,8 @@ enum SensorState: UInt8, CustomStringConvertible {
         }
         
         if age > 0 {
-            log("Sensor age: \(age) minutes (\(age.formattedInterval)), started on: \((lastReadingDate - Double(age) * 60).shortDateTime)")
+            log("Sensor age: \(age) minutes (\(age.formattedInterval))")
+            log("Started on: \((lastReadingDate - Double(age) * 60).shortDateTime)")
         }
     }
     

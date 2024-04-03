@@ -20,6 +20,16 @@ extension MainDelegate {
                 $0.value > 0 && $0.id > -1
             }
             
+            if sensor.age < 60 {
+                print("ZOPA")
+                
+                entries = entries.filter {
+                    $0.date > (sensor.lastReadingDate - Double(sensor.age) * 60)
+                }
+            } else {
+                print("SISKA")
+            }
+            
             // TODO
             let newEntries = entries.filter {
                 $0.date > healthKit?.lastDate ?? Calendar.current.date(byAdding: .hour, value: -8, to: Date())!

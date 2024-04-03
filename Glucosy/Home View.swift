@@ -74,6 +74,11 @@ struct HomeView: View {
             .sheet($app.sheetNewRecord) {
                 NewRecordView()
             }
+            .alert("Notify when complete", isPresented: $app.alertActivation) {
+                Button("Notify when the activation is complete") {
+                    NotificationManager.shared.scheduleActivation(app.sensor.type)
+                }
+            }
             .alert("NFC not supported", isPresented: $app.alertNfc) {
                 
             } message: {

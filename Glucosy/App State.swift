@@ -37,5 +37,6 @@ final class AppState {
     // var jstAlertReturn = ""
     
     var alertNfc = false
+    var alertActivation = false
     var sheetNewRecord = false
 }

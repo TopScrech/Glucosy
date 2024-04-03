@@ -257,13 +257,17 @@ extension NFC {
                 if sensor.type == .libreProH {
                     var readCommand = sensor.readBlockCommand
                     readCommand.parameters = "DF 04".bytes
+                    
                     var output = try await send(readCommand)
                     debugLog("NFC: 'B0 read 0x04DF' command output: \(output.hex)")
+                    
                     try await send(sensor.unlockCommand)
                     var writeCommand = sensor.writeBlockCommand
                     writeCommand.parameters = "DF 04 20 00 DF 88 00 00 00 00".bytes
+                    
                     output = try await send(writeCommand)
                     debugLog("NFC: 'B1 write' command output: \(output.hex)")
+                    
                     try await send(sensor.lockCommand)
                     output = try await send(readCommand)
                     debugLog("NFC: 'B0 read 0x04DF' command output: \(output.hex)")
@@ -283,6 +287,8 @@ extension NFC {
                 } else {
                     (sensor as! Libre3).parseActivation(output: output)
                 }
+                
+                app.alertActivation = true
             } catch {
                 // TODO: manage errors and verify integrity
             }

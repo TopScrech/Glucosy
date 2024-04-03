@@ -4,13 +4,13 @@ struct Details: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Settings.self) private var settings: Settings
     
-    @State private var showingRePairConfirmationDialog = false
-    @State private var showingCalibrationInfoForm = false
+    @State private var dialogRePair = false
+    @State private var sheetCalibration = false
     
     @State private var readingCountdown = 0
     @State private var secondsSinceLastConnection = 0
     @State private var minutesSinceLastReading = 0
-        
+    
     private func repair() {
         ((app.device as? Abbott)?.sensor as? Libre3)?.pair()
         
@@ -23,7 +23,7 @@ struct Details: View {
         settings.selectedTab = .console
         
         if app.sensor as? Libre3 == nil {
-            showingRePairConfirmationDialog = true
+            dialogRePair = true
         } else {
             app.main.nfc.taskRequest = .enableStreaming
         }
@@ -48,7 +48,7 @@ struct Details: View {
                             ListRow("Name", app.device.peripheral?.name ?? app.device.name)
                             
                             ListRow("State", (app.device.peripheral?.state ?? app.device.state).description.capitalized,
-                                foregroundColor: (app.device.peripheral?.state ?? app.device.state) == .connected ? .green : .red)
+                                    color: (app.device.peripheral?.state ?? app.device.state) == .connected ? .green : .red)
                             
                             if app.device.lastConnectionDate != .distantPast {
                                 HStack {
@@ -102,7 +102,7 @@ struct Details: View {
                         
                         if app.device.battery > -1 {
                             ListRow("Battery", "\(app.device.battery)%",
-                                foregroundColor: app.device.battery > 10 ? .green : .red)
+                                    color: app.device.battery > 10 ? .green : .red)
                         }
                     }
                     .callout()
@@ -111,7 +111,7 @@ struct Details: View {
                 if app.sensor != nil {
                     Section("Sensor") {
                         ListRow("State", app.sensor.state.description,
-                            foregroundColor: app.sensor.state == .active ? .green : .red)
+                                color: app.sensor.state == .active ? .green : .red)
                         
                         if app.sensor.state == .failure && app.sensor.fram.count > 8 {
                             let fram = app.sensor.fram
@@ -119,7 +119,7 @@ struct Details: View {
                             let failureAge = Int(fram[7]) + Int(fram[8]) << 8
                             let failureInterval = failureAge == 0 ? "an unknown time" : "\(failureAge.formattedInterval)"
                             ListRow("Failure", "\(decodeFailure(error: errorCode).capitalized) (0x\(errorCode.hex)) at \(failureInterval)",
-                                foregroundColor: .red)
+                                    color: .red)
                         }
                         
                         ListRow("Type", "\(app.sensor.type.description)\(app.sensor.patchInfo.hex.hasPrefix("a2") ? " (new 'A2' kind)" : "")")
@@ -140,7 +140,7 @@ struct Details: View {
                                 
                                 if app.sensor.maxLife - app.sensor.age - minutesSinceLastReading > 0 {
                                     ListRow("Ends in", (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading).formattedInterval,
-                                        foregroundColor: (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading) > 360 ? .green : .red)
+                                            color: (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading) > 360 ? .green : .red)
                                 }
                                 
                                 ListRow("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
@@ -194,80 +194,10 @@ struct Details: View {
                                 .foregroundColor(.blue)
                             }
                             .onTapGesture {
-                                showingCalibrationInfoForm.toggle()
+                                sheetCalibration.toggle()
                             }
-                            .sheet(isPresented: $showingCalibrationInfoForm) {
-                                Form {
-                                    Section("Calibration Info") {
-                                        HStack {
-                                            Text("i1")
-                                            
-                                            TextField("i1", value: $settings.activeSensorCalibrationInfo.i1, formatter: NumberFormatter())
-                                                .keyboardType(.numbersAndPunctuation)
-                                                .multilineTextAlignment(.trailing)
-                                                .foregroundColor(.blue)
-                                        }
-                                        
-                                        HStack {
-                                            Text("i2")
-                                            
-                                            TextField("i2", value: $settings.activeSensorCalibrationInfo.i2, formatter: NumberFormatter())
-                                                .keyboardType(.numbersAndPunctuation)
-                                                .multilineTextAlignment(.trailing)
-                                                .foregroundColor(.blue)
-                                        }
-                                        
-                                        HStack {
-                                            Text("i3")
-                                            
-                                            TextField("i3", value: $settings.activeSensorCalibrationInfo.i3, formatter: NumberFormatter())
-                                                .keyboardType(.numbersAndPunctuation)
-                                                .multilineTextAlignment(.trailing)
-                                                .foregroundColor(.blue)
-                                        }
-                                        
-                                        HStack {
-                                            Text("i4")
-                                            
-                                            TextField("i4", value: $settings.activeSensorCalibrationInfo.i4, formatter: NumberFormatter())
-                                                .keyboardType(.numbersAndPunctuation)
-                                                .multilineTextAlignment(.trailing)
-                                                .foregroundColor(.blue)
-                                        }
-                                        
-                                        HStack {
-                                            Text("i5")
-                                            
-                                            TextField("i5", value: $settings.activeSensorCalibrationInfo.i5, formatter: NumberFormatter())
-                                                .keyboardType(.numbersAndPunctuation)
-                                                .multilineTextAlignment(.trailing)
-                                                .foregroundColor(.blue)
-                                        }
-                                        
-                                        HStack {
-                                            Text("i6")
-                                            
-                                            TextField("i6", value: $settings.activeSensorCalibrationInfo.i6, formatter: NumberFormatter())
-                                                .keyboardType(.numbersAndPunctuation)
-                                                .multilineTextAlignment(.trailing)
-                                                .foregroundColor(.blue)
-                                        }
-                                        
-                                        HStack {
-                                            Button("Set") {
-                                                showingCalibrationInfoForm = false
-                                            }
-                                            .bold()
-                                            .foregroundColor(.accentColor)
-                                            .padding(.horizontal, 4)
-                                            .padding(2)
-                                            .overlay {
-                                                RoundedRectangle(cornerRadius: 5)
-                                                    .stroke(Color.accentColor, lineWidth: 2)
-                                            }
-                                        }
-                                    }
-                                }
+                            .sheet(isPresented: $sheetCalibration) {
+                                CalibrationForm()
                             }
                             
                             HStack {
@@ -297,7 +227,7 @@ struct Details: View {
                                     .symbolEffect(.variableColor.reversing)
                             }
                             .foregroundColor(.accentColor)
-                            .confirmationDialog("Pairing a Libre 2 with this device will break LibreLink and other apps' pairings and you will have to uninstall and reinstall them to get their alarms back again.", isPresented: $showingRePairConfirmationDialog, titleVisibility: .visible) {
+                            .confirmationDialog("Pairing a Libre 2 with this device will break LibreLink and other apps' pairings and you will have to uninstall and reinstall them to get their alarms back again.", isPresented: $dialogRePair, titleVisibility: .visible) {
                                 Button("RePair", role: .destructive) {
                                     app.main.nfc.taskRequest = .enableStreaming
                                 }

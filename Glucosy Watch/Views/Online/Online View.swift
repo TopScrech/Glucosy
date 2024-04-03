@@ -9,10 +9,10 @@ struct OnlineView: View {
     @State private var onlineCountdown = 0
     @State private var readingCountdown = 0
     
-    @State private var libreLinkUpResponse = "[...]"
-    @State private var libreLinkUpHistory:        [LibreLinkUpGlucose] = []
-    @State private var libreLinkUpLogbookHistory: [LibreLinkUpGlucose] = []
-    @State private var showingCredentials = false
+    @State private var lluResponse = "[...]"
+    @State private var lluHistory:        [LibreLinkUpGlucose] = []
+    @State private var lluLogbookHistory: [LibreLinkUpGlucose] = []
+    @State private var showCredentials = false
         
     func reloadLibreLinkUp() async {
         if let libreLinkUp = await app.main?.libreLinkUp {
@@ -28,7 +28,7 @@ struct OnlineView: View {
                     do {
                         try await libreLinkUp.login()
                     } catch {
-                        libreLinkUpResponse = error.localizedDescription.capitalized
+                        lluResponse = error.localizedDescription.capitalized
                     }
                 }
                 
@@ -38,23 +38,23 @@ struct OnlineView: View {
                     let (data, _, graphHistory, logbookData, logbookHistory, _) = try await libreLinkUp.getPatientGraph()
                     
                     dataString = (data as! Data).string
-                    libreLinkUpResponse = dataString + (logbookData as! Data).string
+                    lluResponse = dataString + (logbookData as! Data).string
                     
                     // TODO: just merge with newer values
-                    libreLinkUpHistory = graphHistory.reversed()
-                    libreLinkUpLogbookHistory = logbookHistory
+                    lluHistory = graphHistory.reversed()
+                    lluLogbookHistory = logbookHistory
                     
                     if graphHistory.count > 0 {
                         DispatchQueue.main.async {
                             settings.lastOnlineDate = Date()
-                            let lastMeasurement = libreLinkUpHistory[0]
+                            let lastMeasurement = lluHistory[0]
                             app.lastReadingDate = lastMeasurement.glucose.date
                             app.sensor?.lastReadingDate = app.lastReadingDate
                             app.currentGlucose = lastMeasurement.glucose.value
                             
                             // TODO: keep the raw values filling the gaps with -1 values
                             history.rawValues = []
-                            history.factoryValues = libreLinkUpHistory.dropFirst().map(\.glucose) // TEST
+                            history.factoryValues = lluHistory.dropFirst().map(\.glucose) // TEST
                             var trend = history.factoryTrend
                             
                             if trend.isEmpty || lastMeasurement.id > trend[0].id {
@@ -80,7 +80,7 @@ struct OnlineView: View {
                     retries += 1
                 }
             } catch {
-                libreLinkUpResponse = error.localizedDescription.capitalized
+                lluResponse = error.localizedDescription.capitalized
             }
         } while retries == 1
         }
@@ -105,10 +105,10 @@ struct OnlineView: View {
                     HStack {
                         Button {
                             withAnimation {
-                                showingCredentials.toggle()
+                                showCredentials.toggle()
                             }
                         } label: {
-                            Image(systemName: showingCredentials ? "person.crop.circle.fill" : "person.crop.circle")
+                            Image(systemName: showCredentials ? "person.crop.circle.fill" : "person.crop.circle")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(.blue)
@@ -120,7 +120,7 @@ struct OnlineView: View {
                             }
                             
                             if settings.libreLinkUpScrapingLogbook {
-                                libreLinkUpResponse = "[...]"
+                                lluResponse = "[...]"
                                 
                                 Task {
                                     await reloadLibreLinkUp()
@@ -179,7 +179,7 @@ struct OnlineView: View {
                 }
             }
             
-            if showingCredentials {
+            if showCredentials {
                 @Bindable var settings = settings
                 
                 HStack {
@@ -195,7 +195,7 @@ struct OnlineView: View {
                             .textInputAutocapitalization(.never)
                             .onSubmit {
                                 settings.libreLinkUpPatientId = ""
-                                libreLinkUpResponse = "[Logging in...]"
+                                lluResponse = "[Logging in...]"
                                 
                                 Task {
                                     await reloadLibreLinkUp()
@@ -205,7 +205,7 @@ struct OnlineView: View {
                         SecureField("password", text: $settings.libreLinkUpPassword)
                             .onSubmit {
                                 settings.libreLinkUpPatientId = ""
-                                libreLinkUpResponse = "[Logging in...]"
+                                lluResponse = "[Logging in...]"
                                 
                                 Task {
                                     await reloadLibreLinkUp()
@@ -218,7 +218,7 @@ struct OnlineView: View {
                 Toggle("Follower", isOn: $settings.libreLinkUpFollowing)
                     .onChange(of: settings.libreLinkUpFollowing) {
                         settings.libreLinkUpPatientId = ""
-                        libreLinkUpResponse = "[Logging in...]"
+                        lluResponse = "[Logging in...]"
                         
                         Task {
                             await reloadLibreLinkUp()
@@ -281,8 +281,8 @@ struct OnlineView: View {
             if settings.selectedService == .libreLinkUp {
                 ScrollView(showsIndicators: true) {
                     VStack(spacing: 0) {
-                        if libreLinkUpHistory.count > 0 {
-                            Chart(libreLinkUpHistory) {
+                        if lluHistory.count > 0 {
+                            Chart(lluHistory) {
                                 PointMark(
                                     x: .value("Time", $0.glucose.date),
                                     y: .value("Glucose", $0.glucose.value)
@@ -308,7 +308,7 @@ struct OnlineView: View {
                         
                         HStack {
                             List {
-                                ForEach(libreLinkUpHistory) { lluGlucose in
+                                ForEach(lluHistory) { lluGlucose in
                                     let glucose = lluGlucose.glucose
                                     
                                     (Text("\(!settings.libreLinkUpScrapingLogbook ? String(glucose.source[..<(glucose.source.lastIndex(of: " ") ?? glucose.source.endIndex)]) + " " : "")\(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow?.symbol ?? "").font(.title3))
@@ -333,7 +333,7 @@ struct OnlineView: View {
                             if settings.libreLinkUpScrapingLogbook {
                                 // TODO: alarms
                                 List {
-                                    ForEach(libreLinkUpLogbookHistory) { lluGlucose in
+                                    ForEach(lluLogbookHistory) { lluGlucose in
                                         let glucose = lluGlucose.glucose
                                         
                                         (Text("\(glucose.date.shortDateTime)") + Text("  \(glucose.value, specifier: "%3d") ").bold() + Text(lluGlucose.trendArrow!.symbol).font(.title3))
@@ -348,7 +348,7 @@ struct OnlineView: View {
                         // .footnote(design: .monospaced)
                         .frame(minHeight: 64)
                         
-                        Text(libreLinkUpResponse)
+                        Text(lluResponse)
                             .footnote()
                             .foregroundColor(Color(.lightGray))
                         // .footnote(design: .monospaced)

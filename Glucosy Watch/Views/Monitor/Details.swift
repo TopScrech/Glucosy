@@ -4,7 +4,7 @@ struct Details: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Settings.self) private var settings: Settings
     
-    @State private var showingCalibrationInfoForm = false
+    @State private var sheetCalibration = false
     
     @State private var readingCountdown = 0
     @State private var secondsSinceLastConnection = 0
@@ -30,7 +30,7 @@ struct Details: View {
                             ListRow("Name", app.device.peripheral?.name ?? app.device.name)
                             
                             ListRow("State", (app.device.peripheral?.state ?? app.device.state).description.capitalized,
-                                foregroundColor: (app.device.peripheral?.state ?? app.device.state) == .connected ? .green : .red)
+                                    color: (app.device.peripheral?.state ?? app.device.state) == .connected ? .green : .red)
                             
                             if app.device.lastConnectionDate != .distantPast {
                                 HStack {
@@ -90,7 +90,7 @@ struct Details: View {
                         
                         if app.device.battery > -1 {
                             ListRow("Battery", "\(app.device.battery)%",
-                                foregroundColor: app.device.battery > 10 ? .green : .red)
+                                    color: app.device.battery > 10 ? .green : .red)
                         }
                     }
                 }
@@ -98,7 +98,7 @@ struct Details: View {
                 if app.sensor != nil {
                     Section("Sensor") {
                         ListRow("State", app.sensor.state.description,
-                            foregroundColor: app.sensor.state == .active ? .green : .red)
+                                color: app.sensor.state == .active ? .green : .red)
                         
                         if app.sensor.state == .failure && app.sensor.fram.count > 8 {
                             let fram = app.sensor.fram
@@ -108,7 +108,7 @@ struct Details: View {
                             let failureInterval = failureAge == 0 ? "an unknown time" : "\(failureAge.formattedInterval)"
                             
                             ListRow("Failure", "\(decodeFailure(error: errorCode).capitalized) (0x\(errorCode.hex)) at \(failureInterval)",
-                                foregroundColor: .red)
+                                    color: .red)
                         }
                         
                         ListRow("Type", "\(app.sensor.type.description)\(app.sensor.patchInfo.hex.hasPrefix("a2") ? " (new 'A2' kind)" : "")")
@@ -129,7 +129,7 @@ struct Details: View {
                                 
                                 if app.sensor.maxLife - app.sensor.age - minutesSinceLastReading > 0 {
                                     ListRow("Ends in", (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading).formattedInterval,
-                                        foregroundColor: (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading) > 360 ? .green : .red)
+                                            color: (app.sensor.maxLife - app.sensor.age - minutesSinceLastReading) > 360 ? .green : .red)
                                 }
                                 
                                 ListRow("Started on", (app.sensor.activationTime > 0 ? Date(timeIntervalSince1970: Double(app.sensor.activationTime)) : (app.sensor.lastReadingDate - Double(app.sensor.age) * 60)).shortDateTime)
@@ -186,9 +186,9 @@ struct Details: View {
                                 .foregroundColor(.blue)
                             }
                             .onTapGesture {
-                                showingCalibrationInfoForm.toggle()
+                                sheetCalibration.toggle()
                             }
-                            .sheet(isPresented: $showingCalibrationInfoForm) {
+                            .sheet(isPresented: $sheetCalibration) {
                                 Form {
                                     Section("Calibration Info") {
                                         HStack {
@@ -252,7 +252,7 @@ struct Details: View {
                                         }
                                         
                                         Button("Set") {
-                                            showingCalibrationInfoForm = false
+                                            sheetCalibration = false
                                         }
                                         .bold()
                                         .foregroundColor(.accentColor)
@@ -268,7 +268,7 @@ struct Details: View {
                                 .toolbar {
                                     ToolbarItem(placement: .cancellationAction) {
                                         Button("Set") {
-                                            showingCalibrationInfoForm = false
+                                            sheetCalibration = false
                                         }
                                     }
                                 }

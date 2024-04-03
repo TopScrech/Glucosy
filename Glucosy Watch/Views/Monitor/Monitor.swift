@@ -8,8 +8,6 @@ struct Monitor: View {
     
     @Environment(\.dismiss) private var dismiss
     
-    @State private var showingHamburgerMenu = false
-    
     @State private var readingCountdown = 0
     @State private var minutesSinceLastReading = 0
     

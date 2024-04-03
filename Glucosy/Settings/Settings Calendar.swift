@@ -4,22 +4,22 @@ struct SettingsCalendar: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Settings.self) private var settings: Settings
     
-    @State private var showingCalendarPicker = false
+    @State private var showCalendarPicker = false
     
     var body: some View {
         @Bindable var settings = settings
         
         Button {
-            showingCalendarPicker = true
+            showCalendarPicker = true
         } label: {
             Image(systemName: settings.calendarTitle != "" ? "calendar.fill" : "calendar")
         }
-        .popover(isPresented: $showingCalendarPicker, arrowEdge: .bottom) {
+        .popover(isPresented: $showCalendarPicker, arrowEdge: .bottom) {
             VStack {
                 Section {
                     Button("None") {
                         settings.calendarTitle = ""
-                        showingCalendarPicker = false
+                        showCalendarPicker = false
                         app.main.eventKit?.sync()
                     }
                     .bold()
@@ -56,7 +56,7 @@ struct SettingsCalendar: View {
                 
                 Section {
                     Button(settings.calendarTitle == "" ? "Don't remind" : "Remind") {
-                        showingCalendarPicker = false
+                        showCalendarPicker = false
                         app.main.eventKit?.sync()
                     }
                     .bold()

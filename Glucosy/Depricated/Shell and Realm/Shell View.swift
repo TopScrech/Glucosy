@@ -9,21 +9,21 @@
 //    @Environment(Settings.self) private var settings: Settings
 //    @Environment(Log.self)      private var log: Log
 //    
-//    @State private var showingStack = false
-//    
-//    @State private var showingFileImporter = false
+//    @State private var showStack = false
+//
+//    @State private var showFileImporter = false
 //    @State private var libreviewCSV = ""
 //    
-//    @State private var showingFolderImporter = false
+//    @State private var showFolderImporter = false
 //    @State private var tridentContainer = ""
 //    
-//    @State private var showingRealmKeyPrompt = false
+//    @State private var showRealmKeyPrompt = false
 //    
 //    @AppStorage("tridentRealmKey") var tridentRealmKey = "" // 128-char hex
 //    
 //    var body: some View {
 //        VStack(spacing: 0) {
-//            if showingStack {
+//            if showStack {
 //                VStack(spacing: 0) {
 //                    HStack {
 //                        TextField("LibreView CSV", text: $libreviewCSV)
@@ -31,13 +31,13 @@
 //                            .truncationMode(.head)
 //                        
 //                        Button {
-//                            showingFileImporter = true
+//                            showFileImporter = true
 //                        } label: {
 //                            Image(systemName: "doc.circle")
 //                                .fontSize(32)
 //                        }
 //                        .fileImporter(
-//                            isPresented: $showingFileImporter,
+//                            isPresented: $showFileImporter,
 //                            allowedContentTypes: [.commaSeparatedText]
 //                        ) { result in
 //                            switch result {
@@ -111,13 +111,13 @@
 //                            .truncationMode(.head)
 //                        
 //                        Button {
-//                            showingFolderImporter = true
+//                            showFolderImporter = true
 //                        } label: {
 //                            Image(systemName: "folder.circle")
 //                                .fontSize(32)
 //                        }
 //                        .fileImporter(
-//                            isPresented: $showingFolderImporter,
+//                            isPresented: $showFolderImporter,
 //                            allowedContentTypes: [.folder] // .directory doesn't work
 //                        ) { result in
 //                            switch result {
@@ -235,7 +235,7 @@
 //                                                    app.main.log("Realm: error: \(error.localizedDescription)")
 //                                                    
 //                                                    if file == "trident.realm" {
-//                                                        showingRealmKeyPrompt = true
+//                                                        showRealmKeyPrompt = true
 //                                                    }
 //                                                }
 //                                            }
@@ -264,7 +264,7 @@
 //            }
 //        }
 //        .background(.thinMaterial, ignoresSafeAreaEdges: [])
-//        .sheet(isPresented: $showingRealmKeyPrompt) {
+//        .sheet(isPresented: $showRealmKeyPrompt) {
 //            VStack(spacing: 20) {
 //                Text("The Realm might be encrypted")
 //                    .bold()
@@ -279,12 +279,12 @@
 //                    Spacer()
 //                    
 //                    Button("Cancel") {
-//                        showingRealmKeyPrompt = false
+//                        showRealmKeyPrompt = false
 //                    }
 //                    
 //                    Button {
-//                        showingRealmKeyPrompt = false
-//                        showingFolderImporter = true
+//                        showRealmKeyPrompt = false
+//                        showFolderImporter = true
 //                    } label: {
 //                        Label {
 //                            Text("Try again")
@@ -302,11 +302,11 @@
 //        .toolbar {
 //            Button {
 //                withAnimation {
-//                    showingStack.toggle()
+//                    showStack.toggle()
 //                }
 //            } label: {
 //                VStack(spacing: 0) {
-//                    Image(systemName: showingStack ? "fossil.shell.fill" : "fossil.shell")
+//                    Image(systemName: showStack ? "fossil.shell.fill" : "fossil.shell")
 //                    
 //                    Text("Shell")
 //                        .footnote()

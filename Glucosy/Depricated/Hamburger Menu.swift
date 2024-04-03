@@ -3,10 +3,10 @@
 //struct HamburgerMenu: View {
 //    @Environment(\.colorScheme) private var colorScheme
 //    
-//    @Binding var showingHamburgerMenu: Bool
+//    @Binding var showHamburgerMenu: Bool
 //    
-//    @State private var showingHelp = false
-//    @State private var showingAbout = false
+//    @State private var showHelp = false
+//    @State private var showAbout = false
 //    
 //    var body: some View {
 //        VStack(alignment: .leading, spacing: 20) {
@@ -16,14 +16,14 @@
 //            
 //            Button {
 //                withAnimation {
-//                    showingHelp = true
+//                    showHelp = true
 //                }
 //            } label: {
 //                Label("Help", systemImage: "questionmark.circle")
 //            }
 //            .padding(.leading, 6)
 //            .padding(.top, 20)
-//            .sheet(isPresented: $showingHelp) {
+//            .sheet(isPresented: $showHelp) {
 //                NavigationView {
 //                    VStack(spacing: 40) {
 //                        VStack {
@@ -45,19 +45,19 @@
 //                    .toolbar {
 //                        Button("Close") {
 //                            withAnimation {
-//                                showingHelp = false
+//                                showHelp = false
 //                            }
 //                        }
 //                    }
 //                    .onAppear {
 //                        withAnimation {
-//                            showingHamburgerMenu = false
+//                            showHamburgerMenu = false
 //                        }
 //                    }
 //                    // TODO: click on any area
 //                    .onTapGesture {
 //                        withAnimation {
-//                            showingHelp = false
+//                            showHelp = false
 //                        }
 //                    }
 //                }
@@ -65,13 +65,13 @@
 //            
 //            Button {
 //                withAnimation {
-//                      showingAbout = true
+//                      showAbout = true
 //                }
 //            } label: {
 //                Label("About", systemImage: "info.circle")
 //            }
 //            .padding(.leading, 6)
-//            .sheet(isPresented: $showingAbout) {
+//            .sheet(isPresented: $showAbout) {
 //                NavigationView {
 //                    VStack(spacing: 40) {
 //                        VStack {
@@ -112,20 +112,20 @@
 //                    .toolbar {
 //                        Button("Close") {
 //                            withAnimation {
-//                                showingAbout = false
+//                                showAbout = false
 //                            }
 //                        }
 //                    }
 //                }
 //                .onAppear {
 //                    withAnimation {
-//                        showingHamburgerMenu = false
+//                        showHamburgerMenu = false
 //                    }
 //                }
 //                // TODO: click on any area
 //                .onTapGesture {
 //                    withAnimation {
-//                        showingAbout = false
+//                        showAbout = false
 //                    }
 //                }
 //            }
@@ -137,14 +137,14 @@
 //        // TODO: swipe gesture
 //        .onLongPressGesture(minimumDuration: 0) {
 //            withAnimation(.easeOut(duration: 0.15)) { 
-//                showingHamburgerMenu = false
+//                showHamburgerMenu = false
 //            }
 //        }
 //    }
 //}
 //
 //#Preview {
-//    HamburgerMenu(showingHamburgerMenu: Monitor(showingHamburgerMenu: true).$showingHamburgerMenu)
+//    HamburgerMenu(showHamburgerMenu: Monitor(showHamburgerMenu: true).$showHamburgerMenu)
 //        .previewLayout(.fixed(width: 180, height: 400))
 //        .glucosyPreview()
 //}

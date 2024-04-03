@@ -166,6 +166,7 @@
 		F35BE2762BB359E90015A745 /* Reminder Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35BE2752BB359E90015A745 /* Reminder Notification.swift */; };
 		F3781E942BBD2D3300EF4A9B /* List Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E932BBD2D3300EF4A9B /* List Row.swift */; };
 		F3781E952BBD2D8A00EF4A9B /* List Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E932BBD2D3300EF4A9B /* List Row.swift */; };
+		F3781E972BBD322400EF4A9B /* Calibration Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E962BBD322400EF4A9B /* Calibration Info.swift */; };
 		F3865BE22BB9F1D4005E82D4 /* Reload LLU.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */; };
 		F3865BF62BBACCCE005E82D4 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */; };
@@ -376,6 +377,7 @@
 		F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alarm Notification.swift"; sourceTree = "<group>"; };
 		F35BE2752BB359E90015A745 /* Reminder Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder Notification.swift"; sourceTree = "<group>"; };
 		F3781E932BBD2D3300EF4A9B /* List Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List Row.swift"; sourceTree = "<group>"; };
+		F3781E962BBD322400EF4A9B /* Calibration Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calibration Info.swift"; sourceTree = "<group>"; };
 		F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reload LLU.swift"; sourceTree = "<group>"; };
 		F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Functions.swift"; sourceTree = "<group>"; };
 		F39EC7DD2BB46BF4004319E9 /* Graph Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Properties.swift"; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E4005029825C930021C6B7 /* Details.swift */,
+				F3781E962BBD322400EF4A9B /* Calibration Info.swift */,
 				F3781E932BBD2D3300EF4A9B /* List Row.swift */,
 				F3E69B422BA65A4200A5469A /* Known Devices List.swift */,
 			);
@@ -1140,6 +1143,7 @@
 				F35AFC572BA490FF0065145A /* Logging.swift in Sources */,
 				F32ED8F62BA8B11900CD234C /* Delete.swift in Sources */,
 				C5ADF5822B00E65E00E29632 /* Gen 2.swift in Sources */,
+				F3781E972BBD322400EF4A9B /* Calibration Info.swift in Sources */,
 				F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */,
 				F35AFC8F2BA508A60065145A /* Time from date.swift in Sources */,
 				F35AFC782BA4FF9E0065145A /* Read Glucose.swift in Sources */,

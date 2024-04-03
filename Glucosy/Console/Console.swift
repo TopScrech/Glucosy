@@ -14,7 +14,7 @@ struct Console: View {
             VStack(spacing: 0) {
                 // ShellView()
                 
-                if app.showingConsoleFilterField {
+                if app.showConsoleFilter {
                     HStack {
                         HStack {
                             Image(systemName: "magnifyingglass")

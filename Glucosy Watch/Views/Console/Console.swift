@@ -5,13 +5,13 @@ struct Console: View {
     @Environment(Settings.self) private var settings: Settings
     @Environment(Log.self)      private var log: Log
     
-    @State private var showingFilterField = false
+    @State private var showFilterField = false
     @State private var filterText = ""
     
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
-                if showingFilterField {
+                if showFilterField {
                     ScrollView {
                         HStack {
                             Image(systemName: "magnifyingglass")
@@ -95,7 +95,7 @@ struct Console: View {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         withAnimation {
-                            showingFilterField.toggle()
+                            showFilterField.toggle()
                         }
                     } label: {
                         Image(systemName: filterText.isEmpty ? "line.horizontal.3.decrease.circle" : "line.horizontal.3.decrease.circle.fill")

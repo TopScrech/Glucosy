@@ -30,7 +30,7 @@ final class AppState {
     
     // Console
     var filterText = ""
-    var showingConsoleFilterField = false
+    var showConsoleFilter = false
     
     var alertJSConfirm = false
     var jsConfirmAlertMessage = ""

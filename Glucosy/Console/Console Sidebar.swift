@@ -14,7 +14,7 @@ struct ConsoleSidebar: View {
             
             Button {
                 withAnimation {
-                    app.showingConsoleFilterField.toggle()
+                    app.showConsoleFilter.toggle()
                 }
             } label: {
                 VStack {

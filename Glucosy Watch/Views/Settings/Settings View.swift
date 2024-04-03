@@ -4,7 +4,7 @@ struct SettingsView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Settings.self) private var settings: Settings
     
-    @State private var showingCalendarPicker = false
+    //    @State private var showCalendarPicker = false
     
     var body: some View {
         @Bindable var settings = settings

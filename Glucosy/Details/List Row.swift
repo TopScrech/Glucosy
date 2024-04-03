@@ -2,7 +2,7 @@ import SwiftUI
 
 // TODO
 @ViewBuilder
-func ListRow <T: CustomStringConvertible> (_ label: String, _ value: T, foregroundColor: Color? = .yellow) -> some View {
+func ListRow <T: CustomStringConvertible> (_ label: String, _ value: T, color: Color? = .yellow) -> some View {
     let stringValue = value.description
     
     if !(stringValue.isEmpty || stringValue == "unknown") {
@@ -12,7 +12,7 @@ func ListRow <T: CustomStringConvertible> (_ label: String, _ value: T, foregrou
             Spacer()
             
             Text(stringValue)
-                .foregroundColor(foregroundColor)
+                .foregroundColor(color)
         }
     } else {
         EmptyView()

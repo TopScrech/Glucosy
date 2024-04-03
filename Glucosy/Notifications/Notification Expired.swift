@@ -9,9 +9,13 @@ extension NotificationManager {
         content.sound = .defaultCritical
         content.interruptionLevel = .timeSensitive
         
+        let actions = [
+            NotificationAction.activateSensor()
+        ]
+        
         let reminderCategory = UNNotificationCategory(
             identifier: "EXPIRED",
-            actions: [activateNewSensorAction],
+            actions: actions,
             intentIdentifiers: [],
             hiddenPreviewsBodyPlaceholder: "",
             options: .customDismissAction

@@ -7,25 +7,6 @@ final class NotificationManager {
         requestPermission()
     }
     
-    let startNewScanAction = UNNotificationAction(
-        identifier: "START_NEW_SCAN",
-        title: "Start new Scan",
-        options: [.foreground, .authenticationRequired]
-    )
-    
-    let newRecordAction = UNNotificationAction(
-        identifier: "NEW_RECORD",
-        title: "New record",
-        options: [.foreground, .authenticationRequired]
-    )
-    
-    let activateNewSensorAction = UNNotificationAction(
-        identifier: "ACTIVATE_NEW_SENSOR",
-        title: "Activate new sensor",
-        options: [.foreground, .authenticationRequired],
-        icon: .init(systemImageName: "sensor.tag.radiowaves.forward.fill")
-    )
-    
     func requestPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .criticalAlert]) { granted, error in
             if let error {

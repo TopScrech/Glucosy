@@ -38,13 +38,13 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
             // MARK: Custom Actions (on hold)
             
             switch response.actionIdentifier {
-            case "START_NEW_SCAN":
+            case "NEW_SCAN":
                 app.main.nfc.startSession()
                 
             case "NEW_RECORD":
                 app.sheetNewRecord = true
                 
-            case "ACTIVATE_NEW_SENSOR":
+            case "ACTIVATE_SENSOR":
                 if app.main.nfc.isAvailable {
                     settings.logging = true
                     app.dialogActivate = true

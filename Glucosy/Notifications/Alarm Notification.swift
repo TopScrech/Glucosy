@@ -13,9 +13,13 @@ extension NotificationManager {
         content.sound = .defaultCritical
         content.interruptionLevel = .timeSensitive
         
+        let actions = [
+            NotificationAction.newRecord()
+        ]
+        
         let reminderCategory = UNNotificationCategory(
             identifier: "ALARM",
-            actions: [newRecordAction],
+            actions: actions,
             intentIdentifiers: [],
             hiddenPreviewsBodyPlaceholder: "",
             options: .customDismissAction

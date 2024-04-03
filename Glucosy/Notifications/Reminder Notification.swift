@@ -9,9 +9,13 @@ extension NotificationManager {
         content.interruptionLevel = interruptionLevel
         content.sound = .defaultCritical
         
+        let actions = [
+            NotificationAction.newScan()
+        ]
+        
         let reminderCategory = UNNotificationCategory(
             identifier: "REMINDER",
-            actions: [startNewScanAction],
+            actions: actions,
             intentIdentifiers: [],
             hiddenPreviewsBodyPlaceholder: "",
             options: .customDismissAction

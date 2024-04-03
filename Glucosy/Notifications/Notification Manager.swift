@@ -19,6 +19,12 @@ final class NotificationManager {
         options: [.foreground, .authenticationRequired]
     )
     
+    let saveAnywaysAction = UNNotificationAction(
+        identifier: "SAVE_ANYWAYS",
+        title: "Save data anyways",
+        options: [.foreground, .authenticationRequired]
+    )
+    
     func requestPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .criticalAlert]) { granted, error in
             if let error {

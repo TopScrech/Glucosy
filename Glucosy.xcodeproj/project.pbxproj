@@ -168,6 +168,7 @@
 		F3781E952BBD2D8A00EF4A9B /* List Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E932BBD2D3300EF4A9B /* List Row.swift */; };
 		F3781E972BBD322400EF4A9B /* Calibration Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E962BBD322400EF4A9B /* Calibration Info.swift */; };
 		F3781E992BBD4AF200EF4A9B /* Save New Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E982BBD4AF200EF4A9B /* Save New Data.swift */; };
+		F3781E9B2BBD506700EF4A9B /* Notification Expired.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3781E9A2BBD506700EF4A9B /* Notification Expired.swift */; };
 		F3865BE22BB9F1D4005E82D4 /* Reload LLU.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */; };
 		F3865BF62BBACCCE005E82D4 /* Glucosy Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */; };
 		F39EC7DC2BB45AAA004319E9 /* Graph Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */; };
@@ -380,6 +381,7 @@
 		F3781E932BBD2D3300EF4A9B /* List Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List Row.swift"; sourceTree = "<group>"; };
 		F3781E962BBD322400EF4A9B /* Calibration Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calibration Info.swift"; sourceTree = "<group>"; };
 		F3781E982BBD4AF200EF4A9B /* Save New Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Save New Data.swift"; sourceTree = "<group>"; };
+		F3781E9A2BBD506700EF4A9B /* Notification Expired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Expired.swift"; sourceTree = "<group>"; };
 		F3865BE12BB9F1D4005E82D4 /* Reload LLU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reload LLU.swift"; sourceTree = "<group>"; };
 		F39EC7DB2BB45AAA004319E9 /* Graph Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Functions.swift"; sourceTree = "<group>"; };
 		F39EC7DD2BB46BF4004319E9 /* Graph Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph Properties.swift"; sourceTree = "<group>"; };
@@ -527,14 +529,14 @@
 				C5AAA6182981CF7000CA3EC1 /* App.swift */,
 				F329496C2BB0C08500328C6A /* App Init.swift */,
 				F32949692BB0AFA800328C6A /* Delegates */,
+				F35BE2702BB34E210015A745 /* Notifications */,
 				F35AFC532BA490C70065145A /* App State.swift */,
 				F35AFC562BA490FF0065145A /* Logging.swift */,
 				F35AFC502BA4908B0065145A /* History.swift */,
 				F35AFC4D2BA490100065145A /* UI Tests.swift */,
 				F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */,
-				F35BE2702BB34E210015A745 /* Notifications */,
 				F35AFC5F2BA4917E0065145A /* Enums */,
-				F35AFC6C2BA492080065145A /* SwiftData */,
+				F35AFC6C2BA492080065145A /* Swift Data */,
 				C5E4005729825C930021C6B7 /* Home View.swift */,
 				F3E592E82BB633C300CE4FE4 /* Standard Toolbar.swift */,
 				F31C70952BA7B01800A5BFCD /* New Record View.swift */,
@@ -645,12 +647,12 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		F35AFC6C2BA492080065145A /* SwiftData */ = {
+		F35AFC6C2BA492080065145A /* Swift Data */ = {
 			isa = PBXGroup;
 			children = (
 				F35AFC692BA491FC0065145A /* Pen.swift */,
 			);
-			path = SwiftData;
+			path = "Swift Data";
 			sourceTree = "<group>";
 		};
 		F35AFC6D2BA4E5360065145A /* Depricated */ = {
@@ -711,6 +713,7 @@
 				F31C70972BA7B9A300A5BFCD /* Notification Manager.swift */,
 				F35BE2752BB359E90015A745 /* Reminder Notification.swift */,
 				F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */,
+				F3781E9A2BBD506700EF4A9B /* Notification Expired.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -1155,6 +1158,7 @@
 				C5E4009029825EEE0021C6B7 /* NFC.swift in Sources */,
 				C55D12B429ACB5E00050F567 /* Crypto.swift in Sources */,
 				F3B8120F2BB00DBC0005C114 /* Read Body Mass.swift in Sources */,
+				F3781E9B2BBD506700EF4A9B /* Notification Expired.swift in Sources */,
 				C5E4006B29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
 				F35AFC8E2BA508A60065145A /* HealthKit Link.swift in Sources */,
 				F3E592EE2BB6368900CE4FE4 /* Online View Properties.swift in Sources */,

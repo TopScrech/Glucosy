@@ -362,7 +362,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         }
         
         guard sensor.state != .expired else {
-            NotificationManager.shared.scheduleAlarmReminder("\(sensor.type) has expired")
+            NotificationManager.shared.scheduleExpired(sensor.type)
             return
         }
         

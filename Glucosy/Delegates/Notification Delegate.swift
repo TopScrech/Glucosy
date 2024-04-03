@@ -21,7 +21,7 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
         
         if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
             
-            //MARK: Default Actions
+            // MARK: Default Actions (on tap)
             
             switch categoryIdentifier {
             case "ALARM":
@@ -35,7 +35,7 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
             }
         } else {
             
-            //MARK: Custom Actions
+            // MARK: Custom Actions (on hold)
             
             switch response.actionIdentifier {
             case "START_NEW_SCAN":
@@ -43,6 +43,10 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
                 
             case "NEW_RECORD":
                 app.sheetNewRecord = true
+                
+            case "SAVE_ANYWAYS":
+                app.main.saveNewData(app.sensor, currentGlucose: app.currentGlucose)
+                app.currentGlucose = history.factoryTrend[0].value
                 
             default:
                 print("Unknown identifier \(response.actionIdentifier)")

@@ -19,10 +19,11 @@ final class NotificationManager {
         options: [.foreground, .authenticationRequired]
     )
     
-    let saveAnywaysAction = UNNotificationAction(
-        identifier: "SAVE_ANYWAYS",
-        title: "Save data anyways",
-        options: [.foreground, .authenticationRequired]
+    let activateNewSensorAction = UNNotificationAction(
+        identifier: "ACTIVATE_NEW_SENSOR",
+        title: "Activate new sensor",
+        options: [.foreground, .authenticationRequired],
+        icon: .init(systemImageName: "sensor.tag.radiowaves.forward.fill")
     )
     
     func requestPermission() {
@@ -40,7 +41,7 @@ final class NotificationManager {
             }
         }
     }
-        
+    
     func removeAllPending() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }

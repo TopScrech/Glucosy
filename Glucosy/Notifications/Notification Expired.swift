@@ -1,16 +1,17 @@
 import UserNotifications
 
 extension NotificationManager {
-    func scheduleExpired(_ sensor: SensorType) {
+    func scheduleExpired(_ sensor: SensorType, currentGlucose: String) {
         let content = UNMutableNotificationContent()
         content.title = "\(sensor) has expired"
+        content.body = "The last measurement is \(currentGlucose)"
         content.categoryIdentifier = "EXPIRED"
         content.sound = .defaultCritical
         content.interruptionLevel = .timeSensitive
         
         let reminderCategory = UNNotificationCategory(
             identifier: "EXPIRED",
-            actions: [saveAnywaysAction],
+            actions: [activateNewSensorAction],
             intentIdentifiers: [],
             hiddenPreviewsBodyPlaceholder: "",
             options: .customDismissAction

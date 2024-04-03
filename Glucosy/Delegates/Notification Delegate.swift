@@ -44,9 +44,13 @@ extension MainDelegate: UNUserNotificationCenterDelegate {
             case "NEW_RECORD":
                 app.sheetNewRecord = true
                 
-            case "SAVE_ANYWAYS":
-                app.main.saveNewData(app.sensor, currentGlucose: app.currentGlucose)
-                app.currentGlucose = history.factoryTrend[0].value
+            case "ACTIVATE_NEW_SENSOR":
+                if app.main.nfc.isAvailable {
+                    settings.logging = true
+                    app.dialogActivate = true
+                } else {
+                    app.alertNfc = true
+                }
                 
             default:
                 print("Unknown identifier \(response.actionIdentifier)")

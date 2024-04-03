@@ -362,7 +362,10 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
         }
         
         guard sensor.state != .expired else {
-            NotificationManager.shared.scheduleExpired(sensor.type)
+            let currentGlucose = history.factoryTrend[0].value.units
+            let unit = settings.displayingMillimoles ? GlucoseUnit.mmoll : GlucoseUnit.mgdl
+            
+            NotificationManager.shared.scheduleExpired(sensor.type, currentGlucose: "\(currentGlucose) \(unit)")
             return
         }
         

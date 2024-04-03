@@ -1,10 +1,14 @@
 import UserNotifications
 
 extension NotificationManager {
-    func scheduleAlarmReminder(_ title: String, after interval: TimeInterval = 1) {
+    func scheduleAlarmReminder(
+        _ title: String,
+        subtitle: String = "",
+        after interval: TimeInterval = 1
+    ) {
         let content = UNMutableNotificationContent()
         content.title = title
-        content.subtitle = ""
+        content.subtitle = subtitle
         content.categoryIdentifier = "ALARM"
         content.sound = .defaultCritical
         content.interruptionLevel = .timeSensitive

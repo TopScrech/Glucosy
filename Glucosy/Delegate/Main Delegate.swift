@@ -11,11 +11,11 @@ protocol Logging {
 }
 
 extension Logging {
-    func log(_ msg: String)         { main?.log(msg) }
-    func debugLog(_ msg: String)    { main?.debugLog(msg) }
+    func log(_ msg: String)      { main?.log(msg) }
+    func debugLog(_ msg: String) { main?.debugLog(msg) }
     
-    var app: AppState               { main.app }
-    var settings: Settings          { main.settings }
+    var app: AppState            { main.app }
+    var settings: Settings       { main.settings }
 }
 
 class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
@@ -361,13 +361,18 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             return
         }
         
+        guard sensor.state != .expired else {
+            NotificationManager.shared.scheduleAlarmReminder("Expired", subtitle: "\(sensor.type) has expired")
+            return
+        }
+        
         guard sensor.state != .notActivated else {
-            NotificationManager.shared.scheduleAlarmReminder("\(sensor.type) is not activated")
+            NotificationManager.shared.scheduleAlarmReminder("Not activated", subtitle: "\(sensor.type) is not activated")
             return
         }
         
         guard sensor.state != .warmingUp, sensor.age > 0 else {
-            NotificationManager.shared.scheduleAlarmReminder("\(sensor.type) is warming up")
+            NotificationManager.shared.scheduleAlarmReminder("Warming up", subtitle: "\(sensor.type) is warming up")
             return
         }
         

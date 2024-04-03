@@ -21,12 +21,12 @@ enum SensorType: String, CustomStringConvertible {
     case dexcomONEPlus = "Dexcom ONE+"
     case unknown       = "unknown"
     
-    var description: String { 
+    var description: String {
         rawValue
     }
     
     var isALibre: Bool {
-        self == .libre3 || 
+        self == .libre3 ||
         self == .libre2 ||
         self == .libre1 ||
         self == .libreUS14day ||
@@ -329,7 +329,7 @@ enum SensorState: UInt8, CustomStringConvertible {
             let date = id > -1 ? readingDate - Double(i) * 900 : startDate /// 15 * 60
             
             history.append(.init(
-                rawValue: rawValue, 
+                rawValue: rawValue,
                 rawTemperature: rawTemperature,
                 temperatureAdjustment: temperatureAdjustment,
                 id: id,
@@ -340,7 +340,7 @@ enum SensorState: UInt8, CustomStringConvertible {
             ))
         }
         
-        guard fram.count >= 344 else { 
+        guard fram.count >= 344 else {
             return
         }
         

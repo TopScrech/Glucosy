@@ -90,7 +90,9 @@ extension NFC {
                     while offset < bytes - 3 && i < bytes - 1 {
                         if UInt16(data[offset...offset + 1]) == data[offset + 2...i + 1].crc16 {
                             log("CRC matches for \(i - offset + 2) bytes at #\((offset / 8).hex) [\(offset + 2)...\(i + 1)] \(data[offset...offset + 1].hex) = \(data[offset + 2...i + 1].crc16.hex)\n\(data[offset...i + 1].hexDump(header: "\(libre2DumpMap[offset]?.1 ?? "[???]"):", address: 0))")
+                            
                             offset = i + 2
+                            
                             i = offset
                         }
                         
@@ -124,6 +126,7 @@ extension NFC {
                 
                 var patchedFram = Data(commmandsFram)
                 patchedFram[a1Offset...a1Offset + 1] = e0Address.data
+                
                 let patchedCRC = crc16(patchedFram[2..<1560]) /// 195 * 8
                 patchedFram[0...1] = patchedCRC.data
                 
@@ -172,12 +175,16 @@ extension NFC {
                     // duplicated in activation
                     var readCommand = sensor.readBlockCommand
                     readCommand.parameters = "DF 04".bytes
+                    
                     var output = try await send(readCommand)
                     debugLog("NFC: 'B0 read 0x04DF' command output: \(output.hex)")
+                    
                     var writeCommand = sensor.writeBlockCommand
                     writeCommand.parameters = "DF 04 20 00 DF 88 00 00 00 00".bytes
+                    
                     output = try await send(writeCommand)
                     debugLog("NFC: 'B1 write' command output: \(output.hex)")
+                    
                     output = try await send(readCommand)
                     debugLog("NFC: 'B0 read 0x04DF' command output: \(output.hex)")
                     

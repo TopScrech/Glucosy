@@ -13,10 +13,9 @@ struct Monitor: View {
     var body: some View {
         VStack {
             if let sensor = app.sensor {
-                let maxLife = sensor.maxLife / 86400
-                
-                if maxLife - sensor.age - minutesSinceLastReading > 0 {
-                    Text("Ends in \((maxLife - sensor.age - minutesSinceLastReading).formattedInterval)")
+                if sensor.maxLife - sensor.age - minutesSinceLastReading > 0 {
+                    Text("Ends in \((sensor.maxLife - sensor.age - minutesSinceLastReading).formattedInterval)")
+                        .foregroundStyle((sensor.maxLife - sensor.age - minutesSinceLastReading) > 360 ? .green : .red)
                 }
             }
             

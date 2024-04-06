@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -49,10 +49,10 @@
 		C5E015E62989B10500F6EDF9 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015E52989B10500F6EDF9 /* LICENSE.md */; };
 		C5E015E72989B10500F6EDF9 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = C5E015E52989B10500F6EDF9 /* LICENSE.md */; };
 		C5E165052ACBE5E600970835 /* Hamburger Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E165042ACBE5E600970835 /* Hamburger Menu.swift */; };
-		C5E4004729825C710021C6B7 /* alarm_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004429825C710021C6B7 /* alarm_high.mp3 */; };
-		C5E4004829825C710021C6B7 /* alarm_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004429825C710021C6B7 /* alarm_high.mp3 */; };
-		C5E4004929825C710021C6B7 /* alarm_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004529825C710021C6B7 /* alarm_low.mp3 */; };
-		C5E4004A29825C710021C6B7 /* alarm_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004529825C710021C6B7 /* alarm_low.mp3 */; };
+		C5E4004729825C710021C6B7 /* Alarm high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004429825C710021C6B7 /* Alarm high.mp3 */; };
+		C5E4004829825C710021C6B7 /* Alarm high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004429825C710021C6B7 /* Alarm high.mp3 */; };
+		C5E4004929825C710021C6B7 /* Alarm low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004529825C710021C6B7 /* Alarm low.mp3 */; };
+		C5E4004A29825C710021C6B7 /* Alarm low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004529825C710021C6B7 /* Alarm low.mp3 */; };
 		C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
 		C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
 		C5E4005929825C930021C6B7 /* Data View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004E29825C930021C6B7 /* Data View.swift */; };
@@ -96,6 +96,7 @@
 		C5E4009A29825F1C0021C6B7 /* Nightscout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4009829825F1C0021C6B7 /* Nightscout.swift */; };
 		C5E4009F29825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
 		C5E400A029825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
+		F31352752BC120C90065898B /* Notification Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31352742BC120C90065898B /* Notification Custom.swift */; };
 		F316DCC82BAADE9B00A8B6CF /* AC Glucose Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F316DCC72BAADE9B00A8B6CF /* AC Glucose Widget.swift */; };
 		F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */; };
 		F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */; };
@@ -304,8 +305,8 @@
 		C5E015E22989B0F600F6EDF9 /* TODO.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		C5E015E52989B10500F6EDF9 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		C5E165042ACBE5E600970835 /* Hamburger Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hamburger Menu.swift"; sourceTree = "<group>"; };
-		C5E4004429825C710021C6B7 /* alarm_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_high.mp3; sourceTree = "<group>"; };
-		C5E4004529825C710021C6B7 /* alarm_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_low.mp3; sourceTree = "<group>"; };
+		C5E4004429825C710021C6B7 /* Alarm high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alarm high.mp3"; sourceTree = "<group>"; };
+		C5E4004529825C710021C6B7 /* Alarm low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alarm low.mp3"; sourceTree = "<group>"; };
 		C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_signal_loss.mp3; sourceTree = "<group>"; };
 		C5E4004E29825C930021C6B7 /* Data View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data View.swift"; sourceTree = "<group>"; };
 		C5E4004F29825C930021C6B7 /* Settings View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Settings View.swift"; sourceTree = "<group>"; };
@@ -335,6 +336,7 @@
 		C5E4009529825F120021C6B7 /* Libre Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Libre Link.swift"; sourceTree = "<group>"; };
 		C5E4009829825F1C0021C6B7 /* Nightscout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nightscout.swift; sourceTree = "<group>"; };
 		C5E4009E29825F580021C6B7 /* company_ids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_ids.json; sourceTree = "<group>"; };
+		F31352742BC120C90065898B /* Notification Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification Custom.swift"; sourceTree = "<group>"; };
 		F316DCC72BAADE9B00A8B6CF /* AC Glucose Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Glucose Widget.swift"; sourceTree = "<group>"; };
 		F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Calendar.swift"; sourceTree = "<group>"; };
 		F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings Notification.swift"; sourceTree = "<group>"; };
@@ -570,8 +572,8 @@
 		C5E4004329825C710021C6B7 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				C5E4004429825C710021C6B7 /* alarm_high.mp3 */,
-				C5E4004529825C710021C6B7 /* alarm_low.mp3 */,
+				C5E4004429825C710021C6B7 /* Alarm high.mp3 */,
+				C5E4004529825C710021C6B7 /* Alarm low.mp3 */,
 				C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */,
 			);
 			path = Media;
@@ -720,6 +722,7 @@
 				F35BE2712BB34E4C0015A745 /* Alarm Notification.swift */,
 				F3781E9A2BBD506700EF4A9B /* Notification Expired.swift */,
 				F3781E9E2BBDECB000EF4A9B /* Notification Activation.swift */,
+				F31352742BC120C90065898B /* Notification Custom.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -981,7 +984,7 @@
 				};
 			};
 			buildConfigurationList = C5AAA6102981CF7000CA3EC1 /* Build configuration list for PBXProject "Glucosy" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1023,10 +1026,10 @@
 				C5E015E12989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E400A029825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E42989B0F600F6EDF9 /* TODO.md in Resources */,
-				C5E4004A29825C710021C6B7 /* alarm_low.mp3 in Resources */,
+				C5E4004A29825C710021C6B7 /* Alarm low.mp3 in Resources */,
 				C5E015E72989B10500F6EDF9 /* LICENSE.md in Resources */,
 				C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
-				C5E4004829825C710021C6B7 /* alarm_high.mp3 in Resources */,
+				C5E4004829825C710021C6B7 /* Alarm high.mp3 in Resources */,
 				C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */,
 				F3C863032BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -1039,10 +1042,10 @@
 				C5E015E02989B0EA00F6EDF9 /* README.md in Resources */,
 				C5E4009F29825F580021C6B7 /* company_ids.json in Resources */,
 				C5E015E32989B0F600F6EDF9 /* TODO.md in Resources */,
-				C5E4004929825C710021C6B7 /* alarm_low.mp3 in Resources */,
+				C5E4004929825C710021C6B7 /* Alarm low.mp3 in Resources */,
 				C5E015E62989B10500F6EDF9 /* LICENSE.md in Resources */,
 				C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
-				C5E4004729825C710021C6B7 /* alarm_high.mp3 in Resources */,
+				C5E4004729825C710021C6B7 /* Alarm high.mp3 in Resources */,
 				C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */,
 				F3C863022BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -1168,6 +1171,7 @@
 				C5E4006B29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
 				F35AFC8E2BA508A60065145A /* HealthKit Link.swift in Sources */,
 				F3E592EE2BB6368900CE4FE4 /* Online View Properties.swift in Sources */,
+				F31352752BC120C90065898B /* Notification Custom.swift in Sources */,
 				C5E4007129825DF50021C6B7 /* Bluetooth Delegate.swift in Sources */,
 				F3E592F02BB6C82E00CE4FE4 /* Console Tools.swift in Sources */,
 				F3E69B452BA6E66500A5469A /* Write Carbs.swift in Sources */,

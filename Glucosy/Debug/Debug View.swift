@@ -24,6 +24,26 @@ struct DebugView: View {
                     NotificationManager.shared.removeAllPending()
                 }
                 
+                Menu {
+                    Button("Test passive") {
+                        NotificationManager.shared.debugNotification(.passive)
+                    }
+                    
+                    Button("Test active") {
+                        NotificationManager.shared.debugNotification(.active)
+                    }
+                    
+                    Button("Test time sensitive") {
+                        NotificationManager.shared.debugNotification(.timeSensitive)
+                    }
+                    
+                    Button("Test critical", role: .destructive) {
+                        NotificationManager.shared.debugNotification(.critical)
+                    }
+                } label: {
+                    Text("Test")
+                }
+                
                 ForEach(scheduledNotifications, id: \.identifier) { notification in
                     VStack {
                         Text(notification.content.title)

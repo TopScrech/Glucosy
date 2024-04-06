@@ -3,9 +3,9 @@ import SwiftData
 
 @Model
 final class Pen {
-    var name: String
-    var type: InsulinType
-    var expiration: Date
+    var name = ""
+    var type = InsulinType.bolus
+    var expiration = Date()
     
     init(name: String, type: InsulinType, expiration: Date) {
         self.name = name

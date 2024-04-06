@@ -71,6 +71,11 @@ struct HomeView: View {
                     Label("Debug", systemImage: "hammer")
                 }
             }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                app.main.healthKit?.readGlucose()
+                app.main.healthKit?.readCarbs()
+                app.main.healthKit?.readInsulin()
+            }
             .sheet($app.sheetNewRecord) {
                 NewRecordView()
             }

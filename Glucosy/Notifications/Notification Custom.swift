@@ -1,13 +1,14 @@
-import ScrechKit
+import SwiftUI
 import UserNotifications
 
 extension NotificationManager {
-    func scheduleScanReminder(_ interruptionLevel: UNNotificationInterruptionLevel = .timeSensitive) {
+    func debugNotification(_ interruptionLevel: UNNotificationInterruptionLevel) {
         let content = UNMutableNotificationContent()
-        content.title = "Measure your glucose"
-        content.body = "Don't forget to complete your task!"
-        content.categoryIdentifier = "REMINDER"
-        content.interruptionLevel = interruptionLevel
+        content.title =              "Title"
+        content.subtitle =           "Subtitle"
+        content.body =               "Body"
+        content.categoryIdentifier = "DEBUG"
+        content.interruptionLevel =  interruptionLevel
         content.sound = .critical("Alarm high.mp3", volume: 0.5)
         
         let actions = [
@@ -15,7 +16,7 @@ extension NotificationManager {
         ]
         
         let reminderCategory = UNNotificationCategory(
-            identifier: "REMINDER",
+            identifier: "DEBUG",
             actions: actions,
             intentIdentifiers: [],
             hiddenPreviewsBodyPlaceholder: "",
@@ -25,12 +26,12 @@ extension NotificationManager {
         UNUserNotificationCenter.current().setNotificationCategories([reminderCategory])
         
         let trigger = UNTimeIntervalNotificationTrigger(
-            timeInterval: 7200,
+            timeInterval: 1,
             repeats: false
         )
         
         let request = UNNotificationRequest(
-            identifier: UUID().uuidString,
+            identifier: "Glucosy",
             content: content,
             trigger: trigger
         )

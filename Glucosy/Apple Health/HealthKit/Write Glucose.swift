@@ -24,7 +24,7 @@ extension HealthKit {
                 log("HealthKit: error while saving: \(error.localizedDescription)")
             }
             
-            self.lastDate = samples.last?.endDate
+            lastDate = samples.last?.endDate
         }
     }
 }

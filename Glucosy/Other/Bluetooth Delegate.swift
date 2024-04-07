@@ -595,7 +595,7 @@ final class BluetoothDelegate: NSObject, CBCentralManagerDelegate, CBPeripheralD
                 
                 if app.transmitter.type == .transmitter(.dexcom) {
                     debugLog("DEBUG: Dexcom: sleeping 2 seconds before rescanning to reconnect")
-                    self.main.status("Scanning for Dexcom...") //  allow stopping from Console
+                    main.status("Scanning for Dexcom...") //  allow stopping from Console
                     
                     DispatchQueue.global(qos: .utility).async {
                         Thread.sleep(forTimeInterval: 2)

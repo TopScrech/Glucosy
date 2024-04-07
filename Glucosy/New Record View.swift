@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 import WidgetKit
 
 struct NewRecordView: View {
@@ -143,6 +143,21 @@ struct NewRecordView: View {
                 } label: {
                     Label("Save and scan", systemImage: "sensor.tag.radiowaves.forward.fill")
                 }
+                
+                Menu {
+                    Button("LibreLink NL") {
+                        saveData()
+                        openApp(BunbleId.librelinkNL)
+                    }
+                    
+                    Button("mySugr") {
+                        saveData()
+                        openApp(BunbleId.mysurg)
+                    }
+                } label: {
+                    Label("Save and open", systemImage: "arrowshape.turn.up.right")
+                }
+                
             } label: {
                 Text("Save")
                     .title3(.semibold)

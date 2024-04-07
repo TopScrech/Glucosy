@@ -1,9 +1,6 @@
 import ScrechKit
 
-struct HealthKitLink: View {
-    private let mysurgID = "com.mysugr.companion.mySugr"
-    private let librelinkID = "com.abbott.librelink.nl"
-    
+struct HealthKitLink: View {    
     var body: some View {
         Section {
             Button {
@@ -28,12 +25,12 @@ struct HealthKitLink: View {
             .foregroundStyle(.foreground)
             
             Button {
-                let didOpen = openApp(mysurgID)
+                let didOpen = openApp(BunbleId.mysurg)
                 
                 if didOpen {
                     print("Safari should now be open")
                 } else {
-                    print("Failed to open \(mysurgID)")
+                    print("Failed to open \(BunbleId.mysurg)")
                 }
             } label: {
                 HStack {
@@ -56,12 +53,12 @@ struct HealthKitLink: View {
             }
             
             Button {
-                let didOpen = openApp(librelinkID)
+                let didOpen = openApp(BunbleId.librelinkNL)
                 
                 if didOpen {
                     print("Safari should now be open")
                 } else {
-                    print("Failed to open \(librelinkID)")
+                    print("Failed to open \(BunbleId.librelinkNL)")
                 }
             } label: {
                 HStack {

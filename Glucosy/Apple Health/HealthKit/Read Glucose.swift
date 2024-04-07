@@ -43,12 +43,12 @@ extension HealthKit {
                 return
             }
             
-            self.lastDate = results.first?.endDate
+            lastDate = results.first?.endDate
             
             if results.count > 0 {
                 let samples = results.enumerated().map { index, sample -> Glucose in
                         .init(
-                            Int(sample.quantity.doubleValue(for: self.glucoseUnit)),
+                            Int(sample.quantity.doubleValue(for: glucoseUnit)),
                             id: index,
                             date: sample.endDate,
                             source: "\(sample.sourceRevision.source.name) \(sample.sourceRevision.source.bundleIdentifier)",

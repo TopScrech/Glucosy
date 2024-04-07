@@ -161,7 +161,7 @@ enum SensorState: UInt8, CustomStringConvertible {
     var uid: SensorUid = Data() {
         willSet(uid) {
             if type != .libre3 {
-                serial = serialNumber(uid: uid, family: self.family)
+                serial = serialNumber(uid: uid, family: family)
             }
         }
     }

@@ -417,7 +417,7 @@ class LibreLinkUp: Logging {
                         
                         DispatchQueue.main.async { [self] in
                             if app.sensor == nil {
-                                app.sensor = sensorType == .libre3 ? Libre3(main: self.main) : sensorType == .libre2 ? Libre2(main: self.main) : Sensor(main: self.main)
+                                app.sensor = sensorType == .libre3 ? Libre3(main: main) : sensorType == .libre2 ? Libre2(main: main) : Sensor(main: main)
                                 app.sensor.type = sensorType
                                 app.sensor.serial = serial
                             } else {

@@ -83,7 +83,7 @@ final class Settings {
         }
         
         didSet {
-            UserDefaults.standard.set(self.preferredTransmitter.id, forKey: "preferredTransmitter")
+            UserDefaults.standard.set(preferredTransmitter.id, forKey: "preferredTransmitter")
         }
     }
     
@@ -97,37 +97,37 @@ final class Settings {
         }
         
         didSet {
-            UserDefaults.standard.set(self.preferredDevicePattern, forKey: "preferredDevicePattern")
+            UserDefaults.standard.set(preferredDevicePattern, forKey: "preferredDevicePattern")
         }
     }
     
     var stoppedBluetooth = UserDefaults.standard.bool(forKey: "stoppedBluetooth") {
         didSet {
-            UserDefaults.standard.set(self.stoppedBluetooth, forKey: "stoppedBluetooth")
+            UserDefaults.standard.set(stoppedBluetooth, forKey: "stoppedBluetooth")
         }
     }
     
     var caffeinated = UserDefaults.standard.bool(forKey: "caffeinated") {
         didSet {
-            UserDefaults.standard.set(self.caffeinated, forKey: "caffeinated")
+            UserDefaults.standard.set(caffeinated, forKey: "caffeinated")
         }
     }
     
     var selectedTab = Tab(rawValue: UserDefaults.standard.string(forKey: "selectedTab")!)! {
         didSet {
-            UserDefaults.standard.set(self.selectedTab.rawValue, forKey: "selectedTab")
+            UserDefaults.standard.set(selectedTab.rawValue, forKey: "selectedTab")
         }
     }
     
     var readingInterval = UserDefaults.standard.integer(forKey: "readingInterval") {
         didSet {
-            UserDefaults.standard.set(self.readingInterval, forKey: "readingInterval")
+            UserDefaults.standard.set(readingInterval, forKey: "readingInterval")
         }
     }
     
     var displayingMillimoles = UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.bool(forKey: "displayingMillimoles") {
         didSet {
-            UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.set(self.displayingMillimoles, forKey: "displayingMillimoles")
+            UserDefaults(suiteName: "group.dev.topscrech.Health-Point")!.set(displayingMillimoles, forKey: "displayingMillimoles")
         }
     }
     
@@ -135,241 +135,241 @@ final class Settings {
     
     var targetLow = UserDefaults.standard.double(forKey: "targetLow") {
         didSet {
-            UserDefaults.standard.set(self.targetLow, forKey: "targetLow")
+            UserDefaults.standard.set(targetLow, forKey: "targetLow")
         }
     }
     
     var targetHigh = UserDefaults.standard.double(forKey: "targetHigh") {
         didSet {
-            UserDefaults.standard.set(self.targetHigh, forKey: "targetHigh")
+            UserDefaults.standard.set(targetHigh, forKey: "targetHigh")
         }
     }
     
     var alarmSnoozeInterval = UserDefaults.standard.integer(forKey: "alarmSnoozeInterval") {
         didSet {
-            UserDefaults.standard.set(self.alarmSnoozeInterval, forKey: "alarmSnoozeInterval")
+            UserDefaults.standard.set(alarmSnoozeInterval, forKey: "alarmSnoozeInterval")
         }
     }
     
     var lastAlarmDate = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "lastAlarmDate")) {
         didSet {
-            UserDefaults.standard.set(self.lastAlarmDate.timeIntervalSince1970, forKey: "lastAlarmDate")
+            UserDefaults.standard.set(lastAlarmDate.timeIntervalSince1970, forKey: "lastAlarmDate")
         }
     }
     
     var alarmLow = UserDefaults.standard.double(forKey: "alarmLow") {
         didSet {
-            UserDefaults.standard.set(self.alarmLow, forKey: "alarmLow")
+            UserDefaults.standard.set(alarmLow, forKey: "alarmLow")
         }
     }
     
     var alarmHigh = UserDefaults.standard.double(forKey: "alarmHigh") {
         didSet {
-            UserDefaults.standard.set(self.alarmHigh, forKey: "alarmHigh")
+            UserDefaults.standard.set(alarmHigh, forKey: "alarmHigh")
         }
     }
     
     var mutedAudio = UserDefaults.standard.bool(forKey: "mutedAudio") {
         didSet {
-            UserDefaults.standard.set(self.mutedAudio, forKey: "mutedAudio")
+            UserDefaults.standard.set(mutedAudio, forKey: "mutedAudio")
         }
     }
     
     var disabledNotifications = UserDefaults.standard.bool(forKey: "disabledNotifications") {
         didSet {
-            UserDefaults.standard.set(self.disabledNotifications, forKey: "disabledNotifications")
+            UserDefaults.standard.set(disabledNotifications, forKey: "disabledNotifications")
         }
     }
     
     var calendarTitle = UserDefaults.standard.string(forKey: "calendarTitle")! {
         didSet {
-            UserDefaults.standard.set(self.calendarTitle, forKey: "calendarTitle")
+            UserDefaults.standard.set(calendarTitle, forKey: "calendarTitle")
         }
     }
     
     var calendarAlarmIsOn = UserDefaults.standard.bool(forKey: "calendarAlarmIsOn") {
         didSet {
-            UserDefaults.standard.set(self.calendarAlarmIsOn, forKey: "calendarAlarmIsOn")
+            UserDefaults.standard.set(calendarAlarmIsOn, forKey: "calendarAlarmIsOn")
         }
     }
     
     var logging = UserDefaults.standard.bool(forKey: "logging") {
         didSet {
-            UserDefaults.standard.set(self.logging, forKey: "logging")
+            UserDefaults.standard.set(logging, forKey: "logging")
         }
     }
     
     var reversedLog = UserDefaults.standard.bool(forKey: "reversedLog") {
         didSet {
-            UserDefaults.standard.set(self.reversedLog, forKey: "reversedLog")
+            UserDefaults.standard.set(reversedLog, forKey: "reversedLog")
         }
     }
     
     var userLevel = UserLevel(rawValue: UserDefaults.standard.integer(forKey: "userLevel"))! {
         didSet {
-            UserDefaults.standard.set(self.userLevel.rawValue, forKey: "userLevel")
+            UserDefaults.standard.set(userLevel.rawValue, forKey: "userLevel")
         }
     }
     
     var nightscoutSite = UserDefaults.standard.string(forKey: "nightscoutSite")! {
         didSet {
-            UserDefaults.standard.set(self.nightscoutSite, forKey: "nightscoutSite")
+            UserDefaults.standard.set(nightscoutSite, forKey: "nightscoutSite")
         }
     }
     
     var nightscoutToken = UserDefaults.standard.string(forKey: "nightscoutToken")! {
         didSet {
-            UserDefaults.standard.set(self.nightscoutToken, forKey: "nightscoutToken")
+            UserDefaults.standard.set(nightscoutToken, forKey: "nightscoutToken")
         }
     }
     
     var libreLinkUpEmail = UserDefaults.standard.string(forKey: "libreLinkUpEmail")! {
         didSet {
-            UserDefaults.standard.set(self.libreLinkUpEmail, forKey: "libreLinkUpEmail")
+            UserDefaults.standard.set(libreLinkUpEmail, forKey: "libreLinkUpEmail")
         }
     }
     
     var libreLinkUpPassword = UserDefaults.standard.string(forKey: "libreLinkUpPassword")! {
         didSet {
-            UserDefaults.standard.set(self.libreLinkUpPassword, forKey: "libreLinkUpPassword")
+            UserDefaults.standard.set(libreLinkUpPassword, forKey: "libreLinkUpPassword")
         }
     }
     
     var libreLinkUpPatientId = UserDefaults.standard.string(forKey: "libreLinkUpPatientId")! {
         didSet {
-            UserDefaults.standard.set(self.libreLinkUpPatientId, forKey: "libreLinkUpPatientId")
+            UserDefaults.standard.set(libreLinkUpPatientId, forKey: "libreLinkUpPatientId")
         }
     }
     
     var libreLinkUpCountry = UserDefaults.standard.string(forKey: "libreLinkUpCountry")! {
         didSet {
-            UserDefaults.standard.set(self.libreLinkUpCountry, forKey: "libreLinkUpCountry")
+            UserDefaults.standard.set(libreLinkUpCountry, forKey: "libreLinkUpCountry")
         }
     }
     
     var libreLinkUpRegion = UserDefaults.standard.string(forKey: "libreLinkUpRegion")! {
         didSet {
-            UserDefaults.standard.set(self.libreLinkUpRegion, forKey: "libreLinkUpRegion")
+            UserDefaults.standard.set(libreLinkUpRegion, forKey: "libreLinkUpRegion")
         }
     }
     
     var libreLinkUpToken = UserDefaults.standard.string(forKey: "libreLinkUpToken")! {
         didSet {
-            UserDefaults.standard.set(self.libreLinkUpToken, forKey: "libreLinkUpToken")
+            UserDefaults.standard.set(libreLinkUpToken, forKey: "libreLinkUpToken")
         }
     }
     
     var libreLinkUpTokenExpirationDate = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "libreLinkUpTokenExpirationDate")) {
         didSet {
-            UserDefaults.standard.set(self.libreLinkUpTokenExpirationDate.timeIntervalSince1970, forKey: "libreLinkUpTokenExpirationDate")
+            UserDefaults.standard.set(libreLinkUpTokenExpirationDate.timeIntervalSince1970, forKey: "libreLinkUpTokenExpirationDate")
         }
     }
     
     var libreLinkUpFollowing = UserDefaults.standard.bool(forKey: "libreLinkUpFollowing") {
         didSet {
-            UserDefaults.standard.set(self.libreLinkUpFollowing, forKey: "libreLinkUpFollowing")
+            UserDefaults.standard.set(libreLinkUpFollowing, forKey: "libreLinkUpFollowing")
         }
     }
     
     var libreLinkUpScrapingLogbook = UserDefaults.standard.bool(forKey: "libreLinkUpScrapingLogbook") {
         didSet {
-            UserDefaults.standard.set(self.libreLinkUpScrapingLogbook, forKey: "libreLinkUpScrapingLogbook")
+            UserDefaults.standard.set(libreLinkUpScrapingLogbook, forKey: "libreLinkUpScrapingLogbook")
         }
     }
     
     var selectedService = OnlineService(rawValue: UserDefaults.standard.string(forKey: "selectedService")!)! {
         didSet {
-            UserDefaults.standard.set(self.selectedService.rawValue, forKey: "selectedService")
+            UserDefaults.standard.set(selectedService.rawValue, forKey: "selectedService")
         }
     }
     
     var onlineInterval = UserDefaults.standard.integer(forKey: "onlineInterval") {
         didSet {
-            UserDefaults.standard.set(self.onlineInterval, forKey: "onlineInterval")
+            UserDefaults.standard.set(onlineInterval, forKey: "onlineInterval")
         }
     }
     
     var lastOnlineDate = Date(timeIntervalSince1970: UserDefaults.standard.double(forKey: "lastOnlineDate")) {
         didSet {
-            UserDefaults.standard.set(self.lastOnlineDate.timeIntervalSince1970, forKey: "lastOnlineDate")
+            UserDefaults.standard.set(lastOnlineDate.timeIntervalSince1970, forKey: "lastOnlineDate")
         }
     }
     
     var activeSensorSerial = UserDefaults.standard.string(forKey: "activeSensorSerial")! {
         didSet {
-            UserDefaults.standard.set(self.activeSensorSerial, forKey: "activeSensorSerial")
+            UserDefaults.standard.set(activeSensorSerial, forKey: "activeSensorSerial")
         }
     }
     
     var activeSensorAddress = UserDefaults.standard.data(forKey: "activeSensorAddress")! {
         didSet {
-            UserDefaults.standard.set(self.activeSensorAddress, forKey: "activeSensorAddress")
+            UserDefaults.standard.set(activeSensorAddress, forKey: "activeSensorAddress")
         }
     }
     
     var activeSensorInitialPatchInfo: PatchInfo = UserDefaults.standard.data(forKey: "activeSensorInitialPatchInfo")! {
         didSet {
-            UserDefaults.standard.set(self.activeSensorInitialPatchInfo, forKey: "activeSensorInitialPatchInfo")
+            UserDefaults.standard.set(activeSensorInitialPatchInfo, forKey: "activeSensorInitialPatchInfo")
         }
     }
     
     var activeSensorStreamingUnlockCode = UserDefaults.standard.integer(forKey: "activeSensorStreamingUnlockCode") {
         didSet {
-            UserDefaults.standard.set(self.activeSensorStreamingUnlockCode, forKey: "activeSensorStreamingUnlockCode")
+            UserDefaults.standard.set(activeSensorStreamingUnlockCode, forKey: "activeSensorStreamingUnlockCode")
         }
     }
     
     var activeSensorStreamingUnlockCount = UserDefaults.standard.integer(forKey: "activeSensorStreamingUnlockCount") {
         didSet {
-            UserDefaults.standard.set(self.activeSensorStreamingUnlockCount, forKey: "activeSensorStreamingUnlockCount")
+            UserDefaults.standard.set(activeSensorStreamingUnlockCount, forKey: "activeSensorStreamingUnlockCount")
         }
     }
     
     var activeSensorMaxLife = UserDefaults.standard.integer(forKey: "activeSensorMaxLife") {
         didSet {
-            UserDefaults.standard.set(self.activeSensorMaxLife, forKey: "activeSensorMaxLife")
+            UserDefaults.standard.set(activeSensorMaxLife, forKey: "activeSensorMaxLife")
         }
     }
     
     var activeSensorCalibrationInfo = try! JSONDecoder().decode(CalibrationInfo.self, from: UserDefaults.standard.data(forKey: "activeSensorCalibrationInfo")!) {
         didSet {
-            UserDefaults.standard.set(try! JSONEncoder().encode(self.activeSensorCalibrationInfo), forKey: "activeSensorCalibrationInfo")
+            UserDefaults.standard.set(try! JSONEncoder().encode(activeSensorCalibrationInfo), forKey: "activeSensorCalibrationInfo")
         }
     }
     
     var activeSensorBlePIN = UserDefaults.standard.data(forKey: "activeSensorBlePIN")! {
         didSet {
-            UserDefaults.standard.set(self.activeSensorBlePIN, forKey: "activeSensorBlePIN")
+            UserDefaults.standard.set(activeSensorBlePIN, forKey: "activeSensorBlePIN")
         }
     }
     
     var activeTransmitterIdentifier = UserDefaults.standard.string(forKey: "activeTransmitterIdentifier")! {
         didSet {
-            UserDefaults.standard.set(self.activeTransmitterIdentifier, forKey: "activeTransmitterIdentifier")
+            UserDefaults.standard.set(activeTransmitterIdentifier, forKey: "activeTransmitterIdentifier")
         }
     }
     
     var activeTransmitterSerial = UserDefaults.standard.string(forKey: "activeTransmitterSerial")! {
         didSet {
-            UserDefaults.standard.set(self.activeTransmitterSerial, forKey: "activeTransmitterSerial")
+            UserDefaults.standard.set(activeTransmitterSerial, forKey: "activeTransmitterSerial")
         }
     }
     
     var activeSensorCode = UserDefaults.standard.string(forKey: "activeSensorCode")! {
         didSet {
-            UserDefaults.standard.set(self.activeSensorCode, forKey: "activeSensorCode")
+            UserDefaults.standard.set(activeSensorCode, forKey: "activeSensorCode")
         }
     }
     
     var patchUid = UserDefaults.standard.data(forKey: "patchUid")! {
         didSet {
-            UserDefaults.standard.set(self.patchUid, forKey: "patchUid")
+            UserDefaults.standard.set(patchUid, forKey: "patchUid")
         }
     }
     
     var patchInfo = UserDefaults.standard.data(forKey: "patchInfo")! {
         didSet {
-            UserDefaults.standard.set(self.patchInfo, forKey: "patchInfo")
+            UserDefaults.standard.set(patchInfo, forKey: "patchInfo")
         }
     }
 }

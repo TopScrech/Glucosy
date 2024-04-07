@@ -22,15 +22,14 @@ struct Monitor: View {
                 VStack {
                     if app.lastReadingDate != Date.distantPast {
                         Text(app.lastReadingDate.shortTime)
-                            .monospacedDigit()
                         
                         Text("\(minutesSinceLastReading) min ago")
                             .footnote()
-                            .monospacedDigit()
                     } else {
                         Text("---")
                     }
                 }
+                .monospacedDigit()
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.trailing, 12)
                 .foregroundColor(Color(.lightGray))
@@ -107,9 +106,6 @@ struct Monitor: View {
                         }
                     }
                 }
-                
-                // let battery = app.device.battery
-                // let battery = app.device.battery
                 
                 if app.device != nil && (app.device.battery > -1 || app.device.rssi != 0) {
                     VStack {

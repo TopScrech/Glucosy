@@ -1,16 +1,18 @@
 import SwiftUI
+import WidgetKit
 
 struct DebugView: View {
     @Environment(AppState.self) private var app
     @Environment(History.self)  private var history
-    @EnvironmentObject          private var storage: Storage
     
     @State private var scheduledNotifications: [UNNotificationRequest] = []
     
     var body: some View {
         List {
-            Section {
-                Toggle("Debug mode", isOn: $storage.debugMode)
+            Section("Widgets") {
+                Button("Reload all widgets") {
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
             }
             
             NavigationLink {

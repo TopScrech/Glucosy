@@ -1,5 +1,4 @@
 import ScrechKit
-import WidgetKit
 
 struct HomeView: View {
     @Environment(AppState.self) private var app: AppState

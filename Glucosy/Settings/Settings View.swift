@@ -4,17 +4,12 @@ import WidgetKit
 struct SettingsView: View {
     @Environment(AppState.self) private var app: AppState
     @Environment(Settings.self) private var settings: Settings
+    @EnvironmentObject          private var storage: Storage
     
     var body: some View {
         @Bindable var settings = settings
         
         List {
-            Section("Widgets") {
-                Button("Reload all widgets") {
-                    WidgetCenter.shared.reloadAllTimelines()
-                }
-            }
-            
             Section {
                 Toggle(isOn: $settings.caffeinated) {
                     Label("Iced caramel latte",
@@ -146,6 +141,10 @@ struct SettingsView: View {
             SettingsNotification()
             
             SettingsCalendar()
+            
+            Section {
+                Toggle("Debug mode", isOn: $storage.debugMode)
+            }
         }
         .standardToolbar()
         .navigationTitle("Settings")

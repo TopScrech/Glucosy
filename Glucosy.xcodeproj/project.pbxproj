@@ -53,8 +53,8 @@
 		C5E4004829825C710021C6B7 /* Alarm high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004429825C710021C6B7 /* Alarm high.mp3 */; };
 		C5E4004929825C710021C6B7 /* Alarm low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004529825C710021C6B7 /* Alarm low.mp3 */; };
 		C5E4004A29825C710021C6B7 /* Alarm low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004529825C710021C6B7 /* Alarm low.mp3 */; };
-		C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
-		C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */; };
+		C5E4004B29825C710021C6B7 /* Alarm signal loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* Alarm signal loss.mp3 */; };
+		C5E4004C29825C710021C6B7 /* Alarm signal loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5E4004629825C710021C6B7 /* Alarm signal loss.mp3 */; };
 		C5E4005929825C930021C6B7 /* Data View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004E29825C930021C6B7 /* Data View.swift */; };
 		C5E4005A29825C930021C6B7 /* Settings View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4004F29825C930021C6B7 /* Settings View.swift */; };
 		C5E4005B29825C930021C6B7 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4005029825C930021C6B7 /* Details.swift */; };
@@ -307,7 +307,7 @@
 		C5E165042ACBE5E600970835 /* Hamburger Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hamburger Menu.swift"; sourceTree = "<group>"; };
 		C5E4004429825C710021C6B7 /* Alarm high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alarm high.mp3"; sourceTree = "<group>"; };
 		C5E4004529825C710021C6B7 /* Alarm low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alarm low.mp3"; sourceTree = "<group>"; };
-		C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_signal_loss.mp3; sourceTree = "<group>"; };
+		C5E4004629825C710021C6B7 /* Alarm signal loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alarm signal loss.mp3"; sourceTree = "<group>"; };
 		C5E4004E29825C930021C6B7 /* Data View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data View.swift"; sourceTree = "<group>"; };
 		C5E4004F29825C930021C6B7 /* Settings View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Settings View.swift"; sourceTree = "<group>"; };
 		C5E4005029825C930021C6B7 /* Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
@@ -572,9 +572,9 @@
 		C5E4004329825C710021C6B7 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				C5E4004429825C710021C6B7 /* Alarm high.mp3 */,
 				C5E4004529825C710021C6B7 /* Alarm low.mp3 */,
-				C5E4004629825C710021C6B7 /* alarm_signal_loss.mp3 */,
+				C5E4004429825C710021C6B7 /* Alarm high.mp3 */,
+				C5E4004629825C710021C6B7 /* Alarm signal loss.mp3 */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -1028,7 +1028,7 @@
 				C5E015E42989B0F600F6EDF9 /* TODO.md in Resources */,
 				C5E4004A29825C710021C6B7 /* Alarm low.mp3 in Resources */,
 				C5E015E72989B10500F6EDF9 /* LICENSE.md in Resources */,
-				C5E4004C29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
+				C5E4004C29825C710021C6B7 /* Alarm signal loss.mp3 in Resources */,
 				C5E4004829825C710021C6B7 /* Alarm high.mp3 in Resources */,
 				C59184472981E9B000A6DA89 /* Assets.xcassets in Resources */,
 				F3C863032BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy in Resources */,
@@ -1044,7 +1044,7 @@
 				C5E015E32989B0F600F6EDF9 /* TODO.md in Resources */,
 				C5E4004929825C710021C6B7 /* Alarm low.mp3 in Resources */,
 				C5E015E62989B10500F6EDF9 /* LICENSE.md in Resources */,
-				C5E4004B29825C710021C6B7 /* alarm_signal_loss.mp3 in Resources */,
+				C5E4004B29825C710021C6B7 /* Alarm signal loss.mp3 in Resources */,
 				C5E4004729825C710021C6B7 /* Alarm high.mp3 in Resources */,
 				C5AAA61D2981CF7200CA3EC1 /* Assets.xcassets in Resources */,
 				F3C863022BBC58BC00DB4ED0 /* PrivacyInfo.xcprivacy in Resources */,

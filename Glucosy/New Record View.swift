@@ -147,12 +147,12 @@ struct NewRecordView: View {
                 Menu {
                     Button("LibreLink NL") {
                         saveData()
-                        openApp(BunbleId.librelinkNL)
+                        openApp(BundleId.librelinkNL)
                     }
                     
                     Button("mySugr") {
                         saveData()
-                        openApp(BunbleId.mysurg)
+                        openApp(BundleId.mysurg)
                     }
                 } label: {
                     Label("Save and open", systemImage: "arrowshape.turn.up.right")

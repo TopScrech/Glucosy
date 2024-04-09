@@ -1,6 +1,10 @@
 import ScrechKit
+import StoreKit
 
-struct HealthKitLink: View {    
+struct HealthKitLink: View {
+    @State private var skOverlay = false
+    @State private var appId = ""
+    
     var body: some View {
         Section {
             Button {
@@ -25,12 +29,13 @@ struct HealthKitLink: View {
             .foregroundStyle(.foreground)
             
             Button {
-                let didOpen = openApp(BunbleId.mysurg)
+                let didOpen = openApp(BundleId.mysurg)
                 
                 if didOpen {
                     print("Safari should now be open")
                 } else {
-                    print("Failed to open \(BunbleId.mysurg)")
+                    appId = BundleId.mysurgId
+                    skOverlay = true
                 }
             } label: {
                 HStack {
@@ -53,12 +58,13 @@ struct HealthKitLink: View {
             }
             
             Button {
-                let didOpen = openApp(BunbleId.librelinkNL)
+                let didOpen = openApp(BundleId.librelinkNL)
                 
                 if didOpen {
                     print("Safari should now be open")
                 } else {
-                    print("Failed to open \(BunbleId.librelinkNL)")
+                    appId = BundleId.librelinkNLId
+                    skOverlay = true
                 }
             } label: {
                 HStack {
@@ -80,6 +86,7 @@ struct HealthKitLink: View {
                 }
             }
         }
+        .appStoreOverlay($skOverlay, id: appId)
     }
     
     func openApp(_ bundleID: String) -> Bool {

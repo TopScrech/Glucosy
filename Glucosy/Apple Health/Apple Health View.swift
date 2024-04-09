@@ -43,7 +43,7 @@ struct AppleHealthView: View {
                     NavigationLink {
                         InsulinList(history.insulin)
                     } label: {
-                        HStack(alignment: .bottom) {
+                        HStack {
                             Text("Insulin Delivery")
                             
                             Spacer()
@@ -66,25 +66,27 @@ struct AppleHealthView: View {
                 }
             }
             
-            Section {
-                DisclosureGroup("Carbohydrates", isExpanded: $isExpandedCarbs) {
-                    ForEach(history.carbs, id: \.self) { carbs in
-                        CarbohydratesCard(carbs)
+            if let lastCarbs = history.carbs.first {
+                Section {
+                    NavigationLink {
+                        
+                    } label: {
+                        HStack(alignment: .bottom) {
+                            Text("Carbohydrates")
+                            
+                            Spacer()
+                            
+                            Text(lastCarbs.value)
+                                .bold()
+                            
+                            Text("grams")
+                                .foregroundStyle(.secondary)
+                                .footnote()
+                        }
                     }
-                    .onDelete(perform: deleteCarbs)
-                }
-            } header: {
-                HStack {
+                } header: {
                     Text("\(history.carbs.count) records")
                         .bold()
-                    
-                    Spacer()
-                    
-                    NavigationLink("View all") {
-                        // TODO
-                    }
-                    .footnote()
-                    .foregroundStyle(.latte)
                 }
             }
         }
@@ -94,24 +96,6 @@ struct AppleHealthView: View {
                 healthKit.readGlucose()
                 healthKit.readInsulin()
                 healthKit.readCarbs()
-            }
-        }
-    }
-        
-    private func deleteCarbs(_ offsets: IndexSet) {
-        offsets.forEach { index in
-            guard let sampleToDelete = history.carbs[index].sample else {
-                return
-            }
-            
-            app.main.healthKit?.delete(sampleToDelete) { success, error in
-                if success {
-                    Task { @MainActor in
-                        history.carbs.remove(atOffsets: offsets)
-                    }
-                } else if let error {
-                    print("Error deleting from HealthKit: \(error.localizedDescription)")
-                }
             }
         }
     }

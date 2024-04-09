@@ -108,7 +108,7 @@
 		F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67D2BA98AEF003EE8F2 /* Extension.swift */; };
 		F31FF6802BA98F67003EE8F2 /* New Record Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */; };
 		F31FF6832BA9D25C003EE8F2 /* Debug View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31FF6822BA9D25C003EE8F2 /* Debug View.swift */; };
-		F327E0CE2BC2D623001106C9 /* BundleId.swift in Sources */ = {isa = PBXBuildFile; fileRef = F327E0CD2BC2D623001106C9 /* BundleId.swift */; };
+		F327E0CE2BC2D623001106C9 /* Bundle Id.swift in Sources */ = {isa = PBXBuildFile; fileRef = F327E0CD2BC2D623001106C9 /* Bundle Id.swift */; };
 		F3291AE72BB97B360039ADE9 /* SS Glucose Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3291AE62BB97B360039ADE9 /* SS Glucose Widget.swift */; };
 		F329496B2BB0AFBC00328C6A /* Dynamic Shortcurts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496A2BB0AFBC00328C6A /* Dynamic Shortcurts.swift */; };
 		F329496D2BB0C08500328C6A /* App Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496C2BB0C08500328C6A /* App Init.swift */; };
@@ -349,7 +349,7 @@
 		F31FF67D2BA98AEF003EE8F2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Notification.swift"; sourceTree = "<group>"; };
 		F31FF6822BA9D25C003EE8F2 /* Debug View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debug View.swift"; sourceTree = "<group>"; };
-		F327E0CD2BC2D623001106C9 /* BundleId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleId.swift; sourceTree = "<group>"; };
+		F327E0CD2BC2D623001106C9 /* Bundle Id.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle Id.swift"; sourceTree = "<group>"; };
 		F3291AE62BB97B360039ADE9 /* SS Glucose Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SS Glucose Widget.swift"; sourceTree = "<group>"; };
 		F329496A2BB0AFBC00328C6A /* Dynamic Shortcurts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dynamic Shortcurts.swift"; sourceTree = "<group>"; };
 		F329496C2BB0C08500328C6A /* App Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Init.swift"; sourceTree = "<group>"; };
@@ -548,7 +548,7 @@
 				F35AFC502BA4908B0065145A /* History.swift */,
 				F35AFC4D2BA490100065145A /* UI Tests.swift */,
 				F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */,
-				F327E0CD2BC2D623001106C9 /* BundleId.swift */,
+				F327E0CD2BC2D623001106C9 /* Bundle Id.swift */,
 				F35AFC5F2BA4917E0065145A /* Enums */,
 				F35AFC6C2BA492080065145A /* Swift Data */,
 				C5E4005729825C930021C6B7 /* Home View.swift */,
@@ -1185,7 +1185,7 @@
 				C5E4009029825EEE0021C6B7 /* NFC.swift in Sources */,
 				C55D12B429ACB5E00050F567 /* Crypto.swift in Sources */,
 				F3B8120F2BB00DBC0005C114 /* Read Body Mass.swift in Sources */,
-				F327E0CE2BC2D623001106C9 /* BundleId.swift in Sources */,
+				F327E0CE2BC2D623001106C9 /* Bundle Id.swift in Sources */,
 				F3781E9B2BBD506700EF4A9B /* Notification Expired.swift in Sources */,
 				C5E4006B29825DDE0021C6B7 /* Bluetooth.swift in Sources */,
 				F35AFC8E2BA508A60065145A /* HealthKit Link.swift in Sources */,

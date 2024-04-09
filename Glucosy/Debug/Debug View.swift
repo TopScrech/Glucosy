@@ -6,12 +6,19 @@ struct DebugView: View {
     @Environment(History.self)  private var history
     
     @State private var scheduledNotifications: [UNNotificationRequest] = []
+    @State private var skOverlay = false
     
     var body: some View {
         List {
             Section("Widgets") {
                 Button("Reload all widgets") {
                     WidgetCenter.shared.reloadAllTimelines()
+                }
+            }
+            
+            Section("SKOverlay") {
+                Button("Present") {
+                    skOverlay = true
                 }
             }
             
@@ -67,6 +74,7 @@ struct DebugView: View {
             }
         }
         .navigationTitle("Debug")
+        .appStoreOverlay($skOverlay, id: 1639409934)
         .refreshableTask {
             scheduledNotifications = await NotificationManager.shared.fetchScheduledNotifications()
         }

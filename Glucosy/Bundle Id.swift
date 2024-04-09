@@ -7,3 +7,9 @@ class BundleId {
     static let mysurgId = "516509211"
     static let librelinkNLId = "1307013272"
 }
+
+struct BundleIdd {
+    let name: String
+    let bundle: String
+    let id: Int
+}

@@ -5,6 +5,11 @@ struct HealthKitLink: View {
     @State private var skOverlay = false
     @State private var appId = ""
     
+    private let apps: [BundleIdd] = [
+        .init(name: "mySugr", bundle: "com.mysugr.companion.mySugr", id: 516509211),
+        .init(name: "LibreLink NL", bundle: "com.abbott.librelink.nl", id: 1307013272)
+    ]
+    
     var body: some View {
         Section {
             Button {

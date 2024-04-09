@@ -184,6 +184,7 @@
 		F3B0696E2BAC15900095EFEE /* AC Carbs Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */; };
 		F3B540842BC529D9005514FF /* Temperature List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B540832BC529D9005514FF /* Temperature List.swift */; };
 		F3B540862BC52ABE005514FF /* Glucose List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B540852BC52ABE005514FF /* Glucose List.swift */; };
+		F3B540882BC52DA9005514FF /* Insulin List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B540872BC52DA9005514FF /* Insulin List.swift */; };
 		F3B8120F2BB00DBC0005C114 /* Read Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */; };
 		F3B812102BB00DBC0005C114 /* Read Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */; };
 		F3B812122BB00EBF0005C114 /* Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B812112BB00EBF0005C114 /* Body Mass.swift */; };
@@ -401,6 +402,7 @@
 		F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Carbs Widget.swift"; sourceTree = "<group>"; };
 		F3B540832BC529D9005514FF /* Temperature List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Temperature List.swift"; sourceTree = "<group>"; };
 		F3B540852BC52ABE005514FF /* Glucose List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucose List.swift"; sourceTree = "<group>"; };
+		F3B540872BC52DA9005514FF /* Insulin List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Insulin List.swift"; sourceTree = "<group>"; };
 		F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read Body Mass.swift"; sourceTree = "<group>"; };
 		F3B812112BB00EBF0005C114 /* Body Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Body Mass.swift"; sourceTree = "<group>"; };
 		F3B812142BB00EC70005C114 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 			isa = PBXGroup;
 			children = (
 				F35AFC8C2BA508A60065145A /* Apple Health View.swift */,
+				F3B540872BC52DA9005514FF /* Insulin List.swift */,
 				F3B540852BC52ABE005514FF /* Glucose List.swift */,
 				F3E593092BB76A5500CE4FE4 /* Glycated Haemoglobin View.swift */,
 				F3E5930B2BB772F700CE4FE4 /* Glycated Haemoglobin Table.swift */,
@@ -1231,6 +1234,7 @@
 				F35AFC7C2BA4FFF70065145A /* Insulin Delivery.swift in Sources */,
 				F31FF6802BA98F67003EE8F2 /* New Record Notification.swift in Sources */,
 				C5E4005F29825C930021C6B7 /* Online View.swift in Sources */,
+				F3B540882BC52DA9005514FF /* Insulin List.swift in Sources */,
 				C5E4006E29825DEA0021C6B7 /* Device.swift in Sources */,
 				F35AFC5D2BA4916C0065145A /* Tabs.swift in Sources */,
 				C5E4006129825C930021C6B7 /* Plan.swift in Sources */,

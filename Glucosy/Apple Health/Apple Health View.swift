@@ -16,7 +16,7 @@ struct AppleHealthView: View {
             
             GlycatedHaemoglobinView(history.glucose)
             
-            Section("\(history.glucose.count) records") {
+            Section {
                 NavigationLink {
                     GlucoseList(history.glucose)
                 } label: {
@@ -33,28 +33,36 @@ struct AppleHealthView: View {
                             .footnote()
                     }
                 }
-                .tint(.blue)
+            } header: {
+                Text("\(history.glucose.count) records")
+                    .bold()
             }
             
-            Section {
-                DisclosureGroup("Insulin Delivery", isExpanded: $isExpandedInsulin) {
-                    ForEach(history.insulin, id: \.self) { insulin in
-                        InsulinCard(insulin)
+            if let lastDelivery = history.insulin.first {
+                Section {
+                    NavigationLink {
+                        InsulinList(history.insulin)
+                    } label: {
+                        HStack(alignment: .bottom) {
+                            Text("Insulin Delivery")
+                            
+                            Spacer()
+                            
+                            Text(lastDelivery.value)
+                                .bold()
+                            
+                            if lastDelivery.type == .bolus {
+                                Image(systemName: "syringe")
+                                    .foregroundStyle(.yellow)
+                            } else {
+                                Image(systemName: "syringe.fill")
+                                    .foregroundStyle(.purple)
+                            }
+                        }
                     }
-                    .onDelete(perform: deleteInsulin)
-                }
-            } header: {
-                HStack {
+                } header: {
                     Text("\(history.insulin.count) records")
                         .bold()
-                    
-                    Spacer()
-                    
-                    NavigationLink("View all") {
-                        // TODO
-                    }
-                    .footnote()
-                    .foregroundStyle(.latte)
                 }
             }
             
@@ -89,25 +97,7 @@ struct AppleHealthView: View {
             }
         }
     }
-    
-    private func deleteInsulin(_ offsets: IndexSet) {
-        offsets.forEach { index in
-            guard let sampleToDelete = history.insulin[index].sample else {
-                return
-            }
-            
-            app.main.healthKit?.delete(sampleToDelete) { success, error in
-                if success {
-                    Task { @MainActor in
-                        history.insulin.remove(atOffsets: offsets)
-                    }
-                } else if let error {
-                    print("Error deleting from HealthKit: \(error.localizedDescription)")
-                }
-            }
-        }
-    }
-    
+        
     private func deleteCarbs(_ offsets: IndexSet) {
         offsets.forEach { index in
             guard let sampleToDelete = history.carbs[index].sample else {

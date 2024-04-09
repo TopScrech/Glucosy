@@ -17,7 +17,6 @@ final class HealthKit: Logging {
     let carbsType:           HKQuantityType? = .dietaryCarbohydrates()
     let bodyMassType:        HKQuantityType? = .bodyMass()
     let bmiType:             HKQuantityType? = .bodyMassIndex()
-    let bodyTemperatureType: HKQuantityType? = .bodyTemperature()
     
     init() {
         if isAvailable {
@@ -33,14 +32,13 @@ final class HealthKit: Logging {
         guard let glucoseType, 
                 let insulinType,
                 let carbsType,
-                let bodyTemperatureType,
                 let bodyMassType,
                 let bmiType
         else {
             return []
         }
         
-        return Set([glucoseType, insulinType, carbsType, bodyTemperatureType, bodyMassType, bmiType])
+        return Set([glucoseType, insulinType, carbsType, bodyMassType, bmiType])
     }
     
     func authorize(_ handler: @escaping (Bool) -> Void) {

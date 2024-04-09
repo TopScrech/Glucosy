@@ -15,5 +15,4 @@ final class History {
     var carbs:           [Carbohydrates]   = []
     var bmi:             [BMI]             = []
     var bodyMass:        [BodyMass]        = []
-    var bodyTemperature: [BodyTemperature] = []
 }

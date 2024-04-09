@@ -14,29 +14,7 @@ struct AppleHealthView: View {
             HealthKitLink()
             
             GlycatedHaemoglobinView(history.glucose)
-            
-            Section {
-                DisclosureGroup("Body Temperature", isExpanded: $isExpandedTemperature) {
-                    ForEach(history.bodyTemperature, id: \.self) { temperature in
-                        Text(temperature.value)
-                    }
-                    // TODO: .onDelete(perform: deleteTemperature)
-                }
-            } header: {
-                HStack {
-                    Text("\(history.bodyTemperature.count) records")
-                        .bold()
-                    
-                    Spacer()
-                    
-                    NavigationLink("View all") {
-                        // TODO
-                    }
-                    .footnote()
-                    .foregroundStyle(.latte)
-                }
-            }
-            
+                        
             Section {
                 DisclosureGroup("Glucose", isExpanded: $isExpandedGlucose) {
                     ForEach(history.glucose, id: \.self) { glucose in
@@ -109,7 +87,6 @@ struct AppleHealthView: View {
                 healthKit.readGlucose()
                 healthKit.readInsulin()
                 healthKit.readCarbs()
-                healthKit.readTemperature()
             }
         }
     }

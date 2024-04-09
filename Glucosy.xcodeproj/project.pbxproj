@@ -114,11 +114,8 @@
 		F329496D2BB0C08500328C6A /* App Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496C2BB0C08500328C6A /* App Init.swift */; };
 		F329496E2BB0C08700328C6A /* App Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496C2BB0C08500328C6A /* App Init.swift */; };
 		F32949702BB0DA6500328C6A /* Write Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496F2BB0DA6500328C6A /* Write Temperature.swift */; };
-		F32949712BB0DA6500328C6A /* Write Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329496F2BB0DA6500328C6A /* Write Temperature.swift */; };
 		F32949732BB0DCAC00328C6A /* Read Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32949722BB0DCAC00328C6A /* Read Temperature.swift */; };
-		F32949742BB0DCAC00328C6A /* Read Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32949722BB0DCAC00328C6A /* Read Temperature.swift */; };
 		F32949762BB0DD2200328C6A /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32949752BB0DD2200328C6A /* Temperature.swift */; };
-		F32949772BB0DD2200328C6A /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32949752BB0DD2200328C6A /* Temperature.swift */; };
 		F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F12BA8921D00CD234C /* New Record Selector.swift */; };
 		F32ED8F42BA8B0F600CD234C /* Delete Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F32BA8B0F600CD234C /* Delete Glucose.swift */; };
 		F32ED8F62BA8B11900CD234C /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ED8F52BA8B11900CD234C /* Delete.swift */; };
@@ -185,6 +182,7 @@
 		F3B069682BAC13930095EFEE /* Glucose Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069672BAC13930095EFEE /* Glucose Entry.swift */; };
 		F3B0696A2BAC13B50095EFEE /* Carbs Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B069692BAC13B50095EFEE /* Carbs Entry.swift */; };
 		F3B0696E2BAC15900095EFEE /* AC Carbs Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */; };
+		F3B540842BC529D9005514FF /* Temperature List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B540832BC529D9005514FF /* Temperature List.swift */; };
 		F3B8120F2BB00DBC0005C114 /* Read Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */; };
 		F3B812102BB00DBC0005C114 /* Read Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */; };
 		F3B812122BB00EBF0005C114 /* Body Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B812112BB00EBF0005C114 /* Body Mass.swift */; };
@@ -400,6 +398,7 @@
 		F3B069672BAC13930095EFEE /* Glucose Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucose Entry.swift"; sourceTree = "<group>"; };
 		F3B069692BAC13B50095EFEE /* Carbs Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Carbs Entry.swift"; sourceTree = "<group>"; };
 		F3B0696D2BAC15900095EFEE /* AC Carbs Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AC Carbs Widget.swift"; sourceTree = "<group>"; };
+		F3B540832BC529D9005514FF /* Temperature List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Temperature List.swift"; sourceTree = "<group>"; };
 		F3B8120E2BB00DBC0005C114 /* Read Body Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read Body Mass.swift"; sourceTree = "<group>"; };
 		F3B812112BB00EBF0005C114 /* Body Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Body Mass.swift"; sourceTree = "<group>"; };
 		F3B812142BB00EC70005C114 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
@@ -667,6 +666,7 @@
 		F35AFC6D2BA4E5360065145A /* Depricated */ = {
 			isa = PBXGroup;
 			children = (
+				F3B540822BC52995005514FF /* Temperature */,
 				C581D58E2B0E699C002A4633 /* Glucosy Widget.swift */,
 				F32ED8F12BA8921D00CD234C /* New Record Selector.swift */,
 				F31FF67F2BA98F67003EE8F2 /* New Record Notification.swift */,
@@ -688,8 +688,6 @@
 				F3B812172BB014DF0005C114 /* Read BMI.swift */,
 				F35AFC742BA4FF9E0065145A /* Read Glucose.swift */,
 				F35AFC752BA4FF9E0065145A /* Read Insulin.swift */,
-				F32949722BB0DCAC00328C6A /* Read Temperature.swift */,
-				F329496F2BB0DA6500328C6A /* Write Temperature.swift */,
 				F3E69B442BA6E66500A5469A /* Write Carbs.swift */,
 				F35AFC732BA4FF9E0065145A /* Write Glucose.swift */,
 				F3E69B472BA6E67000A5469A /* Write Insulin.swift */,
@@ -759,6 +757,17 @@
 				F3B069672BAC13930095EFEE /* Glucose Entry.swift */,
 			);
 			path = "Last Measurement";
+			sourceTree = "<group>";
+		};
+		F3B540822BC52995005514FF /* Temperature */ = {
+			isa = PBXGroup;
+			children = (
+				F3B540832BC529D9005514FF /* Temperature List.swift */,
+				F32949752BB0DD2200328C6A /* Temperature.swift */,
+				F32949722BB0DCAC00328C6A /* Read Temperature.swift */,
+				F329496F2BB0DA6500328C6A /* Write Temperature.swift */,
+			);
+			path = Temperature;
 			sourceTree = "<group>";
 		};
 		F3D384BD2BB0029100F03C35 /* Debug */ = {
@@ -888,7 +897,6 @@
 				F35AFC7B2BA4FFF70065145A /* Insulin Delivery.swift */,
 				F3B8121A2BB023DC0005C114 /* Insulin Type.swift */,
 				F35AFC7E2BA500130065145A /* Carbohydrates.swift */,
-				F32949752BB0DD2200328C6A /* Temperature.swift */,
 				F3B812112BB00EBF0005C114 /* Body Mass.swift */,
 				F3B812142BB00EC70005C114 /* BMI.swift */,
 			);
@@ -1084,7 +1092,6 @@
 			files = (
 				C59184462981E73400A6DA89 /* App.swift in Sources */,
 				F3B812132BB00EBF0005C114 /* Body Mass.swift in Sources */,
-				F32949772BB0DD2200328C6A /* Temperature.swift in Sources */,
 				F3781E952BBD2D8A00EF4A9B /* List Row.swift in Sources */,
 				F3E592F92BB6E43B00CE4FE4 /* Console Tools Properties.swift in Sources */,
 				F329496E2BB0C08700328C6A /* App Init.swift in Sources */,
@@ -1096,11 +1103,9 @@
 				C5916E5429827E860051AC06 /* Monitor.swift in Sources */,
 				C5E4008629825E990021C6B7 /* Libre 3.swift in Sources */,
 				C5E4007729825E370021C6B7 /* Glucose.swift in Sources */,
-				F32949712BB0DA6500328C6A /* Write Temperature.swift in Sources */,
 				F35AFC652BA4919F0065145A /* Glycemic Alarm.swift in Sources */,
 				F3B8121C2BB023DC0005C114 /* Insulin Type.swift in Sources */,
 				C5916E5729827EB10051AC06 /* Main Delegate.swift in Sources */,
-				F32949742BB0DCAC00328C6A /* Read Temperature.swift in Sources */,
 				F3B812162BB00EC70005C114 /* BMI.swift in Sources */,
 				F3E69B492BA6E67000A5469A /* Write Insulin.swift in Sources */,
 				F3B812102BB00DBC0005C114 /* Read Body Mass.swift in Sources */,
@@ -1209,6 +1214,7 @@
 				F32ED8F22BA8921D00CD234C /* New Record Selector.swift in Sources */,
 				F31FF67E2BA98AEF003EE8F2 /* Extension.swift in Sources */,
 				F3781E942BBD2D3300EF4A9B /* List Row.swift in Sources */,
+				F3B540842BC529D9005514FF /* Temperature List.swift in Sources */,
 				F35AFC4E2BA490100065145A /* UI Tests.swift in Sources */,
 				F3B8121E2BB07AC90005C114 /* Notification Delegate.swift in Sources */,
 				F3E5930C2BB772F700CE4FE4 /* Glycated Haemoglobin Table.swift in Sources */,

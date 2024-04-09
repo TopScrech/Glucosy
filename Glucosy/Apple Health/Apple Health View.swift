@@ -3,6 +3,7 @@ import ScrechKit
 struct AppleHealthView: View {
     @Environment(AppState.self) private var app
     @Environment(History.self)  private var history
+    @Environment(Settings.self) private var settings
     
     @AppStorage("is_expanded_glucose")     private var isExpandedGlucose = false
     @AppStorage("is_expanded_insulin")     private var isExpandedInsulin = false
@@ -14,27 +15,25 @@ struct AppleHealthView: View {
             HealthKitLink()
             
             GlycatedHaemoglobinView(history.glucose)
+            
+            Section("\(history.glucose.count) records") {
+                NavigationLink {
+                    GlucoseList(history.glucose)
+                } label: {
+                    HStack(alignment: .bottom) {
+                        Text("Glucose")
                         
-            Section {
-                DisclosureGroup("Glucose", isExpanded: $isExpandedGlucose) {
-                    ForEach(history.glucose, id: \.self) { glucose in
-                        GlucoseCard(glucose)
+                        Spacer()
+                        
+                        Text(history.glucose.first?.value ?? 0)
+                            .bold()
+                        
+                        Text(settings.displayingMillimoles ? "mmol/L" : "mg/dL")
+                            .foregroundStyle(.secondary)
+                            .footnote()
                     }
-                    .onDelete(perform: deleteGlucose)
                 }
-            } header: {
-                HStack {
-                    Text("\(history.glucose.count) records")
-                        .bold()
-                    
-                    Spacer()
-                    
-                    NavigationLink("View all") {
-                        // TODO
-                    }
-                    .footnote()
-                    .foregroundStyle(.latte)
-                }
+                .tint(.blue)
             }
             
             Section {
@@ -122,24 +121,6 @@ struct AppleHealthView: View {
                     }
                 } else if let error {
                     print("Error deleting from HealthKit: \(error.localizedDescription)")
-                }
-            }
-        }
-    }
-    
-    private func deleteGlucose(_ offsets: IndexSet) {
-        offsets.forEach { index in
-            guard let sampleToDelete = history.glucose[index].sample else {
-                return
-            }
-            
-            app.main.healthKit?.delete(sampleToDelete) { success, error in
-                if success {
-                    Task { @MainActor in
-                        history.glucose.remove(atOffsets: offsets)
-                    }
-                } else if let error {
-                    print("Error deleting glucose: \(error.localizedDescription)")
                 }
             }
         }

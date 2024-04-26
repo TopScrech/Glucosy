@@ -5,9 +5,17 @@ struct HealthKitLink: View {
     @State private var skOverlay = false
     @State private var appId = ""
     
-    private let apps: [BundleIdd] = [
-        .init(name: "mySugr", bundle: "com.mysugr.companion.mySugr", id: 516509211),
-        .init(name: "LibreLink NL", bundle: "com.abbott.librelink.nl", id: 1307013272)
+    private let apps: [BundleId] = [
+        .init(
+            name: "mySugr",
+            bundle: "com.mysugr.companion.mySugr",
+            id: 516509211
+        ),
+        .init(
+            name: "LibreLink NL",
+            bundle: "com.abbott.librelink.nl",
+            id: 1307013272
+        )
     ]
     
     var body: some View {
@@ -104,9 +112,9 @@ struct HealthKitLink: View {
         }
         
         let open = workspace.perform(Selector(("openApplicationWithBundleID:")), with: bundleID) != nil
+        
         return open
     }
-    
 }
 
 #Preview {

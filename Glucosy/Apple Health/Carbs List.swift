@@ -3,13 +3,7 @@ import SwiftUI
 struct CarbsList: View {
     @Environment(AppState.self) private var app
     @Environment(History.self)  private var history
-    
-    private let carbs: [Carbohydrates]
-    
-    init(_ carbs: [Carbohydrates]) {
-        self.carbs = carbs
-    }
-    
+        
     var body: some View {
         List {
             ForEach(history.carbs, id: \.self) { carbs in
@@ -39,5 +33,5 @@ struct CarbsList: View {
 }
 
 #Preview {
-    CarbsList([])
+    CarbsList()
 }

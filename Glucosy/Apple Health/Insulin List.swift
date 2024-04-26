@@ -4,12 +4,6 @@ struct InsulinList: View {
     @Environment(AppState.self) private var app
     @Environment(History.self)  private var history
     
-    private let insulin: [InsulinDelivery]
-    
-    init(_ insulin: [InsulinDelivery]) {
-        self.insulin = insulin
-    }
-    
     var body: some View {
         List {
             ForEach(history.insulin, id: \.self) { insulin in
@@ -39,5 +33,5 @@ struct InsulinList: View {
 }
 
 #Preview {
-    InsulinList([])
+    InsulinList()
 }

@@ -18,14 +18,14 @@ struct AppleHealthView: View {
             
             Section {
                 NavigationLink {
-                    GlucoseList(history.glucose)
+                    GlucoseList()
                 } label: {
                     HStack(alignment: .bottom) {
                         Text("Glucose")
                         
                         Spacer()
                         
-                        Text(history.glucose.first?.value ?? 0)
+                        Text(history.glucose.first?.value.units ?? "-")
                             .bold()
                         
                         Text(settings.displayingMillimoles ? "mmol/L" : "mg/dL")
@@ -41,7 +41,7 @@ struct AppleHealthView: View {
             if let lastDelivery = history.insulin.first {
                 Section {
                     NavigationLink {
-                        InsulinList(history.insulin)
+                        InsulinList()
                     } label: {
                         HStack {
                             Text("Insulin Delivery")
@@ -69,7 +69,7 @@ struct AppleHealthView: View {
             if let lastCarbs = history.carbs.first {
                 Section {
                     NavigationLink {
-                        
+                        CarbsList()
                     } label: {
                         HStack(alignment: .bottom) {
                             Text("Carbohydrates")

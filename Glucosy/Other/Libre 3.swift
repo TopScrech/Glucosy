@@ -6,7 +6,9 @@ extension String {
     /// Converts a LibreView account ID string into a receiverID
     /// i.e. "2977dec2-492a-11ea-9702-0242ac110002" -> 524381581
     var fnv32Hash: UInt32 {
-        UInt32(self.reduce(0) { 0xFFFFFFFF & (UInt64($0) * 0x811C9DC5) ^ UInt64($1.asciiValue!) })
+        UInt32(self.reduce(0) {
+            0xFFFFFFFF & (UInt64($0) * 0x811C9DC5) ^ UInt64($1.asciiValue!)
+        })
     }
 }
 
@@ -264,7 +266,7 @@ final class Libre3: Libre {
     ]
     
     struct BCSecurityContext {
-        let packetDescriptorArray: [[UInt8]] = packetDescriptors
+        let packetDescriptorArray = packetDescriptors
         var key     = Data(count: 16)
         var iv_enc  = Data(count: 8)
         var nonce   = Data(count: 13)
@@ -622,15 +624,20 @@ final class Libre3: Libre {
                 buffer = Data(data)
             } else {
                 buffer += data
+                
                 if buffer.count == 35 {
                     let payload = buffer.prefix(33)
                     let id = UInt16(buffer.suffix(2))
+                    
                     log("\(type) \(transmitter!.peripheral!.name!): received \(buffer.count) bytes of \(UUID(rawValue: uuid)!) (payload: \(payload.count) bytes): \(payload.hex), id: \(id.hex)")
+                    
                     buffer = Data()
                 }
             }
             
         case .historicalData, .clinicalData, .eventLog, .factoryData:
+            log("Zopa")
+            
             if buffer.count == 0 {
                 buffer = Data(data)
             } else {
@@ -638,13 +645,17 @@ final class Libre3: Libre {
             }
             
             let payload = data.prefix(18)
+            
             let id = UInt16(data.suffix(2))
+            
             log("\(type) \(transmitter!.peripheral!.name!): received \(data.count) bytes of \(UUID(rawValue: uuid)!) (payload: \(payload.count) bytes): \(payload.hex), id: \(id.hex)")
             
         case .patchStatus:
             if buffer.count == 0 {
                 let payload = data.prefix(16)
+                
                 let id = UInt16(data.suffix(2))
+                
                 log("\(type) \(transmitter!.peripheral!.name!): received \(data.count) bytes of \(UUID(rawValue: uuid)!) (payload: \(payload.count) bytes): \(payload.hex), id: \(id.hex)")
             }
             // TODO

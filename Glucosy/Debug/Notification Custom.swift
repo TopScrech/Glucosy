@@ -9,7 +9,9 @@ extension NotificationManager {
         content.body =               "Body"
         content.categoryIdentifier = "DEBUG"
         content.interruptionLevel =  interruptionLevel
-        content.sound = .critical("Alarm high.mp3", volume: 0.5)
+        content.sound = .criticalSoundNamed(.init("Alarm high.mp3"), withAudioVolume: 0.5)
+        //        content.sound = .critical("Alarm high.mp3", volume: 0.5)
+        #warning("Wtf")
         
         let actions = [
             NotificationAction.newScan()
@@ -38,7 +40,7 @@ extension NotificationManager {
         
         UNUserNotificationCenter.current().add(request) { error in
             if let error {
-                print("Error scheduling notification: \(error)")
+                print("Error scheduling notification: \(error.localizedDescription)")
             }
         }
     }

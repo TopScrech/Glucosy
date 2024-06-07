@@ -436,7 +436,10 @@ class Dexcom: Transmitter {
                     }
                     
                     // Drop the first 2 bytes from each frame and the first 4 bytes from the combined message
-                    let glucoseData = Data(packets.reduce(into: Data(), { $0.append($1.dropFirst(2)) }).dropFirst(4))
+                    let glucoseData = Data(packets.reduce(into: Data()) { 
+                        $0.append($1.dropFirst(2))
+                    }.dropFirst(4))
+                    
                     var history = [Glucose]()
                     
                     for i in 0..<glucoseData.count / 8 {

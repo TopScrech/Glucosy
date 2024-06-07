@@ -98,6 +98,8 @@
 		C5E400A029825F580021C6B7 /* company_ids.json in Resources */ = {isa = PBXBuildFile; fileRef = C5E4009E29825F580021C6B7 /* company_ids.json */; };
 		F31352752BC120C90065898B /* Notification Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31352742BC120C90065898B /* Notification Custom.swift */; };
 		F316DCC82BAADE9B00A8B6CF /* AC Glucose Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F316DCC72BAADE9B00A8B6CF /* AC Glucose Widget.swift */; };
+		F31A99BF2C131D3E00B9DCA7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F31A99BE2C131D3E00B9DCA7 /* RealmSwift */; };
+		F31A99C12C131D3E00B9DCA7 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = F31A99BE2C131D3E00B9DCA7 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		F31C708C2BA7515400A5BFCD /* Settings Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708B2BA7515400A5BFCD /* Settings Calendar.swift */; };
 		F31C708E2BA753CC00A5BFCD /* Settings Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708D2BA753CC00A5BFCD /* Settings Notification.swift */; };
 		F31C70902BA78F5700A5BFCD /* Glossy Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C708F2BA78F5700A5BFCD /* Glossy Preview.swift */; };
@@ -264,6 +266,17 @@
 				C5BE8E5B29916D3600604237 /* Glucosy Watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F31A99C02C131D3E00B9DCA7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F31A99C12C131D3E00B9DCA7 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -458,6 +471,7 @@
 			files = (
 				F3CA0ACD2BAE45EA0055398F /* ScrechKit in Frameworks */,
 				F35AFC4A2BA48CCD0065145A /* Algorithms in Frameworks */,
+				F31A99BF2C131D3E00B9DCA7 /* RealmSwift in Frameworks */,
 				C55D12B229ACAE8F0050F567 /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -965,6 +979,7 @@
 				C5AAA6132981CF7000CA3EC1 /* Resources */,
 				C5BE8E5E29916D3600604237 /* Embed Watch Content */,
 				C581D5992B0E699D002A4633 /* Embed Foundation Extensions */,
+				F31A99C02C131D3E00B9DCA7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -977,6 +992,7 @@
 				C55D12B129ACAE8F0050F567 /* CryptoSwift */,
 				F35AFC492BA48CCD0065145A /* Algorithms */,
 				F3CA0ACC2BAE45EA0055398F /* ScrechKit */,
+				F31A99BE2C131D3E00B9DCA7 /* RealmSwift */,
 			);
 			productName = DiaBLE;
 			productReference = C5AAA6152981CF7000CA3EC1 /* Glucosy.app */;
@@ -1017,6 +1033,7 @@
 				C55D12B029ACAE8F0050F567 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				F35AFC482BA48CCD0065145A /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				F3CA0AC72BAE45D60055398F /* XCRemoteSwiftPackageReference "ScrechKit" */,
+				F33B15B52BEA3410005DB48B /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = C5AAA6162981CF7000CA3EC1 /* Products */;
 			projectDirPath = "";
@@ -1733,6 +1750,14 @@
 				minimumVersion = 1.8.0;
 			};
 		};
+		F33B15B52BEA3410005DB48B /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		F35AFC482BA48CCD0065145A /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-algorithms.git";
@@ -1761,6 +1786,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C55D12B029ACAE8F0050F567 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
+		};
+		F31A99BE2C131D3E00B9DCA7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F33B15B52BEA3410005DB48B /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		F35AFC492BA48CCD0065145A /* Algorithms */ = {
 			isa = XCSwiftPackageProductDependency;

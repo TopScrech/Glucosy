@@ -53,9 +53,9 @@ func serialNumber(uid: SensorUid, family: SensorFamily = .libre1) -> String {
     fiveBitsArray.append(bytes[5] >> 3)
     fiveBitsArray.append(bytes[5] << 2)
     
-    return fiveBitsArray.reduce("\(family.rawValue)", {
+    return fiveBitsArray.reduce("\(family.rawValue)") {
         $0 + lookupTable[ Int(0x1F & $1) ]
-    })
+    }
 }
 
 // https://github.com/UPetersen/LibreMonitor/blob/Swift4/LibreMonitor/Model/CRC.swift
@@ -149,7 +149,7 @@ func checksummedFRAM(_ data: Data) -> Data {
     let bodyCRC   = crc16(fram[ 3 * 8 + 2 ..< 320]) /// 40 * 8
     let footerCRC = crc16(fram[40 * 8 + 2 ..< 344]) /// 43 * 8
     
-    fram[0...1]               = headerCRC.data
+    fram[0...1]     = headerCRC.data
     fram[24...25]   = bodyCRC.data /// 3 * 8...3 * 8 + 1
     fram[320...321] = footerCRC.data /// 40 * 8...40 * 8 + 1
     

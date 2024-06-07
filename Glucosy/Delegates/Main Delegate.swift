@@ -387,7 +387,7 @@ class MainDelegate: UIResponder, UIApplicationDelegate, UIWindowSceneDelegate {
             return
         }
         
-        guard sensor.state != .warmingUp, sensor.age > 60 else {
+        guard sensor.state != .warmingUp else {
             NotificationManager.shared.scheduleAlarmReminder("\(sensor.type) is warming up")
             return
         }

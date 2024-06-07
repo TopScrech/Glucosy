@@ -32,6 +32,7 @@ struct ACCarbsProvider: AppIntentTimelineProvider {
         let sum = carbsRecords.map(\.value).reduce(0, +)
         
         var timeline: Timeline<CarbsEntry>
+        
         let entry = CarbsEntry(
             data: sum,
             date: date,

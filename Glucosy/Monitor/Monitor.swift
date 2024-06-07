@@ -18,6 +18,15 @@ struct Monitor: View {
                 }
             }
             
+            if let sensor = app.sensor as? Libre3 {
+                Text(sensor.lastReadingDate.shortTime)
+                Text(sensor.factoryHistory.description)
+                Text(sensor.factoryTrend.description)
+                Text(sensor.lastSecurityEvent.description)
+            } else {
+                Text("Not Libre3")
+            }
+            
             HStack {
                 VStack {
                     if app.lastReadingDate != Date.distantPast {

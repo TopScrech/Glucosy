@@ -6,11 +6,11 @@ struct ContentView: View {
     @Environment(Log.self) var log: Log
     @Environment(History.self) var history: History
     @Environment(Settings.self) var settings: Settings
-
+    
     var body: some View {
-
+        
         @Bindable var settings = settings
-
+        
         TabView(selection: $settings.selectedTab) {
             Monitor()
                 .tabItem {

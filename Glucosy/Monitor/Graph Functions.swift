@@ -3,13 +3,18 @@ import Foundation
 extension Graph {
     // Combine Carbs objects and calculate the average time
     func processAndCombineCarbs(tempCarbs: [Carbohydrates]) -> Carbohydrates {
-        let totalAmount = tempCarbs.reduce(0) { $0 + $1.value }
+        let totalAmount = tempCarbs.reduce(0) {
+            $0 + $1.value
+        }
         
         let averageDate = tempCarbs.map {
             $0.date.timeIntervalSince1970
         }.reduce(0, +) / Double(tempCarbs.count)
         
-        let combinedCarbs = Carbohydrates(value: totalAmount, date: Date(timeIntervalSince1970: averageDate))
+        let combinedCarbs = Carbohydrates(
+            value: totalAmount,
+            date: Date(timeIntervalSince1970: averageDate)
+        )
         
         return combinedCarbs
     }

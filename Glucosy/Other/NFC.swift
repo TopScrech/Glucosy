@@ -788,10 +788,10 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
                     do {
                         try await connectedTag?.writeMultipleBlocks(requestFlags: .highDataRate, blockRange: blockRange, dataBlocks: dataBlocks)
                         
-                        debugLog("NFC: wrote blocks 0x\(startIndex.hex) - 0x\(endIndex.hex) \(dataBlocks.reduce("", { $0 + $1.hex })) at 0x\(((startBlock + i * requestBlocks) * 8).hex)")
+                        debugLog("NFC: wrote blocks 0x\(startIndex.hex) - 0x\(endIndex.hex) \(dataBlocks.reduce("") { $0 + $1.hex }) at 0x\(((startBlock + i * requestBlocks) * 8).hex)")
                         
                     } catch {
-                        log("NFC: error while writing multiple blocks 0x\(startIndex.hex)-0x\(endIndex.hex) \(dataBlocks.reduce("", { $0 + $1.hex })) at 0x\(((startBlock + i * requestBlocks) * 8).hex): \(error.localizedDescription)")
+                        log("NFC: error while writing multiple blocks 0x\(startIndex.hex)-0x\(endIndex.hex) \(dataBlocks.reduce("") { $0 + $1.hex }) at 0x\(((startBlock + i * requestBlocks) * 8).hex): \(error.localizedDescription)")
                         
                         throw NFCError.write
                     }
@@ -824,10 +824,10 @@ class NFC: NSObject, NFCTagReaderSessionDelegate, Logging {
             do {
                 try await connectedTag?.writeMultipleBlocks(requestFlags: .highDataRate, blockRange: blockRange, dataBlocks: dataBlocks)
                 
-                debugLog("NFC: wrote blocks 0x\(startIndex.hex) - 0x\(endIndex.hex) \(dataBlocks.reduce("", { $0 + $1.hex }))")
+                debugLog("NFC: wrote blocks 0x\(startIndex.hex) - 0x\(endIndex.hex) \(dataBlocks.reduce("") { $0 + $1.hex })")
                 
             } catch {
-                log("NFC: error while writing multiple blocks 0x\(startIndex.hex)-0x\(endIndex.hex) \(dataBlocks.reduce("", { $0 + $1.hex }))")
+                log("NFC: error while writing multiple blocks 0x\(startIndex.hex)-0x\(endIndex.hex) \(dataBlocks.reduce("") { $0 + $1.hex })")
                 
                 throw NFCError.write
             }

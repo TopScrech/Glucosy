@@ -15,9 +15,9 @@
 		F32B209E2CD5852800925351 /* HealthyKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32B209D2CD5852800925351 /* HealthyKit */; };
 		F32B20A12CD5853500925351 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32B20A02CD5853500925351 /* ScrechKit */; };
 		F32B20A42CD5854700925351 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F32B20A32CD5854700925351 /* Algorithms */; };
-		F32B20A62CD5856F00925351 /* Today View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B20A52CD5856F00925351 /* Today View.swift */; };
 		F32B20A82CD5859000925351 /* Record List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B20A72CD5859000925351 /* Record List.swift */; };
 		F32B20AA2CD5859700925351 /* App Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B20A92CD5859700925351 /* App Settings.swift */; };
+		F32B20AE2CD58C5E00925351 /* Today View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B20AC2CD58C5E00925351 /* Today View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +29,9 @@
 		F32B20972CD5827D00925351 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F32B20982CD5830200925351 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		F32B209A2CD5840400925351 /* App Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Container.swift"; sourceTree = "<group>"; };
-		F32B20A52CD5856F00925351 /* Today View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Today View.swift"; sourceTree = "<group>"; };
 		F32B20A72CD5859000925351 /* Record List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record List.swift"; sourceTree = "<group>"; };
 		F32B20A92CD5859700925351 /* App Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Settings.swift"; sourceTree = "<group>"; };
+		F32B20AC2CD58C5E00925351 /* Today View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Today View.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,17 +68,49 @@
 			isa = PBXGroup;
 			children = (
 				F32B20912CD5824400925351 /* Glucosy.swift */,
-				F32B209A2CD5840400925351 /* App Container.swift */,
+				F32B20B12CD58C6D00925351 /* Nav */,
 				F32B20972CD5827D00925351 /* Info.plist */,
 				F32B208E2CD5824400925351 /* Assets.xcassets */,
 				F32B20982CD5830200925351 /* Localizable.xcstrings */,
 				F32B20902CD5824400925351 /* Glucosy.entitlements */,
 				F32B208F2CD5824400925351 /* Home View.swift */,
-				F32B20A72CD5859000925351 /* Record List.swift */,
-				F32B20A92CD5859700925351 /* App Settings.swift */,
-				F32B20A52CD5856F00925351 /* Today View.swift */,
+				F32B20AD2CD58C5E00925351 /* Today */,
+				F32B20AF2CD58C6100925351 /* Records */,
+				F32B20B02CD58C6800925351 /* Settings */,
 			);
 			path = Glucosy;
+			sourceTree = "<group>";
+		};
+		F32B20AD2CD58C5E00925351 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				F32B20AC2CD58C5E00925351 /* Today View.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		F32B20AF2CD58C6100925351 /* Records */ = {
+			isa = PBXGroup;
+			children = (
+				F32B20A72CD5859000925351 /* Record List.swift */,
+			);
+			path = Records;
+			sourceTree = "<group>";
+		};
+		F32B20B02CD58C6800925351 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F32B20A92CD5859700925351 /* App Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F32B20B12CD58C6D00925351 /* Nav */ = {
+			isa = PBXGroup;
+			children = (
+				F32B209A2CD5840400925351 /* App Container.swift */,
+			);
+			path = Nav;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,10 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F32B20932CD5824400925351 /* Home View.swift in Sources */,
+				F32B20AE2CD58C5E00925351 /* Today View.swift in Sources */,
 				F32B20A82CD5859000925351 /* Record List.swift in Sources */,
 				F32B20AA2CD5859700925351 /* App Settings.swift in Sources */,
 				F32B209B2CD5840400925351 /* App Container.swift in Sources */,
-				F32B20A62CD5856F00925351 /* Today View.swift in Sources */,
 				F32B20942CD5824400925351 /* Glucosy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

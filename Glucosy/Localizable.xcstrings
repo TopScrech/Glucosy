@@ -1,0 +1,21 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Records" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Today" : {
+
+    }
+  },
+  "version" : "1.0"
+}

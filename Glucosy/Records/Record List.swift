@@ -1,8 +1,26 @@
 import SwiftUI
 
 struct RecordList: View {
+    private var vm = HealthKit()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Section {
+                Text("Estimated HbA1c")
+            }
+            
+            Section {
+                Text("Glucose")
+            }
+            
+            Section {
+                Text("Insulin Delivery")
+            }
+            
+            Section {
+                Text("Carbs")
+            }
+        }
     }
 }
 

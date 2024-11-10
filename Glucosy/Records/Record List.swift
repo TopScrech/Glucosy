@@ -21,6 +21,13 @@ struct RecordList: View {
                 Text("Carbs")
             }
         }
+        .task {
+            vm.authorize { result in
+                print("Auth status: \(result)")
+                
+                // TODO: Display Warning when false
+            }
+        }
     }
 }
 

@@ -5,7 +5,7 @@ struct GlucoseList: View {
     
     var body: some View {
         List {
-            ForEach(vm.GlucoseRecords) { record in
+            ForEach(vm.glucoseRecords) { record in
                 GlucoseCard(record)
             }
         }

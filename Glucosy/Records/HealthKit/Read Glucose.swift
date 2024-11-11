@@ -1,7 +1,7 @@
 import HealthKit
 
 extension HealthKit {
-    func readGlucose(handler: (([HealthRecord]) -> Void)? = nil) {
+    func readGlucose(handler: (([Glucose]) -> Void)? = nil) {
         guard let glucoseType else {
             return
         }
@@ -44,18 +44,16 @@ extension HealthKit {
             }
             
             if results.count > 0 {
-                let samples = results.enumerated().map { index, sample -> HealthRecord in
+                let samples = results.enumerated().map { index, sample -> Glucose in
                         .init(
                             value: sample.quantity.doubleValue(for: glucoseUnit),
                             //                            id: index,
-                            date: sample.endDate,
-                            source: "\(sample.sourceRevision.source.name) \(sample.sourceRevision.source.bundleIdentifier)",
                             sample: sample
                         )
                 }
                 
                 DispatchQueue.main.async { [self] in
-                    GlucoseRecords = samples
+                    glucoseRecords = samples
                     handler?(samples)
                 }
             }

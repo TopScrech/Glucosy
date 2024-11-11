@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct GlucoseCard: View {
-    private let record: HealthRecord
+    private let record: Glucose
     
-    init(_ record: HealthRecord) {
+    init(_ record: Glucose) {
         self.record = record
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 Text(record.value)
             }

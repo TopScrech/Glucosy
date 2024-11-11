@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RecordList: View {
-    private var vm = HealthKit()
+    @State private var vm = HealthKit()
     
     var body: some View {
         List {
@@ -10,7 +10,10 @@ struct RecordList: View {
             }
             
             Section {
-                Text("Glucose")
+                NavigationLink("Glucose") {
+                    GlucoseList()
+                        .environment(vm)
+                }
             }
             
             Section {
@@ -27,6 +30,8 @@ struct RecordList: View {
                 
                 // TODO: Display Warning when false
             }
+            
+            vm.readGlucose()
         }
     }
 }

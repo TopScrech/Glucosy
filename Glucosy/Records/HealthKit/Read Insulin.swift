@@ -53,12 +53,12 @@ extension HealthKit {
                 if let insulinMetadata = sample.metadata,
                    let insulinCategory = insulinMetadata["HKInsulinDeliveryReason"] as? Int {
                     
-//                    var insulinType: InsulinType
-//                    insulinType = insulinCategory == 1 ? .basal : .bolus
+                    var insulinType: InsulinType
+                    insulinType = insulinCategory == 1 ? .basal : .bolus
                     
                     loadedRecords.append(.init(
                         value: unit,
-//                        type: insulinType,
+                        type: insulinType,
                         sample: sample
                     ))
                     

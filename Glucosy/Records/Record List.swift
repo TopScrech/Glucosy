@@ -17,11 +17,17 @@ struct RecordList: View {
             }
             
             Section {
-                Text("Insulin Delivery")
+                NavigationLink("Insulin Delivery") {
+                    InsulinList()
+                        .environment(vm)
+                }
             }
             
             Section {
-                Text("Carbs")
+                NavigationLink("Carbs") {
+                    CarbsList()
+                        .environment(vm)
+                }
             }
         }
         .task {
@@ -32,6 +38,8 @@ struct RecordList: View {
             }
             
             vm.readGlucose()
+            vm.readInsulin()
+            vm.readCarbs()
         }
     }
 }

@@ -13,7 +13,7 @@ struct GlucoseCard: View {
                 Text(record.value)
             }
             
-            RecordSource(record.source)
+            SourceName(record.source)
         }
     }
 }

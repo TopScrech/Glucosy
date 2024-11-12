@@ -33,11 +33,12 @@
 		F3B2CD402CE214BE00743323 /* Carbs List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD3F2CE214BE00743323 /* Carbs List.swift */; };
 		F3B2CD422CE214C700743323 /* Insulin List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD412CE214C700743323 /* Insulin List.swift */; };
 		F3B2CD442CE214EA00743323 /* Carbs Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD432CE214EA00743323 /* Carbs Card.swift */; };
-		F3B2CD462CE2154200743323 /* Record Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD452CE2154200743323 /* Record Source.swift */; };
+		F3B2CD462CE2154200743323 /* Source Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD452CE2154200743323 /* Source Name.swift */; };
 		F3B2CD482CE2158200743323 /* Insulin Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD472CE2158200743323 /* Insulin Card.swift */; };
 		F3B2CD4A2CE253B900743323 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD492CE253B900743323 /* Glucose.swift */; };
 		F3B2CD4C2CE253CA00743323 /* Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD4B2CE253CA00743323 /* Insulin.swift */; };
 		F3B2CD522CE2597B00743323 /* New Record Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD512CE2597B00743323 /* New Record Sheet.swift */; };
+		F3B58A3A2CE354F0000FB1BE /* Source Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B58A392CE354F0000FB1BE /* Source Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,11 +68,12 @@
 		F3B2CD3F2CE214BE00743323 /* Carbs List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Carbs List.swift"; sourceTree = "<group>"; };
 		F3B2CD412CE214C700743323 /* Insulin List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Insulin List.swift"; sourceTree = "<group>"; };
 		F3B2CD432CE214EA00743323 /* Carbs Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Carbs Card.swift"; sourceTree = "<group>"; };
-		F3B2CD452CE2154200743323 /* Record Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record Source.swift"; sourceTree = "<group>"; };
+		F3B2CD452CE2154200743323 /* Source Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source Name.swift"; sourceTree = "<group>"; };
 		F3B2CD472CE2158200743323 /* Insulin Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Insulin Card.swift"; sourceTree = "<group>"; };
 		F3B2CD492CE253B900743323 /* Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
 		F3B2CD4B2CE253CA00743323 /* Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insulin.swift; sourceTree = "<group>"; };
 		F3B2CD512CE2597B00743323 /* New Record Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Sheet.swift"; sourceTree = "<group>"; };
+		F3B58A392CE354F0000FB1BE /* Source Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source Image.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +136,7 @@
 			children = (
 				F32B20A72CD5859000925351 /* Record List.swift */,
 				F3B2CD1E2CE1760900743323 /* HealthKit.swift */,
-				F3B2CD452CE2154200743323 /* Record Source.swift */,
+				F3B2CD452CE2154200743323 /* Source Name.swift */,
 				F3B2CD512CE2597B00743323 /* New Record Sheet.swift */,
 				F3B2CD502CE2552200743323 /* Glucose */,
 				F3B2CD4F2CE2551A00743323 /* Carbs */,
@@ -191,6 +193,7 @@
 			children = (
 				F3B2CD412CE214C700743323 /* Insulin List.swift */,
 				F3B2CD472CE2158200743323 /* Insulin Card.swift */,
+				F3B58A392CE354F0000FB1BE /* Source Image.swift */,
 			);
 			path = Insulin;
 			sourceTree = "<group>";
@@ -300,7 +303,7 @@
 				F3B2CD1F2CE1760900743323 /* HealthKit.swift in Sources */,
 				F3B2CD482CE2158200743323 /* Insulin Card.swift in Sources */,
 				F32B20A82CD5859000925351 /* Record List.swift in Sources */,
-				F3B2CD462CE2154200743323 /* Record Source.swift in Sources */,
+				F3B2CD462CE2154200743323 /* Source Name.swift in Sources */,
 				F32B20AA2CD5859700925351 /* App Settings.swift in Sources */,
 				F3B2CD422CE214C700743323 /* Insulin List.swift in Sources */,
 				F3B2CD4C2CE253CA00743323 /* Insulin.swift in Sources */,
@@ -312,6 +315,7 @@
 				F3B2CD2F2CE1786500743323 /* Write Insulin.swift in Sources */,
 				F3B2CD302CE1786500743323 /* Write Glucose.swift in Sources */,
 				F3B2CD352CE17B0700743323 /* Glucose List.swift in Sources */,
+				F3B58A3A2CE354F0000FB1BE /* Source Image.swift in Sources */,
 				F3B2CD332CE1786500743323 /* Read Insulin.swift in Sources */,
 				F3B2CD4A2CE253B900743323 /* Glucose.swift in Sources */,
 				F3B2CD392CE1840800743323 /* Insulin Type.swift in Sources */,

@@ -1,4 +1,5 @@
 import SwiftUI
+import HealthKit
 
 struct InsulinCard: View {
     private let record: Insulin
@@ -7,12 +8,16 @@ struct InsulinCard: View {
         self.record = record
     }
     
+    private var isBasal: Bool {
+        record.type == .basal
+    }
+    
     private var icon: String {
-        record.type == .basal ? "syringe.fill" : "syringe"
+        isBasal ? "syringe.fill" : "syringe"
     }
     
     private var color: Color {
-        record.type == .basal ? .purple : .yellow
+        isBasal ? .purple : .yellow
     }
     
     private var value: Int {
@@ -23,24 +28,45 @@ struct InsulinCard: View {
         record.date
     }
     
+    private var sourceId: String {
+        record.sample.sourceRevision.source.bundleIdentifier
+    }
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: icon)
-                    .foregroundStyle(color)
+        HStack {
+            SourceImage(sourceId)
+            
+            VStack(alignment: .leading) {
+                HStack(spacing: 3) {
+                    Image(systemName: icon)
+                        .foregroundStyle(color)
+                    
+                    Text(value)
+                }
                 
-                Text(value)
-                
-                Spacer()
-                
-                Text(date, format: .dateTime.hour().minute())
+                SourceName(record.source)
             }
             
-            RecordSource(record.source)
+            Spacer()
+            
+            Text(date, format: .dateTime.hour().minute())
         }
     }
 }
 
 //#Preview {
-//    InsulinCard()
+//    List {
+//        InsulinCard(
+//            Insulin(
+//                value: 16,
+//                type: .basal,
+//                sample: HKQuantitySample(
+//                    type: HKQuantityType.quantityType(forIdentifier: .insulinDelivery)!,
+//                    quantity: HKQuantity(unit: HKUnit.internationalUnit(), doubleValue: 5),
+//                    start: Date(),
+//                    end: Date()
+//                )
+//            )
+//        )
+//    }
 //}

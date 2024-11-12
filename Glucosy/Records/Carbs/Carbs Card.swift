@@ -13,7 +13,7 @@ struct CarbsCard: View {
                 
             }
             
-            RecordSource(record.source)
+            SourceName(record.source)
         }
     }
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct RecordSource: View {
+struct SourceName: View {
     private let source: String
     
     init(_ source: String) {
@@ -15,5 +15,5 @@ struct RecordSource: View {
 }
 
 //#Preview {
-//    RecordSource()
+//    SourceName()
 //}

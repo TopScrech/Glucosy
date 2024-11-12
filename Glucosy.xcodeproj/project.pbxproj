@@ -37,6 +37,7 @@
 		F3B2CD482CE2158200743323 /* Insulin Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD472CE2158200743323 /* Insulin Card.swift */; };
 		F3B2CD4A2CE253B900743323 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD492CE253B900743323 /* Glucose.swift */; };
 		F3B2CD4C2CE253CA00743323 /* Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD4B2CE253CA00743323 /* Insulin.swift */; };
+		F3B2CD522CE2597B00743323 /* New Record Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD512CE2597B00743323 /* New Record Sheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		F3B2CD472CE2158200743323 /* Insulin Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Insulin Card.swift"; sourceTree = "<group>"; };
 		F3B2CD492CE253B900743323 /* Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
 		F3B2CD4B2CE253CA00743323 /* Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insulin.swift; sourceTree = "<group>"; };
+		F3B2CD512CE2597B00743323 /* New Record Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Sheet.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				F32B20A72CD5859000925351 /* Record List.swift */,
 				F3B2CD1E2CE1760900743323 /* HealthKit.swift */,
 				F3B2CD452CE2154200743323 /* Record Source.swift */,
+				F3B2CD512CE2597B00743323 /* New Record Sheet.swift */,
 				F3B2CD502CE2552200743323 /* Glucose */,
 				F3B2CD4F2CE2551A00743323 /* Carbs */,
 				F3B2CD4E2CE2551200743323 /* Insulin */,
@@ -316,6 +319,7 @@
 				F32B209B2CD5840400925351 /* App Container.swift in Sources */,
 				F3B2CD232CE1784500743323 /* Delete.swift in Sources */,
 				F32B20942CD5824400925351 /* Glucosy.swift in Sources */,
+				F3B2CD522CE2597B00743323 /* New Record Sheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

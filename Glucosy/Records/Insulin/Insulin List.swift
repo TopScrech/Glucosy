@@ -12,7 +12,7 @@ struct InsulinList: View {
             }
         }
         .sheet($sheetNewRecord) {
-            Text("New record")
+            NewRecordSheet()
         }
         .toolbar {
             SFButton("note.text.badge.plus") {

@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
     "Carbs" : {
 
     },
@@ -26,6 +23,9 @@
 
     },
     "Today" : {
+
+    },
+    "Today View" : {
 
     }
   },

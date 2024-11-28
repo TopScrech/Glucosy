@@ -7,6 +7,12 @@ struct Insulin: Identifiable {
     let type: InsulinType
     let sample: HKQuantitySample
     
+    var formattedValue: String {
+        value.truncatingRemainder(dividingBy: 1) == 0 ?
+        String(format: "%.0f", value) :
+        String(value)
+    }
+    
     var date: Date {
         sample.startDate
     }
@@ -15,4 +21,3 @@ struct Insulin: Identifiable {
         "\(sample.sourceRevision.source.name) \(sample.sourceRevision.source.bundleIdentifier)"
     }
 }
-

@@ -7,13 +7,23 @@ struct GlucoseCard: View {
         self.record = record
     }
     
+    private var sourceId: String {
+        record.sample.sourceRevision.source.bundleIdentifier
+    }
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
+        HStack {
+            SourceImage(sourceId)
+            
+            VStack(alignment: .leading) {
                 Text(record.value)
+                
+                SourceName(record.source)
             }
             
-            SourceName(record.source)
+            Spacer()
+            
+            Text(record.date, format: .dateTime.hour().minute())
         }
     }
 }

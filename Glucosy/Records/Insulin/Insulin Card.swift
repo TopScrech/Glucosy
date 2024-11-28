@@ -20,18 +20,10 @@ struct InsulinCard: View {
         isBasal ? .purple : .yellow
     }
     
-    private var value: Int {
-        Int(record.value)
-    }
-    
-    private var date: Date {
-        record.date
-    }
-    
     private var sourceId: String {
         record.sample.sourceRevision.source.bundleIdentifier
     }
-    
+        
     var body: some View {
         HStack {
             SourceImage(sourceId)
@@ -41,7 +33,7 @@ struct InsulinCard: View {
                     Image(systemName: icon)
                         .foregroundStyle(color)
                     
-                    Text(value)
+                    Text(record.value)
                 }
                 
                 SourceName(record.source)
@@ -49,7 +41,7 @@ struct InsulinCard: View {
             
             Spacer()
             
-            Text(date, format: .dateTime.hour().minute())
+            Text(record.date, format: .dateTime.hour().minute())
         }
     }
 }

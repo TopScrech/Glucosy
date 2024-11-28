@@ -116,8 +116,8 @@
 				F32B20982CD5830200925351 /* Localizable.xcstrings */,
 				F32B20902CD5824400925351 /* Glucosy.entitlements */,
 				F32B208F2CD5824400925351 /* Home View.swift */,
-				F32B20AD2CD58C5E00925351 /* Today */,
 				F32B20AF2CD58C6100925351 /* Records */,
+				F32B20AD2CD58C5E00925351 /* Today */,
 				F32B20B02CD58C6800925351 /* Settings */,
 			);
 			path = Glucosy;

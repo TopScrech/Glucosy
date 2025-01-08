@@ -1,7 +1,11 @@
-import SwiftUI
+import ScrechKit
 
 struct RecordList: View {
     @State private var vm = HealthKit()
+    
+    @State private var sheetNewInsulinRecord = false
+    @State private var sheetNewCarbsRecord = false
+    @State private var sheetNewGlucoseRecord = false
     
     var body: some View {
         List {
@@ -14,12 +18,32 @@ struct RecordList: View {
                     GlucoseList()
                         .environment(vm)
                 }
+                .contextMenu {
+                    Button {
+                        sheetNewGlucoseRecord = true
+                    } label: {
+                        Label("New record", systemImage: "plus")
+                    }
+                }
+                .sheet($sheetNewGlucoseRecord) {
+                    NewRecordSheet()
+                }
             }
             
             Section {
                 NavigationLink("Insulin Delivery") {
                     InsulinList()
                         .environment(vm)
+                }
+                .contextMenu {
+                    Button {
+                        sheetNewInsulinRecord = true
+                    } label: {
+                        Label("New record", systemImage: "plus")
+                    }
+                }
+                .sheet($sheetNewInsulinRecord) {
+                    NewRecordSheet()
                 }
             }
             
@@ -28,6 +52,21 @@ struct RecordList: View {
                     CarbsList()
                         .environment(vm)
                 }
+                .contextMenu {
+                    Button {
+                        sheetNewCarbsRecord = true
+                    } label: {
+                        Label("New record", systemImage: "plus")
+                    }
+                }
+                .sheet($sheetNewCarbsRecord) {
+                    NewRecordSheet()
+                }
+            }
+        }
+        .toolbar {
+            SFButton("note.text.badge.plus") {
+                
             }
         }
         .task {

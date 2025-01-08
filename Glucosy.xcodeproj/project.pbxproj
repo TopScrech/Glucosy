@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F322ADA72D2E943900EAC12A /* New Record Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADA62D2E943900EAC12A /* New Record Insulin.swift */; };
+		F322ADA92D2E961300EAC12A /* New Record Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADA82D2E961300EAC12A /* New Record Glucose.swift */; };
+		F322ADAB2D2E961500EAC12A /* New Record Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADAA2D2E961500EAC12A /* New Record Carbs.swift */; };
+		F322ADAD2D2E967000EAC12A /* Recor Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADAC2D2E967000EAC12A /* Recor Type.swift */; };
+		F322ADAF2D2E975A00EAC12A /* Meal Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADAE2D2E975A00EAC12A /* Meal Time.swift */; };
 		F32B20932CD5824400925351 /* Home View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B208F2CD5824400925351 /* Home View.swift */; };
 		F32B20942CD5824400925351 /* Glucosy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B20912CD5824400925351 /* Glucosy.swift */; };
 		F32B20962CD5824400925351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F32B208E2CD5824400925351 /* Assets.xcassets */; };
@@ -42,6 +47,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F322ADA62D2E943900EAC12A /* New Record Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Insulin.swift"; sourceTree = "<group>"; };
+		F322ADA82D2E961300EAC12A /* New Record Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Glucose.swift"; sourceTree = "<group>"; };
+		F322ADAA2D2E961500EAC12A /* New Record Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Carbs.swift"; sourceTree = "<group>"; };
+		F322ADAC2D2E967000EAC12A /* Recor Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recor Type.swift"; sourceTree = "<group>"; };
+		F322ADAE2D2E975A00EAC12A /* Meal Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal Time.swift"; sourceTree = "<group>"; };
 		F32B207A2CD5823B00925351 /* Glucosy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glucosy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32B208E2CD5824400925351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F32B208F2CD5824400925351 /* Home View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Home View.swift"; sourceTree = "<group>"; };
@@ -90,6 +100,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F322ADA52D2E942A00EAC12A /* New Record */ = {
+			isa = PBXGroup;
+			children = (
+				F3B2CD512CE2597B00743323 /* New Record Sheet.swift */,
+				F322ADAC2D2E967000EAC12A /* Recor Type.swift */,
+				F322ADAE2D2E975A00EAC12A /* Meal Time.swift */,
+				F322ADA62D2E943900EAC12A /* New Record Insulin.swift */,
+				F322ADA82D2E961300EAC12A /* New Record Glucose.swift */,
+				F322ADAA2D2E961500EAC12A /* New Record Carbs.swift */,
+			);
+			path = "New Record";
+			sourceTree = "<group>";
+		};
 		F32B20712CD5823B00925351 = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +160,7 @@
 				F32B20A72CD5859000925351 /* Record List.swift */,
 				F3B2CD1E2CE1760900743323 /* HealthKit.swift */,
 				F3B2CD452CE2154200743323 /* Source Name.swift */,
-				F3B2CD512CE2597B00743323 /* New Record Sheet.swift */,
+				F322ADA52D2E942A00EAC12A /* New Record */,
 				F3B2CD502CE2552200743323 /* Glucose */,
 				F3B2CD4F2CE2551A00743323 /* Carbs */,
 				F3B2CD4E2CE2551200743323 /* Insulin */,
@@ -303,6 +326,8 @@
 				F3B2CD1F2CE1760900743323 /* HealthKit.swift in Sources */,
 				F3B2CD482CE2158200743323 /* Insulin Card.swift in Sources */,
 				F32B20A82CD5859000925351 /* Record List.swift in Sources */,
+				F322ADA92D2E961300EAC12A /* New Record Glucose.swift in Sources */,
+				F322ADAF2D2E975A00EAC12A /* Meal Time.swift in Sources */,
 				F3B2CD462CE2154200743323 /* Source Name.swift in Sources */,
 				F32B20AA2CD5859700925351 /* App Settings.swift in Sources */,
 				F3B2CD422CE214C700743323 /* Insulin List.swift in Sources */,
@@ -315,13 +340,16 @@
 				F3B2CD2F2CE1786500743323 /* Write Insulin.swift in Sources */,
 				F3B2CD302CE1786500743323 /* Write Glucose.swift in Sources */,
 				F3B2CD352CE17B0700743323 /* Glucose List.swift in Sources */,
+				F322ADAB2D2E961500EAC12A /* New Record Carbs.swift in Sources */,
 				F3B58A3A2CE354F0000FB1BE /* Source Image.swift in Sources */,
 				F3B2CD332CE1786500743323 /* Read Insulin.swift in Sources */,
 				F3B2CD4A2CE253B900743323 /* Glucose.swift in Sources */,
 				F3B2CD392CE1840800743323 /* Insulin Type.swift in Sources */,
+				F322ADA72D2E943900EAC12A /* New Record Insulin.swift in Sources */,
 				F3B2CD402CE214BE00743323 /* Carbs List.swift in Sources */,
 				F32B209B2CD5840400925351 /* App Container.swift in Sources */,
 				F3B2CD232CE1784500743323 /* Delete.swift in Sources */,
+				F322ADAD2D2E967000EAC12A /* Recor Type.swift in Sources */,
 				F32B20942CD5824400925351 /* Glucosy.swift in Sources */,
 				F3B2CD522CE2597B00743323 /* New Record Sheet.swift in Sources */,
 			);

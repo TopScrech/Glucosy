@@ -12,7 +12,7 @@ struct CarbsList: View {
             }
         }
         .sheet($sheetNewRecord) {
-            NewRecordSheet()
+            NewRecordSheet(.carbs)
         }
         .toolbar {
             SFButton("note.text.badge.plus") {

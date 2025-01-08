@@ -10,7 +10,14 @@ struct RecordList: View {
     var body: some View {
         List {
             Section {
-                Text("Estimated HbA1c")
+                HStack {
+                    Text("Estimated HbA1c")
+                    
+                    Spacer()
+                    
+                    Text("Unknown")
+                        .secondary()
+                }
             }
             
             Section {
@@ -26,7 +33,7 @@ struct RecordList: View {
                     }
                 }
                 .sheet($sheetNewGlucoseRecord) {
-                    NewRecordSheet()
+                    NewRecordSheet(.glucose)
                 }
             }
             
@@ -43,7 +50,7 @@ struct RecordList: View {
                     }
                 }
                 .sheet($sheetNewInsulinRecord) {
-                    NewRecordSheet()
+                    NewRecordSheet(.insulin)
                 }
             }
             
@@ -60,13 +67,32 @@ struct RecordList: View {
                     }
                 }
                 .sheet($sheetNewCarbsRecord) {
-                    NewRecordSheet()
+                    NewRecordSheet(.carbs)
                 }
             }
         }
         .toolbar {
-            SFButton("note.text.badge.plus") {
+            Menu {
+                Button {
+                    sheetNewCarbsRecord = true
+                } label: {
+                    Label("Carbs", systemImage: "")
+                }
                 
+                Button {
+                    sheetNewInsulinRecord = true
+                    
+                } label: {
+                    Label("Insulin", systemImage: "syringe")
+                }
+                
+                Button {
+                    sheetNewGlucoseRecord = true
+                } label: {
+                    Label("Blood Glucose", systemImage: "")
+                }
+            } label: {
+                Image(systemName: "note.text.badge.plus")
             }
         }
         .task {

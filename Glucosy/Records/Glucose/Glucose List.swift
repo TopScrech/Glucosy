@@ -12,7 +12,7 @@ struct GlucoseList: View {
             }
         }
         .sheet($sheetNewRecord) {
-            NewRecordSheet()
+            NewRecordSheet(.glucose)
         }
         .toolbar {
             SFButton("note.text.badge.plus") {

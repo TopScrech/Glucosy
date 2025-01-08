@@ -1,19 +1,46 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+      "shouldTranslate" : false
+    },
+    "Basal insulin refers to the insulin used to regulate blood glucose between meals including during sleep. Bolus insulin refers to the insulin used to regulate blood glucose at meals and or to acutely address high blood glucose" : {
+
+    },
+    "Blood Glucose" : {
+
+    },
     "Carbs" : {
+
+    },
+    "Date" : {
 
     },
     "Estimated HbA1c" : {
 
     },
+    "g" : {
+
+    },
     "Glucose" : {
+
+    },
+    "Insulin" : {
 
     },
     "Insulin Delivery" : {
 
     },
+    "Meal Time" : {
+
+    },
+    "mmol/L" : {
+
+    },
     "New record" : {
+
+    },
+    "Purpose" : {
 
     },
     "Records" : {
@@ -22,10 +49,19 @@
     "Settings" : {
 
     },
+    "Time" : {
+
+    },
     "Today" : {
 
     },
     "Today View" : {
+
+    },
+    "Units of Insulin" : {
+
+    },
+    "Unknown" : {
 
     }
   },

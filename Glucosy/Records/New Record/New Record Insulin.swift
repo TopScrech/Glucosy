@@ -24,6 +24,7 @@ struct NewRecordInsulin: View {
                     Spacer()
                     
                     TextField("", text: $unitsString)
+                        .multilineTextAlignment(.trailing)
                 }
                 
                 VStack(alignment: .leading) {

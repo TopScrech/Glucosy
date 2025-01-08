@@ -26,6 +26,7 @@ struct NewRecordCarbs: View {
                     Spacer()
                     
                     TextField("", text: $unitsString)
+                        .multilineTextAlignment(.trailing)
                 }
             }
         }

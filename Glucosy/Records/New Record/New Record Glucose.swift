@@ -27,6 +27,7 @@ struct NewRecordGlucose: View {
                     Spacer()
                     
                     TextField("", text: $unitsString)
+                        .multilineTextAlignment(.trailing)
                     
                     Text("mmol/L")
                 }

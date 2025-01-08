@@ -27,24 +27,6 @@ struct HomeView: View {
     }
 }
 
-#warning("Move to ScreckKit")
-public struct SidebarAdoptableTabView: ViewModifier {
-    public func body(content: Content) -> some View {
-        if #available(iOS 18, macOS 15, tvOS 18, visionOS 2, *) {
-            content
-                .tabViewStyle(.sidebarAdaptable)
-        } else {
-            content
-        }
-    }
-}
-
-public extension View {
-    func sidebarAdaptableTabView() -> some View {
-        modifier(SidebarAdoptableTabView())
-    }
-}
-
 #Preview {
     HomeView()
 }

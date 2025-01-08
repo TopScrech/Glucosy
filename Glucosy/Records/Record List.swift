@@ -55,7 +55,7 @@ struct RecordList: View {
             }
             
             Section {
-                NavigationLink("Carbs") {
+                NavigationLink("Carbohydrates") {
                     CarbsList()
                         .environment(vm)
                 }
@@ -76,14 +76,14 @@ struct RecordList: View {
                 Button {
                     sheetNewCarbsRecord = true
                 } label: {
-                    Label("Carbs", systemImage: "")
+                    Label("Carbohydrates", systemImage: "")
                 }
                 
                 Button {
                     sheetNewInsulinRecord = true
                     
                 } label: {
-                    Label("Insulin", systemImage: "syringe")
+                    Label("Insulin Delivery", systemImage: "syringe")
                 }
                 
                 Button {

@@ -16,11 +16,25 @@
     "Cancel" : {
 
     },
-    "Carbs" : {
-
+    "Carbohydrates" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Углеводы"
+          }
+        }
+      }
     },
     "Date" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата"
+          }
+        }
+      }
     },
     "Estimated HbA1c" : {
 
@@ -29,9 +43,6 @@
 
     },
     "Glucose" : {
-
-    },
-    "Insulin" : {
 
     },
     "Insulin Delivery" : {
@@ -53,10 +64,24 @@
 
     },
     "Settings" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
     },
     "Time" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время"
+          }
+        }
+      }
     },
     "Today" : {
 

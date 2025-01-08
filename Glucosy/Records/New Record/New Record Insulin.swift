@@ -42,7 +42,7 @@ struct NewRecordInsulin: View {
                 Text("Basal insulin refers to the insulin used to regulate blood glucose between meals including during sleep. Bolus insulin refers to the insulin used to regulate blood glucose at meals and or to acutely address high blood glucose")
             }
         }
-        .navigationTitle("Insulin")
+        .navigationTitle("Insulin Delivery")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {

@@ -76,7 +76,7 @@ struct RecordList: View {
                 Button {
                     sheetNewCarbsRecord = true
                 } label: {
-                    Label("Carbohydrates", systemImage: "")
+                    Label("Carbohydrates", systemImage: "fork.knife")
                 }
                 
                 Button {
@@ -89,7 +89,7 @@ struct RecordList: View {
                 Button {
                     sheetNewGlucoseRecord = true
                 } label: {
-                    Label("Blood Glucose", systemImage: "")
+                    Label("Blood Glucose", systemImage: "drop")
                 }
             } label: {
                 Image(systemName: "note.text.badge.plus")

@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct GlucoseCard: View {
+    @EnvironmentObject private var storage: ValueStorage
+    
     private let record: Glucose
     
     init(_ record: Glucose) {
@@ -18,12 +20,15 @@ struct GlucoseCard: View {
             VStack(alignment: .leading) {
                 Text(record.value)
                 
-                SourceName(record.source)
+                if storage.debugMode {
+                    SourceName(record.source)
+                }
             }
             
             Spacer()
             
             Text(record.date, format: .dateTime.hour().minute())
+                .secondary()
         }
     }
 }

@@ -2,6 +2,8 @@ import SwiftUI
 import HealthKit
 
 struct InsulinCard: View {
+    @EnvironmentObject private var storage: ValueStorage
+    
     private let record: Insulin
     
     init(_ record: Insulin) {
@@ -23,7 +25,7 @@ struct InsulinCard: View {
     private var sourceId: String {
         record.sample.sourceRevision.source.bundleIdentifier
     }
-        
+    
     var body: some View {
         HStack {
             SourceImage(sourceId)
@@ -36,12 +38,15 @@ struct InsulinCard: View {
                     Text(record.value)
                 }
                 
-                SourceName(record.source)
+                if storage.debugMode {
+                    SourceName(record.source)
+                }
             }
             
             Spacer()
             
             Text(record.date, format: .dateTime.hour().minute())
+                .secondary()
         }
     }
 }

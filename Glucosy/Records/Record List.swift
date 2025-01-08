@@ -21,7 +21,7 @@ struct RecordList: View {
             }
             
             Section {
-                NavigationLink("Glucose") {
+                NavigationLink("Blood Glucose") {
                     GlucoseList()
                         .environment(vm)
                 }

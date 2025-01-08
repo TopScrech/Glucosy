@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct AppSettings: View {
+    @EnvironmentObject private var storage: ValueStorage
+    
     var body: some View {
         List {
-            Text("Settings")
+            Toggle("Debug mode", isOn: $storage.debugMode)
         }
         .navigationTitle("Settings")
     }
@@ -11,4 +13,5 @@ struct AppSettings: View {
 
 #Preview {
     AppSettings()
+        .environmentObject(ValueStorage())
 }

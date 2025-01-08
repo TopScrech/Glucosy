@@ -11,6 +11,7 @@ struct InsulinList: View {
                 InsulinCard(record)
             }
         }
+        .navigationTitle("Insulin Delivery")
         .sheet($sheetNewRecord) {
             NewRecordSheet(.insulin)
         }

@@ -11,6 +11,7 @@ struct CarbsList: View {
                 CarbsCard(record)
             }
         }
+        .navigationTitle("Carbohydrates")
         .sheet($sheetNewRecord) {
             NewRecordSheet(.carbs)
         }

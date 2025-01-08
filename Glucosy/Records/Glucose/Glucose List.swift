@@ -11,6 +11,7 @@ struct GlucoseList: View {
                 GlucoseCard(record)
             }
         }
+        .navigationTitle("Blood Glucose")
         .sheet($sheetNewRecord) {
             NewRecordSheet(.glucose)
         }

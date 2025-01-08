@@ -44,7 +44,7 @@
 		F3B2CD4C2CE253CA00743323 /* Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD4B2CE253CA00743323 /* Insulin.swift */; };
 		F3B2CD522CE2597B00743323 /* New Record Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD512CE2597B00743323 /* New Record Sheet.swift */; };
 		F3B58A3A2CE354F0000FB1BE /* Source Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B58A392CE354F0000FB1BE /* Source Image.swift */; };
-		F3F8ED502D2EA08A004A2638 /* ValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F8ED4F2D2EA08A004A2638 /* ValueStorage.swift */; };
+		F3F8ED502D2EA08A004A2638 /* Value Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F8ED4F2D2EA08A004A2638 /* Value Storage.swift */; };
 		F3F8ED9A2D2EA2FE004A2638 /* watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F3F8EDA62D2EA303004A2638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F8EDA12D2EA303004A2638 /* Assets.xcassets */; };
 		F3F8EDA72D2EA303004A2638 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F8EDA22D2EA303004A2638 /* ContentView.swift */; };
@@ -113,7 +113,7 @@
 		F3B2CD4B2CE253CA00743323 /* Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insulin.swift; sourceTree = "<group>"; };
 		F3B2CD512CE2597B00743323 /* New Record Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Sheet.swift"; sourceTree = "<group>"; };
 		F3B58A392CE354F0000FB1BE /* Source Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source Image.swift"; sourceTree = "<group>"; };
-		F3F8ED4F2D2EA08A004A2638 /* ValueStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStorage.swift; sourceTree = "<group>"; };
+		F3F8ED4F2D2EA08A004A2638 /* Value Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Value Storage.swift"; sourceTree = "<group>"; };
 		F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F8EDA12D2EA303004A2638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3F8EDA22D2EA303004A2638 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				F32B20912CD5824400925351 /* Glucosy.swift */,
-				F3F8ED4F2D2EA08A004A2638 /* ValueStorage.swift */,
+				F3F8ED4F2D2EA08A004A2638 /* Value Storage.swift */,
 				F32B20B12CD58C6D00925351 /* Nav */,
 				F32B20972CD5827D00925351 /* Info.plist */,
 				F32B208E2CD5824400925351 /* Assets.xcassets */,
@@ -408,7 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3F8ED502D2EA08A004A2638 /* ValueStorage.swift in Sources */,
+				F3F8ED502D2EA08A004A2638 /* Value Storage.swift in Sources */,
 				F32B20932CD5824400925351 /* Home View.swift in Sources */,
 				F32B20AE2CD58C5E00925351 /* Today View.swift in Sources */,
 				F3B2CD212CE1773900743323 /* Carohydrates.swift in Sources */,

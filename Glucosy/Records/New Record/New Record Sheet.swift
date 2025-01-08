@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct NewRecordSheet: View {
-    
     private let recorType: RecorType
     
     init(_ recorType: RecorType) {

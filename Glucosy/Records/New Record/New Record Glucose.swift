@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct NewRecordGlucose: View {
+    @Environment(\.dismiss) private var dismiss
+    
     @State private var date = Date()
     @State private var unitsString = ""
     @State private var mealTime: MealType = .unspecified
@@ -13,11 +15,14 @@ struct NewRecordGlucose: View {
         List {
             Section {
                 DatePicker("Date", selection: $date, displayedComponents: .date)
+                    .secondary()
                 
                 DatePicker("Time", selection: $date, displayedComponents: .hourAndMinute)
+                    .secondary()
                 
                 HStack {
                     Text("Blood Glucose")
+                        .secondary()
                     
                     Spacer()
                     
@@ -32,6 +37,23 @@ struct NewRecordGlucose: View {
                             .tag(type)
                     }
                 }
+                .secondary()
+            }
+        }
+        .navigationTitle("Blood Glucose")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Cancel") {
+                    dismiss()
+                }
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Add") {
+                    
+                }
+                .bold()
             }
         }
     }

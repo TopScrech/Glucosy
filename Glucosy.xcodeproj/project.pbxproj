@@ -18,7 +18,7 @@
 		F32A1DFB2D2EEC9B008AEB2F /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF42D2EEC9B008AEB2F /* AppIntent.swift */; };
 		F32A1DFC2D2EEC9B008AEB2F /* Glucosy Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF62D2EEC9B008AEB2F /* Glucosy Widgets.swift */; };
 		F32A1DFD2D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF72D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift */; };
-		F32A1DFE2D2EEC9B008AEB2F /* GlucosyWidgetsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF82D2EEC9B008AEB2F /* GlucosyWidgetsControl.swift */; };
+		F32A1DFE2D2EEC9B008AEB2F /* Glucosy Widgets Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF82D2EEC9B008AEB2F /* Glucosy Widgets Control.swift */; };
 		F32A1DFF2D2EEC9B008AEB2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F32A1DF52D2EEC9B008AEB2F /* Assets.xcassets */; };
 		F32B20932CD5824400925351 /* Home View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B208F2CD5824400925351 /* Home View.swift */; };
 		F32B20942CD5824400925351 /* Glucosy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B20912CD5824400925351 /* Glucosy.swift */; };
@@ -114,7 +114,7 @@
 		F32A1DF52D2EEC9B008AEB2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F32A1DF62D2EEC9B008AEB2F /* Glucosy Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widgets.swift"; sourceTree = "<group>"; };
 		F32A1DF72D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widgets Bundle.swift"; sourceTree = "<group>"; };
-		F32A1DF82D2EEC9B008AEB2F /* GlucosyWidgetsControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucosyWidgetsControl.swift; sourceTree = "<group>"; };
+		F32A1DF82D2EEC9B008AEB2F /* Glucosy Widgets Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widgets Control.swift"; sourceTree = "<group>"; };
 		F32A1DF92D2EEC9B008AEB2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F32B207A2CD5823B00925351 /* Glucosy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glucosy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32B208E2CD5824400925351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 				F32A1DF52D2EEC9B008AEB2F /* Assets.xcassets */,
 				F32A1DF42D2EEC9B008AEB2F /* AppIntent.swift */,
 				F32A1DF62D2EEC9B008AEB2F /* Glucosy Widgets.swift */,
-				F32A1DF82D2EEC9B008AEB2F /* GlucosyWidgetsControl.swift */,
+				F32A1DF82D2EEC9B008AEB2F /* Glucosy Widgets Control.swift */,
 				F32A1DF92D2EEC9B008AEB2F /* Info.plist */,
 			);
 			path = "Glucosy Widgets";
@@ -437,7 +437,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 1620;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					F32A1DD92D2EEBD5008AEB2F = {
 						CreatedOnToolsVersion = 16.2;
@@ -513,7 +513,7 @@
 				F32A1DFB2D2EEC9B008AEB2F /* AppIntent.swift in Sources */,
 				F32A1DFC2D2EEC9B008AEB2F /* Glucosy Widgets.swift in Sources */,
 				F32A1DFD2D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift in Sources */,
-				F32A1DFE2D2EEC9B008AEB2F /* GlucosyWidgetsControl.swift in Sources */,
+				F32A1DFE2D2EEC9B008AEB2F /* Glucosy Widgets Control.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,7 +589,6 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = 8FQUA2F388;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Glucosy Widgets/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Glucosy Widgets";
@@ -618,7 +617,6 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = 8FQUA2F388;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Glucosy Widgets/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Glucosy Widgets";
@@ -646,6 +644,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -675,7 +674,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8FQUA2F388;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -708,6 +709,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -737,7 +739,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8FQUA2F388;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -765,7 +769,7 @@
 				CODE_SIGN_ENTITLEMENTS = Glucosy/Glucosy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = 8FQUA2F388;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -808,7 +812,7 @@
 				CODE_SIGN_ENTITLEMENTS = Glucosy/Glucosy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = 8FQUA2F388;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -850,7 +854,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = 8FQUA2F388;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
@@ -880,7 +883,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = 8FQUA2F388;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;

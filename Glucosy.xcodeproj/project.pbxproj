@@ -576,7 +576,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.topscrech.Glucosy.Glucosy-Widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.topscrech.Glucosy.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -603,7 +603,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.topscrech.Glucosy.Glucosy-Widgets";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.topscrech.Glucosy.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

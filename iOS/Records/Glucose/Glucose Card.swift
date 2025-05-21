@@ -30,6 +30,16 @@ struct GlucoseCard: View {
             Text(record.date, format: .dateTime.hour().minute())
                 .secondary()
         }
+#if DEBUG
+        .contextMenu {
+            Button {
+                
+            } label: {
+                Text("Source")
+                Text(record.source)
+            }
+        }
+#endif
     }
 }
 

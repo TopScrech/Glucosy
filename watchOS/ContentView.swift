@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Glucosy watchOS Watch App
-//
-//  Created by Sergei Saliukov on 8/1/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {

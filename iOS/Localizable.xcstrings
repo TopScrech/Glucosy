@@ -57,10 +57,16 @@
     "New record" : {
 
     },
+    "No data read yet" : {
+
+    },
     "Purpose" : {
 
     },
     "Records" : {
+
+    },
+    "Scan NovoPen" : {
 
     },
     "Settings" : {
@@ -84,9 +90,6 @@
       }
     },
     "Today" : {
-
-    },
-    "Today View" : {
 
     },
     "Units of Insulin" : {

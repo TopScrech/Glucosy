@@ -9,11 +9,11 @@ final class HealthKit {
     var store: HKHealthStore?
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L unavailible
     
-    let glucoseType:         HKQuantityType? = .bloodGlucose()
-    let insulinType:         HKQuantityType? = .insulinDelivery()
-    let carbsType:           HKQuantityType? = .dietaryCarbohydrates()
-    //    let bodyMassType:        HKQuantityType? = .bodyMass()
-    //    let bmiType:             HKQuantityType? = .bodyMassIndex()
+    let glucoseType:  HKQuantityType? = .bloodGlucose()
+    let insulinType:  HKQuantityType? = .insulinDelivery()
+    let carbsType:    HKQuantityType? = .dietaryCarbohydrates()
+    let bodyMassType: HKQuantityType? = .bodyMass()
+    let bmiType:      HKQuantityType? = .bodyMassIndex()
     
     init() {
         if isAvailable {

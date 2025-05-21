@@ -125,6 +125,7 @@
 		F32B20A72CD5859000925351 /* Record List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Record List.swift"; sourceTree = "<group>"; };
 		F32B20A92CD5859700925351 /* App Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Settings.swift"; sourceTree = "<group>"; };
 		F32B20AC2CD58C5E00925351 /* Today View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Today View.swift"; sourceTree = "<group>"; };
+		F34162042DDE8B3D009EEAE0 /* Widgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widgets.entitlements; sourceTree = "<group>"; };
 		F3B2CD1E2CE1760900743323 /* HealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		F3B2CD202CE1773900743323 /* Carohydrates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carohydrates.swift; sourceTree = "<group>"; };
 		F3B2CD222CE1784500743323 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
@@ -203,6 +204,7 @@
 		F32A1DFA2D2EEC9B008AEB2F /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				F34162042DDE8B3D009EEAE0 /* Widgets.entitlements */,
 				F32A1DF72D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift */,
 				F32A1DF92D2EEC9B008AEB2F /* WIdgets.plist */,
 				F32A1DF52D2EEC9B008AEB2F /* Assets.xcassets */,
@@ -564,11 +566,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Widgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = 8FQUA2F388;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Widgets.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Glucosy Widgets";
+				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -578,6 +583,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.topscrech.Glucosy.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -591,11 +597,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = Widgets/Widgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = 8FQUA2F388;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Widgets.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Glucosy Widgets";
+				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -605,6 +614,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dev.topscrech.Glucosy.Widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

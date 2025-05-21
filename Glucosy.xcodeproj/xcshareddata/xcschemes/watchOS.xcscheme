@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F32B20792CD5823B00925351"
-               BuildableName = "Glucosy.app"
-               BlueprintName = "Glucosy"
+               BuildableName = "iOS.app"
+               BlueprintName = "iOS"
                ReferencedContainer = "container:Glucosy.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

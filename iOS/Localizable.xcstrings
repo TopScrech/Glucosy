@@ -37,7 +37,14 @@
       }
     },
     "Debug mode" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим отладки"
+          }
+        }
+      }
     },
     "Estimated HbA1c" : {
 
@@ -61,7 +68,14 @@
 
     },
     "Records" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записи"
+          }
+        }
+      }
     },
     "Settings" : {
       "localizations" : {
@@ -74,7 +88,14 @@
       }
     },
     "Source" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Источник"
+          }
+        }
+      }
     },
     "Time" : {
       "localizations" : {
@@ -87,10 +108,24 @@
       }
     },
     "Today" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сегодня"
+          }
+        }
+      }
     },
     "Units of Insulin" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Единицы измерения инсулина"
+          }
+        }
+      }
     },
     "Unknown" : {
 

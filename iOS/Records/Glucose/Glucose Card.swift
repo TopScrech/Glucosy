@@ -33,10 +33,13 @@ struct GlucoseCard: View {
 #if DEBUG
         .contextMenu {
             Button {
-                
+                UIPasteboard.general.string = record.source
             } label: {
-                Text("Source")
+                Text("Copy Source")
+                
                 Text(record.source)
+                
+                Image(systemName: "doc.on.doc")
             }
         }
 #endif

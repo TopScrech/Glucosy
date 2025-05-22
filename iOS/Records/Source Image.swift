@@ -10,6 +10,7 @@ struct SourceImage: View {
     private var image: ImageResource? {
         switch source {
         case "com.apple.Health": .appleHealth
+        case "com.i-sens.SmartLog2": .smartLog
         default: nil
         }
     }
@@ -19,6 +20,7 @@ struct SourceImage: View {
             if let image {
                 Image(image)
                     .resizable()
+                    .clipShape(.rect(cornerRadius: 8))
             } else {
                 Image(systemName: "questionmark.app.dashed")
             }

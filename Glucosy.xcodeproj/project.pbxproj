@@ -268,6 +268,7 @@
 				F32B20A72CD5859000925351 /* Record List.swift */,
 				F3B2CD1E2CE1760900743323 /* HealthKit.swift */,
 				F3B2CD452CE2154200743323 /* Source Name.swift */,
+				F3B58A392CE354F0000FB1BE /* Source Image.swift */,
 				F322ADA52D2E942A00EAC12A /* New Record */,
 				F3B2CD502CE2552200743323 /* Glucose */,
 				F3B2CD4F2CE2551A00743323 /* Carbs */,
@@ -324,7 +325,6 @@
 			children = (
 				F3B2CD412CE214C700743323 /* Insulin List.swift */,
 				F3B2CD472CE2158200743323 /* Insulin Card.swift */,
-				F3B58A392CE354F0000FB1BE /* Source Image.swift */,
 			);
 			path = Insulin;
 			sourceTree = "<group>";

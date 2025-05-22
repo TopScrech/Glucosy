@@ -26,6 +26,9 @@
         }
       }
     },
+    "Copy Source" : {
+
+    },
     "Date" : {
       "localizations" : {
         "ru" : {
@@ -88,6 +91,7 @@
       }
     },
     "Source" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

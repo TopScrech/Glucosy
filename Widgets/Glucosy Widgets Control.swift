@@ -4,7 +4,7 @@ import AppIntents
 
 @available(iOS 18, *)
 struct GlucosyWidgetsControl: ControlWidget {
-    static let kind = "dev.topscrech.Glucosy.Glucosy Widgets"
+    private static let kind = "dev.topscrech.Glucosy.Glucosy Widgets"
     
     var body: some ControlWidgetConfiguration {
         AppIntentControlConfiguration(

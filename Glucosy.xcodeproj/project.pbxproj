@@ -17,7 +17,7 @@
 		F32A1DDD2D2EEBD5008AEB2F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32A1DDC2D2EEBD5008AEB2F /* WidgetKit.framework */; };
 		F32A1DDF2D2EEBD5008AEB2F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32A1DDE2D2EEBD5008AEB2F /* SwiftUI.framework */; };
 		F32A1DEE2D2EEBD5008AEB2F /* Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F32A1DDA2D2EEBD5008AEB2F /* Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		F32A1DFB2D2EEC9B008AEB2F /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF42D2EEC9B008AEB2F /* AppIntent.swift */; };
+		F32A1DFB2D2EEC9B008AEB2F /* App Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF42D2EEC9B008AEB2F /* App Intent.swift */; };
 		F32A1DFC2D2EEC9B008AEB2F /* Glucosy Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF62D2EEC9B008AEB2F /* Glucosy Widgets.swift */; };
 		F32A1DFD2D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF72D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift */; };
 		F32A1DFE2D2EEC9B008AEB2F /* Glucosy Widgets Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32A1DF82D2EEC9B008AEB2F /* Glucosy Widgets Control.swift */; };
@@ -110,7 +110,7 @@
 		F32A1DDA2D2EEBD5008AEB2F /* Widgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32A1DDC2D2EEBD5008AEB2F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		F32A1DDE2D2EEBD5008AEB2F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		F32A1DF42D2EEC9B008AEB2F /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		F32A1DF42D2EEC9B008AEB2F /* App Intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Intent.swift"; sourceTree = "<group>"; };
 		F32A1DF52D2EEC9B008AEB2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F32A1DF62D2EEC9B008AEB2F /* Glucosy Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widgets.swift"; sourceTree = "<group>"; };
 		F32A1DF72D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Glucosy Widgets Bundle.swift"; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 				F32A1DF92D2EEC9B008AEB2F /* WIdgets.plist */,
 				F34162042DDE8B3D009EEAE0 /* Widgets.entitlements */,
 				F32A1DF52D2EEC9B008AEB2F /* Assets.xcassets */,
-				F32A1DF42D2EEC9B008AEB2F /* AppIntent.swift */,
+				F32A1DF42D2EEC9B008AEB2F /* App Intent.swift */,
 				F32A1DF62D2EEC9B008AEB2F /* Glucosy Widgets.swift */,
 				F32A1DF82D2EEC9B008AEB2F /* Glucosy Widgets Control.swift */,
 			);
@@ -500,7 +500,7 @@
 		F32A1DD62D2EEBD5008AEB2F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
-				F32A1DFB2D2EEC9B008AEB2F /* AppIntent.swift in Sources */,
+				F32A1DFB2D2EEC9B008AEB2F /* App Intent.swift in Sources */,
 				F32A1DFC2D2EEC9B008AEB2F /* Glucosy Widgets.swift in Sources */,
 				F32A1DFD2D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift in Sources */,
 				F32A1DFE2D2EEC9B008AEB2F /* Glucosy Widgets Control.swift in Sources */,

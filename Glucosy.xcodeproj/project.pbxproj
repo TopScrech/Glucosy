@@ -207,9 +207,9 @@
 		F32A1DFA2D2EEC9B008AEB2F /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				F34162042DDE8B3D009EEAE0 /* Widgets.entitlements */,
 				F32A1DF72D2EEC9B008AEB2F /* Glucosy Widgets Bundle.swift */,
 				F32A1DF92D2EEC9B008AEB2F /* WIdgets.plist */,
+				F34162042DDE8B3D009EEAE0 /* Widgets.entitlements */,
 				F32A1DF52D2EEC9B008AEB2F /* Assets.xcassets */,
 				F32A1DF42D2EEC9B008AEB2F /* AppIntent.swift */,
 				F32A1DF62D2EEC9B008AEB2F /* Glucosy Widgets.swift */,

@@ -41,7 +41,11 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct GlucosyWidgetsEntryView : View {
-    var entry: Provider.Entry
+    private let entry: Provider.Entry
+    
+    init(_ entry: Provider.Entry) {
+        self.entry = entry
+    }
     
     var body: some View {
         VStack {
@@ -55,11 +59,15 @@ struct GlucosyWidgetsEntryView : View {
 }
 
 struct GlucosyWidgets: Widget {
-    let kind: String = "Glucosy_Widgets"
+    private let kind = "Glucosy_Widgets"
     
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
-            GlucosyWidgetsEntryView(entry: entry)
+        AppIntentConfiguration(
+            kind: kind,
+            intent: ConfigurationAppIntent.self,
+            provider: Provider()
+        ) { entry in
+            GlucosyWidgetsEntryView(entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
     }

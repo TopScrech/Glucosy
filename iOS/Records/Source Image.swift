@@ -11,6 +11,9 @@ struct SourceImage: View {
         switch source {
         case "com.apple.Health": .appleHealth
         case "com.i-sens.SmartLog2": .smartLog
+        case "dev.topscrech.Glucosy": .glucosy
+        case "dev.topscrech.DiaBLE": .diable
+        case "com.apple.shortcuts": .shortcuts
         default: nil
         }
     }

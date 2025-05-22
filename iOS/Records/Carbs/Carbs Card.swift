@@ -30,6 +30,19 @@ struct CarbsCard: View {
             Text(record.date, format: .dateTime.hour().minute())
                 .secondary()
         }
+#if DEBUG
+        .contextMenu {
+            Button {
+                UIPasteboard.general.string = record.source
+            } label: {
+                Text("Copy Source")
+                
+                Text(record.source)
+                
+                Image(systemName: "doc.on.doc")
+            }
+        }
+#endif
     }
 }
 

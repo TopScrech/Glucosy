@@ -8,15 +8,17 @@ struct NewRecordSheet: View {
     }
     
     var body: some View {
-        switch recorType {
-        case .insulin:
-            NewRecordInsulin()
-            
-        case .glucose:
-            NewRecordGlucose()
-            
-        case .carbs:
-            NewRecordCarbs()
+        NavigationView {
+            switch recorType {
+            case .insulin:
+                NewRecordInsulin()
+                
+            case .glucose:
+                NewRecordGlucose()
+                
+            case .carbs:
+                NewRecordCarbs()
+            }
         }
     }
 }

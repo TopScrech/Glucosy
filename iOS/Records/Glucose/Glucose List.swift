@@ -1,4 +1,5 @@
 import ScrechKit
+import Algorithms
 
 struct GlucoseList: View {
     @Environment(HealthKit.self) private var vm
@@ -6,20 +7,40 @@ struct GlucoseList: View {
     @State private var sheetNewRecord = false
     
     var body: some View {
+        let dayChunks = vm.glucoseRecords.chunked { lhs, rhs in
+            Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
+        }
+        
         List {
-            ForEach(vm.glucoseRecords) { record in
-                GlucoseCard(record)
+            ForEach(dayChunks.indices, id: \.self) { index in
+                let chunk = dayChunks[index]
+                
+                if let first = chunk.first {
+                    Section(formattedDate(first.date)) {
+                        ForEach(chunk) { record in
+                            GlucoseCard(record)
+                        }
+                    }
+                }
             }
         }
         .navigationTitle("Blood Glucose")
         .sheet($sheetNewRecord) {
             NewRecordSheet(.glucose)
+                .presentationDetents([.medium])
         }
         .toolbar {
             SFButton("note.text.badge.plus") {
                 sheetNewRecord = true
             }
         }
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMMM"
+        
+        return formatter.string(from: date)
     }
 }
 

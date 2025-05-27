@@ -33,7 +33,7 @@ struct NewRecordGlucose: View {
                 }
                 
                 Picker("Meal Time", selection: $mealTime) {
-                    ForEach(MealType.allCases, id: \.self) { type in
+                    ForEach(MealType.allCases) { type in
                         Text(type.rawValue)
                             .tag(type)
                     }
@@ -45,7 +45,7 @@ struct NewRecordGlucose: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button("Cancel") {
+                Button("Cancel", role: .destructive) {
                     dismiss()
                 }
             }

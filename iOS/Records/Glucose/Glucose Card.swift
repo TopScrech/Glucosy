@@ -14,11 +14,12 @@ struct GlucoseCard: View {
     }
     
     var body: some View {
-        HStack {
+        HStack(spacing: 16) {
             SourceImage(sourceId)
             
             VStack(alignment: .leading) {
                 Text(record.value)
+                    .title3(.semibold, design: .rounded)
                 
                 if storage.debugMode {
                     SourceName(record.source)

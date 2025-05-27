@@ -18,7 +18,7 @@ struct CarbsCard: View {
             SourceImage(sourceId)
             
             VStack(alignment: .leading) {
-                Text(record.value)
+                Text(Int(record.value))
                 
                 if storage.debugMode {
                     SourceName(record.source)

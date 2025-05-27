@@ -31,7 +31,7 @@ struct NewRecordInsulin: View {
                     Text("Purpose")
                     
                     Picker("Purpose", selection: $purpose) {
-                        ForEach(InsulinType.allCases, id: \.self) { type in
+                        ForEach(InsulinType.allCases) { type in
                             Text(type.rawValue)
                                 .tag(type)
                         }

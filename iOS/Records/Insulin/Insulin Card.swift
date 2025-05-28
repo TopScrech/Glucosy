@@ -35,7 +35,7 @@ struct InsulinCard: View {
                     Image(systemName: icon)
                         .foregroundStyle(color)
                     
-                    Text(record.value)
+                    Text(Utils.formatNumber(record.value))
                 }
                 
                 if storage.debugMode {

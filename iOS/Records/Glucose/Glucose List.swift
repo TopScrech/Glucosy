@@ -16,7 +16,7 @@ struct GlucoseList: View {
                 let chunk = dayChunks[index]
                 
                 if let first = chunk.first {
-                    Section(formattedDate(first.date)) {
+                    Section(Utils.formattedDate(first.date)) {
                         ForEach(chunk) { record in
                             GlucoseCard(record)
                         }
@@ -34,13 +34,6 @@ struct GlucoseList: View {
                 sheetNewRecord = true
             }
         }
-    }
-    
-    private func formattedDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d MMMM"
-        
-        return formatter.string(from: date)
     }
 }
 

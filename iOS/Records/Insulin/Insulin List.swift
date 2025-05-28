@@ -6,9 +6,21 @@ struct InsulinList: View {
     @State private var sheetNewRecord = false
     
     var body: some View {
+        let dayChunks = vm.insulinRecords.chunked { lhs, rhs in
+            Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
+        }
+        
         List {
-            ForEach(vm.insulinRecords) { record in
-                InsulinCard(record)
+            ForEach(dayChunks.indices, id: \.self) { index in
+                let chunk = dayChunks[index]
+                
+                if let first = chunk.first {
+                    Section(Utils.formattedDate(first.date)) {
+                        ForEach(chunk) { record in
+                            InsulinCard(record)
+                        }
+                    }
+                }
             }
         }
         .navigationTitle("Insulin Delivery")

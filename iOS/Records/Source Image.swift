@@ -24,12 +24,12 @@ struct SourceImage: View {
             if let image {
                 Image(image)
                     .resizable()
-                    .clipShape(.rect(cornerRadius: 8))
+                    .clipShape(.rect(cornerRadius: 4))
             } else {
                 Image(systemName: "questionmark.app.dashed")
             }
         }
-        .frame(width: 32, height: 32)
+        .frame(width: 16, height: 16)
     }
 }
 

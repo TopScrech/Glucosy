@@ -27,26 +27,29 @@ struct InsulinCard: View {
     }
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                HStack(spacing: 3) {
-                    Image(systemName: icon)
-                        .foregroundStyle(color)
-                    
-                    Text(Utils.formatNumber(record.value))
-                }
+        VStack {
+            VStack {
+                Image(systemName: icon)
+                    .foregroundStyle(color)
+                    .fontSize(30)
+                
+                Text(Utils.formatNumber(record.value))
+                    .title3(.semibold, design: .rounded)
+            }
+            .padding(10)
+            .background(.ultraThinMaterial, in: .rect(cornerRadius: 16))
+            .padding(1)
+            .background(color, in: .rect(cornerRadius: 17))
+            
+            HStack(spacing: 4) {
+                Text(record.date, format: .dateTime.hour().minute())
+                    .secondary()
+                    .caption2()
                 
                 if storage.debugMode {
-                    SourceName(record.source)
+                    SourceImage(sourceId)
                 }
             }
-            
-            Spacer()
-            
-            Text(record.date, format: .dateTime.hour().minute())
-                .secondary()
-            
-            SourceImage(sourceId)
         }
 #if DEBUG
         .contextMenu {

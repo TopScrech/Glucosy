@@ -10,14 +10,25 @@ struct InsulinList: View {
             Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
         }
         
-        List {
-            ForEach(dayChunks.indices, id: \.self) { index in
-                let chunk = dayChunks[index]
-                
-                if let first = chunk.first {
-                    Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk) { record in
-                            InsulinCard(record)
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 16) {
+                ForEach(dayChunks.indices, id: \.self) { index in
+                    let chunk = dayChunks[index]
+                    
+                    if let first = chunk.first {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(Utils.formattedDate(first.date))
+                                .title3()
+                                .padding(.horizontal)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                LazyHStack(spacing: 12) {
+                                    ForEach(chunk.reversed()) { record in
+                                        InsulinCard(record)
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
                         }
                     }
                 }

@@ -64,19 +64,19 @@ struct InsulinCard: View {
     }
 }
 
-//#Preview {
-//    List {
-//        InsulinCard(
-//            Insulin(
-//                value: 16,
-//                type: .basal,
-//                sample: HKQuantitySample(
-//                    type: HKQuantityType.quantityType(forIdentifier: .insulinDelivery)!,
-//                    quantity: HKQuantity(unit: HKUnit.internationalUnit(), doubleValue: 5),
-//                    start: Date(),
-//                    end: Date()
-//                )
-//            )
-//        )
-//    }
-//}
+#Preview {
+    List {
+        InsulinCard(
+            Insulin(
+                value: 16,
+                type: .basal,
+                sample: .init(
+                    type: .quantityType(forIdentifier: .insulinDelivery)!,
+                    quantity: .init(unit: .internationalUnit(), doubleValue: 5),
+                    start: Date(),
+                    end: Date()
+                )
+            )
+        )
+    }
+}

@@ -28,8 +28,6 @@ struct InsulinCard: View {
     
     var body: some View {
         HStack {
-            SourceImage(sourceId)
-            
             VStack(alignment: .leading) {
                 HStack(spacing: 3) {
                     Image(systemName: icon)
@@ -47,6 +45,8 @@ struct InsulinCard: View {
             
             Text(record.date, format: .dateTime.hour().minute())
                 .secondary()
+            
+            SourceImage(sourceId)
         }
 #if DEBUG
         .contextMenu {

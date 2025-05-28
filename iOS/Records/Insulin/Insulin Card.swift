@@ -79,4 +79,5 @@ struct InsulinCard: View {
             )
         )
     }
+    .environmentObject(ValueStorage())
 }

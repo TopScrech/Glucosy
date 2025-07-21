@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F314C8242E2E4D9A00F63B6A /* Default.icon in Resources */ = {isa = PBXBuildFile; fileRef = F314C8232E2E4D9A00F63B6A /* Default.icon */; };
 		F322ADA72D2E943900EAC12A /* New Record Insulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADA62D2E943900EAC12A /* New Record Insulin.swift */; };
 		F322ADA92D2E961300EAC12A /* New Record Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADA82D2E961300EAC12A /* New Record Glucose.swift */; };
 		F322ADAB2D2E961500EAC12A /* New Record Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADAA2D2E961500EAC12A /* New Record Carbs.swift */; };
@@ -100,6 +101,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F314C8232E2E4D9A00F63B6A /* Default.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Default.icon; sourceTree = "<group>"; };
 		F322ADA62D2E943900EAC12A /* New Record Insulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Insulin.swift"; sourceTree = "<group>"; };
 		F322ADA82D2E961300EAC12A /* New Record Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Glucose.swift"; sourceTree = "<group>"; };
 		F322ADAA2D2E961500EAC12A /* New Record Carbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "New Record Carbs.swift"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				F32B208E2CD5824400925351 /* Assets.xcassets */,
 				F34345D12DDF14F00033A7DE /* Sources.xcassets */,
 				F32B20982CD5830200925351 /* Localizable.xcstrings */,
+				F314C8232E2E4D9A00F63B6A /* Default.icon */,
 				F32B208F2CD5824400925351 /* Home View.swift */,
 				F3D10C6E2DE714FE003122EC /* Utils.swift */,
 				F32B20AF2CD58C6100925351 /* Records */,
@@ -479,6 +482,7 @@
 		F32B20782CD5823B00925351 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				F314C8242E2E4D9A00F63B6A /* Default.icon in Resources */,
 				F32B20992CD5830200925351 /* Localizable.xcstrings in Resources */,
 				F34345D22DDF14F00033A7DE /* Sources.xcassets in Resources */,
 				F32B20962CD5824400925351 /* Assets.xcassets in Resources */,

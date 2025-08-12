@@ -2,7 +2,7 @@ import SwiftUI
 import HealthKit
 
 struct InsulinCard: View {
-    @EnvironmentObject private var storage: ValueStorage
+    @EnvironmentObject private var store: ValueStore
     
     private let record: Insulin
     
@@ -46,7 +46,7 @@ struct InsulinCard: View {
                     .secondary()
                     .caption2()
                 
-                if storage.debugMode {
+                if store.debugMode {
                     SourceImage(sourceId)
                 }
             }
@@ -82,5 +82,5 @@ struct InsulinCard: View {
             )
         )
     }
-    .environmentObject(ValueStorage())
+    .environmentObject(ValueStore())
 }

@@ -1,5 +1,5 @@
 import SwiftUI
 
-final class ValueStorage: ObservableObject {
+final class ValueStore: ObservableObject {
     @AppStorage("debug_mode") var debugMode = false
 }

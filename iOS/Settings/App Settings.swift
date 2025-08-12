@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct AppSettings: View {
-    @EnvironmentObject private var storage: ValueStorage
+    @EnvironmentObject private var store: ValueStore
     
     var body: some View {
         List {
-            Toggle("Debug mode", isOn: $storage.debugMode)
+            Toggle("Debug mode", isOn: $store.debugMode)
         }
         .navigationTitle("Settings")
     }
@@ -13,5 +13,5 @@ struct AppSettings: View {
 
 #Preview {
     AppSettings()
-        .environmentObject(ValueStorage())
+        .environmentObject(ValueStore())
 }

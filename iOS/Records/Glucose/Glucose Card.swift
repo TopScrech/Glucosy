@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct GlucoseCard: View {
-    @EnvironmentObject private var storage: ValueStorage
+    @EnvironmentObject private var store: ValueStore
     
     private let record: Glucose
     
@@ -21,7 +21,7 @@ struct GlucoseCard: View {
                 Text(record.value)
                     .title3(.semibold, design: .rounded)
                 
-                if storage.debugMode {
+                if store.debugMode {
                     SourceName(record.source)
                 }
             }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CarbsCard: View {
-    @EnvironmentObject private var storage: ValueStorage
+    @EnvironmentObject private var store: ValueStore
     
     private let record: Carbohydrates
     
@@ -20,7 +20,7 @@ struct CarbsCard: View {
             VStack(alignment: .leading) {
                 Text(Int(record.value))
                 
-                if storage.debugMode {
+                if store.debugMode {
                     SourceName(record.source)
                 }
             }

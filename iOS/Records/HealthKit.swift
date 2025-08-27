@@ -26,15 +26,11 @@ final class HealthKit {
     }
     
     private var dataTypes: Set<HKQuantityType> {
-        guard
-            let glucoseType,
-            let insulinType,
-            let carbsType
-        else {
-            return []
+        if let glucoseType, let insulinType, let carbsType {
+            Set([glucoseType, insulinType, carbsType])
+        } else {
+            []
         }
-        
-        return Set([glucoseType, insulinType, carbsType])
     }
     
     func authorize(_ handler: @escaping (Bool) -> Void) {
@@ -58,7 +54,6 @@ final class HealthKit {
     
     func getAuthorizationState(_ handler: @escaping (Bool) -> Void) {
         store?.getRequestStatusForPermission(dataTypes) { status, error in
-            
             guard let error else {
                 return handler(status == .unnecessary)
             }

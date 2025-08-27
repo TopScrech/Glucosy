@@ -6,6 +6,7 @@ struct RecordList: View {
     @State private var sheetNewInsulinRecord = false
     @State private var sheetNewCarbsRecord = false
     @State private var sheetNewGlucoseRecord = false
+    @State private var sheetNewWeightRecord = false
     
     var body: some View {
         List {
@@ -26,10 +27,8 @@ struct RecordList: View {
                         .environment(vm)
                 }
                 .contextMenu {
-                    Button {
+                    Button("New record", systemImage: "plus") {
                         sheetNewGlucoseRecord = true
-                    } label: {
-                        Label("New record", systemImage: "plus")
                     }
                 }
                 .sheet($sheetNewGlucoseRecord) {
@@ -43,10 +42,8 @@ struct RecordList: View {
                         .environment(vm)
                 }
                 .contextMenu {
-                    Button {
+                    Button("New record", systemImage: "plus") {
                         sheetNewInsulinRecord = true
-                    } label: {
-                        Label("New record", systemImage: "plus")
                     }
                 }
                 .sheet($sheetNewInsulinRecord) {
@@ -60,36 +57,42 @@ struct RecordList: View {
                         .environment(vm)
                 }
                 .contextMenu {
-                    Button {
+                    Button("New record", systemImage: "plus") {
                         sheetNewCarbsRecord = true
-                    } label: {
-                        Label("New record", systemImage: "plus")
                     }
                 }
                 .sheet($sheetNewCarbsRecord) {
                     NewRecordSheet(.carbs)
                 }
             }
+            
+            Section {
+                NavigationLink("Weight") {
+                    WeightList()
+                        .environment(vm)
+                }
+                .contextMenu {
+                    Button("New record", systemImage: "plus") {
+                        sheetNewWeightRecord = true
+                    }
+                }
+                .sheet($sheetNewWeightRecord) {
+                    LogWeightSheet()
+                }
+            }
         }
         .toolbar {
             Menu {
-                Button {
+                Button("Carbohydrates", systemImage: "fork.knife") {
                     sheetNewCarbsRecord = true
-                } label: {
-                    Label("Carbohydrates", systemImage: "fork.knife")
                 }
                 
-                Button {
+                Button("Insulin Delivery", systemImage: "syringe") {
                     sheetNewInsulinRecord = true
-                    
-                } label: {
-                    Label("Insulin Delivery", systemImage: "syringe")
                 }
                 
-                Button {
+                Button("Blood Glucose", systemImage: "drop") {
                     sheetNewGlucoseRecord = true
-                } label: {
-                    Label("Blood Glucose", systemImage: "drop")
                 }
             } label: {
                 Image(systemName: "note.text.badge.plus")
@@ -97,7 +100,7 @@ struct RecordList: View {
         }
         .task {
             vm.authorize { result in
-                print("Auth status: \(result)")
+                print("Auth status:", result)
                 
                 // TODO: Display Warning when false
             }

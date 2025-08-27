@@ -38,6 +38,8 @@ struct GlucoseList: View {
 }
 
 #Preview {
-    GlucoseList()
-        .environment(HealthKit())
+    NavigationStack {
+        GlucoseList()
+    }
+    .environment(HealthKit())
 }

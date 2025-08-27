@@ -35,7 +35,7 @@ extension HealthKit {
             
             guard let results = results as? [HKQuantitySample] else {
                 if let error {
-                    print("HealthKit error: \(error.localizedDescription)")
+                    print("HealthKit error:", error.localizedDescription)
                 } else {
                     print("HealthKit: no records")
                 }

@@ -34,7 +34,7 @@ extension HealthKit {
         ) { query, results, error in
             
             if let error {
-                print("Error retrieving insulin delivery data: \(error.localizedDescription)")
+                print("Error retrieving insulin delivery data:", error.localizedDescription)
                 return
             }
             

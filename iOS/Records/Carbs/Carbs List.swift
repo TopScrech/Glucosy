@@ -24,5 +24,8 @@ struct CarbsList: View {
 }
 
 #Preview {
-    CarbsList()
+    NavigationStack {
+        CarbsList()
+    }
+    .environment(HealthKit())
 }

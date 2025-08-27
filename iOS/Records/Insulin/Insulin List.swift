@@ -53,5 +53,8 @@ struct InsulinList: View {
 }
 
 #Preview {
-    InsulinList()
+    NavigationStack {
+        InsulinList()
+    }
+    .environment(HealthKit())
 }

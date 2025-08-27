@@ -15,6 +15,9 @@
 		F322ADAF2D2E975A00EAC12A /* Meal Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADAE2D2E975A00EAC12A /* Meal Time.swift */; };
 		F3242A312DDE803B000A16E8 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3242A302DDE803B000A16E8 /* ScrechKit */; };
 		F3242A332DDE804C000A16E8 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3242A322DDE804C000A16E8 /* ScrechKit */; };
+		F325E2D72E5E9A750008928E /* WheelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F325E2D62E5E9A750008928E /* WheelPickerView.swift */; };
+		F325E2D92E5E9A7C0008928E /* LogWeightSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F325E2D82E5E9A7C0008928E /* LogWeightSheet.swift */; };
+		F325E2DB2E5E9A980008928E /* WeightList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F325E2DA2E5E9A980008928E /* WeightList.swift */; };
 		F32A1DDD2D2EEBD5008AEB2F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32A1DDC2D2EEBD5008AEB2F /* WidgetKit.framework */; };
 		F32A1DDF2D2EEBD5008AEB2F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32A1DDE2D2EEBD5008AEB2F /* SwiftUI.framework */; };
 		F32A1DEE2D2EEBD5008AEB2F /* Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F32A1DDA2D2EEBD5008AEB2F /* Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -108,6 +111,9 @@
 		F322ADAC2D2E967000EAC12A /* Recor Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recor Type.swift"; sourceTree = "<group>"; };
 		F322ADAE2D2E975A00EAC12A /* Meal Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal Time.swift"; sourceTree = "<group>"; };
 		F3242A342DDE8095000A16E8 /* watchOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOS.entitlements; sourceTree = "<group>"; };
+		F325E2D62E5E9A750008928E /* WheelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPickerView.swift; sourceTree = "<group>"; };
+		F325E2D82E5E9A7C0008928E /* LogWeightSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWeightSheet.swift; sourceTree = "<group>"; };
+		F325E2DA2E5E9A980008928E /* WeightList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightList.swift; sourceTree = "<group>"; };
 		F32A1DDA2D2EEBD5008AEB2F /* Widgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Widgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F32A1DDC2D2EEBD5008AEB2F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		F32A1DDE2D2EEBD5008AEB2F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -195,6 +201,16 @@
 			path = "New Record";
 			sourceTree = "<group>";
 		};
+		F325E2D52E5E9A6D0008928E /* Weight */ = {
+			isa = PBXGroup;
+			children = (
+				F325E2DA2E5E9A980008928E /* WeightList.swift */,
+				F325E2D82E5E9A7C0008928E /* LogWeightSheet.swift */,
+				F325E2D62E5E9A750008928E /* WheelPickerView.swift */,
+			);
+			path = Weight;
+			sourceTree = "<group>";
+		};
 		F32A1DDB2D2EEBD5008AEB2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +292,7 @@
 				F3B2CD452CE2154200743323 /* Source Name.swift */,
 				F3B58A392CE354F0000FB1BE /* Source Image.swift */,
 				F322ADA52D2E942A00EAC12A /* New Record */,
+				F325E2D52E5E9A6D0008928E /* Weight */,
 				F3B2CD502CE2552200743323 /* Glucose */,
 				F3B2CD4F2CE2551A00743323 /* Carbs */,
 				F3B2CD4E2CE2551200743323 /* Insulin */,
@@ -534,9 +551,12 @@
 				F3B2CD352CE17B0700743323 /* Glucose List.swift in Sources */,
 				F322ADAB2D2E961500EAC12A /* New Record Carbs.swift in Sources */,
 				F3B58A3A2CE354F0000FB1BE /* Source Image.swift in Sources */,
+				F325E2D72E5E9A750008928E /* WheelPickerView.swift in Sources */,
+				F325E2D92E5E9A7C0008928E /* LogWeightSheet.swift in Sources */,
 				F3B2CD332CE1786500743323 /* Read Insulin.swift in Sources */,
 				F3B2CD392CE1840800743323 /* Insulin Type.swift in Sources */,
 				F322ADA72D2E943900EAC12A /* New Record Insulin.swift in Sources */,
+				F325E2DB2E5E9A980008928E /* WeightList.swift in Sources */,
 				F3B2CD402CE214BE00743323 /* Carbs List.swift in Sources */,
 				F32B209B2CD5840400925351 /* App Container.swift in Sources */,
 				F3B2CD232CE1784500743323 /* Delete.swift in Sources */,

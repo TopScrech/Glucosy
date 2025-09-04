@@ -2,12 +2,12 @@ import ScrechKit
 
 @main
 struct GlucosyApp: App {
-    @StateObject private var settings = ValueStore()
+    @StateObject private var store = ValueStore()
     
     var body: some Scene {
         WindowGroup {
             AppContainer()
-                .environmentObject(settings)
+                .environmentObject(store)
         }
     }
 }

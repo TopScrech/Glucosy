@@ -7,7 +7,6 @@ struct AppSettings: View {
         List {
             Toggle("Debug mode", isOn: $store.debugMode)
         }
-        .navigationTitle("Settings")
     }
 }
 

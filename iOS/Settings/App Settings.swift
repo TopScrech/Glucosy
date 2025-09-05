@@ -5,7 +5,14 @@ struct AppSettings: View {
     
     var body: some View {
         List {
-            Toggle("Debug mode", isOn: $store.debugMode)
+#if !os(visionOS)
+            SettingsAppearancePicker()
+#endif
+            Section {
+                Toggle(isOn: $store.debugMode) {
+                    Label("Debug mode", systemImage: "hammer")
+                }
+            }
         }
     }
 }

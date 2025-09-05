@@ -58,6 +58,8 @@
 		F3B58A3A2CE354F0000FB1BE /* Source Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B58A392CE354F0000FB1BE /* Source Image.swift */; };
 		F3C7A0E62DE8994200972479 /* Health Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7A0E52DE8994200972479 /* Health Record.swift */; };
 		F3D10C6F2DE714FE003122EC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D10C6E2DE714FE003122EC /* Utils.swift */; };
+		F3E98C172E6AE5410019439F /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E98C162E6AE5410019439F /* ColorTheme.swift */; };
+		F3E98C192E6AE5470019439F /* SettingsAppearancePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E98C182E6AE5470019439F /* SettingsAppearancePicker.swift */; };
 		F3F8ED502D2EA08A004A2638 /* ValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F8ED4F2D2EA08A004A2638 /* ValueStore.swift */; };
 		F3F8ED9A2D2EA2FE004A2638 /* watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F3F8EDA62D2EA303004A2638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F8EDA12D2EA303004A2638 /* Assets.xcassets */; };
@@ -156,6 +158,8 @@
 		F3B58A392CE354F0000FB1BE /* Source Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Source Image.swift"; sourceTree = "<group>"; };
 		F3C7A0E52DE8994200972479 /* Health Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Health Record.swift"; sourceTree = "<group>"; };
 		F3D10C6E2DE714FE003122EC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		F3E98C162E6AE5410019439F /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
+		F3E98C182E6AE5470019439F /* SettingsAppearancePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppearancePicker.swift; sourceTree = "<group>"; };
 		F3F8ED4F2D2EA08A004A2638 /* ValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueStore.swift; sourceTree = "<group>"; };
 		F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F8EDA12D2EA303004A2638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -305,6 +309,8 @@
 			isa = PBXGroup;
 			children = (
 				F32B20A92CD5859700925351 /* App Settings.swift */,
+				F3E98C182E6AE5470019439F /* SettingsAppearancePicker.swift */,
+				F3E98C162E6AE5410019439F /* ColorTheme.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -449,7 +455,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					F32A1DD92D2EEBD5008AEB2F = {
 						CreatedOnToolsVersion = 16.2;
@@ -533,10 +539,12 @@
 				F32B20AE2CD58C5E00925351 /* Today View.swift in Sources */,
 				F3B2CD1F2CE1760900743323 /* HealthKit.swift in Sources */,
 				F3B2CD482CE2158200743323 /* Insulin Card.swift in Sources */,
+				F3E98C192E6AE5470019439F /* SettingsAppearancePicker.swift in Sources */,
 				F32B20A82CD5859000925351 /* Record List.swift in Sources */,
 				F322ADA92D2E961300EAC12A /* New Record Glucose.swift in Sources */,
 				F322ADAF2D2E975A00EAC12A /* Meal Time.swift in Sources */,
 				F3D10C6F2DE714FE003122EC /* Utils.swift in Sources */,
+				F3E98C172E6AE5410019439F /* ColorTheme.swift in Sources */,
 				F3C7A0E62DE8994200972479 /* Health Record.swift in Sources */,
 				F3B2CD462CE2154200743323 /* Source Name.swift in Sources */,
 				F32B20AA2CD5859700925351 /* App Settings.swift in Sources */,
@@ -715,6 +723,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -774,6 +783,7 @@
 				MARKETING_VERSION = 0.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
@@ -788,8 +798,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOS/iOS.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
@@ -831,8 +843,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOS/iOS.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;

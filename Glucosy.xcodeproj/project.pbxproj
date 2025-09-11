@@ -39,8 +39,6 @@
 		F32B20A82CD5859000925351 /* Record List.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B20A72CD5859000925351 /* Record List.swift */; };
 		F32B20AA2CD5859700925351 /* App Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B20A92CD5859700925351 /* App Settings.swift */; };
 		F32B20AE2CD58C5E00925351 /* Today View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32B20AC2CD58C5E00925351 /* Today View.swift */; };
-		F34345D22DDF14F00033A7DE /* Sources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F34345D12DDF14F00033A7DE /* Sources.xcassets */; };
-		F34345D32DDF14F50033A7DE /* Sources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F34345D12DDF14F00033A7DE /* Sources.xcassets */; };
 		F3B2CD1F2CE1760900743323 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD1E2CE1760900743323 /* HealthKit.swift */; };
 		F3B2CD232CE1784500743323 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD222CE1784500743323 /* Delete.swift */; };
 		F3B2CD2C2CE1786500743323 /* Write Carbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2CD292CE1786500743323 /* Write Carbs.swift */; };
@@ -139,7 +137,6 @@
 		F32B20A92CD5859700925351 /* App Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App Settings.swift"; sourceTree = "<group>"; };
 		F32B20AC2CD58C5E00925351 /* Today View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Today View.swift"; sourceTree = "<group>"; };
 		F34162042DDE8B3D009EEAE0 /* Widgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widgets.entitlements; sourceTree = "<group>"; };
-		F34345D12DDF14F00033A7DE /* Sources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sources.xcassets; sourceTree = "<group>"; };
 		F3B2CD1E2CE1760900743323 /* HealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		F3B2CD222CE1784500743323 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		F3B2CD272CE1786500743323 /* Read Glucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Read Glucose.swift"; sourceTree = "<group>"; };
@@ -269,7 +266,6 @@
 				F32B20972CD5827D00925351 /* iOS.plist */,
 				F32B20902CD5824400925351 /* iOS.entitlements */,
 				F32B208E2CD5824400925351 /* Assets.xcassets */,
-				F34345D12DDF14F00033A7DE /* Sources.xcassets */,
 				F31AC0D92E7301C5003C4A84 /* AppIcon.icon */,
 				F32B20982CD5830200925351 /* Localizable.xcstrings */,
 				F32B208F2CD5824400925351 /* Home View.swift */,
@@ -509,14 +505,12 @@
 			files = (
 				F32B20992CD5830200925351 /* Localizable.xcstrings in Resources */,
 				F31AC0DB2E7301C5003C4A84 /* AppIcon.icon in Resources */,
-				F34345D22DDF14F00033A7DE /* Sources.xcassets in Resources */,
 				F32B20962CD5824400925351 /* Assets.xcassets in Resources */,
 			);
 		};
 		F3F8ED8B2D2EA2FD004A2638 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				F34345D32DDF14F50033A7DE /* Sources.xcassets in Resources */,
 				F31AC0DD2E7301F4003C4A84 /* Assets.xcassets in Resources */,
 				F31AC0DA2E7301C5003C4A84 /* AppIcon.icon in Resources */,
 			);

@@ -6,4 +6,5 @@ final class ValueStore: ObservableObject {
 #endif
     
     @AppStorage("debug_mode") var debugMode = false
+    @AppStorage("selected_tab") var selectedTab = 0
 }

@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @AppStorage("selected_tab") private var selectedTab = 0
+    @EnvironmentObject private var store: ValueStore
     
     var body: some View {
-        TabView(selection: $selectedTab) {
+        TabView(selection: $store.selectedTab) {
             TodayView()
                 .tag(0)
                 .tabItem {
@@ -29,4 +29,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environmentObject(ValueStore())
 }

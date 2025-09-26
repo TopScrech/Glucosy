@@ -81,6 +81,17 @@ struct RecordList: View {
                 }
             }
         }
+        .task {
+            vm.authorize { result in
+                print("Auth status:", result)
+                
+                // TODO: Display Warning when false
+            }
+            
+            vm.readGlucose()
+            vm.readInsulin()
+            vm.readCarbs()
+        }
         .toolbar {
             Menu {
                 Button("Carbohydrates", systemImage: "fork.knife") {
@@ -97,17 +108,6 @@ struct RecordList: View {
             } label: {
                 Image(systemName: "note.text.badge.plus")
             }
-        }
-        .task {
-            vm.authorize { result in
-                print("Auth status:", result)
-                
-                // TODO: Display Warning when false
-            }
-            
-            vm.readGlucose()
-            vm.readInsulin()
-            vm.readCarbs()
         }
     }
 }

@@ -41,5 +41,6 @@ struct GlucoseList: View {
     NavigationStack {
         GlucoseList()
     }
+    .darkSchemePreferred()
     .environment(HealthKit())
 }

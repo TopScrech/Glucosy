@@ -25,4 +25,5 @@ struct WeightList: View {
     NavigationStack {
         WeightList()
     }
+    .darkSchemePreferred()
 }

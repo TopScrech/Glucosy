@@ -49,4 +49,5 @@ struct GlucoseCard: View {
 
 //#Preview {
 //    GlucoseCard()
+//    .darkSchemePreferred()
 //}

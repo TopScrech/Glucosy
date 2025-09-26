@@ -82,5 +82,6 @@ struct InsulinCard: View {
             )
         )
     }
+    .darkSchemePreferred()
     .environmentObject(ValueStore())
 }

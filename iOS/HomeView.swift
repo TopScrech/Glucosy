@@ -5,23 +5,17 @@ struct HomeView: View {
     
     var body: some View {
         TabView(selection: $store.selectedTab) {
-            TodayView()
-                .tag(0)
-                .tabItem {
-                    Label("Today", systemImage: "heart.text.clipboard")
-                }
+            Tab("Today", systemImage: "heart.text.clipboard", value: 0) {
+                TodayView()
+            }
             
-            RecordList()
-                .tag(1)
-                .tabItem {
-                    Label("Records", systemImage: "tray.full")
-                }
+            Tab("Records", systemImage: "tray.full", value: 1) {
+                RecordList()
+            }
             
-            AppSettings()
-                .tag(2)
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
-                }
+            Tab("Settings", systemImage: "gear", value: 2) {
+                AppSettings()
+            }
         }
         .sidebarAdaptableTabView()
     }
@@ -29,5 +23,6 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .darkSchemePreferred()
         .environmentObject(ValueStore())
 }

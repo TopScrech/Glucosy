@@ -62,4 +62,5 @@ struct NewRecordGlucose: View {
 
 #Preview {
     NewRecordGlucose()
+        .darkSchemePreferred()
 }

@@ -114,4 +114,5 @@ struct RecordList: View {
 
 #Preview {
     RecordList()
+        .darkSchemePreferred()
 }

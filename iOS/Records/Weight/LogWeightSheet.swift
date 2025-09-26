@@ -35,4 +35,5 @@ struct LogWeightSheet: View {
     NavigationStack {
         LogWeightSheet()
     }
+    .darkSchemePreferred()
 }

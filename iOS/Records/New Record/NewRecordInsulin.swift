@@ -66,4 +66,5 @@ struct NewRecordInsulin: View {
     NavigationView {
         NewRecordInsulin()
     }
+    .darkSchemePreferred()
 }

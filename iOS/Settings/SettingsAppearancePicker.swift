@@ -19,6 +19,7 @@ struct SettingsAppearancePicker: View {
     Form {
         SettingsAppearancePicker()
     }
+    .darkSchemePreferred()
     .formStyle(.grouped)
     .buttonStyle(.plain)
     .environmentObject(ValueStore())

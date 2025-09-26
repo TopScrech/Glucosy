@@ -25,4 +25,5 @@ struct NewRecordSheet: View {
 
 #Preview {
     NewRecordSheet(.insulin)
+        .darkSchemePreferred()
 }

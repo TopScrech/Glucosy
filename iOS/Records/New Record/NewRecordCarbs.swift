@@ -51,4 +51,5 @@ struct NewRecordCarbs: View {
 
 #Preview {
     NewRecordCarbs()
+        .darkSchemePreferred()
 }

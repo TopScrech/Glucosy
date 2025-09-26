@@ -35,4 +35,5 @@ struct SourceImage: View {
 
 #Preview {
     SourceImage("com.apple.Health")
+        .darkSchemePreferred()
 }

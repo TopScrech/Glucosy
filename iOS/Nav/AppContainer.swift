@@ -8,6 +8,8 @@ struct AppContainer: View {
             HomeView()
         }
         .environmentObject(store)
+#if os(iOS)
         .preferredColorScheme(store.appearance.scheme)
+#endif
     }
 }

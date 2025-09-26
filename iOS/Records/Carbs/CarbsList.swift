@@ -27,5 +27,6 @@ struct CarbsList: View {
     NavigationStack {
         CarbsList()
     }
+    .darkSchemePreferred()
     .environment(HealthKit())
 }

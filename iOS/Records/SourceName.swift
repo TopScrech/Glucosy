@@ -14,6 +14,7 @@ struct SourceName: View {
     }
 }
 
-//#Preview {
-//    SourceName()
-//}
+#Preview {
+    SourceName("Source")
+        .darkSchemePreferred()
+}

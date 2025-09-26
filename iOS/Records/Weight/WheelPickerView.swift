@@ -195,4 +195,5 @@ struct WheelPickerView<Label: View>: View {
     NavigationStack {
         LogWeightSheet()
     }
+    .darkSchemePreferred()
 }

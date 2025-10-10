@@ -1,8 +1,12 @@
 import SwiftUI
 
+#if canImport(Appearance)
+import Appearance
+#endif
+
 final class ValueStore: ObservableObject {
-#if os(iOS)
-    @AppStorage("appearance") var appearance: ColorTheme = .system
+#if canImport(Appearance)
+    @AppStorage("appearance") var appearance: Appearance = .system
 #endif
     
     @AppStorage("debug_mode") var debugMode = false

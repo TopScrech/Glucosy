@@ -1,4 +1,5 @@
 import SwiftUI
+import Appearance
 
 struct AppSettings: View {
     @EnvironmentObject private var store: ValueStore
@@ -6,7 +7,7 @@ struct AppSettings: View {
     var body: some View {
         List {
 #if !os(visionOS)
-            SettingsAppearancePicker()
+            AppearancePicker($store.appearance)
 #endif
             Section {
                 Toggle(isOn: $store.debugMode) {

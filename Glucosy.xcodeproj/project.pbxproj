@@ -14,7 +14,7 @@
 		F322ADA72D2E943900EAC12A /* NewRecordInsulin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADA62D2E943900EAC12A /* NewRecordInsulin.swift */; };
 		F322ADA92D2E961300EAC12A /* NewRecordGlucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADA82D2E961300EAC12A /* NewRecordGlucose.swift */; };
 		F322ADAB2D2E961500EAC12A /* NewRecordCarbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADAA2D2E961500EAC12A /* NewRecordCarbs.swift */; };
-		F322ADAD2D2E967000EAC12A /* RecorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADAC2D2E967000EAC12A /* RecorType.swift */; };
+		F322ADAD2D2E967000EAC12A /* RecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADAC2D2E967000EAC12A /* RecordType.swift */; };
 		F322ADAF2D2E975A00EAC12A /* MealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = F322ADAE2D2E975A00EAC12A /* MealTime.swift */; };
 		F3242A312DDE803B000A16E8 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3242A302DDE803B000A16E8 /* ScrechKit */; };
 		F3242A332DDE804C000A16E8 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3242A322DDE804C000A16E8 /* ScrechKit */; };
@@ -111,7 +111,7 @@
 		F322ADA62D2E943900EAC12A /* NewRecordInsulin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordInsulin.swift; sourceTree = "<group>"; };
 		F322ADA82D2E961300EAC12A /* NewRecordGlucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordGlucose.swift; sourceTree = "<group>"; };
 		F322ADAA2D2E961500EAC12A /* NewRecordCarbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordCarbs.swift; sourceTree = "<group>"; };
-		F322ADAC2D2E967000EAC12A /* RecorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorType.swift; sourceTree = "<group>"; };
+		F322ADAC2D2E967000EAC12A /* RecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordType.swift; sourceTree = "<group>"; };
 		F322ADAE2D2E975A00EAC12A /* MealTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealTime.swift; sourceTree = "<group>"; };
 		F3242A342DDE8095000A16E8 /* watchOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchOS.entitlements; sourceTree = "<group>"; };
 		F325E2D62E5E9A750008928E /* WheelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPickerView.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				F3B2CD512CE2597B00743323 /* NewRecordSheet.swift */,
-				F322ADAC2D2E967000EAC12A /* RecorType.swift */,
+				F322ADAC2D2E967000EAC12A /* RecordType.swift */,
 				F322ADAE2D2E975A00EAC12A /* MealTime.swift */,
 				F322ADA62D2E943900EAC12A /* NewRecordInsulin.swift */,
 				F322ADA82D2E961300EAC12A /* NewRecordGlucose.swift */,
@@ -560,7 +560,7 @@
 				F3B2CD402CE214BE00743323 /* CarbsList.swift in Sources */,
 				F32B209B2CD5840400925351 /* AppContainer.swift in Sources */,
 				F3B2CD232CE1784500743323 /* Delete.swift in Sources */,
-				F322ADAD2D2E967000EAC12A /* RecorType.swift in Sources */,
+				F322ADAD2D2E967000EAC12A /* RecordType.swift in Sources */,
 				F32B20942CD5824400925351 /* Glucosy.swift in Sources */,
 				F3B2CD522CE2597B00743323 /* NewRecordSheet.swift in Sources */,
 			);

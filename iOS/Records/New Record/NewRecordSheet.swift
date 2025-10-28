@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct NewRecordSheet: View {
-    private let recorType: RecorType
+    private let recorType: RecordType
     
-    init(_ recorType: RecorType) {
+    init(_ recorType: RecordType) {
         self.recorType = recorType
     }
     

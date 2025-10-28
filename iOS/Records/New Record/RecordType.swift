@@ -1,3 +1,3 @@
-enum RecorType {
+enum RecordType {
     case insulin, glucose, carbs
 }

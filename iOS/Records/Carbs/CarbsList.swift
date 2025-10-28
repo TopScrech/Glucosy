@@ -7,8 +7,8 @@ struct CarbsList: View {
     
     var body: some View {
         List {
-            ForEach(vm.carbsRecords) { record in
-                CarbsCard(record)
+            ForEach(vm.carbsRecords) {
+                CarbsCard($0)
             }
         }
         .navigationTitle("Carbohydrates")

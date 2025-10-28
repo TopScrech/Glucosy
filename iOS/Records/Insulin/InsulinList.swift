@@ -30,8 +30,8 @@ struct InsulinList: View {
                                 ],
                                 spacing: 12
                             ) {
-                                ForEach(chunk.reversed()) { record in
-                                    InsulinCard(record)
+                                ForEach(chunk.reversed()) {
+                                    InsulinCard($0)
                                 }
                             }
                             .padding(.horizontal)

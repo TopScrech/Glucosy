@@ -74,8 +74,8 @@ struct WheelPickerView<Label: View>: View {
         
         ScrollView(.horizontal) {
             LazyHStack(spacing: config.gapBetweenTicks) {
-                ForEach(ticks, id: \.self) { tick in
-                    TickView(tick, size: size, radius: radius)
+                ForEach(ticks, id: \.self) {
+                    TickView($0, size: size, radius: radius)
                         .frame(maxHeight: .infinity, alignment: .bottom)
                 }
             }

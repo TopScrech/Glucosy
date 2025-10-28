@@ -17,8 +17,8 @@ struct GlucoseList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk) { record in
-                            GlucoseCard(record)
+                        ForEach(chunk) {
+                            GlucoseCard($0)
                         }
                     }
                 }

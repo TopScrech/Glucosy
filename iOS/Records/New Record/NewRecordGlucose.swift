@@ -33,9 +33,9 @@ struct NewRecordGlucose: View {
                 }
                 
                 Picker("Meal Time", selection: $mealTime) {
-                    ForEach(MealType.allCases) { type in
-                        Text(type.rawValue)
-                            .tag(type)
+                    ForEach(MealType.allCases) {
+                        Text($0.rawValue)
+                            .tag($0)
                     }
                 }
                 .secondary()

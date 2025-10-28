@@ -31,9 +31,9 @@ struct NewRecordInsulin: View {
                     Text("Purpose")
                     
                     Picker("Purpose", selection: $purpose) {
-                        ForEach(InsulinType.allCases) { type in
-                            Text(type.rawValue)
-                                .tag(type)
+                        ForEach(InsulinType.allCases) {
+                            Text($0.rawValue)
+                                .tag($0)
                         }
                     }
                     .pickerStyle(.segmented)

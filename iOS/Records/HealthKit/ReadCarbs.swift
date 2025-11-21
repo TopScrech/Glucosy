@@ -2,12 +2,7 @@ import HealthKit
 
 extension HealthKit {
     func readCarbs() {
-        guard let carbsType else {
-            return
-        }
-        
         // from 1 month ago to now
-        let endDate = Date()
         let startDate = Calendar.current.date(
             byAdding: .month,
             value: -12,
@@ -16,7 +11,7 @@ extension HealthKit {
         
         let predicate = HKQuery.predicateForSamples(
             withStart: startDate,
-            end:       endDate,
+            end:       Date(),
             options:   .strictStartDate
         )
         

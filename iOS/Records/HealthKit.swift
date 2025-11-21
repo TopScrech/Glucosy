@@ -9,11 +9,11 @@ final class HealthKit {
     var store: HKHealthStore?
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L unavailible
     
-    let glucoseType:  HKQuantityType? = .bloodGlucose()
-    let insulinType:  HKQuantityType? = .insulinDelivery()
-    let carbsType:    HKQuantityType? = .dietaryCarbohydrates()
-    let bodyMassType: HKQuantityType? = .bodyMass()
-    let bmiType:      HKQuantityType? = .bodyMassIndex()
+    let glucoseType:  HKQuantityType = .bloodGlucose
+    let insulinType:  HKQuantityType = .insulinDelivery
+    let carbsType:    HKQuantityType = .dietaryCarbohydrates
+    let bodyMassType: HKQuantityType = .bodyMass
+    let bmiType:      HKQuantityType = .bodyMassIndex
     
     init() {
         if isAvailable {
@@ -26,15 +26,11 @@ final class HealthKit {
     }
     
     private var dataTypes: Set<HKQuantityType> {
-        if let glucoseType, let insulinType, let carbsType {
-            Set([glucoseType, insulinType, carbsType])
-        } else {
-            []
-        }
+        Set([glucoseType, insulinType, carbsType])
     }
     
     func authorize(_ handler: @escaping (Bool) -> Void) {
-        store?.requestPermission(dataTypes) { success, error in
+        store?.requestAuthorization(toShare: dataTypes, read: dataTypes) { success, error in
             guard let error else {
                 return handler(success)
             }
@@ -45,21 +41,23 @@ final class HealthKit {
     }
     
     var isAuthorized: Bool {
-        guard let glucoseType else {
-            return false
-        }
-        
-        return store?.authorizationStatus(for: glucoseType) == .sharingAuthorized
+        store?.authorizationStatus(for: glucoseType) == .sharingAuthorized
     }
     
     func getAuthorizationState(_ handler: @escaping (Bool) -> Void) {
-        store?.getRequestStatusForPermission(dataTypes) { status, error in
-            guard let error else {
-                return handler(status == .unnecessary)
+        guard let store else {
+            handler(false)
+            return
+        }
+        
+        store.getRequestStatusForAuthorization(toShare: dataTypes, read: dataTypes) { status, error in
+            if let error {
+                print(error.localizedDescription)
+                handler(false)
+                return
             }
             
-            print(error.localizedDescription)
-            handler(false)
+            handler(status == .unnecessary)
         }
     }
 }

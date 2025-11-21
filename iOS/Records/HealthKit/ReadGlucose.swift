@@ -2,16 +2,11 @@ import HealthKit
 
 extension HealthKit {
     func readGlucose(handler: (([Glucose]) -> Void)? = nil) {
-        guard let glucoseType else {
-            return
-        }
-        
         let sortDescriptor = NSSortDescriptor(
             key: HKSampleSortIdentifierEndDate,
             ascending: false
         )
         
-        //        let endDate = Date()
         //        let startDate = Calendar.current.date(
         //            byAdding: .day,
         //            value: -7,
@@ -20,7 +15,7 @@ extension HealthKit {
         //
         //        let predicate = HKQuery.predicateForSamples(
         //            withStart: startDate,
-        //            end:       endDate,
+        //            end:       Date(),
         //            options:   .strictStartDate
         //        )
         

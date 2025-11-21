@@ -7,7 +7,7 @@
       "location" : "https://github.com/TopScrech/Appearance",
       "state" : {
         "branch" : "main",
-        "revision" : "ffd455ead37ffdf6809381083b85192a909eb001"
+        "revision" : "1a8f0bc05a667f1079c9f7b3b31840f60abd7db5"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/TopScrech/HealthyKit",
       "state" : {
         "branch" : "main",
-        "revision" : "9ddd124401dc1c1426924cfb119feebd1e8a24f6"
+        "revision" : "268d1834a7b391051dffd6fac4da7ef286bf44c2"
       }
     },
     {
@@ -25,7 +25,7 @@
       "location" : "https://github.com/TopScrech/ScrechKit",
       "state" : {
         "branch" : "main",
-        "revision" : "28f4be08c8801f324b0c6e107edf5982291296f6"
+        "revision" : "b2f26211e8b7df89ff72f85dce4f37c25247a5f7"
       }
     },
     {

@@ -18,19 +18,19 @@ extension HealthRecord {
     }
 }
 
-struct Carbohydrates: HealthRecord {
+struct Carbs: @MainActor HealthRecord {
     let id = UUID()
     let value: Double
     let sample: HKQuantitySample
 }
 
-struct Glucose: HealthRecord {
+struct Glucose: @MainActor HealthRecord {
     let id = UUID()
     let value: Double
     let sample: HKQuantitySample
 }
 
-struct Insulin: HealthRecord {
+struct Insulin: @MainActor HealthRecord {
     let id = UUID()
     let value: Double
     let type: InsulinType

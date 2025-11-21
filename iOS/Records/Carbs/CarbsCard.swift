@@ -3,9 +3,9 @@ import SwiftUI
 struct CarbsCard: View {
     @EnvironmentObject private var store: ValueStore
     
-    private let record: Carbohydrates
+    private let record: Carbs
     
-    init(_ record: Carbohydrates) {
+    init(_ record: Carbs) {
         self.record = record
     }
     

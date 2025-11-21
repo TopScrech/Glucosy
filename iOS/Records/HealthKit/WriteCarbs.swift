@@ -1,7 +1,7 @@
 import HealthKit
 
 extension HealthKit {
-    func writeCarbs(_ data: Carbohydrates...) {
+    func writeCarbs(_ data: Carbs...) {
         let samples = data.map {
             HKQuantitySample(
                 type: carbsType,

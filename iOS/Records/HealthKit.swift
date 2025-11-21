@@ -4,7 +4,7 @@ import HealthyKit
 final class HealthKit {
     var insulinRecords: [Insulin] = []
     var glucoseRecords: [Glucose] = []
-    var carbsRecords:   [Carbohydrates] = []
+    var carbsRecords:   [Carbs] = []
     
     var store: HKHealthStore?
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L unavailible
@@ -29,7 +29,7 @@ final class HealthKit {
         Set([glucoseType, insulinType, carbsType])
     }
     
-    func authorize(_ handler: @escaping (Bool) -> Void) {
+    func authorize(_ handler: @escaping @Sendable (Bool) -> Void) {
         store?.requestAuthorization(toShare: dataTypes, read: dataTypes) { success, error in
             guard let error else {
                 return handler(success)
@@ -44,7 +44,7 @@ final class HealthKit {
         store?.authorizationStatus(for: glucoseType) == .sharingAuthorized
     }
     
-    func getAuthorizationState(_ handler: @escaping (Bool) -> Void) {
+    func getAuthorizationState(_ handler: @escaping @Sendable (Bool) -> Void) {
         guard let store else {
             handler(false)
             return

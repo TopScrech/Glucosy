@@ -1,16 +1,13 @@
 import HealthKit
 
 extension HealthKit {
-    func readGlucose(handler: (([Glucose]) -> Void)? = nil) {
-        let sortDescriptor = NSSortDescriptor(
-            key: HKSampleSortIdentifierEndDate,
-            ascending: false
-        )
+    func readGlucose(handler: (@Sendable ([Glucose]) -> Void)? = nil) {
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
         
         //        let startDate = Calendar.current.date(
         //            byAdding: .day,
         //            value: -7,
-        //            to: Date()
+        ///           to: Date()
         //        )
         //
         //        let predicate = HKQuery.predicateForSamples(
@@ -25,8 +22,7 @@ extension HealthKit {
             predicate:  nil,
             limit:      HKObjectQueryNoLimit,
             sortDescriptors: [sortDescriptor]
-            
-        ) { [self] query, results, error in
+        ) { _, results, error in
             
             guard let results = results as? [HKQuantitySample] else {
                 if let error {
@@ -38,19 +34,18 @@ extension HealthKit {
                 return
             }
             
-            if results.count > 0 {
-                let samples = results.enumerated().map { index, sample -> Glucose in
+            guard !results.isEmpty else { return }
+            
+            Task { @MainActor in
+                let samples = results.map { sample -> Glucose in
                         .init(
-                            value: sample.quantity.doubleValue(for: glucoseUnit),
-                            //                            id: index,
+                            value: sample.quantity.doubleValue(for: self.glucoseUnit),
                             sample: sample
                         )
                 }
                 
-                DispatchQueue.main.async { [self] in
-                    glucoseRecords = samples
-                    handler?(samples)
-                }
+                self.glucoseRecords = samples
+                handler?(samples)
             }
         }
         

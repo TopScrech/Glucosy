@@ -19,11 +19,7 @@ struct Provider: AppIntentTimelineProvider {
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             
-            let entry = SimpleEntry(
-                date: entryDate,
-                configuration: configuration
-            )
-            
+            let entry = SimpleEntry(date: entryDate, configuration: configuration)
             entries.append(entry)
         }
         

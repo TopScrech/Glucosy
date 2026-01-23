@@ -7,10 +7,7 @@ struct GlucosyWidgetsControl: ControlWidget {
     private static let kind = "dev.topscrech.Glucosy.Glucosy Widgets"
     
     var body: some ControlWidgetConfiguration {
-        AppIntentControlConfiguration(
-            kind: Self.kind,
-            provider: Provider()
-        ) { value in
+        AppIntentControlConfiguration(kind: Self.kind, provider: Provider()) { value in
             ControlWidgetToggle(
                 "Start Timer",
                 isOn: value.isRunning,
@@ -33,20 +30,14 @@ extension GlucosyWidgetsControl {
     
     struct Provider: AppIntentControlValueProvider {
         func previewValue(configuration: TimerConfiguration) -> Value {
-            GlucosyWidgetsControl.Value(
-                isRunning: false,
-                name: configuration.timerName
-            )
+            GlucosyWidgetsControl.Value(isRunning: false, name: configuration.timerName)
         }
         
         func currentValue(configuration: TimerConfiguration) async throws -> Value {
             // Check if the timer is running
             let isRunning = true
             
-            return GlucosyWidgetsControl.Value(
-                isRunning: isRunning,
-                name: configuration.timerName
-            )
+            return GlucosyWidgetsControl.Value(isRunning: isRunning, name: configuration.timerName)
         }
     }
 }

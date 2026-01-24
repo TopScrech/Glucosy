@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct LogWeightSheet: View {
+    @Environment(HealthKit.self) private var vm
+    @Environment(\.dismiss) private var dismiss
+    
     @State private var selectedValue = 64
     
     var body: some View {
@@ -8,10 +11,8 @@ struct LogWeightSheet: View {
             WheelPickerView(range: 15...150, selectedValue: $selectedValue) { currentValue in
                 VStack {
                     Text(String(currentValue))
-                        .rounded()
                         .monospacedDigit()
-                        .fontSize(45)
-                        .fontWeight(.black)
+                        .largeTitle(.black, design: .rounded)
                         .numericTransition()
                         .animation(.snappy, value: currentValue)
                     
@@ -22,8 +23,24 @@ struct LogWeightSheet: View {
                 .padding(.top, 32)
             }
         }
-        .navigationTitle("Wheel Picker")
+        .navigationTitle("Weight")
+        .navigationBarTitleDisplayMode(.inline)
         .padding(15)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Cancel") {
+                    dismiss()
+                }
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Add") {
+                    vm.writeWeight(value: Double(selectedValue))
+                    dismiss()
+                }
+                .bold()
+            }
+        }
     }
 }
 
@@ -32,4 +49,5 @@ struct LogWeightSheet: View {
         LogWeightSheet()
     }
     .darkSchemePreferred()
+    .environment(HealthKit())
 }

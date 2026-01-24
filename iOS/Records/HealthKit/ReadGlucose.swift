@@ -1,4 +1,5 @@
 import HealthKit
+import OSLog
 
 extension HealthKit {
     func readGlucose(handler: (@Sendable ([Glucose]) -> Void)? = nil) {
@@ -23,12 +24,11 @@ extension HealthKit {
             limit:      HKObjectQueryNoLimit,
             sortDescriptors: [sortDescriptor]
         ) { _, results, error in
-            
             guard let results = results as? [HKQuantitySample] else {
                 if let error {
-                    print("HealthKit error:", error.localizedDescription)
+                    Logger().error("HealthKit error: \(error, privacy: .public)")
                 } else {
-                    print("HealthKit: no records")
+                    Logger().warning("HealthKit: no records")
                 }
                 
                 return

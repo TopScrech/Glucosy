@@ -1,13 +1,16 @@
 import HealthyKit
+import OSLog
 
 @Observable
 final class HealthKit {
     var insulinRecords: [Insulin] = []
     var glucoseRecords: [Glucose] = []
     var carbsRecords:   [Carbs] = []
+    var weightRecords:  [Weight] = []
     
     var store: HKHealthStore?
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L unavailible
+    var weightUnit = HKUnit.gramUnit(with: .kilo)
     
     let glucoseType:  HKQuantityType = .bloodGlucose
     let insulinType:  HKQuantityType = .insulinDelivery
@@ -26,7 +29,7 @@ final class HealthKit {
     }
     
     private var dataTypes: Set<HKQuantityType> {
-        Set([glucoseType, insulinType, carbsType])
+        Set([glucoseType, insulinType, carbsType, bodyMassType])
     }
     
     func authorize(_ handler: @escaping @Sendable (Bool) -> Void) {
@@ -35,7 +38,7 @@ final class HealthKit {
                 return handler(success)
             }
             
-            print(error.localizedDescription)
+            Logger().error("HealthKit authorization error: \(error, privacy: .public)")
             handler(false)
         }
     }
@@ -52,7 +55,7 @@ final class HealthKit {
         
         store.getRequestStatusForAuthorization(toShare: dataTypes, read: dataTypes) { status, error in
             if let error {
-                print(error.localizedDescription)
+                Logger().error("HealthKit authorization status error: \(error, privacy: .public)")
                 handler(false)
                 return
             }

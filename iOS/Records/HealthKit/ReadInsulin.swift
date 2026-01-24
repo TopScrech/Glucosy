@@ -1,4 +1,5 @@
 import HealthKit
+import OSLog
 
 extension HealthKit {
     func readInsulin() {
@@ -13,12 +14,12 @@ extension HealthKit {
             sortDescriptors: [sortDescriptor]
         ) { _, results, error in
             if let error {
-                print("Error retrieving insulin delivery data:", error.localizedDescription)
+                Logger().error("Error retrieving insulin delivery data: \(error, privacy: .public)")
                 return
             }
             
             guard let samples = results as? [HKQuantitySample] else {
-                print("Could not fetch insulin delivery samples")
+                Logger().warning("Could not fetch insulin delivery samples")
                 return
             }
             

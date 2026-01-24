@@ -1,4 +1,5 @@
 import ScrechKit
+import OSLog
 
 struct RecordList: View {
     @State private var vm = HealthKit()
@@ -78,12 +79,13 @@ struct RecordList: View {
                 }
                 .sheet($sheetNewWeightRecord) {
                     LogWeightSheet()
+                        .environment(vm)
                 }
             }
         }
         .task {
             vm.authorize { result in
-                print("Auth status:", result)
+                Logger().info("Auth status: \(result, privacy: .public)")
                 
                 // TODO: Display Warning when false
             }
@@ -91,6 +93,7 @@ struct RecordList: View {
             vm.readGlucose()
             vm.readInsulin()
             vm.readCarbs()
+            vm.readWeight()
         }
         .toolbar {
             Menu {
@@ -104,6 +107,10 @@ struct RecordList: View {
                 
                 Button("Blood Glucose", systemImage: "drop") {
                     sheetNewGlucoseRecord = true
+                }
+                
+                Button("Weight", systemImage: "scalemass") {
+                    sheetNewWeightRecord = true
                 }
             } label: {
                 Image(systemName: "note.text.badge.plus")

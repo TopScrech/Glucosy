@@ -42,3 +42,9 @@ struct Insulin: @MainActor HealthRecord {
         String(value)
     }
 }
+
+struct Weight: @MainActor HealthRecord {
+    let id = UUID()
+    let value: Double
+    let sample: HKQuantitySample
+}

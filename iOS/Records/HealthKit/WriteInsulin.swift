@@ -24,7 +24,7 @@
 //        
 //        store?.save(samples) { _, error in
 //            if let error {
-//                print("HealthKit: error while saving insulin delivery:", error.localizedDescription)
+//                print("HealthKit: error while saving insulin delivery:", error)
 //            }
 //        }
 //    }

@@ -29,7 +29,7 @@ struct SourceImage: View {
                 Image(systemName: "questionmark.app.dashed")
             }
         }
-        .frame(width: 16, height: 16)
+        .frame(16)
     }
 }
 

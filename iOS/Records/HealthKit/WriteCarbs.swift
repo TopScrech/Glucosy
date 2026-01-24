@@ -1,4 +1,5 @@
 import HealthKit
+import OSLog
 
 extension HealthKit {
     func writeCarbs(_ data: Carbs...) {
@@ -14,7 +15,7 @@ extension HealthKit {
         
         store?.save(samples) { _, error in
             if let error {
-                print("HealthKit: error while saving carbs:", error.localizedDescription)
+                Logger().error("HealthKit: error while saving carbs: \(error, privacy: .public)")
             }
         }
     }

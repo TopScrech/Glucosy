@@ -1,40 +1,40 @@
 import SwiftUI
 import HealthKit
 
-struct InsulinCard: View {
+struct WeightCard: View {
     @EnvironmentObject private var store: ValueStore
     
-    private let record: Insulin
+    private let record: Weight
     
-    init(_ record: Insulin) {
+    init(_ record: Weight) {
         self.record = record
-    }
-    
-    private var isBasal: Bool {
-        record.type == .basal
-    }
-    
-    private var icon: String {
-        isBasal ? "syringe.fill" : "syringe"
-    }
-    
-    private var color: Color {
-        isBasal ? .purple : .yellow
     }
     
     private var sourceId: String {
         record.sample.sourceRevision.source.bundleIdentifier
     }
     
+    private var color: Color {
+        .blue
+    }
+    
+    private var formattedValue: String {
+        String(Int(record.value.rounded()))
+    }
+    
     var body: some View {
         VStack {
-            VStack {
-                Image(systemName: icon)
+            VStack(spacing: 4) {
+                Image(systemName: "scalemass")
                     .foregroundStyle(color)
                     .title2()
                 
-                Text(Utils.formatNumber(record.value))
+                Text(formattedValue)
                     .title3(.semibold, design: .rounded)
+                
+                Text("KG")
+                    .caption2()
+                    .secondary()
             }
             .padding(10)
             .background(.ultraThinMaterial, in: .rect(cornerRadius: 16))
@@ -69,13 +69,12 @@ struct InsulinCard: View {
 
 #Preview {
     List {
-        InsulinCard(
-            Insulin(
-                value: 16,
-                type: .basal,
+        WeightCard(
+            Weight(
+                value: 64,
                 sample: .init(
-                    type: .quantityType(forIdentifier: .insulinDelivery)!,
-                    quantity: .init(unit: .internationalUnit(), doubleValue: 5),
+                    type: .quantityType(forIdentifier: .bodyMass)!,
+                    quantity: .init(unit: .gramUnit(with: .kilo), doubleValue: 64),
                     start: Date(),
                     end: Date()
                 )

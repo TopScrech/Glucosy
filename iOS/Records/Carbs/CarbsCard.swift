@@ -13,22 +13,38 @@ struct CarbsCard: View {
         record.sample.sourceRevision.source.bundleIdentifier
     }
     
+    private var color: Color {
+        .orange
+    }
+    
     var body: some View {
-        HStack {
-            SourceImage(sourceId)
+        VStack {
+            VStack(spacing: 4) {
+                Image(systemName: "fork.knife")
+                    .foregroundStyle(color)
+                    .title2()
+                
+                Text(Utils.formatNumber(record.value))
+                    .title3(.semibold, design: .rounded)
+                
+                Text("g")
+                    .caption2()
+                    .secondary()
+            }
+            .padding(10)
+            .background(.ultraThinMaterial, in: .rect(cornerRadius: 16))
+            .padding(1)
+            .background(color, in: .rect(cornerRadius: 17))
             
-            VStack(alignment: .leading) {
-                Text(Int(record.value))
+            HStack(spacing: 4) {
+                Text(record.date, format: .dateTime.hour().minute())
+                    .secondary()
+                    .caption2()
                 
                 if store.debugMode {
-                    SourceName(record.source)
+                    SourceImage(sourceId)
                 }
             }
-            
-            Spacer()
-            
-            Text(record.date, format: .dateTime.hour().minute())
-                .secondary()
         }
 #if DEBUG
         .contextMenu {

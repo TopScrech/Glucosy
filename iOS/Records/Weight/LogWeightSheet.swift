@@ -5,25 +5,21 @@ struct LogWeightSheet: View {
     
     var body: some View {
         VStack {
-            if #available(iOS 18, *) {
-                WheelPickerView(range: 15...150, selectedValue: $selectedValue) { currentValue in
-                    VStack {
-                        Text(String(currentValue))
-                            .rounded()
-                            .monospacedDigit()
-                            .fontSize(45)
-                            .fontWeight(.black)
-                            .numericTransition()
-                            .animation(.snappy, value: currentValue)
-                        
-                        Text("KG")
-                            .callout()
-                            .foregroundStyle(.gray)
-                    }
-                    .padding(.top, 32)
+            WheelPickerView(range: 15...150, selectedValue: $selectedValue) { currentValue in
+                VStack {
+                    Text(String(currentValue))
+                        .rounded()
+                        .monospacedDigit()
+                        .fontSize(45)
+                        .fontWeight(.black)
+                        .numericTransition()
+                        .animation(.snappy, value: currentValue)
+                    
+                    Text("KG")
+                        .callout()
+                        .foregroundStyle(.gray)
                 }
-            } else {
-#warning("Todo")
+                .padding(.top, 32)
             }
         }
         .navigationTitle("Wheel Picker")

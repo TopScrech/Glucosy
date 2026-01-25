@@ -577,8 +577,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy saves glucose, insulin, carbs, and weight entries to Health";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -623,8 +624,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy saves glucose, insulin, carbs, and weight entries to Health";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

@@ -63,6 +63,7 @@
 		F32B207A2CD5823B00925351 /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F34041132F242C1400E8CDAE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F34041142F242D0400E8CDAE /* AGENTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AGENTS.md; sourceTree = "<group>"; };
+		F3E0671B2F46801B001B77CD /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -177,6 +178,7 @@
 			children = (
 				F34041142F242D0400E8CDAE /* AGENTS.md */,
 				F34041132F242C1400E8CDAE /* README.md */,
+				F3E0671B2F46801B001B77CD /* LICENSE.txt */,
 				F34041482F242D0800E8CDAE /* iOS */,
 				F340417B2F242D0B00E8CDAE /* watchOS */,
 				F34041852F242D0C00E8CDAE /* Widgets */,

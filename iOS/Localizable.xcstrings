@@ -103,6 +103,7 @@
       }
     },
     "Copy Source" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {

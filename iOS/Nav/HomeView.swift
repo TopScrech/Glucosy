@@ -12,8 +12,12 @@ struct HomeView: View {
             Tab("Records", systemImage: "tray.full", value: 1) {
                 RecordList()
             }
+
+            Tab("NovoPen", systemImage: "wave.3.right", value: 2) {
+                NovoPenReaderView()
+            }
             
-            Tab("Settings", systemImage: "gear", value: 2) {
+            Tab("Settings", systemImage: "gear", value: 3) {
                 AppSettings()
             }
         }

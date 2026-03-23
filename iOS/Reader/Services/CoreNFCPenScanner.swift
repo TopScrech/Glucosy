@@ -92,7 +92,7 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
                 do {
                     self.onEvent("Connected to \(self.tagDescription(tagBox.value)) tag")
                     sessionBox.value.alertMessage = self.options.receivesFullHistory
-                    ? "Downloading full dose history"
+                    ? self.progressMessage(currentCount: 0, totalCount: 10)
                     : "Reading latest NovoPen doses"
                     let transceiver = try CoreNFCISO7816Transceiver(
                         tag: tagBox.value,
@@ -158,10 +158,15 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
     
     private func progressMessage(currentCount: Int, totalCount: Int?) -> String {
         guard let totalCount, totalCount > 0 else {
-            return "\(currentCount)"
+            return progressCircles(filledCount: 0)
         }
-        
-        let percent = Int((Double(currentCount) / Double(totalCount)) * 100)
-        return "\(currentCount)/\(totalCount) (\(percent)%)"
+
+        let progress = Double(currentCount) / Double(totalCount)
+        let filledCount = min(Int(progress * 10), 10)
+        return progressCircles(filledCount: filledCount)
+    }
+
+    private func progressCircles(filledCount: Int) -> String {
+        String(repeating: "🟢", count: filledCount) + String(repeating: "⚪️", count: max(10 - filledCount, 0))
     }
 }

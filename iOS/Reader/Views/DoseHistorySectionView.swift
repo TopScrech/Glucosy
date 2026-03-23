@@ -5,30 +5,23 @@ struct DoseHistorySectionView: View {
     let doses: [DoseEntry]
     let matches: [DoseHealthKitMatch]
     let doseHistoryExportText: String
-    @State private var didCopyDoseHistory = false
-
+    
     private var missingDoseCount: Int {
         matches.filter { $0 == .missing }.count
     }
-
+    
     var body: some View {
         Section("Dose History") {
             Button("Copy Dose History", systemImage: "doc.on.doc") {
                 UIPasteboard.general.string = doseHistoryExportText
-                didCopyDoseHistory = true
             }
             .disabled(doseHistoryExportText.isEmpty)
-
-            if didCopyDoseHistory {
-                Text("Copied \(doses.count) doses")
-                    .foregroundStyle(.secondary)
-            }
-
+            
             if missingDoseCount > 0 {
                 Text("\(missingDoseCount) NovoPen records not found in loaded HealthKit insulin")
                     .foregroundStyle(.orange)
             }
-
+            
             ForEach(doses.indices, id: \.self) {
                 DoseRowView(dose: doses[$0], match: matches[$0])
             }

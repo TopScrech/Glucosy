@@ -14,6 +14,15 @@ struct AppSettings: View {
                     Label("Debug mode", systemImage: "hammer")
                 }
             }
+
+            Section("NovoPen") {
+                Picker("Hide Airshots", selection: $store.airshotFilter) {
+                    ForEach(AirshotFilter.allCases) {
+                        Text($0.title)
+                            .tag($0)
+                    }
+                }
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct DoseRowView: View {
     let dose: DoseEntry
+    let match: DoseHealthKitMatch
 
     var body: some View {
         HStack {
@@ -9,6 +10,11 @@ struct DoseRowView: View {
                 Text(dose.timestamp, format: .dateTime.year().month().day())
                 Text(dose.timestamp, format: .dateTime.hour().minute())
                     .foregroundStyle(.secondary)
+
+                if match == .missing {
+                    Text("Missing in HealthKit")
+                        .foregroundStyle(.orange)
+                }
             }
 
             Spacer()

@@ -15,17 +15,10 @@ struct ReaderDebugSectionView: View {
             } else {
                 ShareLink("Share Full Log", item: fullLogFileURL)
 
-                Text("\(logCount) log entries")
-                    .foregroundStyle(.secondary)
-
-                if logCount > 80 {
-                    Text("Showing the most recent 80 entries")
-                        .foregroundStyle(.secondary)
-                }
-
                 DisclosureGroup(isExpanded: $isShowingLogs) {
                     Text(logText)
-                        .font(.footnote.monospaced())
+                        .footnote()
+                        .monospaced()
                         .textSelection(.enabled)
                 } label: {
                     Label(isShowingLogs ? "Hide Logs" : "Show Logs", systemImage: "chevron.up.chevron.down")

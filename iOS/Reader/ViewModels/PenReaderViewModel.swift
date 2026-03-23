@@ -54,8 +54,20 @@ final class PenReaderViewModel {
         reading?.doses ?? []
     }
 
-    var doseHistoryExportText: String {
-        doses.doseHistoryExportText
+    func visibleDoses(using airshotFilter: AirshotFilter) -> [DoseEntry] {
+        guard let maxUnits = airshotFilter.maxUnits else {
+            return doses
+        }
+
+        return doses.filter { $0.units > maxUnits }
+    }
+
+    func doseHistoryExportText(using airshotFilter: AirshotFilter) -> String {
+        visibleDoses(using: airshotFilter).doseHistoryExportText
+    }
+
+    func doseMatches(using insulinRecords: [Insulin], airshotFilter: AirshotFilter) -> [DoseHealthKitMatch] {
+        DoseHealthKitMatcher(insulinRecords: insulinRecords).match(for: visibleDoses(using: airshotFilter))
     }
 
     var logText: String {

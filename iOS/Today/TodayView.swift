@@ -78,7 +78,7 @@ struct TodayView: View {
                     } label: {
                         TodayLatestRowView(
                             title: "Weight",
-                            value: latestWeightOverall.map { Utils.formatNumber($0.value) },
+                            value: formattedWeight(latestWeightOverall?.value),
                             unit: "kg",
                             date: latestWeightOverall?.date,
                             icon: "scalemass",
@@ -241,7 +241,7 @@ struct TodayView: View {
             TodayMetricData(
                 id: "weight",
                 title: "Weight",
-                value: formattedNumber(latestWeightOverall?.value),
+                value: formattedWeight(latestWeightOverall?.value),
                 unit: "kg",
                 subtitle: weightSubtitle,
                 icon: "scalemass",
@@ -304,6 +304,12 @@ struct TodayView: View {
         guard let value else { return "--" }
         
         return Utils.formatNumber(value)
+    }
+
+    private func formattedWeight(_ value: Double?) -> String {
+        guard let value else { return "--" }
+
+        return value.formatted(.number.precision(.fractionLength(1)))
     }
     
     private func formattedTime(_ date: Date) -> String {

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ReaderDebugSectionView: View {
+struct ReaderDebugSection: View {
     let logText: String
     let logCount: Int
     let fullLogFileURL: URL

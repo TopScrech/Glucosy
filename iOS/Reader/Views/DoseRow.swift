@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct DoseRowView: View {
+struct DoseRow: View {
     let dose: DoseEntry
     let match: DoseHealthKitMatch
 
@@ -8,6 +8,7 @@ struct DoseRowView: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(dose.timestamp, format: .dateTime.year().month().day())
+                
                 Text(dose.timestamp, format: .dateTime.hour().minute())
                     .foregroundStyle(.secondary)
 

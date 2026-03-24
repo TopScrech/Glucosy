@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TodayActionButtonView: View {
+struct TodayActionButton: View {
     let title: String
     let icon: String
     let color: Color
@@ -33,7 +33,7 @@ struct TodayActionButtonView: View {
 }
 
 #Preview {
-    TodayActionButtonView(title: "Glucose", icon: "drop", color: .red) {}
+    TodayActionButton(title: "Glucose", icon: "drop", color: .red) {}
         .padding()
         .darkSchemePreferred()
 }

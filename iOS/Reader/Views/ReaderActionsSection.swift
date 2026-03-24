@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct ReaderActionsSectionView: View {
-    @Bindable var viewModel: PenReaderViewModel
+struct ReaderActionsSection: View {
+    @Bindable var viewModel: PenReaderVM
 
     var body: some View {
         Section("Actions") {

@@ -1,16 +1,16 @@
 import SwiftUI
 
-struct NovoPenReaderView: View {
-    @State var viewModel = PenReaderViewModel()
+struct NovoPenReader: View {
+    @State var viewModel = PenReaderVM()
     @State private var healthKit = HealthKit()
     @EnvironmentObject private var store: ValueStore
 
     var body: some View {
         NavigationStack {
             List {
-                ReaderStatusSectionView(viewModel: viewModel)
-                ReaderActionsSectionView(viewModel: viewModel)
-                ReaderDebugSectionView(
+                ReaderStatusSection(viewModel: viewModel)
+                ReaderActionsSection(viewModel: viewModel)
+                ReaderDebugSection(
                     logText: viewModel.visibleLogText,
                     logCount: viewModel.logs.count,
                     fullLogFileURL: viewModel.logFileURL,
@@ -18,8 +18,8 @@ struct NovoPenReaderView: View {
                 )
 
                 if let reading = viewModel.reading {
-                    PenSummarySectionView(reading: reading)
-                    DoseHistorySectionView(
+                    PenSummarySection(reading: reading)
+                    DoseHistorySection(
                         doses: viewModel.visibleDoses(using: store.airshotFilter),
                         matches: viewModel.doseMatches(using: healthKit.insulinRecords, airshotFilter: store.airshotFilter),
                         doseHistoryExportText: viewModel.doseHistoryExportText(using: store.airshotFilter)

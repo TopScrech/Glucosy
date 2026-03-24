@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TodayHeaderView: View {
+struct TodayHeader: View {
     let date: Date
     let lastUpdated: Date?
     
@@ -23,6 +23,6 @@ struct TodayHeaderView: View {
 }
 
 #Preview {
-    TodayHeaderView(date: Date(), lastUpdated: Date())
+    TodayHeader(date: Date(), lastUpdated: Date())
         .darkSchemePreferred()
 }

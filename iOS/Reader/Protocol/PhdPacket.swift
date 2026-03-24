@@ -22,14 +22,18 @@ struct PhdPacket {
     init(reader: inout ByteReader) throws {
         let opcode = Int(try reader.readUInt8())
         _ = Int(try reader.readUInt8())
+        
         let payloadLength = Int(try reader.readUInt8()) - 1
         let hasID = (opcode & Self.idLengthPresent) != 0
+        
         let headerLength = hasID ? Int(try reader.readUInt8()) : 0
         _ = try reader.readData(count: 3)
         header = hasID ? try reader.readData(count: headerLength) : nil
+        
         let checksum = Int(try reader.readUInt8())
         self.checksum = checksum
         sequence = checksum & 0x0F
+        
         let actualLength = min(reader.remainingCount, payloadLength)
         content = try reader.readData(count: actualLength)
     }
@@ -39,6 +43,7 @@ struct PhdPacket {
         let hasHeader = headerLength > 0
         
         var writer = ByteWriter()
+        
         writer.writeUInt8(
             Self.messageBegin |
             Self.messageEnd |
@@ -46,6 +51,7 @@ struct PhdPacket {
             (hasHeader ? Self.idLengthPresent : 0) |
             Self.wellKnown
         )
+        
         writer.writeUInt8(3)
         writer.writeUInt8(content.count + 1)
         

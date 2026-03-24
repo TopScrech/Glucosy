@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TodayQuickActionsView: View {
+struct TodayQuickActions: View {
     let addGlucose: () -> Void
     let addInsulin: () -> Void
     let addCarbs: () -> Void
@@ -17,28 +17,28 @@ struct TodayQuickActionsView: View {
                 .title3(.semibold, design: .rounded)
             
             LazyVGrid(columns: columns, spacing: 12) {
-                TodayActionButtonView(
+                TodayActionButton(
                     title: "Glucose",
                     icon: "drop",
                     color: .red,
                     action: addGlucose
                 )
                 
-                TodayActionButtonView(
+                TodayActionButton(
                     title: "Insulin",
                     icon: "syringe",
                     color: .yellow,
                     action: addInsulin
                 )
                 
-                TodayActionButtonView(
+                TodayActionButton(
                     title: "Carbs",
                     icon: "fork.knife",
                     color: .orange,
                     action: addCarbs
                 )
                 
-                TodayActionButtonView(
+                TodayActionButton(
                     title: "Weight",
                     icon: "scalemass",
                     color: .blue,
@@ -50,7 +50,7 @@ struct TodayQuickActionsView: View {
 }
 
 #Preview {
-    TodayQuickActionsView(
+    TodayQuickActions(
         addGlucose: {},
         addInsulin: {},
         addCarbs: {},

@@ -12,26 +12,26 @@ struct TodayView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                TodayHeaderView(
+                TodayHeader(
                     date: Date(),
                     lastUpdated: lastUpdated
                 )
                 
-                TodayMetricsSectionView(metrics: metricCards)
+                TodayMetricsSection(metrics: metricCards)
                 
-                TodayQuickActionsView(
+                TodayQuickActions(
                     addGlucose: { sheetNewGlucoseRecord = true },
                     addInsulin: { sheetNewInsulinRecord = true },
                     addCarbs: { sheetNewCarbsRecord = true },
                     addWeight: { sheetNewWeightRecord = true }
                 )
                 
-                TodayLatestSectionView {
+                TodayLatestSection {
                     NavigationLink {
                         GlucoseList()
                             .environment(vm)
                     } label: {
-                        TodayLatestRowView(
+                        TodayLatestRow(
                             title: "Blood Glucose",
                             value: latestGlucoseOverall.map { Utils.formatNumber($0.value) },
                             unit: "mg/dL",
@@ -46,7 +46,7 @@ struct TodayView: View {
                         InsulinList()
                             .environment(vm)
                     } label: {
-                        TodayLatestRowView(
+                        TodayLatestRow(
                             title: "Insulin Delivery",
                             value: latestInsulinOverall?.formattedValue,
                             unit: "U",
@@ -61,7 +61,7 @@ struct TodayView: View {
                         CarbsList()
                             .environment(vm)
                     } label: {
-                        TodayLatestRowView(
+                        TodayLatestRow(
                             title: "Carbohydrates",
                             value: latestCarbsOverall.map { Utils.formatNumber($0.value) },
                             unit: "g",
@@ -76,7 +76,7 @@ struct TodayView: View {
                         WeightList()
                             .environment(vm)
                     } label: {
-                        TodayLatestRowView(
+                        TodayLatestRow(
                             title: "Weight",
                             value: formattedWeight(latestWeightOverall?.value),
                             unit: "kg",
@@ -205,8 +205,8 @@ struct TodayView: View {
             latestCarbsOverall?.date,
             latestWeightOverall?.date
         ]
-        .compactMap { $0 }
-        .max()
+            .compactMap { $0 }
+            .max()
     }
     
     private var metricCards: [TodayMetricData] {
@@ -305,10 +305,10 @@ struct TodayView: View {
         
         return Utils.formatNumber(value)
     }
-
+    
     private func formattedWeight(_ value: Double?) -> String {
         guard let value else { return "--" }
-
+        
         return value.formatted(.number.precision(.fractionLength(1)))
     }
     

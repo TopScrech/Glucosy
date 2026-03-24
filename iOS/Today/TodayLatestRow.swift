@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TodayLatestRowView: View {
+struct TodayLatestRow: View {
     let title: String
     let value: String?
     let unit: String?
@@ -55,7 +55,7 @@ struct TodayLatestRowView: View {
 }
 
 #Preview {
-    TodayLatestRowView(
+    TodayLatestRow(
         title: "Blood Glucose",
         value: "118",
         unit: "mg/dL",

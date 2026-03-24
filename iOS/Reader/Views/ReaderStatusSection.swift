@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct ReaderStatusSectionView: View {
-    let viewModel: PenReaderViewModel
+struct ReaderStatusSection: View {
+    let viewModel: PenReaderVM
 
     var body: some View {
         Section("Status") {

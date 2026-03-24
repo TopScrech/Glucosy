@@ -1,7 +1,7 @@
 import SwiftUI
 import UIKit
 
-struct DoseHistorySectionView: View {
+struct DoseHistorySection: View {
     let doses: [DoseEntry]
     let matches: [DoseHealthKitMatch]
     let doseHistoryExportText: String
@@ -23,7 +23,7 @@ struct DoseHistorySectionView: View {
             }
             
             ForEach(doses.indices, id: \.self) {
-                DoseRowView(dose: doses[$0], match: matches[$0])
+                DoseRow(dose: doses[$0], match: matches[$0])
             }
         }
     }

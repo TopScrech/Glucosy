@@ -8,6 +8,7 @@ struct SegmentInfoList {
         _ = Int(try reader.readUInt16())
         
         var items: [SegmentInfo] = []
+        
         for _ in 0 ..< count {
             items.append(try SegmentInfo(reader: &reader))
         }

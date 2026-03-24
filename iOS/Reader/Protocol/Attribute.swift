@@ -25,9 +25,11 @@ struct Attribute {
         case 2:
             var dataReader = ByteReader(data: data)
             value = Int(try dataReader.readUInt16())
+            
         case 4:
             var dataReader = ByteReader(data: data)
             value = Int(try dataReader.readInt32())
+            
         default:
             value = -1
         }

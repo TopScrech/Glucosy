@@ -1,16 +1,6 @@
 import SwiftUI
 
-struct TodayMetricData: Identifiable {
-    let id: String
-    let title: String
-    let value: String
-    let unit: String?
-    let subtitle: String
-    let icon: String
-    let color: Color
-}
-
-struct TodayMetricsSectionView: View {
+struct TodayMetricsSection: View {
     let metrics: [TodayMetricData]
     
     private let columns = [
@@ -25,7 +15,7 @@ struct TodayMetricsSectionView: View {
             
             LazyVGrid(columns: columns, spacing: 12) {
                 ForEach(metrics) { metric in
-                    TodayMetricCardView(metric: metric)
+                    TodayMetricCard(metric: metric)
                 }
             }
         }
@@ -33,7 +23,7 @@ struct TodayMetricsSectionView: View {
 }
 
 #Preview {
-    TodayMetricsSectionView(metrics: [
+    TodayMetricsSection(metrics: [
         TodayMetricData(
             id: "glucose",
             title: "Glucose",

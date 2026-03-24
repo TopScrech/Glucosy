@@ -33,16 +33,11 @@ struct Specification {
             let value = try reader.readIndexedString()
             
             switch type {
-            case 1:
-                serial = value
-            case 2:
-                partNumber = value
-            case 3:
-                hardwareRevision = value
-            case 4:
-                softwareRevision = value
-            default:
-                break
+            case 1: serial = value
+            case 2: partNumber = value
+            case 3: hardwareRevision = value
+            case 4: softwareRevision = value
+            default: break
             }
         }
         

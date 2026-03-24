@@ -19,6 +19,7 @@ final class ReaderLogStore {
                 try handle.write(contentsOf: data)
                 return
             } catch {
+                
             }
         }
         
@@ -29,8 +30,10 @@ final class ReaderLogStore {
     }
     
     func load() -> String {
-        guard let data = try? Data(contentsOf: fileURL),
-              let text = String(data: data, encoding: .utf8) else {
+        guard
+            let data = try? Data(contentsOf: fileURL),
+            let text = String(data: data, encoding: .utf8)
+        else {
             return ""
         }
         

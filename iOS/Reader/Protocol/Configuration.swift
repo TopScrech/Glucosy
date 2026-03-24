@@ -57,12 +57,16 @@ struct Configuration {
                 switch attribute.type {
                 case Attribute.numberOfSegments:
                     numberOfSegments = attribute.value
+                
                 case Attribute.metricStoreUsageCount:
                     totalEntries = attribute.value
+                
                 case Attribute.unitCode:
                     unitCode = attribute.value
+                
                 case Attribute.metricStoreCapacityCount:
                     totalStorage = attribute.value
+                
                 default:
                     break
                 }

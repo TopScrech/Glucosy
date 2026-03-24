@@ -12,9 +12,11 @@ struct InsulinDoseRecord {
     init(reader: inout ByteReader) throws {
         time = Int(try reader.readInt32())
         let encodedUnits = UInt32(bitPattern: try reader.readInt32())
+        
         units = (encodedUnits & Self.encodedUnitsMask) == Self.encodedUnitsPrefix
         ? Int(encodedUnits & 0xFFFF)
         : -1
+        
         flags = Int(try reader.readInt32())
     }
     

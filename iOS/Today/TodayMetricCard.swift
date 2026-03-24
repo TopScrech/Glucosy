@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TodayMetricCardView: View {
+struct TodayMetricCard: View {
     let metric: TodayMetricData
     
     var body: some View {
@@ -38,7 +38,7 @@ struct TodayMetricCardView: View {
 }
 
 #Preview {
-    TodayMetricCardView(
+    TodayMetricCard(
         metric: TodayMetricData(
             id: "glucose",
             title: "Glucose",

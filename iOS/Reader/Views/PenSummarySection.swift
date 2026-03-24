@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PenSummarySectionView: View {
+struct PenSummarySection: View {
     let reading: PenReading
 
     var body: some View {

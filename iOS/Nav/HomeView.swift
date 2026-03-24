@@ -14,7 +14,7 @@ struct HomeView: View {
             }
 
             Tab("NovoPen", systemImage: "wave.3.right", value: 2) {
-                NovoPenReaderView()
+                NovoPenReader()
             }
             
             Tab("Settings", systemImage: "gear", value: 3) {

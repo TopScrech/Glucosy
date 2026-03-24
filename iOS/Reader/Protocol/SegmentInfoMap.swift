@@ -12,6 +12,7 @@ struct SegmentInfoMap {
         length = Int(try reader.readUInt16())
         
         var items: [SegmentEntry] = []
+        
         for _ in 0 ..< count {
             items.append(try SegmentEntry(reader: &reader))
         }

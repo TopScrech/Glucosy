@@ -4,25 +4,25 @@ struct DoseHealthKitMatcher {
     private let insulinRecords: [Insulin]
     private let maxTimeInterval: TimeInterval = 10 * 60
     private let maxUnitDifference = 0.05
-
+    
     init(insulinRecords: [Insulin]) {
         self.insulinRecords = insulinRecords
     }
-
+    
     func match(for doses: [DoseEntry]) -> [DoseHealthKitMatch] {
         let sortedRecords = insulinRecords.sorted { $0.date < $1.date }
         var usedSampleIDs = Set<UUID>()
-
+        
         return doses.map { dose in
             guard let sampleID = bestMatchSampleID(for: dose, in: sortedRecords, usedSampleIDs: usedSampleIDs) else {
                 return .missing
             }
-
+            
             usedSampleIDs.insert(sampleID)
             return .matched
         }
     }
-
+    
     private func bestMatchSampleID(
         for dose: DoseEntry,
         in insulinRecords: [Insulin],

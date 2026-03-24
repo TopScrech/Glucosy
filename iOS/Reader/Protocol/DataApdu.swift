@@ -53,10 +53,12 @@ struct DataApdu {
         
         var reader = ByteReader(data: payload)
         _ = Int(try reader.readUInt16())
+        
         let count = Int(try reader.readUInt16())
         _ = Int(try reader.readUInt16())
         
         var attributes: [Attribute] = []
+        
         for _ in 0 ..< count {
             attributes.append(try Attribute(reader: &reader))
         }
@@ -71,6 +73,7 @@ struct DataApdu {
         
         var reader = ByteReader(data: payload)
         _ = Int(try reader.readUInt16())
+        
         let actionType = Int(try reader.readUInt16())
         _ = Int(try reader.readUInt16())
         
@@ -88,6 +91,7 @@ struct DataApdu {
         
         var reader = ByteReader(data: payload)
         _ = Int(try reader.readUInt16())
+        
         let actionType = Int(try reader.readUInt16())
         _ = Int(try reader.readUInt16())
         

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TodayLatestSectionView<Content: View>: View {
+struct TodayLatestSection<Content: View>: View {
     private let content: Content
     
     init(@ViewBuilder content: () -> Content) {
@@ -20,8 +20,8 @@ struct TodayLatestSectionView<Content: View>: View {
 }
 
 #Preview {
-    TodayLatestSectionView {
-        TodayLatestRowView(
+    TodayLatestSection {
+        TodayLatestRow(
             title: "Blood Glucose",
             value: "118",
             unit: "mg/dL",

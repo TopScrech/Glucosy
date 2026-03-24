@@ -14,6 +14,7 @@ struct SegmentEntry {
         objectType = Int(try reader.readUInt16())
         handle = Int(try reader.readUInt16())
         attributeMapCount = Int(try reader.readUInt16())
+        
         let length = Int(try reader.readUInt16())
         data = try reader.readData(count: length)
     }

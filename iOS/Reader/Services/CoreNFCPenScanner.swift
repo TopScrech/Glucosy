@@ -20,7 +20,7 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
         
         return try await withCheckedThrowingContinuation { continuation in
             self.continuation = continuation
-
+            
             guard let session = NFCTagReaderSession(
                 pollingOption: [.iso14443, .iso15693],
                 delegate: self,
@@ -160,12 +160,12 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
         guard let totalCount, totalCount > 0 else {
             return progressCircles(filledCount: 0)
         }
-
+        
         let progress = Double(currentCount) / Double(totalCount)
         let filledCount = min(Int(progress * 10), 10)
         return progressCircles(filledCount: filledCount)
     }
-
+    
     private func progressCircles(filledCount: Int) -> String {
         String(repeating: "🟢", count: filledCount) + String(repeating: "⚪️", count: max(10 - filledCount, 0))
     }

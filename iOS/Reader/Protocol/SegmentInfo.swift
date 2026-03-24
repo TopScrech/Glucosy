@@ -29,12 +29,15 @@ struct SegmentInfo {
         
         for _ in 0 ..< count {
             let attribute = try Attribute(reader: &reader)
+            
             switch attribute.type {
             case Attribute.segmentMap:
                 var attributeReader = ByteReader(data: attribute.data)
                 segmentInfoMap = try SegmentInfoMap(reader: &attributeReader)
+            
             case Attribute.segmentUsageCount:
                 usage = attribute.value
+            
             default:
                 break
             }

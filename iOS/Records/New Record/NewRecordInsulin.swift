@@ -32,7 +32,7 @@ struct NewRecordInsulin: View {
                     
                     Picker("Purpose", selection: $purpose) {
                         ForEach(InsulinType.allCases) {
-                            Text($0.rawValue)
+                            Text($0.title)
                                 .tag($0)
                         }
                     }

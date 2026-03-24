@@ -4,4 +4,11 @@ enum InsulinType: String, Identifiable, Codable, CaseIterable {
     var id: String {
         rawValue
     }
+
+    var title: String {
+        switch self {
+        case .bolus: String(localized: "Bolus")
+        case .basal: String(localized: "Basal")
+        }
+    }
 }

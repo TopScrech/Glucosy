@@ -7,10 +7,10 @@ enum AirshotFilter: String, CaseIterable, Hashable, Identifiable {
     
     var title: String {
         switch self {
-        case .disabled: "Disabled"
-        case .upTo1Unit: "0 to 1 units"
-        case .upTo2Units: "0 to 2 units"
-        case .upTo3Units: "0 to 3 units"
+        case .disabled: String(localized: "Disabled")
+        case .upTo1Unit: String(localized: "0 to 1 units")
+        case .upTo2Units: String(localized: "0 to 2 units")
+        case .upTo3Units: String(localized: "0 to 3 units")
         }
     }
     

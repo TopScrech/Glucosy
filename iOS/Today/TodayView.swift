@@ -32,9 +32,9 @@ struct TodayView: View {
                             .environment(vm)
                     } label: {
                         TodayLatestRow(
-                            title: "Blood Glucose",
+                            title: String(localized: "Blood Glucose"),
                             value: latestGlucoseOverall.map { Utils.formatNumber($0.value) },
-                            unit: "mg/dL",
+                            unit: String(localized: "mg/dL"),
                             date: latestGlucoseOverall?.date,
                             icon: "drop",
                             color: .red
@@ -47,9 +47,9 @@ struct TodayView: View {
                             .environment(vm)
                     } label: {
                         TodayLatestRow(
-                            title: "Insulin Delivery",
+                            title: String(localized: "Insulin Delivery"),
                             value: latestInsulinOverall?.formattedValue,
-                            unit: "U",
+                            unit: String(localized: "U"),
                             date: latestInsulinOverall?.date,
                             icon: "syringe",
                             color: .yellow
@@ -62,9 +62,9 @@ struct TodayView: View {
                             .environment(vm)
                     } label: {
                         TodayLatestRow(
-                            title: "Carbohydrates",
+                            title: String(localized: "Carbohydrates"),
                             value: latestCarbsOverall.map { Utils.formatNumber($0.value) },
-                            unit: "g",
+                            unit: String(localized: "g"),
                             date: latestCarbsOverall?.date,
                             icon: "fork.knife",
                             color: .orange
@@ -77,9 +77,9 @@ struct TodayView: View {
                             .environment(vm)
                     } label: {
                         TodayLatestRow(
-                            title: "Weight",
+                            title: String(localized: "Weight"),
                             value: formattedWeight(latestWeightOverall?.value),
-                            unit: "kg",
+                            unit: String(localized: "kg"),
                             date: latestWeightOverall?.date,
                             icon: "scalemass",
                             color: .blue
@@ -213,36 +213,36 @@ struct TodayView: View {
         [
             TodayMetricData(
                 id: "glucose",
-                title: "Glucose",
+                title: String(localized: "Glucose"),
                 value: formattedNumber(latestGlucoseToday?.value),
-                unit: "mg/dL",
+                unit: String(localized: "mg/dL"),
                 subtitle: glucoseSubtitle,
                 icon: "drop",
                 color: .red
             ),
             TodayMetricData(
                 id: "carbs",
-                title: "Carbs",
+                title: String(localized: "Carbs"),
                 value: formattedNumber(carbsTotal),
-                unit: "g",
+                unit: String(localized: "g"),
                 subtitle: carbsSubtitle,
                 icon: "fork.knife",
                 color: .orange
             ),
             TodayMetricData(
                 id: "insulin",
-                title: "Insulin",
+                title: String(localized: "Insulin"),
                 value: formattedNumber(insulinTotal),
-                unit: "U",
+                unit: String(localized: "U"),
                 subtitle: insulinSubtitle,
                 icon: "syringe",
                 color: .yellow
             ),
             TodayMetricData(
                 id: "weight",
-                title: "Weight",
+                title: String(localized: "Weight"),
                 value: formattedWeight(latestWeightOverall?.value),
-                unit: "kg",
+                unit: String(localized: "kg"),
                 subtitle: weightSubtitle,
                 icon: "scalemass",
                 color: .blue
@@ -252,17 +252,17 @@ struct TodayView: View {
     
     private var glucoseSubtitle: String {
         if let glucoseAverage {
-            "Avg \(Utils.formatNumber(glucoseAverage)) mg/dL"
+            String(localized: "Avg \(Utils.formatNumber(glucoseAverage)) mg/dL")
         } else {
-            "No readings today"
+            String(localized: "No readings today")
         }
     }
     
     private var carbsSubtitle: String {
         if let latestCarbsToday {
-            "Last \(formattedTime(latestCarbsToday.date))"
+            String(localized: "Last \(formattedTime(latestCarbsToday.date))")
         } else {
-            "No carbs today"
+            String(localized: "No carbs today")
         }
     }
     
@@ -270,21 +270,21 @@ struct TodayView: View {
         var parts: [String] = []
         
         if let insulinBasalTotal {
-            parts.append("Basal \(Utils.formatNumber(insulinBasalTotal)) U")
+            parts.append(String(localized: "Basal \(Utils.formatNumber(insulinBasalTotal)) U"))
         }
         
         if let insulinBolusTotal {
-            parts.append("Bolus \(Utils.formatNumber(insulinBolusTotal)) U")
+            parts.append(String(localized: "Bolus \(Utils.formatNumber(insulinBolusTotal)) U"))
         }
         
-        return parts.isEmpty ? "No insulin today" : parts.joined(separator: ", ")
+        return parts.isEmpty ? String(localized: "No insulin today") : parts.joined(separator: ", ")
     }
     
     private var weightSubtitle: String {
         if let latestWeightOverall {
-            "Last \(Utils.formattedDate(latestWeightOverall.date))"
+            String(localized: "Last \(Utils.formattedDate(latestWeightOverall.date))")
         } else {
-            "No weight data"
+            String(localized: "No weight data")
         }
     }
     

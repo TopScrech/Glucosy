@@ -34,7 +34,7 @@ struct NewRecordGlucose: View {
                 
                 Picker("Meal Time", selection: $mealTime) {
                     ForEach(MealType.allCases) {
-                        Text($0.rawValue)
+                        Text($0.title)
                             .tag($0)
                     }
                 }

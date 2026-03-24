@@ -15,36 +15,36 @@ enum NovoPenError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .nfcUnavailable:
-            return "NFC scanning is not available on this device"
+            return String(localized: "NFC scanning is not available on this device")
             
         case .unsupportedTag:
-            return "This tag is not a supported NovoPen"
+            return String(localized: "This tag is not a supported NovoPen")
             
         case .invalidApdu:
-            return "The pen returned an invalid APDU"
+            return String(localized: "The pen returned an invalid APDU")
             
         case let .invalidStatusWord(statusWord):
             let hexadecimal = String(statusWord, radix: 16, uppercase: true)
             let padded = String(repeating: "0", count: max(0, 4 - hexadecimal.count)) + hexadecimal
-            return "The pen returned status word \(padded)"
+            return String(localized: "The pen returned status word \(padded)")
             
         case .missingConfiguration:
-            return "The pen did not return a configuration payload"
+            return String(localized: "The pen did not return a configuration payload")
             
         case .missingSegmentInfo:
-            return "The pen did not return dose segment information"
+            return String(localized: "The pen did not return dose segment information")
             
         case .missingSampleTrace:
-            return "The bundled sample trace could not be loaded"
+            return String(localized: "The bundled sample trace could not be loaded")
             
         case let .malformedPacket(message):
             return message
             
         case .transportEnded:
-            return "The sample trace ended before the read finished"
+            return String(localized: "The sample trace ended before the read finished")
             
         case .cancelled:
-            return "The scan was cancelled"
+            return String(localized: "The scan was cancelled")
         }
     }
 }

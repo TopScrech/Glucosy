@@ -18,28 +18,28 @@ struct TodayQuickActions: View {
             
             LazyVGrid(columns: columns, spacing: 12) {
                 TodayActionButton(
-                    title: "Glucose",
+                    title: String(localized: "Glucose"),
                     icon: "drop",
                     color: .red,
                     action: addGlucose
                 )
                 
                 TodayActionButton(
-                    title: "Insulin",
+                    title: String(localized: "Insulin"),
                     icon: "syringe",
                     color: .yellow,
                     action: addInsulin
                 )
                 
                 TodayActionButton(
-                    title: "Carbs",
+                    title: String(localized: "Carbs"),
                     icon: "fork.knife",
                     color: .orange,
                     action: addCarbs
                 )
                 
                 TodayActionButton(
-                    title: "Weight",
+                    title: String(localized: "Weight"),
                     icon: "scalemass",
                     color: .blue,
                     action: addWeight

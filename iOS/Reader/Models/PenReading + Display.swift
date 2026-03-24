@@ -2,11 +2,11 @@ import Foundation
 
 extension PenReading {
     var modelDisplayValue: String {
-        model.isEmpty ? "Unavailable" : model
+        model.isEmpty ? String(localized: "Unavailable") : model
     }
     
     var serialDisplayValue: String {
-        serial.isEmpty ? "Unavailable" : serial
+        serial.isEmpty ? String(localized: "Unavailable") : serial
     }
     
     var penStartedAtDisplayValue: Date? {

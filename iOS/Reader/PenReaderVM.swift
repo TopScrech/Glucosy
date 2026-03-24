@@ -18,21 +18,21 @@ final class PenReaderVM {
     
     var statusTitle: String {
         switch status {
-        case .idle: "Ready to scan"
-        case .scanning: "Scanning pen"
-        case .loadingSample: "Loading sample trace"
-        case .finished: "Read completed"
-        case .failed: "Read failed"
+        case .idle: String(localized: "Ready to scan")
+        case .scanning: String(localized: "Scanning pen")
+        case .loadingSample: String(localized: "Loading sample trace")
+        case .finished: String(localized: "Read completed")
+        case .failed: String(localized: "Read failed")
         }
     }
     
     var statusMessage: String {
         switch status {
-        case .idle: "Use a real NFC scan on device or load the bundled trace in simulator"
-        case .scanning: "Keep the NovoPen near the top edge of the iPhone until the read finishes"
-        case .loadingSample: "Replaying the upstream trace file bundled with this app"
-        case .finished: "Model, serial number, and dose history were read successfully"
-        case .failed: errorMessage ?? "An unknown error occurred"
+        case .idle: String(localized: "Use a real NFC scan on device or load the bundled trace in simulator")
+        case .scanning: String(localized: "Keep the NovoPen near the top edge of the iPhone until the read finishes")
+        case .loadingSample: String(localized: "Replaying the upstream trace file bundled with this app")
+        case .finished: String(localized: "Model, serial number, and dose history were read successfully")
+        case .failed: errorMessage ?? String(localized: "An unknown error occurred")
         }
     }
     

@@ -29,7 +29,7 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
                 continuation.resume(throwing: NovoPenError.nfcUnavailable)
                 return
             }
-            session.alertMessage = "Hold your NovoPen near the top of your iPhone"
+            session.alertMessage = String(localized: "Hold your NovoPen near the top of your iPhone")
             self.session = session
             self.onEvent("Started NFC session")
             session.begin()
@@ -74,7 +74,7 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
         }
         
         guard tags.count == 1 else {
-            session.alertMessage = "Present only one pen at a time"
+            session.alertMessage = String(localized: "Present only one pen at a time")
             session.restartPolling()
             return
         }
@@ -93,7 +93,7 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
                     self.onEvent("Connected to \(self.tagDescription(tagBox.value)) tag")
                     sessionBox.value.alertMessage = self.options.receivesFullHistory
                     ? self.progressMessage(currentCount: 0, totalCount: 10)
-                    : "Reading latest NovoPen doses"
+                    : String(localized: "Reading latest NovoPen doses")
                     let transceiver = try CoreNFCISO7816Transceiver(
                         tag: tagBox.value,
                         logsTraffic: !self.options.receivesFullHistory,
@@ -136,7 +136,7 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
         
         switch result {
         case let .success(reading):
-            session.alertMessage = "NovoPen data loaded"
+            session.alertMessage = String(localized: "NovoPen data loaded")
             session.invalidate()
             continuation.resume(returning: reading)
             

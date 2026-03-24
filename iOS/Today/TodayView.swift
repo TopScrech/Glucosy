@@ -4,6 +4,7 @@ import OSLog
 struct TodayView: View {
     @State private var vm = HealthKit()
     
+    @State private var showsNovoPenReader = false
     @State private var sheetNewInsulinRecord = false
     @State private var sheetNewCarbsRecord = false
     @State private var sheetNewGlucoseRecord = false
@@ -93,25 +94,36 @@ struct TodayView: View {
         }
         .navigationTitle("Today")
         .toolbar {
-            Menu {
-                Button("Carbohydrates", systemImage: "fork.knife") {
-                    sheetNewCarbsRecord = true
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                if CoreNFCPenScanner.isReadingAvailable {
+                    Button("Scan Pen", systemImage: "wave.3.right") {
+                        showsNovoPenReader = true
+                    }
                 }
                 
-                Button("Insulin Delivery", systemImage: "syringe") {
-                    sheetNewInsulinRecord = true
+                Menu {
+                    Button("Carbohydrates", systemImage: "fork.knife") {
+                        sheetNewCarbsRecord = true
+                    }
+                    
+                    Button("Insulin Delivery", systemImage: "syringe") {
+                        sheetNewInsulinRecord = true
+                    }
+                    
+                    Button("Blood Glucose", systemImage: "drop") {
+                        sheetNewGlucoseRecord = true
+                    }
+                    
+                    Button("Weight", systemImage: "scalemass") {
+                        sheetNewWeightRecord = true
+                    }
+                } label: {
+                    Image(systemName: "note.text.badge.plus")
                 }
-                
-                Button("Blood Glucose", systemImage: "drop") {
-                    sheetNewGlucoseRecord = true
-                }
-                
-                Button("Weight", systemImage: "scalemass") {
-                    sheetNewWeightRecord = true
-                }
-            } label: {
-                Image(systemName: "note.text.badge.plus")
             }
+        }
+        .navigationDestination(isPresented: $showsNovoPenReader) {
+            NovoPenReader(startsScanningOnAppear: true)
         }
         .sheet($sheetNewGlucoseRecord) {
             NewRecordSheet(.glucose)

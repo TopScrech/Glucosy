@@ -20,5 +20,16 @@ extension ValueStore {
         get { AirshotFilter(rawValue: airshotFilterRawValue) ?? .disabled }
         set { airshotFilterRawValue = newValue.rawValue }
     }
+    
+    func normalizeSelectedTab() {
+        switch selectedTab {
+        case 0 ... 2:
+            return
+        case 3:
+            selectedTab = 2
+        default:
+            selectedTab = 0
+        }
+    }
 }
 #endif

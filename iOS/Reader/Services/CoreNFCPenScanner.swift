@@ -13,8 +13,12 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
         self.onEvent = onEvent
     }
     
+    static var isReadingAvailable: Bool {
+        NFCTagReaderSession.readingAvailable
+    }
+    
     func readPen() async throws -> PenReading {
-        guard NFCTagReaderSession.readingAvailable else {
+        guard Self.isReadingAvailable else {
             throw NovoPenError.nfcUnavailable
         }
         

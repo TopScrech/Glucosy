@@ -6,22 +6,27 @@ struct HomeView: View {
     var body: some View {
         TabView(selection: $store.selectedTab) {
             Tab("Today", systemImage: "heart.text.clipboard", value: 0) {
-                TodayView()
+                NavigationStack {
+                    TodayView()
+                }
             }
             
             Tab("Records", systemImage: "tray.full", value: 1) {
-                RecordList()
-            }
-
-            Tab("NovoPen", systemImage: "wave.3.right", value: 2) {
-                NovoPenReader()
+                NavigationStack {
+                    RecordList()
+                }
             }
             
-            Tab("Settings", systemImage: "gear", value: 3) {
-                AppSettings()
+            Tab("Settings", systemImage: "gear", value: 2) {
+                NavigationStack {
+                    AppSettings()
+                }
             }
         }
         .sidebarAdaptableTabView()
+        .task {
+            store.normalizeSelectedTab()
+        }
     }
 }
 

@@ -16,6 +16,10 @@ struct AppSettings: View {
             }
 
             Section("NovoPen") {
+                NavigationLink("NovoPen Reader") {
+                    NovoPenReader()
+                }
+                
                 Picker("Hide Airshots", selection: $store.airshotFilter) {
                     ForEach(AirshotFilter.allCases) {
                         Text($0.title)

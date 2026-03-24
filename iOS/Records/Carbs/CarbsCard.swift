@@ -51,7 +51,7 @@ struct CarbsCard: View {
             Button {
                 UIPasteboard.general.string = record.source
             } label: {
-                Text("Copy Source")
+                Text(String("Copy Source"))
                 
                 Text(record.source)
                 

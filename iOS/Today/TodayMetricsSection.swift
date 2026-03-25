@@ -29,7 +29,6 @@ struct TodayMetricsSection: View {
             title: "Glucose",
             value: "120",
             unit: "mg/dL",
-            subtitle: "Avg 128 mg/dL",
             icon: "drop",
             color: .red
         ),
@@ -38,7 +37,6 @@ struct TodayMetricsSection: View {
             title: "Carbs",
             value: "45",
             unit: "g",
-            subtitle: "Last 8:30 AM",
             icon: "fork.knife",
             color: .orange
         )

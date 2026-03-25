@@ -5,7 +5,6 @@ struct TodayMetricData: Identifiable {
     let title: String
     let value: String
     let unit: String?
-    let subtitle: String
     let icon: String
     let color: Color
 }

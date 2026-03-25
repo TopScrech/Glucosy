@@ -26,10 +26,6 @@ struct TodayMetricCard: View {
                         .secondary()
                 }
             }
-            
-            Text(metric.subtitle)
-                .caption()
-                .secondary()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
@@ -44,7 +40,6 @@ struct TodayMetricCard: View {
             title: "Glucose",
             value: "118",
             unit: "mg/dL",
-            subtitle: "Avg 126 mg/dL",
             icon: "drop",
             color: .red
         )

@@ -173,6 +173,7 @@
       }
     },
     "Avg %@ mg/dL" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -205,6 +206,7 @@
       }
     },
     "Basal %@ U" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -285,6 +287,7 @@
       }
     },
     "Bolus %@ U" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -667,6 +670,7 @@
       }
     },
     "Last %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -867,6 +871,7 @@
       }
     },
     "No carbs today" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -901,6 +906,7 @@
       }
     },
     "No insulin today" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -935,6 +941,7 @@
       }
     },
     "No readings today" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -969,6 +976,7 @@
       }
     },
     "No weight data" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {

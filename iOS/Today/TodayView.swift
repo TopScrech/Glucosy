@@ -5,11 +5,12 @@ struct TodayView: View {
     @State private var vm = HealthKit()
     
     @State private var showsSettings = false
-    @State private var showsNovoPenReader = false
     @State private var sheetNewInsulinRecord = false
     @State private var sheetNewCarbsRecord = false
     @State private var sheetNewGlucoseRecord = false
     @State private var sheetNewWeightRecord = false
+
+    let openNovoPenScan: () -> Void
     
     var body: some View {
         ScrollView {
@@ -93,7 +94,6 @@ struct TodayView: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
-        .navigationTitle("Today")
         .scrollIndicators(.never)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -104,17 +104,12 @@ struct TodayView: View {
             
             if CoreNFCPenScanner.isReadingAvailable {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Scan Pen", systemImage: "wave.3.right") {
-                        showsNovoPenReader = true
-                    }
+                    Button("Scan Pen", systemImage: "wave.3.right", action: openNovoPenScan)
                 }
             }
         }
         .navigationDestination(isPresented: $showsSettings) {
             AppSettings()
-        }
-        .navigationDestination(isPresented: $showsNovoPenReader) {
-            NovoPenReader(startsScanningOnAppear: true)
         }
         .navigationDestination(for: TodayMetricDestination.self) {
             destinationView(for: $0)
@@ -276,6 +271,10 @@ struct TodayView: View {
         vm.readInsulin()
         vm.readCarbs()
         vm.readWeight()
+    }
+
+    init(openNovoPenScan: @escaping () -> Void = {}) {
+        self.openNovoPenScan = openNovoPenScan
     }
 }
 

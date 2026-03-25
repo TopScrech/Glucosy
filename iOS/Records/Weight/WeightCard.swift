@@ -14,41 +14,33 @@ struct WeightCard: View {
         record.sample.sourceRevision.source.bundleIdentifier
     }
     
-    private var color: Color {
-        .blue
-    }
-    
-    private var formattedValue: String {
-        String(Int(record.value.rounded()))
-    }
-    
     var body: some View {
-        VStack {
-            VStack(spacing: 4) {
-                Image(systemName: "scalemass")
-                    .foregroundStyle(color)
-                    .title2()
-                
-                Text(formattedValue)
+        HStack(spacing: 16) {
+            Image(systemName: "scalemass")
+                .foregroundStyle(.blue)
+                .title3()
+            
+            VStack(alignment: .leading) {
+                Text(record.value, format: .number.precision(.fractionLength(1)))
                     .title3(.semibold, design: .rounded)
                 
-                Text("KG")
-                    .caption2()
+                Text("kg")
                     .secondary()
+                
+                if store.debugMode {
+                    SourceName(record.source)
+                }
             }
-            .padding(10)
-            .background(.ultraThinMaterial, in: .rect(cornerRadius: 16))
-            .padding(1)
-            .background(color, in: .rect(cornerRadius: 17))
+            
+            Spacer()
             
             HStack(spacing: 4) {
-                Text(record.date, format: .dateTime.hour().minute())
-                    .secondary()
-                    .caption2()
-                
                 if store.debugMode {
                     SourceImage(sourceId)
                 }
+                
+                Text(record.date, format: .dateTime.hour().minute())
+                    .secondary()
             }
         }
 #if DEBUG

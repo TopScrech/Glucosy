@@ -10,31 +10,14 @@ struct WeightList: View {
             Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
         }
         
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 16) {
-                ForEach(dayChunks.indices, id: \.self) { index in
-                    let chunk = dayChunks[index]
-                    
-                    if let first = chunk.first {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text(Utils.formattedDate(first.date))
-                                .title3(.semibold, design: .rounded)
-                                .padding(.horizontal)
-                            
-                            LazyVGrid(
-                                columns: [
-                                    GridItem(
-                                        .adaptive(minimum: 60),
-                                        spacing: 0
-                                    )
-                                ],
-                                spacing: 12
-                            ) {
-                                ForEach(chunk.reversed()) {
-                                    WeightCard($0)
-                                }
-                            }
-                            .padding(.horizontal)
+        List {
+            ForEach(dayChunks.indices, id: \.self) { index in
+                let chunk = dayChunks[index]
+                
+                if let first = chunk.first {
+                    Section(Utils.formattedDate(first.date)) {
+                        ForEach(chunk.reversed()) {
+                            WeightCard($0)
                         }
                     }
                 }

@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>wave.3.right</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Scan NovoPen</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).startNovoPenScan</string>
+		</dict>
+	</array>
 	<key>NFCReaderUsageDescription</key>
 	<string>Scan supported NovoPen devices over NFC</string>
 	<key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>

@@ -2,13 +2,14 @@ import SwiftUI
 
 struct NewRecordGlucose: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var store: ValueStore
     
     @State private var date = Date()
     @State private var unitsString = ""
     @State private var mealTime: MealType = .unspecified
     
-    private var units: Int? {
-        Int(unitsString)
+    private var units: Double? {
+        Double(unitsString)
     }
     
     var body: some View {
@@ -29,7 +30,7 @@ struct NewRecordGlucose: View {
                     TextField("", text: $unitsString)
                         .multilineTextAlignment(.trailing)
                     
-                    Text("mmol/L")
+                    Text(store.glucoseUnit.title)
                 }
                 
                 Picker("Meal Time", selection: $mealTime) {
@@ -63,4 +64,5 @@ struct NewRecordGlucose: View {
 #Preview {
     NewRecordGlucose()
         .darkSchemePreferred()
+        .environmentObject(ValueStore())
 }

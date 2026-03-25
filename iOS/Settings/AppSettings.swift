@@ -9,6 +9,16 @@ struct AppSettings: View {
 #if !os(visionOS)
             AppearancePicker($store.appearance)
 #endif
+
+            Section("Units") {
+                Picker("Glucose", selection: $store.glucoseUnit) {
+                    ForEach(GlucoseUnit.allCases) {
+                        Text($0.title)
+                            .tag($0)
+                    }
+                }
+            }
+
             Section {
                 Toggle(isOn: $store.debugMode) {
                     Label("Debug mode", systemImage: "hammer")

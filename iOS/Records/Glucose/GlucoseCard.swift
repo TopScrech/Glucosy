@@ -18,8 +18,14 @@ struct GlucoseCard: View {
             SourceImage(sourceId)
             
             VStack(alignment: .leading) {
-                Text(record.value)
-                    .title3(.semibold, design: .rounded)
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text(record.formattedValue(in: store.glucoseUnit))
+                        .title3(.semibold, design: .rounded)
+
+                    Text(store.glucoseUnit.title)
+                        .caption()
+                        .secondary()
+                }
                 
                 if store.debugMode {
                     SourceName(record.source)

@@ -2,6 +2,7 @@ import SwiftUI
 import OSLog
 
 struct TodayView: View {
+    @EnvironmentObject private var store: ValueStore
     @State private var vm = HealthKit()
     
     @State private var showsSettings = false
@@ -36,8 +37,8 @@ struct TodayView: View {
                     } label: {
                         TodayLatestRow(
                             title: String(localized: "Blood Glucose"),
-                            value: latestGlucoseOverall.map { Utils.formatNumber($0.value) },
-                            unit: String(localized: "mg/dL"),
+                            value: latestGlucoseOverall?.formattedValue(in: store.glucoseUnit),
+                            unit: store.glucoseUnit.title,
                             date: latestGlucoseOverall?.date,
                             icon: "drop",
                             color: .red
@@ -195,8 +196,8 @@ struct TodayView: View {
             TodayMetricData(
                 destination: .glucose,
                 title: String(localized: "Glucose"),
-                value: formattedNumber(latestGlucoseToday?.value),
-                unit: String(localized: "mg/dL"),
+                value: formattedGlucose(latestGlucoseToday),
+                unit: store.glucoseUnit.title,
                 icon: "drop",
                 color: .red
             ),
@@ -237,6 +238,12 @@ struct TodayView: View {
         guard let value else { return "--" }
         
         return Utils.formatNumber(value)
+    }
+
+    private func formattedGlucose(_ record: Glucose?) -> String {
+        guard let record else { return "--" }
+
+        return record.formattedValue(in: store.glucoseUnit)
     }
     
     private func formattedWeight(_ value: Double?) -> String {
@@ -283,4 +290,5 @@ struct TodayView: View {
         TodayView()
     }
     .darkSchemePreferred()
+    .environmentObject(ValueStore())
 }

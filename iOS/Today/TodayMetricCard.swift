@@ -36,7 +36,7 @@ struct TodayMetricCard: View {
 #Preview {
     TodayMetricCard(
         metric: TodayMetricData(
-            id: "glucose",
+            destination: .glucose,
             title: "Glucose",
             value: "118",
             unit: "mg/dL",

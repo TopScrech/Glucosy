@@ -1213,6 +1213,7 @@
       }
     },
     "Records" : {
+      "extractionState" : "stale",
       "localizations" : {
         "nl" : {
           "stringUnit" : {

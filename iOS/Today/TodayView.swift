@@ -4,6 +4,7 @@ import OSLog
 struct TodayView: View {
     @State private var vm = HealthKit()
     
+    @State private var showsSettings = false
     @State private var showsNovoPenReader = false
     @State private var sheetNewInsulinRecord = false
     @State private var sheetNewCarbsRecord = false
@@ -93,37 +94,30 @@ struct TodayView: View {
             .padding(.vertical, 12)
         }
         .navigationTitle("Today")
+        .scrollIndicators(.never)
         .toolbar {
-            ToolbarItemGroup(placement: .topBarTrailing) {
-                if CoreNFCPenScanner.isReadingAvailable {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Settings", systemImage: "gear") {
+                    showsSettings = true
+                }
+            }
+            
+            if CoreNFCPenScanner.isReadingAvailable {
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("Scan Pen", systemImage: "wave.3.right") {
                         showsNovoPenReader = true
                     }
                 }
-                
-                Menu {
-                    Button("Carbohydrates", systemImage: "fork.knife") {
-                        sheetNewCarbsRecord = true
-                    }
-                    
-                    Button("Insulin Delivery", systemImage: "syringe") {
-                        sheetNewInsulinRecord = true
-                    }
-                    
-                    Button("Blood Glucose", systemImage: "drop") {
-                        sheetNewGlucoseRecord = true
-                    }
-                    
-                    Button("Weight", systemImage: "scalemass") {
-                        sheetNewWeightRecord = true
-                    }
-                } label: {
-                    Image(systemName: "note.text.badge.plus")
-                }
             }
+        }
+        .navigationDestination(isPresented: $showsSettings) {
+            AppSettings()
         }
         .navigationDestination(isPresented: $showsNovoPenReader) {
             NovoPenReader(startsScanningOnAppear: true)
+        }
+        .navigationDestination(for: TodayMetricDestination.self) {
+            destinationView(for: $0)
         }
         .sheet($sheetNewGlucoseRecord) {
             NewRecordSheet(.glucose)
@@ -204,7 +198,7 @@ struct TodayView: View {
     private var metricCards: [TodayMetricData] {
         [
             TodayMetricData(
-                id: "glucose",
+                destination: .glucose,
                 title: String(localized: "Glucose"),
                 value: formattedNumber(latestGlucoseToday?.value),
                 unit: String(localized: "mg/dL"),
@@ -212,7 +206,7 @@ struct TodayView: View {
                 color: .red
             ),
             TodayMetricData(
-                id: "carbs",
+                destination: .carbs,
                 title: String(localized: "Carbs"),
                 value: formattedNumber(carbsTotal),
                 unit: String(localized: "g"),
@@ -220,7 +214,7 @@ struct TodayView: View {
                 color: .orange
             ),
             TodayMetricData(
-                id: "insulin",
+                destination: .insulin,
                 title: String(localized: "Insulin"),
                 value: formattedNumber(insulinTotal),
                 unit: String(localized: "U"),
@@ -228,7 +222,7 @@ struct TodayView: View {
                 color: .yellow
             ),
             TodayMetricData(
-                id: "weight",
+                destination: .weight,
                 title: String(localized: "Weight"),
                 value: formattedWeight(latestWeightOverall?.value),
                 unit: String(localized: "kg"),
@@ -254,6 +248,27 @@ struct TodayView: View {
         guard let value else { return "--" }
         
         return value.formatted(.number.precision(.fractionLength(1)))
+    }
+    
+    @ViewBuilder
+    private func destinationView(for destination: TodayMetricDestination) -> some View {
+        switch destination {
+        case .glucose:
+            GlucoseList()
+                .environment(vm)
+            
+        case .carbs:
+            CarbsList()
+                .environment(vm)
+            
+        case .insulin:
+            InsulinList()
+                .environment(vm)
+            
+        case .weight:
+            WeightList()
+                .environment(vm)
+        }
     }
     
     private func refreshData() {

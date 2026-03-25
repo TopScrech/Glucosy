@@ -15,7 +15,10 @@ struct TodayMetricsSection: View {
             
             LazyVGrid(columns: columns, spacing: 12) {
                 ForEach(metrics) { metric in
-                    TodayMetricCard(metric: metric)
+                    NavigationLink(value: metric.destination) {
+                        TodayMetricCard(metric: metric)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -25,7 +28,7 @@ struct TodayMetricsSection: View {
 #Preview {
     TodayMetricsSection(metrics: [
         TodayMetricData(
-            id: "glucose",
+            destination: .glucose,
             title: "Glucose",
             value: "120",
             unit: "mg/dL",
@@ -33,7 +36,7 @@ struct TodayMetricsSection: View {
             color: .red
         ),
         TodayMetricData(
-            id: "carbs",
+            destination: .carbs,
             title: "Carbs",
             value: "45",
             unit: "g",

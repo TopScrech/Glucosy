@@ -1,6 +1,7 @@
+import Foundation
 import UIKit
 
-enum HomeQuickAction {
+enum HomeAction {
     case startNovoPenScan
 
     init?(shortcutItem: UIApplicationShortcutItem) {

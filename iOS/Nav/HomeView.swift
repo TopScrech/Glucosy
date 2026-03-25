@@ -11,16 +11,16 @@ struct HomeView: View {
                     NovoPenReader(startsScanningOnAppear: true)
                 }
         }
-        .task(id: router.quickActionRequest) {
-            guard router.quickActionRequest > 0 else {
+        .task(id: router.actionRequest) {
+            guard router.actionRequest > 0 else {
                 return
             }
 
-            guard let quickAction = router.consumePendingQuickAction() else {
+            guard let action = router.consumePendingAction() else {
                 return
             }
 
-            switch quickAction {
+            switch action {
             case .startNovoPenScan:
                 await presentNovoPenReader()
             }

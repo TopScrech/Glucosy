@@ -1,26 +1,25 @@
-import SwiftUI
+import ScrechKit
 import OSLog
 
 struct TodayView: View {
-    @EnvironmentObject private var store: ValueStore
     @State private var vm = HealthKit()
+    @EnvironmentObject private var store: ValueStore
+    
+    let openNovoPenScan: () -> Void
+    
+    init(openNovoPenScan: @escaping () -> Void = {}) {
+        self.openNovoPenScan = openNovoPenScan
+    }
     
     @State private var showsSettings = false
     @State private var sheetNewInsulinRecord = false
     @State private var sheetNewCarbsRecord = false
     @State private var sheetNewGlucoseRecord = false
     @State private var sheetNewWeightRecord = false
-
-    let openNovoPenScan: () -> Void
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                TodayHeader(
-                    date: Date(),
-                    lastUpdated: lastUpdated
-                )
-                
                 TodayMetricsSection(metrics: metricCards)
                 
                 TodayQuickActions(
@@ -95,7 +94,9 @@ struct TodayView: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
-        .scrollIndicators(.never)
+        .navigationTitle(String(localized: "Today"))
+        .navSubtitle(navigationSubtitle)
+        .scrollIndicators(.hidden)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Settings", systemImage: "gear") {
@@ -191,42 +192,52 @@ struct TodayView: View {
             .max()
     }
     
-    private var metricCards: [TodayMetricData] {
-        [
-            TodayMetricData(
-                destination: .glucose,
-                title: String(localized: "Glucose"),
-                value: formattedGlucose(latestGlucoseToday),
-                unit: store.glucoseUnit.title,
-                icon: "drop",
-                color: .red
-            ),
-            TodayMetricData(
-                destination: .carbs,
-                title: String(localized: "Carbs"),
-                value: formattedNumber(carbsTotal),
-                unit: String(localized: "g"),
-                icon: "fork.knife",
-                color: .orange
-            ),
-            TodayMetricData(
-                destination: .insulin,
-                title: String(localized: "Insulin"),
-                value: formattedNumber(insulinTotal),
-                unit: String(localized: "U"),
-                icon: "syringe",
-                color: .yellow
-            ),
-            TodayMetricData(
-                destination: .weight,
-                title: String(localized: "Weight"),
-                value: formattedWeight(latestWeightOverall?.value),
-                unit: String(localized: "kg"),
-                icon: "scalemass",
-                color: .blue
-            )
-        ]
+    private var navigationSubtitle: String {
+        let date = Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day())
+        
+        guard let lastUpdated else {
+            return "\(date) • \(String(localized: "No updates yet"))"
+        }
+        
+        let updated = String(localized: "Updated \(lastUpdated.formatted(date: .omitted, time: .shortened))")
+        
+        return "\(date) • \(updated)"
     }
+    
+    private var metricCards: [TodayMetricData] {[
+        TodayMetricData(
+            destination: .glucose,
+            title: String(localized: "Glucose"),
+            value: formattedGlucose(latestGlucoseToday),
+            unit: store.glucoseUnit.title,
+            icon: "drop",
+            color: .red
+        ),
+        TodayMetricData(
+            destination: .carbs,
+            title: String(localized: "Carbs"),
+            value: formattedNumber(carbsTotal),
+            unit: String(localized: "g"),
+            icon: "fork.knife",
+            color: .orange
+        ),
+        TodayMetricData(
+            destination: .insulin,
+            title: String(localized: "Insulin"),
+            value: formattedNumber(insulinTotal),
+            unit: String(localized: "U"),
+            icon: "syringe",
+            color: .yellow
+        ),
+        TodayMetricData(
+            destination: .weight,
+            title: String(localized: "Weight"),
+            value: formattedWeight(latestWeightOverall?.value),
+            unit: String(localized: "kg"),
+            icon: "scalemass",
+            color: .blue
+        )
+    ]}
     
     private func sumValue(_ values: [Double]) -> Double? {
         guard !values.isEmpty else { return nil }
@@ -239,10 +250,10 @@ struct TodayView: View {
         
         return Utils.formatNumber(value)
     }
-
+    
     private func formattedGlucose(_ record: Glucose?) -> String {
         guard let record else { return "--" }
-
+        
         return record.formattedValue(in: store.glucoseUnit)
     }
     
@@ -278,10 +289,6 @@ struct TodayView: View {
         vm.readInsulin()
         vm.readCarbs()
         vm.readWeight()
-    }
-
-    init(openNovoPenScan: @escaping () -> Void = {}) {
-        self.openNovoPenScan = openNovoPenScan
     }
 }
 

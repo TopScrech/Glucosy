@@ -94,7 +94,7 @@ struct TodayView: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
-        .navigationTitle(String(localized: "Today"))
+        .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
         .navSubtitle(navigationSubtitle)
         .scrollIndicators(.hidden)
         .toolbar {
@@ -193,15 +193,12 @@ struct TodayView: View {
     }
     
     private var navigationSubtitle: String {
-        let date = Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day())
-        
         guard let lastUpdated else {
-            return "\(date) • \(String(localized: "No updates yet"))"
+            return "\(String(localized: "No updates yet"))"
         }
         
         let updated = String(localized: "Updated \(lastUpdated.formatted(date: .omitted, time: .shortened))")
-        
-        return "\(date) • \(updated)"
+        return "\(updated)"
     }
     
     private var metricCards: [TodayMetricData] {[

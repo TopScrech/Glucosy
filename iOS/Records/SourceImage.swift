@@ -15,6 +15,7 @@ struct SourceImage: View {
         case "dev.topscrech.DiaBLE": .diaBLE
         case "com.apple.shortcuts": .shortcuts
         case "com.mysugr.companion.mySugr": .mySugr
+        case "com.dexcom.dexcomoneplus": .dexcomONE
         default: nil
         }
     }

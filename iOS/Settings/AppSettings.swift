@@ -9,7 +9,7 @@ struct AppSettings: View {
 #if !os(visionOS)
             AppearancePicker($store.appearance)
 #endif
-
+            
             Section("Units") {
                 Picker("Glucose", selection: $store.glucoseUnit) {
                     ForEach(GlucoseUnit.allCases) {
@@ -18,13 +18,13 @@ struct AppSettings: View {
                     }
                 }
             }
-
+            
             Section {
                 Toggle(isOn: $store.debugMode) {
                     Label("Debug mode", systemImage: "hammer")
                 }
             }
-
+            
             Section("NovoPen") {
                 NavigationLink("NovoPen Reader") {
                     NovoPenReader()

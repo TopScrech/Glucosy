@@ -21,12 +21,14 @@ struct WeightCard: View {
                 .title3()
             
             VStack(alignment: .leading) {
-                Text(record.value, format: .number.precision(.fractionLength(1)))
-                    .title3(.semibold, design: .rounded)
-                
-                Text("kg")
-                    .secondary()
-                
+                HStack(spacing: 5) {
+                    Text(record.value, format: .number.precision(.fractionLength(1)))
+                        .title3(.semibold, design: .rounded)
+                    
+                    Text("kg")
+                        .secondary()
+                }
+
                 if store.debugMode {
                     SourceName(record.source)
                 }
@@ -49,9 +51,7 @@ struct WeightCard: View {
                 UIPasteboard.general.string = record.source
             } label: {
                 Text("Copy Source")
-                
                 Text(record.source)
-                
                 Image(systemName: "doc.on.doc")
             }
         }

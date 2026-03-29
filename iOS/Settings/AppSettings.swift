@@ -73,6 +73,7 @@ struct AppSettings: View {
                 }
             }
         }
+        .navigationTitle("Settings")
     }
     
     private func deletePens(at offsets: IndexSet) {

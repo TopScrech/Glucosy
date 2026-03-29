@@ -14,7 +14,7 @@ struct GlucoseCard: View {
     }
     
     var body: some View {
-        HStack(spacing: 16) {
+        HStack {
             SourceImage(sourceId)
             
             VStack(alignment: .leading) {

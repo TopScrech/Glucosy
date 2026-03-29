@@ -299,19 +299,19 @@ struct TodayView: View {
     }
     
     private func formattedNumber(_ value: Double?) -> String {
-        guard let value else { return "--" }
+        guard let value else { return "-" }
         
         return Utils.formatNumber(value)
     }
     
     private func formattedGlucose(_ record: Glucose?) -> String {
-        guard let record else { return "--" }
+        guard let record else { return "-" }
         
         return record.formattedValue(in: store.glucoseUnit)
     }
     
     private func formattedWeight(_ value: Double?) -> String {
-        guard let value else { return "--" }
+        guard let value else { return "-" }
         
         return value.formatted(.number.precision(.fractionLength(1)))
     }

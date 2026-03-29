@@ -45,7 +45,7 @@ struct TodayLatestRow: View {
                     }
                 }
             } else {
-                Text("--")
+                Text("-")
                     .secondary()
             }
         }

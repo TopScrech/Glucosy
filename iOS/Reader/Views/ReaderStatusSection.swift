@@ -1,16 +1,16 @@
 import SwiftUI
 
 struct ReaderStatusSection: View {
-    let viewModel: PenReaderVM
-
+    let vm: PenReaderVM
+    
     var body: some View {
         Section("Status") {
             LabeledContent("State") {
-                Text(viewModel.statusTitle)
+                Text(vm.statusTitle)
                     .bold()
             }
-
-            Text(viewModel.statusMessage)
+            
+            Text(vm.statusMessage)
                 .foregroundStyle(.secondary)
         }
     }

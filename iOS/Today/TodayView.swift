@@ -1,16 +1,20 @@
 import ScrechKit
 import OSLog
+import SwiftData
 
 struct TodayView: View {
+    @Query(sort: \SavedPen.createdAt) private var savedPens: [SavedPen]
     @State private var vm = HealthKit()
+    @State private var novoPenReader = PenReaderVM()
+    @State private var novoPenWriteConfirmation = NovoPenWriteConfirmationVM()
     @EnvironmentObject private var store: ValueStore
     
-    let openNovoPenScan: () -> Void
+    let novoPenScanRequest: Int
     
-    init(openNovoPenScan: @escaping () -> Void = {}) {
-        self.openNovoPenScan = openNovoPenScan
-    }
-    
+    @State private var scannedPenToSave: PenReading?
+    @State private var novoPenScanErrorMessage: String?
+    @State private var showsNovoPenScanError = false
+    @State private var showsNovoPenWriteConfirmation = false
     @State private var showsSettings = false
     @State private var sheetNewInsulinRecord = false
     @State private var sheetNewCarbsRecord = false
@@ -109,7 +113,8 @@ struct TodayView: View {
             
             if CoreNFCPenScanner.isReadingAvailable {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Scan Pen", systemImage: "wave.3.right", action: openNovoPenScan)
+                    Button("Scan Pen", systemImage: "wave.3.right", action: startNovoPenScan)
+                        .disabled(novoPenReader.isWorking)
                 }
             }
         }
@@ -136,6 +141,47 @@ struct TodayView: View {
                 LogWeightSheet()
             }
                 .environment(vm)
+        }
+        .sheet(isPresented: $showsNovoPenWriteConfirmation, onDismiss: novoPenWriteConfirmation.dismiss) {
+            NavigationStack {
+                NovoPenWriteConfirmationSheet(
+                    vm: novoPenWriteConfirmation,
+                    healthKit: vm
+                )
+            }
+        }
+        .sheet(item: $scannedPenToSave) { reading in
+            NavigationStack {
+                AddScannedPenSheet(
+                    reading: reading,
+                    onSaved: { insulinType in
+                        presentNovoPenWriteConfirmation(for: reading, insulinType: insulinType)
+                    }
+                )
+            }
+        }
+        .alert("NovoPen Scan Failed", isPresented: $showsNovoPenScanError) {
+            Button("OK") {
+                novoPenScanErrorMessage = nil
+            }
+        } message: {
+            if let novoPenScanErrorMessage {
+                Text(novoPenScanErrorMessage)
+            }
+        }
+        .onChange(of: novoPenScanRequest) { oldValue, newValue in
+            guard newValue > oldValue else {
+                return
+            }
+            
+            startNovoPenScan()
+        }
+        .onChange(of: novoPenReader.status) { oldValue, newValue in
+            guard oldValue != newValue else {
+                return
+            }
+            
+            handleNovoPenStatusChange(newValue)
         }
         .task {
             vm.authorize { result in
@@ -292,12 +338,59 @@ struct TodayView: View {
         vm.readCarbs()
         vm.readWeight()
     }
+    
+    private func startNovoPenScan() {
+        novoPenReader.startScan()
+    }
+    
+    private func handleNovoPenStatusChange(_ status: ReaderStatus) {
+        switch status {
+        case .finished:
+            guard let reading = novoPenReader.reading else {
+                return
+            }
+            
+            if let savedPen = savedPens.first(where: { $0.matches(reading) }) {
+                presentNovoPenWriteConfirmation(for: reading, insulinType: savedPen.insulinType)
+            } else {
+                scannedPenToSave = reading
+            }
+            
+        case .failed:
+            novoPenScanErrorMessage = novoPenReader.errorMessage ?? String(localized: "An unknown error occurred")
+            showsNovoPenScanError = true
+            
+        case .idle, .scanning, .loadingSample:
+            break
+        }
+    }
+    
+    private func presentNovoPenWriteConfirmation(
+        for reading: PenReading,
+        insulinType: InsulinType
+    ) {
+        Task {
+            let insulinRecords = (try? await vm.reloadInsulinRecords()) ?? vm.insulinRecords
+            let missingDoses = novoPenReader.missingDoses(
+                using: insulinRecords,
+                airshotFilter: store.airshotFilter
+            )
+            
+            novoPenWriteConfirmation.present(
+                doses: missingDoses,
+                insulinType: insulinType,
+                penTitle: reading.title
+            )
+            showsNovoPenWriteConfirmation = true
+        }
+    }
 }
 
 #Preview {
     NavigationStack {
-        TodayView()
+        TodayView(novoPenScanRequest: 0)
     }
     .darkSchemePreferred()
     .environmentObject(ValueStore())
+    .modelContainer(for: [SavedPen.self], inMemory: true)
 }

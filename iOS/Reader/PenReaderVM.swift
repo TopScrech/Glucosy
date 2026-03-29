@@ -60,6 +60,15 @@ final class PenReaderVM {
         DoseHealthKitMatcher(insulinRecords: insulinRecords).match(for: visibleDoses(using: airshotFilter))
     }
     
+    func missingDoses(using insulinRecords: [Insulin], airshotFilter: AirshotFilter) -> [DoseEntry] {
+        let doses = visibleDoses(using: airshotFilter)
+        let matches = doseMatches(using: insulinRecords, airshotFilter: airshotFilter)
+        
+        return zip(doses, matches).compactMap {
+            $1 == .missing ? $0 : nil
+        }
+    }
+    
     var logText: String {
         logs.map(\.formattedLine).joined(separator: "\n")
     }

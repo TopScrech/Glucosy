@@ -1,15 +1,13 @@
+import SwiftData
 import SwiftUI
 
 struct HomeView: View {
     @Environment(AppRouter.self) private var router
-    @State private var showsNovoPenReader = false
+    @State private var novoPenScanRequest = 0
     
     var body: some View {
         NavigationStack {
-            TodayView(openNovoPenScan: openNovoPenScan)
-                .navigationDestination(isPresented: $showsNovoPenReader) {
-                    NovoPenReader(startsScanningOnAppear: true)
-                }
+            TodayView(novoPenScanRequest: novoPenScanRequest)
         }
         .task(id: router.actionRequest) {
             guard router.actionRequest > 0 else {
@@ -22,29 +20,16 @@ struct HomeView: View {
             
             switch action {
             case .startNovoPenScan:
-                await presentNovoPenReader()
+                novoPenScanRequest += 1
             }
         }
-    }
-    
-    private func openNovoPenScan() {
-        Task {
-            await presentNovoPenReader()
-        }
-    }
-    
-    private func presentNovoPenReader() async {
-        if showsNovoPenReader {
-            showsNovoPenReader = false
-            await Task.yield()
-        }
-        
-        showsNovoPenReader = true
     }
 }
 
 #Preview {
     HomeView()
         .environment(AppRouter())
+        .environmentObject(ValueStore())
+        .modelContainer(for: [SavedPen.self], inMemory: true)
         .darkSchemePreferred()
 }

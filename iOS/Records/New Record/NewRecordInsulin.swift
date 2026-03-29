@@ -5,6 +5,9 @@ struct NewRecordInsulin: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var date = Date()
+    @State private var errorMessage: String?
+    @State private var isAdding = false
+    @State private var showsError = false
     @State private var unitsString = ""
     @State private var purpose: InsulinType = .bolus
     @FocusState private var isUnitsFieldFocused: Bool
@@ -65,12 +68,31 @@ struct NewRecordInsulin: View {
                     guard let units else {
                         return
                     }
-
-                    vm.writeInsulin(value: units, type: purpose, date: date)
-                    dismiss()
+                    
+                    Task {
+                        do {
+                            isAdding = true
+                            try await vm.writeInsulin(value: units, type: purpose, date: date)
+                            dismiss()
+                        } catch {
+                            errorMessage = error.localizedDescription
+                            showsError = true
+                            isAdding = false
+                        }
+                    }
                 }
                 .bold()
-                .disabled(units == nil)
+                .disabled(units == nil || isAdding)
+            }
+        }
+        .alert("Could Not Add Insulin", isPresented: $showsError) {
+            Button("OK") {
+                errorMessage = nil
+                isAdding = false
+            }
+        } message: {
+            if let errorMessage {
+                Text(errorMessage)
             }
         }
     }

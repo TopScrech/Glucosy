@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct AppContainer: View {
 #if os(iOS)
@@ -10,6 +11,7 @@ struct AppContainer: View {
         HomeView()
 #if os(iOS)
             .environment(router)
+            .modelContainer(for: [SavedPen.self])
 #endif
             .environmentObject(store)
 #if canImport(Appearance)

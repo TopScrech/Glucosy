@@ -25,9 +25,17 @@ struct AppSettings: View {
                 }
             }
             
+            if store.debugMode {
+                Section("Debug Settings") {
+                    NavigationLink("NovoPen Scan View") {
+                        NovoPenReader()
+                    }
+                }
+            }
+            
             Section("NovoPen") {
-                NavigationLink("NovoPen Reader") {
-                    NovoPenReader()
+                NavigationLink("Saved Pens") {
+                    SavedPensView()
                 }
                 
                 Picker("Hide Airshots", selection: $store.airshotFilter) {

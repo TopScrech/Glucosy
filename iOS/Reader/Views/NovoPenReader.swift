@@ -3,28 +3,28 @@ import SwiftUI
 struct NovoPenReader: View {
     let startsScanningOnAppear: Bool
     
-    @State var viewModel = PenReaderVM()
+    @State var vm = PenReaderVM()
     @State private var healthKit = HealthKit()
     @State private var hasStartedInitialScan = false
     @EnvironmentObject private var store: ValueStore
 
     var body: some View {
         List {
-            ReaderStatusSection(viewModel: viewModel)
-            ReaderActionsSection(viewModel: viewModel)
+            ReaderStatusSection(vm: vm)
+            ReaderActionsSection(vm: vm)
             ReaderDebugSection(
-                logText: viewModel.visibleLogText,
-                logCount: viewModel.logs.count,
-                fullLogFileURL: viewModel.logFileURL,
-                hasSavedLog: viewModel.hasSavedLog
+                logText: vm.visibleLogText,
+                logCount: vm.logs.count,
+                fullLogFileURL: vm.logFileURL,
+                hasSavedLog: vm.hasSavedLog
             )
 
-            if let reading = viewModel.reading {
+            if let reading = vm.reading {
                 PenSummarySection(reading: reading)
                 DoseHistorySection(
-                    doses: viewModel.visibleDoses(using: store.airshotFilter),
-                    matches: viewModel.doseMatches(using: healthKit.insulinRecords, airshotFilter: store.airshotFilter),
-                    doseHistoryExportText: viewModel.doseHistoryExportText(using: store.airshotFilter)
+                    doses: vm.visibleDoses(using: store.airshotFilter),
+                    matches: vm.doseMatches(using: healthKit.insulinRecords, airshotFilter: store.airshotFilter),
+                    doseHistoryExportText: vm.doseHistoryExportText(using: store.airshotFilter)
                 )
             }
         }
@@ -41,7 +41,7 @@ struct NovoPenReader: View {
             }
             
             hasStartedInitialScan = true
-            viewModel.startScan()
+            vm.startScan()
         }
     }
     

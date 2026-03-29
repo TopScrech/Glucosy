@@ -1,6 +1,18 @@
 import Foundation
 
 extension PenReading {
+    var title: String {
+        if !model.isEmpty {
+            return model
+        }
+        
+        if !serial.isEmpty {
+            return serial
+        }
+        
+        return String(localized: "Unavailable")
+    }
+    
     var modelDisplayValue: String {
         model.isEmpty ? String(localized: "Unavailable") : model
     }

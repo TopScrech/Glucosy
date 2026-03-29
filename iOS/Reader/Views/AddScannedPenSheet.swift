@@ -3,16 +3,26 @@ import SwiftUI
 
 struct AddScannedPenSheet: View {
     let reading: PenReading
-    let onSaved: (InsulinType) -> Void
+    let onSaved: (SavedPen, Bool) -> Void
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    
+    @State private var customName = ""
     @State private var errorMessage: String?
     @State private var insulinType: InsulinType = .bolus
+    @State private var shouldPerformFullHistoryScan = false
     @State private var showsError = false
     
     var body: some View {
         List {
+            Section {
+                TextField("Pen Name", text: $customName)
+                    .textInputAutocapitalization(.words)
+            } header: {
+                Text("Name")
+            }
+            
             Section("Scanned Pen") {
                 LabeledContent("Model") {
                     Text(reading.modelDisplayValue)
@@ -33,6 +43,10 @@ struct AddScannedPenSheet: View {
             } footer: {
                 Text("This saved pen type will be reused for future NovoPen scans")
             }
+            
+            Section {
+                Toggle("Perform Full History Scan", isOn: $shouldPerformFullHistoryScan)
+            }
         }
         .navigationTitle("Add Pen")
         .navigationBarTitleDisplayMode(.inline)
@@ -44,7 +58,7 @@ struct AddScannedPenSheet: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Save") {
+                Button(shouldPerformFullHistoryScan ? "Save & Scan" : "Save") {
                     savePen()
                 }
                 .bold()
@@ -66,12 +80,13 @@ struct AddScannedPenSheet: View {
             let savedPen = SavedPen(
                 model: reading.model,
                 serial: reading.serial,
+                customName: customName.trimmingCharacters(in: .whitespacesAndNewlines),
                 insulinType: insulinType
             )
             
             modelContext.insert(savedPen)
             try modelContext.save()
-            onSaved(insulinType)
+            onSaved(savedPen, shouldPerformFullHistoryScan)
             dismiss()
         } catch {
             errorMessage = error.localizedDescription

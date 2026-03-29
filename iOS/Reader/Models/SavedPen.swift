@@ -4,6 +4,7 @@ import SwiftData
 @Model
 final class SavedPen {
     var createdAt = Date()
+    var customName = ""
     var insulinType: InsulinType = InsulinType.bolus
     var model = ""
     var serial = ""
@@ -11,16 +12,22 @@ final class SavedPen {
     init(
         model: String,
         serial: String,
+        customName: String = "",
         insulinType: InsulinType
     ) {
         self.model = model
         self.serial = serial
+        self.customName = customName
         self.insulinType = insulinType
     }
 }
 
 extension SavedPen {
     var title: String {
+        if !customName.isEmpty {
+            return customName
+        }
+        
         if !model.isEmpty {
             return model
         }

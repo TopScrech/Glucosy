@@ -154,8 +154,13 @@ struct TodayView: View {
             NavigationStack {
                 AddScannedPenSheet(
                     reading: reading,
-                    onSaved: { insulinType in
-                        presentNovoPenWriteConfirmation(for: reading, insulinType: insulinType)
+                    onSaved: { savedPen, shouldPerformFullHistoryScan in
+                        if shouldPerformFullHistoryScan {
+                            startNovoPenScan(receivesFullHistory: true)
+                            return
+                        }
+                        
+                        presentNovoPenWriteConfirmation(for: savedPen)
                     }
                 )
             }
@@ -340,6 +345,11 @@ struct TodayView: View {
     }
     
     private func startNovoPenScan() {
+        startNovoPenScan(receivesFullHistory: false)
+    }
+    
+    private func startNovoPenScan(receivesFullHistory: Bool) {
+        novoPenReader.readerOptions.receivesFullHistory = receivesFullHistory
         novoPenReader.startScan()
     }
     
@@ -351,7 +361,7 @@ struct TodayView: View {
             }
             
             if let savedPen = savedPens.first(where: { $0.matches(reading) }) {
-                presentNovoPenWriteConfirmation(for: reading, insulinType: savedPen.insulinType)
+                presentNovoPenWriteConfirmation(for: savedPen)
             } else {
                 scannedPenToSave = reading
             }
@@ -365,10 +375,7 @@ struct TodayView: View {
         }
     }
     
-    private func presentNovoPenWriteConfirmation(
-        for reading: PenReading,
-        insulinType: InsulinType
-    ) {
+    private func presentNovoPenWriteConfirmation(for savedPen: SavedPen) {
         Task {
             let insulinRecords = (try? await vm.reloadInsulinRecords()) ?? vm.insulinRecords
             let missingDoses = novoPenReader.missingDoses(
@@ -378,8 +385,8 @@ struct TodayView: View {
             
             novoPenWriteConfirmation.present(
                 doses: missingDoses,
-                insulinType: insulinType,
-                penTitle: reading.title
+                insulinType: savedPen.insulinType,
+                penTitle: savedPen.title
             )
             showsNovoPenWriteConfirmation = true
         }

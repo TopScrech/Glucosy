@@ -1,8 +1,11 @@
+import SwiftData
 import SwiftUI
 import Appearance
 
 struct AppSettings: View {
+    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var store: ValueStore
+    @Query(sort: \SavedPen.createdAt) private var savedPens: [SavedPen]
     
     var body: some View {
         List {
@@ -34,8 +37,32 @@ struct AppSettings: View {
             }
             
             Section("NovoPen") {
-                NavigationLink("Saved Pens") {
-                    SavedPensView()
+                if savedPens.isEmpty {
+                    Text("No saved pens yet")
+                        .foregroundStyle(.secondary)
+                } else {
+                    ForEach(savedPens) { savedPen in
+                        NavigationLink {
+                            SavedPenEditorView(pen: savedPen)
+                        } label: {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(savedPen.title)
+                                    
+                                    Text(savedPen.insulinType.title)
+                                        .foregroundStyle(.secondary)
+                                }
+                                
+                                Spacer()
+                                
+                                if !savedPen.serial.isEmpty {
+                                    Text(savedPen.serial)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                        }
+                    }
+                    .onDelete(perform: deletePens)
                 }
                 
                 Picker("Hide Airshots", selection: $store.airshotFilter) {
@@ -47,10 +74,19 @@ struct AppSettings: View {
             }
         }
     }
+    
+    private func deletePens(at offsets: IndexSet) {
+        for offset in offsets {
+            modelContext.delete(savedPens[offset])
+        }
+        
+        try? modelContext.save()
+    }
 }
 
 #Preview {
     AppSettings()
         .darkSchemePreferred()
         .environmentObject(ValueStore())
+        .modelContainer(for: [SavedPen.self], inMemory: true)
 }

@@ -97,6 +97,9 @@ struct TodayView: View {
         .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
         .navSubtitle(navigationSubtitle)
         .scrollIndicators(.hidden)
+        .refreshable {
+            refreshData()
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Settings", systemImage: "gear") {
@@ -134,9 +137,6 @@ struct TodayView: View {
                 Logger().info("Auth status: \(result, privacy: .public)")
             }
             
-            refreshData()
-        }
-        .refreshable {
             refreshData()
         }
     }

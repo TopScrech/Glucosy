@@ -1,6 +1,5 @@
-import UIKit
+import SwiftUI
 
-@MainActor
 final class GlucosyAppDelegate: NSObject, UIApplicationDelegate {
     func application(
         _ application: UIApplication,

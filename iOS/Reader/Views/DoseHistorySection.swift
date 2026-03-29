@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 struct DoseHistorySection: View {
     let doses: [DoseEntry]

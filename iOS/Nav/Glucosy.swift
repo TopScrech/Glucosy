@@ -1,9 +1,5 @@
 import ScrechKit
 
-#if os(iOS)
-import UIKit
-#endif
-
 @main
 struct GlucosyApp: App {
 #if os(iOS)

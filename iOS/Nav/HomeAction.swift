@@ -1,5 +1,4 @@
-import Foundation
-import UIKit
+import SwiftUI
 
 enum HomeAction {
     case startNovoPenScan

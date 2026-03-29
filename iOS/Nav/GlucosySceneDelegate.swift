@@ -1,6 +1,5 @@
-import UIKit
+import SwiftUI
 
-@MainActor
 final class GlucosySceneDelegate: NSObject, UIWindowSceneDelegate {
     func scene(
         _ scene: UIScene,

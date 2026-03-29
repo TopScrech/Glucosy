@@ -1,8 +1,6 @@
-import Observation
-import UIKit
+import SwiftUI
 
 @Observable
-@MainActor
 final class AppRouter {
     private(set) var actionRequest = 0
     private var pendingAction: HomeAction?

@@ -1,6 +1,5 @@
 import Foundation
 
-@MainActor
 final class ReaderLogStore {
     private let fileURL = URL.documentsDirectory.appending(path: "novopen-reader-last-log.txt")
     

@@ -17,8 +17,15 @@ struct GlucoseList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk) {
-                            GlucoseCard($0)
+                        ForEach(chunk) { record in
+                            GlucoseCard(record)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    if canDelete(record) {
+                                        Button("Delete", systemImage: "trash", role: .destructive) {
+                                            vm.deleteGlucose(record)
+                                        }
+                                    }
+                                }
                         }
                     }
                 }
@@ -27,6 +34,7 @@ struct GlucoseList: View {
         .navigationTitle("Blood Glucose")
         .sheet($sheetNewRecord) {
             NewRecordSheet(.glucose)
+                .environment(vm)
                 .presentationDetents([.medium])
         }
         .toolbar {
@@ -34,6 +42,10 @@ struct GlucoseList: View {
                 sheetNewRecord = true
             }
         }
+    }
+    
+    private func canDelete(_ record: Glucose) -> Bool {
+        record.sample.sourceRevision.source.bundleIdentifier == Bundle.main.bundleIdentifier
     }
 }
 

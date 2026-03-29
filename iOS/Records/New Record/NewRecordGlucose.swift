@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct NewRecordGlucose: View {
+    @Environment(HealthKit.self) private var vm
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var store: ValueStore
     
@@ -9,7 +10,7 @@ struct NewRecordGlucose: View {
     @State private var mealTime: MealType = .unspecified
     
     private var units: Double? {
-        Double(unitsString)
+        Double(unitsString.replacing(",", with: "."))
     }
     
     var body: some View {
@@ -29,6 +30,7 @@ struct NewRecordGlucose: View {
                     
                     TextField("", text: $unitsString)
                         .multilineTextAlignment(.trailing)
+                        .keyboardType(.decimalPad)
                     
                     Text(store.glucoseUnit.title)
                 }
@@ -53,9 +55,18 @@ struct NewRecordGlucose: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Add") {
-                    
+                    guard let units else {
+                        return
+                    }
+
+                    vm.writeGlucose(
+                        value: store.glucoseUnit.milligramsPerDeciliter(fromDisplayValue: units),
+                        date: date
+                    )
+                    dismiss()
                 }
                 .bold()
+                .disabled(units == nil)
             }
         }
     }
@@ -64,5 +75,6 @@ struct NewRecordGlucose: View {
 #Preview {
     NewRecordGlucose()
         .darkSchemePreferred()
+        .environment(HealthKit())
         .environmentObject(ValueStore())
 }

@@ -43,6 +43,7 @@ struct CarbsList: View {
         .navigationTitle("Carbohydrates")
         .sheet($sheetNewRecord) {
             NewRecordSheet(.carbs)
+                .environment(vm)
         }
         .toolbar {
             SFButton("note.text.badge.plus") {

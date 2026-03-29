@@ -1,15 +1,15 @@
 import SwiftUI
 
 struct NewRecordSheet: View {
-    private let recorType: RecordType
+    private let recordType: RecordType
     
-    init(_ recorType: RecordType) {
-        self.recorType = recorType
+    init(_ recordType: RecordType) {
+        self.recordType = recordType
     }
     
     var body: some View {
-        NavigationView {
-            switch recorType {
+        NavigationStack {
+            switch recordType {
             case .insulin:
                 NewRecordInsulin()
                 
@@ -26,4 +26,5 @@ struct NewRecordSheet: View {
 #Preview {
     NewRecordSheet(.insulin)
         .darkSchemePreferred()
+        .environment(HealthKit())
 }

@@ -121,15 +121,20 @@ struct TodayView: View {
         }
         .sheet($sheetNewGlucoseRecord) {
             NewRecordSheet(.glucose)
+                .environment(vm)
         }
         .sheet($sheetNewInsulinRecord) {
             NewRecordSheet(.insulin)
+                .environment(vm)
         }
         .sheet($sheetNewCarbsRecord) {
             NewRecordSheet(.carbs)
+                .environment(vm)
         }
         .sheet($sheetNewWeightRecord) {
-            LogWeightSheet()
+            NavigationStack {
+                LogWeightSheet()
+            }
                 .environment(vm)
         }
         .task {

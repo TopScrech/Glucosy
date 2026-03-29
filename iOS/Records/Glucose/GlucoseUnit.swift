@@ -29,6 +29,16 @@ enum GlucoseUnit: String, CaseIterable, Identifiable {
         }
     }
 
+    func milligramsPerDeciliter(fromDisplayValue value: Double) -> Double {
+        switch self {
+        case .mmolL:
+            value * Self.milligramsPerDeciliterPerMillimolePerLiter
+
+        case .mgdL:
+            value
+        }
+    }
+
     func formattedValue(fromMilligramsPerDeciliter value: Double) -> String {
         let convertedValue = displayValue(fromMilligramsPerDeciliter: value)
 

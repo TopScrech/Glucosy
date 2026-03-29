@@ -34,6 +34,7 @@ struct RecordList: View {
                 }
                 .sheet($sheetNewGlucoseRecord) {
                     NewRecordSheet(.glucose)
+                        .environment(vm)
                 }
             }
             
@@ -49,6 +50,7 @@ struct RecordList: View {
                 }
                 .sheet($sheetNewInsulinRecord) {
                     NewRecordSheet(.insulin)
+                        .environment(vm)
                 }
             }
             
@@ -64,6 +66,7 @@ struct RecordList: View {
                 }
                 .sheet($sheetNewCarbsRecord) {
                     NewRecordSheet(.carbs)
+                        .environment(vm)
                 }
             }
             
@@ -78,7 +81,9 @@ struct RecordList: View {
                     }
                 }
                 .sheet($sheetNewWeightRecord) {
-                    LogWeightSheet()
+                    NavigationStack {
+                        LogWeightSheet()
+                    }
                         .environment(vm)
                 }
             }

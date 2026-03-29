@@ -43,6 +43,7 @@ struct InsulinList: View {
         .navigationTitle("Insulin Delivery")
         .sheet($sheetNewRecord) {
             NewRecordSheet(.insulin)
+                .environment(vm)
         }
         .toolbar {
             SFButton("note.text.badge.plus") {

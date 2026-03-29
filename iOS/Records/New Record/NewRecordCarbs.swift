@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct NewRecordCarbs: View {
+    @Environment(HealthKit.self) private var vm
     @Environment(\.dismiss) private var dismiss
     
     @State private var date = Date()
     @State private var unitsString = ""
     
-    private var units: Int? {
-        Int(unitsString)
+    private var units: Double? {
+        Double(unitsString.replacing(",", with: "."))
     }
     
     var body: some View {
@@ -27,6 +28,7 @@ struct NewRecordCarbs: View {
                     
                     TextField("", text: $unitsString)
                         .multilineTextAlignment(.trailing)
+                        .keyboardType(.decimalPad)
                 }
             }
         }
@@ -41,9 +43,15 @@ struct NewRecordCarbs: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Add") {
-                    
+                    guard let units else {
+                        return
+                    }
+
+                    vm.writeCarbs(value: units, date: date)
+                    dismiss()
                 }
                 .bold()
+                .disabled(units == nil)
             }
         }
     }
@@ -52,4 +60,5 @@ struct NewRecordCarbs: View {
 #Preview {
     NewRecordCarbs()
         .darkSchemePreferred()
+        .environment(HealthKit())
 }

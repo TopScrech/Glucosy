@@ -16,8 +16,15 @@ struct WeightList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk.reversed()) {
-                            WeightCard($0)
+                        ForEach(chunk.reversed()) { record in
+                            WeightCard(record)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    if canDelete(record) {
+                                        Button("Delete", systemImage: "trash", role: .destructive) {
+                                            vm.deleteWeight(record)
+                                        }
+                                    }
+                                }
                         }
                     }
                 }
@@ -27,6 +34,7 @@ struct WeightList: View {
         .sheet($sheetNewEntry) {
             NavigationStack {
                 LogWeightSheet()
+                    .environment(vm)
             }
         }
         .toolbar {
@@ -34,6 +42,10 @@ struct WeightList: View {
                 sheetNewEntry = true
             }
         }
+    }
+
+    private func canDelete(_ record: Weight) -> Bool {
+        record.sample.sourceRevision.source.bundleIdentifier == Bundle.main.bundleIdentifier
     }
 }
 

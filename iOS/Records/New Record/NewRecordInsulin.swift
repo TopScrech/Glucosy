@@ -1,14 +1,15 @@
 import SwiftUI
 
 struct NewRecordInsulin: View {
+    @Environment(HealthKit.self) private var vm
     @Environment(\.dismiss) private var dismiss
     
     @State private var date = Date()
     @State private var unitsString = ""
     @State private var purpose: InsulinType = .bolus
     
-    private var units: Int? {
-        Int(unitsString)
+    private var units: Double? {
+        Double(unitsString.replacing(",", with: "."))
     }
     
     var body: some View {
@@ -25,6 +26,7 @@ struct NewRecordInsulin: View {
                     
                     TextField("", text: $unitsString)
                         .multilineTextAlignment(.trailing)
+                        .keyboardType(.decimalPad)
                 }
                 
                 VStack(alignment: .leading) {
@@ -54,17 +56,24 @@ struct NewRecordInsulin: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Add") {
-                    
+                    guard let units else {
+                        return
+                    }
+
+                    vm.writeInsulin(value: units, type: purpose, date: date)
+                    dismiss()
                 }
                 .bold()
+                .disabled(units == nil)
             }
         }
     }
 }
 
 #Preview {
-    NavigationView {
+    NavigationStack {
         NewRecordInsulin()
     }
     .darkSchemePreferred()
+    .environment(HealthKit())
 }

@@ -216,6 +216,7 @@ final class NovoPenSession {
         )
         
         var doses: [DoseEntry] = []
+        var transferredRecordCount = 0
         var finished = false
         
         while !finished {
@@ -239,8 +240,11 @@ final class NovoPenSession {
                     rawUnits: $0.units
                 )
             }
+            transferredRecordCount += report.recordCount
             doses.append(contentsOf: reportDoses)
-            onEvent("Received \(reportDoses.count) doses, total \(doses.count)")
+            onEvent(
+                "Received \(reportDoses.count) doses from \(report.recordCount) records, total \(doses.count)"
+            )
             onProgress(doses.count, expectedDoseCount)
             
             if !options.receivesFullHistory {
@@ -251,13 +255,15 @@ final class NovoPenSession {
             
             if let expectedDoseCount,
                expectedDoseCount > 0,
-               doses.count >= expectedDoseCount {
-                onEvent("Received complete dose history with \(doses.count) doses")
+               transferredRecordCount >= expectedDoseCount {
+                onEvent(
+                    "Received complete dose history with \(doses.count) doses from \(transferredRecordCount) records"
+                )
                 finished = true
                 continue
             }
             
-            if report.insulinDoses.isEmpty {
+            if report.recordCount == 0 {
                 finished = true
                 continue
             }
@@ -267,7 +273,7 @@ final class NovoPenSession {
                 data: NovoPenProtocol.eventRequestData(
                     instance: report.instance,
                     index: report.index,
-                    count: report.insulinDoses.count,
+                    count: report.recordCount,
                     confirmed: true
                 )
             )

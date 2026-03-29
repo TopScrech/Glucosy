@@ -10,6 +10,7 @@ struct EventReport {
     let configuration: Configuration?
     let instance: Int
     let index: Int
+    let recordCount: Int
     let insulinDoses: [InsulinDoseRecord]
     
     init(reader: inout ByteReader) throws {
@@ -23,13 +24,13 @@ struct EventReport {
             instance = Int(try reader.readUInt16())
             index = Int(try reader.readInt32())
             
-            let count = Int(try reader.readInt32())
+            recordCount = Int(try reader.readInt32())
             _ = Int(try reader.readUInt16())
             _ = Int(try reader.readUInt16())
             
             var insulinDoses: [InsulinDoseRecord] = []
             
-            for _ in 0 ..< count {
+            for _ in 0 ..< recordCount {
                 let dose = try InsulinDoseRecord(reader: &reader)
                 
                 if dose.isValid {
@@ -44,12 +45,14 @@ struct EventReport {
             configuration = try Configuration(reader: &reader)
             instance = -1
             index = -1
+            recordCount = 0
             insulinDoses = []
             
         default:
             configuration = nil
             instance = -1
             index = -1
+            recordCount = 0
             insulinDoses = []
         }
     }

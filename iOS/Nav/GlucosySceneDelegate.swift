@@ -9,10 +9,10 @@ final class GlucosySceneDelegate: NSObject, UIWindowSceneDelegate {
         guard let shortcutItem = connectionOptions.shortcutItem else {
             return
         }
-
+        
         _ = AppRouter.shared.handle(shortcutItem)
     }
-
+    
     func windowScene(
         _ windowScene: UIWindowScene,
         performActionFor shortcutItem: UIApplicationShortcutItem,

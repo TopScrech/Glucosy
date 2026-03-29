@@ -9,11 +9,11 @@ struct AppContainer: View {
     var body: some View {
         HomeView()
 #if os(iOS)
-        .environment(router)
+            .environment(router)
 #endif
-        .environmentObject(store)
+            .environmentObject(store)
 #if canImport(Appearance)
-        .preferredColorScheme(store.appearance.scheme)
+            .preferredColorScheme(store.appearance.scheme)
 #endif
     }
 }

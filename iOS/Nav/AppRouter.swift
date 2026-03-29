@@ -4,24 +4,24 @@ import SwiftUI
 final class AppRouter {
     private(set) var actionRequest = 0
     private var pendingAction: HomeAction?
-
+    
     static let shared = AppRouter()
-
+    
     func handle(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
         guard let action = HomeAction(shortcutItem: shortcutItem) else {
             return false
         }
-
+        
         request(action)
         return true
     }
-
+    
     func consumePendingAction() -> HomeAction? {
         let action = pendingAction
         pendingAction = nil
         return action
     }
-
+    
     func request(_ action: HomeAction) {
         pendingAction = action
         actionRequest += 1

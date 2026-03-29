@@ -8,6 +8,7 @@ struct NewRecordGlucose: View {
     @State private var date = Date()
     @State private var unitsString = ""
     @State private var mealTime: MealType = .unspecified
+    @FocusState private var isUnitsFieldFocused: Bool
     
     private var units: Double? {
         Double(unitsString.replacing(",", with: "."))
@@ -29,6 +30,7 @@ struct NewRecordGlucose: View {
                     Spacer()
                     
                     TextField("", text: $unitsString)
+                        .focused($isUnitsFieldFocused)
                         .multilineTextAlignment(.trailing)
                         .keyboardType(.decimalPad)
                     
@@ -46,6 +48,10 @@ struct NewRecordGlucose: View {
         }
         .navigationTitle("Blood Glucose")
         .navigationBarTitleDisplayMode(.inline)
+        .task {
+            await Task.yield()
+            isUnitsFieldFocused = true
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Cancel", role: .destructive) {

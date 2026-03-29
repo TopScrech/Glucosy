@@ -6,6 +6,7 @@ struct NewRecordCarbs: View {
     
     @State private var date = Date()
     @State private var unitsString = ""
+    @FocusState private var isUnitsFieldFocused: Bool
     
     private var units: Double? {
         Double(unitsString.replacing(",", with: "."))
@@ -27,6 +28,7 @@ struct NewRecordCarbs: View {
                     Spacer()
                     
                     TextField("", text: $unitsString)
+                        .focused($isUnitsFieldFocused)
                         .multilineTextAlignment(.trailing)
                         .keyboardType(.decimalPad)
                 }
@@ -34,6 +36,10 @@ struct NewRecordCarbs: View {
         }
         .navigationTitle("Carbohydrates")
         .navigationBarTitleDisplayMode(.inline)
+        .task {
+            await Task.yield()
+            isUnitsFieldFocused = true
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Cancel") {

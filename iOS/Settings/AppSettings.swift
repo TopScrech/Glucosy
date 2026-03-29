@@ -14,11 +14,18 @@ struct AppSettings: View {
 #endif
             
             Section("Units") {
-                Picker("Glucose", selection: $store.glucoseUnit) {
-                    ForEach(GlucoseUnit.allCases) {
-                        Text($0.title)
-                            .tag($0)
+                HStack {
+                    Text("Glucose")
+                    
+                    Spacer(minLength: 80)
+                    
+                    Picker("Glucose", selection: $store.glucoseUnit) {
+                        ForEach(GlucoseUnit.allCases) {
+                            Text($0.title)
+                                .tag($0)
+                        }
                     }
+                    .pickerStyle(.segmented)
                 }
             }
             
@@ -46,19 +53,12 @@ struct AppSettings: View {
                             SavedPenEditorView(pen: savedPen)
                         } label: {
                             HStack {
-                                VStack(alignment: .leading) {
-                                    Text(savedPen.title)
-                                    
-                                    Text(savedPen.insulinType.title)
-                                        .foregroundStyle(.secondary)
-                                }
+                                Text(savedPen.title)
                                 
                                 Spacer()
                                 
-                                if !savedPen.serial.isEmpty {
-                                    Text(savedPen.serial)
-                                        .foregroundStyle(.secondary)
-                                }
+                                Text(savedPen.insulinType.title)
+                                    .secondary()
                             }
                         }
                     }

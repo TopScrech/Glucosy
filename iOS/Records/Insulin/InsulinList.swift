@@ -23,10 +23,7 @@ struct InsulinList: View {
                             
                             LazyVGrid(
                                 columns: [
-                                    GridItem(
-                                        .adaptive(minimum: 60),
-                                        spacing: 0
-                                    )
+                                    GridItem(.adaptive(minimum: 60), spacing: 0)
                                 ],
                                 spacing: 12
                             ) {

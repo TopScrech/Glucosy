@@ -43,7 +43,7 @@ struct WeightList: View {
             }
         }
     }
-
+    
     private func canDelete(_ record: Weight) -> Bool {
         record.sample.sourceRevision.source.bundleIdentifier == Bundle.main.bundleIdentifier
     }

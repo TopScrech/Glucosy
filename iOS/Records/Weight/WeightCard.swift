@@ -28,7 +28,7 @@ struct WeightCard: View {
                     Text("kg")
                         .secondary()
                 }
-
+                
                 if store.debugMode {
                     SourceName(record.source)
                 }

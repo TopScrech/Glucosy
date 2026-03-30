@@ -22,9 +22,11 @@ struct TodayView: View {
     @State private var sheetNewWeightRecord = false
     
     var body: some View {
+        let glucoseUnit = store.glucoseUnit
+
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                TodayMetricsSection(metrics: metricCards)
+                TodayMetricsSection(metrics: metricCards(glucoseUnit: glucoseUnit))
                 
                 TodayQuickActions(
                     addGlucose: { sheetNewGlucoseRecord = true },
@@ -40,8 +42,8 @@ struct TodayView: View {
                     } label: {
                         TodayLatestRow(
                             title: String(localized: "Blood Glucose"),
-                            value: latestGlucoseOverall?.formattedValue(in: store.glucoseUnit),
-                            unit: store.glucoseUnit.title,
+                            value: latestGlucoseOverall?.formattedValue(in: glucoseUnit),
+                            unit: glucoseUnit.title,
                             date: latestGlucoseOverall?.date,
                             icon: "drop",
                             color: .red
@@ -236,40 +238,42 @@ struct TodayView: View {
         sumValue(carbsToday.map(\.value))
     }
     
-    private var metricCards: [TodayMetricData] {[
-        TodayMetricData(
-            destination: .glucose,
-            title: String(localized: "Glucose"),
-            value: formattedGlucose(latestGlucoseToday),
-            unit: store.glucoseUnit.title,
-            icon: "drop",
-            color: .red
-        ),
-        TodayMetricData(
-            destination: .carbs,
-            title: String(localized: "Carbs"),
-            value: formattedNumber(carbsTotal),
-            unit: String(localized: "g"),
-            icon: "fork.knife",
-            color: .orange
-        ),
-        TodayMetricData(
-            destination: .insulin,
-            title: String(localized: "Insulin"),
-            value: formattedNumber(insulinTotal),
-            unit: String(localized: "U"),
-            icon: "syringe",
-            color: .yellow
-        ),
-        TodayMetricData(
-            destination: .weight,
-            title: String(localized: "Weight"),
-            value: formattedWeight(latestWeightOverall?.value),
-            unit: String(localized: "kg"),
-            icon: "scalemass",
-            color: .blue
-        )
-    ]}
+    private func metricCards(glucoseUnit: GlucoseUnit) -> [TodayMetricData] {
+        [
+            TodayMetricData(
+                destination: .glucose,
+                title: String(localized: "Glucose"),
+                value: formattedGlucose(latestGlucoseToday, in: glucoseUnit),
+                unit: glucoseUnit.title,
+                icon: "drop",
+                color: .red
+            ),
+            TodayMetricData(
+                destination: .carbs,
+                title: String(localized: "Carbs"),
+                value: formattedNumber(carbsTotal),
+                unit: String(localized: "g"),
+                icon: "fork.knife",
+                color: .orange
+            ),
+            TodayMetricData(
+                destination: .insulin,
+                title: String(localized: "Insulin"),
+                value: formattedNumber(insulinTotal),
+                unit: String(localized: "U"),
+                icon: "syringe",
+                color: .yellow
+            ),
+            TodayMetricData(
+                destination: .weight,
+                title: String(localized: "Weight"),
+                value: formattedWeight(latestWeightOverall?.value),
+                unit: String(localized: "kg"),
+                icon: "scalemass",
+                color: .blue
+            )
+        ]
+    }
     
     private func sumValue(_ values: [Double]) -> Double? {
         guard !values.isEmpty else { return nil }
@@ -283,10 +287,10 @@ struct TodayView: View {
         return Utils.formatNumber(value)
     }
     
-    private func formattedGlucose(_ record: Glucose?) -> String {
+    private func formattedGlucose(_ record: Glucose?, in glucoseUnit: GlucoseUnit) -> String {
         guard let record else { return "-" }
         
-        return record.formattedValue(in: store.glucoseUnit)
+        return record.formattedValue(in: glucoseUnit)
     }
     
     private func formattedWeight(_ value: Double?) -> String {
@@ -352,11 +356,13 @@ struct TodayView: View {
     }
     
     private func presentNovoPenWriteConfirmation(for savedPen: SavedPen) {
+        let airshotFilter = store.airshotFilter
+
         Task {
             let insulinRecords = (try? await vm.reloadInsulinRecords()) ?? vm.insulinRecords
             let missingDoses = novoPenReader.missingDoses(
                 using: insulinRecords,
-                airshotFilter: store.airshotFilter
+                airshotFilter: airshotFilter
             )
             
             novoPenWriteConfirmation.present(

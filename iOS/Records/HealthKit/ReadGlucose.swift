@@ -29,6 +29,7 @@ extension HealthKit {
         }
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+        let glucoseUnit = self.glucoseUnit
         
         return try await withCheckedThrowingContinuation { continuation in
             let query = HKSampleQuery(
@@ -51,7 +52,7 @@ extension HealthKit {
                 
                 let records = results.map { sample -> Glucose in
                     Glucose(
-                        value: sample.quantity.doubleValue(for: self.glucoseUnit),
+                        value: sample.quantity.doubleValue(for: glucoseUnit),
                         sample: sample
                     )
                 }

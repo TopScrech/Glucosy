@@ -23,7 +23,7 @@ struct SavedPenRow: View {
             }
             .pickerStyle(.segmented)
         }
-        .onChange(of: pen.insulinType) { _, _ in
+        .onChange(of: pen.insulinType) {
             try? modelContext.save()
         }
     }

@@ -101,7 +101,7 @@ struct TodayView: View {
         .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
         .scrollIndicators(.hidden)
         .refreshable {
-            refreshData()
+            await refreshData()
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -192,7 +192,7 @@ struct TodayView: View {
                 Logger().info("Auth status: \(result, privacy: .public)")
             }
             
-            refreshData()
+            await refreshData()
         }
     }
     
@@ -316,11 +316,8 @@ struct TodayView: View {
         }
     }
     
-    private func refreshData() {
-        vm.readGlucose()
-        vm.readInsulin()
-        vm.readCarbs()
-        vm.readWeight()
+    private func refreshData() async {
+        await vm.reloadAllRecords()
     }
     
     private func startNovoPenScan() {

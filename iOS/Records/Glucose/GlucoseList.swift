@@ -32,6 +32,9 @@ struct GlucoseList: View {
             }
         }
         .navigationTitle("Blood Glucose")
+        .refreshable {
+            _ = try? await vm.reloadGlucoseRecords()
+        }
         .sheet($sheetNewRecord) {
             NewRecordSheet(.glucose)
                 .environment(vm)

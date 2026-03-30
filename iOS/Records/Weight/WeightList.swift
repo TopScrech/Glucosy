@@ -31,6 +31,9 @@ struct WeightList: View {
             }
         }
         .navigationTitle("Weight")
+        .refreshable {
+            _ = try? await vm.reloadWeightRecords()
+        }
         .sheet($sheetNewEntry) {
             NavigationStack {
                 LogWeightSheet()

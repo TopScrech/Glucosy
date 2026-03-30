@@ -41,6 +41,9 @@ struct CarbsList: View {
             }
         }
         .navigationTitle("Carbohydrates")
+        .refreshable {
+            _ = try? await vm.reloadCarbsRecords()
+        }
         .sheet($sheetNewRecord) {
             NewRecordSheet(.carbs)
                 .environment(vm)

@@ -95,10 +95,10 @@ struct RecordList: View {
                 // TODO: Display Warning when false
             }
             
-            vm.readGlucose()
-            vm.readInsulin()
-            vm.readCarbs()
-            vm.readWeight()
+            await vm.reloadAllRecords()
+        }
+        .refreshable {
+            await vm.reloadAllRecords()
         }
         .toolbar {
             Menu {

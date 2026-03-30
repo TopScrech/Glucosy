@@ -63,4 +63,11 @@ final class HealthKit {
             handler(status == .unnecessary)
         }
     }
+    
+    func reloadAllRecords() async {
+        _ = try? await reloadGlucoseRecords()
+        _ = try? await reloadInsulinRecords()
+        _ = try? await reloadCarbsRecords()
+        _ = try? await reloadWeightRecords()
+    }
 }

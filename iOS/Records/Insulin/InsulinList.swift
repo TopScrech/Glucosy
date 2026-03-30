@@ -38,6 +38,9 @@ struct InsulinList: View {
             }
         }
         .navigationTitle("Insulin Delivery")
+        .refreshable {
+            _ = try? await vm.reloadInsulinRecords()
+        }
         .sheet($sheetNewRecord) {
             NewRecordSheet(.insulin)
                 .environment(vm)

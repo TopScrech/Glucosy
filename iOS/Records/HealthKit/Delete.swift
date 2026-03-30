@@ -50,4 +50,44 @@ extension HealthKit {
             }
         }
     }
+
+    func deleteCarbs(_ record: Carbs) {
+        delete(record.sample) { [weak self] success, error in
+            if let error {
+                Logger().error("HealthKit: error while deleting carbs: \(error, privacy: .public)")
+                return
+            }
+
+            guard success else {
+                Logger().warning("HealthKit: carbs delete returned false")
+                return
+            }
+
+            Task { @MainActor in
+                self?.carbsRecords.removeAll {
+                    $0.sample.uuid == record.sample.uuid
+                }
+            }
+        }
+    }
+
+    func deleteInsulin(_ record: Insulin) {
+        delete(record.sample) { [weak self] success, error in
+            if let error {
+                Logger().error("HealthKit: error while deleting insulin: \(error, privacy: .public)")
+                return
+            }
+
+            guard success else {
+                Logger().warning("HealthKit: insulin delete returned false")
+                return
+            }
+
+            Task { @MainActor in
+                self?.insulinRecords.removeAll {
+                    $0.sample.uuid == record.sample.uuid
+                }
+            }
+        }
+    }
 }

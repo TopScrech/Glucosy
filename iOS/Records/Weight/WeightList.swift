@@ -19,10 +19,8 @@ struct WeightList: View {
                         ForEach(chunk.reversed()) { record in
                             WeightCard(record)
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    if canDelete(record) {
-                                        Button("Delete", systemImage: "trash", role: .destructive) {
-                                            vm.deleteWeight(record)
-                                        }
+                                    Button("Delete", systemImage: "trash", role: .destructive) {
+                                        vm.deleteWeight(record)
                                     }
                                 }
                         }
@@ -45,10 +43,6 @@ struct WeightList: View {
                 sheetNewEntry = true
             }
         }
-    }
-    
-    private func canDelete(_ record: Weight) -> Bool {
-        record.sample.sourceRevision.source.bundleIdentifier == Bundle.main.bundleIdentifier
     }
 }
 

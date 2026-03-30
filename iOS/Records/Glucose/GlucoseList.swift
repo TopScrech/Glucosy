@@ -20,10 +20,8 @@ struct GlucoseList: View {
                         ForEach(chunk) { record in
                             GlucoseCard(record)
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    if canDelete(record) {
-                                        Button("Delete", systemImage: "trash", role: .destructive) {
-                                            vm.deleteGlucose(record)
-                                        }
+                                    Button("Delete", systemImage: "trash", role: .destructive) {
+                                        vm.deleteGlucose(record)
                                     }
                                 }
                         }
@@ -45,10 +43,6 @@ struct GlucoseList: View {
                 sheetNewRecord = true
             }
         }
-    }
-    
-    private func canDelete(_ record: Glucose) -> Bool {
-        record.sample.sourceRevision.source.bundleIdentifier == Bundle.main.bundleIdentifier
     }
 }
 

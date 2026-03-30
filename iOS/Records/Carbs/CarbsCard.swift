@@ -1,4 +1,5 @@
 import SwiftUI
+import HealthKit
 
 struct CarbsCard: View {
     @EnvironmentObject private var store: ValueStore
@@ -18,32 +19,35 @@ struct CarbsCard: View {
     }
     
     var body: some View {
-        VStack {
-            VStack(spacing: 4) {
-                Image(systemName: "fork.knife")
-                    .foregroundStyle(color)
-                    .title2()
+        HStack(spacing: 16) {
+            Image(systemName: "fork.knife")
+                .foregroundStyle(color)
+                .title3()
+            
+            VStack(alignment: .leading) {
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text(Utils.formatNumber(record.value))
+                        .title3(.semibold, design: .rounded)
+                    
+                    Text("g")
+                        .caption()
+                        .secondary()
+                }
                 
-                Text(Utils.formatNumber(record.value))
-                    .title3(.semibold, design: .rounded)
-                
-                Text("g")
-                    .caption2()
-                    .secondary()
+                if store.debugMode {
+                    SourceName(record.source)
+                }
             }
-            .padding(10)
-            .background(.ultraThinMaterial, in: .rect(cornerRadius: 16))
-            .padding(1)
-            .background(color, in: .rect(cornerRadius: 17))
+            
+            Spacer()
             
             HStack(spacing: 4) {
-                Text(record.date, format: .dateTime.hour().minute())
-                    .secondary()
-                    .caption2()
-                
                 if store.debugMode {
                     SourceImage(sourceId)
                 }
+                
+                Text(record.date, format: .dateTime.hour().minute())
+                    .secondary()
             }
         }
 #if DEBUG
@@ -62,7 +66,20 @@ struct CarbsCard: View {
     }
 }
 
-//#Preview {
-//    CarbsCard()
-//    .darkSchemePreferred()
-//}
+#Preview {
+    List {
+        CarbsCard(
+            Carbs(
+                value: 32,
+                sample: .init(
+                    type: .quantityType(forIdentifier: .dietaryCarbohydrates)!,
+                    quantity: .init(unit: .gram(), doubleValue: 32),
+                    start: Date(),
+                    end: Date()
+                )
+            )
+        )
+    }
+    .darkSchemePreferred()
+    .environmentObject(ValueStore())
+}

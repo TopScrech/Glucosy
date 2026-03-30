@@ -27,28 +27,38 @@ struct InsulinCard: View {
     }
     
     var body: some View {
-        VStack {
-            VStack {
-                Image(systemName: icon)
-                    .foregroundStyle(color)
-                    .title2()
+        HStack(spacing: 16) {
+            Image(systemName: icon)
+                .foregroundStyle(color)
+                .title3()
+            
+            VStack(alignment: .leading) {
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text(Utils.formatNumber(record.value))
+                        .title3(.semibold, design: .rounded)
+                    
+                    Text("U")
+                        .caption()
+                        .secondary()
+                }
                 
-                Text(Utils.formatNumber(record.value))
-                    .title3(.semibold, design: .rounded)
+                Text(record.type.title)
+                    .secondary()
+                
+                if store.debugMode {
+                    SourceName(record.source)
+                }
             }
-            .padding(10)
-            .background(.ultraThinMaterial, in: .rect(cornerRadius: 16))
-            .padding(1)
-            .background(color, in: .rect(cornerRadius: 17))
+            
+            Spacer()
             
             HStack(spacing: 4) {
-                Text(record.date, format: .dateTime.hour().minute())
-                    .secondary()
-                    .caption2()
-                
                 if store.debugMode {
                     SourceImage(sourceId)
                 }
+                
+                Text(record.date, format: .dateTime.hour().minute())
+                    .secondary()
             }
         }
 #if DEBUG

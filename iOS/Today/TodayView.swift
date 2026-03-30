@@ -3,10 +3,10 @@ import OSLog
 import SwiftData
 
 struct TodayView: View {
-    @Query(sort: \SavedPen.createdAt) private var savedPens: [SavedPen]
     @State private var vm = HealthKit()
     @State private var novoPenReader = PenReaderVM()
     @State private var novoPenWriteConfirmation = NovoPenWriteConfirmationVM()
+    @Query(sort: \SavedPen.createdAt) private var savedPens: [SavedPen]
     @EnvironmentObject private var store: ValueStore
     
     let novoPenScanRequest: Int
@@ -99,7 +99,6 @@ struct TodayView: View {
             .padding(.vertical, 12)
         }
         .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
-        .navSubtitle(navigationSubtitle)
         .scrollIndicators(.hidden)
         .refreshable {
             refreshData()
@@ -235,26 +234,6 @@ struct TodayView: View {
     
     private var carbsTotal: Double? {
         sumValue(carbsToday.map(\.value))
-    }
-    
-    private var lastUpdated: Date? {
-        [
-            latestGlucoseOverall?.date,
-            latestInsulinOverall?.date,
-            latestCarbsOverall?.date,
-            latestWeightOverall?.date
-        ]
-            .compactMap { $0 }
-            .max()
-    }
-    
-    private var navigationSubtitle: String {
-        guard let lastUpdated else {
-            return "\(String(localized: "No updates yet"))"
-        }
-        
-        let updated = String(localized: "Updated \(lastUpdated.formatted(date: .omitted, time: .shortened))")
-        return "\(updated)"
     }
     
     private var metricCards: [TodayMetricData] {[

@@ -6,7 +6,7 @@ struct ReaderDebugSection: View {
     let fullLogFileURL: URL
     let hasSavedLog: Bool
     @State private var isShowingLogs = false
-
+    
     var body: some View {
         Section("Debug") {
             if !hasSavedLog {
@@ -14,7 +14,7 @@ struct ReaderDebugSection: View {
                     .foregroundStyle(.secondary)
             } else {
                 ShareLink("Share Full Log", item: fullLogFileURL)
-
+                
                 DisclosureGroup(isExpanded: $isShowingLogs) {
                     Text(logText)
                         .footnote()

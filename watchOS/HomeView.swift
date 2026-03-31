@@ -1,29 +1,24 @@
 import ScrechKit
 
 struct HomeView: View {
+    @State private var vm = WatchRecordsViewModel()
+    
     var body: some View {
-        let recordLists: [(title: String, systemImage: String, emptyState: String)] = [
-            ("Blood Glucose", "drop", "No blood glucose records yet"),
-            ("Insulin Delivery", "syringe", "No insulin records yet"),
-            ("Carbohydrates", "fork.knife", "No carbohydrate records yet"),
-            ("Weight", "scalemass", "No weight records yet")
-        ]
-        
-        return NavigationStack {
+        NavigationStack {
             List {
-                ForEach(recordLists, id: \.title) { recordList in
+                ForEach(WatchRecordKind.allCases) { recordKind in
                     NavigationLink {
-                        List {
-                            Text(recordList.emptyState)
-                                .secondary()
-                        }
-                        .navigationTitle(recordList.title)
+                        WatchRecordListView(recordKind: recordKind)
                     } label: {
-                        Label(recordList.title, systemImage: recordList.systemImage)
+                        Label(recordKind.title, systemImage: recordKind.systemImage)
                     }
                 }
             }
             .navigationTitle("Records")
+        }
+        .environment(vm)
+        .task {
+            await vm.prepare()
         }
     }
 }

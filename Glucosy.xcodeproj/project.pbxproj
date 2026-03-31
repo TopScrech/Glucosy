@@ -96,6 +96,11 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				HomeView.swift,
+				WatchRecordEntry.swift,
+				WatchRecordKind.swift,
+				WatchRecordListView.swift,
+				WatchRecordRow.swift,
+				WatchRecordsViewModel.swift,
 			);
 			target = F3F8ED8C2D2EA2FD004A2638 /* watchOS */;
 		};

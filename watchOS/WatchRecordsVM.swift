@@ -3,7 +3,7 @@ import Observation
 import SwiftUI
 
 @Observable
-final class WatchRecordsViewModel {
+final class WatchRecordsVM {
     private let store: HKHealthStore? = HKHealthStore.isHealthDataAvailable() ? HKHealthStore() : nil
     
     private(set) var authorizationMessage: String?
@@ -22,14 +22,10 @@ final class WatchRecordsViewModel {
     
     func entries(for kind: WatchRecordKind) -> [WatchRecordEntry] {
         switch kind {
-        case .glucose:
-            glucoseEntries
-        case .insulin:
-            insulinEntries
-        case .carbs:
-            carbsEntries
-        case .weight:
-            weightEntries
+        case .glucose: glucoseEntries
+        case .insulin: insulinEntries
+        case .carbs: carbsEntries
+        case .weight: weightEntries
         }
     }
     
@@ -125,10 +121,13 @@ final class WatchRecordsViewModel {
         switch kind {
         case .glucose:
             try await loadGlucoseEntries()
+            
         case .insulin:
             try await loadInsulinEntries()
+            
         case .carbs:
             try await loadCarbsEntries()
+            
         case .weight:
             try await loadWeightEntries()
         }
@@ -142,8 +141,8 @@ final class WatchRecordsViewModel {
             let milligramsPerDeciliter = $0.quantity.doubleValue(for: HKUnit(from: "mg/dl"))
             let convertedValue = usesMilligramsPerDeciliter ? milligramsPerDeciliter : milligramsPerDeciliter / 18.0182
             let valueText = usesMilligramsPerDeciliter
-                ? convertedValue.formatted(.number.precision(.fractionLength(0)))
-                : convertedValue.formatted(.number.precision(.fractionLength(0 ... 1)))
+            ? convertedValue.formatted(.number.precision(.fractionLength(0)))
+            : convertedValue.formatted(.number.precision(.fractionLength(0 ... 1)))
             
             return WatchRecordEntry(
                 id: $0.uuid,
@@ -243,15 +242,12 @@ final class WatchRecordsViewModel {
 }
 
 private enum WatchRecordsError: LocalizedError {
-    case authorizationDenied
-    case healthDataUnavailable
+    case authorizationDenied, healthDataUnavailable
     
     var errorDescription: String? {
         switch self {
-        case .authorizationDenied:
-            "Allow Health access to view records"
-        case .healthDataUnavailable:
-            "Health data is unavailable on this watch"
+        case .authorizationDenied: "Allow Health access to view records"
+        case .healthDataUnavailable: "Health data is unavailable on this watch"
         }
     }
 }

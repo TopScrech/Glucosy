@@ -1,7 +1,7 @@
 import ScrechKit
 
 struct HomeView: View {
-    @State private var vm = WatchRecordsViewModel()
+    @State private var vm = WatchRecordsVM()
     
     var body: some View {
         NavigationStack {

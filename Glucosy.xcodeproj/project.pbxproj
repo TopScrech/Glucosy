@@ -100,7 +100,7 @@
 				WatchRecordKind.swift,
 				WatchRecordListView.swift,
 				WatchRecordRow.swift,
-				WatchRecordsViewModel.swift,
+				WatchRecordsVM.swift,
 			);
 			target = F3F8ED8C2D2EA2FD004A2638 /* watchOS */;
 		};

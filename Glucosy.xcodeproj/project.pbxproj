@@ -669,6 +669,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = watchOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -702,6 +703,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = watchOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";

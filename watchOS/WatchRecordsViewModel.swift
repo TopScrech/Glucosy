@@ -139,7 +139,8 @@ final class WatchRecordsViewModel {
         
         return samples.map {
             let usesMilligramsPerDeciliter = glucoseUnitRawValue == "mgdL"
-            let convertedValue = usesMilligramsPerDeciliter ? $0.quantity.doubleValue(for: .gramUnit(with: .milli).unitDivided(by: .literUnit(with: .deci))) : $0.quantity.doubleValue(for: HKUnit(from: "mmol/L"))
+            let milligramsPerDeciliter = $0.quantity.doubleValue(for: HKUnit(from: "mg/dl"))
+            let convertedValue = usesMilligramsPerDeciliter ? milligramsPerDeciliter : milligramsPerDeciliter / 18.0182
             let valueText = usesMilligramsPerDeciliter
                 ? convertedValue.formatted(.number.precision(.fractionLength(0)))
                 : convertedValue.formatted(.number.precision(.fractionLength(0 ... 1)))

@@ -24,15 +24,13 @@ extension HealthKit {
             )
         }
         
-        let startDate = Calendar.current.date(byAdding: .month, value: -12, to: Date())
-        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: Date(), options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
         let unit = weightUnit
         
         return try await withCheckedThrowingContinuation { continuation in
             let query = HKSampleQuery(
                 sampleType: bodyMassType,
-                predicate: predicate,
+                predicate: nil,
                 limit: HKObjectQueryNoLimit,
                 sortDescriptors: [sortDescriptor]
             ) { _, results, error in

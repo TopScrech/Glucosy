@@ -12,6 +12,7 @@ struct AppContainer: View {
 #if os(iOS)
             .environment(router)
             .modelContainer(for: [SavedPen.self])
+            .statusBarHidden(store.debugHideStatusBar)
 #endif
             .environmentObject(store)
 #if canImport(Appearance)

@@ -11,6 +11,7 @@ final class ValueStore: ObservableObject {
     
     @AppStorage("airshot_filter") var airshotFilterRawValue = "disabled"
     @AppStorage("debug_mode") var debugMode = false
+    @AppStorage("debug_hide_status_bar") var debugHideStatusBar = false
     @AppStorage("glucose_unit") var glucoseUnitRawValue = "mmolL"
 }
 

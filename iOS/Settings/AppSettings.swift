@@ -37,6 +37,8 @@ struct AppSettings: View {
             
             if store.debugMode {
                 Section("Debug Settings") {
+                    Toggle("Hide Status Bar", isOn: $store.debugHideStatusBar)
+
                     NavigationLink("NovoPen Scan View") {
                         NovoPenReader()
                     }

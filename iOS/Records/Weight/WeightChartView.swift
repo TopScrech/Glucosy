@@ -65,7 +65,7 @@ struct WeightChartView: View {
                     }
                 }
                 .chartYAxis {
-                    AxisMarks(position: .leading)
+                    AxisMarks(position: .trailing)
                 }
                 .chartXScale(domain: interval.start...interval.end)
             }

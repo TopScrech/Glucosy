@@ -15,7 +15,7 @@ struct NovoPenPendingDoseRow: View {
                 
                 Spacer()
                 
-                Text(pendingDose.dose.timestamp, format: .dateTime.day().month().hour().minute())
+                Text(pendingDose.timestampLabel)
                     .secondary()
             }
         }

@@ -39,8 +39,11 @@ struct NovoPenWriteConfirmationSheet: View {
                 } header: {
                     HStack {
                         Text("New Doses")
+                        
                         Spacer()
+                        
                         Text("\(vm.selectedDoseCount) dose(s) selected")
+                            .footnote()
                     }
                 }
             }

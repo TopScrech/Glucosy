@@ -1,6 +1,6 @@
 import ScrechKit
 
-struct WatchRecordListView: View {
+struct RecordList: View {
     @Environment(WatchRecordsVM.self) private var vm
     
     let recordKind: WatchRecordKind

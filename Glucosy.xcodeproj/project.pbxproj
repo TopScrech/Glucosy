@@ -96,9 +96,9 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				HomeView.swift,
+				RecordList.swift,
 				WatchRecordEntry.swift,
 				WatchRecordKind.swift,
-				WatchRecordListView.swift,
 				WatchRecordRow.swift,
 				WatchRecordsVM.swift,
 			);

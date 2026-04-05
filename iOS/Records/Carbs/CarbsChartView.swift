@@ -13,13 +13,12 @@ struct CarbsChartView: View {
     var body: some View {
         let now = Date.now
         let filteredRecords = records.records(in: range, endingAt: now)
-        let aggregation: MeasurementChartAggregation = range.usesAverageAggregation ? .average : .sum
-        let points = records.chartPoints(in: range, aggregation: aggregation, endingAt: now)
+        let points = records.chartPoints(in: range, aggregation: .sum, endingAt: now)
         let interval = range.interval(endingAt: now)
         let totalCarbs = filteredRecords.reduce(into: 0.0) { partialResult, record in
             partialResult += record.value
         }
-        let averageCarbs = filteredRecords.isEmpty ? 0 : totalCarbs / Double(filteredRecords.count)
+        let averageCarbs = totalCarbs / Double(range.dayCount(endingAt: now))
         
         MeasurementChartCard(
             value: summaryValue(

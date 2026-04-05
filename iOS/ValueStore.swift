@@ -15,16 +15,16 @@ final class ValueStore: ObservableObject {
     @AppStorage("glucose_unit") var glucoseUnitRawValue = "mmolL"
 }
 
-#if os(iOS)
 extension ValueStore {
+#if canImport(CoreNFC)
     var airshotFilter: AirshotFilter {
         get { AirshotFilter(rawValue: airshotFilterRawValue) ?? .disabled }
         set { airshotFilterRawValue = newValue.rawValue }
     }
+#endif
 
     var glucoseUnit: GlucoseUnit {
         get { GlucoseUnit(rawValue: glucoseUnitRawValue) ?? .mmolL }
         set { glucoseUnitRawValue = newValue.rawValue }
     }
 }
-#endif

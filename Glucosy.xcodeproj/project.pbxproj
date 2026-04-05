@@ -15,6 +15,9 @@
 		F32B209E2CD5852800925351 /* HealthyKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32B209D2CD5852800925351 /* HealthyKit */; };
 		F32B20A42CD5854700925351 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F32B20A32CD5854700925351 /* Algorithms */; };
 		F3A9C4A72E99A5B80052700B /* Appearance in Frameworks */ = {isa = PBXBuildFile; productRef = F3A9C4A62E99A5B80052700B /* Appearance */; };
+		F3BB00012F82B5B0008A7E17 /* HealthyKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32B209D2CD5852800925351 /* HealthyKit */; };
+		F3BB00022F82B5B0008A7E17 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F32B20A32CD5854700925351 /* Algorithms */; };
+		F3BB00032F82B5B0008A7E17 /* Appearance in Frameworks */ = {isa = PBXBuildFile; productRef = F3A9C4A62E99A5B80052700B /* Appearance */; };
 		F3C712932F82B5B0008A7E17 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3C712922F82B5B0008A7E17 /* ScrechKit */; };
 		F3F8ED9A2D2EA2FE004A2638 /* watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -114,10 +117,90 @@
 			);
 			target = F32A1DD92D2EEBD5008AEB2F /* Widgets */;
 		};
+		F3BB00042F82B5B0008A7E17 /* Exceptions for "iOS" folder in "visionOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppIcon.icon,
+				Nav/GlucosyAppDelegate.swift,
+				Nav/GlucosySceneDelegate.swift,
+				Reader/Models/AirshotFilter.swift,
+				"Reader/Models/DoseEntry + Export.swift",
+				Reader/Models/DoseEntry.swift,
+				Reader/Models/DoseHealthKitMatch.swift,
+				Reader/Models/DoseHealthKitMatcher.swift,
+				Reader/Models/DoseIdentity.swift,
+				"Reader/Models/PenReading + Display.swift",
+				Reader/Models/PenReading.swift,
+				"Reader/Models/PendingDoseWrite + Display.swift",
+				Reader/Models/PendingDoseWrite.swift,
+				Reader/Models/ReaderLogEntry.swift,
+				Reader/Models/ReaderOptions.swift,
+				Reader/Models/ReaderStatus.swift,
+				Reader/Models/SavedPen.swift,
+				Reader/NovoPenWriteConfirmationVM.swift,
+				Reader/PenReaderVM.swift,
+				Reader/Protocol/ARequest.swift,
+				Reader/Protocol/AResponse.swift,
+				Reader/Protocol/Apdu.swift,
+				Reader/Protocol/ApoepElement.swift,
+				Reader/Protocol/ArgumentsSimple.swift,
+				Reader/Protocol/Attribute.swift,
+				Reader/Protocol/Configuration.swift,
+				Reader/Protocol/ConfirmedAction.swift,
+				Reader/Protocol/DataApdu.swift,
+				Reader/Protocol/EventReport.swift,
+				Reader/Protocol/EventRequest.swift,
+				Reader/Protocol/FullSpecification.swift,
+				Reader/Protocol/InsulinDoseRecord.swift,
+				Reader/Protocol/NovoPenProtocol.swift,
+				Reader/Protocol/PhdPacket.swift,
+				Reader/Protocol/SegmentEntry.swift,
+				Reader/Protocol/SegmentInfo.swift,
+				Reader/Protocol/SegmentInfoList.swift,
+				Reader/Protocol/SegmentInfoMap.swift,
+				Reader/Protocol/Specification.swift,
+				Reader/Protocol/TriggerSegmentDataTransfer.swift,
+				Reader/Resources/nvp_datatest.txt,
+				Reader/Services/CoreNFCISO7816Transceiver.swift,
+				Reader/Services/CoreNFCPenScanner.swift,
+				Reader/Services/HexTraceLoader.swift,
+				Reader/Services/MockTraceTransceiver.swift,
+				Reader/Services/NovoPenError.swift,
+				Reader/Services/NovoPenReadSource.swift,
+				Reader/Services/NovoPenReaderService.swift,
+				Reader/Services/NovoPenSession.swift,
+				Reader/Services/NovoPenTransceiveResult.swift,
+				Reader/Services/NovoPenTransceiver.swift,
+				Reader/Services/ReaderLogStore.swift,
+				Reader/Support/ByteReader.swift,
+				Reader/Support/ByteWriter.swift,
+				"Reader/Support/Data + HexString.swift",
+				Reader/Support/UncheckedSendableBox.swift,
+				Reader/Views/AddScannedPenSheet.swift,
+				Reader/Views/DoseHistorySection.swift,
+				Reader/Views/DoseRow.swift,
+				Reader/Views/NovoPenPendingDoseRow.swift,
+				Reader/Views/NovoPenReader.swift,
+				Reader/Views/NovoPenWriteConfirmationSheet.swift,
+				Reader/Views/PenSummarySection.swift,
+				Reader/Views/ReaderActionsSection.swift,
+				Reader/Views/ReaderDebugSection.swift,
+				Reader/Views/ReaderStatusSection.swift,
+				Reader/Views/SavedPenEditorView.swift,
+				Reader/Views/SavedPenRow.swift,
+				Reader/Views/SavedPensView.swift,
+				Shortcuts/GlucosyShortcutsProvider.swift,
+				Shortcuts/OpenNovoPenScanIntent.swift,
+				iOS.plist,
+			);
+			target = F3C712802F82B566008A7E17 /* visionOS */;
+		};
 		F3C7128E2F82B567008A7E17 /* Exceptions for "visionOS" folder in "visionOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				ContentView.swift,
 				Info.plist,
+				visionApp.swift,
 			);
 			target = F3C712802F82B566008A7E17 /* visionOS */;
 		};
@@ -130,6 +213,7 @@
 				F34041762F242D0800E8CDAE /* Exceptions for "iOS" folder in "iOS" target */,
 				F34041772F242D0800E8CDAE /* Exceptions for "iOS" folder in "watchOS" target */,
 				F34041782F242D0800E8CDAE /* Exceptions for "iOS" folder in "Widgets" target */,
+				F3BB00042F82B5B0008A7E17 /* Exceptions for "iOS" folder in "visionOS" target */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -180,6 +264,9 @@
 		F3C7127E2F82B566008A7E17 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				F3BB00032F82B5B0008A7E17 /* Appearance in Frameworks */,
+				F3BB00022F82B5B0008A7E17 /* Algorithms in Frameworks */,
+				F3BB00012F82B5B0008A7E17 /* HealthyKit in Frameworks */,
 				F3C712932F82B5B0008A7E17 /* ScrechKit in Frameworks */,
 			);
 		};
@@ -289,10 +376,14 @@
 			buildRules = (
 			);
 			fileSystemSynchronizedGroups = (
+				F34041482F242D0800E8CDAE /* iOS */,
 				F3C712822F82B566008A7E17 /* visionOS */,
 			);
 			name = visionOS;
 			packageProductDependencies = (
+				F32B209D2CD5852800925351 /* HealthyKit */,
+				F32B20A32CD5854700925351 /* Algorithms */,
+				F3A9C4A62E99A5B80052700B /* Appearance */,
 				F3C712922F82B5B0008A7E17 /* ScrechKit */,
 			);
 			productName = vision;
@@ -761,7 +852,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 7;
-				XROS_DEPLOYMENT_TARGET = 1;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -797,7 +888,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 7;
 				VALIDATE_PRODUCT = YES;
-				XROS_DEPLOYMENT_TARGET = 1;
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};

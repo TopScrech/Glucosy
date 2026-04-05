@@ -3,9 +3,11 @@ import SwiftUI
 import Appearance
 
 struct AppSettings: View {
-    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject private var store: ValueStore
+#if canImport(CoreNFC)
+    @Environment(\.modelContext) private var modelContext
     @Query(sort: \SavedPen.createdAt) private var savedPens: [SavedPen]
+#endif
     
     var body: some View {
         List {
@@ -29,6 +31,7 @@ struct AppSettings: View {
                 }
             }
             
+#if canImport(CoreNFC)
             Section {
                 Toggle(isOn: $store.debugMode) {
                     Label("Debug mode", systemImage: "hammer")
@@ -74,10 +77,12 @@ struct AppSettings: View {
                     }
                 }
             }
+#endif
         }
         .navigationTitle("Settings")
     }
     
+#if canImport(CoreNFC)
     private func deletePens(at offsets: IndexSet) {
         for offset in offsets {
             modelContext.delete(savedPens[offset])
@@ -85,11 +90,14 @@ struct AppSettings: View {
         
         try? modelContext.save()
     }
+#endif
 }
 
 #Preview {
     AppSettings()
         .darkSchemePreferred()
         .environmentObject(ValueStore())
+#if canImport(CoreNFC)
         .modelContainer(for: [SavedPen.self], inMemory: true)
+#endif
 }

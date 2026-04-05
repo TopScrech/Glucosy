@@ -30,6 +30,8 @@ struct HomeView: View {
     HomeView()
         .environment(AppRouter())
         .environmentObject(ValueStore())
+#if canImport(CoreNFC)
         .modelContainer(for: [SavedPen.self], inMemory: true)
+#endif
         .darkSchemePreferred()
 }

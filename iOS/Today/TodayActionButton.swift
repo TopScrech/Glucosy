@@ -28,7 +28,9 @@ struct TodayActionButton: View {
             .overlay(color.opacity(0.2), in: .rect(cornerRadius: 14))
         }
         .buttonStyle(.plain)
+#if !os(visionOS)
         .hapticOn(hapticTrigger, as: .impact)
+#endif
     }
 }
 

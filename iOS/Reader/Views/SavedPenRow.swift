@@ -12,7 +12,7 @@ struct SavedPenRow: View {
             
             if !pen.serial.isEmpty && pen.serial != pen.title {
                 Text(pen.serial)
-                    .foregroundStyle(.secondary)
+                    .secondary()
             }
             
             Picker("Type", selection: $pen.insulinType) {

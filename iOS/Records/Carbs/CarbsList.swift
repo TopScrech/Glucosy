@@ -11,6 +11,13 @@ struct CarbsList: View {
         }
         
         List {
+            Section {
+                CarbsChartView(records: vm.carbsRecords)
+                    .listRowInsets(.init())
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+            }
+            
             ForEach(dayChunks.indices, id: \.self) { index in
                 let chunk = dayChunks[index]
                 

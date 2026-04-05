@@ -10,7 +10,7 @@ struct SavedPensView: View {
             if savedPens.isEmpty {
                 Section {
                     Text("No pens saved yet")
-                        .foregroundStyle(.secondary)
+                        .secondary()
                 }
             } else {
                 ForEach(savedPens) {

@@ -12,6 +12,13 @@ struct GlucoseList: View {
         }
         
         List {
+            Section {
+                GlucoseChartView(records: vm.glucoseRecords)
+                    .listRowInsets(.init())
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+            }
+            
             ForEach(dayChunks.indices, id: \.self) { index in
                 let chunk = dayChunks[index]
                 

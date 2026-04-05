@@ -11,6 +11,13 @@ struct WeightList: View {
         }
         
         List {
+            Section {
+                WeightChartView(records: vm.weightRecords)
+                    .listRowInsets(.init())
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+            }
+            
             ForEach(dayChunks.indices, id: \.self) { index in
                 let chunk = dayChunks[index]
                 

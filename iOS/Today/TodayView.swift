@@ -4,17 +4,19 @@ import SwiftData
 
 struct TodayView: View {
     @State private var vm = HealthKit()
+#if canImport(CoreNFC)
     @State private var novoPenReader = PenReaderVM()
     @State private var novoPenWriteConfirmation = NovoPenWriteConfirmationVM()
     @Query(sort: \SavedPen.createdAt) private var savedPens: [SavedPen]
-    @EnvironmentObject private var store: ValueStore
-    
-    let novoPenScanRequest: Int
-    
     @State private var scannedPenToSave: PenReading?
     @State private var novoPenScanErrorMessage: String?
     @State private var showsNovoPenScanError = false
     @State private var showsNovoPenWriteConfirmation = false
+#endif
+    @EnvironmentObject private var store: ValueStore
+    
+    let novoPenScanRequest: Int
+    
     @State private var showsSettings = false
     @State private var sheetNewInsulinRecord = false
     @State private var sheetNewCarbsRecord = false
@@ -112,12 +114,14 @@ struct TodayView: View {
                 }
             }
             
+#if canImport(CoreNFC)
             if CoreNFCPenScanner.isReadingAvailable {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Scan Pen", systemImage: "wave.3.right", action: startNovoPenScan)
                         .disabled(novoPenReader.isWorking)
                 }
             }
+#endif
         }
         .navigationDestination(isPresented: $showsSettings) {
             AppSettings()
@@ -143,6 +147,7 @@ struct TodayView: View {
             }
                 .environment(vm)
         }
+#if canImport(CoreNFC)
         .sheet(isPresented: $showsNovoPenWriteConfirmation, onDismiss: novoPenWriteConfirmation.dismiss) {
             NavigationStack {
                 NovoPenWriteConfirmationSheet(
@@ -175,6 +180,8 @@ struct TodayView: View {
                 Text(novoPenScanErrorMessage)
             }
         }
+#endif
+#if canImport(CoreNFC)
         .onChange(of: novoPenScanRequest) { oldValue, newValue in
             guard newValue > oldValue else {
                 return
@@ -189,6 +196,7 @@ struct TodayView: View {
             
             handleNovoPenStatusChange(newValue)
         }
+#endif
         .task {
             vm.authorize { result in
                 Logger().info("Auth status: \(result, privacy: .public)")
@@ -324,6 +332,7 @@ struct TodayView: View {
         await vm.reloadAllRecords()
     }
     
+#if canImport(CoreNFC)
     private func startNovoPenScan() {
         startNovoPenScan(receivesFullHistory: false)
     }
@@ -373,6 +382,7 @@ struct TodayView: View {
             showsNovoPenWriteConfirmation = true
         }
     }
+#endif
 }
 
 #Preview {
@@ -381,5 +391,7 @@ struct TodayView: View {
     }
     .darkSchemePreferred()
     .environmentObject(ValueStore())
+#if canImport(CoreNFC)
     .modelContainer(for: [SavedPen.self], inMemory: true)
+#endif
 }

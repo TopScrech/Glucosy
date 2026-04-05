@@ -8,7 +8,7 @@ struct HomeView: View {
             List {
                 ForEach(WatchRecordKind.allCases) { recordKind in
                     NavigationLink {
-                        WatchRecordListView(recordKind: recordKind)
+                        RecordList(recordKind: recordKind)
                     } label: {
                         Label(recordKind.title, systemImage: recordKind.systemImage)
                     }

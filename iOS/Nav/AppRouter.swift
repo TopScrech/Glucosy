@@ -7,6 +7,7 @@ final class AppRouter {
     
     static let shared = AppRouter()
     
+#if os(iOS)
     func handle(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
         guard let action = HomeAction(shortcutItem: shortcutItem) else {
             return false
@@ -15,6 +16,7 @@ final class AppRouter {
         request(action)
         return true
     }
+#endif
     
     func consumePendingAction() -> HomeAction? {
         let action = pendingAction

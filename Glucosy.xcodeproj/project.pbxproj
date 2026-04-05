@@ -15,6 +15,10 @@
 		F32B209E2CD5852800925351 /* HealthyKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32B209D2CD5852800925351 /* HealthyKit */; };
 		F32B20A42CD5854700925351 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F32B20A32CD5854700925351 /* Algorithms */; };
 		F3A9C4A72E99A5B80052700B /* Appearance in Frameworks */ = {isa = PBXBuildFile; productRef = F3A9C4A62E99A5B80052700B /* Appearance */; };
+		F3BB00012F82B5B0008A7E17 /* HealthyKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32B209D2CD5852800925351 /* HealthyKit */; };
+		F3BB00022F82B5B0008A7E17 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = F32B20A32CD5854700925351 /* Algorithms */; };
+		F3BB00032F82B5B0008A7E17 /* Appearance in Frameworks */ = {isa = PBXBuildFile; productRef = F3A9C4A62E99A5B80052700B /* Appearance */; };
+		F3C712932F82B5B0008A7E17 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3C712922F82B5B0008A7E17 /* ScrechKit */; };
 		F3F8ED9A2D2EA2FE004A2638 /* watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -62,6 +66,8 @@
 		F32A1DDE2D2EEBD5008AEB2F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		F32B207A2CD5823B00925351 /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F34041132F242C1400E8CDAE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F3C712812F82B566008A7E17 /* visionOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = visionOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3C712942F82B5C9008A7E17 /* visionOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = visionOS.entitlements; sourceTree = "<group>"; };
 		F3E0671B2F46801B001B77CD /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -96,9 +102,9 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				HomeView.swift,
+				RecordList.swift,
 				WatchRecordEntry.swift,
 				WatchRecordKind.swift,
-				WatchRecordListView.swift,
 				WatchRecordRow.swift,
 				WatchRecordsVM.swift,
 			);
@@ -111,6 +117,93 @@
 			);
 			target = F32A1DD92D2EEBD5008AEB2F /* Widgets */;
 		};
+		F3BB00042F82B5B0008A7E17 /* Exceptions for "iOS" folder in "visionOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppIcon.icon,
+				Nav/GlucosyAppDelegate.swift,
+				Nav/GlucosySceneDelegate.swift,
+				Reader/Models/AirshotFilter.swift,
+				"Reader/Models/DoseEntry + Export.swift",
+				Reader/Models/DoseEntry.swift,
+				Reader/Models/DoseHealthKitMatch.swift,
+				Reader/Models/DoseHealthKitMatcher.swift,
+				Reader/Models/DoseIdentity.swift,
+				"Reader/Models/PenReading + Display.swift",
+				Reader/Models/PenReading.swift,
+				"Reader/Models/PendingDoseWrite + Display.swift",
+				Reader/Models/PendingDoseWrite.swift,
+				Reader/Models/ReaderLogEntry.swift,
+				Reader/Models/ReaderOptions.swift,
+				Reader/Models/ReaderStatus.swift,
+				Reader/Models/SavedPen.swift,
+				Reader/NovoPenWriteConfirmationVM.swift,
+				Reader/PenReaderVM.swift,
+				Reader/Protocol/ARequest.swift,
+				Reader/Protocol/AResponse.swift,
+				Reader/Protocol/Apdu.swift,
+				Reader/Protocol/ApoepElement.swift,
+				Reader/Protocol/ArgumentsSimple.swift,
+				Reader/Protocol/Attribute.swift,
+				Reader/Protocol/Configuration.swift,
+				Reader/Protocol/ConfirmedAction.swift,
+				Reader/Protocol/DataApdu.swift,
+				Reader/Protocol/EventReport.swift,
+				Reader/Protocol/EventRequest.swift,
+				Reader/Protocol/FullSpecification.swift,
+				Reader/Protocol/InsulinDoseRecord.swift,
+				Reader/Protocol/NovoPenProtocol.swift,
+				Reader/Protocol/PhdPacket.swift,
+				Reader/Protocol/SegmentEntry.swift,
+				Reader/Protocol/SegmentInfo.swift,
+				Reader/Protocol/SegmentInfoList.swift,
+				Reader/Protocol/SegmentInfoMap.swift,
+				Reader/Protocol/Specification.swift,
+				Reader/Protocol/TriggerSegmentDataTransfer.swift,
+				Reader/Resources/nvp_datatest.txt,
+				Reader/Services/CoreNFCISO7816Transceiver.swift,
+				Reader/Services/CoreNFCPenScanner.swift,
+				Reader/Services/HexTraceLoader.swift,
+				Reader/Services/MockTraceTransceiver.swift,
+				Reader/Services/NovoPenError.swift,
+				Reader/Services/NovoPenReadSource.swift,
+				Reader/Services/NovoPenReaderService.swift,
+				Reader/Services/NovoPenSession.swift,
+				Reader/Services/NovoPenTransceiveResult.swift,
+				Reader/Services/NovoPenTransceiver.swift,
+				Reader/Services/ReaderLogStore.swift,
+				Reader/Support/ByteReader.swift,
+				Reader/Support/ByteWriter.swift,
+				"Reader/Support/Data + HexString.swift",
+				Reader/Support/UncheckedSendableBox.swift,
+				Reader/Views/AddScannedPenSheet.swift,
+				Reader/Views/DoseHistorySection.swift,
+				Reader/Views/DoseRow.swift,
+				Reader/Views/NovoPenPendingDoseRow.swift,
+				Reader/Views/NovoPenReader.swift,
+				Reader/Views/NovoPenWriteConfirmationSheet.swift,
+				Reader/Views/PenSummarySection.swift,
+				Reader/Views/ReaderActionsSection.swift,
+				Reader/Views/ReaderDebugSection.swift,
+				Reader/Views/ReaderStatusSection.swift,
+				Reader/Views/SavedPenEditorView.swift,
+				Reader/Views/SavedPenRow.swift,
+				Reader/Views/SavedPensView.swift,
+				Shortcuts/GlucosyShortcutsProvider.swift,
+				Shortcuts/OpenNovoPenScanIntent.swift,
+				iOS.plist,
+			);
+			target = F3C712802F82B566008A7E17 /* visionOS */;
+		};
+		F3C7128E2F82B567008A7E17 /* Exceptions for "visionOS" folder in "visionOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ContentView.swift,
+				Info.plist,
+				visionApp.swift,
+			);
+			target = F3C712802F82B566008A7E17 /* visionOS */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -120,6 +213,7 @@
 				F34041762F242D0800E8CDAE /* Exceptions for "iOS" folder in "iOS" target */,
 				F34041772F242D0800E8CDAE /* Exceptions for "iOS" folder in "watchOS" target */,
 				F34041782F242D0800E8CDAE /* Exceptions for "iOS" folder in "Widgets" target */,
+				F3BB00042F82B5B0008A7E17 /* Exceptions for "iOS" folder in "visionOS" target */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -140,6 +234,14 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		F3C712822F82B566008A7E17 /* visionOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F3C7128E2F82B567008A7E17 /* Exceptions for "visionOS" folder in "visionOS" target */,
+			);
+			path = visionOS;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +259,15 @@
 				F32B20A42CD5854700925351 /* Algorithms in Frameworks */,
 				F3A9C4A72E99A5B80052700B /* Appearance in Frameworks */,
 				F32B209E2CD5852800925351 /* HealthyKit in Frameworks */,
+			);
+		};
+		F3C7127E2F82B566008A7E17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				F3BB00032F82B5B0008A7E17 /* Appearance in Frameworks */,
+				F3BB00022F82B5B0008A7E17 /* Algorithms in Frameworks */,
+				F3BB00012F82B5B0008A7E17 /* HealthyKit in Frameworks */,
+				F3C712932F82B5B0008A7E17 /* ScrechKit in Frameworks */,
 			);
 		};
 		F3F8ED8A2D2EA2FD004A2638 /* Frameworks */ = {
@@ -180,11 +291,13 @@
 		F32B20712CD5823B00925351 = {
 			isa = PBXGroup;
 			children = (
+				F3C712942F82B5C9008A7E17 /* visionOS.entitlements */,
 				F34041132F242C1400E8CDAE /* README.md */,
 				F34041482F242D0800E8CDAE /* iOS */,
 				F340417B2F242D0B00E8CDAE /* watchOS */,
 				F34041852F242D0C00E8CDAE /* Widgets */,
 				F3E0671B2F46801B001B77CD /* LICENSE.txt */,
+				F3C712822F82B566008A7E17 /* visionOS */,
 				F32A1DDB2D2EEBD5008AEB2F /* Frameworks */,
 				F32B207B2CD5823B00925351 /* Products */,
 			);
@@ -196,6 +309,7 @@
 				F32B207A2CD5823B00925351 /* iOS.app */,
 				F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */,
 				F32A1DDA2D2EEBD5008AEB2F /* Widgets.appex */,
+				F3C712812F82B566008A7E17 /* visionOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,6 +365,31 @@
 			productReference = F32B207A2CD5823B00925351 /* iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F3C712802F82B566008A7E17 /* visionOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3C7128F2F82B567008A7E17 /* Build configuration list for PBXNativeTarget "visionOS" */;
+			buildPhases = (
+				F3C7127D2F82B566008A7E17 /* Sources */,
+				F3C7127E2F82B566008A7E17 /* Frameworks */,
+				F3C7127F2F82B566008A7E17 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				F34041482F242D0800E8CDAE /* iOS */,
+				F3C712822F82B566008A7E17 /* visionOS */,
+			);
+			name = visionOS;
+			packageProductDependencies = (
+				F32B209D2CD5852800925351 /* HealthyKit */,
+				F32B20A32CD5854700925351 /* Algorithms */,
+				F3A9C4A62E99A5B80052700B /* Appearance */,
+				F3C712922F82B5B0008A7E17 /* ScrechKit */,
+			);
+			productName = vision;
+			productReference = F3C712812F82B566008A7E17 /* visionOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		F3F8ED8C2D2EA2FD004A2638 /* watchOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3F8ED9B2D2EA2FE004A2638 /* Build configuration list for PBXNativeTarget "watchOS" */;
@@ -276,7 +415,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1620;
+				LastSwiftUpdateCheck = 2650;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					F32A1DD92D2EEBD5008AEB2F = {
@@ -284,6 +423,9 @@
 					};
 					F32B20792CD5823B00925351 = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					F3C712802F82B566008A7E17 = {
+						CreatedOnToolsVersion = 26.5;
 					};
 					F3F8ED8C2D2EA2FD004A2638 = {
 						CreatedOnToolsVersion = 16.2;
@@ -298,6 +440,10 @@
 				Base,
 				ru,
 				nl,
+				de,
+				uk,
+				fr,
+				tr,
 			);
 			mainGroup = F32B20712CD5823B00925351;
 			minimizedProjectReferenceProxies = 1;
@@ -315,6 +461,7 @@
 				F32B20792CD5823B00925351 /* iOS */,
 				F3F8ED8C2D2EA2FD004A2638 /* watchOS */,
 				F32A1DD92D2EEBD5008AEB2F /* Widgets */,
+				F3C712802F82B566008A7E17 /* visionOS */,
 			);
 		};
 /* End PBXProject section */
@@ -326,6 +473,11 @@
 			);
 		};
 		F32B20782CD5823B00925351 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		F3C7127F2F82B566008A7E17 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 			);
@@ -344,6 +496,11 @@
 			);
 		};
 		F32B20762CD5823B00925351 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		F3C7127D2F82B566008A7E17 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
 			);
@@ -382,6 +539,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Widgets.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -416,6 +574,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Widgets.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -495,7 +654,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 64.0;
+				MARKETING_VERSION = 64.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -557,7 +716,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 64.0;
+				MARKETING_VERSION = 64.0.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -662,6 +821,77 @@
 			};
 			name = Release;
 		};
+		F3C712902F82B567008A7E17 /* Debug configuration for PBXNativeTarget "visionOS" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = visionOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8FQUA2F388;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.topscrech.Glucosy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		F3C712912F82B567008A7E17 /* Release configuration for PBXNativeTarget "visionOS" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = visionOS.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8FQUA2F388;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.topscrech.Glucosy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 		F3F8ED9C2D2EA2FE004A2638 /* Debug configuration for PBXNativeTarget "watchOS" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -758,6 +988,14 @@
 			);
 			defaultConfigurationName = Release;
 		};
+		F3C7128F2F82B567008A7E17 /* Build configuration list for PBXNativeTarget "visionOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3C712902F82B567008A7E17 /* Debug configuration for PBXNativeTarget "visionOS" */,
+				F3C712912F82B567008A7E17 /* Release configuration for PBXNativeTarget "visionOS" */,
+			);
+			defaultConfigurationName = Release;
+		};
 		F3F8ED9B2D2EA2FE004A2638 /* Build configuration list for PBXNativeTarget "watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -828,6 +1066,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F3A9C4A52E99A5B80052700B /* XCRemoteSwiftPackageReference "Appearance" */;
 			productName = Appearance;
+		};
+		F3C712922F82B5B0008A7E17 /* ScrechKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F32B209F2CD5853500925351 /* XCRemoteSwiftPackageReference "ScrechKit" */;
+			productName = ScrechKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

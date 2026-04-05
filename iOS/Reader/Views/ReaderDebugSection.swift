@@ -11,7 +11,7 @@ struct ReaderDebugSection: View {
         Section("Debug") {
             if !hasSavedLog {
                 Text("No logs yet")
-                    .foregroundStyle(.secondary)
+                    .secondary()
             } else {
                 ShareLink("Share Full Log", item: fullLogFileURL)
                 

@@ -35,16 +35,6 @@ struct AppSettings: View {
                 }
             }
             
-            if store.debugMode {
-                Section("Debug Settings") {
-                    Toggle(String("Hide Status Bar"), isOn: $store.debugHideStatusBar)
-
-                    NavigationLink("NovoPen Scan View") {
-                        NovoPenReader()
-                    }
-                }
-            }
-            
             Section("NovoPen") {
                 if savedPens.isEmpty {
                     Text("No saved pens yet")
@@ -71,6 +61,16 @@ struct AppSettings: View {
                     ForEach(AirshotFilter.allCases) {
                         Text($0.title)
                             .tag($0)
+                    }
+                }
+            }
+            
+            if store.debugMode {
+                Section("Debug Settings") {
+                    Toggle(String("Hide Status Bar"), isOn: $store.debugHideStatusBar)
+                    
+                    NavigationLink("NovoPen Scan View") {
+                        NovoPenReader()
                     }
                 }
             }

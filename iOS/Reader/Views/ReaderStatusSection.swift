@@ -11,7 +11,7 @@ struct ReaderStatusSection: View {
             }
             
             Text(vm.statusMessage)
-                .foregroundStyle(.secondary)
+                .secondary()
         }
     }
 }

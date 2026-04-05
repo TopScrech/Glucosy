@@ -15,7 +15,7 @@ struct NovoPenPendingDoseRow: View {
                         pendingDose.dose.units,
                         format: .number.precision(.fractionLength(0...1))
                     )
-                    .foregroundStyle(.secondary)
+                    .secondary()
                 }
                 
                 Spacer()

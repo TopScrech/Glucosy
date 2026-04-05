@@ -48,7 +48,7 @@ struct AppSettings: View {
             Section("NovoPen") {
                 if savedPens.isEmpty {
                     Text("No saved pens yet")
-                        .foregroundStyle(.secondary)
+                        .secondary()
                 } else {
                     ForEach(savedPens) { savedPen in
                         NavigationLink {

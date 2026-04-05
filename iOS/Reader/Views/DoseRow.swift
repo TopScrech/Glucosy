@@ -10,7 +10,7 @@ struct DoseRow: View {
                 Text(dose.timestamp, format: .dateTime.year().month().day())
                 
                 Text(dose.timestamp, format: .dateTime.hour().minute())
-                    .foregroundStyle(.secondary)
+                    .secondary()
 
                 if match == .missing {
                     Text("Missing in HealthKit")

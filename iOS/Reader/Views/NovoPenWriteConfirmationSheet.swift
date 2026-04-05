@@ -13,7 +13,7 @@ struct NovoPenWriteConfirmationSheet: View {
             if vm.pendingDoses.isEmpty {
                 Section {
                     Text("No new NovoPen doses were found")
-                        .foregroundStyle(.secondary)
+                        .secondary()
                 }
             } else {
                 Section {

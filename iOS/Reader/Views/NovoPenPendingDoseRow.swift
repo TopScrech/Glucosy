@@ -8,20 +8,15 @@ struct NovoPenPendingDoseRow: View {
     var body: some View {
         Button(action: toggleSelection) {
             HStack {
-                VStack(alignment: .leading) {
-                    Text(pendingDose.dose.timestamp, format: .dateTime.day().month().hour().minute())
-                    
-                    Text(
-                        pendingDose.dose.units,
-                        format: .number.precision(.fractionLength(0...1))
-                    )
-                    .secondary()
-                }
+                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
+                    .foregroundStyle(isSelected ? Color.accentColor : Color.secondary)
+                
+                Text(pendingDose.dose.units, format: .number.precision(.fractionLength(0...1)))
                 
                 Spacer()
                 
-                Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                    .foregroundStyle(isSelected ? Color.accentColor : Color.secondary)
+                Text(pendingDose.dose.timestamp, format: .dateTime.day().month().hour().minute())
+                    .secondary()
             }
         }
         .buttonStyle(.plain)

@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct NovoPenWriteConfirmationSheet: View {
     @Bindable var vm: NovoPenWriteConfirmationVM
@@ -24,10 +24,6 @@ struct NovoPenWriteConfirmationSheet: View {
                     LabeledContent("Type") {
                         Text(vm.insulinType.title)
                     }
-                } header: {
-                    Text("Saved Pen")
-                } footer: {
-                    Text("Selected doses will be written using the saved pen type")
                 }
                 
                 Section {
@@ -41,17 +37,19 @@ struct NovoPenWriteConfirmationSheet: View {
                         )
                     }
                 } header: {
-                    Text("New Doses")
-                } footer: {
-                    Text("\(vm.selectedDoseCount) dose(s) selected")
+                    HStack {
+                        Text("New Doses")
+                        Spacer()
+                        Text("\(vm.selectedDoseCount) dose(s) selected")
+                    }
                 }
             }
         }
-        .navigationTitle("Confirm NovoPen Doses")
+        .navigationTitle("New doses")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button("Cancel") {
+                SFButton("xmark") {
                     vm.dismiss()
                     dismiss()
                 }

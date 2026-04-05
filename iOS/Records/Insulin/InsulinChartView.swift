@@ -3,10 +3,12 @@ import Charts
 
 struct InsulinChartView: View {
     @State private var range: MeasurementChartRange = .month
-    
-    private let segmentSpacing = 0.3
-    
+
     private let records: [Insulin]
+    private let chartColors: KeyValuePairs<String, Color> = [
+        InsulinType.basal.title: Color(red: 0.0, green: 0.36, blue: 0.88),
+        InsulinType.bolus.title: .blue
+    ]
     
     init(records: [Insulin]) {
         self.records = records
@@ -14,30 +16,33 @@ struct InsulinChartView: View {
     
     var body: some View {
         let now = Date.now
-        let segments = chartSegments(endingAt: now)
+        let filteredRecords = records.records(in: range, endingAt: now)
+        let points = chartPoints(from: filteredRecords)
         let interval = range.interval(endingAt: now)
         
         MeasurementChartCard(
-            value: summaryValue(segments: segments, endingAt: now),
+            title: "Basal and Bolus",
+            value: summaryValue(totalInsulin: totalInsulin(in: filteredRecords), endingAt: now),
             tint: .purple,
             range: $range
         ) {
-            if segments.isEmpty {
+            if points.isEmpty {
                 ContentUnavailableView("No Data", systemImage: "syringe")
             } else {
-                Chart(segments) {
+                Chart(points) {
                     BarMark(
                         x: .value("Date", $0.date),
-                        yStart: .value("Insulin Start", $0.lowerBound),
-                        yEnd: .value("Insulin End", $0.upperBound)
+                        y: .value("Insulin", $0.value)
                     )
-                    .foregroundStyle($0.color)
+                    .foregroundStyle(by: .value("Type", $0.title))
+                    .position(by: .value("Type", $0.title))
                 }
-                .chartLegend(.hidden)
+                .chartLegend(position: .top)
+                .chartForegroundStyleScale(chartColors)
                 .chartXAxis {
                     AxisMarks(values: .stride(by: range.axisStrideComponent, count: range.axisStrideCount)) { value in
                         AxisGridLine()
-                        
+
                         AxisValueLabel {
                             if let date = value.as(Date.self) {
                                 Text(range.axisLabel(for: date))
@@ -53,12 +58,8 @@ struct InsulinChartView: View {
         }
     }
     
-    private func summaryValue(segments: [InsulinChartSegment], endingAt now: Date) -> String {
-        let totalsByDate = Dictionary(grouping: segments, by: \.date)
-            .mapValues { $0.reduce(into: 0.0) { $0 += $1.value } }
-        let totalInsulin = totalsByDate.values.reduce(into: 0.0) { $0 += $1 }
-        
-        guard !totalsByDate.isEmpty else {
+    private func summaryValue(totalInsulin: Double, endingAt now: Date) -> String {
+        guard totalInsulin > 0 else {
             return "No Data"
         }
         
@@ -69,9 +70,14 @@ struct InsulinChartView: View {
         return "\(value.formatted(.number.precision(.fractionLength(0 ... 1)))) U"
     }
     
-    private func chartSegments(endingAt now: Date) -> [InsulinChartSegment] {
-        let filteredRecords = records.records(in: range, endingAt: now)
-        let groupedRecords = Dictionary(grouping: filteredRecords) {
+    private func totalInsulin(in records: [Insulin]) -> Double {
+        records.reduce(into: 0.0) { partialResult, record in
+            partialResult += record.value
+        }
+    }
+
+    private func chartPoints(from records: [Insulin]) -> [InsulinChartPoint] {
+        let groupedRecords = Dictionary(grouping: records) {
             range.bucketStart(for: $0.date)
         }
         let orderedTypes: [InsulinType] = [.basal, .bolus]
@@ -79,38 +85,26 @@ struct InsulinChartView: View {
         return groupedRecords
             .keys
             .sorted()
-            .flatMap { date -> [InsulinChartSegment] in
+            .flatMap { date -> [InsulinChartPoint] in
                 let records = groupedRecords[date] ?? []
-                var segments: [InsulinChartSegment] = []
-                var currentY = 0.0
-                
-                for type in orderedTypes {
+
+                return orderedTypes.compactMap { type in
                     let typedRecords = records.filter { $0.type == type }
-                    
-                    guard !typedRecords.isEmpty else {
-                        continue
-                    }
-                    
+
                     let total = typedRecords.reduce(into: 0.0) { partialResult, record in
                         partialResult += record.value
                     }
-                    let value = total
-                    let lowerBound = currentY + (segments.isEmpty ? 0 : segmentSpacing)
-                    let upperBound = lowerBound + value
-                    
-                    segments.append(
-                        InsulinChartSegment(
-                            date: date,
-                            type: type,
-                            value: value,
-                            lowerBound: lowerBound,
-                            upperBound: upperBound
-                        )
+
+                    guard total > 0 else {
+                        return nil
+                    }
+
+                    return InsulinChartPoint(
+                        date: date,
+                        type: type,
+                        value: total
                     )
-                    currentY = upperBound
                 }
-                
-                return segments
             }
     }
 }

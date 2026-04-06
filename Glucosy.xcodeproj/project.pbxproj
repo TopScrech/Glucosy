@@ -90,6 +90,7 @@
 				Nav/Glucosy.swift,
 				Nav/HomeAction.swift,
 				Records/Glucose/GlucoseUnit.swift,
+				Records/HealthKit/InsulinType.swift,
 				Records/HealthKit/Models/HealthRecord.swift,
 				ValueStore.swift,
 			);

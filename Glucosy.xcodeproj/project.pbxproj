@@ -845,7 +845,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.topscrech.Glucosy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;
@@ -880,7 +879,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "";
 				PRODUCT_BUNDLE_IDENTIFIER = dev.topscrech.Glucosy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = xros;

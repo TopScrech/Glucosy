@@ -10,6 +10,7 @@
       "layers" : [
         {
           "glass" : true,
+          "hidden" : false,
           "image-name" : "Glucosy 1.png",
           "name" : "Glucosy 1",
           "position" : {

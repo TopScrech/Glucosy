@@ -30,14 +30,7 @@ struct AppSettings: View {
                     .pickerStyle(.segmented)
                 }
             }
-            
 #if canImport(CoreNFC)
-            Section {
-                Toggle(isOn: $store.debugMode) {
-                    Label("Debug mode", systemImage: "hammer")
-                }
-            }
-            
             Section("NovoPen") {
                 if savedPens.isEmpty {
                     Text("No saved pens yet")
@@ -67,6 +60,12 @@ struct AppSettings: View {
                     }
                 }
             }
+#endif
+            Section {
+                Toggle(isOn: $store.debugMode) {
+                    Label("Debug mode", systemImage: "hammer")
+                }
+            }
             
             if store.debugMode {
                 Section("Debug Settings") {
@@ -77,7 +76,6 @@ struct AppSettings: View {
                     }
                 }
             }
-#endif
         }
         .navigationTitle("Settings")
     }

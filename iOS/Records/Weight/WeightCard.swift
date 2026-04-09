@@ -10,10 +10,6 @@ struct WeightCard: View {
         self.record = record
     }
     
-    private var sourceId: String {
-        record.sample.sourceRevision.source.bundleIdentifier
-    }
-    
     var body: some View {
         HStack(spacing: 16) {
             Image(systemName: "scalemass")
@@ -38,7 +34,7 @@ struct WeightCard: View {
             
             HStack(spacing: 4) {
                 if store.debugMode {
-                    SourceImage(sourceId)
+                    SourceImage(record.sourceID)
                 }
                 
                 Text(record.date, format: .dateTime.hour().minute())

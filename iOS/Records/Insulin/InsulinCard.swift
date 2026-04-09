@@ -10,26 +10,10 @@ struct InsulinCard: View {
         self.record = record
     }
     
-    private var isBasal: Bool {
-        record.type == .basal
-    }
-    
-    private var icon: String {
-        isBasal ? "syringe.fill" : "syringe"
-    }
-    
-    private var color: Color {
-        isBasal ? .purple : .yellow
-    }
-    
-    private var sourceId: String {
-        record.sample.sourceRevision.source.bundleIdentifier
-    }
-    
     var body: some View {
         HStack(spacing: 16) {
-            Image(systemName: icon)
-                .foregroundStyle(color)
+            Image(systemName: record.icon)
+                .foregroundStyle(record.color)
                 .title3()
             
             VStack(alignment: .leading) {
@@ -57,7 +41,7 @@ struct InsulinCard: View {
             
             HStack(spacing: 4) {
                 if store.debugMode {
-                    SourceImage(sourceId)
+                    SourceImage(record.sourceID)
                 }
                 
                 Text(record.date, format: .dateTime.hour().minute())

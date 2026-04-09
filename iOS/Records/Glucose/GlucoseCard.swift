@@ -9,13 +9,9 @@ struct GlucoseCard: View {
         self.record = record
     }
     
-    private var sourceId: String {
-        record.sample.sourceRevision.source.bundleIdentifier
-    }
-    
     var body: some View {
         HStack {
-            SourceImage(sourceId)
+            SourceImage(record.sourceID)
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {

@@ -90,8 +90,12 @@
 				Nav/Glucosy.swift,
 				Nav/HomeAction.swift,
 				Records/Glucose/GlucoseUnit.swift,
-				Records/HealthKit/InsulinType.swift,
+				Records/HealthKit/Models/Carbs.swift,
+				Records/HealthKit/Models/Glucose.swift,
 				Records/HealthKit/Models/HealthRecord.swift,
+				Records/HealthKit/Models/Insulin.swift,
+				Records/HealthKit/Models/InsulinType.swift,
+				Records/HealthKit/Models/Weight.swift,
 				ValueStore.swift,
 			);
 			target = F3F8ED8C2D2EA2FD004A2638 /* watchOS */;

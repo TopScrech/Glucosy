@@ -10,18 +10,10 @@ struct CarbsCard: View {
         self.record = record
     }
     
-    private var sourceId: String {
-        record.sample.sourceRevision.source.bundleIdentifier
-    }
-    
-    private var color: Color {
-        .orange
-    }
-    
     var body: some View {
         HStack(spacing: 16) {
             Image(systemName: "fork.knife")
-                .foregroundStyle(color)
+                .foregroundStyle(record.color)
                 .title3()
             
             VStack(alignment: .leading) {
@@ -43,7 +35,7 @@ struct CarbsCard: View {
             
             HStack(spacing: 4) {
                 if store.debugMode {
-                    SourceImage(sourceId)
+                    SourceImage(record.sourceID)
                 }
                 
                 Text(record.date, format: .dateTime.hour().minute())

@@ -127,6 +127,7 @@ final class PenReaderVM {
                     self.appendLog(message)
                 }
             }
+            
             self.reading = reading
             status = .finished
         } catch {

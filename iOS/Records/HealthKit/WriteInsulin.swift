@@ -14,6 +14,7 @@ extension HealthKit {
         )
         
         try await save(sample)
+        
         insulinRecords.insert(
             Insulin(value: value, type: type, sample: sample),
             at: 0
@@ -39,6 +40,7 @@ extension HealthKit {
                 
                 guard success else {
                     Logger().warning("HealthKit: insulin save returned false")
+                    
                     continuation.resume(
                         throwing: NSError(
                             domain: "HealthKit",
@@ -46,6 +48,7 @@ extension HealthKit {
                             userInfo: [NSLocalizedDescriptionKey: "HealthKit could not save insulin"]
                         )
                     )
+                    
                     return
                 }
                 

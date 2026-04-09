@@ -6,10 +6,11 @@ struct SettingsDebugSection: View {
     var body: some View {
         Section("Debug Settings") {
             Toggle(String("Hide Status Bar"), isOn: $store.debugHideStatusBar)
-            
+#if canImport (CoreNFC)
             NavigationLink("NovoPen Scan View") {
                 NovoPenReader()
             }
+#endif
         }
     }
 }

@@ -2,20 +2,11 @@ import HealthKit
 import OSLog
 
 extension HealthKit {
-    func readGlucose(handler: (@Sendable ([Glucose]) -> Void)? = nil) {
-        Task {
-            let records = try? await reloadGlucoseRecords()
-            
-            if let records {
-                handler?(records)
-            }
-        }
-    }
-    
     @discardableResult
     func reloadGlucoseRecords() async throws -> [Glucose] {
         let records = try await loadGlucoseRecords()
         glucoseRecords = records
+        
         return records
     }
     
@@ -29,7 +20,6 @@ extension HealthKit {
         }
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
-        let glucoseUnit = self.glucoseUnit
         
         return try await withCheckedThrowingContinuation { continuation in
             let query = HKSampleQuery(
@@ -50,14 +40,13 @@ extension HealthKit {
                     return
                 }
                 
-                let records = results.map { sample -> Glucose in
-                    Glucose(
-                        value: sample.quantity.doubleValue(for: glucoseUnit),
-                        sample: sample
-                    )
+                Task { @MainActor in
+                    let records = results.map { sample -> Glucose in
+                        Glucose(sample: sample)
+                    }
+                    
+                    continuation.resume(returning: records)
                 }
-                
-                continuation.resume(returning: records)
             }
             
             store.execute(query)

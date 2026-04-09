@@ -3,8 +3,8 @@ import ScrechKit
 struct NovoPenWriteConfirmationSheet: View {
     @Bindable var vm: NovoPenWriteConfirmationVM
     let healthKit: HealthKit
-    
     @Environment(\.dismiss) private var dismiss
+    
     @State private var errorMessage: String?
     @State private var showsError = false
     

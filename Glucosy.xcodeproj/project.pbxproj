@@ -198,6 +198,8 @@
 				Reader/Views/ReaderStatusSection.swift,
 				Reader/Views/SavedPenEditorView.swift,
 				Reader/Views/SavedPenRow.swift,
+				Settings/SavedNovoPenCard.swift,
+				Settings/SettingsNovopenSection.swift,
 				Shortcuts/GlucosyShortcutsProvider.swift,
 				Shortcuts/OpenNovoPenScanIntent.swift,
 			);
@@ -858,7 +860,7 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 7;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -893,7 +895,7 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 7;
 				VALIDATE_PRODUCT = YES;
 				XROS_DEPLOYMENT_TARGET = 2.0;

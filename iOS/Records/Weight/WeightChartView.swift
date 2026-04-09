@@ -12,7 +12,6 @@ struct WeightChartView: View {
     
     var body: some View {
         let now = Date.now
-        let filteredRecords = records.records(in: range, endingAt: now)
         let points = records.chartPoints(in: range, aggregation: .average, endingAt: now)
         let latestRecord = records.latestRecord(in: range, endingAt: now)
         let interval = range.interval(endingAt: now)

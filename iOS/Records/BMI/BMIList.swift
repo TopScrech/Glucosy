@@ -4,6 +4,8 @@ import Algorithms
 struct BMIList: View {
     @Environment(HealthKit.self) private var vm
     
+    @State private var sheetNewEntry = false
+    
     var body: some View {
         let dayChunks = vm.bmiRecords.chunked { lhs, rhs in
             Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
@@ -22,8 +24,13 @@ struct BMIList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk.reversed()) {
-                            BMICard($0)
+                        ForEach(chunk.reversed()) { record in
+                            BMICard(record)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button("Delete", systemImage: "trash", role: .destructive) {
+                                        vm.deleteBMI(record)
+                                    }
+                                }
                         }
                     }
                 }
@@ -32,6 +39,17 @@ struct BMIList: View {
         .navigationTitle("BMI")
         .refreshable {
             _ = try? await vm.reloadBMIRecords()
+        }
+        .sheet($sheetNewEntry) {
+            NavigationStack {
+                LogBMISheet()
+                    .environment(vm)
+            }
+        }
+        .toolbar {
+            SFButton("note.text.badge.plus") {
+                sheetNewEntry = true
+            }
         }
     }
 }

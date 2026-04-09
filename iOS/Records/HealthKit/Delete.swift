@@ -50,6 +50,26 @@ extension HealthKit {
             }
         }
     }
+    
+    func deleteBMI(_ record: BMI) {
+        delete(record.sample) { [weak self] success, error in
+            if let error {
+                Logger().error("HealthKit: error while deleting BMI: \(error)")
+                return
+            }
+            
+            guard success else {
+                Logger().warning("HealthKit: BMI delete returned false")
+                return
+            }
+            
+            Task { @MainActor in
+                self?.bmiRecords.removeAll {
+                    $0.sample.uuid == record.sample.uuid
+                }
+            }
+        }
+    }
 
     func deleteCarbs(_ record: Carbs) {
         delete(record.sample) { [weak self] success, error in

@@ -7,6 +7,7 @@ struct TodayQuickActions: View {
     @State private var sheetNewCarbsRecord = false
     @State private var sheetNewGlucoseRecord = false
     @State private var sheetNewWeightRecord = false
+    @State private var sheetNewBMIRecord = false
     
     private let columns = [
         GridItem(.flexible(), spacing: 12),
@@ -34,6 +35,10 @@ struct TodayQuickActions: View {
                 TodayActionButton("Weight", icon: "scalemass", color: .blue) {
                     sheetNewWeightRecord = true
                 }
+                
+                TodayActionButton("BMI", icon: "figure", color: .mint) {
+                    sheetNewBMIRecord = true
+                }
             }
         }
         .sheet($sheetNewGlucoseRecord) {
@@ -48,6 +53,11 @@ struct TodayQuickActions: View {
         .sheet($sheetNewWeightRecord) {
             NavigationStack {
                 LogWeightSheet()
+            }
+        }
+        .sheet($sheetNewBMIRecord) {
+            NavigationStack {
+                LogBMISheet()
             }
         }
         .environment(vm)

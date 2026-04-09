@@ -35,7 +35,7 @@ final class HealthKit {
     }
     
     private var shareTypes: Set<HKSampleType> {
-        Set([glucoseType, insulinType, carbsType, bodyMassType])
+        Set([glucoseType, insulinType, carbsType, bodyMassType, bmiType])
     }
     
     func authorize(_ handler: @escaping @Sendable (Bool) -> Void) {

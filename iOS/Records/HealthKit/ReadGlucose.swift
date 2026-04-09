@@ -39,7 +39,7 @@ extension HealthKit {
                 sortDescriptors: [sortDescriptor]
             ) { _, results, error in
                 if let error {
-                    Logger().error("HealthKit error: \(error, privacy: .public)")
+                    Logger().error("HealthKit error: \(error)")
                     continuation.resume(throwing: error)
                     return
                 }

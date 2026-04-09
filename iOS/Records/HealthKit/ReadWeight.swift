@@ -35,7 +35,7 @@ extension HealthKit {
                 sortDescriptors: [sortDescriptor]
             ) { _, results, error in
                 if let error {
-                    Logger().error("Error retrieving weight data: \(error, privacy: .public)")
+                    Logger().error("Error retrieving weight data: \(error)")
                     continuation.resume(throwing: error)
                     return
                 }

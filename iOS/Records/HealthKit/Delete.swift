@@ -14,7 +14,7 @@ extension HealthKit {
     func deleteGlucose(_ record: Glucose) {
         delete(record.sample) { [weak self] success, error in
             if let error {
-                Logger().error("HealthKit: error while deleting glucose: \(error, privacy: .public)")
+                Logger().error("HealthKit: error while deleting glucose: \(error)")
                 return
             }
 
@@ -34,7 +34,7 @@ extension HealthKit {
     func deleteWeight(_ record: Weight) {
         delete(record.sample) { [weak self] success, error in
             if let error {
-                Logger().error("HealthKit: error while deleting weight: \(error, privacy: .public)")
+                Logger().error("HealthKit: error while deleting weight: \(error)")
                 return
             }
 
@@ -54,7 +54,7 @@ extension HealthKit {
     func deleteCarbs(_ record: Carbs) {
         delete(record.sample) { [weak self] success, error in
             if let error {
-                Logger().error("HealthKit: error while deleting carbs: \(error, privacy: .public)")
+                Logger().error("HealthKit: error while deleting carbs: \(error)")
                 return
             }
 
@@ -74,7 +74,7 @@ extension HealthKit {
     func deleteInsulin(_ record: Insulin) {
         delete(record.sample) { [weak self] success, error in
             if let error {
-                Logger().error("HealthKit: error while deleting insulin: \(error, privacy: .public)")
+                Logger().error("HealthKit: error while deleting insulin: \(error)")
                 return
             }
 

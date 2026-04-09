@@ -38,7 +38,7 @@ final class HealthKit {
                 return handler(success)
             }
             
-            Logger().error("HealthKit authorization error: \(error, privacy: .public)")
+            Logger().error("HealthKit authorization error: \(error)")
             handler(false)
         }
     }
@@ -55,7 +55,7 @@ final class HealthKit {
         
         store.getRequestStatusForAuthorization(toShare: dataTypes, read: dataTypes) { status, error in
             if let error {
-                Logger().error("HealthKit authorization status error: \(error, privacy: .public)")
+                Logger().error("HealthKit authorization status error: \(error)")
                 handler(false)
                 return
             }

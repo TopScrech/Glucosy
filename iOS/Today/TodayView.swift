@@ -199,7 +199,7 @@ struct TodayView: View {
 #endif
         .task {
             vm.authorize { result in
-                Logger().info("Auth status: \(result, privacy: .public)")
+                Logger().info("Auth status: \(result)")
             }
             
             await refreshData()

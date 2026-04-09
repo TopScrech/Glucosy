@@ -36,7 +36,7 @@ extension HealthKit {
                 sortDescriptors: [sortDescriptor]
             ) { _, results, error in
                 if let error {
-                    Logger().error("Error retrieving insulin delivery data: \(error, privacy: .public)")
+                    Logger().error("Error retrieving insulin delivery data: \(error)")
                     continuation.resume(throwing: error)
                     return
                 }

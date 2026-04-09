@@ -13,7 +13,7 @@ extension HealthKit {
 
         store?.save(sample) { [weak self] success, error in
             if let error {
-                Logger().error("HealthKit: error while saving glucose: \(error, privacy: .public)")
+                Logger().error("HealthKit: error while saving glucose: \(error)")
                 return
             }
 
@@ -44,7 +44,7 @@ extension HealthKit {
         
         store?.save(samples) { _, error in
             if let error {
-                Logger().error("HealthKit: error while saving glucose: \(error, privacy: .public)")
+                Logger().error("HealthKit: error while saving glucose: \(error)")
             }
         }
     }

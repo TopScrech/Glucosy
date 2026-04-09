@@ -32,7 +32,7 @@ extension HealthKit {
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             store.save(sample) { success, error in
                 if let error {
-                    Logger().error("HealthKit: error while saving insulin: \(error, privacy: .public)")
+                    Logger().error("HealthKit: error while saving insulin: \(error)")
                     continuation.resume(throwing: error)
                     return
                 }

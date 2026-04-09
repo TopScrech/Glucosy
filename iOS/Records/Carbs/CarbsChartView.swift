@@ -2,22 +2,24 @@ import SwiftUI
 import Charts
 
 struct CarbsChartView: View {
-    @State private var range: MeasurementChartRange = .month
-    
     private let records: [Carbs]
     
     init(records: [Carbs]) {
         self.records = records
     }
     
+    @State private var range: MeasurementChartRange = .month
+    
     var body: some View {
         let now = Date.now
         let filteredRecords = records.records(in: range, endingAt: now)
         let points = records.chartPoints(in: range, aggregation: .sum, endingAt: now)
         let interval = range.interval(endingAt: now)
+        
         let totalCarbs = filteredRecords.reduce(into: 0.0) { partialResult, record in
             partialResult += record.value
         }
+        
         let averageCarbs = totalCarbs / Double(range.dayCount(endingAt: now))
         
         MeasurementChartCard(
@@ -43,6 +45,7 @@ struct CarbsChartView: View {
                 .chartXAxis {
                     AxisMarks(values: .stride(by: range.axisStrideComponent, count: range.axisStrideCount)) { value in
                         AxisGridLine()
+                        
                         AxisValueLabel {
                             if let date = value.as(Date.self) {
                                 Text(range.axisLabel(for: date))

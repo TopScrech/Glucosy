@@ -2,17 +2,18 @@ import SwiftUI
 import Charts
 
 struct InsulinChartView: View {
-    @State private var range: MeasurementChartRange = .month
-
     private let records: [Insulin]
-    private let chartColors: KeyValuePairs<String, Color> = [
-        InsulinType.basal.title: Color(red: 0.0, green: 0.36, blue: 0.88),
-        InsulinType.bolus.title: .blue
-    ]
     
     init(records: [Insulin]) {
         self.records = records
     }
+    
+    @State private var range: MeasurementChartRange = .month
+    
+    private let chartColors: KeyValuePairs<String, Color> = [
+        InsulinType.basal.title: Color(red: 0.0, green: 0.36, blue: 0.88),
+        InsulinType.bolus.title: .blue
+    ]
     
     var body: some View {
         let now = Date.now
@@ -42,7 +43,7 @@ struct InsulinChartView: View {
                 .chartXAxis {
                     AxisMarks(values: .stride(by: range.axisStrideComponent, count: range.axisStrideCount)) { value in
                         AxisGridLine()
-
+                        
                         AxisValueLabel {
                             if let date = value.as(Date.self) {
                                 Text(range.axisLabel(for: date))
@@ -64,8 +65,8 @@ struct InsulinChartView: View {
         }
         
         let value = range.usesAverageAggregation
-            ? totalInsulin / Double(range.dayCount(endingAt: now))
-            : totalInsulin
+        ? totalInsulin / Double(range.dayCount(endingAt: now))
+        : totalInsulin
         
         return "\(value.formatted(.number.precision(.fractionLength(0 ... 1)))) U"
     }
@@ -75,11 +76,12 @@ struct InsulinChartView: View {
             partialResult += record.value
         }
     }
-
+    
     private func chartPoints(from records: [Insulin]) -> [InsulinChartPoint] {
         let groupedRecords = Dictionary(grouping: records) {
             range.bucketStart(for: $0.date)
         }
+        
         let orderedTypes: [InsulinType] = [.basal, .bolus]
         
         return groupedRecords
@@ -87,23 +89,19 @@ struct InsulinChartView: View {
             .sorted()
             .flatMap { date -> [InsulinChartPoint] in
                 let records = groupedRecords[date] ?? []
-
+                
                 return orderedTypes.compactMap { type in
                     let typedRecords = records.filter { $0.type == type }
-
+                    
                     let total = typedRecords.reduce(into: 0.0) { partialResult, record in
                         partialResult += record.value
                     }
-
+                    
                     guard total > 0 else {
                         return nil
                     }
-
-                    return InsulinChartPoint(
-                        date: date,
-                        type: type,
-                        value: total
-                    )
+                    
+                    return InsulinChartPoint(date: date, type: type, value: total)
                 }
             }
     }

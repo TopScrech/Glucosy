@@ -9,13 +9,13 @@ struct SourceImage: View {
     
     private var image: ImageResource? {
         switch source {
-        case "com.apple.Health": .appleHealth
-        case "com.i-sens.SmartLog2": .smartLog
-        case "dev.topscrech.Glucosy": .glucosy
-        case "dev.topscrech.DiaBLE": .diaBLE
-        case "com.apple.shortcuts": .shortcuts
+        case "com.apple.Health":            .appleHealth
+        case "com.i-sens.SmartLog2":        .smartLog
+        case "dev.topscrech.Glucosy":       .glucosy
+        case "dev.topscrech.DiaBLE":        .diaBLE
+        case "com.apple.shortcuts":         .shortcuts
         case "com.mysugr.companion.mySugr": .mySugr
-        case "com.dexcom.dexcomoneplus": .dexcomONE
+        case "com.dexcom.dexcomoneplus":    .dexcomONE
         default: nil
         }
     }

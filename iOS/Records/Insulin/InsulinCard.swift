@@ -2,17 +2,13 @@ import ScrechKit
 import HealthKit
 
 struct InsulinCard: View {
+    @Environment(HealthKit.self) private var vm
     @EnvironmentObject private var store: ValueStore
     
     private let record: Insulin
-    private let onDelete: (() -> Void)?
     
-    init(
-        _ record: Insulin,
-        onDelete: (() -> Void)? = nil
-    ) {
+    init(_ record: Insulin) {
         self.record = record
-        self.onDelete = onDelete
     }
     
     var body: some View {
@@ -53,6 +49,11 @@ struct InsulinCard: View {
                     .secondary()
             }
         }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button("Delete", systemImage: "trash", role: .destructive) {
+                vm.deleteInsulin(record)
+            }
+        }
         .contextMenu {
 #if DEBUG
             Button {
@@ -65,9 +66,9 @@ struct InsulinCard: View {
                 Image(systemName: "doc.on.doc")
             }
 #endif
-            if let onDelete {
-                Section {
-                    Button("Delete", systemImage: "trash", role: .destructive, action: onDelete)
+            Section {
+                Button("Delete", systemImage: "trash", role: .destructive) {
+                    vm.deleteInsulin(record)
                 }
             }
         }

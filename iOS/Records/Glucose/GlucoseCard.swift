@@ -1,17 +1,13 @@
 import ScrechKit
 
 struct GlucoseCard: View {
+    @Environment(HealthKit.self) private var vm
     @EnvironmentObject private var store: ValueStore
     
     private let record: Glucose
-    private let onDelete: (() -> Void)?
     
-    init(
-        _ record: Glucose,
-        onDelete: (() -> Void)? = nil
-    ) {
+    init(_ record: Glucose) {
         self.record = record
-        self.onDelete = onDelete
     }
     
     var body: some View {
@@ -38,6 +34,11 @@ struct GlucoseCard: View {
             Text(record.date, format: .dateTime.hour().minute())
                 .secondary()
         }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button("Delete", systemImage: "trash", role: .destructive) {
+                vm.deleteGlucose(record)
+            }
+        }
         .contextMenu {
 #if DEBUG
             Button {
@@ -50,9 +51,9 @@ struct GlucoseCard: View {
                 Image(systemName: "doc.on.doc")
             }
 #endif
-            if let onDelete {
-                Section {
-                    Button("Delete", systemImage: "trash", role: .destructive, action: onDelete)
+            Section {
+                Button("Delete", systemImage: "trash", role: .destructive) {
+                    vm.deleteGlucose(record)
                 }
             }
         }

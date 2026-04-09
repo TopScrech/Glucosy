@@ -24,15 +24,8 @@ struct CarbsList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk.reversed()) { record in
-                            CarbsCard(record) {
-                                vm.deleteCarbs(record)
-                            }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button("Delete", systemImage: "trash", role: .destructive) {
-                                    vm.deleteCarbs(record)
-                                }
-                            }
+                        ForEach(chunk.reversed()) {
+                            CarbsCard($0)
                         }
                     }
                 }

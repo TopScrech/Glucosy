@@ -24,15 +24,8 @@ struct GlucoseList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk) { record in
-                            GlucoseCard(record) {
-                                vm.deleteGlucose(record)
-                            }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button("Delete", systemImage: "trash", role: .destructive) {
-                                    vm.deleteGlucose(record)
-                                }
-                            }
+                        ForEach(chunk) {
+                            GlucoseCard($0)
                         }
                     }
                 }

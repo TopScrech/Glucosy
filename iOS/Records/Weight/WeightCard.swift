@@ -2,17 +2,13 @@ import ScrechKit
 import HealthKit
 
 struct WeightCard: View {
+    @Environment(HealthKit.self) private var vm
     @EnvironmentObject private var store: ValueStore
     
     private let record: Weight
-    private let onDelete: (() -> Void)?
     
-    init(
-        _ record: Weight,
-        onDelete: (() -> Void)? = nil
-    ) {
+    init(_ record: Weight) {
         self.record = record
-        self.onDelete = onDelete
     }
     
     var body: some View {
@@ -46,6 +42,11 @@ struct WeightCard: View {
                     .secondary()
             }
         }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button("Delete", systemImage: "trash", role: .destructive) {
+                vm.deleteWeight(record)
+            }
+        }
         .contextMenu {
 #if DEBUG
             Button {
@@ -56,9 +57,9 @@ struct WeightCard: View {
                 Image(systemName: "doc.on.doc")
             }
 #endif
-            if let onDelete {
-                Section {
-                    Button("Delete", systemImage: "trash", role: .destructive, action: onDelete)
+            Section {
+                Button("Delete", systemImage: "trash", role: .destructive) {
+                    vm.deleteWeight(record)
                 }
             }
         }

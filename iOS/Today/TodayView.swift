@@ -39,82 +39,8 @@ struct TodayView: View {
                     addWeight: { sheetNewWeightRecord = true }
                 )
                 
-                TodayLatestSection {
-                    NavigationLink {
-                        GlucoseList()
-                            .environment(vm)
-                    } label: {
-                        TodayLatestRow(
-                            title: "Blood Glucose",
-                            value: latestGlucoseOverall?.formattedValue(in: glucoseUnit),
-                            unit: glucoseUnit.title,
-                            date: latestGlucoseOverall?.date,
-                            icon: "drop",
-                            color: .red
-                        )
-                    }
-                    .buttonStyle(.plain)
-                    
-                    NavigationLink {
-                        InsulinList()
-                            .environment(vm)
-                    } label: {
-                        TodayLatestRow(
-                            title: "Insulin Delivery",
-                            value: latestInsulinOverall?.formattedValue,
-                            unit: String(localized: "U"),
-                            date: latestInsulinOverall?.date,
-                            icon: "syringe",
-                            color: .yellow
-                        )
-                    }
-                    .buttonStyle(.plain)
-                    
-                    NavigationLink {
-                        CarbsList()
-                            .environment(vm)
-                    } label: {
-                        TodayLatestRow(
-                            title: "Carbohydrates",
-                            value: latestCarbsOverall.map { Utils.formatNumber($0.value) },
-                            unit: String(localized: "g"),
-                            date: latestCarbsOverall?.date,
-                            icon: "fork.knife",
-                            color: .orange
-                        )
-                    }
-                    .buttonStyle(.plain)
-                    
-                    NavigationLink {
-                        WeightList()
-                            .environment(vm)
-                    } label: {
-                        TodayLatestRow(
-                            title: "Weight",
-                            value: formattedWeight(latestWeightOverall?.value),
-                            unit: String(localized: "kg"),
-                            date: latestWeightOverall?.date,
-                            icon: "scalemass",
-                            color: .blue
-                        )
-                    }
-                    .buttonStyle(.plain)
-                    
-                    NavigationLink {
-                        BMIList()
-                            .environment(vm)
-                    } label: {
-                        TodayLatestRow(
-                            title: "Body Mass Index",
-                            value: formattedBMI(latestBMIOverall?.value),
-                            unit: nil,
-                            date: latestBMIOverall?.date,
-                            icon: "figure",
-                            color: .mint
-                        )
-                    }
-                    .buttonStyle(.plain)
-                }
+                TodayLatestSection()
+                    .environment(vm)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
@@ -223,8 +149,28 @@ struct TodayView: View {
         }
     }
     
+    private var latestGlucoseToday: Glucose? {
+        glucoseToday.first
+    }
+    
     private var glucoseToday: [Glucose] {
         vm.glucoseRecords.filter { Calendar.current.isDateInToday($0.date) }
+    }
+    
+    private func formattedGlucose(_ record: Glucose?, in glucoseUnit: GlucoseUnit) -> String {
+        guard let record else { return "-" }
+        
+        return record.formattedValue(in: glucoseUnit)
+    }
+    
+    private var carbsTotal: Double? {
+        sumValue(carbsToday.map(\.value))
+    }
+    
+    private func formattedNumber(_ value: Double?) -> String {
+        guard let value else { return "-" }
+        
+        return Utils.formatNumber(value)
     }
     
     private var insulinToday: [Insulin] {
@@ -235,99 +181,14 @@ struct TodayView: View {
         vm.carbsRecords.filter { Calendar.current.isDateInToday($0.date) }
     }
     
-    private var latestGlucoseToday: Glucose? {
-        glucoseToday.first
-    }
-    
-    private var latestGlucoseOverall: Glucose? {
-        vm.glucoseRecords.first
-    }
-    
-    private var latestInsulinOverall: Insulin? {
-        vm.insulinRecords.first
-    }
-    
-    private var latestCarbsOverall: Carbs? {
-        vm.carbsRecords.first
-    }
-    
-    private var latestWeightOverall: Weight? {
-        vm.weightRecords.first
-    }
-    
-    private var latestBMIOverall: BMI? {
-        vm.bmiRecords.first
-    }
-    
     private var insulinTotal: Double? {
         sumValue(insulinToday.map(\.value))
-    }
-    
-    private var carbsTotal: Double? {
-        sumValue(carbsToday.map(\.value))
-    }
-    
-    private func metricCards(glucoseUnit: GlucoseUnit) -> [TodayMetricData] {
-        [
-            TodayMetricData(
-                destination: .glucose,
-                title: String(localized: "Glucose"),
-                value: formattedGlucose(latestGlucoseToday, in: glucoseUnit),
-                unit: glucoseUnit.title,
-                icon: "drop",
-                color: .red
-            ),
-            TodayMetricData(
-                destination: .carbs,
-                title: String(localized: "Carbs"),
-                value: formattedNumber(carbsTotal),
-                unit: String(localized: "g"),
-                icon: "fork.knife",
-                color: .orange
-            ),
-            TodayMetricData(
-                destination: .insulin,
-                title: String(localized: "Insulin"),
-                value: formattedNumber(insulinTotal),
-                unit: String(localized: "U"),
-                icon: "syringe",
-                color: .yellow
-            ),
-            TodayMetricData(
-                destination: .weight,
-                title: String(localized: "Weight"),
-                value: formattedWeight(latestWeightOverall?.value),
-                unit: String(localized: "kg"),
-                icon: "scalemass",
-                color: .blue
-            ),
-            TodayMetricData(
-                destination: .bmi,
-                title: String(localized: "BMI"),
-                value: formattedBMI(latestBMIOverall?.value),
-                unit: nil,
-                icon: "figure",
-                color: .mint
-            )
-        ]
     }
     
     private func sumValue(_ values: [Double]) -> Double? {
         guard !values.isEmpty else { return nil }
         
         return values.reduce(0, +)
-    }
-    
-    private func formattedNumber(_ value: Double?) -> String {
-        guard let value else { return "-" }
-        
-        return Utils.formatNumber(value)
-    }
-    
-    private func formattedGlucose(_ record: Glucose?, in glucoseUnit: GlucoseUnit) -> String {
-        guard let record else { return "-" }
-        
-        return record.formattedValue(in: glucoseUnit)
     }
     
     private func formattedWeight(_ value: Double?) -> String {
@@ -341,6 +202,57 @@ struct TodayView: View {
         
         return value.formatted(.number.precision(.fractionLength(1)))
     }
+    
+    private var latestWeightOverall: Weight? {
+        vm.weightRecords.first
+    }
+    
+    private var latestBMIOverall: BMI? {
+        vm.bmiRecords.first
+    }
+    
+    private func metricCards(glucoseUnit: GlucoseUnit) -> [TodayMetricData] {[
+        TodayMetricData(
+            destination: .glucose,
+            title: String(localized: "Glucose"),
+            value: formattedGlucose(latestGlucoseToday, in: glucoseUnit),
+            unit: glucoseUnit.title,
+            icon: "drop",
+            color: .red
+        ),
+        TodayMetricData(
+            destination: .carbs,
+            title: String(localized: "Carbs"),
+            value: formattedNumber(carbsTotal),
+            unit: String(localized: "g"),
+            icon: "fork.knife",
+            color: .orange
+        ),
+        TodayMetricData(
+            destination: .insulin,
+            title: String(localized: "Insulin"),
+            value: formattedNumber(insulinTotal),
+            unit: String(localized: "U"),
+            icon: "syringe",
+            color: .yellow
+        ),
+        TodayMetricData(
+            destination: .weight,
+            title: String(localized: "Weight"),
+            value: formattedWeight(latestWeightOverall?.value),
+            unit: String(localized: "kg"),
+            icon: "scalemass",
+            color: .blue
+        ),
+        TodayMetricData(
+            destination: .bmi,
+            title: String(localized: "BMI"),
+            value: formattedBMI(latestBMIOverall?.value),
+            unit: nil,
+            icon: "figure",
+            color: .mint
+        )
+    ]}
     
     @ViewBuilder
     private func destinationView(for destination: TodayMetricDestination) -> some View {
@@ -408,6 +320,7 @@ struct TodayView: View {
         
         Task {
             let insulinRecords = (try? await vm.reloadInsulinRecords()) ?? vm.insulinRecords
+            
             let missingDoses = novoPenReader.missingDoses(
                 using: insulinRecords,
                 airshotFilter: airshotFilter
@@ -418,6 +331,7 @@ struct TodayView: View {
                 insulinType: savedPen.insulinType,
                 penTitle: savedPen.title
             )
+            
             showsNovoPenWriteConfirmation = true
         }
     }

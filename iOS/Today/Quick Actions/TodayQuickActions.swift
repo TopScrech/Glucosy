@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct TodayQuickActions: View {
-    let addGlucose: () -> Void
-    let addInsulin: () -> Void
-    let addCarbs: () -> Void
-    let addWeight: () -> Void
+    @Environment(HealthKit.self) private var vm
+    
+    @State private var sheetNewInsulinRecord = false
+    @State private var sheetNewCarbsRecord = false
+    @State private var sheetNewGlucoseRecord = false
+    @State private var sheetNewWeightRecord = false
     
     private let columns = [
         GridItem(.flexible(), spacing: 12),
@@ -17,22 +19,43 @@ struct TodayQuickActions: View {
                 .title3(.semibold, design: .rounded)
             
             LazyVGrid(columns: columns, spacing: 12) {
-                TodayActionButton("Glucose", icon: "drop", color: .red, action: addGlucose)
-                TodayActionButton("Insulin", icon: "syringe", color: .yellow, action: addInsulin)
-                TodayActionButton("Carbs", icon: "fork.knife", color: .orange, action: addCarbs)
-                TodayActionButton("Weight", icon: "scalemass", color: .blue, action: addWeight)
+                TodayActionButton("Glucose", icon: "drop", color: .red) {
+                    sheetNewGlucoseRecord = true
+                }
+                
+                TodayActionButton("Insulin", icon: "syringe", color: .yellow) {
+                    sheetNewInsulinRecord = true
+                }
+                
+                TodayActionButton("Carbs", icon: "fork.knife", color: .orange) {
+                    sheetNewCarbsRecord = true
+                }
+                
+                TodayActionButton("Weight", icon: "scalemass", color: .blue) {
+                    sheetNewWeightRecord = true
+                }
             }
         }
+        .sheet($sheetNewGlucoseRecord) {
+            NewRecordSheet(.glucose)
+        }
+        .sheet($sheetNewInsulinRecord) {
+            NewRecordSheet(.insulin)
+        }
+        .sheet($sheetNewCarbsRecord) {
+            NewRecordSheet(.carbs)
+        }
+        .sheet($sheetNewWeightRecord) {
+            NavigationStack {
+                LogWeightSheet()
+            }
+        }
+        .environment(vm)
     }
 }
 
 #Preview {
-    TodayQuickActions(
-        addGlucose: {},
-        addInsulin: {},
-        addCarbs: {},
-        addWeight: {}
-    )
-    .padding()
-    .darkSchemePreferred()
+    TodayQuickActions()
+        .padding()
+        .darkSchemePreferred()
 }

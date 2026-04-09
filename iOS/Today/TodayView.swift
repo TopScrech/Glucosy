@@ -1,6 +1,6 @@
 import ScrechKit
-import OSLog
 import SwiftData
+import OSLog
 
 struct TodayView: View {
     @State private var vm = HealthKit()
@@ -20,10 +20,6 @@ struct TodayView: View {
     let novoPenScanRequest: Int
     
     @State private var showsSettings = false
-    @State private var sheetNewInsulinRecord = false
-    @State private var sheetNewCarbsRecord = false
-    @State private var sheetNewGlucoseRecord = false
-    @State private var sheetNewWeightRecord = false
     
     var body: some View {
         let glucoseUnit = store.glucoseUnit
@@ -32,16 +28,10 @@ struct TodayView: View {
             VStack(alignment: .leading, spacing: 16) {
                 TodayMetricsSection(metrics: metricCards(glucoseUnit: glucoseUnit))
                 
-                TodayQuickActions(
-                    addGlucose: { sheetNewGlucoseRecord = true },
-                    addInsulin: { sheetNewInsulinRecord = true },
-                    addCarbs: { sheetNewCarbsRecord = true },
-                    addWeight: { sheetNewWeightRecord = true }
-                )
-                
+                TodayQuickActions()
                 TodayLatestSection()
-                    .environment(vm)
             }
+            .environment(vm)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
@@ -71,24 +61,6 @@ struct TodayView: View {
         }
         .navigationDestination(for: TodayMetricDestination.self) {
             destinationView(for: $0)
-        }
-        .sheet($sheetNewGlucoseRecord) {
-            NewRecordSheet(.glucose)
-                .environment(vm)
-        }
-        .sheet($sheetNewInsulinRecord) {
-            NewRecordSheet(.insulin)
-                .environment(vm)
-        }
-        .sheet($sheetNewCarbsRecord) {
-            NewRecordSheet(.carbs)
-                .environment(vm)
-        }
-        .sheet($sheetNewWeightRecord) {
-            NavigationStack {
-                LogWeightSheet()
-            }
-            .environment(vm)
         }
 #if canImport(CoreNFC)
         .sheet(isPresented: $showsNovoPenWriteConfirmation, onDismiss: novoPenWriteConfirmation.dismiss) {
@@ -344,6 +316,7 @@ struct TodayView: View {
     }
     .darkSchemePreferred()
     .environmentObject(ValueStore())
+    
 #if canImport(CoreNFC)
     .modelContainer(for: [SavedPen.self], inMemory: true)
 #endif

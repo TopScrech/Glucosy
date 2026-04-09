@@ -1,5 +1,5 @@
-@_exported import Foundation
 @_exported import SwiftUI
+@_exported import Foundation
 
 #if canImport(Algorithms)
 @_exported import Algorithms

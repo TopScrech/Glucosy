@@ -1,5 +1,5 @@
-import Charts
 import SwiftUI
+import Charts
 
 struct BMIChartView: View {
     @State private var range: MeasurementChartRange = .month

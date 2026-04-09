@@ -1,8 +1,9 @@
-import SwiftData
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
     @Environment(AppRouter.self) private var router
+    
     @State private var novoPenScanRequest = 0
     
     var body: some View {

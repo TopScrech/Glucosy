@@ -1,12 +1,12 @@
-import SwiftData
 import SwiftUI
+import SwiftData
 
 struct AddScannedPenSheet: View {
-    let reading: PenReading
-    let onSaved: (SavedPen, Bool) -> Void
-    
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    
+    let reading: PenReading
+    let onSaved: (SavedPen, Bool) -> Void
     
     @State private var customName = ""
     @State private var errorMessage: String?

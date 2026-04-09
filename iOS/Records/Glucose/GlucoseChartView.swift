@@ -1,16 +1,16 @@
-import Charts
 import SwiftUI
+import Charts
 
 struct GlucoseChartView: View {
     @EnvironmentObject private var store: ValueStore
-    
-    @State private var range: MeasurementChartRange = .month
     
     private let records: [Glucose]
     
     init(records: [Glucose]) {
         self.records = records
     }
+    
+    @State private var range: MeasurementChartRange = .month
     
     var body: some View {
         let now = Date.now

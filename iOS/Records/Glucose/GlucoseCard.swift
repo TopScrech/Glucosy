@@ -4,9 +4,14 @@ struct GlucoseCard: View {
     @EnvironmentObject private var store: ValueStore
     
     private let record: Glucose
+    private let onDelete: (() -> Void)?
     
-    init(_ record: Glucose) {
+    init(
+        _ record: Glucose,
+        onDelete: (() -> Void)? = nil
+    ) {
         self.record = record
+        self.onDelete = onDelete
     }
     
     var body: some View {
@@ -17,7 +22,7 @@ struct GlucoseCard: View {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text(record.formattedValue(in: store.glucoseUnit))
                         .title3(.semibold, design: .rounded)
-
+                    
                     Text(store.glucoseUnit.title)
                         .caption()
                         .secondary()
@@ -33,8 +38,8 @@ struct GlucoseCard: View {
             Text(record.date, format: .dateTime.hour().minute())
                 .secondary()
         }
-#if DEBUG
         .contextMenu {
+#if DEBUG
             Button {
                 UIPasteboard.general.string = record.source
             } label: {
@@ -44,8 +49,13 @@ struct GlucoseCard: View {
                 
                 Image(systemName: "doc.on.doc")
             }
-        }
 #endif
+            if let onDelete {
+                Section {
+                    Button("Delete", systemImage: "trash", role: .destructive, action: onDelete)
+                }
+            }
+        }
     }
 }
 

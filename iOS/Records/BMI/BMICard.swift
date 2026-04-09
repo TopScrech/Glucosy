@@ -5,9 +5,14 @@ struct BMICard: View {
     @EnvironmentObject private var store: ValueStore
     
     private let record: BMI
+    private let onDelete: (() -> Void)?
     
-    init(_ record: BMI) {
+    init(
+        _ record: BMI,
+        onDelete: (() -> Void)? = nil
+    ) {
         self.record = record
+        self.onDelete = onDelete
     }
     
     var body: some View {
@@ -43,8 +48,8 @@ struct BMICard: View {
                     .secondary()
             }
         }
-#if DEBUG
         .contextMenu {
+#if DEBUG
             Button {
                 UIPasteboard.general.string = record.source
             } label: {
@@ -52,8 +57,13 @@ struct BMICard: View {
                 Text(record.source)
                 Image(systemName: "doc.on.doc")
             }
-        }
 #endif
+            if let onDelete {
+                Section {
+                    Button("Delete", systemImage: "trash", role: .destructive, action: onDelete)
+                }
+            }
+        }
     }
 }
 

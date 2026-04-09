@@ -25,12 +25,14 @@ struct BMIList: View {
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
                         ForEach(chunk.reversed()) { record in
-                            BMICard(record)
-                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    Button("Delete", systemImage: "trash", role: .destructive) {
-                                        vm.deleteBMI(record)
-                                    }
+                            BMICard(record) {
+                                vm.deleteBMI(record)
+                            }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button("Delete", systemImage: "trash", role: .destructive) {
+                                    vm.deleteBMI(record)
                                 }
+                            }
                         }
                     }
                 }

@@ -5,9 +5,14 @@ struct CarbsCard: View {
     @EnvironmentObject private var store: ValueStore
     
     private let record: Carbs
+    private let onDelete: (() -> Void)?
     
-    init(_ record: Carbs) {
+    init(
+        _ record: Carbs,
+        onDelete: (() -> Void)? = nil
+    ) {
         self.record = record
+        self.onDelete = onDelete
     }
     
     var body: some View {
@@ -42,8 +47,8 @@ struct CarbsCard: View {
                     .secondary()
             }
         }
-#if DEBUG
         .contextMenu {
+#if DEBUG
             Button {
                 UIPasteboard.general.string = record.source
             } label: {
@@ -53,8 +58,13 @@ struct CarbsCard: View {
                 
                 Image(systemName: "doc.on.doc")
             }
-        }
 #endif
+            if let onDelete {
+                Section {
+                    Button("Delete", systemImage: "trash", role: .destructive, action: onDelete)
+                }
+            }
+        }
     }
 }
 

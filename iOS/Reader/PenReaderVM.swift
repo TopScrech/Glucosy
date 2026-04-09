@@ -82,7 +82,7 @@ final class PenReaderVM {
     }
     
     var logFileURL: URL {
-        logStore.url
+        logStore.fileURL
     }
     
     init() {

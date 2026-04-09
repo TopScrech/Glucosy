@@ -34,16 +34,19 @@ struct InsulinCard: View {
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text(Utils.formatNumber(record.value))
-                        .title3(.semibold, design: .rounded)
+                    HStack(alignment: .firstTextBaseline, spacing: 0) {
+                        Text(Utils.formatNumber(record.value))
+                            .title3(.semibold, design: .rounded)
+                            .monospacedDigit()
+                        
+                        Text("U")
+                            .caption()
+                            .secondary()
+                    }
                     
-                    Text("U")
-                        .caption()
+                    Text(record.type.title)
                         .secondary()
                 }
-                
-                Text(record.type.title)
-                    .secondary()
                 
                 if store.debugMode {
                     SourceName(record.source)

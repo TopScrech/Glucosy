@@ -49,7 +49,7 @@ struct WeightList: View {
             }
         }
         .toolbar {
-            SFButton("note.text.badge.plus") {
+            SFButton("plus") {
                 sheetNewEntry = true
             }
         }

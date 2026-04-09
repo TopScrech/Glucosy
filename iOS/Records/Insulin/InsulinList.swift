@@ -47,7 +47,7 @@ struct InsulinList: View {
                 .environment(vm)
         }
         .toolbar {
-            SFButton("note.text.badge.plus") {
+            SFButton("plus") {
                 sheetNewRecord = true
             }
         }

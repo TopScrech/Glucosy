@@ -49,7 +49,7 @@ struct BMIList: View {
             }
         }
         .toolbar {
-            SFButton("note.text.badge.plus") {
+            SFButton("plus") {
                 sheetNewEntry = true
             }
         }

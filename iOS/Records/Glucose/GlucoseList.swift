@@ -48,7 +48,7 @@ struct GlucoseList: View {
                 .presentationDetents([.medium])
         }
         .toolbar {
-            SFButton("note.text.badge.plus") {
+            SFButton("plus") {
                 sheetNewRecord = true
             }
         }

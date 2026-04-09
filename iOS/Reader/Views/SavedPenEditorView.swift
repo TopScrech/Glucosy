@@ -2,10 +2,14 @@ import SwiftData
 import SwiftUI
 
 struct SavedPenEditorView: View {
-    @Bindable var pen: SavedPen
-    
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    
+    @Bindable private var pen: SavedPen
+    
+    init(_ pen: SavedPen) {
+        self.pen = pen
+    }
     
     @State private var showsDeleteConfirmation = false
     

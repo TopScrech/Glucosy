@@ -15,19 +15,8 @@ struct SettingsNovopenSection: View {
                 Text("No saved pens yet")
                     .secondary()
             } else {
-                ForEach(savedPens) { savedPen in
-                    NavigationLink {
-                        SavedPenEditorView(pen: savedPen)
-                    } label: {
-                        HStack {
-                            Text(savedPen.title)
-                            
-                            Spacer()
-                            
-                            Text(savedPen.insulinType.title)
-                                .secondary()
-                        }
-                    }
+                ForEach(savedPens) {
+                    SavedNovoPenCard($0)
                 }
                 .onDelete(perform: deletePens)
             }

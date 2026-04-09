@@ -95,17 +95,20 @@ final class NovoPenSession {
         
         onEvent("Configuration received")
         let actionHandles = configuration.candidateActionHandles.map(String.init).joined(separator: ", ")
+        
         onEvent(
             "Configuration summary id=\(configuration.id) storeHandle=\(configuration.handle) " +
             "segments=\(configuration.numberOfSegments) entries=\(configuration.totalEntries) " +
             "actionHandles=\(actionHandles)"
         )
+        
         _ = try await sendApduRequest(
             NovoPenProtocol.retrieveInformation(invokeID: responseDataApdu.invokeID, configuration: configuration),
             using: transceiver
         )
         
         onEvent("Requesting pen metadata")
+        
         let fullSpecification = try await retrieveFullSpecification(
             invokeID: responseDataApdu.invokeID,
             configuration: configuration,
@@ -124,6 +127,7 @@ final class NovoPenSession {
         }
         
         let capturedAt = Date()
+        
         let doses = try await readDoseHistory(
             from: segments,
             configuration: configuration,
@@ -234,17 +238,18 @@ final class NovoPenSession {
             }
             
             let reportCapturedAt = Date()
+            
             let reportDoses = report.insulinDoses.map {
                 DoseEntry(
                     timestamp: $0.resolvedDate(relativeTime: report.relativeTime, currentTime: reportCapturedAt),
                     rawUnits: $0.units
                 )
             }
+            
             transferredRecordCount += report.recordCount
             doses.append(contentsOf: reportDoses)
-            onEvent(
-                "Received \(reportDoses.count) doses from \(report.recordCount) records, total \(doses.count)"
-            )
+            
+            onEvent("Received \(reportDoses.count) doses from \(report.recordCount) records, total \(doses.count)")
             onProgress(doses.count, expectedDoseCount)
             
             if !options.receivesFullHistory {
@@ -253,12 +258,8 @@ final class NovoPenSession {
                 continue
             }
             
-            if let expectedDoseCount,
-               expectedDoseCount > 0,
-               transferredRecordCount >= expectedDoseCount {
-                onEvent(
-                    "Received complete dose history with \(doses.count) doses from \(transferredRecordCount) records"
-                )
+            if let expectedDoseCount, expectedDoseCount > 0, transferredRecordCount >= expectedDoseCount {
+                onEvent("Received complete dose history with \(doses.count) doses from \(transferredRecordCount) records")
                 finished = true
                 continue
             }
@@ -380,6 +381,7 @@ final class NovoPenSession {
                 NovoPenProtocol.readBinary(offset: 2 + (index * maxReadSize), length: size),
                 using: transceiver
             )
+            
             combined.append(chunk.content)
         }
         
@@ -416,6 +418,7 @@ final class NovoPenSession {
                 NovoPenProtocol.askInformation(invokeID: invokeID, handle: handle),
                 using: transceiver
             )
+            
             let apdu = try Apdu(data: data)
             
             guard apdu.at == Apdu.prst else {
@@ -492,6 +495,7 @@ final class NovoPenSession {
         
         let joinedSegmentIDs = segmentIDs.map(String.init).joined(separator: ", ")
         onEvent("Using fallback segment ids: \(joinedSegmentIDs)")
+        
         return segmentIDs.map {
             SegmentInfo(
                 instanceNumber: $0,
@@ -550,12 +554,9 @@ final class NovoPenSession {
     private func shouldStopSegmentProbing(after error: Error) -> Bool {
         if let penError = error as? NovoPenError {
             switch penError {
-            case .cancelled, .transportEnded:
-                return true
-            case .malformedPacket:
-                return false
-            default:
-                return false
+            case .cancelled, .transportEnded: return true
+            case .malformedPacket: return false
+            default: return false
             }
         }
         
@@ -655,6 +656,7 @@ final class NovoPenSession {
         
         let labels = probes.map(\.label).joined(separator: ", ")
         onEvent("Using transfer variants: \(labels)")
+        
         return probes
     }
 }

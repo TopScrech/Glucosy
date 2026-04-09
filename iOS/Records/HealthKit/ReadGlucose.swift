@@ -2,20 +2,11 @@ import HealthKit
 import OSLog
 
 extension HealthKit {
-    func readGlucose(handler: (@Sendable ([Glucose]) -> Void)? = nil) {
-        Task {
-            let records = try? await reloadGlucoseRecords()
-            
-            if let records {
-                handler?(records)
-            }
-        }
-    }
-    
     @discardableResult
     func reloadGlucoseRecords() async throws -> [Glucose] {
         let records = try await loadGlucoseRecords()
         glucoseRecords = records
+        
         return records
     }
     
@@ -29,7 +20,6 @@ extension HealthKit {
         }
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
-        let glucoseUnit = self.glucoseUnit
         
         return try await withCheckedThrowingContinuation { continuation in
             let query = HKSampleQuery(
@@ -39,25 +29,26 @@ extension HealthKit {
                 sortDescriptors: [sortDescriptor]
             ) { _, results, error in
                 if let error {
-                    Logger().error("HealthKit error: \(error, privacy: .public)")
+                    Logger().error("HealthKit error: \(error)")
                     continuation.resume(throwing: error)
+                    
                     return
                 }
                 
                 guard let results = results as? [HKQuantitySample] else {
                     Logger().warning("HealthKit: no records")
                     continuation.resume(returning: [])
+                    
                     return
                 }
                 
-                let records = results.map { sample -> Glucose in
-                    Glucose(
-                        value: sample.quantity.doubleValue(for: glucoseUnit),
-                        sample: sample
-                    )
+                Task { @MainActor in
+                    let records = results.map {
+                        Glucose(sample: $0)
+                    }
+                    
+                    continuation.resume(returning: records)
                 }
-                
-                continuation.resume(returning: records)
             }
             
             store.execute(query)

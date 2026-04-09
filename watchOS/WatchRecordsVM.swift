@@ -1,6 +1,5 @@
-import HealthKit
-import Observation
 import SwiftUI
+import HealthKit
 
 @Observable
 final class WatchRecordsVM {

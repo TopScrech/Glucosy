@@ -1,5 +1,4 @@
 import Foundation
-import Observation
 
 @Observable
 final class PenReaderVM {
@@ -82,7 +81,7 @@ final class PenReaderVM {
     }
     
     var logFileURL: URL {
-        logStore.url
+        logStore.fileURL
     }
     
     init() {
@@ -128,6 +127,7 @@ final class PenReaderVM {
                     self.appendLog(message)
                 }
             }
+            
             self.reading = reading
             status = .finished
         } catch {

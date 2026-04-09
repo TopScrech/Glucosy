@@ -1,7 +1,7 @@
 import Foundation
 
 final class ReaderLogStore {
-    private let fileURL = URL.documentsDirectory.appending(path: "novopen-reader-last-log.txt")
+    let fileURL = URL.documentsDirectory.appending(path: "novopen-reader-last-log.txt")
     
     func reset() {
         try? Data().write(to: fileURL, options: .atomic)
@@ -11,7 +11,9 @@ final class ReaderLogStore {
         let data = Data("\(line)\n".utf8)
         
         if let handle = try? FileHandle(forWritingTo: fileURL) {
-            defer { try? handle.close() }
+            defer {
+                try? handle.close()
+            }
             
             do {
                 try handle.seekToEnd()
@@ -25,6 +27,7 @@ final class ReaderLogStore {
         do {
             try data.write(to: fileURL, options: .atomic)
         } catch {
+            
         }
     }
     
@@ -37,9 +40,5 @@ final class ReaderLogStore {
         }
         
         return text
-    }
-    
-    var url: URL {
-        fileURL
     }
 }

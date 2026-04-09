@@ -67,7 +67,6 @@
 		F32B207A2CD5823B00925351 /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F34041132F242C1400E8CDAE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F3C712812F82B566008A7E17 /* visionOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = visionOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F3C712942F82B5C9008A7E17 /* visionOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = visionOS.entitlements; sourceTree = "<group>"; };
 		F3E0671B2F46801B001B77CD /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,8 +89,12 @@
 				Nav/Glucosy.swift,
 				Nav/HomeAction.swift,
 				Records/Glucose/GlucoseUnit.swift,
-				Records/HealthKit/InsulinType.swift,
+				Records/HealthKit/Models/Carbs.swift,
+				Records/HealthKit/Models/Glucose.swift,
 				Records/HealthKit/Models/HealthRecord.swift,
+				Records/HealthKit/Models/Insulin.swift,
+				Records/HealthKit/Models/InsulinType.swift,
+				Records/HealthKit/Models/Weight.swift,
 				ValueStore.swift,
 			);
 			target = F3F8ED8C2D2EA2FD004A2638 /* watchOS */;
@@ -194,7 +197,8 @@
 				Reader/Views/ReaderStatusSection.swift,
 				Reader/Views/SavedPenEditorView.swift,
 				Reader/Views/SavedPenRow.swift,
-				Reader/Views/SavedPensView.swift,
+				Settings/SavedNovoPenCard.swift,
+				Settings/SettingsNovopenSection.swift,
 				Shortcuts/GlucosyShortcutsProvider.swift,
 				Shortcuts/OpenNovoPenScanIntent.swift,
 			);
@@ -205,7 +209,6 @@
 			membershipExceptions = (
 				ContentView.swift,
 				Info.plist,
-				visionApp.swift,
 			);
 			target = F3C712802F82B566008A7E17 /* visionOS */;
 		};
@@ -296,7 +299,6 @@
 		F32B20712CD5823B00925351 = {
 			isa = PBXGroup;
 			children = (
-				F3C712942F82B5C9008A7E17 /* visionOS.entitlements */,
 				F34041132F242C1400E8CDAE /* README.md */,
 				F34041482F242D0800E8CDAE /* iOS */,
 				F340417B2F242D0B00E8CDAE /* watchOS */,
@@ -449,6 +451,8 @@
 				uk,
 				fr,
 				tr,
+				it,
+				da,
 			);
 			mainGroup = F32B20712CD5823B00925351;
 			minimizedProjectReferenceProxies = 1;
@@ -659,7 +663,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 64.0.2;
+				MARKETING_VERSION = 64.0.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -721,7 +725,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 64.0.2;
+				MARKETING_VERSION = 64.0.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -831,13 +835,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = visionOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = visionOS/visionOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8FQUA2F388;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
@@ -854,7 +859,7 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 7;
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -865,13 +870,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = visionOS.entitlements;
+				CODE_SIGN_ENTITLEMENTS = visionOS/visionOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8FQUA2F388;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
@@ -888,7 +894,7 @@
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 7;
 				VALIDATE_PRODUCT = YES;
 				XROS_DEPLOYMENT_TARGET = 2.0;

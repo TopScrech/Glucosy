@@ -1,22 +1,20 @@
 import SwiftUI
 
 struct ReaderDebugSection: View {
-    let logText: String
-    let logCount: Int
-    let fullLogFileURL: URL
-    let hasSavedLog: Bool
+    @Environment(PenReaderVM.self) private var vm
+    
     @State private var isShowingLogs = false
     
     var body: some View {
         Section("Debug") {
-            if !hasSavedLog {
+            if !vm.hasSavedLog {
                 Text("No logs yet")
                     .secondary()
             } else {
-                ShareLink("Share Full Log", item: fullLogFileURL)
+                ShareLink("Share Full Log", item: vm.logFileURL)
                 
                 DisclosureGroup(isExpanded: $isShowingLogs) {
-                    Text(logText)
+                    Text(vm.visibleLogText)
                         .footnote()
                         .monospaced()
                         .textSelection(.enabled)

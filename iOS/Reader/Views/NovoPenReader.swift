@@ -1,34 +1,30 @@
 import SwiftUI
 
 struct NovoPenReader: View {
-    let startsScanningOnAppear: Bool
+    @State private var healthKit = HealthKit()
+    
+    private let startsScanningOnAppear: Bool
+    
+    init(startsScanningOnAppear: Bool = false) {
+        self.startsScanningOnAppear = startsScanningOnAppear
+    }
     
     @State var vm = PenReaderVM()
-    @State private var healthKit = HealthKit()
     @State private var hasStartedInitialScan = false
-    @EnvironmentObject private var store: ValueStore
-
+    
     var body: some View {
         List {
-            ReaderStatusSection(vm: vm)
-            ReaderActionsSection(vm: vm)
-            ReaderDebugSection(
-                logText: vm.visibleLogText,
-                logCount: vm.logs.count,
-                fullLogFileURL: vm.logFileURL,
-                hasSavedLog: vm.hasSavedLog
-            )
-
+            ReaderStatusSection()
+            ReaderActionsSection()
+            ReaderDebugSection()
+            
             if let reading = vm.reading {
-                PenSummarySection(reading: reading)
-                DoseHistorySection(
-                    doses: vm.visibleDoses(using: store.airshotFilter),
-                    matches: vm.doseMatches(using: healthKit.insulinRecords, airshotFilter: store.airshotFilter),
-                    doseHistoryExportText: vm.doseHistoryExportText(using: store.airshotFilter)
-                )
+                PenSummarySection(reading)
+                DoseHistorySection()
             }
         }
         .navigationTitle("NovoPen Reader")
+        .environment(vm)
         .task {
             healthKit.authorize { _ in
                 Task { @MainActor in
@@ -43,10 +39,6 @@ struct NovoPenReader: View {
             hasStartedInitialScan = true
             vm.startScan()
         }
-    }
-    
-    init(startsScanningOnAppear: Bool = false) {
-        self.startsScanningOnAppear = startsScanningOnAppear
     }
 }
 

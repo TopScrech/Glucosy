@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct TodayMetricCard: View {
     let metric: TodayMetricData

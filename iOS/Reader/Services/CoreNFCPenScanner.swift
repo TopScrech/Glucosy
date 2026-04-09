@@ -33,6 +33,7 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
                 continuation.resume(throwing: NovoPenError.nfcUnavailable)
                 return
             }
+            
             session.alertMessage = String(localized: "Hold your NovoPen near the top of your iPhone")
             self.session = session
             self.onEvent("Started NFC session")
@@ -51,8 +52,8 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
             }
             
             let nsError = error as NSError
-            if nsError.domain == NFCReaderError.errorDomain,
-               nsError.code == NFCReaderError.readerSessionInvalidationErrorUserCanceled.rawValue {
+            
+            if nsError.domain == NFCReaderError.errorDomain, nsError.code == NFCReaderError.readerSessionInvalidationErrorUserCanceled.rawValue {
                 self.onEvent("Session cancelled")
                 continuation.resume(throwing: NovoPenError.cancelled)
             } else {
@@ -119,7 +120,8 @@ final class CoreNFCPenScanner: NSObject, NFCTagReaderSessionDelegate {
                             }
                         },
                         onEvent: self.onEvent
-                    ) .readPen(using: transceiver)
+                    ).readPen(using: transceiver)
+                    
                     self.finish(with: .success(reading), session: sessionBox.value)
                 } catch {
                     self.onEvent("Reader error [\(String(reflecting: type(of: error)))]: \(error.localizedDescription)")

@@ -71,6 +71,7 @@ final class CoreNFCISO7816Transceiver: NovoPenTransceiver {
                         }
                     }
                 }
+                
             case let .miFare(tag):
                 fullResponse = try await withCheckedThrowingContinuation { continuation in
                     tag.sendMiFareISO7816Command(apdu) { result in

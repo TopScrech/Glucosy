@@ -1,8 +1,9 @@
+import ScrechKit
 import SwiftData
-import SwiftUI
 
 struct HomeView: View {
     @Environment(AppRouter.self) private var router
+    
     @State private var novoPenScanRequest = 0
     
     var body: some View {

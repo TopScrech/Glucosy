@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ReaderStatusSection: View {
-    let vm: PenReaderVM
+    @Environment(PenReaderVM.self) private var vm
     
     var body: some View {
         Section("Status") {

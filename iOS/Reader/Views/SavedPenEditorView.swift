@@ -1,23 +1,25 @@
-import SwiftData
 import SwiftUI
+import SwiftData
 
 struct SavedPenEditorView: View {
-    @Bindable var pen: SavedPen
-    
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    
+    @Bindable private var pen: SavedPen
+    
+    init(_ pen: SavedPen) {
+        self.pen = pen
+    }
     
     @State private var showsDeleteConfirmation = false
     
     var body: some View {
         List {
-            Section {
+            Section("Name") {
                 TextField("Pen Name", text: $pen.customName)
-            } header: {
-                Text("Name")
             }
             
-            Section {
+            Section("Details") {
                 LabeledContent("Model") {
                     Text(pen.model.isEmpty ? String(localized: "Unavailable") : pen.model)
                 }
@@ -25,11 +27,9 @@ struct SavedPenEditorView: View {
                 LabeledContent("Serial") {
                     Text(pen.serial.isEmpty ? String(localized: "Unavailable") : pen.serial)
                 }
-            } header: {
-                Text("Details")
             }
             
-            Section {
+            Section("Insulin Type") {
                 Picker("Type", selection: $pen.insulinType) {
                     ForEach(InsulinType.allCases) {
                         Text($0.title)
@@ -37,8 +37,6 @@ struct SavedPenEditorView: View {
                     }
                 }
                 .pickerStyle(.segmented)
-            } header: {
-                Text("Insulin Type")
             }
         }
         .navigationTitle(pen.title)

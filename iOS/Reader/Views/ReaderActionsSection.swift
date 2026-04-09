@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct ReaderActionsSection: View {
-    @Bindable var vm: PenReaderVM
+    @Environment(PenReaderVM.self) private var vm
     
     var body: some View {
+        @Bindable var vm = vm
+        
         Section("Actions") {
             Toggle("Receive Full History", isOn: $vm.readerOptions.receivesFullHistory)
                 .disabled(vm.isWorking)

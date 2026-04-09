@@ -1,4 +1,5 @@
 import ScrechKit
+import Algorithms
 
 struct InsulinList: View {
     @Environment(HealthKit.self) private var vm
@@ -17,19 +18,21 @@ struct InsulinList: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
             }
-
+            
             ForEach(dayChunks.indices, id: \.self) { index in
                 let chunk = dayChunks[index]
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
                         ForEach(chunk.reversed()) { record in
-                            InsulinCard(record)
-                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    Button("Delete", systemImage: "trash", role: .destructive) {
-                                        vm.deleteInsulin(record)
-                                    }
+                            InsulinCard(record) {
+                                vm.deleteInsulin(record)
+                            }
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button("Delete", systemImage: "trash", role: .destructive) {
+                                    vm.deleteInsulin(record)
                                 }
+                            }
                         }
                     }
                 }

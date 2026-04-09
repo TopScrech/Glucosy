@@ -36,7 +36,7 @@ extension HealthKit {
                 sortDescriptors: [sortDescriptor]
             ) { _, results, error in
                 if let error {
-                    Logger().error("Error retrieving carbs data: \(error, privacy: .public)")
+                    Logger().error("Error retrieving carbs data: \(error)")
                     continuation.resume(throwing: error)
                     return
                 }
@@ -47,10 +47,10 @@ extension HealthKit {
                     return
                 }
                 
-                let records = samples.map { sample -> Carbs in
-                    let value = sample.quantity.doubleValue(for: .gram())
+                let records = samples.map {
+                    let value = $0.quantity.doubleValue(for: .gram())
                     
-                    return Carbs(value: value, sample: sample)
+                    return Carbs(value: value, sample: $0)
                 }
                 
                 continuation.resume(returning: records)

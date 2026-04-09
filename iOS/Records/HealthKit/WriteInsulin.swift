@@ -14,6 +14,7 @@ extension HealthKit {
         )
         
         try await save(sample)
+        
         insulinRecords.insert(
             Insulin(value: value, type: type, sample: sample),
             at: 0
@@ -32,13 +33,14 @@ extension HealthKit {
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             store.save(sample) { success, error in
                 if let error {
-                    Logger().error("HealthKit: error while saving insulin: \(error, privacy: .public)")
+                    Logger().error("HealthKit: error while saving insulin: \(error)")
                     continuation.resume(throwing: error)
                     return
                 }
                 
                 guard success else {
                     Logger().warning("HealthKit: insulin save returned false")
+                    
                     continuation.resume(
                         throwing: NSError(
                             domain: "HealthKit",
@@ -46,6 +48,7 @@ extension HealthKit {
                             userInfo: [NSLocalizedDescriptionKey: "HealthKit could not save insulin"]
                         )
                     )
+                    
                     return
                 }
                 

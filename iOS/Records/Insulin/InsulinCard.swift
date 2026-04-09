@@ -1,49 +1,41 @@
-import SwiftUI
+import ScrechKit
 import HealthKit
 
 struct InsulinCard: View {
     @EnvironmentObject private var store: ValueStore
     
     private let record: Insulin
+    private let onDelete: (() -> Void)?
     
-    init(_ record: Insulin) {
+    init(
+        _ record: Insulin,
+        onDelete: (() -> Void)? = nil
+    ) {
         self.record = record
-    }
-    
-    private var isBasal: Bool {
-        record.type == .basal
-    }
-    
-    private var icon: String {
-        isBasal ? "syringe.fill" : "syringe"
-    }
-    
-    private var color: Color {
-        isBasal ? .purple : .yellow
-    }
-    
-    private var sourceId: String {
-        record.sample.sourceRevision.source.bundleIdentifier
+        self.onDelete = onDelete
     }
     
     var body: some View {
         HStack(spacing: 16) {
-            Image(systemName: icon)
-                .foregroundStyle(color)
+            Image(systemName: record.icon)
+                .foregroundStyle(record.color)
                 .title3()
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text(Utils.formatNumber(record.value))
-                        .title3(.semibold, design: .rounded)
+                    HStack(alignment: .firstTextBaseline, spacing: 0) {
+                        Text(Utils.formatNumber(record.value))
+                            .title3(.semibold, design: .rounded)
+                            .monospacedDigit()
+                        
+                        Text("U")
+                            .caption()
+                            .secondary()
+                    }
                     
-                    Text("U")
-                        .caption()
+                    Text(record.type.title)
                         .secondary()
                 }
-                
-                Text(record.type.title)
-                    .secondary()
                 
                 if store.debugMode {
                     SourceName(record.source)
@@ -54,15 +46,15 @@ struct InsulinCard: View {
             
             HStack(spacing: 4) {
                 if store.debugMode {
-                    SourceImage(sourceId)
+                    SourceImage(record.sourceID)
                 }
                 
                 Text(record.date, format: .dateTime.hour().minute())
                     .secondary()
             }
         }
-#if DEBUG
         .contextMenu {
+#if DEBUG
             Button {
                 UIPasteboard.general.string = record.source
             } label: {
@@ -72,8 +64,13 @@ struct InsulinCard: View {
                 
                 Image(systemName: "doc.on.doc")
             }
-        }
 #endif
+            if let onDelete {
+                Section {
+                    Button("Delete", systemImage: "trash", role: .destructive, action: onDelete)
+                }
+            }
+        }
     }
 }
 

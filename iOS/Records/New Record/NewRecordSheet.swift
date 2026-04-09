@@ -1,17 +1,19 @@
-import SwiftUI
+import ScrechKit
 
 struct NewRecordSheet: View {
     private let recordType: RecordType
+    private let insulinType: InsulinType?
     
-    init(_ recordType: RecordType) {
+    init(_ recordType: RecordType, insulinType: InsulinType? = nil) {
         self.recordType = recordType
+        self.insulinType = insulinType
     }
     
     var body: some View {
         NavigationStack {
             switch recordType {
             case .insulin:
-                NewRecordInsulin()
+                NewRecordInsulin(insulinType: insulinType ?? .bolus)
                 
             case .glucose:
                 NewRecordGlucose()

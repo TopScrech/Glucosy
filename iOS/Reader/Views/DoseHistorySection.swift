@@ -1,12 +1,24 @@
 import SwiftUI
 
 struct DoseHistorySection: View {
-    let doses: [DoseEntry]
-    let matches: [DoseHealthKitMatch]
-    let doseHistoryExportText: String
+    @Environment(PenReaderVM.self) private var vm
+    @Environment(HealthKit.self) private var healthKit
+    @EnvironmentObject private var store: ValueStore
     
     private var missingDoseCount: Int {
         matches.filter { $0 == .missing }.count
+    }
+    
+    private var doses: [DoseEntry] {
+        vm.visibleDoses(using: store.airshotFilter)
+    }
+    
+    private var matches: [DoseHealthKitMatch] {
+        vm.doseMatches(using: healthKit.insulinRecords, airshotFilter: store.airshotFilter)
+    }
+    
+    private var doseHistoryExportText: String {
+        vm.doseHistoryExportText(using: store.airshotFilter)
     }
     
     var body: some View {

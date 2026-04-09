@@ -1,10 +1,10 @@
-import SwiftData
 import SwiftUI
+import SwiftData
 
 struct SavedPenRow: View {
-    @Bindable var pen: SavedPen
-    
     @Environment(\.modelContext) private var modelContext
+    
+    @Bindable var pen: SavedPen
     
     var body: some View {
         VStack(alignment: .leading) {

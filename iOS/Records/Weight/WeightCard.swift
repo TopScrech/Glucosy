@@ -1,17 +1,18 @@
-import SwiftUI
+import ScrechKit
 import HealthKit
 
 struct WeightCard: View {
     @EnvironmentObject private var store: ValueStore
     
     private let record: Weight
+    private let onDelete: (() -> Void)?
     
-    init(_ record: Weight) {
+    init(
+        _ record: Weight,
+        onDelete: (() -> Void)? = nil
+    ) {
         self.record = record
-    }
-    
-    private var sourceId: String {
-        record.sample.sourceRevision.source.bundleIdentifier
+        self.onDelete = onDelete
     }
     
     var body: some View {
@@ -38,15 +39,15 @@ struct WeightCard: View {
             
             HStack(spacing: 4) {
                 if store.debugMode {
-                    SourceImage(sourceId)
+                    SourceImage(record.sourceID)
                 }
                 
                 Text(record.date, format: .dateTime.hour().minute())
                     .secondary()
             }
         }
-#if DEBUG
         .contextMenu {
+#if DEBUG
             Button {
                 UIPasteboard.general.string = record.source
             } label: {
@@ -54,8 +55,13 @@ struct WeightCard: View {
                 Text(record.source)
                 Image(systemName: "doc.on.doc")
             }
-        }
 #endif
+            if let onDelete {
+                Section {
+                    Button("Delete", systemImage: "trash", role: .destructive, action: onDelete)
+                }
+            }
+        }
     }
 }
 

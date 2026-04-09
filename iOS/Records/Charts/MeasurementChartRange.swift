@@ -9,55 +9,30 @@ enum MeasurementChartRange: String, CaseIterable, Identifiable {
     
     var summaryTitle: String {
         switch self {
-        case .day:
-            "today"
-            
-        case .week:
-            "the last 7 days"
-            
-        case .month:
-            "the last 30 days"
-            
-        case .sixMonths:
-            "the last 6 months"
-            
-        case .year:
-            "the last year"
+        case .day: "today"
+        case .week: "the last 7 days"
+        case .month: "the last 30 days"
+        case .sixMonths: "the last 6 months"
+        case .year: "the last year"
         }
     }
     
     var axisStrideComponent: Calendar.Component {
         switch self {
-        case .day:
-            .hour
-            
-        case .week:
-            .day
-            
-        case .month:
-            .day
-            
-        case .sixMonths, .year:
-            .month
+        case .day: .hour
+        case .week: .day
+        case .month: .day
+        case .sixMonths, .year: .month
         }
     }
     
     var axisStrideCount: Int {
         switch self {
-        case .day:
-            6
-            
-        case .week:
-            1
-            
-        case .month:
-            7
-            
-        case .sixMonths:
-            1
-            
-        case .year:
-            2
+        case .day: 6
+        case .week: 1
+        case .month: 7
+        case .sixMonths: 1
+        case .year: 2
         }
     }
     

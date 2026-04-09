@@ -10,27 +10,24 @@ extension HealthKit {
             end: date,
             metadata: nil
         )
-
+        
         store?.save(sample) { [weak self] success, error in
             if let error {
-                Logger().error("HealthKit: error while saving glucose: \(error, privacy: .public)")
+                Logger().error("HealthKit: error while saving glucose: \(error)")
                 return
             }
-
+            
             guard success else {
                 Logger().warning("HealthKit: glucose save returned false")
                 return
             }
-
+            
             Task { @MainActor in
-                self?.glucoseRecords.insert(
-                    Glucose(value: value, sample: sample),
-                    at: 0
-                )
+                self?.glucoseRecords.insert(Glucose(sample: sample), at: 0)
             }
         }
     }
-
+    
     func writeGlucose(_ data: [Glucose]) {
         let samples = data.map {
             HKQuantitySample(
@@ -44,7 +41,7 @@ extension HealthKit {
         
         store?.save(samples) { _, error in
             if let error {
-                Logger().error("HealthKit: error while saving glucose: \(error, privacy: .public)")
+                Logger().error("HealthKit: error while saving glucose: \(error)")
             }
         }
     }

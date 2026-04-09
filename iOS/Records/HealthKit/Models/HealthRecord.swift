@@ -13,38 +13,11 @@ extension HealthRecord {
         sample.startDate
     }
     
-    var source: String {
-        "\(sample.sourceRevision.source.name) \(sample.sourceRevision.source.bundleIdentifier)"
+    var sourceID: String {
+        self.sample.sourceRevision.source.bundleIdentifier
     }
-}
-
-struct Carbs: @MainActor HealthRecord {
-    let id = UUID()
-    let value: Double
-    let sample: HKQuantitySample
-}
-
-struct Glucose: @MainActor HealthRecord {
-    let id = UUID()
-    let value: Double
-    let sample: HKQuantitySample
-}
-
-struct Insulin: @MainActor HealthRecord {
-    let id = UUID()
-    let value: Double
-    let type: InsulinType
-    let sample: HKQuantitySample
     
-    var formattedValue: String {
-        value.truncatingRemainder(dividingBy: 1) == 0 ?
-        String(format: "%.0f", value) :
-        String(value)
+    var source: String {
+        "\(sample.sourceRevision.source.name) \(sourceID)"
     }
-}
-
-struct Weight: @MainActor HealthRecord {
-    let id = UUID()
-    let value: Double
-    let sample: HKQuantitySample
 }

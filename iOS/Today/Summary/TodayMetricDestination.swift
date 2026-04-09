@@ -1,3 +1,3 @@
 enum TodayMetricDestination: String, Hashable {
-    case glucose, carbs, insulin, weight
+    case glucose, carbs, insulin, weight, bmi
 }

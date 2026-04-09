@@ -1,5 +1,4 @@
 import Foundation
-import Observation
 
 @Observable
 final class NovoPenWriteConfirmationVM {
@@ -49,14 +48,10 @@ final class NovoPenWriteConfirmationVM {
     }
     
     func writeSelectedDoses(using healthKit: HealthKit) async throws {
-        guard !isWriting else {
-            return
-        }
+        guard !isWriting else { return }
         
         isWriting = true
-        defer {
-            isWriting = false
-        }
+        defer { isWriting = false }
         
         for pendingDose in selectedDoses.sorted(by: { $0.dose.timestamp < $1.dose.timestamp }) {
             try await healthKit.writeInsulin(

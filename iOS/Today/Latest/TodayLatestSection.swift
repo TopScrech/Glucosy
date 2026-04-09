@@ -48,7 +48,9 @@ struct TodayLatestSection: View {
                 } label: {
                     TodayLatestRow(
                         title: "Carbohydrates",
-                        value: latestCarbsOverall.map { Utils.formatNumber($0.value) },
+                        value: latestCarbsOverall.map {
+                            Utils.formatNumber($0.value)
+                        },
                         unit: String(localized: "g"),
                         date: latestCarbsOverall?.date,
                         icon: "fork.knife",

@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 import SwiftData
 
 struct HomeView: View {

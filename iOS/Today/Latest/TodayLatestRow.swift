@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct TodayLatestRow: View {
     let title: LocalizedStringKey

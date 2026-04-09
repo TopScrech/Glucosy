@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct NewRecordGlucose: View {
     @Environment(HealthKit.self) private var vm

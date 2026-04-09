@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct MeasurementChartCard<ChartContent: View>: View {
     private let title: String?

@@ -1,4 +1,5 @@
 import ScrechKit
+import Algorithms
 
 struct WeightList: View {
     @Environment(HealthKit.self) private var vm

@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct SourceImage: View {
     private let source: String

@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct NewRecordInsulin: View {
     @Environment(HealthKit.self) private var vm

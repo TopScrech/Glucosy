@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 import HealthKit
 
 struct WeightCard: View {

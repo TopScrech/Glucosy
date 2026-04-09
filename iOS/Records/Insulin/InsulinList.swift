@@ -1,4 +1,5 @@
 import ScrechKit
+import Algorithms
 
 struct InsulinList: View {
     @Environment(HealthKit.self) private var vm

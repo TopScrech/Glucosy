@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 import Appearance
 
 struct AppSettings: View {

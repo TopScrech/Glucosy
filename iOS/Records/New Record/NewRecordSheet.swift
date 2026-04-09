@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct NewRecordSheet: View {
     private let recordType: RecordType

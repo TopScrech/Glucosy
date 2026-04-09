@@ -1,4 +1,5 @@
 import ScrechKit
+import Algorithms
 
 struct BMIList: View {
     @Environment(HealthKit.self) private var vm

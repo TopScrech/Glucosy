@@ -16,11 +16,9 @@ struct AddScannedPenSheet: View {
     
     var body: some View {
         List {
-            Section {
+            Section("Name") {
                 TextField("Pen Name", text: $customName)
                     .textInputAutocapitalization(.words)
-            } header: {
-                Text("Name")
             }
             
             Section("Scanned Pen") {

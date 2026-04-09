@@ -2,13 +2,13 @@ import SwiftUI
 import Charts
 
 struct BMIChartView: View {
-    @State private var range: MeasurementChartRange = .month
-    
     private let records: [BMI]
     
     init(records: [BMI]) {
         self.records = records
     }
+    
+    @State private var range: MeasurementChartRange = .month
     
     var body: some View {
         let now = Date.now
@@ -56,6 +56,7 @@ struct BMIChartView: View {
                 .chartXAxis {
                     AxisMarks(values: .stride(by: range.axisStrideComponent, count: range.axisStrideCount)) { value in
                         AxisGridLine()
+                        
                         AxisValueLabel {
                             if let date = value.as(Date.self) {
                                 Text(range.axisLabel(for: date))
@@ -76,6 +77,6 @@ struct BMIChartView: View {
             return "No Data"
         }
         
-        return latestRecord.value.formatted(.number.precision(.fractionLength(1)))
+        return Utils.formatTenths(latestRecord.value)
     }
 }

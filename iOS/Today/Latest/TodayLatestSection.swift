@@ -48,7 +48,9 @@ struct TodayLatestSection: View {
                 } label: {
                     TodayLatestRow(
                         title: "Carbohydrates",
-                        value: latestCarbsOverall.map { Utils.formatNumber($0.value) },
+                        value: latestCarbsOverall.map {
+                            Utils.formatNumber($0.value)
+                        },
                         unit: String(localized: "g"),
                         date: latestCarbsOverall?.date,
                         icon: "fork.knife",
@@ -63,7 +65,7 @@ struct TodayLatestSection: View {
                 } label: {
                     TodayLatestRow(
                         title: "Weight",
-                        value: formattedWeight(latestWeightOverall?.value),
+                        value: Utils.formatTenths(latestWeightOverall?.value),
                         unit: String(localized: "kg"),
                         date: latestWeightOverall?.date,
                         icon: "scalemass",
@@ -78,7 +80,7 @@ struct TodayLatestSection: View {
                 } label: {
                     TodayLatestRow(
                         title: "Body Mass Index",
-                        value: formattedBMI(latestBMIOverall?.value),
+                        value: Utils.formatTenths(latestBMIOverall?.value),
                         unit: nil,
                         date: latestBMIOverall?.date,
                         icon: "figure",
@@ -110,17 +112,6 @@ struct TodayLatestSection: View {
         vm.bmiRecords.first
     }
     
-    private func formattedWeight(_ value: Double?) -> String {
-        guard let value else { return "-" }
-        
-        return value.formatted(.number.precision(.fractionLength(1)))
-    }
-    
-    private func formattedBMI(_ value: Double?) -> String {
-        guard let value else { return "-" }
-        
-        return value.formatted(.number.precision(.fractionLength(1)))
-    }
 }
 
 #Preview {

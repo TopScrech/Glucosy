@@ -66,6 +66,7 @@ struct GlucoseChartView: View {
                 .chartXAxis {
                     AxisMarks(values: .stride(by: range.axisStrideComponent, count: range.axisStrideCount)) { value in
                         AxisGridLine()
+                        
                         AxisValueLabel {
                             if let date = value.as(Date.self) {
                                 Text(range.axisLabel(for: date))

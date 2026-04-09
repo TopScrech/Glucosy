@@ -24,15 +24,8 @@ struct InsulinList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk.reversed()) { record in
-                            InsulinCard(record) {
-                                vm.deleteInsulin(record)
-                            }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button("Delete", systemImage: "trash", role: .destructive) {
-                                    vm.deleteInsulin(record)
-                                }
-                            }
+                        ForEach(chunk.reversed()) {
+                            InsulinCard($0)
                         }
                     }
                 }
@@ -47,7 +40,7 @@ struct InsulinList: View {
                 .environment(vm)
         }
         .toolbar {
-            SFButton("note.text.badge.plus") {
+            SFButton("plus") {
                 sheetNewRecord = true
             }
         }

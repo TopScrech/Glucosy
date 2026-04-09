@@ -163,18 +163,6 @@ struct TodayView: View {
         return values.reduce(0, +)
     }
     
-    private func formattedWeight(_ value: Double?) -> String {
-        guard let value else { return "-" }
-        
-        return value.formatted(.number.precision(.fractionLength(1)))
-    }
-    
-    private func formattedBMI(_ value: Double?) -> String {
-        guard let value else { return "-" }
-        
-        return value.formatted(.number.precision(.fractionLength(1)))
-    }
-    
     private var latestWeightOverall: Weight? {
         vm.weightRecords.first
     }
@@ -211,7 +199,7 @@ struct TodayView: View {
         TodayMetricData(
             destination: .weight,
             title: String(localized: "Weight"),
-            value: formattedWeight(latestWeightOverall?.value),
+            value: Utils.formatTenths(latestWeightOverall?.value),
             unit: String(localized: "kg"),
             icon: "scalemass",
             color: .blue
@@ -219,7 +207,7 @@ struct TodayView: View {
         TodayMetricData(
             destination: .bmi,
             title: String(localized: "BMI"),
-            value: formattedBMI(latestBMIOverall?.value),
+            value: Utils.formatTenths(latestBMIOverall?.value),
             unit: nil,
             icon: "figure",
             color: .mint

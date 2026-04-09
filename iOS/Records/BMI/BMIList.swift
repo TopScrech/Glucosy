@@ -24,15 +24,8 @@ struct BMIList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk.reversed()) { record in
-                            BMICard(record) {
-                                vm.deleteBMI(record)
-                            }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button("Delete", systemImage: "trash", role: .destructive) {
-                                    vm.deleteBMI(record)
-                                }
-                            }
+                        ForEach(chunk.reversed()) {
+                            BMICard($0)
                         }
                     }
                 }
@@ -49,7 +42,7 @@ struct BMIList: View {
             }
         }
         .toolbar {
-            SFButton("note.text.badge.plus") {
+            SFButton("plus") {
                 sheetNewEntry = true
             }
         }

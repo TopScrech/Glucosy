@@ -24,15 +24,8 @@ struct WeightList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk.reversed()) { record in
-                            WeightCard(record) {
-                                vm.deleteWeight(record)
-                            }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button("Delete", systemImage: "trash", role: .destructive) {
-                                    vm.deleteWeight(record)
-                                }
-                            }
+                        ForEach(chunk.reversed()) {
+                            WeightCard($0)
                         }
                     }
                 }
@@ -49,7 +42,7 @@ struct WeightList: View {
             }
         }
         .toolbar {
-            SFButton("note.text.badge.plus") {
+            SFButton("plus") {
                 sheetNewEntry = true
             }
         }

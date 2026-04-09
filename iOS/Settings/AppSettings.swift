@@ -19,7 +19,9 @@ struct AppSettings: View {
                 }
             }
             
-            SettingsDebugSection()
+            if store.debugMode {
+                SettingsDebugSection()
+            }
         }
         .navigationTitle("Settings")
     }

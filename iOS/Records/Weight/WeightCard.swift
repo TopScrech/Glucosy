@@ -23,7 +23,7 @@ struct WeightCard: View {
             
             VStack(alignment: .leading) {
                 HStack(spacing: 5) {
-                    Text(record.value, format: .number.precision(.fractionLength(1)))
+                    Text(Utils.formatTenths(record.value))
                         .title3(.semibold, design: .rounded)
                     
                     Text("kg")

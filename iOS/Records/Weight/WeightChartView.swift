@@ -76,6 +76,6 @@ struct WeightChartView: View {
             return "No Data"
         }
         
-        return "\(latestRecord.value.formatted(.number.precision(.fractionLength(1)))) kg"
+        return "\(Utils.formatTenths(latestRecord.value)) kg"
     }
 }

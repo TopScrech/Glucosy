@@ -23,7 +23,7 @@ struct BMICard: View {
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text(record.value, format: .number.precision(.fractionLength(1)))
+                    Text(Utils.formatTenths(record.value))
                         .title3(.semibold, design: .rounded)
                         .monospacedDigit()
                     

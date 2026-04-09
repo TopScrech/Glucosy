@@ -199,7 +199,7 @@ final class WatchRecordsVM {
                 timestamp: $0.startDate,
                 systemImage: "scalemass",
                 tint: .blue,
-                valueText: $0.quantity.doubleValue(for: .gramUnit(with: .kilo)).formatted(.number.precision(.fractionLength(1))),
+                valueText: $0.quantity.doubleValue(for: .gramUnit(with: .kilo)).formatted(.number.precision(.fractionLength(0 ... 1))),
                 unitText: "kg",
                 detailText: nil
             )

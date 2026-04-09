@@ -76,6 +76,6 @@ struct BMIChartView: View {
             return "No Data"
         }
         
-        return latestRecord.value.formatted(.number.precision(.fractionLength(1)))
+        return Utils.formatTenths(latestRecord.value)
     }
 }

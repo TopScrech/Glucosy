@@ -14,22 +14,7 @@ struct AppSettings: View {
 #if !os(visionOS)
             AppearancePicker($store.appearance)
 #endif
-            
-            Section("Units") {
-                HStack {
-                    Text("Glucose")
-                    
-                    Spacer(minLength: 80)
-                    
-                    Picker("Glucose", selection: $store.glucoseUnit) {
-                        ForEach(GlucoseUnit.allCases) {
-                            Text($0.title)
-                                .tag($0)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                }
-            }
+            GlucoseUnitPicker()
 #if canImport(CoreNFC)
             Section("NovoPen") {
                 if savedPens.isEmpty {

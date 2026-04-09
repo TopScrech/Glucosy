@@ -31,18 +31,20 @@ extension HealthKit {
                 if let error {
                     Logger().error("HealthKit error: \(error)")
                     continuation.resume(throwing: error)
+                    
                     return
                 }
                 
                 guard let results = results as? [HKQuantitySample] else {
                     Logger().warning("HealthKit: no records")
                     continuation.resume(returning: [])
+                    
                     return
                 }
                 
                 Task { @MainActor in
-                    let records = results.map { sample -> Glucose in
-                        Glucose(sample: sample)
+                    let records = results.map {
+                        Glucose(sample: $0)
                     }
                     
                     continuation.resume(returning: records)

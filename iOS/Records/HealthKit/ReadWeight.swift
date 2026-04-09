@@ -12,6 +12,7 @@ extension HealthKit {
     func reloadWeightRecords() async throws -> [Weight] {
         let records = try await loadWeightRecords()
         weightRecords = records
+        
         return records
     }
     
@@ -37,12 +38,14 @@ extension HealthKit {
                 if let error {
                     Logger().error("Error retrieving weight data: \(error)")
                     continuation.resume(throwing: error)
+                    
                     return
                 }
                 
                 guard let samples = results as? [HKQuantitySample] else {
                     Logger().warning("Could not fetch weight samples")
                     continuation.resume(returning: [])
+                    
                     return
                 }
                 

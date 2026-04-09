@@ -1,13 +1,11 @@
 import SwiftUI
 
 struct MeasurementChartCard<ChartContent: View>: View {
-    let title: String?
-    let value: String
-    let subtitle: String?
-    let tint: Color
-    
-    @Binding var range: MeasurementChartRange
-    
+    private let title: String?
+    private let value: String
+    private let subtitle: String?
+    private let tint: Color
+    @Binding private var range: MeasurementChartRange
     private let chartContent: () -> ChartContent
     
     init(

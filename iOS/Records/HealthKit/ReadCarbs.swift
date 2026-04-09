@@ -47,10 +47,10 @@ extension HealthKit {
                     return
                 }
                 
-                let records = samples.map { sample -> Carbs in
-                    let value = sample.quantity.doubleValue(for: .gram())
+                let records = samples.map {
+                    let value = $0.quantity.doubleValue(for: .gram())
                     
-                    return Carbs(value: value, sample: sample)
+                    return Carbs(value: value, sample: $0)
                 }
                 
                 continuation.resume(returning: records)

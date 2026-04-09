@@ -11,7 +11,9 @@ final class ReaderLogStore {
         let data = Data("\(line)\n".utf8)
         
         if let handle = try? FileHandle(forWritingTo: fileURL) {
-            defer { try? handle.close() }
+            defer {
+                try? handle.close()
+            }
             
             do {
                 try handle.seekToEnd()

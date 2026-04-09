@@ -20,10 +20,12 @@ struct HexTraceLoader {
                     packets.append(current)
                     current = Data()
                 }
+                
                 continue
             }
             
             let parts = line.split(whereSeparator: \.isWhitespace)
+            
             for part in parts.dropFirst() {
                 guard part.count == 2, part.allSatisfy(\.isHexDigit) else {
                     break

@@ -21,9 +21,11 @@ final class MockTraceTransceiver: NovoPenTransceiver {
         
         let packetNumber = index + 1
         let response = responses[index]
+        
         onEvent("TRACE TX #\(packetNumber) \(command.hexString)")
         onEvent("TRACE RX #\(packetNumber) \(response.hexString)")
         index += 1
+        
         return response
     }
 }

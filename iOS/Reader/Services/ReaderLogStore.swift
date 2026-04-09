@@ -25,6 +25,7 @@ final class ReaderLogStore {
         do {
             try data.write(to: fileURL, options: .atomic)
         } catch {
+            
         }
     }
     

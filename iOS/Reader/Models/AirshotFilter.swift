@@ -1,16 +1,16 @@
-import Foundation
+import SwiftUI
 
 enum AirshotFilter: String, CaseIterable, Hashable, Identifiable {
     case disabled, upTo1Unit, upTo2Units, upTo3Units
     
     var id: Self { self }
     
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
-        case .disabled: String(localized: "Disabled")
-        case .upTo1Unit: String(localized: "0 to 1 units")
-        case .upTo2Units: String(localized: "0 to 2 units")
-        case .upTo3Units: String(localized: "0 to 3 units")
+        case .disabled: "Disabled"
+        case .upTo1Unit: "0 to 1 units"
+        case .upTo2Units: "0 to 2 units"
+        case .upTo3Units: "0 to 3 units"
         }
     }
     

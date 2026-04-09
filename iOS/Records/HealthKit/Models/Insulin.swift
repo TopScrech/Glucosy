@@ -24,8 +24,4 @@ struct Insulin: @MainActor HealthRecord {
     var color: Color {
         isBasal ? .purple : .yellow
     }
-    
-    var sourceID: String {
-        self.sample.sourceRevision.source.bundleIdentifier
-    }
 }

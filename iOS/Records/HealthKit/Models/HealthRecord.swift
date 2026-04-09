@@ -13,7 +13,11 @@ extension HealthRecord {
         sample.startDate
     }
     
+    var sourceID: String {
+        self.sample.sourceRevision.source.bundleIdentifier
+    }
+    
     var source: String {
-        "\(sample.sourceRevision.source.name) \(sample.sourceRevision.source.bundleIdentifier)"
+        "\(sample.sourceRevision.source.name) \(sourceID)"
     }
 }

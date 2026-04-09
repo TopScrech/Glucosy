@@ -3,7 +3,7 @@ import ScrechKit
 struct TodayQuickActions: View {
     @Environment(HealthKit.self) private var vm
     
-    @State private var sheetNewInsulinRecord = false
+    @State private var insulinType: InsulinType?
     @State private var sheetNewCarbsRecord = false
     @State private var sheetNewGlucoseRecord = false
     @State private var sheetNewWeightRecord = false
@@ -20,12 +20,16 @@ struct TodayQuickActions: View {
                 .title3(.semibold, design: .rounded)
             
             LazyVGrid(columns: columns, spacing: 12) {
-                TodayActionButton("Glucose", icon: "drop", color: .red) {
-                    sheetNewGlucoseRecord = true
+                TodayActionButton("Bolus", icon: "syringe", color: .yellow) {
+                    insulinType = .bolus
                 }
                 
-                TodayActionButton("Insulin", icon: "syringe", color: .yellow) {
-                    sheetNewInsulinRecord = true
+                TodayActionButton("Basal", icon: "syringe.fill", color: .purple) {
+                    insulinType = .basal
+                }
+                
+                TodayActionButton("Glucose", icon: "drop", color: .red) {
+                    sheetNewGlucoseRecord = true
                 }
                 
                 TodayActionButton("Carbs", icon: "fork.knife", color: .orange) {
@@ -44,8 +48,8 @@ struct TodayQuickActions: View {
         .sheet($sheetNewGlucoseRecord) {
             NewRecordSheet(.glucose)
         }
-        .sheet($sheetNewInsulinRecord) {
-            NewRecordSheet(.insulin)
+        .sheet(item: $insulinType) {
+            NewRecordSheet(.insulin, insulinType: $0)
         }
         .sheet($sheetNewCarbsRecord) {
             NewRecordSheet(.carbs)

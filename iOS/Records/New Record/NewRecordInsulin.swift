@@ -9,8 +9,12 @@ struct NewRecordInsulin: View {
     @State private var isAdding = false
     @State private var showsError = false
     @State private var unitsString = ""
-    @State private var purpose: InsulinType = .bolus
+    @State private var purpose: InsulinType
     @FocusState private var isUnitsFieldFocused: Bool
+    
+    init(insulinType: InsulinType = .bolus) {
+        _purpose = State(initialValue: insulinType)
+    }
     
     private var units: Double? {
         Double(unitsString.replacing(",", with: "."))

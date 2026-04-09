@@ -97,6 +97,21 @@ struct TodayView: View {
                         )
                     }
                     .buttonStyle(.plain)
+                    
+                    NavigationLink {
+                        BMIList()
+                            .environment(vm)
+                    } label: {
+                        TodayLatestRow(
+                            title: String(localized: "Body Mass Index"),
+                            value: formattedBMI(latestBMIOverall?.value),
+                            unit: nil,
+                            date: latestBMIOverall?.date,
+                            icon: "figure",
+                            color: .mint
+                        )
+                    }
+                    .buttonStyle(.plain)
                 }
             }
             .padding(.horizontal, 16)
@@ -238,6 +253,10 @@ struct TodayView: View {
         vm.weightRecords.first
     }
     
+    private var latestBMIOverall: BMI? {
+        vm.bmiRecords.first
+    }
+    
     private var insulinTotal: Double? {
         sumValue(insulinToday.map(\.value))
     }
@@ -279,6 +298,14 @@ struct TodayView: View {
                 unit: String(localized: "kg"),
                 icon: "scalemass",
                 color: .blue
+            ),
+            TodayMetricData(
+                destination: .bmi,
+                title: String(localized: "BMI"),
+                value: formattedBMI(latestBMIOverall?.value),
+                unit: nil,
+                icon: "figure",
+                color: .mint
             )
         ]
     }
@@ -307,6 +334,12 @@ struct TodayView: View {
         return value.formatted(.number.precision(.fractionLength(1)))
     }
     
+    private func formattedBMI(_ value: Double?) -> String {
+        guard let value else { return "-" }
+        
+        return value.formatted(.number.precision(.fractionLength(1)))
+    }
+    
     @ViewBuilder
     private func destinationView(for destination: TodayMetricDestination) -> some View {
         switch destination {
@@ -324,6 +357,10 @@ struct TodayView: View {
             
         case .weight:
             WeightList()
+                .environment(vm)
+            
+        case .bmi:
+            BMIList()
                 .environment(vm)
         }
     }

@@ -738,6 +738,12 @@
         }
       }
     },
+    "BMI" : {
+
+    },
+    "Body Mass Index" : {
+
+    },
     "Bolus" : {
       "localizations" : {
         "de" : {

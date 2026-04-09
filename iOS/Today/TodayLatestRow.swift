@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TodayLatestRow: View {
-    let title: String
+    let title: LocalizedStringKey
     let value: String?
     let unit: String?
     let date: Date?

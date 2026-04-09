@@ -4,16 +4,18 @@ import SwiftData
 
 struct TodayView: View {
     @State private var vm = HealthKit()
+    @EnvironmentObject private var store: ValueStore
+    
 #if canImport(CoreNFC)
     @State private var novoPenReader = PenReaderVM()
     @State private var novoPenWriteConfirmation = NovoPenWriteConfirmationVM()
     @Query(sort: \SavedPen.createdAt) private var savedPens: [SavedPen]
+    
     @State private var scannedPenToSave: PenReading?
     @State private var novoPenScanErrorMessage: String?
     @State private var showsNovoPenScanError = false
     @State private var showsNovoPenWriteConfirmation = false
 #endif
-    @EnvironmentObject private var store: ValueStore
     
     let novoPenScanRequest: Int
     
@@ -25,7 +27,7 @@ struct TodayView: View {
     
     var body: some View {
         let glucoseUnit = store.glucoseUnit
-
+        
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 TodayMetricsSection(metrics: metricCards(glucoseUnit: glucoseUnit))
@@ -43,7 +45,7 @@ struct TodayView: View {
                             .environment(vm)
                     } label: {
                         TodayLatestRow(
-                            title: String(localized: "Blood Glucose"),
+                            title: "Blood Glucose",
                             value: latestGlucoseOverall?.formattedValue(in: glucoseUnit),
                             unit: glucoseUnit.title,
                             date: latestGlucoseOverall?.date,
@@ -58,7 +60,7 @@ struct TodayView: View {
                             .environment(vm)
                     } label: {
                         TodayLatestRow(
-                            title: String(localized: "Insulin Delivery"),
+                            title: "Insulin Delivery",
                             value: latestInsulinOverall?.formattedValue,
                             unit: String(localized: "U"),
                             date: latestInsulinOverall?.date,
@@ -73,7 +75,7 @@ struct TodayView: View {
                             .environment(vm)
                     } label: {
                         TodayLatestRow(
-                            title: String(localized: "Carbohydrates"),
+                            title: "Carbohydrates",
                             value: latestCarbsOverall.map { Utils.formatNumber($0.value) },
                             unit: String(localized: "g"),
                             date: latestCarbsOverall?.date,
@@ -88,7 +90,7 @@ struct TodayView: View {
                             .environment(vm)
                     } label: {
                         TodayLatestRow(
-                            title: String(localized: "Weight"),
+                            title: "Weight",
                             value: formattedWeight(latestWeightOverall?.value),
                             unit: String(localized: "kg"),
                             date: latestWeightOverall?.date,
@@ -103,7 +105,7 @@ struct TodayView: View {
                             .environment(vm)
                     } label: {
                         TodayLatestRow(
-                            title: String(localized: "Body Mass Index"),
+                            title: "Body Mass Index",
                             value: formattedBMI(latestBMIOverall?.value),
                             unit: nil,
                             date: latestBMIOverall?.date,
@@ -160,7 +162,7 @@ struct TodayView: View {
             NavigationStack {
                 LogWeightSheet()
             }
-                .environment(vm)
+            .environment(vm)
         }
 #if canImport(CoreNFC)
         .sheet(isPresented: $showsNovoPenWriteConfirmation, onDismiss: novoPenWriteConfirmation.dismiss) {
@@ -403,7 +405,7 @@ struct TodayView: View {
     
     private func presentNovoPenWriteConfirmation(for savedPen: SavedPen) {
         let airshotFilter = store.airshotFilter
-
+        
         Task {
             let insulinRecords = (try? await vm.reloadInsulinRecords()) ?? vm.insulinRecords
             let missingDoses = novoPenReader.missingDoses(

@@ -1,16 +1,23 @@
 import SwiftUI
 
 struct TodayActionButton: View {
-    let title: LocalizedStringKey
-    let icon: String
-    let color: Color
-    let action: () -> Void
+    private let title: LocalizedStringKey
+    private let icon: String
+    private let color: Color
+    private let action: () -> Void
     
-    @State private var hapticTrigger = 0
+    init(_ title: LocalizedStringKey, icon: String, color: Color, action: @escaping () -> Void) {
+        self.title = title
+        self.icon = icon
+        self.color = color
+        self.action = action
+    }
+    
+    @State private var hapticTrigger = false
     
     var body: some View {
         Button {
-            hapticTrigger += 1
+            hapticTrigger.toggle()
             action()
         } label: {
             HStack(spacing: 10) {
@@ -35,7 +42,7 @@ struct TodayActionButton: View {
 }
 
 #Preview {
-    TodayActionButton(title: "Glucose", icon: "drop", color: .red) {}
+    TodayActionButton("Glucose", icon: "drop", color: .red) {}
         .padding()
         .darkSchemePreferred()
 }

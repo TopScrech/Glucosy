@@ -17,33 +17,10 @@ struct TodayQuickActions: View {
                 .title3(.semibold, design: .rounded)
             
             LazyVGrid(columns: columns, spacing: 12) {
-                TodayActionButton(
-                    title: "Glucose",
-                    icon: "drop",
-                    color: .red,
-                    action: addGlucose
-                )
-                
-                TodayActionButton(
-                    title: "Insulin",
-                    icon: "syringe",
-                    color: .yellow,
-                    action: addInsulin
-                )
-                
-                TodayActionButton(
-                    title: "Carbs",
-                    icon: "fork.knife",
-                    color: .orange,
-                    action: addCarbs
-                )
-                
-                TodayActionButton(
-                    title: "Weight",
-                    icon: "scalemass",
-                    color: .blue,
-                    action: addWeight
-                )
+                TodayActionButton("Glucose", icon: "drop", color: .red, action: addGlucose)
+                TodayActionButton("Insulin", icon: "syringe", color: .yellow, action: addInsulin)
+                TodayActionButton("Carbs", icon: "fork.knife", color: .orange, action: addCarbs)
+                TodayActionButton("Weight", icon: "scalemass", color: .blue, action: addWeight)
             }
         }
     }

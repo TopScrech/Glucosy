@@ -62,31 +62,17 @@ struct NewRecordInsulin: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button("Cancel") {
+                Button(role: .destructive) {
                     dismiss()
+                } label: {
+                    Image(systemName: "xmark")
                 }
+                .tint(.red)
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Add") {
-                    guard let units else {
-                        return
-                    }
-                    
-                    Task {
-                        do {
-                            isAdding = true
-                            try await vm.writeInsulin(value: units, type: purpose, date: date)
-                            dismiss()
-                        } catch {
-                            errorMessage = error.localizedDescription
-                            showsError = true
-                            isAdding = false
-                        }
-                    }
-                }
-                .bold()
-                .disabled(units == nil || isAdding)
+                SFButton("checkmark", action: saveRecord)
+                    .disabled(units == nil || isAdding)
             }
         }
         .alert("Could Not Add Insulin", isPresented: $showsError) {
@@ -97,6 +83,22 @@ struct NewRecordInsulin: View {
         } message: {
             if let errorMessage {
                 Text(errorMessage)
+            }
+        }
+    }
+    
+    private func saveRecord() {
+        guard let units else { return }
+        
+        Task {
+            do {
+                isAdding = true
+                try await vm.writeInsulin(value: units, type: purpose, date: date)
+                dismiss()
+            } catch {
+                errorMessage = error.localizedDescription
+                showsError = true
+                isAdding = false
             }
         }
     }

@@ -20,6 +20,12 @@ struct NewRecordSheet: View {
                 
             case .carbs:
                 NewRecordCarbs()
+                
+            case .weight:
+                LogWeightSheet()
+                
+            case .bmi:
+                LogBMISheet()
             }
         }
     }

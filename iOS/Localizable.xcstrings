@@ -431,6 +431,7 @@
       }
     },
     "Add" : {
+      "extractionState" : "stale",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -1370,6 +1371,9 @@
           }
         }
       }
+    },
+    "checkmark" : {
+
     },
     "Copy Dose History" : {
       "comment" : "A button that copies the dose history to the clipboard.",

@@ -36,10 +36,7 @@ struct WeightList: View {
             _ = try? await vm.reloadWeightRecords()
         }
         .sheet($sheetNewEntry) {
-            NavigationStack {
-                LogWeightSheet()
-                    .environment(vm)
-            }
+            NewRecordSheet(.weight)
         }
         .toolbar {
             SFButton("plus") {

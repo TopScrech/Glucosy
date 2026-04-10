@@ -36,10 +36,7 @@ struct BMIList: View {
             _ = try? await vm.reloadBMIRecords()
         }
         .sheet($sheetNewEntry) {
-            NavigationStack {
-                LogBMISheet()
-                    .environment(vm)
-            }
+            NewRecordSheet(.bmi)
         }
         .toolbar {
             SFButton("plus") {

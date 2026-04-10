@@ -42,24 +42,26 @@ struct NewRecordCarbs: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button("Cancel") {
+                Button(role: .destructive) {
                     dismiss()
+                } label: {
+                    Image(systemName: "xmark")
                 }
+                .tint(.red)
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Add") {
-                    guard let units else {
-                        return
-                    }
-
-                    vm.writeCarbs(value: units, date: date)
-                    dismiss()
-                }
-                .bold()
-                .disabled(units == nil)
+                SFButton("checkmark", action: saveRecord)
+                    .disabled(units == nil)
             }
         }
+    }
+    
+    private func saveRecord() {
+        guard let units else { return }
+        
+        vm.writeCarbs(value: units, date: date)
+        dismiss()
     }
 }
 

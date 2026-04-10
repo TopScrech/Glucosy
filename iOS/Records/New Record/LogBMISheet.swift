@@ -42,24 +42,26 @@ struct LogBMISheet: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button("Cancel") {
+                Button(role: .destructive) {
                     dismiss()
+                } label: {
+                    Image(systemName: "xmark")
                 }
+                .tint(.red)
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Add") {
-                    guard let bmi else {
-                        return
-                    }
-                    
-                    vm.writeBMI(value: bmi, date: date)
-                    dismiss()
-                }
-                .bold()
-                .disabled(bmi == nil)
+                SFButton("checkmark", action: saveRecord)
+                    .disabled(bmi == nil)
             }
         }
+    }
+    
+    private func saveRecord() {
+        guard let bmi else { return }
+        
+        vm.writeBMI(value: bmi, date: date)
+        dismiss()
     }
 }
 

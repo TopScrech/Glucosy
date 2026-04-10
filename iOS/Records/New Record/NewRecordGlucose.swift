@@ -54,27 +54,30 @@ struct NewRecordGlucose: View {
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button("Cancel", role: .destructive) {
+                Button(role: .destructive) {
                     dismiss()
+                } label: {
+                    Image(systemName: "xmark")
                 }
+                .tint(.red)
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Add") {
-                    guard let units else {
-                        return
-                    }
-
-                    vm.writeGlucose(
-                        value: store.glucoseUnit.milligramsPerDeciliter(fromDisplayValue: units),
-                        date: date
-                    )
-                    dismiss()
-                }
-                .bold()
-                .disabled(units == nil)
+                SFButton("checkmark", action: saveRecord)
+                    .disabled(units == nil)
             }
         }
+    }
+    
+    private func saveRecord() {
+        guard let units else { return }
+        
+        vm.writeGlucose(
+            value: store.glucoseUnit.milligramsPerDeciliter(fromDisplayValue: units),
+            date: date
+        )
+        
+        dismiss()
     }
 }
 

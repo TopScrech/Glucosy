@@ -28,19 +28,23 @@ struct LogWeightSheet: View {
         .padding(15)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button("Cancel") {
+                Button(role: .destructive) {
                     dismiss()
+                } label: {
+                    Image(systemName: "xmark")
                 }
+                .tint(.red)
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Add") {
-                    vm.writeWeight(value: Double(selectedValue))
-                    dismiss()
-                }
-                .bold()
+                SFButton("checkmark", action: saveRecord)
             }
         }
+    }
+    
+    private func saveRecord() {
+        vm.writeWeight(value: Double(selectedValue))
+        dismiss()
     }
 }
 

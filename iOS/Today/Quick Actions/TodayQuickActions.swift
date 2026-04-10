@@ -55,14 +55,10 @@ struct TodayQuickActions: View {
             NewRecordSheet(.carbs)
         }
         .sheet($sheetNewWeightRecord) {
-            NavigationStack {
-                LogWeightSheet()
-            }
+            NewRecordSheet(.weight)
         }
         .sheet($sheetNewBMIRecord) {
-            NavigationStack {
-                LogBMISheet()
-            }
+            NewRecordSheet(.bmi)
         }
         .environment(vm)
     }

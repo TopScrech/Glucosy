@@ -11,11 +11,10 @@ struct HomeView: View {
             TodayView(novoPenScanRequest: novoPenScanRequest)
         }
         .task(id: router.actionRequest) {
-            guard router.actionRequest > 0 else {
-                return
-            }
-            
-            guard let action = router.consumePendingAction() else {
+            guard
+                router.actionRequest > 0,
+                let action = router.consumePendingAction()
+            else {
                 return
             }
             
@@ -29,10 +28,10 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .darkSchemePreferred()
         .environment(AppRouter())
         .environmentObject(ValueStore())
 #if canImport(CoreNFC)
         .modelContainer(for: [SavedPen.self], inMemory: true)
 #endif
-        .darkSchemePreferred()
 }

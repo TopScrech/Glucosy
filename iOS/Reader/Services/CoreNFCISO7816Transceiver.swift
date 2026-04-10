@@ -57,35 +57,15 @@ final class CoreNFCISO7816Transceiver: NovoPenTransceiver {
             switch backend {
             case let .iso7816(tag):
                 fullResponse = try await withCheckedThrowingContinuation { continuation in
-                    tag.sendCommand(apdu: apdu) { result in
-                        switch result {
-                        case let .success(response):
-                            var fullResponse = Data()
-                            fullResponse.append(response.payload ?? Data())
-                            fullResponse.append(response.statusWord1)
-                            fullResponse.append(response.statusWord2)
-                            continuation.resume(returning: fullResponse)
-                            
-                        case let .failure(error):
-                            continuation.resume(throwing: error)
-                        }
+                    tag.sendCommand(apdu: apdu) {
+                        Self.processCommandResponse($0, continuation: continuation)
                     }
                 }
                 
             case let .miFare(tag):
                 fullResponse = try await withCheckedThrowingContinuation { continuation in
-                    tag.sendMiFareISO7816Command(apdu) { result in
-                        switch result {
-                        case let .success(response):
-                            var fullResponse = Data()
-                            fullResponse.append(response.payload ?? Data())
-                            fullResponse.append(response.statusWord1)
-                            fullResponse.append(response.statusWord2)
-                            continuation.resume(returning: fullResponse)
-                            
-                        case let .failure(error):
-                            continuation.resume(throwing: error)
-                        }
+                    tag.sendMiFareISO7816Command(apdu) {
+                        Self.processCommandResponse($0, continuation: continuation)
                     }
                 }
             }
@@ -99,5 +79,22 @@ final class CoreNFCISO7816Transceiver: NovoPenTransceiver {
         }
         
         return fullResponse
+    }
+    
+    nonisolated private static func processCommandResponse(
+        _ result: Result<NFCISO7816ResponseAPDU, any Error>,
+        continuation: CheckedContinuation<Data, any Error>
+    ) {
+        switch result {
+        case let .success(response):
+            var fullResponse = Data()
+            fullResponse.append(response.payload ?? Data())
+            fullResponse.append(response.statusWord1)
+            fullResponse.append(response.statusWord2)
+            continuation.resume(returning: fullResponse)
+            
+        case let .failure(error):
+            continuation.resume(throwing: error)
+        }
     }
 }

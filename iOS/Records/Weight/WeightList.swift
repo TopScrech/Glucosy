@@ -24,7 +24,7 @@ struct WeightList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk.reversed()) {
+                        ForEach(chunk) {
                             WeightCard($0)
                         }
                     }

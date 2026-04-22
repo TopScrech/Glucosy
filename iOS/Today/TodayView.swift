@@ -41,6 +41,12 @@ struct TodayView: View {
         .refreshable {
             await refreshData()
         }
+        .sheet($sheetChat) {
+            NavigationStack {
+                ChatView()
+                    .environment(vm)
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Settings", systemImage: "gear") {
@@ -52,10 +58,15 @@ struct TodayView: View {
                 SFButton("apple.intelligence") {
                     sheetChat = true
                 }
+                .symbolRenderingMode(.multicolor)
+            }
+            
+            if #available(iOS 26, *) {
+                ToolbarSpacer(.fixed, placement: .topBarTrailing)
             }
 #if canImport(CoreNFC)
-            if CoreNFCPenScanner.isReadingAvailable {
-                ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItem(placement: .topBarTrailing) {
+                if CoreNFCPenScanner.isReadingAvailable {
                     Button("Scan Pen", systemImage: "wave.3.right", action: startNovoPenScan)
                         .disabled(novoPenReader.isWorking)
                 }

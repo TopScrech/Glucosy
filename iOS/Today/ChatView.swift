@@ -1,11 +1,37 @@
+#if os(iOS)
 import SwiftUI
 
 struct ChatView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+#if canImport(FoundationModels)
+        Group {
+            if #available(iOS 26, *) {
+                FoundationModelChatView()
+            } else {
+                ContentUnavailableView(
+                    "Assistant Unavailable",
+                    systemImage: "apple.intelligence",
+                    description: Text("This chat requires a newer iOS version")
+                )
+                .symbolRenderingMode(.multicolor)
+            }
+        }
+#else
+        ContentUnavailableView(
+            "Assistant Unavailable",
+            systemImage: "apple.intelligence",
+            description: Text("Foundation Models is not available in this build")
+        )
+        .symbolRenderingMode(.multicolor)
+#endif
     }
 }
 
 #Preview {
-    ChatView()
+    NavigationStack {
+        ChatView()
+    }
+    .environmentObject(ValueStore())
+    .environment(HealthKit())
 }
+#endif

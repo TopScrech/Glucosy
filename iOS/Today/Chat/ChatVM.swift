@@ -1,0 +1,152 @@
+#if os(iOS)
+import Foundation
+import Observation
+import OSLog
+
+#if canImport(FoundationModels)
+import FoundationModels
+#endif
+
+@available(iOS 26, *)
+@Observable
+final class ChatVM {
+    var prompt = ""
+    var messages: [ChatMessage] = []
+    var isResponding = false
+    var transcriptTokens = 0.0
+    var contextWindow = 0.0
+
+    @ObservationIgnored private let logger = Logger()
+    @ObservationIgnored private let model = SystemLanguageModel.default
+    @ObservationIgnored private let instructions = Instructions("""
+        You are the in-app Glucosy assistant
+        Provide concise answers
+        Answer only in the same language as the prompt
+        Use only the Glucosy context provided with each request
+        If the context is missing data, say what is missing
+        Do not claim to have taken actions inside the app or HealthKit
+        Do not invent readings, trends, or medical conclusions
+        """)
+    @ObservationIgnored private var session: LanguageModelSession
+    @ObservationIgnored private var context = ""
+
+    var tokenUsage: Double {
+        guard contextWindow > 0 else {
+            return 0
+        }
+
+        return transcriptTokens / contextWindow
+    }
+
+    init() {
+        session = LanguageModelSession(
+            model: model,
+            instructions: instructions
+        )
+    }
+
+    func printContextSize() {
+        let contextSize = model.contextSize
+        logger.info("Context size: \(contextSize)")
+
+        contextWindow = Double(contextSize)
+    }
+
+    func refreshContext(using healthKit: HealthKit, glucoseUnit: GlucoseUnit) {
+        context = ChatContextSnapshot(
+            healthKit: healthKit,
+            glucoseUnit: glucoseUnit
+        )
+        .promptContext
+    }
+
+    func startNewChat() {
+        guard !isResponding else {
+            return
+        }
+
+        prompt = ""
+        messages = []
+        transcriptTokens = 0
+        session = makeSession()
+    }
+
+    func sendPrompt() async {
+        let userPrompt = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !userPrompt.isEmpty else {
+            return
+        }
+        guard !isResponding else {
+            return
+        }
+
+        switch model.availability {
+        case .available:
+            isResponding = true
+            messages.append(ChatMessage(role: .user, text: userPrompt))
+            messages.append(ChatMessage(role: .assistant, text: ""))
+            prompt = ""
+
+            do {
+                let stream = session.streamResponse(to: contextualPrompt(for: userPrompt))
+
+                for try await snapshot in stream {
+                    guard let messageIndex = messages.indices.last else {
+                        continue
+                    }
+
+                    messages[messageIndex].text = snapshot.content
+                }
+
+                _ = try await stream.collect()
+                await updateTranscriptTokenUsage()
+                isResponding = false
+            } catch {
+                guard let messageIndex = messages.indices.last else {
+                    isResponding = false
+                    return
+                }
+
+                messages[messageIndex].text = error.localizedDescription
+                logger.error("\(error.localizedDescription)")
+                isResponding = false
+            }
+
+        case .unavailable(let reason):
+            messages.append(ChatMessage(role: .assistant, text: "Model unavailable: \(String(describing: reason))"))
+            logger.error("\(String(describing: reason))")
+        }
+    }
+
+    private func contextualPrompt(for userPrompt: String) -> String {
+        """
+        Glucosy context
+        \(context)
+
+        User question
+        \(userPrompt)
+        """
+    }
+
+    private func updateTranscriptTokenUsage() async {
+        guard #available(iOS 26.4, *) else {
+            return
+        }
+
+        do {
+            let transcriptTokenUsage = try await model.tokenCount(for: session.transcript)
+            logger.info("Transcript tokens: \(transcriptTokenUsage)")
+            transcriptTokens = Double(transcriptTokenUsage)
+        } catch {
+            logger.error("\(error.localizedDescription)")
+        }
+    }
+
+    private func makeSession() -> LanguageModelSession {
+        LanguageModelSession(
+            model: model,
+            instructions: instructions
+        )
+    }
+}
+#endif

@@ -20,6 +20,7 @@ struct TodayView: View {
     let novoPenScanRequest: Int
     
     @State private var showsSettings = false
+    @State private var sheetChat = false
     
     var body: some View {
         let glucoseUnit = store.glucoseUnit
@@ -47,6 +48,11 @@ struct TodayView: View {
                 }
             }
             
+            ToolbarItem(placement: .topBarTrailing) {
+                SFButton("apple.intelligence") {
+                    sheetChat = true
+                }
+            }
 #if canImport(CoreNFC)
             if CoreNFCPenScanner.isReadingAvailable {
                 ToolbarItem(placement: .topBarTrailing) {

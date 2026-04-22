@@ -14,9 +14,9 @@ struct FoundationModelChatView: View {
             LazyVStack {
                 if vm.messages.isEmpty {
                     ContentUnavailableView(
-                        "Ask about your data",
+                        "Estimate carbs",
                         systemImage: "apple.intelligence",
-                        description: Text("The assistant can answer follow-up questions about the records currently loaded in Glucosy")
+                        description: Text("The assistant can only estimate the amount of carbs in a product")
                     )
                     .symbolRenderingMode(.multicolor)
                 } else {

@@ -27,6 +27,8 @@ final class ChatVM {
         Ask a short follow-up question if the product or portion size is unclear
         Prefer estimates in grams of carbohydrates
         Make it clear when an answer is an estimate
+        Always mention carbohydrates per 100 g
+        Mention carbohydrates per portion whenever the portion is given, inferable, or otherwise appropriate
         Do not claim to have taken actions inside the app
         Do not invent certainty
         """)

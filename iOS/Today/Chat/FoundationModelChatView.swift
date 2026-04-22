@@ -16,7 +16,7 @@ struct FoundationModelChatView: View {
                     ContentUnavailableView(
                         "Estimate carbs",
                         systemImage: "apple.intelligence",
-                        description: Text("The assistant can only estimate the amount of carbs in a product")
+                        description: Text("The assistant can only estimate the carbohydrate content of a product. Use this as a reference only, not as medical advice")
                     )
                     .symbolRenderingMode(.multicolor)
                 } else {

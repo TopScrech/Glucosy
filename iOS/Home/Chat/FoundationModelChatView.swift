@@ -38,8 +38,12 @@ struct FoundationModelChatView: View {
             Text("This indicator shows the amount of used tokens")
         }
         .overlay(alignment: .bottom) {
-            ChatComposerView()
-                .environment(vm)
+            ChatComposer(prompt: $vm.prompt, isResponding: $vm.isResponding) {
+                Task {
+                    await vm.sendPrompt()
+                }
+            }
+            .environment(vm)
         }
         .toolbar {
             if #available(iOS 26.4, *) {

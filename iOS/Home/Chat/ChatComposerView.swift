@@ -12,8 +12,8 @@ struct ChatComposerView: View {
         HStack {
             TextField("Type here...", text: $vm.prompt)
                 .onSubmit(sendPrompt)
-                .padding(.horizontal)
                 .frame(height: 35)
+                .padding(.horizontal, 10)
 #if !os(visionOS)
                 .glassEffect()
 #endif
@@ -22,11 +22,13 @@ struct ChatComposerView: View {
                 .disabled(vm.isResponding)
             
             Button("Send", systemImage: "paperplane", action: sendPrompt)
-                .labelStyle(.iconOnly)
                 .frame(35)
+                .labelStyle(.iconOnly)
+                .foregroundStyle(.foreground)
 #if !os(visionOS)
                 .glassEffect()
 #endif
+                .fontSize(16)
                 .disabled(vm.isResponding || vm.prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         }
         .padding()

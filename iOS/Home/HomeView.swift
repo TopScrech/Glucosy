@@ -41,7 +41,9 @@ struct HomeView: View {
         }
         .sheet($sheetChat) {
             NavigationStack {
-                ChatViewParent()
+                if #available(iOS 26, visionOS 26, *) {
+                    ChatView()
+                }
             }
         }
         .environment(vm)
@@ -51,7 +53,7 @@ struct HomeView: View {
                     showsSettings = true
                 }
             }
-            
+#if canImport(FoundationModels)
             ToolbarItem(placement: .topBarTrailing) {
                 SFButton("apple.intelligence") {
                     sheetChat = true
@@ -59,6 +61,7 @@ struct HomeView: View {
                 .symbolRenderingMode(.multicolor)
                 .keyboardShortcut("a")
             }
+#endif
 #if !os(visionOS)
             if #available(iOS 26, *) {
                 ToolbarSpacer(.fixed, placement: .topBarTrailing)

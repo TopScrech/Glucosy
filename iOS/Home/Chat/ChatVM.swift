@@ -80,12 +80,8 @@ final class ChatVM {
     
     func sendPrompt() async {
         let userPrompt = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !userPrompt.isEmpty else {
-            return
-        }
-        guard !isResponding else {
-            return
-        }
+        guard !userPrompt.isEmpty else { return }
+        guard !isResponding else { return }
         
         switch model.availability {
         case .available:
@@ -210,13 +206,11 @@ final class ChatVM {
             }
             
             let remainingCount = targetCount - displayedCount
+            
             let step = switch remainingCount {
-            case 25...:
-                4
-            case 10...24:
-                2
-            default:
-                1
+            case 25...: 4
+            case 10...24: 2
+            default: 1
             }
             
             messages[messageIndex].text = String(targetText.prefix(min(displayedCount + step, targetCount)))

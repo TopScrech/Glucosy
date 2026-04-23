@@ -26,14 +26,16 @@ final class ChatVM {
         Keep outputText concise
         Make it clear that every carbohydrate value is an estimate
         Always mention carbohydrates per 100 g or 100 ml, whichever fits the product better
-        carbGramsToLog must always be grams of carbohydrate for the chosen portion
-        carbGramsToLog must never be the portion weight, the portion volume, the serving size, the item count, or any other measurement of the food itself
-        If the user gave a portion size, carbGramsToLog must be the estimated carbohydrate grams for exactly that portion size
+        logCarbsAction is optional and should only be present when there is a clear carbohydrate estimate that the person could log right now
+        Omit logCarbsAction for irrelevant questions, refusals, follow-up questions, greetings, thanks, and any reply where showing a log button would not be useful
+        If logCarbsAction is present, its carbGrams must always be grams of carbohydrate for the chosen portion
+        If logCarbsAction is present, its carbGrams must never be the portion weight, the portion volume, the serving size, the item count, or any other measurement of the food itself
+        If the user gave a portion size, logCarbsAction.carbGrams must be the estimated carbohydrate grams for exactly that portion size
         If the user did not give a portion size, choose a logical common portion such as 1 apple or 250 ml soup whenever possible
-        If a logical common portion is not clear, use 100 g or 100 ml as the portion for carbGramsToLog
-        If the product or portion is too unclear to estimate responsibly, ask one short follow-up question and set carbGramsToLog to null
-        If you refuse because the user asked for something outside carbohydrate estimation, set carbGramsToLog to null
-        Double check the final numeric value before answering so carbGramsToLog is the estimated carbohydrate grams, not the portion amount
+        If a logical common portion is not clear, use 100 g or 100 ml as the portion for logCarbsAction.carbGrams
+        If the product or portion is too unclear to estimate responsibly, ask one short follow-up question and set logCarbsAction to null
+        If you refuse because the user asked for something outside carbohydrate estimation, set logCarbsAction to null
+        Double check the final numeric value before answering so logCarbsAction.carbGrams is the estimated carbohydrate grams, not the portion amount
         Do not claim to have taken actions inside the app
         Do not invent certainty
         """)

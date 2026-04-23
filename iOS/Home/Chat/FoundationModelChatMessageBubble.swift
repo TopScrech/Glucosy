@@ -12,7 +12,7 @@ struct FoundationModelChatMessageBubble: View {
                     Text(message.text)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    if let carbGramsToLog = message.response?.carbGramsToLog {
+                    if let carbGramsToLog = message.response?.logCarbsAction?.carbGrams, carbGramsToLog > 0 {
                         Button(buttonTitle(for: carbGramsToLog), systemImage: "fork.knife") {
                             onLogCarbs(ChatCarbDraft(carbsAmount: carbGramsToLog))
                         }

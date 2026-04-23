@@ -20,9 +20,11 @@ struct ChatContextSnapshot {
         let glucoseToday = healthKit.glucoseRecords.filter {
             Calendar.current.isDateInToday($0.date)
         }
+        
         let carbsToday = healthKit.carbsRecords.filter {
             Calendar.current.isDateInToday($0.date)
         }
+        
         let insulinToday = healthKit.insulinRecords.filter {
             Calendar.current.isDateInToday($0.date)
         }

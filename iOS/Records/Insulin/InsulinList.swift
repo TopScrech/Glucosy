@@ -4,6 +4,7 @@ import Algorithms
 struct InsulinList: View {
     @Environment(HealthKit.self) private var vm
     
+    let onScanPen: (() -> Void)?
     @State private var sheetNewRecord = false
     
     var body: some View {
@@ -40,8 +41,21 @@ struct InsulinList: View {
                 .environment(vm)
         }
         .toolbar {
-            SFButton("plus") {
-                sheetNewRecord = true
+#if !os(visionOS)
+            ToolbarItem(placement: .topBarTrailing) {
+                if let onScanPen {
+                    Button("Scan Pen", systemImage: "wave.3.right", action: onScanPen)
+                }
+            }
+            
+            if let _ = onScanPen, #available(iOS 26, *) {
+                ToolbarSpacer(.fixed, placement: .topBarTrailing)
+            }
+#endif
+            ToolbarItem(placement: .topBarTrailing) {
+                SFButton("plus") {
+                    sheetNewRecord = true
+                }
             }
         }
     }
@@ -49,7 +63,7 @@ struct InsulinList: View {
 
 #Preview {
     NavigationStack {
-        InsulinList()
+        InsulinList(onScanPen: {})
     }
     .darkSchemePreferred()
     .environment(HealthKit())

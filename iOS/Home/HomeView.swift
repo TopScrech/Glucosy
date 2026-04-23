@@ -244,8 +244,13 @@ struct HomeView: View {
                 .environment(vm)
             
         case .insulin:
-            InsulinList()
+#if canImport(CoreNFC)
+            InsulinList(onScanPen: startNovoPenScan)
                 .environment(vm)
+#else
+            InsulinList(onScanPen: nil)
+                .environment(vm)
+#endif
             
         case .weight:
             WeightList()

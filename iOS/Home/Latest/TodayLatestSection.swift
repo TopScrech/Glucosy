@@ -28,7 +28,7 @@ struct TodayLatestSection: View {
                 .buttonStyle(.plain)
                 
                 NavigationLink {
-                    InsulinList()
+                    InsulinList(onScanPen: nil)
                         .environment(vm)
                 } label: {
                     TodayLatestRow(

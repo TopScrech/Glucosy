@@ -1,4 +1,3 @@
-#if os(iOS)
 import ScrechKit
 
 @available(iOS 26, *)
@@ -6,12 +5,12 @@ struct ChatComposerView: View {
     @Environment(ChatVM.self) private var vm
     @Environment(HealthKit.self) private var healthKit
     @EnvironmentObject private var store: ValueStore
-
+    
     @FocusState private var isFocused
-
+    
     var body: some View {
         @Bindable var vm = vm
-
+        
         HStack {
             TextField("Type here...", text: $vm.prompt)
                 .onSubmit(sendPrompt)
@@ -23,7 +22,7 @@ struct ChatComposerView: View {
                 .focused($isFocused)
                 .submitLabel(.send)
                 .disabled(vm.isResponding)
-
+            
             Button("Send", systemImage: "paperplane", action: sendPrompt)
                 .labelStyle(.iconOnly)
                 .frame(35)
@@ -37,13 +36,12 @@ struct ChatComposerView: View {
             isFocused = true
         }
     }
-
+    
     private func sendPrompt() {
         vm.refreshContext(using: healthKit, glucoseUnit: store.glucoseUnit)
-
+        
         Task {
             await vm.sendPrompt()
         }
     }
 }
-#endif

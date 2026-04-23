@@ -1,14 +1,13 @@
-#if os(iOS)
 import ScrechKit
 
 @available(iOS 26, *)
 struct FoundationModelChatView: View {
     @Environment(HealthKit.self) private var healthKit
     @EnvironmentObject private var store: ValueStore
-
+    
     @State private var vm = ChatVM()
     @State private var alertTokenWindowUsage = false
-
+    
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -40,7 +39,7 @@ struct FoundationModelChatView: View {
             vm.refreshContext(using: healthKit, glucoseUnit: newValue)
         }
         .alert("Token Window Usage", isPresented: $alertTokenWindowUsage) {
-
+            
         } message: {
             Text("This indicator shows the amount of used tokens")
         }
@@ -64,7 +63,7 @@ struct FoundationModelChatView: View {
                     }
                 }
             }
-
+            
             ToolbarItem(placement: .topBarTrailing) {
                 Button("New Chat", systemImage: "square.and.pencil", action: vm.startNewChat)
                     .disabled(vm.isResponding || vm.messages.isEmpty)
@@ -72,4 +71,3 @@ struct FoundationModelChatView: View {
         }
     }
 }
-#endif

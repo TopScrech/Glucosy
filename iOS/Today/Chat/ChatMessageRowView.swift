@@ -1,19 +1,18 @@
-#if os(iOS)
 import ScrechKit
 
 struct ChatMessageRowView: View {
     private let message: ChatMessage
-
+    
     init(_ message: ChatMessage) {
         self.message = message
     }
-
+    
     var body: some View {
         HStack {
             if message.role == .assistant {
                 Text(message.renderedText)
                     .frame(maxWidth: .infinity, alignment: .leading)
-
+                
                 Spacer()
             } else {
                 Text(message.text)
@@ -24,4 +23,3 @@ struct ChatMessageRowView: View {
         }
     }
 }
-#endif

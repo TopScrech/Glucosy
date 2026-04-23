@@ -1,11 +1,10 @@
-#if os(iOS)
 import Foundation
 
 struct ChatMessage: Identifiable {
     let id = UUID()
     let role: ChatMessageRole
     var text: String
-
+    
     var renderedText: AttributedString {
         do {
             return try AttributedString(
@@ -20,4 +19,3 @@ struct ChatMessage: Identifiable {
         }
     }
 }
-#endif

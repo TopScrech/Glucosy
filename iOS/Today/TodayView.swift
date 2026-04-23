@@ -60,10 +60,11 @@ struct TodayView: View {
                 }
                 .symbolRenderingMode(.multicolor)
             }
-            
+#if !os(visionOS)
             if #available(iOS 26, *) {
                 ToolbarSpacer(.fixed, placement: .topBarTrailing)
             }
+#endif
 #if canImport(CoreNFC)
             ToolbarItem(placement: .topBarTrailing) {
                 if CoreNFCPenScanner.isReadingAvailable {

@@ -1,4 +1,3 @@
-#if os(iOS)
 import Foundation
 
 struct ChatContextSnapshot {
@@ -16,7 +15,7 @@ struct ChatContextSnapshot {
     let recentGlucose: [Glucose]
     let recentInsulin: [Insulin]
     let recentCarbs: [Carbs]
-
+    
     init(healthKit: HealthKit, glucoseUnit: GlucoseUnit) {
         let glucoseToday = healthKit.glucoseRecords.filter {
             Calendar.current.isDateInToday($0.date)
@@ -27,7 +26,7 @@ struct ChatContextSnapshot {
         let insulinToday = healthKit.insulinRecords.filter {
             Calendar.current.isDateInToday($0.date)
         }
-
+        
         createdAt = .now
         self.glucoseUnit = glucoseUnit
         isAuthorized = healthKit.isAuthorized
@@ -43,7 +42,7 @@ struct ChatContextSnapshot {
         recentInsulin = Array(healthKit.insulinRecords.prefix(3))
         recentCarbs = Array(healthKit.carbsRecords.prefix(3))
     }
-
+    
     var promptContext: String {
         [
             "Current date: \(createdAt.formatted(date: .abbreviated, time: .shortened))",
@@ -66,100 +65,99 @@ struct ChatContextSnapshot {
             "Recent carb entries:",
             recentSection(for: recentCarbs, emptyText: "- None")
         ]
-        .joined(separator: "\n")
+            .joined(separator: "\n")
     }
-
+    
     private var glucoseSummary: String {
         guard let latestGlucose else {
             return "Unavailable"
         }
-
+        
         return "\(latestGlucose.formattedValue(in: glucoseUnit)) \(glucoseUnit.title) at \(formattedDate(latestGlucose.date))"
     }
-
+    
     private var insulinSummary: String {
         guard let latestInsulin else {
             return "Unavailable"
         }
-
+        
         return "\(formattedAmount(latestInsulin.value)) U at \(formattedDate(latestInsulin.date))"
     }
-
+    
     private var carbsSummary: String {
         guard let latestCarbs else {
             return "Unavailable"
         }
-
+        
         return "\(formattedAmount(latestCarbs.value)) g at \(formattedDate(latestCarbs.date))"
     }
-
+    
     private var weightSummary: String {
         guard let latestWeight else {
             return "Unavailable"
         }
-
+        
         return "\(latestWeight.value.formatted(.number.precision(.fractionLength(0 ... 1)))) kg at \(formattedDate(latestWeight.date))"
     }
-
+    
     private var bmiSummary: String {
         guard let latestBMI else {
             return "Unavailable"
         }
-
+        
         return "\(latestBMI.value.formatted(.number.precision(.fractionLength(0 ... 1)))) at \(formattedDate(latestBMI.date))"
     }
-
+    
     private func recentSection(for records: [Glucose], emptyText: String) -> String {
         guard !records.isEmpty else {
             return emptyText
         }
-
+        
         return records.map {
             "- \($0.formattedValue(in: glucoseUnit)) \(glucoseUnit.title) at \(formattedDate($0.date))"
         }
         .joined(separator: "\n")
     }
-
+    
     private func recentSection(for records: [Insulin], emptyText: String) -> String {
         guard !records.isEmpty else {
             return emptyText
         }
-
+        
         return records.map {
             "- \(formattedAmount($0.value)) U at \(formattedDate($0.date))"
         }
         .joined(separator: "\n")
     }
-
+    
     private func recentSection(for records: [Carbs], emptyText: String) -> String {
         guard !records.isEmpty else {
             return emptyText
         }
-
+        
         return records.map {
             "- \(formattedAmount($0.value)) g at \(formattedDate($0.date))"
         }
         .joined(separator: "\n")
     }
-
+    
     private func formattedDate(_ date: Date) -> String {
         date.formatted(date: .abbreviated, time: .shortened)
     }
-
+    
     private func formattedAmount(_ value: Double?) -> String {
         guard let value else {
             return "Unavailable"
         }
-
+        
         return value.formatted(.number.precision(.fractionLength(0 ... 1)))
     }
-
+    
     private static func sum(for values: [Double]) -> Double? {
         guard !values.isEmpty else {
             return nil
         }
-
+        
         return values.reduce(0, +)
     }
 }
-#endif

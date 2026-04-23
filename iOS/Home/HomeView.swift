@@ -32,7 +32,6 @@ struct HomeView: View {
                 TodayQuickActions()
                 TodayLatestSection()
             }
-            .environment(vm)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
@@ -46,6 +45,7 @@ struct HomeView: View {
                 ChatView()
             }
         }
+        .environment(vm)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Settings", systemImage: "gear") {

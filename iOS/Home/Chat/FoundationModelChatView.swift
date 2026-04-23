@@ -5,6 +5,7 @@ import ChitChat
 struct FoundationModelChatView: View {
     @State private var vm = ChatVM()
     @State private var alertTokenWindowUsage = false
+    @State private var carbDraft: ChatCarbDraft?
     
     var body: some View {
         ScrollView {
@@ -18,7 +19,9 @@ struct FoundationModelChatView: View {
                     .symbolRenderingMode(.multicolor)
                 } else {
                     ForEach(vm.messages) {
-                        ChatMessageBubble($0)
+                        FoundationModelChatMessageBubble(message: $0) {
+                            carbDraft = $0
+                        }
                     }
                 }
             }
@@ -36,6 +39,11 @@ struct FoundationModelChatView: View {
             
         } message: {
             Text("This indicator shows the amount of used tokens")
+        }
+        .sheet(item: $carbDraft) { carbDraft in
+            NavigationStack {
+                AddCarbsSheet(carbsAmount: carbDraft.carbsAmount)
+            }
         }
         .overlay(alignment: .bottom) {
             ChatComposer(prompt: $vm.prompt, isResponding: $vm.isResponding) {

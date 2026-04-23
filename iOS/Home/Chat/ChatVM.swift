@@ -96,6 +96,8 @@ final class ChatVM {
             prompt = ""
             
             do {
+                await updateTranscriptTokenUsage()
+                
                 let stream = session.streamResponse(
                     to: userPrompt,
                     generating: ChatAssistantResponse.self

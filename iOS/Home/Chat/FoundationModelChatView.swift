@@ -66,8 +66,7 @@ struct FoundationModelChatView: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button("New Chat", systemImage: "square.and.pencil", action: vm.startNewChat)
-                    .disabled(vm.isResponding || vm.messages.isEmpty)
+                NewChatButton(disabled: vm.isResponding || vm.messages.isEmpty, action: vm.startNewChat)
             }
         }
     }

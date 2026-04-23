@@ -6,19 +6,25 @@ struct FoundationModelChatMessageBubble: View {
     let onLogCarbs: (ChatCarbDraft) -> Void
     
     var body: some View {
+        let carbGramsToLog = message.response?.logCarbsAction?.carbGrams
+        let showsLogCarbsButton = message.isFullyRevealed && (carbGramsToLog ?? 0) > 0
+        
         HStack {
             if message.role == .assistant {
                 VStack(alignment: .leading) {
                     Text(message.text)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    if message.isFullyRevealed, let carbGramsToLog = message.response?.logCarbsAction?.carbGrams, carbGramsToLog > 0 {
-                        Button(buttonTitle(for: carbGramsToLog), systemImage: "fork.knife") {
+                    if let carbGramsToLog, showsLogCarbsButton {
+                        FoundationModelChatActionButton(
+                            title: buttonTitle(for: carbGramsToLog),
+                            systemImage: "fork.knife"
+                        ) {
                             onLogCarbs(ChatCarbDraft(carbsAmount: carbGramsToLog))
                         }
-                        .buttonStyle(.borderedProminent)
                     }
                 }
+                .animation(.snappy(duration: 0.35, extraBounce: 0.08), value: showsLogCarbsButton)
                 
                 Spacer()
             } else {

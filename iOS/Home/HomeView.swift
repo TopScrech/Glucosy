@@ -2,7 +2,7 @@ import ScrechKit
 import SwiftData
 import OSLog
 
-struct TodayView: View {
+struct HomeView: View {
     @State private var vm = HealthKit()
     @EnvironmentObject private var store: ValueStore
     
@@ -318,7 +318,7 @@ struct TodayView: View {
 
 #Preview {
     NavigationStack {
-        TodayView(novoPenScanRequest: 0)
+        HomeView(novoPenScanRequest: 0)
     }
     .darkSchemePreferred()
     .environmentObject(ValueStore())

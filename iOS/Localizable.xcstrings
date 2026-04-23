@@ -1481,7 +1481,7 @@
       }
     },
     "checkmark" : {
-
+      "shouldTranslate" : false
     },
     "Copy Dose History" : {
       "comment" : "A button that copies the dose history to the clipboard.",

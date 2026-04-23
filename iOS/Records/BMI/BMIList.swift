@@ -24,7 +24,7 @@ struct BMIList: View {
                 
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk.reversed()) {
+                        ForEach(chunk) {
                             BMICard($0)
                         }
                     }

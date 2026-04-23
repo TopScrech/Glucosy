@@ -2,7 +2,7 @@ import ScrechKit
 import SwiftData
 import OSLog
 
-struct TodayView: View {
+struct HomeView: View {
     @State private var vm = HealthKit()
     @EnvironmentObject private var store: ValueStore
     
@@ -20,6 +20,7 @@ struct TodayView: View {
     let novoPenScanRequest: Int
     
     @State private var showsSettings = false
+    @State private var sheetChat = false
     
     var body: some View {
         let glucoseUnit = store.glucoseUnit
@@ -40,6 +41,12 @@ struct TodayView: View {
         .refreshable {
             await refreshData()
         }
+        .sheet($sheetChat) {
+            NavigationStack {
+                ChatView()
+                    .environment(vm)
+            }
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Settings", systemImage: "gear") {
@@ -47,9 +54,20 @@ struct TodayView: View {
                 }
             }
             
+            ToolbarItem(placement: .topBarTrailing) {
+                SFButton("apple.intelligence") {
+                    sheetChat = true
+                }
+                .symbolRenderingMode(.multicolor)
+            }
+#if !os(visionOS)
+            if #available(iOS 26, *) {
+                ToolbarSpacer(.fixed, placement: .topBarTrailing)
+            }
+#endif
 #if canImport(CoreNFC)
-            if CoreNFCPenScanner.isReadingAvailable {
-                ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItem(placement: .topBarTrailing) {
+                if CoreNFCPenScanner.isReadingAvailable {
                     Button("Scan Pen", systemImage: "wave.3.right", action: startNovoPenScan)
                         .disabled(novoPenReader.isWorking)
                 }
@@ -300,7 +318,7 @@ struct TodayView: View {
 
 #Preview {
     NavigationStack {
-        TodayView(novoPenScanRequest: 0)
+        HomeView(novoPenScanRequest: 0)
     }
     .darkSchemePreferred()
     .environmentObject(ValueStore())

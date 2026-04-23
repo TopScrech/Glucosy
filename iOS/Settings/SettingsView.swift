@@ -6,14 +6,16 @@ struct SettingsView: View {
     
     var body: some View {
         List {
+            Section("General") {
 #if !os(visionOS)
-            AppearancePicker($store.appearance)
-                .foregroundStyle(.foreground)
+                AppearancePicker($store.appearance)
+                    .foregroundStyle(.foreground)
 #endif
-            Button("Change language", systemImage: "globe") {
-                openSettings()
+                Button("Change language", systemImage: "globe") {
+                    openSettings()
+                }
+                .foregroundStyle(.foreground)
             }
-            .foregroundStyle(.foreground)
             
             GlucoseUnitPicker()
 #if canImport(CoreNFC)

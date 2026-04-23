@@ -1,10 +1,6 @@
 import SwiftUI
 import SwiftData
 
-#if canImport(Appearance)
-import Appearance
-#endif
-
 struct AppContainer: View {
     private let router = AppRouter.shared
     @StateObject private var store = ValueStore()

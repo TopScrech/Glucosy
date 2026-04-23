@@ -21,6 +21,7 @@ final class AppRouter {
     func consumePendingAction() -> HomeAction? {
         let action = pendingAction
         pendingAction = nil
+        
         return action
     }
     

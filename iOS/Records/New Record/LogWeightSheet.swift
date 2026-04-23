@@ -15,7 +15,7 @@ struct LogWeightSheet: View {
     
     var body: some View {
         Group {
-            if #available(iOS 18, *) {
+            if #available(iOS 18, visionOS 2, *) {
                 List {
                     Section {
                         DatePicker("Date", selection: $date, displayedComponents: .date)

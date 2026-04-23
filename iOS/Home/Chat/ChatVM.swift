@@ -201,6 +201,7 @@ final class ChatVM {
                     between: message.text,
                     and: targetText
                 )
+                
                 messages[messageIndex].text = String(targetText.prefix(commonPrefixCount))
                 continue
             }

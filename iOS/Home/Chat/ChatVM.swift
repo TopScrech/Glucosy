@@ -34,7 +34,6 @@ final class ChatVM {
         """)
     
     @ObservationIgnored private var session: LanguageModelSession
-    @ObservationIgnored private var context = ""
     
     var tokenUsage: Double {
         guard contextWindow > 0 else {
@@ -56,14 +55,6 @@ final class ChatVM {
         logger.info("Context size: \(contextSize)")
         
         contextWindow = Double(contextSize)
-    }
-    
-    func refreshContext(using healthKit: HealthKit, glucoseUnit: GlucoseUnit) {
-        context = ChatContextSnapshot(
-            healthKit: healthKit,
-            glucoseUnit: glucoseUnit
-        )
-        .promptContext
     }
     
     func startNewChat() {
@@ -94,7 +85,7 @@ final class ChatVM {
             prompt = ""
             
             do {
-                let stream = session.streamResponse(to: contextualPrompt(for: userPrompt))
+                let stream = session.streamResponse(to: userPrompt)
                 
                 for try await snapshot in stream {
                     guard let messageIndex = messages.indices.last else {
@@ -122,16 +113,6 @@ final class ChatVM {
             messages.append(ChatMessage(role: .assistant, text: "Model unavailable: \(String(describing: reason))"))
             logger.error("\(String(describing: reason))")
         }
-    }
-    
-    private func contextualPrompt(for userPrompt: String) -> String {
-        """
-        Glucosy context
-        \(context)
-        
-        User question
-        \(userPrompt)
-        """
     }
     
     private func updateTranscriptTokenUsage() async {

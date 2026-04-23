@@ -44,7 +44,6 @@ struct HomeView: View {
         .sheet($sheetChat) {
             NavigationStack {
                 ChatView()
-                    .environment(vm)
             }
         }
         .toolbar {

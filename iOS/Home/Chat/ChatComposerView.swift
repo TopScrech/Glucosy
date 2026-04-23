@@ -3,8 +3,6 @@ import ScrechKit
 @available(iOS 26, *)
 struct ChatComposerView: View {
     @Environment(ChatVM.self) private var vm
-    @Environment(HealthKit.self) private var healthKit
-    @EnvironmentObject private var store: ValueStore
     
     @FocusState private var isFocused
     
@@ -38,8 +36,6 @@ struct ChatComposerView: View {
     }
     
     private func sendPrompt() {
-        vm.refreshContext(using: healthKit, glucoseUnit: store.glucoseUnit)
-        
         Task {
             await vm.sendPrompt()
         }

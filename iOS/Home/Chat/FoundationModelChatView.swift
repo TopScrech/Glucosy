@@ -3,9 +3,6 @@ import ChitChat
 
 @available(iOS 26, *)
 struct FoundationModelChatView: View {
-    @Environment(HealthKit.self) private var healthKit
-    @EnvironmentObject private var store: ValueStore
-    
     @State private var vm = ChatVM()
     @State private var alertTokenWindowUsage = false
     
@@ -34,10 +31,6 @@ struct FoundationModelChatView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .task {
             vm.printContextSize()
-            vm.refreshContext(using: healthKit, glucoseUnit: store.glucoseUnit)
-        }
-        .onChange(of: store.glucoseUnit) { _, newValue in
-            vm.refreshContext(using: healthKit, glucoseUnit: newValue)
         }
         .alert("Token Window Usage", isPresented: $alertTokenWindowUsage) {
             
@@ -47,7 +40,6 @@ struct FoundationModelChatView: View {
         .overlay(alignment: .bottom) {
             ChatComposerView()
                 .environment(vm)
-                .environment(healthKit)
         }
         .toolbar {
             if #available(iOS 26.4, *) {

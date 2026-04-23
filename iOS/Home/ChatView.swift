@@ -31,5 +31,4 @@ struct ChatView: View {
         ChatView()
     }
     .environmentObject(ValueStore())
-    .environment(HealthKit())
 }

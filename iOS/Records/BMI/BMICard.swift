@@ -18,15 +18,9 @@ struct BMICard: View {
                 .title3()
             
             VStack(alignment: .leading) {
-                HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text(Utils.formatTenths(record.value))
-                        .title3(.semibold, design: .rounded)
-                        .monospacedDigit()
-                    
-                    Text("BMI")
-                        .caption()
-                        .secondary()
-                }
+                Text(Utils.formatTenths(record.value))
+                    .title3(.semibold, design: .rounded)
+                    .monospacedDigit()
                 
                 if store.debugMode {
                     SourceName(record.source)

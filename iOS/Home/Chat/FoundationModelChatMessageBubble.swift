@@ -1,4 +1,5 @@
 import SwiftUI
+import ChitChat
 
 @available(iOS 26, *)
 struct FoundationModelChatMessageBubble: View {

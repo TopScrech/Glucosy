@@ -58,6 +58,7 @@ struct HomeView: View {
                     sheetChat = true
                 }
                 .symbolRenderingMode(.multicolor)
+                .keyboardShortcut("a")
             }
 #if !os(visionOS)
             if #available(iOS 26, *) {

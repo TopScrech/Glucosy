@@ -2,7 +2,7 @@ import SwiftUI
 
 @available(iOS 26, *)
 struct FoundationModelChatMessageBubble: View {
-    let message: FoundationModelChatMessage
+    let message: ChatMessage
     let onLogCarbs: (ChatCarbDraft) -> Void
     
     var body: some View {

@@ -9,7 +9,7 @@ import FoundationModels
 @Observable
 final class ChatVM {
     var prompt = ""
-    var messages: [FoundationModelChatMessage] = []
+    var messages: [ChatMessage] = []
     var isResponding = false
     var transcriptTokens = 0.0
     var contextWindow = 0.0
@@ -90,8 +90,8 @@ final class ChatVM {
         switch model.availability {
         case .available:
             isResponding = true
-            messages.append(FoundationModelChatMessage(userText: userPrompt))
-            messages.append(FoundationModelChatMessage(assistantText: ""))
+            messages.append(ChatMessage(userText: userPrompt))
+            messages.append(ChatMessage(assistantText: ""))
             startTypingTaskIfNeeded()
             prompt = ""
             
@@ -139,7 +139,7 @@ final class ChatVM {
             }
             
         case .unavailable(let reason):
-            messages.append(FoundationModelChatMessage(assistantText: "Model unavailable: \(String(describing: reason))"))
+            messages.append(ChatMessage(assistantText: "Model unavailable: \(String(describing: reason))"))
             logger.error("\(String(describing: reason))")
         }
     }

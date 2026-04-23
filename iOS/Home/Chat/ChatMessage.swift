@@ -1,13 +1,10 @@
 import Foundation
+import ChitChat
 
 @available(iOS 26, *)
-struct FoundationModelChatMessage: Identifiable {
-    enum Role {
-        case user, assistant
-    }
-    
+struct ChatMessage: Identifiable {
     let id = UUID()
-    let role: Role
+    let role: ChatMessageRole
     var text: String
     var targetText: String
     var response: ChatAssistantResponse?

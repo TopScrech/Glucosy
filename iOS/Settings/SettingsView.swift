@@ -8,7 +8,13 @@ struct SettingsView: View {
         List {
 #if !os(visionOS)
             AppearancePicker($store.appearance)
+                .foregroundStyle(.foreground)
 #endif
+            Button("Change language", systemImage: "globe") {
+                openSettings()
+            }
+            .foregroundStyle(.foreground)
+            
             GlucoseUnitPicker()
 #if canImport(CoreNFC)
             SettingsNovopenSection()
@@ -17,6 +23,7 @@ struct SettingsView: View {
                 Toggle(isOn: $store.debugMode) {
                     Label("Debug mode", systemImage: "hammer")
                 }
+                .foregroundStyle(.foreground)
             }
             
             if store.debugMode {

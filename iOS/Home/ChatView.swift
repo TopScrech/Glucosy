@@ -19,7 +19,7 @@ struct ChatView: View {
         ContentUnavailableView(
             "Assistant Unavailable",
             systemImage: "apple.intelligence",
-            description: Text("Apple Intelligence is not available in this build")
+            description: Text("Apple Intelligence is not available")
         )
         .symbolRenderingMode(.multicolor)
 #endif

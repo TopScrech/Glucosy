@@ -52,15 +52,9 @@ struct FoundationModelChatView: View {
         .toolbar {
             if #available(iOS 26.4, *) {
                 ToolbarItem(placement: .topBarLeading) {
-                    Gauge(value: vm.tokenUsage) {}
-                        .gaugeStyle(.accessoryCircularCapacity)
-                        .scaleEffect(0.5)
-                        .frame(30)
-                        .tint(.green)
-                        .animation(.default, value: vm.tokenUsage)
-                        .onTapGesture {
-                            alertTokenWindowUsage = true
-                        }
+                    TokenUsageGauge(value: vm.tokenUsage) {
+                        alertTokenWindowUsage = true
+                    }
                 }
             }
             

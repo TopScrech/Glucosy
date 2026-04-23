@@ -20,6 +20,8 @@
 		F3BB00032F82B5B0008A7E17 /* Appearance in Frameworks */ = {isa = PBXBuildFile; productRef = F3A9C4A62E99A5B80052700B /* Appearance */; };
 		F3C712932F82B5B0008A7E17 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3C712922F82B5B0008A7E17 /* ScrechKit */; };
 		F3F8ED9A2D2EA2FE004A2638 /* watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F4C100012F8A000000000001 /* ChitChat in Frameworks */ = {isa = PBXBuildFile; productRef = F4C100042F8A000000000001 /* ChitChat */; };
+		F4C100022F8A000000000001 /* ChitChat in Frameworks */ = {isa = PBXBuildFile; productRef = F4C100052F8A000000000001 /* ChitChat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +265,7 @@
 		F32B20772CD5823B00925351 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				F4C100012F8A000000000001 /* ChitChat in Frameworks */,
 				F3242A312DDE803B000A16E8 /* ScrechKit in Frameworks */,
 				F32B20A42CD5854700925351 /* Algorithms in Frameworks */,
 				F3A9C4A72E99A5B80052700B /* Appearance in Frameworks */,
@@ -272,6 +275,7 @@
 		F3C7127E2F82B566008A7E17 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				F4C100022F8A000000000001 /* ChitChat in Frameworks */,
 				F3BB00032F82B5B0008A7E17 /* Appearance in Frameworks */,
 				F3BB00022F82B5B0008A7E17 /* Algorithms in Frameworks */,
 				F3BB00012F82B5B0008A7E17 /* HealthyKit in Frameworks */,
@@ -363,6 +367,7 @@
 			);
 			name = iOS;
 			packageProductDependencies = (
+				F4C100042F8A000000000001 /* ChitChat */,
 				F32B209D2CD5852800925351 /* HealthyKit */,
 				F32B20A32CD5854700925351 /* Algorithms */,
 				F3242A302DDE803B000A16E8 /* ScrechKit */,
@@ -388,6 +393,7 @@
 			);
 			name = visionOS;
 			packageProductDependencies = (
+				F4C100052F8A000000000001 /* ChitChat */,
 				F32B209D2CD5852800925351 /* HealthyKit */,
 				F32B20A32CD5854700925351 /* Algorithms */,
 				F3A9C4A62E99A5B80052700B /* Appearance */,
@@ -457,6 +463,7 @@
 			mainGroup = F32B20712CD5823B00925351;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */,
 				F32B209C2CD5852800925351 /* XCRemoteSwiftPackageReference "HealthyKit" */,
 				F32B209F2CD5853500925351 /* XCRemoteSwiftPackageReference "ScrechKit" */,
 				F32B20A22CD5854700925351 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
@@ -1050,6 +1057,14 @@
 				kind = branch;
 			};
 		};
+		F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TopScrech/Chit-Chat";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1082,6 +1097,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F32B209F2CD5853500925351 /* XCRemoteSwiftPackageReference "ScrechKit" */;
 			productName = ScrechKit;
+		};
+		F4C100042F8A000000000001 /* ChitChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */;
+			productName = ChitChat;
+		};
+		F4C100052F8A000000000001 /* ChitChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */;
+			productName = ChitChat;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

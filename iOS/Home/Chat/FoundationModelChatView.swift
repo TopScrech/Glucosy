@@ -1,4 +1,5 @@
 import ScrechKit
+import ChitChat
 
 @available(iOS 26, *)
 struct FoundationModelChatView: View {
@@ -20,7 +21,7 @@ struct FoundationModelChatView: View {
                     .symbolRenderingMode(.multicolor)
                 } else {
                     ForEach(vm.messages) {
-                        ChatMessageRowView($0)
+                        ChatMessageBubble($0)
                     }
                 }
             }

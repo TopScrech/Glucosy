@@ -1,5 +1,5 @@
 {
-  "originHash" : "163a79d6e93d9b22711f5534cf74f5c375b1951afef48efec92af422e3812be1",
+  "originHash" : "e9f931d9f4ceee7cbc376ab84799bdad13cfa9e42551030ae05a074b5c8c6b42",
   "pins" : [
     {
       "identity" : "appearance",
@@ -8,6 +8,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "88fc26ebed3e28d5f549fa76770dd464a3df852d"
+      }
+    },
+    {
+      "identity" : "chit-chat",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TopScrech/Chit-Chat",
+      "state" : {
+        "branch" : "main",
+        "revision" : "886c9cdbe68add0d4bc7aec12242aa1af9898078"
       }
     },
     {

@@ -81,6 +81,7 @@ final class ChatVM {
     
     func sendPrompt() async {
         let userPrompt = prompt.trimmingCharacters(in: .whitespacesAndNewlines)
+        
         guard !userPrompt.isEmpty else { return }
         guard !isResponding else { return }
         
@@ -120,7 +121,9 @@ final class ChatVM {
                 
                 messages[messageIndex].targetText = response.content.outputText
                 messages[messageIndex].response = response.content
+                
                 startTypingTaskIfNeeded()
+                
                 await updateTranscriptTokenUsage()
                 isResponding = false
             } catch {
@@ -156,10 +159,7 @@ final class ChatVM {
     }
     
     private func makeSession() -> LanguageModelSession {
-        LanguageModelSession(
-            model: model,
-            instructions: instructions
-        )
+        .init(model: model, instructions: instructions)
     }
     
     private func startTypingTaskIfNeeded() {

@@ -17,10 +17,7 @@ struct FoundationModelChatMessageBubble: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     if let carbGramsToLog, showsLogCarbsButton {
-                        ChatActionButton(
-                            title: buttonTitle(for: carbGramsToLog),
-                            systemImage: "fork.knife"
-                        ) {
+                        ChatActionButton(buttonTitle(for: carbGramsToLog), systemImage: "fork.knife") {
                             onLogCarbs(ChatCarbDraft(carbsAmount: carbGramsToLog))
                         }
                     }

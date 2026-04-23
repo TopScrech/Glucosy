@@ -2,7 +2,7 @@ import ScrechKit
 import ChitChat
 
 @available(iOS 26, *)
-struct FoundationModelChatView: View {
+struct ChatView: View {
     @State private var vm = ChatVM()
     @State private var alertTokenWindowUsage = false
     @State private var carbDraft: ChatCarbDraft?
@@ -19,7 +19,7 @@ struct FoundationModelChatView: View {
                     .symbolRenderingMode(.multicolor)
                 } else {
                     ForEach(vm.messages) {
-                        FoundationModelChatMessageBubble(message: $0) {
+                        ChatMessageBubble(message: $0) {
                             carbDraft = $0
                         }
                     }

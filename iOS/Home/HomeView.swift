@@ -42,7 +42,7 @@ struct HomeView: View {
         }
         .sheet($sheetChat) {
             NavigationStack {
-                ChatView()
+                ChatViewParent()
             }
         }
         .environment(vm)

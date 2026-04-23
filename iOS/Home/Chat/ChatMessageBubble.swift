@@ -2,7 +2,7 @@ import SwiftUI
 import ChitChat
 
 @available(iOS 26, *)
-struct FoundationModelChatMessageBubble: View {
+struct ChatMessageBubble: View {
     let message: ChatMessage
     let onLogCarbs: (ChatCarbDraft) -> Void
     

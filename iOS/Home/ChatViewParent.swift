@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct ChatView: View {
+struct ChatViewParent: View {
     var body: some View {
 #if canImport(FoundationModels)
         Group {
             if #available(iOS 26, visionOS 26, *) {
-                FoundationModelChatView()
+                ChatView()
             } else {
                 ContentUnavailableView(
                     "Assistant Unavailable",
@@ -28,7 +28,7 @@ struct ChatView: View {
 
 #Preview {
     NavigationStack {
-        ChatView()
+        ChatViewParent()
     }
     .environmentObject(ValueStore())
 }

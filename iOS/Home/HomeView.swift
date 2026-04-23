@@ -75,7 +75,7 @@ struct HomeView: View {
 #endif
         }
         .navigationDestination(isPresented: $showsSettings) {
-            AppSettings()
+            SettingsView()
         }
         .navigationDestination(for: TodayMetricDestination.self) {
             destinationView(for: $0)

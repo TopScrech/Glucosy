@@ -1,7 +1,7 @@
 import ScrechKit
 import Appearance
 
-struct AppSettings: View {
+struct SettingsView: View {
     @EnvironmentObject private var store: ValueStore
     
     var body: some View {
@@ -28,7 +28,7 @@ struct AppSettings: View {
 }
 
 #Preview {
-    AppSettings()
+    SettingsView()
         .darkSchemePreferred()
         .environmentObject(ValueStore())
 #if canImport(CoreNFC)

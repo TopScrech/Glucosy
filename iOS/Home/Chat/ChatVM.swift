@@ -16,6 +16,7 @@ final class ChatVM {
     
     @ObservationIgnored private let logger = Logger()
     @ObservationIgnored private let model = SystemLanguageModel.default
+    @ObservationIgnored private var typingTask: Task<Void, Never>?
     
     @ObservationIgnored private let instructions = Instructions("""
         You are the in-app Glucosy assistant
@@ -69,6 +70,8 @@ final class ChatVM {
             return
         }
         
+        typingTask?.cancel()
+        typingTask = nil
         prompt = ""
         messages = []
         transcriptTokens = 0
@@ -89,6 +92,7 @@ final class ChatVM {
             isResponding = true
             messages.append(FoundationModelChatMessage(userText: userPrompt))
             messages.append(FoundationModelChatMessage(assistantText: ""))
+            startTypingTaskIfNeeded()
             prompt = ""
             
             do {
@@ -103,7 +107,8 @@ final class ChatVM {
                     }
                     
                     if let outputText = snapshot.content.outputText {
-                        messages[messageIndex].text = outputText
+                        messages[messageIndex].targetText = outputText
+                        startTypingTaskIfNeeded()
                     }
                 }
                 
@@ -114,8 +119,9 @@ final class ChatVM {
                     return
                 }
                 
-                messages[messageIndex].text = response.content.outputText
+                messages[messageIndex].targetText = response.content.outputText
                 messages[messageIndex].response = response.content
+                startTypingTaskIfNeeded()
                 await updateTranscriptTokenUsage()
                 isResponding = false
             } catch {
@@ -124,7 +130,8 @@ final class ChatVM {
                     return
                 }
                 
-                messages[messageIndex].text = error.localizedDescription
+                messages[messageIndex].targetText = error.localizedDescription
+                startTypingTaskIfNeeded()
                 logger.error("\(error.localizedDescription)")
                 isResponding = false
             }
@@ -154,5 +161,77 @@ final class ChatVM {
             model: model,
             instructions: instructions
         )
+    }
+    
+    private func startTypingTaskIfNeeded() {
+        guard typingTask == nil else {
+            return
+        }
+        
+        typingTask = Task { [weak self] in
+            await self?.runTypingLoop()
+        }
+    }
+    
+    private func runTypingLoop() async {
+        while !Task.isCancelled {
+            guard let messageIndex = messages.lastIndex(where: { $0.role == .assistant }) else {
+                break
+            }
+            
+            let message = messages[messageIndex]
+            let displayedCount = message.text.count
+            let targetText = message.targetText
+            let targetCount = targetText.count
+            
+            if message.text == targetText {
+                if !isResponding {
+                    break
+                }
+                
+                do {
+                    try await Task.sleep(for: .milliseconds(40))
+                } catch {
+                    break
+                }
+                
+                continue
+            }
+            
+            if !targetText.hasPrefix(message.text) {
+                let commonPrefixCount = commonPrefixCount(
+                    between: message.text,
+                    and: targetText
+                )
+                messages[messageIndex].text = String(targetText.prefix(commonPrefixCount))
+                continue
+            }
+            
+            let remainingCount = targetCount - displayedCount
+            let step = switch remainingCount {
+            case 25...:
+                4
+            case 10...24:
+                2
+            default:
+                1
+            }
+            
+            messages[messageIndex].text = String(targetText.prefix(min(displayedCount + step, targetCount)))
+            
+            do {
+                try await Task.sleep(for: .milliseconds(18))
+            } catch {
+                break
+            }
+        }
+        
+        typingTask = nil
+    }
+    
+    private func commonPrefixCount(between lhs: String, and rhs: String) -> Int {
+        zip(lhs, rhs)
+            .prefix { $0 == $1 }
+            .count
     }
 }

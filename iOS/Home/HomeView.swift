@@ -27,8 +27,7 @@ struct HomeView: View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                TodayMetricsSection(metrics: metricCards(glucoseUnit: glucoseUnit))
-                
+                TodayMetricsSection(metricCards(glucoseUnit: glucoseUnit))
                 TodayQuickActions()
                 TodayLatestSection()
             }

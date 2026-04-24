@@ -1021,8 +1021,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TopScrech/HealthyKit";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		F32B209F2CD5853500925351 /* XCRemoteSwiftPackageReference "ScrechKit" */ = {

@@ -13,6 +13,10 @@ struct ChatMessage: Identifiable {
         text == targetText
     }
     
+    var showsStartNewChatAction: Bool {
+        isFullyRevealed && role == .assistant && targetText == "Exceeded model context window size"
+    }
+    
     init(userText: String) {
         role = .user
         text = userText

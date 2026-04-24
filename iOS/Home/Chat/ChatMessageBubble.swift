@@ -5,6 +5,7 @@ import ChitChat
 struct ChatMessageBubble: View {
     let message: ChatMessage
     let onLogCarbs: (ChatCarbDraft) -> Void
+    let onStartNewChat: () -> Void
     
     var body: some View {
         let carbGramsToLog = message.response?.logCarbsAction?.carbGrams
@@ -21,8 +22,15 @@ struct ChatMessageBubble: View {
                             onLogCarbs(ChatCarbDraft(carbsAmount: carbGramsToLog))
                         }
                     }
+                    
+                    if message.showsStartNewChatAction {
+                        ChatActionButton("New chat", systemImage: "plus.message") {
+                            onStartNewChat()
+                        }
+                    }
                 }
                 .animation(.snappy(duration: 0.35, extraBounce: 0.08), value: showsLogCarbsButton)
+                .animation(.snappy(duration: 0.35, extraBounce: 0.08), value: message.showsStartNewChatAction)
                 
                 Spacer()
             } else {

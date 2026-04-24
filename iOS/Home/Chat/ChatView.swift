@@ -21,6 +21,8 @@ struct ChatView: View {
                     ForEach(vm.messages) {
                         ChatMessageBubble(message: $0) {
                             carbDraft = $0
+                        } onStartNewChat: {
+                            vm.startNewChat()
                         }
                     }
                 }

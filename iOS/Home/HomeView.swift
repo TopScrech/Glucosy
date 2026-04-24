@@ -155,6 +155,10 @@ struct HomeView: View {
         return record.formattedValue(in: glucoseUnit)
     }
     
+    private var carbsToday: [Carbs] {
+        vm.carbsRecords.filter { Calendar.current.isDateInToday($0.date) }
+    }
+    
     private var carbsTotal: Double? {
         sumValue(carbsToday.map(\.value))
     }
@@ -167,10 +171,6 @@ struct HomeView: View {
     
     private var insulinToday: [Insulin] {
         vm.insulinRecords.filter { Calendar.current.isDateInToday($0.date) }
-    }
-    
-    private var carbsToday: [Carbs] {
-        vm.carbsRecords.filter { Calendar.current.isDateInToday($0.date) }
     }
     
     private var insulinTotal: Double? {

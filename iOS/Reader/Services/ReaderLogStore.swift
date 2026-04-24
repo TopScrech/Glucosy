@@ -7,6 +7,10 @@ final class ReaderLogStore {
         try? Data().write(to: fileURL, options: .atomic)
     }
     
+    func delete() {
+        try? FileManager.default.removeItem(at: fileURL)
+    }
+    
     func append(_ line: String) {
         let data = Data("\(line)\n".utf8)
         

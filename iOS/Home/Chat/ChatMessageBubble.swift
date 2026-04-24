@@ -24,9 +24,7 @@ struct ChatMessageBubble: View {
                     }
                     
                     if message.showsStartNewChatAction {
-                        ChatActionButton("New chat", systemImage: "plus.message") {
-                            onStartNewChat()
-                        }
+                        ChatActionButton("New chat", systemImage: "plus.message", action: onStartNewChat)
                     }
                 }
                 .animation(.snappy(duration: 0.35, extraBounce: 0.08), value: showsLogCarbsButton)

@@ -37,7 +37,7 @@ struct HomeView: View {
         .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
         .scrollIndicators(.hidden)
         .refreshable {
-            await refreshData()
+            await vm.reloadAllRecords()
         }
         .sheet($sheetChat) {
             NavigationStack {
@@ -137,7 +137,7 @@ struct HomeView: View {
                 Logger().info("Auth status: \(result)")
             }
             
-            await refreshData()
+            await vm.reloadAllRecords()
         }
     }
     
@@ -262,10 +262,6 @@ struct HomeView: View {
             BMIRecordList()
                 .environment(vm)
         }
-    }
-    
-    private func refreshData() async {
-        await vm.reloadAllRecords()
     }
     
 #if canImport(CoreNFC)

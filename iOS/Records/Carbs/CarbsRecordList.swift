@@ -1,19 +1,19 @@
 import ScrechKit
 import Algorithms
 
-struct GlucoseList: View {
+struct CarbsRecordList: View {
     @Environment(HealthKit.self) private var vm
     
     @State private var sheetNewRecord = false
     
     var body: some View {
-        let dayChunks = vm.glucoseRecords.chunked { lhs, rhs in
+        let dayChunks = vm.carbsRecords.chunked { lhs, rhs in
             Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
         }
         
         List {
             Section {
-                GlucoseChartView(records: vm.glucoseRecords)
+                CarbsChart(vm.carbsRecords)
                     .listRowInsets(.init())
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
@@ -25,20 +25,19 @@ struct GlucoseList: View {
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
                         ForEach(chunk) {
-                            GlucoseCard($0)
+                            CarbsRecordCard($0)
                         }
                     }
                 }
             }
         }
-        .navigationTitle("Blood Glucose")
+        .navigationTitle("Carbohydrates")
         .refreshable {
-            _ = try? await vm.reloadGlucoseRecords()
+            _ = try? await vm.reloadCarbsRecords()
         }
         .sheet($sheetNewRecord) {
-            NewRecordSheet(.glucose)
+            NewRecordSheet(.carbs)
                 .environment(vm)
-                .presentationDetents([.medium])
         }
         .toolbar {
             SFButton("plus") {
@@ -50,7 +49,7 @@ struct GlucoseList: View {
 
 #Preview {
     NavigationStack {
-        GlucoseList()
+        CarbsRecordList()
     }
     .darkSchemePreferred()
     .environment(HealthKit())

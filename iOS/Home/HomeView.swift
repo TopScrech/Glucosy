@@ -238,16 +238,16 @@ struct HomeView: View {
     private func destinationView(for destination: TodayMetricDestination) -> some View {
         switch destination {
         case .glucose:
-            GlucoseList()
+            GlucoseRecordList()
                 .environment(vm)
             
         case .carbs:
-            CarbsList()
+            CarbsRecordList()
                 .environment(vm)
             
         case .insulin:
 #if canImport(CoreNFC)
-            InsulinList(onScanPen: startNovoPenScan)
+            InsulinRecordList(onScanPen: startNovoPenScan)
                 .environment(vm)
 #else
             InsulinList(onScanPen: nil)
@@ -255,11 +255,11 @@ struct HomeView: View {
 #endif
             
         case .weight:
-            WeightList()
+            WeightRecordList()
                 .environment(vm)
             
         case .bmi:
-            BMIList()
+            BMIRecordList()
                 .environment(vm)
         }
     }

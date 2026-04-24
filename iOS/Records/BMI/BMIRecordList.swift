@@ -1,19 +1,19 @@
 import ScrechKit
 import Algorithms
 
-struct CarbsList: View {
+struct BMIRecordList: View {
     @Environment(HealthKit.self) private var vm
     
-    @State private var sheetNewRecord = false
+    @State private var sheetNewEntry = false
     
     var body: some View {
-        let dayChunks = vm.carbsRecords.chunked { lhs, rhs in
+        let dayChunks = vm.bmiRecords.chunked { lhs, rhs in
             Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
         }
         
         List {
             Section {
-                CarbsChartView(records: vm.carbsRecords)
+                BMIChart(vm.bmiRecords)
                     .listRowInsets(.init())
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
@@ -25,23 +25,22 @@ struct CarbsList: View {
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
                         ForEach(chunk) {
-                            CarbsCard($0)
+                            BMIRecordCard($0)
                         }
                     }
                 }
             }
         }
-        .navigationTitle("Carbohydrates")
+        .navigationTitle("BMI")
         .refreshable {
-            _ = try? await vm.reloadCarbsRecords()
+            _ = try? await vm.reloadBMIRecords()
         }
-        .sheet($sheetNewRecord) {
-            NewRecordSheet(.carbs)
-                .environment(vm)
+        .sheet($sheetNewEntry) {
+            NewRecordSheet(.bmi)
         }
         .toolbar {
             SFButton("plus") {
-                sheetNewRecord = true
+                sheetNewEntry = true
             }
         }
     }
@@ -49,7 +48,7 @@ struct CarbsList: View {
 
 #Preview {
     NavigationStack {
-        CarbsList()
+        BMIRecordList()
     }
     .darkSchemePreferred()
     .environment(HealthKit())

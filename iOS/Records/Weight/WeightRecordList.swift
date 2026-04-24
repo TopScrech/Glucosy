@@ -1,7 +1,7 @@
 import ScrechKit
 import Algorithms
 
-struct WeightList: View {
+struct WeightRecordList: View {
     @Environment(HealthKit.self) private var vm
     
     @State private var sheetNewEntry = false
@@ -13,7 +13,7 @@ struct WeightList: View {
         
         List {
             Section {
-                WeightChartView(records: vm.weightRecords)
+                WeightChart(records: vm.weightRecords)
                     .listRowInsets(.init())
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
@@ -25,7 +25,7 @@ struct WeightList: View {
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
                         ForEach(chunk) {
-                            WeightCard($0)
+                            WeightRecordCard($0)
                         }
                     }
                 }
@@ -48,7 +48,7 @@ struct WeightList: View {
 
 #Preview {
     NavigationStack {
-        WeightList()
+        WeightRecordList()
     }
     .darkSchemePreferred()
     .environment(HealthKit())

@@ -1,7 +1,7 @@
 import ScrechKit
 import Algorithms
 
-struct InsulinList: View {
+struct InsulinRecordList: View {
     @Environment(HealthKit.self) private var vm
     
     let onScanPen: (() -> Void)?
@@ -14,7 +14,7 @@ struct InsulinList: View {
         
         List {
             Section {
-                InsulinChartView(records: vm.insulinRecords)
+                InsulinChart(vm.insulinRecords)
                     .listRowInsets(.init())
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
@@ -26,7 +26,7 @@ struct InsulinList: View {
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
                         ForEach(chunk) {
-                            InsulinCard($0)
+                            InsulinRecordCard($0)
                         }
                     }
                 }
@@ -63,7 +63,7 @@ struct InsulinList: View {
 
 #Preview {
     NavigationStack {
-        InsulinList(onScanPen: {})
+        InsulinRecordList(onScanPen: {})
     }
     .darkSchemePreferred()
     .environment(HealthKit())

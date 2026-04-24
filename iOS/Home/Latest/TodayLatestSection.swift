@@ -13,7 +13,7 @@ struct TodayLatestSection: View {
             
             VStack(spacing: 12) {
                 NavigationLink {
-                    GlucoseList()
+                    GlucoseRecordList()
                         .environment(vm)
                 } label: {
                     TodayLatestRow(
@@ -28,7 +28,7 @@ struct TodayLatestSection: View {
                 .buttonStyle(.plain)
                 
                 NavigationLink {
-                    InsulinList(onScanPen: nil)
+                    InsulinRecordList(onScanPen: nil)
                         .environment(vm)
                 } label: {
                     TodayLatestRow(
@@ -43,7 +43,7 @@ struct TodayLatestSection: View {
                 .buttonStyle(.plain)
                 
                 NavigationLink {
-                    CarbsList()
+                    CarbsRecordList()
                         .environment(vm)
                 } label: {
                     TodayLatestRow(
@@ -60,7 +60,7 @@ struct TodayLatestSection: View {
                 .buttonStyle(.plain)
                 
                 NavigationLink {
-                    WeightList()
+                    WeightRecordList()
                         .environment(vm)
                 } label: {
                     TodayLatestRow(
@@ -75,7 +75,7 @@ struct TodayLatestSection: View {
                 .buttonStyle(.plain)
                 
                 NavigationLink {
-                    BMIList()
+                    BMIRecordList()
                         .environment(vm)
                 } label: {
                     TodayLatestRow(

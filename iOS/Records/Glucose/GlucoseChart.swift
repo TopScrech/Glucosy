@@ -1,10 +1,12 @@
 import SwiftUI
 import Charts
 
-struct BMIChartView: View {
-    private let records: [BMI]
+struct GlucoseChart: View {
+    @EnvironmentObject private var store: ValueStore
     
-    init(records: [BMI]) {
+    private let records: [Glucose]
+    
+    init(_ records: [Glucose]) {
         self.records = records
     }
     
@@ -12,27 +14,35 @@ struct BMIChartView: View {
     
     var body: some View {
         let now = Date.now
-        let points = records.chartPoints(in: range, aggregation: .average, endingAt: now)
-        let latestRecord = records.latestRecord(in: range, endingAt: now)
+        let filteredRecords = records.records(in: range, endingAt: now)
+        let rawPoints = records.chartPoints(in: range, aggregation: .average, endingAt: now)
+        
+        let points = rawPoints.map {
+            MeasurementChartPoint(
+                date: $0.date,
+                value: store.glucoseUnit.displayValue(fromMilligramsPerDeciliter: $0.value)
+            )
+        }
+        
         let interval = range.interval(endingAt: now)
         
         MeasurementChartCard(
-            value: summaryValue(for: latestRecord),
-            tint: .mint,
+            value: rangeTitle(for: filteredRecords) ?? "No Data",
+            tint: .red,
             range: $range
         ) {
             if points.isEmpty {
-                ContentUnavailableView("No Data", systemImage: "figure")
+                ContentUnavailableView("No Data", systemImage: "waveform.path.ecg")
             } else {
                 Chart(points) {
                     AreaMark(
                         x: .value("Date", $0.date),
-                        y: .value("BMI", $0.value)
+                        y: .value("Glucose", $0.value)
                     )
                     .interpolationMethod(.catmullRom)
                     .foregroundStyle(
                         LinearGradient(
-                            colors: [.mint.opacity(0.24), .mint.opacity(0.04)],
+                            colors: [.red.opacity(0.24), .red.opacity(0.04)],
                             startPoint: .top,
                             endPoint: .bottom
                         )
@@ -40,17 +50,17 @@ struct BMIChartView: View {
                     
                     LineMark(
                         x: .value("Date", $0.date),
-                        y: .value("BMI", $0.value)
+                        y: .value("Glucose", $0.value)
                     )
                     .interpolationMethod(.catmullRom)
-                    .foregroundStyle(.mint)
+                    .foregroundStyle(.red)
                     .lineStyle(.init(lineWidth: 3))
                     
                     PointMark(
                         x: .value("Date", $0.date),
-                        y: .value("BMI", $0.value)
+                        y: .value("Glucose", $0.value)
                     )
-                    .foregroundStyle(.mint)
+                    .foregroundStyle(.red)
                 }
                 .chartLegend(.hidden)
                 .chartXAxis {
@@ -72,11 +82,17 @@ struct BMIChartView: View {
         }
     }
     
-    private func summaryValue(for latestRecord: BMI?) -> String {
-        guard let latestRecord else {
-            return "No Data"
+    private func rangeTitle(for records: [Glucose]) -> String? {
+        guard
+            let minimum = records.min(by: { $0.value < $1.value }),
+            let maximum = records.max(by: { $0.value < $1.value })
+        else {
+            return nil
         }
         
-        return Utils.formatTenths(latestRecord.value)
+        let minimumValue = minimum.formattedValue(in: store.glucoseUnit)
+        let maximumValue = maximum.formattedValue(in: store.glucoseUnit)
+        
+        return "\(minimumValue)-\(maximumValue) \(store.glucoseUnit.title)"
     }
 }

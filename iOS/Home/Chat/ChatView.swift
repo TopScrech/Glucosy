@@ -45,7 +45,7 @@ struct ChatView: View {
         }
         .sheet(item: $carbDraft) { carbDraft in
             NavigationStack {
-                AddCarbsSheet(carbsAmount: carbDraft.carbsAmount)
+                NewRecordCarbs(initialAmount: carbDraft.carbsAmount)
             }
         }
         .overlay(alignment: .bottom) {

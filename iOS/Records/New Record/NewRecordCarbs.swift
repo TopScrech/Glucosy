@@ -8,6 +8,12 @@ struct NewRecordCarbs: View {
     @State private var unitsString = ""
     @FocusState private var isUnitsFieldFocused: Bool
     
+    init() {}
+    
+    init(initialAmount: Double) {
+        _unitsString = State(initialValue: Self.initialUnitsString(for: initialAmount))
+    }
+    
     private var units: Double? {
         Double(unitsString.replacing(",", with: "."))
     }
@@ -62,6 +68,10 @@ struct NewRecordCarbs: View {
         
         vm.writeCarbs(value: units, date: date)
         dismiss()
+    }
+    
+    private static func initialUnitsString(for amount: Double) -> String {
+        return amount.formatted(.number.precision(.fractionLength(0 ... 1)))
     }
 }
 

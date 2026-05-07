@@ -1,37 +1,26 @@
 import ScrechKit
 import HealthKit
 
-struct InsulinCard: View {
+struct BMIRecordCard: View {
     @Environment(HealthKit.self) private var vm
     @EnvironmentObject private var store: ValueStore
     
-    private let record: Insulin
+    private let record: BMI
     
-    init(_ record: Insulin) {
+    init(_ record: BMI) {
         self.record = record
     }
     
     var body: some View {
         HStack(spacing: 16) {
-            Image(systemName: record.icon)
-                .foregroundStyle(record.color)
+            Image(systemName: "figure")
+                .foregroundStyle(.mint)
                 .title3()
             
             VStack(alignment: .leading) {
-                HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    HStack(alignment: .firstTextBaseline, spacing: 0) {
-                        Text(Utils.formatNumber(record.value))
-                            .title3(.semibold, design: .rounded)
-                            .monospacedDigit()
-                        
-                        Text("U")
-                            .caption()
-                            .secondary()
-                    }
-                    
-                    Text(record.type.title)
-                        .secondary()
-                }
+                Text(Utils.formatTenths(record.value))
+                    .title3(.semibold, design: .rounded)
+                    .monospacedDigit()
                 
                 if store.debugMode {
                     SourceName(record.source)
@@ -51,7 +40,7 @@ struct InsulinCard: View {
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             Button("Delete", systemImage: "trash", role: .destructive) {
-                vm.deleteInsulin(record)
+                vm.deleteBMI(record)
             }
         }
         .contextMenu {
@@ -60,15 +49,13 @@ struct InsulinCard: View {
                 UIPasteboard.general.string = record.source
             } label: {
                 Text("Copy Source")
-                
                 Text(record.source)
-                
                 Image(systemName: "doc.on.doc")
             }
 #endif
             Section {
                 Button("Delete", systemImage: "trash", role: .destructive) {
-                    vm.deleteInsulin(record)
+                    vm.deleteBMI(record)
                 }
             }
         }
@@ -77,13 +64,12 @@ struct InsulinCard: View {
 
 #Preview {
     List {
-        InsulinCard(
-            Insulin(
-                value: 16,
-                type: .basal,
+        BMIRecordCard(
+            BMI(
+                value: 22.4,
                 sample: .init(
-                    type: .quantityType(forIdentifier: .insulinDelivery)!,
-                    quantity: .init(unit: .internationalUnit(), doubleValue: 5),
+                    type: .quantityType(forIdentifier: .bodyMassIndex)!,
+                    quantity: .init(unit: .count(), doubleValue: 22.4),
                     start: Date(),
                     end: Date()
                 )

@@ -1,7 +1,7 @@
 import SwiftUI
 import Charts
 
-struct WeightChartView: View {
+struct WeightChart: View {
     @State private var range: MeasurementChartRange = .month
     
     private let records: [Weight]

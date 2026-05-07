@@ -1,5 +1,5 @@
 {
-  "originHash" : "163a79d6e93d9b22711f5534cf74f5c375b1951afef48efec92af422e3812be1",
+  "originHash" : "e9f931d9f4ceee7cbc376ab84799bdad13cfa9e42551030ae05a074b5c8c6b42",
   "pins" : [
     {
       "identity" : "appearance",
@@ -11,12 +11,21 @@
       }
     },
     {
+      "identity" : "chit-chat",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TopScrech/Chit-Chat",
+      "state" : {
+        "branch" : "main",
+        "revision" : "fae7a6ead89161e55c173a7b620f1dffc12da239"
+      }
+    },
+    {
       "identity" : "healthykit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TopScrech/HealthyKit",
       "state" : {
-        "branch" : "main",
-        "revision" : "268d1834a7b391051dffd6fac4da7ef286bf44c2"
+        "revision" : "35f25c91da58ab6627da7aefde12c97c0a128104",
+        "version" : "1.0.0"
       }
     },
     {

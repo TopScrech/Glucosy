@@ -1,28 +1,29 @@
 import ScrechKit
 import HealthKit
 
-struct WeightCard: View {
+struct CarbsRecordCard: View {
     @Environment(HealthKit.self) private var vm
     @EnvironmentObject private var store: ValueStore
     
-    private let record: Weight
+    private let record: Carbs
     
-    init(_ record: Weight) {
+    init(_ record: Carbs) {
         self.record = record
     }
     
     var body: some View {
         HStack(spacing: 16) {
-            Image(systemName: "scalemass")
-                .foregroundStyle(.blue)
+            Image(systemName: "fork.knife")
+                .foregroundStyle(record.color)
                 .title3()
             
             VStack(alignment: .leading) {
-                HStack(spacing: 5) {
-                    Text(Utils.formatTenths(record.value))
+                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                    Text(Utils.formatNumber(record.value))
                         .title3(.semibold, design: .rounded)
                     
-                    Text("kg")
+                    Text("g")
+                        .caption()
                         .secondary()
                 }
                 
@@ -44,7 +45,7 @@ struct WeightCard: View {
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             Button("Delete", systemImage: "trash", role: .destructive) {
-                vm.deleteWeight(record)
+                vm.deleteCarbs(record)
             }
         }
         .contextMenu {
@@ -52,14 +53,16 @@ struct WeightCard: View {
             Button {
                 UIPasteboard.general.string = record.source
             } label: {
-                Text("Copy Source")
+                Text(String("Copy Source"))
+                
                 Text(record.source)
+                
                 Image(systemName: "doc.on.doc")
             }
 #endif
             Section {
                 Button("Delete", systemImage: "trash", role: .destructive) {
-                    vm.deleteWeight(record)
+                    vm.deleteCarbs(record)
                 }
             }
         }
@@ -68,12 +71,12 @@ struct WeightCard: View {
 
 #Preview {
     List {
-        WeightCard(
-            Weight(
-                value: 64,
+        CarbsRecordCard(
+            Carbs(
+                value: 32,
                 sample: .init(
-                    type: .quantityType(forIdentifier: .bodyMass)!,
-                    quantity: .init(unit: .gramUnit(with: .kilo), doubleValue: 64),
+                    type: .quantityType(forIdentifier: .dietaryCarbohydrates)!,
+                    quantity: .init(unit: .gram(), doubleValue: 32),
                     start: Date(),
                     end: Date()
                 )

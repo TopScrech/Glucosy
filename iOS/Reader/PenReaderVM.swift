@@ -10,6 +10,7 @@ final class PenReaderVM {
     
     private let service = NovoPenReaderService()
     private let logStore = ReaderLogStore()
+    private var persistsLogs = false
     
     var isWorking: Bool {
         status == .scanning || status == .loadingSample
@@ -77,14 +78,36 @@ final class PenReaderVM {
     }
     
     var hasSavedLog: Bool {
-        !logStore.load().trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        persistsLogs && !logStore.load().trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
     
     var logFileURL: URL {
         logStore.fileURL
     }
     
-    init() {
+    init(persistsLogs: Bool = false) {
+        self.persistsLogs = persistsLogs
+        guard persistsLogs else { return }
+        
+        loadSavedLog()
+    }
+    
+    func setPersistentLoggingEnabled(_ isEnabled: Bool) {
+        guard isEnabled else {
+            persistsLogs = false
+            logStore.delete()
+            return
+        }
+        
+        guard persistsLogs != isEnabled else {
+            return
+        }
+        
+        persistsLogs = true
+        loadSavedLog()
+    }
+    
+    private func loadSavedLog() {
         let savedLog = logStore.load().trimmingCharacters(in: .whitespacesAndNewlines)
         
         if !savedLog.isEmpty {
@@ -115,7 +138,13 @@ final class PenReaderVM {
         errorMessage = nil
         reading = nil
         logs = []
-        logStore.reset()
+        
+        if persistsLogs {
+            logStore.reset()
+        } else {
+            logStore.delete()
+        }
+        
         status = source == .liveNFC ? .scanning : .loadingSample
         
         do {
@@ -140,6 +169,9 @@ final class PenReaderVM {
     private func appendLog(_ message: String) {
         let entry = ReaderLogEntry(message: message)
         logs.append(entry)
-        logStore.append(entry.formattedLine)
+        
+        if persistsLogs {
+            logStore.append(entry.formattedLine)
+        }
     }
 }

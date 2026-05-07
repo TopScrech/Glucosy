@@ -2,6 +2,7 @@ import SwiftUI
 
 struct NovoPenReader: View {
     @State private var healthKit = HealthKit()
+    @EnvironmentObject private var store: ValueStore
     
     private let startsScanningOnAppear: Bool
     
@@ -25,7 +26,12 @@ struct NovoPenReader: View {
         }
         .navigationTitle("NovoPen Reader")
         .environment(vm)
+        .onChange(of: store.debugMode) { _, newValue in
+            vm.setPersistentLoggingEnabled(newValue)
+        }
         .task {
+            vm.setPersistentLoggingEnabled(store.debugMode)
+            
             healthKit.authorize { _ in
                 Task { @MainActor in
                     healthKit.readInsulin()

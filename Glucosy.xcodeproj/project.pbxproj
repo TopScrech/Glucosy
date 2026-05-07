@@ -20,6 +20,8 @@
 		F3BB00032F82B5B0008A7E17 /* Appearance in Frameworks */ = {isa = PBXBuildFile; productRef = F3A9C4A62E99A5B80052700B /* Appearance */; };
 		F3C712932F82B5B0008A7E17 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3C712922F82B5B0008A7E17 /* ScrechKit */; };
 		F3F8ED9A2D2EA2FE004A2638 /* watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F4C100012F8A000000000001 /* ChitChat in Frameworks */ = {isa = PBXBuildFile; productRef = F4C100042F8A000000000001 /* ChitChat */; };
+		F4C100022F8A000000000001 /* ChitChat in Frameworks */ = {isa = PBXBuildFile; productRef = F4C100052F8A000000000001 /* ChitChat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +265,7 @@
 		F32B20772CD5823B00925351 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				F4C100012F8A000000000001 /* ChitChat in Frameworks */,
 				F3242A312DDE803B000A16E8 /* ScrechKit in Frameworks */,
 				F32B20A42CD5854700925351 /* Algorithms in Frameworks */,
 				F3A9C4A72E99A5B80052700B /* Appearance in Frameworks */,
@@ -272,6 +275,7 @@
 		F3C7127E2F82B566008A7E17 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				F4C100022F8A000000000001 /* ChitChat in Frameworks */,
 				F3BB00032F82B5B0008A7E17 /* Appearance in Frameworks */,
 				F3BB00022F82B5B0008A7E17 /* Algorithms in Frameworks */,
 				F3BB00012F82B5B0008A7E17 /* HealthyKit in Frameworks */,
@@ -363,6 +367,7 @@
 			);
 			name = iOS;
 			packageProductDependencies = (
+				F4C100042F8A000000000001 /* ChitChat */,
 				F32B209D2CD5852800925351 /* HealthyKit */,
 				F32B20A32CD5854700925351 /* Algorithms */,
 				F3242A302DDE803B000A16E8 /* ScrechKit */,
@@ -388,6 +393,7 @@
 			);
 			name = visionOS;
 			packageProductDependencies = (
+				F4C100052F8A000000000001 /* ChitChat */,
 				F32B209D2CD5852800925351 /* HealthyKit */,
 				F32B20A32CD5854700925351 /* Algorithms */,
 				F3A9C4A62E99A5B80052700B /* Appearance */,
@@ -457,6 +463,7 @@
 			mainGroup = F32B20712CD5823B00925351;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */,
 				F32B209C2CD5852800925351 /* XCRemoteSwiftPackageReference "HealthyKit" */,
 				F32B209F2CD5853500925351 /* XCRemoteSwiftPackageReference "ScrechKit" */,
 				F32B20A22CD5854700925351 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
@@ -548,7 +555,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Widgets.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -583,7 +589,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Widgets/Widgets.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -663,7 +668,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 64.1;
+				MARKETING_VERSION = 64.1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -725,7 +730,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 64.1;
+				MARKETING_VERSION = 64.1.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -753,7 +758,6 @@
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Scan supported NovoPen devices over NFC";
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy saves glucose, insulin, carbs, and weight entries to Health";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -801,7 +805,6 @@
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Scan supported NovoPen devices over NFC";
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy saves glucose, insulin, carbs, and weight entries to Health";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -844,7 +847,6 @@
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -880,7 +882,6 @@
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -915,7 +916,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = watchOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -949,7 +949,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = watchOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Glucosy;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy needs this permission in order to read health records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy needs this permission in order to write health records";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1022,8 +1021,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TopScrech/HealthyKit";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		F32B209F2CD5853500925351 /* XCRemoteSwiftPackageReference "ScrechKit" */ = {
@@ -1045,6 +1044,14 @@
 		F3A9C4A52E99A5B80052700B /* XCRemoteSwiftPackageReference "Appearance" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TopScrech/Appearance";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TopScrech/Chit-Chat";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -1082,6 +1089,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F32B209F2CD5853500925351 /* XCRemoteSwiftPackageReference "ScrechKit" */;
 			productName = ScrechKit;
+		};
+		F4C100042F8A000000000001 /* ChitChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */;
+			productName = ChitChat;
+		};
+		F4C100052F8A000000000001 /* ChitChat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */;
+			productName = ChitChat;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

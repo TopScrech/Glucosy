@@ -30,6 +30,14 @@ struct AppContainer: View {
 #if canImport(Appearance)
         .preferredColorScheme(store.appearance.scheme)
 #endif
+#if canImport(CoreNFC)
+        .task {
+            deleteSavedReaderLogIfNeeded()
+        }
+        .onChange(of: store.debugMode) { _, _ in
+            deleteSavedReaderLogIfNeeded()
+        }
+#endif
 #if !os(watchOS)
         .task(id: router.actionRequest) {
             guard
@@ -46,4 +54,14 @@ struct AppContainer: View {
         }
 #endif
     }
+    
+#if canImport(CoreNFC)
+    private func deleteSavedReaderLogIfNeeded() {
+        guard !store.debugMode else {
+            return
+        }
+        
+        ReaderLogStore().delete()
+    }
+#endif
 }

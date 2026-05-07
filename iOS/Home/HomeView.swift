@@ -27,39 +27,41 @@ struct HomeView: View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                TodayMetricsSection(metrics: metricCards(glucoseUnit: glucoseUnit))
-                
+                TodayMetricsSection(metricCards(glucoseUnit: glucoseUnit))
                 TodayQuickActions()
                 TodayLatestSection()
             }
-            .environment(vm)
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
         .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
         .scrollIndicators(.hidden)
         .refreshable {
-            await refreshData()
+            await vm.reloadAllRecords()
         }
         .sheet($sheetChat) {
             NavigationStack {
-                ChatView()
-                    .environment(vm)
+                if #available(iOS 26, visionOS 26, *) {
+                    ChatView()
+                }
             }
         }
+        .environment(vm)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Settings", systemImage: "gear") {
                     showsSettings = true
                 }
             }
-            
+#if canImport(FoundationModels)
             ToolbarItem(placement: .topBarTrailing) {
                 SFButton("apple.intelligence") {
                     sheetChat = true
                 }
                 .symbolRenderingMode(.multicolor)
+                .keyboardShortcut("a")
             }
+#endif
 #if !os(visionOS)
             if #available(iOS 26, *) {
                 ToolbarSpacer(.fixed, placement: .topBarTrailing)
@@ -75,7 +77,7 @@ struct HomeView: View {
 #endif
         }
         .navigationDestination(isPresented: $showsSettings) {
-            AppSettings()
+            SettingsView()
         }
         .navigationDestination(for: TodayMetricDestination.self) {
             destinationView(for: $0)
@@ -135,7 +137,7 @@ struct HomeView: View {
                 Logger().info("Auth status: \(result)")
             }
             
-            await refreshData()
+            await vm.reloadAllRecords()
         }
     }
     
@@ -153,6 +155,10 @@ struct HomeView: View {
         return record.formattedValue(in: glucoseUnit)
     }
     
+    private var carbsToday: [Carbs] {
+        vm.carbsRecords.filter { Calendar.current.isDateInToday($0.date) }
+    }
+    
     private var carbsTotal: Double? {
         sumValue(carbsToday.map(\.value))
     }
@@ -165,10 +171,6 @@ struct HomeView: View {
     
     private var insulinToday: [Insulin] {
         vm.insulinRecords.filter { Calendar.current.isDateInToday($0.date) }
-    }
-    
-    private var carbsToday: [Carbs] {
-        vm.carbsRecords.filter { Calendar.current.isDateInToday($0.date) }
     }
     
     private var insulinTotal: Double? {
@@ -236,29 +238,30 @@ struct HomeView: View {
     private func destinationView(for destination: TodayMetricDestination) -> some View {
         switch destination {
         case .glucose:
-            GlucoseList()
+            GlucoseRecordList()
                 .environment(vm)
             
         case .carbs:
-            CarbsList()
+            CarbsRecordList()
                 .environment(vm)
             
         case .insulin:
-            InsulinList()
+#if canImport(CoreNFC)
+            InsulinRecordList(onScanPen: startNovoPenScan)
                 .environment(vm)
+#else
+            InsulinRecordList(onScanPen: nil)
+                .environment(vm)
+#endif
             
         case .weight:
-            WeightList()
+            WeightRecordList()
                 .environment(vm)
             
         case .bmi:
-            BMIList()
+            BMIRecordList()
                 .environment(vm)
         }
-    }
-    
-    private func refreshData() async {
-        await vm.reloadAllRecords()
     }
     
 #if canImport(CoreNFC)
@@ -267,6 +270,7 @@ struct HomeView: View {
     }
     
     private func startNovoPenScan(receivesFullHistory: Bool) {
+        novoPenReader.setPersistentLoggingEnabled(store.debugMode)
         novoPenReader.readerOptions.receivesFullHistory = receivesFullHistory
         novoPenReader.startScan()
     }

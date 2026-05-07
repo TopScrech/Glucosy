@@ -1,10 +1,10 @@
 import SwiftUI
 import Charts
 
-struct CarbsChartView: View {
+struct CarbsChart: View {
     private let records: [Carbs]
     
-    init(records: [Carbs]) {
+    init(_ records: [Carbs]) {
         self.records = records
     }
     

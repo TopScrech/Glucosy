@@ -1,19 +1,20 @@
 import ScrechKit
 import Algorithms
 
-struct CarbsList: View {
+struct InsulinRecordList: View {
     @Environment(HealthKit.self) private var vm
     
+    let onScanPen: (() -> Void)?
     @State private var sheetNewRecord = false
     
     var body: some View {
-        let dayChunks = vm.carbsRecords.chunked { lhs, rhs in
+        let dayChunks = vm.insulinRecords.chunked { lhs, rhs in
             Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
         }
         
         List {
             Section {
-                CarbsChartView(records: vm.carbsRecords)
+                InsulinChart(vm.insulinRecords)
                     .listRowInsets(.init())
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
@@ -25,23 +26,36 @@ struct CarbsList: View {
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
                         ForEach(chunk) {
-                            CarbsCard($0)
+                            InsulinRecordCard($0)
                         }
                     }
                 }
             }
         }
-        .navigationTitle("Carbohydrates")
+        .navigationTitle("Insulin Delivery")
         .refreshable {
-            _ = try? await vm.reloadCarbsRecords()
+            _ = try? await vm.reloadInsulinRecords()
         }
         .sheet($sheetNewRecord) {
-            NewRecordSheet(.carbs)
+            NewRecordSheet(.insulin)
                 .environment(vm)
         }
         .toolbar {
-            SFButton("plus") {
-                sheetNewRecord = true
+#if !os(visionOS)
+            ToolbarItem(placement: .topBarTrailing) {
+                if let onScanPen {
+                    Button("Scan Pen", systemImage: "wave.3.right", action: onScanPen)
+                }
+            }
+            
+            if let _ = onScanPen, #available(iOS 26, *) {
+                ToolbarSpacer(.fixed, placement: .topBarTrailing)
+            }
+#endif
+            ToolbarItem(placement: .topBarTrailing) {
+                SFButton("plus") {
+                    sheetNewRecord = true
+                }
             }
         }
     }
@@ -49,7 +63,7 @@ struct CarbsList: View {
 
 #Preview {
     NavigationStack {
-        CarbsList()
+        InsulinRecordList(onScanPen: {})
     }
     .darkSchemePreferred()
     .environment(HealthKit())

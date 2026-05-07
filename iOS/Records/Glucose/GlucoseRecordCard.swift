@@ -1,6 +1,6 @@
 import ScrechKit
 
-struct GlucoseCard: View {
+struct GlucoseRecordCard: View {
     @Environment(HealthKit.self) private var vm
     @EnvironmentObject private var store: ValueStore
     
@@ -59,8 +59,3 @@ struct GlucoseCard: View {
         }
     }
 }
-
-//#Preview {
-//    GlucoseCard()
-//    .darkSchemePreferred()
-//}

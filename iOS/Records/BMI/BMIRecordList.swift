@@ -1,19 +1,19 @@
 import ScrechKit
 import Algorithms
 
-struct GlucoseList: View {
+struct BMIRecordList: View {
     @Environment(HealthKit.self) private var vm
     
-    @State private var sheetNewRecord = false
+    @State private var sheetNewEntry = false
     
     var body: some View {
-        let dayChunks = vm.glucoseRecords.chunked { lhs, rhs in
+        let dayChunks = vm.bmiRecords.chunked { lhs, rhs in
             Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
         }
         
         List {
             Section {
-                GlucoseChartView(records: vm.glucoseRecords)
+                BMIChart(vm.bmiRecords)
                     .listRowInsets(.init())
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
@@ -25,24 +25,22 @@ struct GlucoseList: View {
                 if let first = chunk.first {
                     Section(Utils.formattedDate(first.date)) {
                         ForEach(chunk) {
-                            GlucoseCard($0)
+                            BMIRecordCard($0)
                         }
                     }
                 }
             }
         }
-        .navigationTitle("Blood Glucose")
+        .navigationTitle("BMI")
         .refreshable {
-            _ = try? await vm.reloadGlucoseRecords()
+            _ = try? await vm.reloadBMIRecords()
         }
-        .sheet($sheetNewRecord) {
-            NewRecordSheet(.glucose)
-                .environment(vm)
-                .presentationDetents([.medium])
+        .sheet($sheetNewEntry) {
+            NewRecordSheet(.bmi)
         }
         .toolbar {
             SFButton("plus") {
-                sheetNewRecord = true
+                sheetNewEntry = true
             }
         }
     }
@@ -50,7 +48,7 @@ struct GlucoseList: View {
 
 #Preview {
     NavigationStack {
-        GlucoseList()
+        BMIRecordList()
     }
     .darkSchemePreferred()
     .environment(HealthKit())

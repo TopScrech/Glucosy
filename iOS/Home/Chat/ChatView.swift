@@ -1,12 +1,11 @@
 import ScrechKit
+import ChitChat
 
 @available(iOS 26, *)
-struct FoundationModelChatView: View {
-    @Environment(HealthKit.self) private var healthKit
-    @EnvironmentObject private var store: ValueStore
-    
+struct ChatView: View {
     @State private var vm = ChatVM()
     @State private var alertTokenWindowUsage = false
+    @State private var carbDraft: ChatCarbDraft?
     
     var body: some View {
         ScrollView {
@@ -20,7 +19,11 @@ struct FoundationModelChatView: View {
                     .symbolRenderingMode(.multicolor)
                 } else {
                     ForEach(vm.messages) {
-                        ChatMessageRowView($0)
+                        ChatMessageBubble(message: $0) {
+                            carbDraft = $0
+                        } onStartNewChat: {
+                            vm.startNewChat()
+                        }
                     }
                 }
             }
@@ -29,44 +32,41 @@ struct FoundationModelChatView: View {
         }
         .navigationTitle("Assistant")
         .toolbarTitleDisplayMode(.inline)
+        .animation(.default, value: vm.messages.count)
         .scrollIndicators(.hidden)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .task {
             vm.printContextSize()
-            vm.refreshContext(using: healthKit, glucoseUnit: store.glucoseUnit)
-        }
-        .onChange(of: store.glucoseUnit) { _, newValue in
-            vm.refreshContext(using: healthKit, glucoseUnit: newValue)
         }
         .alert("Token Window Usage", isPresented: $alertTokenWindowUsage) {
             
         } message: {
             Text("This indicator shows the amount of used tokens")
         }
+        .sheet(item: $carbDraft) { carbDraft in
+            NavigationStack {
+                NewRecordCarbs(initialAmount: carbDraft.carbsAmount)
+            }
+        }
         .overlay(alignment: .bottom) {
-            ChatComposerView()
-                .environment(vm)
-                .environment(healthKit)
+            ChatComposer(prompt: $vm.prompt, isResponding: $vm.isResponding) {
+                Task {
+                    await vm.sendPrompt()
+                }
+            }
+            .environment(vm)
         }
         .toolbar {
             if #available(iOS 26.4, *) {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button {
+                    TokenUsageGauge(value: vm.tokenUsage) {
                         alertTokenWindowUsage = true
-                    } label: {
-                        Gauge(value: vm.tokenUsage) {}
-                            .gaugeStyle(.accessoryCircularCapacity)
-                            .scaleEffect(0.5)
-                            .frame(30)
-                            .tint(.green)
-                            .animation(.default, value: vm.tokenUsage)
                     }
                 }
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button("New Chat", systemImage: "square.and.pencil", action: vm.startNewChat)
-                    .disabled(vm.isResponding || vm.messages.isEmpty)
+                NewChatButton(disabled: vm.isResponding || vm.messages.isEmpty, action: vm.startNewChat)
             }
         }
     }

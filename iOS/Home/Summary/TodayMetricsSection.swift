@@ -1,7 +1,11 @@
 import ScrechKit
 
 struct TodayMetricsSection: View {
-    let metrics: [TodayMetricData]
+    private let metrics: [TodayMetricData]
+    
+    init(_ metrics: [TodayMetricData]) {
+        self.metrics = metrics
+    }
     
     private let columns = [
         GridItem(.flexible(), spacing: 12),
@@ -26,7 +30,7 @@ struct TodayMetricsSection: View {
 }
 
 #Preview {
-    TodayMetricsSection(metrics: [
+    TodayMetricsSection([
         TodayMetricData(
             destination: .glucose,
             title: "Glucose",

@@ -250,7 +250,7 @@ struct HomeView: View {
             InsulinRecordList(onScanPen: startNovoPenScan)
                 .environment(vm)
 #else
-            InsulinList(onScanPen: nil)
+            InsulinRecordList(onScanPen: nil)
                 .environment(vm)
 #endif
             

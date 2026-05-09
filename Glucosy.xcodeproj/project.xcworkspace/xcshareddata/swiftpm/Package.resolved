@@ -1,5 +1,5 @@
 {
-  "originHash" : "e9f931d9f4ceee7cbc376ab84799bdad13cfa9e42551030ae05a074b5c8c6b42",
+  "originHash" : "a55836446179d36472ff49398632c931f6ef30fd5bcb40f2a72ad55db234db7a",
   "pins" : [
     {
       "identity" : "appearance",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "35f25c91da58ab6627da7aefde12c97c0a128104",
         "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "liquid-glass-alert",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TopScrech/Liquid-Glass-Alert",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3ffbf939efd69f6c413f57b7c935f7b15d95d872"
       }
     },
     {

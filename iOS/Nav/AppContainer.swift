@@ -14,6 +14,10 @@ struct AppContainer: View {
     @StateObject private var store = ValueStore()
     
     @State private var novoPenScanRequest = 0
+#if canImport(CoreNFC)
+    @State private var novoPenScanToast: NovoPenScanToast?
+    @State private var novoPenScanToastDismissTask: Task<Void, Never>?
+#endif
     
     var body: some View {
         Group {
@@ -58,6 +62,23 @@ struct AppContainer: View {
         .preferredColorScheme(store.appearance.scheme)
 #endif
 #if canImport(CoreNFC)
+        .overlay(alignment: .bottom) {
+            if let novoPenScanToast {
+                NovoPenScanToastView(
+                    title: novoPenScanToast.title,
+                    showsViewAll: novoPenScanToast.showsViewAll,
+                    viewAll: {
+                        dismissNovoPenScanToast()
+                        novoPenScanToast.viewAll()
+                    },
+                    dismiss: dismissNovoPenScanToast
+                )
+                .padding(.horizontal)
+                .padding(.bottom)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
+        }
+        .environment(\.showNovoPenScanToast, showNovoPenScanToast)
         .task {
             deleteSavedReaderLogIfNeeded()
         }
@@ -83,6 +104,36 @@ struct AppContainer: View {
     }
     
 #if canImport(CoreNFC)
+    private func showNovoPenScanToast(_ toast: NovoPenScanToast) {
+        withAnimation(.interpolatingSpring(duration: 0.35, bounce: 0)) {
+            novoPenScanToast = toast
+        }
+        
+        novoPenScanToastDismissTask?.cancel()
+        novoPenScanToastDismissTask = Task {
+            do {
+                try await Task.sleep(for: .seconds(5))
+                
+                guard novoPenScanToast?.title == toast.title else {
+                    return
+                }
+                
+                dismissNovoPenScanToast()
+            } catch {
+                
+            }
+        }
+    }
+    
+    private func dismissNovoPenScanToast() {
+        withAnimation(.interpolatingSpring(duration: 0.35, bounce: 0)) {
+            novoPenScanToast = nil
+        }
+        
+        novoPenScanToastDismissTask?.cancel()
+        novoPenScanToastDismissTask = nil
+    }
+    
     private func deleteSavedReaderLogIfNeeded() {
         guard !store.debugMode else {
             return

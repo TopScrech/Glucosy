@@ -3,64 +3,58 @@ import Foundation
 @Observable
 final class NovoPenWriteConfirmationVM {
     var insulinType: InsulinType = .bolus
-    var isWriting = false
-    var pendingDoses: [PendingDoseWrite] = []
     var penTitle = ""
-    var selectedDoseIDs: Set<PendingDoseWrite.ID> = []
-    
-    var selectedDoseCount: Int {
-        selectedDoseIDs.count
-    }
-    
-    var selectedDoses: [PendingDoseWrite] {
-        pendingDoses.filter { selectedDoseIDs.contains($0.id) }
-    }
+    var savedDoses: [NovoPenSavedDose] = []
     
     func present(
-        doses: [DoseEntry],
+        savedDoses: [NovoPenSavedDose],
         insulinType: InsulinType,
         penTitle: String
     ) {
-        let pendingDoses = doses
-            .sorted { $0.timestamp > $1.timestamp }
-            .map(PendingDoseWrite.init(dose:))
-        
         self.insulinType = insulinType
         self.penTitle = penTitle
-        self.pendingDoses = pendingDoses
-        selectedDoseIDs = Set(pendingDoses.map(\.id))
+        self.savedDoses = savedDoses.sorted { $0.dose.timestamp > $1.dose.timestamp }
     }
     
     func dismiss() {
         penTitle = ""
-        pendingDoses = []
-        selectedDoseIDs = []
-        isWriting = false
+        savedDoses = []
     }
     
-    func toggleSelection(for pendingDose: PendingDoseWrite) {
-        if selectedDoseIDs.contains(pendingDose.id) {
-            selectedDoseIDs.remove(pendingDose.id)
-            return
-        }
+    func save(
+        doses: [DoseEntry],
+        insulinType: InsulinType,
+        penTitle: String,
+        using healthKit: HealthKit
+    ) async throws {
+        var savedDoses: [NovoPenSavedDose] = []
         
-        selectedDoseIDs.insert(pendingDose.id)
-    }
-    
-    func writeSelectedDoses(using healthKit: HealthKit) async throws {
-        guard !isWriting else { return }
-        
-        isWriting = true
-        defer { isWriting = false }
-        
-        for pendingDose in selectedDoses.sorted(by: { $0.dose.timestamp < $1.dose.timestamp }) {
-            try await healthKit.writeInsulin(
-                value: pendingDose.dose.units,
+        for dose in doses.sorted(by: { $0.timestamp < $1.timestamp }) {
+            let insulinRecord = try await healthKit.writeInsulin(
+                value: dose.units,
                 type: insulinType,
-                date: pendingDose.dose.timestamp
+                date: dose.timestamp
+            )
+            
+            savedDoses.append(
+                NovoPenSavedDose(
+                    dose: dose,
+                    insulinRecord: insulinRecord
+                )
             )
         }
         
         _ = try? await healthKit.reloadInsulinRecords()
+        
+        present(
+            savedDoses: savedDoses,
+            insulinType: insulinType,
+            penTitle: penTitle
+        )
+    }
+    
+    func remove(_ savedDose: NovoPenSavedDose, using healthKit: HealthKit) {
+        healthKit.deleteInsulin(savedDose.insulinRecord)
+        savedDoses.removeAll { $0.id == savedDose.id }
     }
 }

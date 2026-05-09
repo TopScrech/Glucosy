@@ -42,6 +42,7 @@ struct BMIRecordCard: View {
             Button("Delete", systemImage: "trash", role: .destructive) {
                 vm.deleteBMI(record)
             }
+            .labelStyle(.iconOnly)
         }
         .contextMenu {
 #if DEBUG

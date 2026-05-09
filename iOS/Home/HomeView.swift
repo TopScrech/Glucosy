@@ -21,10 +21,9 @@ struct HomeView: View {
     
     @State private var scannedPenToSave: PenReading?
     @State private var novoPenScanErrorMessage: String?
-    @State private var novoPenScanToastDismissTask: Task<Void, Never>?
-    @State private var novoPenScanToastTitle: String?
     @State private var showsNovoPenScanError = false
     @State private var showsNovoPenWriteConfirmation = false
+    @Environment(\.showNovoPenScanToast) private var showNovoPenScanToast
 #endif
     
     let novoPenScanRequest: Int
@@ -123,18 +122,6 @@ struct HomeView: View {
         } message: {
             if let novoPenScanErrorMessage {
                 Text(novoPenScanErrorMessage)
-            }
-        }
-        .overlay(alignment: .bottom) {
-            if let novoPenScanToastTitle {
-                NovoPenScanToastView(
-                    title: novoPenScanToastTitle,
-                    viewAll: showNovoPenWriteConfirmationSheet,
-                    dismiss: dismissNovoPenScanToast
-                )
-                .padding(.horizontal)
-                .padding(.bottom)
-                .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
 #endif
@@ -330,11 +317,18 @@ struct HomeView: View {
                 airshotFilter: airshotFilter
             )
             
-            novoPenWriteConfirmation.present(
-                doses: missingDoses,
-                insulinType: savedPen.insulinType,
-                penTitle: savedPen.title
-            )
+            do {
+                try await novoPenWriteConfirmation.save(
+                    doses: missingDoses,
+                    insulinType: savedPen.insulinType,
+                    penTitle: savedPen.title,
+                    using: vm
+                )
+            } catch {
+                novoPenScanErrorMessage = error.localizedDescription
+                showsNovoPenScanError = true
+                return
+            }
             
             showNovoPenWriteConfirmationNotice(missingDoseCount: missingDoses.count)
         }
@@ -347,7 +341,7 @@ struct HomeView: View {
                 title: novoPenScanToastTitle(missingDoseCount: missingDoseCount),
                 duration: 5,
                 symbol: "wave.3.right",
-                actionTitle: String(localized: "View All")
+                actionTitle: missingDoseCount > 0 ? String(localized: "View All") : nil
             ) {
                 showsNovoPenWriteConfirmation = true
                 return true
@@ -357,26 +351,11 @@ struct HomeView: View {
         }
 #else
         if #available(iOS 26, *) {
-            let title = novoPenScanToastTitle(missingDoseCount: missingDoseCount)
-            
-            withAnimation(.interpolatingSpring(duration: 0.35, bounce: 0)) {
-                novoPenScanToastTitle = title
-            }
-            
-            novoPenScanToastDismissTask?.cancel()
-            novoPenScanToastDismissTask = Task {
-                do {
-                    try await Task.sleep(for: .seconds(5))
-                    
-                    guard novoPenScanToastTitle == title else {
-                        return
-                    }
-                    
-                    dismissNovoPenScanToast()
-                } catch {
-                    
-                }
-            }
+            showNovoPenScanToast(NovoPenScanToast(
+                title: novoPenScanToastTitle(missingDoseCount: missingDoseCount),
+                showsViewAll: missingDoseCount > 0,
+                viewAll: showNovoPenWriteConfirmationSheet
+            ))
         } else {
             showsNovoPenWriteConfirmation = true
         }
@@ -384,17 +363,7 @@ struct HomeView: View {
     }
     
     private func showNovoPenWriteConfirmationSheet() {
-        dismissNovoPenScanToast()
         showsNovoPenWriteConfirmation = true
-    }
-    
-    private func dismissNovoPenScanToast() {
-        withAnimation(.interpolatingSpring(duration: 0.35, bounce: 0)) {
-            novoPenScanToastTitle = nil
-        }
-        
-        novoPenScanToastDismissTask?.cancel()
-        novoPenScanToastDismissTask = nil
     }
     
     private func novoPenScanToastTitle(missingDoseCount: Int) -> String {

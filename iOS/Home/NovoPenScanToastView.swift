@@ -2,6 +2,7 @@ import SwiftUI
 
 struct NovoPenScanToastView: View {
     let title: String
+    let showsViewAll: Bool
     let viewAll: () -> Void
     let dismiss: () -> Void
     
@@ -17,9 +18,11 @@ struct NovoPenScanToastView: View {
                 
                 Spacer(minLength: 0)
                 
-                Button("View All", systemImage: "list.bullet", action: viewAll)
-                    .labelStyle(.titleOnly)
-                    .foregroundStyle(.tint)
+                if showsViewAll {
+                    Button("View All", systemImage: "list.bullet", action: viewAll)
+                        .labelStyle(.titleOnly)
+                        .foregroundStyle(.tint)
+                }
             }
             .padding(.horizontal)
             .frame(height: 50)
@@ -45,9 +48,11 @@ struct NovoPenScanToastView: View {
                 
                 Spacer(minLength: 0)
                 
-                Button("View All", systemImage: "list.bullet", action: viewAll)
-                    .labelStyle(.titleOnly)
-                    .foregroundStyle(.tint)
+                if showsViewAll {
+                    Button("View All", systemImage: "list.bullet", action: viewAll)
+                        .labelStyle(.titleOnly)
+                        .foregroundStyle(.tint)
+                }
             }
             .padding(.horizontal)
             .frame(height: 50)
@@ -69,6 +74,7 @@ struct NovoPenScanToastView: View {
 #Preview {
     NovoPenScanToastView(
         title: "3 new NovoPen doses",
+        showsViewAll: true,
         viewAll: {},
         dismiss: {}
     )

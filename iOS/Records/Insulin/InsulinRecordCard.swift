@@ -53,6 +53,7 @@ struct InsulinRecordCard: View {
             Button("Delete", systemImage: "trash", role: .destructive) {
                 vm.deleteInsulin(record)
             }
+            .labelStyle(.iconOnly)
         }
         .contextMenu {
 #if DEBUG

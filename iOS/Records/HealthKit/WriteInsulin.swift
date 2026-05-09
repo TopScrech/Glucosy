@@ -2,7 +2,7 @@ import HealthKit
 import OSLog
 
 extension HealthKit {
-    func writeInsulin(value: Double, type: InsulinType, date: Date = .now) async throws {
+    func writeInsulin(value: Double, type: InsulinType, date: Date = .now) async throws -> Insulin {
         let sample = HKQuantitySample(
             type: insulinType,
             quantity: .init(unit: .internationalUnit(), doubleValue: value),
@@ -15,10 +15,10 @@ extension HealthKit {
         
         try await save(sample)
         
-        insulinRecords.insert(
-            Insulin(value: value, type: type, sample: sample),
-            at: 0
-        )
+        let record = Insulin(value: value, type: type, sample: sample)
+        insulinRecords.insert(record, at: 0)
+        
+        return record
     }
     
     private func save(_ sample: HKQuantitySample) async throws {

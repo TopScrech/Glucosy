@@ -38,6 +38,7 @@ struct GlucoseRecordCard: View {
             Button("Delete", systemImage: "trash", role: .destructive) {
                 vm.deleteGlucose(record)
             }
+            .labelStyle(.iconOnly)
         }
         .contextMenu {
 #if DEBUG

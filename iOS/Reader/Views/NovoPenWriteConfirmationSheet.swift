@@ -61,8 +61,10 @@ struct NovoPenWriteConfirmationSheet: View {
             
             if !vm.pendingDoses.isEmpty {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save", action: saveSelectedDoses)
+                    Button("Save", systemImage: "checkmark", action: saveSelectedDoses)
                         .bold()
+                        .tint(.green)
+                        .labelStyle(.iconOnly)
                         .disabled(vm.selectedDoseCount == 0 || vm.isWriting)
                 }
             }

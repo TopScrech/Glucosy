@@ -132,6 +132,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AppIcon.icon,
+				Home/NovoPenScanToastEnvironment.swift,
+				Home/NovoPenScanToastView.swift,
 				iOS.plist,
 				Nav/GlucosyAppDelegate.swift,
 				Nav/GlucosySceneDelegate.swift,
@@ -148,6 +150,8 @@
 				Reader/Models/ReaderLogEntry.swift,
 				Reader/Models/ReaderOptions.swift,
 				Reader/Models/ReaderStatus.swift,
+				"Reader/Models/NovoPenSavedDose + Display.swift",
+				Reader/Models/NovoPenSavedDose.swift,
 				Reader/Models/SavedPen.swift,
 				Reader/NovoPenWriteConfirmationVM.swift,
 				Reader/PenReaderVM.swift,
@@ -193,6 +197,7 @@
 				Reader/Views/DoseRow.swift,
 				Reader/Views/NovoPenPendingDoseRow.swift,
 				Reader/Views/NovoPenReader.swift,
+				Reader/Views/NovoPenSavedDoseRow.swift,
 				Reader/Views/NovoPenWriteConfirmationSheet.swift,
 				Reader/Views/PenSummarySection.swift,
 				Reader/Views/ReaderActionsSection.swift,
@@ -281,7 +286,6 @@
 				F3BB00022F82B5B0008A7E17 /* Algorithms in Frameworks */,
 				F3BB00012F82B5B0008A7E17 /* HealthyKit in Frameworks */,
 				F3C712932F82B5B0008A7E17 /* ScrechKit in Frameworks */,
-				F4D200042F9B000000000001 /* LGAlert in Frameworks */,
 			);
 		};
 		F3F8ED8A2D2EA2FD004A2638 /* Frameworks */ = {
@@ -400,7 +404,6 @@
 				F32B20A32CD5854700925351 /* Algorithms */,
 				F3A9C4A62E99A5B80052700B /* Appearance */,
 				F3C712922F82B5B0008A7E17 /* ScrechKit */,
-				F4D200052F9B000000000001 /* LGAlert */,
 			);
 			productName = vision;
 			productReference = F3C712812F82B566008A7E17 /* visionOS.app */;

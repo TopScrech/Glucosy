@@ -2,7 +2,7 @@ import ScrechKit
 import SwiftData
 import OSLog
 
-#if canImport(LGAlert) && os(visionOS)
+#if canImport(LGAlert)
 import LGAlert
 #endif
 

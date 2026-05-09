@@ -1,16 +1,14 @@
 import ScrechKit
 
 struct NovoPenWriteConfirmationSheet: View {
-    @Bindable var vm: NovoPenWriteConfirmationVM
-    let healthKit: HealthKit
     @Environment(\.dismiss) private var dismiss
     
-    @State private var errorMessage: String?
-    @State private var showsError = false
+    @Bindable var vm: NovoPenWriteConfirmationVM
+    let healthKit: HealthKit
     
     var body: some View {
         List {
-            if vm.pendingDoses.isEmpty {
+            if vm.savedDoses.isEmpty {
                 Section {
                     Text("No new NovoPen doses were found")
                         .secondary()
@@ -26,24 +24,19 @@ struct NovoPenWriteConfirmationSheet: View {
                     }
                 }
                 
-                Section {
-                    ForEach(vm.pendingDoses) { pendingDose in
-                        NovoPenPendingDoseRow(
-                            pendingDose: pendingDose,
-                            isSelected: vm.selectedDoseIDs.contains(pendingDose.id),
-                            toggleSelection: {
-                                vm.toggleSelection(for: pendingDose)
+                Section("New Doses") {
+                    ForEach(vm.savedDoses) { savedDose in
+                        NovoPenSavedDoseRow(savedDose: savedDose)
+                            .contextMenu {
+                                Button("Delete", systemImage: "trash", role: .destructive) {
+                                    vm.remove(savedDose, using: healthKit)
+                                }
                             }
-                        )
-                    }
-                } header: {
-                    HStack {
-                        Text("New Doses")
-                        
-                        Spacer()
-                        
-                        Text("\(vm.selectedDoseCount) dose(s) selected")
-                            .footnote()
+                            .swipeActions {
+                                Button("Delete", systemImage: "trash", role: .destructive) {
+                                    vm.remove(savedDose, using: healthKit)
+                                }
+                            }
                     }
                 }
             }
@@ -56,37 +49,6 @@ struct NovoPenWriteConfirmationSheet: View {
                     vm.dismiss()
                     dismiss()
                 }
-                .disabled(vm.isWriting)
-            }
-            
-            if !vm.pendingDoses.isEmpty {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Save", action: saveSelectedDoses)
-                        .bold()
-                        .disabled(vm.selectedDoseCount == 0 || vm.isWriting)
-                }
-            }
-        }
-        .alert("Could Not Write Doses", isPresented: $showsError) {
-            Button("OK") {
-                errorMessage = nil
-            }
-        } message: {
-            if let errorMessage {
-                Text(errorMessage)
-            }
-        }
-    }
-    
-    private func saveSelectedDoses() {
-        Task {
-            do {
-                try await vm.writeSelectedDoses(using: healthKit)
-                vm.dismiss()
-                dismiss()
-            } catch {
-                errorMessage = error.localizedDescription
-                showsError = true
             }
         }
     }

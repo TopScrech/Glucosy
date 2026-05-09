@@ -47,6 +47,7 @@ struct CarbsRecordCard: View {
             Button("Delete", systemImage: "trash", role: .destructive) {
                 vm.deleteCarbs(record)
             }
+            .labelStyle(.iconOnly)
         }
         .contextMenu {
 #if DEBUG

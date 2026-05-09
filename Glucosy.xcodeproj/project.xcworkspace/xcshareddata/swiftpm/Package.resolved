@@ -1,5 +1,5 @@
 {
-  "originHash" : "e9f931d9f4ceee7cbc376ab84799bdad13cfa9e42551030ae05a074b5c8c6b42",
+  "originHash" : "a55836446179d36472ff49398632c931f6ef30fd5bcb40f2a72ad55db234db7a",
   "pins" : [
     {
       "identity" : "appearance",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/TopScrech/Appearance",
       "state" : {
         "branch" : "main",
-        "revision" : "88fc26ebed3e28d5f549fa76770dd464a3df852d"
+        "revision" : "63b3aa005019fd29033e8a588e0f1215b33e8403"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/TopScrech/Chit-Chat",
       "state" : {
         "branch" : "main",
-        "revision" : "fae7a6ead89161e55c173a7b620f1dffc12da239"
+        "revision" : "771e3dbd503744f95918d969a4e52e466e61675c"
       }
     },
     {
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "35f25c91da58ab6627da7aefde12c97c0a128104",
         "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "liquid-glass-alert",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TopScrech/Liquid-Glass-Alert",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3ffbf939efd69f6c413f57b7c935f7b15d95d872"
       }
     },
     {

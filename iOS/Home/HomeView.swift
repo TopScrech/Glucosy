@@ -2,11 +2,19 @@ import ScrechKit
 import SwiftData
 import OSLog
 
+#if canImport(LGAlert) && os(visionOS)
+import LGAlert
+#endif
+
 struct HomeView: View {
     @State private var vm = HealthKit()
     @EnvironmentObject private var store: ValueStore
     
 #if canImport(CoreNFC)
+#if canImport(LGAlert) && os(visionOS)
+    @Environment(\.showToast) private var showToast
+#endif
+    
     @State private var novoPenReader = PenReaderVM()
     @State private var novoPenWriteConfirmation = NovoPenWriteConfirmationVM()
     @Query(sort: \SavedPen.createdAt) private var savedPens: [SavedPen]
@@ -15,6 +23,7 @@ struct HomeView: View {
     @State private var novoPenScanErrorMessage: String?
     @State private var showsNovoPenScanError = false
     @State private var showsNovoPenWriteConfirmation = false
+    @Environment(\.showNovoPenScanToast) private var showNovoPenScanToast
 #endif
     
     let novoPenScanRequest: Int
@@ -308,13 +317,60 @@ struct HomeView: View {
                 airshotFilter: airshotFilter
             )
             
-            novoPenWriteConfirmation.present(
-                doses: missingDoses,
-                insulinType: savedPen.insulinType,
-                penTitle: savedPen.title
-            )
+            do {
+                try await novoPenWriteConfirmation.save(
+                    doses: missingDoses,
+                    insulinType: savedPen.insulinType,
+                    penTitle: savedPen.title,
+                    using: vm
+                )
+            } catch {
+                novoPenScanErrorMessage = error.localizedDescription
+                showsNovoPenScanError = true
+                return
+            }
             
+            showNovoPenWriteConfirmationNotice(missingDoseCount: missingDoses.count)
+        }
+    }
+    
+    private func showNovoPenWriteConfirmationNotice(missingDoseCount: Int) {
+#if canImport(LGAlert) && os(visionOS)
+        if #available(iOS 26, visionOS 26, *) {
+            showToast(.init(
+                title: novoPenScanToastTitle(missingDoseCount: missingDoseCount),
+                duration: 5,
+                symbol: "wave.3.right",
+                actionTitle: missingDoseCount > 0 ? String(localized: "View All") : nil
+            ) {
+                showsNovoPenWriteConfirmation = true
+                return true
+            })
+        } else {
             showsNovoPenWriteConfirmation = true
+        }
+#else
+        if #available(iOS 26, *) {
+            showNovoPenScanToast(NovoPenScanToast(
+                title: novoPenScanToastTitle(missingDoseCount: missingDoseCount),
+                showsViewAll: missingDoseCount > 0,
+                viewAll: showNovoPenWriteConfirmationSheet
+            ))
+        } else {
+            showsNovoPenWriteConfirmation = true
+        }
+#endif
+    }
+    
+    private func showNovoPenWriteConfirmationSheet() {
+        showsNovoPenWriteConfirmation = true
+    }
+    
+    private func novoPenScanToastTitle(missingDoseCount: Int) -> String {
+        if missingDoseCount > 0 {
+            String(localized: "\(missingDoseCount) doses saved")
+        } else {
+            String(localized: "No new doses")
         }
     }
 #endif

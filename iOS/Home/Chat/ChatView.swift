@@ -7,6 +7,8 @@ struct ChatView: View {
     @State private var alertTokenWindowUsage = false
     @State private var carbDraft: ChatCarbDraft?
     
+    @FocusState private var isFocused
+    
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -49,7 +51,7 @@ struct ChatView: View {
             }
         }
         .overlay(alignment: .bottom) {
-            ChatComposer(prompt: $vm.prompt, isResponding: $vm.isResponding) {
+            ChatComposer(prompt: $vm.prompt, isResponding: $vm.isResponding, isFocused: $isFocused) {
                 Task {
                     await vm.sendPrompt()
                 }

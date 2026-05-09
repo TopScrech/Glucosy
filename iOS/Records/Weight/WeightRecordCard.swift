@@ -46,6 +46,7 @@ struct WeightRecordCard: View {
             Button("Delete", systemImage: "trash", role: .destructive) {
                 vm.deleteWeight(record)
             }
+            .labelStyle(.iconOnly)
         }
         .contextMenu {
 #if DEBUG

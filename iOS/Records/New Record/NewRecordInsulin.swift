@@ -93,7 +93,7 @@ struct NewRecordInsulin: View {
         Task {
             do {
                 isAdding = true
-                try await vm.writeInsulin(value: units, type: purpose, date: date)
+                _ = try await vm.writeInsulin(value: units, type: purpose, date: date)
                 dismiss()
             } catch {
                 errorMessage = error.localizedDescription

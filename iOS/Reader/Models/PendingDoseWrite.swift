@@ -1,6 +1,6 @@
 import Foundation
 
-struct PendingDoseWrite: Identifiable, Hashable {
+struct PendingDoseWrite: Identifiable {
     let id = UUID()
     let dose: DoseEntry
 }

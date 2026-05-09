@@ -1,6 +1,10 @@
 import SwiftUI
 import SwiftData
 
+#if canImport(LGAlert) && os(visionOS)
+import LGAlert
+#endif
+
 #if canImport(Appearance)
 import Appearance
 #endif
@@ -12,11 +16,34 @@ struct AppContainer: View {
     @State private var novoPenScanRequest = 0
     
     var body: some View {
-        NavigationStack {
+        Group {
+#if canImport(LGAlert) && os(visionOS)
+            if #available(iOS 26, visionOS 26, *) {
+                NavigationStack {
 #if os(watchOS)
-            HomeView()
+                    HomeView()
 #else
-            HomeView(novoPenScanRequest: novoPenScanRequest)
+                    HomeView(novoPenScanRequest: novoPenScanRequest)
+#endif
+                }
+                .toastRoot()
+            } else {
+                NavigationStack {
+#if os(watchOS)
+                    HomeView()
+#else
+                    HomeView(novoPenScanRequest: novoPenScanRequest)
+#endif
+                }
+            }
+#else
+            NavigationStack {
+#if os(watchOS)
+                HomeView()
+#else
+                HomeView(novoPenScanRequest: novoPenScanRequest)
+#endif
+            }
 #endif
         }
         .environment(router)

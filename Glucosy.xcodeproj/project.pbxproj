@@ -22,7 +22,6 @@
 		F3F8ED9A2D2EA2FE004A2638 /* watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F4C100012F8A000000000001 /* ChitChat in Frameworks */ = {isa = PBXBuildFile; productRef = F4C100042F8A000000000001 /* ChitChat */; };
 		F4C100022F8A000000000001 /* ChitChat in Frameworks */ = {isa = PBXBuildFile; productRef = F4C100052F8A000000000001 /* ChitChat */; };
-		F4D200022F9B000000000001 /* LGAlert in Frameworks */ = {isa = PBXBuildFile; productRef = F4D200032F9B000000000001 /* LGAlert */; };
 		F4D200042F9B000000000001 /* LGAlert in Frameworks */ = {isa = PBXBuildFile; productRef = F4D200052F9B000000000001 /* LGAlert */; };
 /* End PBXBuildFile section */
 
@@ -272,7 +271,6 @@
 				F32B20A42CD5854700925351 /* Algorithms in Frameworks */,
 				F3A9C4A72E99A5B80052700B /* Appearance in Frameworks */,
 				F32B209E2CD5852800925351 /* HealthyKit in Frameworks */,
-				F4D200022F9B000000000001 /* LGAlert in Frameworks */,
 			);
 		};
 		F3C7127E2F82B566008A7E17 /* Frameworks */ = {
@@ -376,7 +374,6 @@
 				F32B20A32CD5854700925351 /* Algorithms */,
 				F3242A302DDE803B000A16E8 /* ScrechKit */,
 				F3A9C4A62E99A5B80052700B /* Appearance */,
-				F4D200032F9B000000000001 /* LGAlert */,
 			);
 			productName = Glucosy;
 			productReference = F32B207A2CD5823B00925351 /* iOS.app */;
@@ -1114,11 +1111,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */;
 			productName = ChitChat;
-		};
-		F4D200032F9B000000000001 /* LGAlert */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F4D200012F9B000000000001 /* XCRemoteSwiftPackageReference "Liquid-Glass-Alert" */;
-			productName = LGAlert;
 		};
 		F4D200052F9B000000000001 /* LGAlert */ = {
 			isa = XCSwiftPackageProductDependency;

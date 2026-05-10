@@ -13,6 +13,7 @@ struct AppContainer: View {
     private let router = AppRouter.shared
     @StateObject private var store = ValueStore()
     
+    @State private var assistantRequest = 0
     @State private var novoPenScanRequest = 0
 #if canImport(CoreNFC)
     @State private var novoPenScanToast: NovoPenScanToast?
@@ -27,7 +28,10 @@ struct AppContainer: View {
 #if os(watchOS)
                     HomeView()
 #else
-                    HomeView(novoPenScanRequest: novoPenScanRequest)
+                    HomeView(
+                        assistantRequest: assistantRequest,
+                        novoPenScanRequest: novoPenScanRequest
+                    )
 #endif
                 }
                 .toastRoot()
@@ -36,7 +40,10 @@ struct AppContainer: View {
 #if os(watchOS)
                     HomeView()
 #else
-                    HomeView(novoPenScanRequest: novoPenScanRequest)
+                    HomeView(
+                        assistantRequest: assistantRequest,
+                        novoPenScanRequest: novoPenScanRequest
+                    )
 #endif
                 }
             }
@@ -45,7 +52,10 @@ struct AppContainer: View {
 #if os(watchOS)
                 HomeView()
 #else
-                HomeView(novoPenScanRequest: novoPenScanRequest)
+                HomeView(
+                    assistantRequest: assistantRequest,
+                    novoPenScanRequest: novoPenScanRequest
+                )
 #endif
             }
 #endif
@@ -96,6 +106,9 @@ struct AppContainer: View {
             }
             
             switch action {
+            case .openAssistant:
+                assistantRequest += 1
+                
             case .startNovoPenScan:
                 novoPenScanRequest += 1
             }

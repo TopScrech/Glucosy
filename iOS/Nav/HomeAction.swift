@@ -1,11 +1,14 @@
 import SwiftUI
 
 enum HomeAction {
-    case startNovoPenScan
+    case openAssistant, startNovoPenScan
     
 #if os(iOS)
     init?(shortcutItem: UIApplicationShortcutItem) {
         switch shortcutItem.type {
+        case Self.openAssistantType:
+            self = .openAssistant
+            
         case Self.startNovoPenScanType:
             self = .startNovoPenScan
             
@@ -14,6 +17,10 @@ enum HomeAction {
         }
     }
 #endif
+    
+    private static var openAssistantType: String {
+        "\(Bundle.main.bundleIdentifier ?? "dev.topscrech.Glucosy").openAssistant"
+    }
     
     private static var startNovoPenScanType: String {
         "\(Bundle.main.bundleIdentifier ?? "dev.topscrech.Glucosy").startNovoPenScan"

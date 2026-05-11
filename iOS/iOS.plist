@@ -6,6 +6,14 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>apple.intelligence</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Assistant</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).openAssistant</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
 			<string>wave.3.right</string>
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Scan NovoPen</string>

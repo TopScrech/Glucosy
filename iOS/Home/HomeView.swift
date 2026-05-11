@@ -26,6 +26,7 @@ struct HomeView: View {
     @Environment(\.showNovoPenScanToast) private var showNovoPenScanToast
 #endif
     
+    let assistantRequest: Int
     let novoPenScanRequest: Int
     
     @State private var showsSettings = false
@@ -90,6 +91,13 @@ struct HomeView: View {
         }
         .navigationDestination(for: TodayMetricDestination.self) {
             destinationView(for: $0)
+        }
+        .onChange(of: assistantRequest) { oldValue, newValue in
+            guard newValue > oldValue else {
+                return
+            }
+            
+            sheetChat = true
         }
 #if canImport(CoreNFC)
         .sheet(isPresented: $showsNovoPenWriteConfirmation, onDismiss: novoPenWriteConfirmation.dismiss) {
@@ -378,7 +386,10 @@ struct HomeView: View {
 
 #Preview {
     NavigationStack {
-        HomeView(novoPenScanRequest: 0)
+        HomeView(
+            assistantRequest: 0,
+            novoPenScanRequest: 0
+        )
     }
     .darkSchemePreferred()
     .environmentObject(ValueStore())

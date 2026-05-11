@@ -22,7 +22,6 @@
 		F3F8ED9A2D2EA2FE004A2638 /* watchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F3F8ED8D2D2EA2FD004A2638 /* watchOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F4C100012F8A000000000001 /* ChitChat in Frameworks */ = {isa = PBXBuildFile; productRef = F4C100042F8A000000000001 /* ChitChat */; };
 		F4C100022F8A000000000001 /* ChitChat in Frameworks */ = {isa = PBXBuildFile; productRef = F4C100052F8A000000000001 /* ChitChat */; };
-		F4D200042F9B000000000001 /* LGAlert in Frameworks */ = {isa = PBXBuildFile; productRef = F4D200052F9B000000000001 /* LGAlert */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +142,8 @@
 				Reader/Models/DoseHealthKitMatch.swift,
 				Reader/Models/DoseHealthKitMatcher.swift,
 				Reader/Models/DoseIdentity.swift,
+				"Reader/Models/NovoPenSavedDose + Display.swift",
+				Reader/Models/NovoPenSavedDose.swift,
 				"Reader/Models/PendingDoseWrite + Display.swift",
 				Reader/Models/PendingDoseWrite.swift,
 				"Reader/Models/PenReading + Display.swift",
@@ -150,8 +151,6 @@
 				Reader/Models/ReaderLogEntry.swift,
 				Reader/Models/ReaderOptions.swift,
 				Reader/Models/ReaderStatus.swift,
-				"Reader/Models/NovoPenSavedDose + Display.swift",
-				Reader/Models/NovoPenSavedDose.swift,
 				Reader/Models/SavedPen.swift,
 				Reader/NovoPenWriteConfirmationVM.swift,
 				Reader/PenReaderVM.swift,
@@ -675,7 +674,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 64.1.2;
+				MARKETING_VERSION = 64.1.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -737,7 +736,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 64.1.2;
+				MARKETING_VERSION = 64.1.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -1114,11 +1113,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */;
 			productName = ChitChat;
-		};
-		F4D200052F9B000000000001 /* LGAlert */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F4D200012F9B000000000001 /* XCRemoteSwiftPackageReference "Liquid-Glass-Alert" */;
-			productName = LGAlert;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

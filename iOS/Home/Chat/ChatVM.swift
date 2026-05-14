@@ -145,7 +145,7 @@ final class ChatVM {
     }
     
     private func updateTranscriptTokenUsage() async {
-        guard #available(iOS 26.4, visionOS 26.4, *) else {
+        guard #available(iOS 26.4, *) else {
             return
         }
         

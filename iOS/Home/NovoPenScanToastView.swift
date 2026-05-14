@@ -7,7 +7,7 @@ struct NovoPenScanToastView: View {
     let dismiss: () -> Void
     
     var body: some View {
-        if #available(iOS 26, visionOS 26, *) {
+        if #available(iOS 26, *) {
             HStack {
                 Image(systemName: "wave.3.right")
                     .font(.title3)

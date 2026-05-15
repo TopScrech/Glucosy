@@ -1035,8 +1035,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TopScrech/ScrechKit";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		F32B20A22CD5854700925351 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
@@ -1051,8 +1051,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TopScrech/Appearance";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		F4C100032F8A000000000001 /* XCRemoteSwiftPackageReference "Chit-Chat" */ = {

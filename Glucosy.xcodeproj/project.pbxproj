@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F3242A312DDE803B000A16E8 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3242A302DDE803B000A16E8 /* ScrechKit */; };
 		F3242A332DDE804C000A16E8 /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F3242A322DDE804C000A16E8 /* ScrechKit */; };
+		F32A1DF42D2EEC00008AEB2F /* ScrechKit in Frameworks */ = {isa = PBXBuildFile; productRef = F32A1DF52D2EEC00008AEB2F /* ScrechKit */; };
 		F32A1DDD2D2EEBD5008AEB2F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32A1DDC2D2EEBD5008AEB2F /* WidgetKit.framework */; };
 		F32A1DDF2D2EEBD5008AEB2F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F32A1DDE2D2EEBD5008AEB2F /* SwiftUI.framework */; };
 		F32A1DEE2D2EEBD5008AEB2F /* Widgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F32A1DDA2D2EEBD5008AEB2F /* Widgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -263,6 +264,7 @@
 		F32A1DD72D2EEBD5008AEB2F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				F32A1DF42D2EEC00008AEB2F /* ScrechKit in Frameworks */,
 				F32A1DDF2D2EEBD5008AEB2F /* SwiftUI.framework in Frameworks */,
 				F32A1DDD2D2EEBD5008AEB2F /* WidgetKit.framework in Frameworks */,
 			);
@@ -347,6 +349,9 @@
 				F34041852F242D0C00E8CDAE /* Widgets */,
 			);
 			name = Widgets;
+			packageProductDependencies = (
+				F32A1DF52D2EEC00008AEB2F /* ScrechKit */,
+			);
 			productName = "Glucosy WidgetsExtension";
 			productReference = F32A1DDA2D2EEBD5008AEB2F /* Widgets.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -1080,6 +1085,11 @@
 			productName = ScrechKit;
 		};
 		F3242A322DDE804C000A16E8 /* ScrechKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F32B209F2CD5853500925351 /* XCRemoteSwiftPackageReference "ScrechKit" */;
+			productName = ScrechKit;
+		};
+		F32A1DF52D2EEC00008AEB2F /* ScrechKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F32B209F2CD5853500925351 /* XCRemoteSwiftPackageReference "ScrechKit" */;
 			productName = ScrechKit;

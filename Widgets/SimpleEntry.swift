@@ -2,5 +2,6 @@ import WidgetKit
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationAppIntent
+    let weightEntries: [WeightWidgetEntry]
+    let errorDescription: String?
 }

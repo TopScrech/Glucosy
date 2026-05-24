@@ -51,7 +51,7 @@ struct HomeView: View {
         }
         .sheet($sheetChat) {
             NavigationStack {
-                if #available(iOS 26, visionOS 26, *) {
+                if #available(iOS 26, *) {
                     ChatView()
                 }
             }
@@ -344,7 +344,7 @@ struct HomeView: View {
     
     private func showNovoPenWriteConfirmationNotice(missingDoseCount: Int) {
 #if canImport(LGAlert) && os(visionOS)
-        if #available(iOS 26, visionOS 26, *) {
+        if #available(iOS 26, *) {
             showToast(.init(
                 title: novoPenScanToastTitle(missingDoseCount: missingDoseCount),
                 duration: 5,

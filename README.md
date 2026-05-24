@@ -8,3 +8,4 @@ Built for sugar daddies & mommies
 ## Supported platforms
 - iOS/iPadOS 18+
 - watchOS 11+
+- visionOS 26.4+

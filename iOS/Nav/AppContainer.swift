@@ -23,7 +23,7 @@ struct AppContainer: View {
     var body: some View {
         Group {
 #if canImport(LGAlert) && os(visionOS)
-            if #available(iOS 26, visionOS 26, *) {
+            if #available(iOS 26, *) {
                 NavigationStack {
 #if os(watchOS)
                     HomeView()

@@ -7,13 +7,12 @@ struct NovoPenScanToastView: View {
     let dismiss: () -> Void
     
     var body: some View {
-        if #available(iOS 26, visionOS 26, *) {
+        if #available(iOS 26, *) {
             HStack {
                 Image(systemName: "wave.3.right")
-                    .font(.title3)
+                    .title3()
                 
                 Text(title)
-                    .font(.body)
                     .lineLimit(1)
                 
                 Spacer(minLength: 0)
@@ -40,10 +39,9 @@ struct NovoPenScanToastView: View {
         } else {
             HStack {
                 Image(systemName: "wave.3.right")
-                    .font(.title3)
+                    .title3()
                 
                 Text(title)
-                    .font(.body)
                     .lineLimit(1)
                 
                 Spacer(minLength: 0)

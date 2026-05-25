@@ -210,6 +210,10 @@
 				Settings/SavedNovoPenCard.swift,
 				Settings/SettingsNovopenSection.swift,
 				Shortcuts/GlucosyShortcutsProvider.swift,
+				"Shortcuts/HealthKit + Shortcuts.swift",
+				Shortcuts/InsulinShortcutError.swift,
+				Shortcuts/LogBasalInsulinIntent.swift,
+				Shortcuts/LogBolusInsulinIntent.swift,
 				Shortcuts/OpenNovoPenScanIntent.swift,
 			);
 			target = F3C712802F82B566008A7E17 /* visionOS */;

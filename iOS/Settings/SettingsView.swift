@@ -21,6 +21,21 @@ struct SettingsView: View {
 #if canImport(CoreNFC)
             SettingsNovopenSection()
 #endif
+            Section {
+                Link(destination: URL(string: "https://github.com/TopScrech/Glucosy")!) {
+                    HStack {
+                        Image(.gitHub)
+                            .resizable()
+                            .frame(24)
+                            .clipShape(.circle)
+                        
+                        Text("GitHub")
+                    }
+                }
+                .tint(.primary)
+            } footer: {
+                Text("Bug reports, feature requests & contributions are always welcome!")
+            }
         }
         .navigationTitle("Settings")
         .toolbar {

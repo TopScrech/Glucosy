@@ -13,7 +13,7 @@ struct LogCarbsIntent: AppIntent {
         self.grams = grams
     }
 
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    func perform() async throws -> some IntentResult {
         guard grams > 0 else {
             throw HealthShortcutError.invalidCarbs
         }
@@ -22,8 +22,6 @@ struct LogCarbsIntent: AppIntent {
         try await healthKit.requestShortcutAuthorization()
         try await healthKit.writeShortcutCarbs(value: grams)
 
-        return .result(
-            dialog: "Logged \(grams.formatted(.number.precision(.fractionLength(1)))) grams of carbohydrates"
-        )
+        return .result()
     }
 }

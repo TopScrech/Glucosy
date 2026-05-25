@@ -13,7 +13,7 @@ struct LogWeightIntent: AppIntent {
         self.kilograms = kilograms
     }
 
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    func perform() async throws -> some IntentResult {
         guard kilograms > 0 else {
             throw HealthShortcutError.invalidWeight
         }
@@ -22,8 +22,6 @@ struct LogWeightIntent: AppIntent {
         try await healthKit.requestShortcutAuthorization()
         try await healthKit.writeShortcutWeight(value: kilograms)
 
-        return .result(
-            dialog: "Logged \(kilograms.formatted(.number.precision(.fractionLength(1)))) kilograms of weight"
-        )
+        return .result()
     }
 }

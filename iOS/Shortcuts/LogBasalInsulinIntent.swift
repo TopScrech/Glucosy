@@ -13,11 +13,11 @@ struct LogBasalInsulinIntent: AppIntent {
         self.units = units
     }
 
-    func perform() async throws -> some IntentResult & ProvidesDialog {
+    func perform() async throws -> some IntentResult {
         try await logInsulin(type: .basal)
     }
 
-    private func logInsulin(type: InsulinType) async throws -> some IntentResult & ProvidesDialog {
+    private func logInsulin(type: InsulinType) async throws -> some IntentResult {
         guard units > 0 else {
             throw HealthShortcutError.invalidInsulin
         }
@@ -26,8 +26,6 @@ struct LogBasalInsulinIntent: AppIntent {
         try await healthKit.requestShortcutAuthorization()
         _ = try await healthKit.writeInsulin(value: units, type: type)
 
-        return .result(
-            dialog: "Logged \(units.formatted(.number.precision(.fractionLength(1)))) units of basal insulin"
-        )
+        return .result()
     }
 }

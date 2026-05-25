@@ -4,7 +4,7 @@ struct LogBolusInsulinIntent: AppIntent {
     static let title: LocalizedStringResource = "Log Bolus Insulin"
     static let description = IntentDescription("Log a bolus insulin dose to Health")
     
-    @Parameter(title: "Units")
+    @Parameter(title: "Units of Insulin", inclusiveRange: (0.1, 100))
     var units: Double
     
     init() {}

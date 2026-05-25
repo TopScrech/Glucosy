@@ -4,7 +4,7 @@ struct LogCarbsIntent: AppIntent {
     static let title: LocalizedStringResource = "Log Carbohydrates"
     static let description = IntentDescription("Log carbohydrates to Health")
 
-    @Parameter(title: "Carbohydrates")
+    @Parameter(title: "Carbohydrates", inclusiveRange: (0.1, 1_000))
     var grams: Double
 
     init() {}

@@ -19,7 +19,7 @@ struct LogBolusInsulinIntent: AppIntent {
     
     private func logInsulin(type: InsulinType) async throws -> some IntentResult & ProvidesDialog {
         guard units > 0 else {
-            throw InsulinShortcutError.invalidUnits
+            throw HealthShortcutError.invalidInsulin
         }
         
         let healthKit = await HealthKit()

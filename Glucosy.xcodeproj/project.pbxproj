@@ -211,9 +211,11 @@
 				Settings/SettingsNovopenSection.swift,
 				Shortcuts/GlucosyShortcutsProvider.swift,
 				"Shortcuts/HealthKit + Shortcuts.swift",
-				Shortcuts/InsulinShortcutError.swift,
+				Shortcuts/HealthShortcutError.swift,
 				Shortcuts/LogBasalInsulinIntent.swift,
 				Shortcuts/LogBolusInsulinIntent.swift,
+				Shortcuts/LogCarbsIntent.swift,
+				Shortcuts/LogWeightIntent.swift,
 				Shortcuts/OpenNovoPenScanIntent.swift,
 			);
 			target = F3C712802F82B566008A7E17 /* visionOS */;

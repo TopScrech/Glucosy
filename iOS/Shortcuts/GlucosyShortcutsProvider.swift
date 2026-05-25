@@ -34,5 +34,27 @@ struct GlucosyShortcutsProvider: AppShortcutsProvider {
             shortTitle: "Log Basal",
             systemImageName: "syringe.fill"
         )
+        
+        AppShortcut(
+            intent: LogCarbsIntent(),
+            phrases: [
+                "Log carbohydrates in \(.applicationName)",
+                "Add carbs in \(.applicationName)",
+                "Record carbohydrates in \(.applicationName)"
+            ],
+            shortTitle: "Log Carbs",
+            systemImageName: "fork.knife"
+        )
+        
+        AppShortcut(
+            intent: LogWeightIntent(),
+            phrases: [
+                "Log weight in \(.applicationName)",
+                "Add weight in \(.applicationName)",
+                "Record weight in \(.applicationName)"
+            ],
+            shortTitle: "Log Weight",
+            systemImageName: "scalemass"
+        )
     }
 }

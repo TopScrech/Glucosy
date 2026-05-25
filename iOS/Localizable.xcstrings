@@ -55,6 +55,18 @@
             "state" : "translated",
             "value" : " kg"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " कि.ग्रा."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " kg"
+          }
         }
       }
     },
@@ -109,6 +121,18 @@
             "state" : "translated",
             "value" : "-"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "-"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "-"
+          }
         }
       }
     },
@@ -159,6 +183,18 @@
           }
         },
         "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ U"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ U"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ U"
@@ -218,6 +254,18 @@
             "state" : "translated",
             "value" : "Вибрано доз: %lld"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld खुराक चुनी गईं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dosis seleccionadas"
+          }
         }
       }
     },
@@ -271,6 +319,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld doz kaydedildi"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld खुराकें सहेजी गईं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld dosis guardadas"
           }
         }
       }
@@ -326,6 +386,18 @@
             "state" : "translated",
             "value" : "Записи %lld NovoPen не знайдено в завантаженому інсуліні HealthKit"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लोड किए गए HealthKit इंसुलिन में %lld NovoPen रिकॉर्ड नहीं मिले"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se encontraron %lld registros de NovoPen en la insulina cargada de HealthKit"
+          }
         }
       }
     },
@@ -377,6 +449,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Від 0 до 1 одиниці"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 से 1 यूनिट"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 a 1 unidades"
           }
         }
       }
@@ -430,6 +514,18 @@
             "state" : "translated",
             "value" : "Від 0 до 2 одиниць"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 से 2 यूनिट"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 a 2 unidades"
+          }
         }
       }
     },
@@ -481,6 +577,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Від 0 до 3 одиниць"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 से 3 यूनिट"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0 a 3 unidades"
           }
         }
       }
@@ -536,6 +644,18 @@
             "state" : "translated",
             "value" : "Дії"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कार्रवाइयां"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acciones"
+          }
         }
       }
     },
@@ -588,6 +708,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "додати"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जोड़ें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agregar"
           }
         }
       }
@@ -643,6 +775,18 @@
             "state" : "translated",
             "value" : "Додати ручку"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन जोड़ें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agregar pluma"
+          }
         }
       }
     },
@@ -695,6 +839,18 @@
             "state" : "translated",
             "value" : "Після їжі"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भोजन के बाद"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Después de comer"
+          }
         }
       }
     },
@@ -746,6 +902,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сталася невідома помилка"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक अज्ञात त्रुटि हुई"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se produjo un error desconocido"
           }
         }
       }
@@ -800,6 +968,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Асистент"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहायक"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asistente"
           }
         }
       }
@@ -856,6 +1036,18 @@
             "state" : "translated",
             "value" : "Асистент недоступний"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहायक उपलब्ध नहीं है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asistente no disponible"
+          }
         }
       }
     },
@@ -909,6 +1101,18 @@
             "state" : "translated",
             "value" : "Сер. %@ mg/dL"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "औसत %@ mg/dL"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prom. %@ mg/dL"
+          }
         }
       }
     },
@@ -960,6 +1164,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Базальний"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बेसल"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basal"
           }
         }
       }
@@ -1014,6 +1230,18 @@
             "state" : "translated",
             "value" : "Базальний %@ U"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बेसल %@ U"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basal %@ U"
+          }
         }
       }
     },
@@ -1065,6 +1293,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Базальний інсулін відноситься до інсуліну, який використовується для регулювання рівня глюкози в крові між прийомами їжі, у тому числі під час сну. Болюсний інсулін відноситься до інсуліну, який використовується для регулювання рівня глюкози в крові під час прийому їжі та/або для швидкого лікування високого рівня глюкози в крові."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बेसल इंसुलिन उस इंसुलिन को कहते हैं जिसका उपयोग भोजन के बीच और नींद के दौरान रक्त ग्लूकोज नियंत्रित करने के लिए किया जाता है। बोलस इंसुलिन उस इंसुलिन को कहते हैं जिसका उपयोग भोजन के समय रक्त ग्लूकोज नियंत्रित करने या उच्च रक्त ग्लूकोज को तुरंत संभालने के लिए किया जाता है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La insulina basal es la insulina usada para regular la glucosa en sangre entre comidas, incluso durante el sueño. La insulina en bolo es la insulina usada para regular la glucosa en sangre durante las comidas o para tratar rápidamente una glucosa alta"
           }
         }
       }
@@ -1118,6 +1358,18 @@
             "state" : "translated",
             "value" : "Перед прийомом їжі"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भोजन से पहले"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antes de comer"
+          }
         }
       }
     },
@@ -1169,6 +1421,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Рівень глюкози в крові"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रक्त ग्लूकोज"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glucosa en sangre"
           }
         }
       }
@@ -1222,6 +1486,18 @@
             "state" : "translated",
             "value" : "ІМТ"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BMI"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IMC"
+          }
         }
       }
     },
@@ -1273,6 +1549,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Індекс маси тіла"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बॉडी मास इंडेक्स"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Índice de masa corporal"
           }
         }
       }
@@ -1328,6 +1616,18 @@
             "state" : "translated",
             "value" : "Vücut Ağırlığı A"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शरीर का वजन A"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peso corporal A"
+          }
         }
       }
     },
@@ -1382,6 +1682,18 @@
             "state" : "translated",
             "value" : "Vücut Ağırlığı B"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शरीर का वजन B"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peso corporal B"
+          }
         }
       }
     },
@@ -1433,6 +1745,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Болюс"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बोलस"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bolo"
           }
         }
       }
@@ -1487,6 +1811,18 @@
             "state" : "translated",
             "value" : "Болюс %@ U"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बोलस %@ U"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bolo %@ U"
+          }
         }
       }
     },
@@ -1538,6 +1874,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Скасувати"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रद्द करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
           }
         }
       }
@@ -1591,6 +1939,18 @@
             "state" : "translated",
             "value" : "захоплений"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कैप्चर किया गया"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capturado"
+          }
         }
       }
     },
@@ -1643,6 +2003,18 @@
             "state" : "translated",
             "value" : "вуглеводи"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कार्बोहाइड्रेट"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carbohidratos"
+          }
         }
       }
     },
@@ -1694,6 +2066,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "вуглеводи"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कार्ब्स"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carbohidratos"
           }
         }
       }
@@ -1749,6 +2133,18 @@
             "state" : "translated",
             "value" : "Değişim"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बदलाव"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambio"
+          }
         }
       }
     },
@@ -1802,6 +2198,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dili değiştir"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भाषा बदलें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cambiar idioma"
           }
         }
       }
@@ -1860,6 +2268,18 @@
             "state" : "translated",
             "value" : "Копіювати історію доз"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खुराक इतिहास कॉपी करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copiar historial de dosis"
+          }
         }
       }
     },
@@ -1914,6 +2334,18 @@
             "state" : "translated",
             "value" : "Не вдалося додати інсулін"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंसुलिन नहीं जोड़ा जा सका"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo agregar insulina"
+          }
         }
       }
     },
@@ -1967,6 +2399,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не вдалося зберегти ручку"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन सहेजा नहीं जा सका"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo guardar la pluma"
           }
         }
       }
@@ -2023,6 +2467,18 @@
             "state" : "translated",
             "value" : "Не вдалося написати дози"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खुराकें लिखी नहीं जा सकीं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudieron escribir las dosis"
+          }
         }
       }
     },
@@ -2074,6 +2530,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Дата"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तारीख"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fecha"
           }
         }
       }
@@ -2129,6 +2597,18 @@
             "state" : "translated",
             "value" : "Налагодження"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डीबग"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depuración"
+          }
         }
       }
     },
@@ -2180,6 +2660,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Режим налагодження"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डीबग मोड"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo de depuración"
           }
         }
       }
@@ -2235,6 +2727,18 @@
             "state" : "translated",
             "value" : "Параметри налагодження"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डीबग सेटिंग्स"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuración de depuración"
+          }
         }
       }
     },
@@ -2288,6 +2792,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Видалити"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हटाएं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
           }
         }
       }
@@ -2343,6 +2859,18 @@
             "state" : "translated",
             "value" : "Видалити ручку"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन हटाएं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar pluma"
+          }
         }
       }
     },
@@ -2397,6 +2925,18 @@
             "state" : "translated",
             "value" : "Подробиці"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विवरण"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detalles"
+          }
         }
       }
     },
@@ -2448,6 +2988,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вимкнено"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अक्षम"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desactivado"
           }
         }
       }
@@ -2503,6 +3055,18 @@
             "state" : "translated",
             "value" : "Підрахунок дози"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खुराक संख्या"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de dosis"
+          }
         }
       }
     },
@@ -2556,6 +3120,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Історія доз"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "खुराक इतिहास"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historial de dosis"
           }
         }
       }
@@ -2611,6 +3187,18 @@
             "state" : "translated",
             "value" : "Оцінити вуглеводи"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कार्ब्स का अनुमान लगाएं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimar carbohidratos"
+          }
         }
       }
     },
@@ -2663,6 +3251,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Приблизно HbA1c"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुमानित HbA1c"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HbA1c estimada"
           }
         }
       }
@@ -2719,6 +3319,18 @@
             "state" : "translated",
             "value" : "Foundation Models недоступний у цій збірці"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस बिल्ड में Foundation Models उपलब्ध नहीं है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Foundation Models no está disponible en esta compilación"
+          }
         }
       }
     },
@@ -2767,6 +3379,18 @@
           }
         },
         "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "g"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "g"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "g"
@@ -2825,6 +3449,18 @@
             "state" : "translated",
             "value" : "Genel"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सामान्य"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
         }
       }
     },
@@ -2876,6 +3512,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Глюкоза"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्लूकोज"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glucosa"
           }
         }
       }
@@ -2931,6 +3579,18 @@
             "state" : "translated",
             "value" : "Приховати аерофота"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एयरशॉट्स छिपाएं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocultar purgas"
+          }
         }
       }
     },
@@ -2985,6 +3645,18 @@
             "state" : "translated",
             "value" : "Приховати журнали"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉग छिपाएं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocultar registros"
+          }
         }
       }
     },
@@ -3036,6 +3708,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тримайте NovoPen біля верхньої частини iPhone"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपने NovoPen को iPhone के ऊपरी हिस्से के पास रखें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantén tu NovoPen cerca de la parte superior del iPhone"
           }
         }
       }
@@ -3089,6 +3773,18 @@
             "state" : "translated",
             "value" : "інсулін"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंसुलिन"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insulina"
+          }
         }
       }
     },
@@ -3140,6 +3836,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Введення інсуліну"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंसुलिन डिलीवरी"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Administración de insulina"
           }
         }
       }
@@ -3195,6 +3903,18 @@
             "state" : "translated",
             "value" : "Тип інсуліну"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंसुलिन प्रकार"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo de insulina"
+          }
         }
       }
     },
@@ -3247,6 +3967,18 @@
             "state" : "translated",
             "value" : "Тримайте NovoPen біля верхнього краю iPhone, доки читання не закінчиться"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रीड पूरा होने तक NovoPen को iPhone के ऊपरी किनारे के पास रखें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mantén el NovoPen cerca del borde superior del iPhone hasta que termine la lectura"
+          }
         }
       }
     },
@@ -3295,6 +4027,18 @@
           }
         },
         "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kg"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kg"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "kg"
@@ -3353,6 +4097,18 @@
             "state" : "translated",
             "value" : "KG"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KG"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KG"
+          }
         }
       }
     },
@@ -3405,6 +4161,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Останній %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछला %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Último %@"
           }
         }
       }
@@ -3460,6 +4228,18 @@
             "state" : "translated",
             "value" : "Son 10 kilo kaydı"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पिछली 10 वजन प्रविष्टियां"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Últimas 10 entradas de peso"
+          }
         }
       }
     },
@@ -3513,6 +4293,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Останній"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नवीनतम"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Más reciente"
           }
         }
       }
@@ -3568,6 +4360,18 @@
             "state" : "translated",
             "value" : "Завантажити зразкове трасування"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नमूना ट्रेस लोड करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargar traza de muestra"
+          }
         }
       }
     },
@@ -3619,6 +4423,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Завантаження зразка траси"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नमूना ट्रेस लोड हो रहा है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cargando traza de muestra"
           }
         }
       }
@@ -3672,6 +4488,18 @@
             "state" : "translated",
             "value" : "Час прийому їжі"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भोजन समय"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hora de comida"
+          }
         }
       }
     },
@@ -3720,6 +4548,18 @@
           }
         },
         "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mg/dL"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mg/dL"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "mg/dL"
@@ -3778,6 +4618,18 @@
             "state" : "translated",
             "value" : "Minimum Kilo"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "न्यूनतम वजन"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peso mínimo"
+          }
         }
       }
     },
@@ -3832,6 +4684,18 @@
             "state" : "translated",
             "value" : "Відсутній у HealthKit"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HealthKit में अनुपस्थित"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falta en HealthKit"
+          }
         }
       }
     },
@@ -3883,6 +4747,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ммоль/л"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mmol/L"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "mmol/L"
           }
         }
       }
@@ -3938,6 +4814,18 @@
             "state" : "translated",
             "value" : "Модель"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मॉडल"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modelo"
+          }
         }
       }
     },
@@ -3989,6 +4877,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Модель, серійний номер і історію доз успішно прочитано"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मॉडल, सीरियल नंबर और खुराक इतिहास सफलतापूर्वक पढ़े गए"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El modelo, el número de serie y el historial de dosis se leyeron correctamente"
           }
         }
       }
@@ -4043,6 +4943,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ім'я"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नाम"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre"
           }
         }
       }
@@ -4099,6 +5011,18 @@
             "state" : "translated",
             "value" : "Новий чат"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नई चैट"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nuevo chat"
+          }
         }
       }
     },
@@ -4152,6 +5076,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нові дози"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नई खुराकें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nuevas dosis"
           }
         }
       }
@@ -4207,6 +5143,18 @@
             "state" : "translated",
             "value" : "Нові дози"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नई खुराकें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nuevas dosis"
+          }
         }
       }
     },
@@ -4260,6 +5208,18 @@
             "state" : "translated",
             "value" : "Новий рекорд"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नया रिकॉर्ड"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nuevo registro"
+          }
         }
       }
     },
@@ -4311,6 +5271,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сканування NFC недоступне на цьому пристрої"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस डिवाइस पर NFC स्कैनिंग उपलब्ध नहीं है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El escaneo NFC no está disponible en este dispositivo"
           }
         }
       }
@@ -4366,6 +5338,18 @@
             "state" : "translated",
             "value" : "Немає даних"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई डेटा नहीं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin datos"
+          }
         }
       }
     },
@@ -4419,6 +5403,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Записів ще немає"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी कोई प्रविष्टि नहीं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no hay entradas"
           }
         }
       }
@@ -4474,6 +5470,18 @@
             "state" : "translated",
             "value" : "Журналів ще немає"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी कोई लॉग नहीं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no hay registros"
+          }
         }
       }
     },
@@ -4528,6 +5536,18 @@
             "state" : "translated",
             "value" : "Yeni doz yok"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई नई खुराक नहीं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No hay dosis nuevas"
+          }
         }
       }
     },
@@ -4581,6 +5601,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нових доз NovoPen не знайдено"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कोई नई NovoPen खुराक नहीं मिली"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se encontraron nuevas dosis de NovoPen"
           }
         }
       }
@@ -4637,6 +5669,18 @@
             "state" : "translated",
             "value" : "Ручки ще не збережено"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी कोई पेन सहेजा नहीं गया"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no hay plumas guardadas"
+          }
         }
       }
     },
@@ -4691,6 +5735,18 @@
             "state" : "translated",
             "value" : "Ще немає збережених ручок"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी कोई सहेजा गया पेन नहीं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no hay plumas guardadas"
+          }
         }
       }
     },
@@ -4741,6 +5797,18 @@
           }
         },
         "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NovoPen"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NovoPen"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "NovoPen"
@@ -4797,6 +5865,18 @@
             "state" : "translated",
             "value" : "Дані NovoPen завантажено"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NovoPen डेटा लोड हुआ"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datos de NovoPen cargados"
+          }
         }
       }
     },
@@ -4850,6 +5930,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Читач NovoPen"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NovoPen रीडर"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lector de NovoPen"
           }
         }
       }
@@ -4905,6 +5997,18 @@
             "state" : "translated",
             "value" : "NovoPen Помилка сканування"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NovoPen स्कैन विफल रहा"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falló el escaneo de NovoPen"
+          }
         }
       }
     },
@@ -4958,6 +6062,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Перегляд сканування NovoPen"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NovoPen स्कैन दृश्य"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vista de escaneo de NovoPen"
           }
         }
       }
@@ -5013,6 +6129,18 @@
             "state" : "translated",
             "value" : "добре"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ठीक है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
         }
       }
     },
@@ -5066,6 +6194,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Відкрийте Glucosy і запустіть сканування NovoPen NFC"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glucosy खोलें और NovoPen NFC स्कैन शुरू करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre Glucosy e inicia un escaneo NFC de NovoPen"
           }
         }
       }
@@ -5121,6 +6261,18 @@
             "state" : "translated",
             "value" : "Ручка"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pluma"
+          }
         }
       }
     },
@@ -5174,6 +6326,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "псевдонім"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन का नाम"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre de la pluma"
           }
         }
       }
@@ -5229,6 +6393,18 @@
             "state" : "translated",
             "value" : "Ручка почала"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन शुरू हुआ"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pluma iniciada"
+          }
         }
       }
     },
@@ -5283,6 +6459,18 @@
             "state" : "translated",
             "value" : "Виконайте повне сканування історії"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरा इतिहास स्कैन करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Realizar escaneo de historial completo"
+          }
         }
       }
     },
@@ -5335,6 +6523,18 @@
             "state" : "translated",
             "value" : "Дайте лише одну ручку за раз"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एक बार में केवल एक पेन प्रस्तुत करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presenta solo una pluma a la vez"
+          }
         }
       }
     },
@@ -5386,6 +6586,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "призначення"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "उद्देश्य"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Propósito"
           }
         }
       }
@@ -5441,6 +6653,18 @@
             "state" : "translated",
             "value" : "Швидке додавання"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "त्वरित जोड़ें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Agregar rápido"
+          }
         }
       }
     },
@@ -5492,6 +6716,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Читання завершено"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रीड पूरा हुआ"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lectura completada"
           }
         }
       }
@@ -5545,6 +6781,18 @@
             "state" : "translated",
             "value" : "Прочитати не вдалося"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रीड विफल रहा"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lectura fallida"
+          }
         }
       }
     },
@@ -5597,6 +6845,18 @@
             "state" : "translated",
             "value" : "Читання останніх доз NovoPen"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नवीनतम NovoPen खुराकें पढ़ी जा रही हैं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leyendo las últimas dosis de NovoPen"
+          }
         }
       }
     },
@@ -5648,6 +6908,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Готовий до сканування"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्कैन के लिए तैयार"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listo para escanear"
           }
         }
       }
@@ -5703,6 +6975,18 @@
             "state" : "translated",
             "value" : "Отримати повну історію"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरा इतिहास प्राप्त करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recibir historial completo"
+          }
         }
       }
     },
@@ -5757,6 +7041,18 @@
             "state" : "translated",
             "value" : "Son vücut ağırlığı grafiği"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हालिया शरीर वजन चार्ट"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gráfico de peso corporal reciente"
+          }
         }
       }
     },
@@ -5809,6 +7105,18 @@
             "state" : "translated",
             "value" : "Записи"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रिकॉर्ड"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registros"
+          }
         }
       }
     },
@@ -5860,6 +7168,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Відтворення вихідного файлу трасування, який постачається разом із цією програмою"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस ऐप के साथ शामिल अपस्ट्रीम ट्रेस फ़ाइल फिर से चलाई जा रही है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reproduciendo el archivo de traza ascendente incluido con esta app"
           }
         }
       }
@@ -5915,6 +7235,18 @@
             "state" : "translated",
             "value" : "зберегти"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहेजें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar"
+          }
         }
       }
     },
@@ -5968,6 +7300,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Зберегти та сканувати"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहेजें और स्कैन करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar y escanear"
           }
         }
       }
@@ -6024,6 +7368,18 @@
             "state" : "translated",
             "value" : "Збережена ручка"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहेजा गया पेन"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pluma guardada"
+          }
         }
       }
     },
@@ -6079,6 +7435,18 @@
             "state" : "translated",
             "value" : "Збережені ручки"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहेजे गए पेन"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plumas guardadas"
+          }
         }
       }
     },
@@ -6132,6 +7500,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сканувати NovoPen"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NovoPen स्कैन करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escanear NovoPen"
           }
         }
       }
@@ -6187,6 +7567,18 @@
             "state" : "translated",
             "value" : "скануюча ручка"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन स्कैन करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escanear pluma"
+          }
         }
       }
     },
@@ -6241,6 +7633,18 @@
             "state" : "translated",
             "value" : "Сканована ручка"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्कैन किया गया पेन"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pluma escaneada"
+          }
         }
       }
     },
@@ -6292,6 +7696,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Скануюча ручка"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन स्कैन हो रहा है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escaneando pluma"
           }
         }
       }
@@ -6348,6 +7764,18 @@
             "state" : "translated",
             "value" : "Надіслати"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "भेजें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar"
+          }
         }
       }
     },
@@ -6402,6 +7830,18 @@
             "state" : "translated",
             "value" : "Серійний"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सीरियल"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serie"
+          }
         }
       }
     },
@@ -6453,6 +7893,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Налаштування"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सेटिंग्स"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuración"
           }
         }
       }
@@ -6508,6 +7960,18 @@
             "state" : "translated",
             "value" : "Поділитися повним журналом"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पूरा लॉग साझा करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compartir registro completo"
+          }
         }
       }
     },
@@ -6561,6 +8025,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Показати журнали"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉग दिखाएं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mostrar registros"
           }
         }
       }
@@ -6616,6 +8092,18 @@
             "state" : "translated",
             "value" : "Son 10 kilo kaydınızın grafiğini gösterir"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपकी पिछली 10 वजन प्रविष्टियों का ग्राफ दिखाता है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra un gráfico de tus últimas 10 entradas de peso"
+          }
         }
       }
     },
@@ -6669,6 +8157,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Son kilo kayıtlarınızı gösterir"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपकी हालिया वजन प्रविष्टियां दिखाता है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muestra tus entradas de peso recientes"
           }
         }
       }
@@ -6724,6 +8224,18 @@
             "state" : "translated",
             "value" : "Держава"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थिति"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado"
+          }
         }
       }
     },
@@ -6777,6 +8289,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Статус"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थिति"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estado"
           }
         }
       }
@@ -6832,6 +8356,18 @@
             "state" : "translated",
             "value" : "Резюме"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सारांश"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumen"
+          }
         }
       }
     },
@@ -6886,6 +8422,18 @@
             "state" : "translated",
             "value" : "Асистент може лише оцінити вміст вуглеводів у продукті. Використовуйте це лише як довідку, а не як медичну пораду"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहायक केवल किसी उत्पाद की कार्बोहाइड्रेट मात्रा का अनुमान लगा सकता है। इसे केवल संदर्भ के रूप में उपयोग करें, चिकित्सा सलाह के रूप में नहीं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El asistente solo puede estimar el contenido de carbohidratos de un producto. Úsalo solo como referencia, no como consejo médico"
+          }
         }
       }
     },
@@ -6937,6 +8485,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Не вдалося завантажити об’єднану трасу зразка"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "शामिल नमूना ट्रेस लोड नहीं किया जा सका"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo cargar la traza de muestra incluida"
           }
         }
       }
@@ -6990,6 +8550,18 @@
             "state" : "translated",
             "value" : "Ручка не повернула конфігураційні дані"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन ने कॉन्फ़िगरेशन पेलोड नहीं लौटाया"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La pluma no devolvió una carga útil de configuración"
+          }
         }
       }
     },
@@ -7041,6 +8613,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ручка не повертала інформацію про сегмент дози"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन ने खुराक सेगमेंट जानकारी नहीं लौटाई"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La pluma no devolvió información del segmento de dosis"
           }
         }
       }
@@ -7094,6 +8678,18 @@
             "state" : "translated",
             "value" : "Ручка повернула недійсний APDU"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन ने अमान्य APDU लौटाया"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La pluma devolvió un APDU no válido"
+          }
         }
       }
     },
@@ -7145,6 +8741,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ручка повернула код стану %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पेन ने स्थिति शब्द %@ लौटाया"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La pluma devolvió la palabra de estado %@"
           }
         }
       }
@@ -7198,6 +8806,18 @@
             "state" : "translated",
             "value" : "Зразкове трасування завершилося до завершення читання"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "रीड पूरा होने से पहले नमूना ट्रेस समाप्त हो गया"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La traza de muestra terminó antes de que finalizara la lectura"
+          }
         }
       }
     },
@@ -7249,6 +8869,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сканування скасовано"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्कैन रद्द कर दिया गया"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El escaneo se canceló"
           }
         }
       }
@@ -7305,6 +8937,18 @@
             "state" : "translated",
             "value" : "Для цього чату потрібна новіша версія iOS"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इस चैट के लिए नया iOS संस्करण आवश्यक है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este chat requiere una versión más reciente de iOS"
+          }
         }
       }
     },
@@ -7358,6 +9002,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Цей індикатор показує кількість використаних токенів"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह संकेतक उपयोग किए गए टोकन की मात्रा दिखाता है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este indicador muestra la cantidad de tokens usados"
           }
         }
       }
@@ -7413,6 +9069,18 @@
             "state" : "translated",
             "value" : "Цей збережений тип пера буде повторно використано для майбутніх сканувань NovoPen"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह सहेजा गया पेन प्रकार भविष्य के NovoPen स्कैन के लिए फिर से उपयोग किया जाएगा"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este tipo de pluma guardada se reutilizará para futuros escaneos de NovoPen"
+          }
         }
       }
     },
@@ -7465,6 +9133,18 @@
             "state" : "translated",
             "value" : "Цей тег не підтримується NovoPen"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह टैग समर्थित NovoPen नहीं है"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta etiqueta no es un NovoPen compatible"
+          }
         }
       }
     },
@@ -7516,6 +9196,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "час"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समय"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hora"
           }
         }
       }
@@ -7571,6 +9263,18 @@
             "state" : "translated",
             "value" : "Діапазон часу"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "समय सीमा"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rango de tiempo"
+          }
         }
       }
     },
@@ -7622,6 +9326,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сьогодні"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आज"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoy"
           }
         }
       }
@@ -7677,6 +9393,18 @@
             "state" : "translated",
             "value" : "Використання вікна токенів"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टोकन विंडो उपयोग"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uso de la ventana de tokens"
+          }
         }
       }
     },
@@ -7730,6 +9458,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тип"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रकार"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tipo"
           }
         }
       }
@@ -7786,6 +9526,18 @@
             "state" : "translated",
             "value" : "Введіть тут..."
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यहां टाइप करें..."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escribe aquí..."
+          }
         }
       }
     },
@@ -7834,6 +9586,18 @@
           }
         },
         "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "U"
+          }
+        },
+        "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "U"
@@ -7892,6 +9656,18 @@
             "state" : "translated",
             "value" : "Недоступний"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अनुपलब्ध"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No disponible"
+          }
         }
       }
     },
@@ -7946,6 +9722,18 @@
             "state" : "translated",
             "value" : "одиниці"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यूनिट"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidades"
+          }
         }
       }
     },
@@ -7997,6 +9785,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Одиниці інсуліну"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंसुलिन की यूनिट"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unidades de insulina"
           }
         }
       }
@@ -8051,6 +9851,18 @@
             "state" : "translated",
             "value" : "Невідомий"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अज्ञात"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desconocido"
+          }
         }
       }
     },
@@ -8102,6 +9914,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Невизначений"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "निर्दिष्ट नहीं"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin especificar"
           }
         }
       }
@@ -8158,6 +9982,18 @@
             "state" : "translated",
             "value" : "Оновлено %@"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपडेट किया गया %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualizado %@"
+          }
         }
       }
     },
@@ -8209,6 +10045,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Використовуйте справжнє сканування NFC на пристрої або завантажте пакетне трасування в симулятор"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिवाइस पर वास्तविक NFC स्कैन का उपयोग करें या सिम्युलेटर में शामिल ट्रेस लोड करें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa un escaneo NFC real en el dispositivo o carga la traza incluida en el simulador"
           }
         }
       }
@@ -8264,6 +10112,18 @@
             "state" : "translated",
             "value" : "Tümünü Gör"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सभी देखें"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver todo"
+          }
         }
       }
     },
@@ -8318,6 +10178,18 @@
             "state" : "translated",
             "value" : "вага"
           }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "वजन"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peso"
+          }
         }
       }
     },
@@ -8369,6 +10241,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "вчора"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कल"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ayer"
           }
         }
       }

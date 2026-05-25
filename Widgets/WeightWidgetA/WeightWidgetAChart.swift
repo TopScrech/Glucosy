@@ -1,7 +1,7 @@
 import Charts
 import ScrechKit
 
-struct WeightWidgetChartView: View {
+struct WeightWidgetAChart: View {
     let entries: [WeightWidgetEntry]
     
     private var yDomain: ClosedRange<Double> {

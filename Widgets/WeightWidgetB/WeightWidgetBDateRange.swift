@@ -1,6 +1,6 @@
 import ScrechKit
 
-struct BodyWeightChartDateRangeView: View {
+struct WeightWidgetBDateRange: View {
     let entries: [WeightWidgetEntry]
     
     private var firstDate: Date? {

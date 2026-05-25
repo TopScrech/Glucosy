@@ -1,7 +1,10 @@
 import Charts
 import ScrechKit
+import WidgetKit
 
-struct BodyWeightChartView: View {
+struct WeightWidgetBChart: View {
+    @Environment(\.widgetFamily) private var widgetFamily
+    
     let entries: [WeightWidgetEntry]
     
     private var yDomain: ClosedRange<Double> {
@@ -38,7 +41,7 @@ struct BodyWeightChartView: View {
         }
         .chartYAxis(.hidden)
         .chartXAxis {
-            AxisMarks(values: .automatic(desiredCount: 4)) {
+            AxisMarks(values: .automatic(desiredCount: gridLineCount)) {
                 AxisGridLine()
             }
         }
@@ -47,6 +50,10 @@ struct BodyWeightChartView: View {
             $0.frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .accessibilityLabel("Recent body weight chart")
+    }
+    
+    private var gridLineCount: Int {
+        widgetFamily == .systemMedium ? 6 : 4
     }
     
     private var areaGradient: LinearGradient {

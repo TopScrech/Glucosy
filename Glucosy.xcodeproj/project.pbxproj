@@ -87,6 +87,7 @@
 			membershipExceptions = (
 				AppIcon.icon,
 				Assets.xcassets,
+				Localizable.xcstrings,
 				Nav/AppContainer.swift,
 				Nav/AppRouter.swift,
 				Nav/Glucosy.swift,
@@ -106,6 +107,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AppIcon.icon,
+				Localizable.xcstrings,
 			);
 			target = F32A1DD92D2EEBD5008AEB2F /* Widgets */;
 		};

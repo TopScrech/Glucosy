@@ -1,6 +1,6 @@
 import ScrechKit
 
-struct WeightWidgetEmptyView: View {
+struct WeightWidgetEmpty: View {
     let errorDescription: String?
     
     private var title: String {

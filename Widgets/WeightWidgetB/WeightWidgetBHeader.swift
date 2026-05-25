@@ -1,6 +1,6 @@
 import ScrechKit
 
-struct BodyWeightChartWidgetHeaderView: View {
+struct WeightWidgetBHeader: View {
     let entries: [WeightWidgetEntry]
     
     private var latestWeight: Double? {

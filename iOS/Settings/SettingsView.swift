@@ -23,7 +23,7 @@ struct SettingsView: View {
 #endif
             Section {
                 Link(destination: URL(string: "https://github.com/TopScrech/Glucosy")!) {
-                    HStack {
+                    HStack(spacing: 12) {
                         Image(.gitHub)
                             .resizable()
                             .frame(24)

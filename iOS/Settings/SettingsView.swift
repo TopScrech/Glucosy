@@ -22,17 +22,30 @@ struct SettingsView: View {
             SettingsNovopenSection()
 #endif
             Section {
-                Toggle(isOn: $store.debugMode) {
-                    Label("Debug mode", systemImage: "hammer")
+                Link(destination: URL(string: "https://github.com/TopScrech/Glucosy")!) {
+                    HStack(spacing: 12) {
+                        Image(.gitHub)
+                            .resizable()
+                            .frame(24)
+                            .clipShape(.circle)
+                        
+                        Text("GitHub")
+                    }
                 }
-                .foregroundStyle(.foreground)
-            }
-            
-            if store.debugMode {
-                SettingsDebugSection()
+                .tint(.primary)
+            } footer: {
+                Text("Bug reports, feature requests & contributions are always welcome!")
             }
         }
         .navigationTitle("Settings")
+        .toolbar {
+            NavigationLink {
+                DebugSettings()
+            } label: {
+                Image(systemName: "hammer")
+                    .footnote()
+            }
+        }
     }
 }
 

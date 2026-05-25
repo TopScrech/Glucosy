@@ -1,6 +1,6 @@
 import ScrechKit
 
-struct WeightWidgetChangeView: View {
+struct WeightWidgetAChange: View {
     let value: String
     
     var body: some View {

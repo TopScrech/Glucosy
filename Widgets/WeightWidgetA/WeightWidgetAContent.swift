@@ -1,6 +1,6 @@
 import ScrechKit
 
-struct WeightWidgetEntryView: View {
+struct WeightWidgetAContent: View {
     private let entry: SimpleEntry
     
     init(_ entry: SimpleEntry) {
@@ -9,16 +9,16 @@ struct WeightWidgetEntryView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 3) {
-            WeightWidgetHeaderView(entry: entry)
+            WeightWidgetAHeader(entry: entry)
                 .padding(.horizontal, 6)
                 .padding(.top, 6)
             
             if entry.weightEntries.isEmpty {
-                WeightWidgetEmptyView(errorDescription: entry.errorDescription)
+                WeightWidgetEmpty(errorDescription: entry.errorDescription)
             } else {
-                WeightWidgetChartView(entries: entry.weightEntries)
+                WeightWidgetAChart(entries: entry.weightEntries)
                 
-                WeightWidgetStatsView(entries: entry.weightEntries)
+                WeightWidgetAStats(entries: entry.weightEntries)
                     .padding(.horizontal, 6)
                     .padding(.bottom, 5)
             }

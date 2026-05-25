@@ -1,7 +1,7 @@
 import ScrechKit
 import WidgetKit
 
-struct WeightWidgetHeaderView: View {
+struct WeightWidgetAHeader: View {
     @Environment(\.widgetFamily) private var widgetFamily
     
     let entry: SimpleEntry

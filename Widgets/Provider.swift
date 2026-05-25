@@ -43,6 +43,33 @@ extension Provider {
         ]
     }
     
+    static var bodyWeightChartPreviewEntries: [WeightWidgetEntry] {
+        [
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-21 * 86_400), value: 108.3),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-20 * 86_400), value: 107.6),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-19 * 86_400), value: 108.1),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-18 * 86_400), value: 108.8),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-17 * 86_400), value: 109.0),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-16 * 86_400), value: 109.1),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-15 * 86_400), value: 109.2),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-14 * 86_400), value: 109.3),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-13 * 86_400), value: 109.4),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-12 * 86_400), value: 109.5),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-11 * 86_400), value: 109.5),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-10 * 86_400), value: 109.6),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-9 * 86_400), value: 109.6),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-8 * 86_400), value: 109.3),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-7 * 86_400), value: 109.4),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-6 * 86_400), value: 109.6),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-5 * 86_400), value: 109.9),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-4 * 86_400), value: 110.2),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-3 * 86_400), value: 110.5),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-2 * 86_400), value: 112.1),
+            WeightWidgetEntry(id: UUID(), date: .now.addingTimeInterval(-86_400), value: 110.1),
+            WeightWidgetEntry(id: UUID(), date: .now, value: 109.6)
+        ]
+    }
+    
     func weightEntry() async -> SimpleEntry {
         do {
             let entries = try await loadWeightEntries()

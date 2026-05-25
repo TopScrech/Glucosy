@@ -1,6 +1,6 @@
 import ScrechKit
 
-struct WeightWidgetStatsView: View {
+struct WeightWidgetAStats: View {
     let entries: [WeightWidgetEntry]
     
     private var beginEntry: WeightWidgetEntry? {
@@ -16,7 +16,7 @@ struct WeightWidgetStatsView: View {
     }
     
     var body: some View {
-        WeightWidgetChangeView(value: changeText)
+        WeightWidgetAChange(value: changeText)
             .accessibilityElement(children: .combine)
             .accessibilityLabel(accessibilityLabel)
     }

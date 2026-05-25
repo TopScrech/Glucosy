@@ -25,7 +25,7 @@ struct WeightWidgetChartView: View {
                 y: .value("Weight", $0.value)
             )
             .interpolationMethod(.catmullRom)
-            .foregroundStyle(.cyan)
+            .foregroundStyle(.indigo)
             .lineStyle(.init(lineWidth: 3, lineCap: .round, lineJoin: .round))
             
             PointMark(
@@ -33,7 +33,7 @@ struct WeightWidgetChartView: View {
                 y: .value("Weight", $0.value)
             )
             .symbolSize(28)
-            .foregroundStyle(.cyan)
+            .foregroundStyle(.indigo)
         }
         .chartLegend(.hidden)
         .chartXAxis(.hidden)

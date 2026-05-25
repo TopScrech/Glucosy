@@ -10,6 +10,7 @@ struct BodyWeightChartWidgetHeaderView: View {
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 6) {
             Text("Weight")
+                .rounded()
                 .bold()
                 .foregroundStyle(.indigo)
                 .lineLimit(1)

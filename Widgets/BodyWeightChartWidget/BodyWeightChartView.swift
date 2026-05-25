@@ -36,12 +36,10 @@ struct BodyWeightChartView: View {
             .foregroundStyle(.indigo)
             .lineStyle(.init(lineWidth: 3, lineCap: .round, lineJoin: .round))
         }
-        .chartLegend(.hidden)
         .chartYAxis(.hidden)
         .chartXAxis {
             AxisMarks(values: .automatic(desiredCount: 4)) {
                 AxisGridLine()
-                    .foregroundStyle(.secondary.opacity(0.18))
             }
         }
         .chartYScale(domain: yDomain)

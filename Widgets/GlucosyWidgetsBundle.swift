@@ -4,5 +4,6 @@ import SwiftUI
 struct GlucosyWidgetsBundle: WidgetBundle {
     var body: some Widget {
         GlucosyWidgets()
+        BodyWeightChartWidget()
     }
 }

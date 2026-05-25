@@ -21,18 +21,16 @@ struct SettingsView: View {
 #if canImport(CoreNFC)
             SettingsNovopenSection()
 #endif
-            Section {
-                Toggle(isOn: $store.debugMode) {
-                    Label("Debug mode", systemImage: "hammer")
-                }
-                .foregroundStyle(.foreground)
-            }
-            
-            if store.debugMode {
-                SettingsDebugSection()
-            }
         }
         .navigationTitle("Settings")
+        .toolbar {
+            NavigationLink {
+                DebugSettings()
+            } label: {
+                Image(systemName: "hammer")
+                    .footnote()
+            }
+        }
     }
 }
 

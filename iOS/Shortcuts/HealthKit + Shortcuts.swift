@@ -2,15 +2,20 @@ import HealthKit
 import OSLog
 
 extension HealthKit {
-    func requestShortcutAuthorization() async throws {
+    func requestShortcutAuthorization(
+        for sampleType: HKSampleType,
+        deniedError: HealthShortcutError
+    ) async throws {
         let isAuthorized = await withCheckedContinuation { continuation in
             authorize {
                 continuation.resume(returning: $0)
             }
         }
 
-        guard isAuthorized else {
-            throw HealthShortcutError.authorizationDenied
+        guard isAuthorized,
+              store?.authorizationStatus(for: sampleType) == .sharingAuthorized
+        else {
+            throw deniedError
         }
     }
 
@@ -23,7 +28,7 @@ extension HealthKit {
             metadata: nil
         )
 
-        try await saveShortcutSample(sample, logName: "carbs")
+        try await saveShortcutSample(sample, deniedError: .carbsAuthorizationDenied, logName: "carbs")
         carbsRecords.insert(Carbs(value: value, sample: sample), at: 0)
     }
 
@@ -36,20 +41,28 @@ extension HealthKit {
             metadata: nil
         )
 
-        try await saveShortcutSample(sample, logName: "weight")
+        try await saveShortcutSample(sample, deniedError: .weightAuthorizationDenied, logName: "weight")
         weightRecords.insert(Weight(value: value, sample: sample), at: 0)
     }
 
-    private func saveShortcutSample(_ sample: HKQuantitySample, logName: String) async throws {
+    private func saveShortcutSample(
+        _ sample: HKQuantitySample,
+        deniedError: HealthShortcutError,
+        logName: String
+    ) async throws {
         guard let store else {
             throw HealthShortcutError.healthKitUnavailable
+        }
+
+        guard store.authorizationStatus(for: sample.quantityType) == .sharingAuthorized else {
+            throw deniedError
         }
 
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             store.save(sample) { success, error in
                 if let error {
                     Logger().error("HealthKit: error while saving \(logName): \(error)")
-                    continuation.resume(throwing: error)
+                    continuation.resume(throwing: deniedError)
                     return
                 }
 

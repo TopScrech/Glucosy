@@ -19,7 +19,10 @@ struct LogCarbsIntent: AppIntent {
         }
 
         let healthKit = await HealthKit()
-        try await healthKit.requestShortcutAuthorization()
+        try await healthKit.requestShortcutAuthorization(
+            for: healthKit.carbsType,
+            deniedError: .carbsAuthorizationDenied
+        )
         try await healthKit.writeShortcutCarbs(value: grams)
 
         return .result()

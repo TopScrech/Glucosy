@@ -19,7 +19,10 @@ struct LogWeightIntent: AppIntent {
         }
 
         let healthKit = await HealthKit()
-        try await healthKit.requestShortcutAuthorization()
+        try await healthKit.requestShortcutAuthorization(
+            for: healthKit.bodyMassType,
+            deniedError: .weightAuthorizationDenied
+        )
         try await healthKit.writeShortcutWeight(value: kilograms)
 
         return .result()

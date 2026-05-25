@@ -23,7 +23,10 @@ struct LogBolusInsulinIntent: AppIntent {
         }
         
         let healthKit = await HealthKit()
-        try await healthKit.requestShortcutAuthorization()
+        try await healthKit.requestShortcutAuthorization(
+            for: healthKit.insulinType,
+            deniedError: .insulinAuthorizationDenied
+        )
         _ = try await healthKit.writeInsulin(value: units, type: type)
         
         return .result()

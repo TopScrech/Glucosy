@@ -5,15 +5,17 @@ struct DebugSettings: View {
     
     var body: some View {
         List {
-            Toggle(isOn: $store.debugMode) {
-                Label("Debug mode", systemImage: "hammer")
-            }
-            .foregroundStyle(.foreground)
+            Toggle("Debug mode", isOn: $store.debugMode)
+                .foregroundStyle(.foreground)
             
-            Toggle("Hide Status Bar", isOn: $store.debugHideStatusBar)
+            Section {
+                Toggle("Hide Status Bar", isOn: $store.debugHideStatusBar)
+            }
 #if canImport (CoreNFC)
-            NavigationLink("NovoPen Scan View") {
-                NovoPenReader()
+            Section {
+                NavigationLink("NovoPen Scan View") {
+                    NovoPenReader()
+                }
             }
 #endif
         }

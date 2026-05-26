@@ -35,6 +35,7 @@ struct SettingsView: View {
                 .tint(.primary)
             } footer: {
                 Text("Bug reports, feature requests & contributions are always welcome!")
+                    .secondary()
             }
         }
         .navigationTitle("Settings")

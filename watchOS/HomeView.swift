@@ -8,7 +8,8 @@ struct HomeView: View {
             List {
                 ForEach(WatchRecordKind.allCases) { recordKind in
                     NavigationLink {
-                        RecordList(recordKind: recordKind)
+                        RecordList(recordKind)
+                            .environment(vm)
                     } label: {
                         Label(recordKind.title, systemImage: recordKind.systemImage)
                     }
@@ -16,7 +17,6 @@ struct HomeView: View {
             }
             .navigationTitle("Records")
         }
-        .environment(vm)
         .task {
             await vm.prepare()
         }

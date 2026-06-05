@@ -3,6 +3,8 @@ import Foundation
 enum MeasurementChartRange: String, CaseIterable, Identifiable {
     case day = "D", week = "W", month = "M", sixMonths = "6M", year = "Y"
     
+    static let allCases: [Self] = [.week, .month, .sixMonths, .year]
+    
     var id: Self {
         self
     }

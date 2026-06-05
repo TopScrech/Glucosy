@@ -15,6 +15,7 @@ struct WeightChart: View {
         let points = records.chartPoints(in: range, aggregation: .average, endingAt: now)
         let latestRecord = records.latestRecord(in: range, endingAt: now)
         let interval = range.interval(endingAt: now)
+        let yDomain = yDomain(for: points)
         
         MeasurementChartCard(
             value: summaryValue(for: latestRecord),
@@ -27,7 +28,8 @@ struct WeightChart: View {
                 Chart(points) {
                     AreaMark(
                         x: .value("Date", $0.date),
-                        y: .value("Weight", $0.value)
+                        yStart: .value("Minimum Weight", yDomain.lowerBound),
+                        yEnd: .value("Weight", $0.value)
                     )
                     .interpolationMethod(.catmullRom)
                     .foregroundStyle(
@@ -64,11 +66,24 @@ struct WeightChart: View {
                     }
                 }
                 .chartYAxis {
-                    AxisMarks(position: .trailing)
+                    AxisMarks(position: .trailing, values: .stride(by: 5))
                 }
                 .chartXScale(domain: interval.start...interval.end)
+                .chartYScale(domain: yDomain)
             }
         }
+    }
+    
+    private func yDomain(for points: [MeasurementChartPoint]) -> ClosedRange<Double> {
+        let values = points.map(\.value)
+        let lowerBound = ((values.min() ?? 0) / 5).rounded(.down) * 5
+        var upperBound = ((values.max() ?? 0) / 5).rounded(.up) * 5
+        
+        if lowerBound == upperBound {
+            upperBound += 5
+        }
+        
+        return lowerBound...upperBound
     }
     
     private func summaryValue(for latestRecord: Weight?) -> String {

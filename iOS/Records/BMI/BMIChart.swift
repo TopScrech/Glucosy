@@ -15,6 +15,7 @@ struct BMIChart: View {
         let points = records.chartPoints(in: range, aggregation: .average, endingAt: now)
         let latestRecord = records.latestRecord(in: range, endingAt: now)
         let interval = range.interval(endingAt: now)
+        let yDomain = yDomain(for: points)
         
         MeasurementChartCard(
             value: summaryValue(for: latestRecord),
@@ -27,7 +28,8 @@ struct BMIChart: View {
                 Chart(points) {
                     AreaMark(
                         x: .value("Date", $0.date),
-                        y: .value("BMI", $0.value)
+                        yStart: .value("Minimum BMI", yDomain.lowerBound),
+                        yEnd: .value("BMI", $0.value)
                     )
                     .interpolationMethod(.catmullRom)
                     .foregroundStyle(
@@ -65,11 +67,24 @@ struct BMIChart: View {
                     }
                 }
                 .chartYAxis {
-                    AxisMarks(position: .trailing)
+                    AxisMarks(position: .trailing, values: .stride(by: 2))
                 }
                 .chartXScale(domain: interval.start...interval.end)
+                .chartYScale(domain: yDomain)
             }
         }
+    }
+    
+    private func yDomain(for points: [MeasurementChartPoint]) -> ClosedRange<Double> {
+        let values = points.map(\.value)
+        let lowerBound = ((values.min() ?? 0) / 2).rounded(.down) * 2
+        var upperBound = ((values.max() ?? 0) / 2).rounded(.up) * 2
+        
+        if lowerBound == upperBound {
+            upperBound += 2
+        }
+        
+        return lowerBound...upperBound
     }
     
     private func summaryValue(for latestRecord: BMI?) -> String {

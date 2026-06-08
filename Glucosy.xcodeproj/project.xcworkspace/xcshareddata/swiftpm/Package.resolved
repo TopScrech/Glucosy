@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TopScrech/HealthyKit",
       "state" : {
-        "revision" : "f3f1fffd08de47fbb93090668a5b18ea1fed569b",
-        "version" : "1.0.1"
+        "revision" : "27fc77995d0e32244e4cca9a79f544965b1340e5",
+        "version" : "1.0.2"
       }
     },
     {

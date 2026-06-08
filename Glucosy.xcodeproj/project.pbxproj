@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 100;
+	objectVersion = 110;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -490,7 +490,7 @@
 				F3A9C4A52E99A5B80052700B /* XCRemoteSwiftPackageReference "Appearance" */,
 				F4D200012F9B000000000001 /* XCRemoteSwiftPackageReference "Liquid-Glass-Alert" */,
 			);
-			preferredProjectObjectVersion = 100;
+			preferredProjectObjectVersion = 110;
 			productRefGroup = F32B207B2CD5823B00925351 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

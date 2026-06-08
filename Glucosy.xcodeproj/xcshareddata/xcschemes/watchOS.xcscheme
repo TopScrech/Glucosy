@@ -60,7 +60,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F3F8ED8C2D2EA2FD004A2638"
             BuildableName = "watchOS.app"
-            BlueprintName = "watchOS"
             ReferencedContainer = "container:Glucosy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -77,7 +76,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F3F8ED8C2D2EA2FD004A2638"
             BuildableName = "watchOS.app"
-            BlueprintName = "watchOS"
             ReferencedContainer = "container:Glucosy.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

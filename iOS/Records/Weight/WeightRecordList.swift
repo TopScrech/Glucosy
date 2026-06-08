@@ -13,7 +13,7 @@ struct WeightRecordList: View {
         
         List {
             Section {
-                WeightChart(records: vm.weightRecords)
+                WeightChart(vm.weightRecords)
                     .listRowInsets(.init())
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)

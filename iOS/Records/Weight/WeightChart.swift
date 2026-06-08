@@ -7,7 +7,7 @@ struct WeightChart: View {
     
     private let records: [Weight]
     
-    init(records: [Weight]) {
+    init(_ records: [Weight]) {
         self.records = records
     }
     

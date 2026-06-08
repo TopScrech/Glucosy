@@ -1,22 +1,24 @@
 import ScrechKit
 
-struct WeightChartLollipop: View {
+struct MeasurementChartLollipop: View {
     let point: MeasurementChartPoint
+    let value: String
+    let tint: Color
     let lineX: CGFloat
     let pointY: CGFloat
     let plotFrame: CGRect
     let chartWidth: CGFloat
     
-    private let labelWidth: CGFloat = 118
-    private let labelVerticalPadding: CGFloat = 6
-    private let lineWidth: CGFloat = 2
-    private let markerBorderSize: CGFloat = 14
-    private let markerSize: CGFloat = 8
+    private let labelWidth = 118.0
+    private let labelVerticalPadding = 6.0
+    private let lineWidth = 2.0
+    private let markerBorderSize = 14.0
+    private let markerSize = 8.0
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             Rectangle()
-                .fill(.blue)
+                .fill(tint)
                 .frame(width: lineWidth, height: plotFrame.height)
                 .position(x: lineX, y: plotFrame.midY)
             
@@ -26,7 +28,7 @@ struct WeightChartLollipop: View {
                 .position(x: lineX, y: pointY)
             
             Circle()
-                .fill(.blue)
+                .fill(tint)
                 .frame(width: markerSize, height: markerSize)
                 .position(x: lineX, y: pointY)
             
@@ -35,16 +37,17 @@ struct WeightChartLollipop: View {
                     .caption()
                     .secondary()
                 
-                Text("\(Utils.formatTenths(point.value)) kg")
+                Text(value)
                     .headline(.semibold, design: .rounded)
                     .foregroundStyle(.primary)
             }
             .accessibilityElement(children: .combine)
             .padding(.vertical, labelVerticalPadding)
             .frame(width: labelWidth)
-            .background(.regularMaterial, in: .rect(cornerRadius: 8))
+            .modifier(MeasurementChartLollipopLabelBackground())
             .offset(x: labelOffset)
         }
+        .padding(2)
     }
     
     private var labelOffset: CGFloat {

@@ -57,58 +57,13 @@ struct WeightChart: View {
                 }
                 .chartLegend(.hidden)
                 .chartOverlay { proxy in
-                    GeometryReader { geometry in
-                        ZStack(alignment: .topLeading) {
-                            if let selectedPoint,
-                               let positionX = proxy.position(forX: selectedPoint.date),
-                               let positionY = proxy.position(forY: selectedPoint.value) {
-                                let plotFrame = geometry[proxy.plotAreaFrame]
-                                let lineX = plotFrame.origin.x + positionX
-                                let pointY = plotFrame.origin.y + positionY
-                                
-                                WeightChartLollipop(
-                                    point: selectedPoint,
-                                    lineX: lineX,
-                                    pointY: pointY,
-                                    plotFrame: plotFrame,
-                                    chartWidth: geometry.size.width
-                                )
-                                .allowsHitTesting(false)
-                            }
-                            
-                            Rectangle()
-                                .fill(.clear)
-                                .contentShape(.rect)
-                                .gesture(
-                                    SpatialTapGesture()
-                                        .onEnded {
-                                            let point = findPoint(
-                                                at: $0.location,
-                                                proxy: proxy,
-                                                geometry: geometry,
-                                                points: points
-                                            )
-                                            
-                                            if selectedPoint?.date == point?.date {
-                                                selectedPoint = nil
-                                            } else {
-                                                selectedPoint = point
-                                            }
-                                        }
-                                        .exclusively(
-                                            before: DragGesture()
-                                                .onChanged {
-                                                    selectedPoint = findPoint(
-                                                        at: $0.location,
-                                                        proxy: proxy,
-                                                        geometry: geometry,
-                                                        points: points
-                                                    )
-                                                }
-                                        )
-                                )
-                        }
-                    }
+                    MeasurementChartLollipopOverlay(
+                        proxy: proxy,
+                        points: points,
+                        selectedPoint: $selectedPoint,
+                        tint: .blue,
+                        value: lollipopValue
+                    )
                 }
                 .chartXAxis {
                     AxisMarks(values: .stride(by: range.axisStrideComponent, count: range.axisStrideCount)) { value in
@@ -132,24 +87,6 @@ struct WeightChart: View {
         }
     }
     
-    private func findPoint(
-        at location: CGPoint,
-        proxy: ChartProxy,
-        geometry: GeometryProxy,
-        points: [MeasurementChartPoint]
-    ) -> MeasurementChartPoint? {
-        let plotFrame = geometry[proxy.plotAreaFrame]
-        let relativeX = location.x - plotFrame.origin.x
-        
-        guard let date = proxy.value(atX: relativeX) as Date? else {
-            return nil
-        }
-        
-        return points.min {
-            abs($0.date.distance(to: date)) < abs($1.date.distance(to: date))
-        }
-    }
-    
     private func yDomain(for points: [MeasurementChartPoint]) -> ClosedRange<Double> {
         let values = points.map(\.value)
         let lowerBound = ((values.min() ?? 0) / 5).rounded(.down) * 5
@@ -168,5 +105,9 @@ struct WeightChart: View {
         }
         
         return "\(Utils.formatTenths(latestRecord.value)) kg"
+    }
+    
+    private func lollipopValue(for point: MeasurementChartPoint) -> String {
+        "\(Utils.formatTenths(point.value)) kg"
     }
 }

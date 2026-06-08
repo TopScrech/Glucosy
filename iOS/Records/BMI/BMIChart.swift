@@ -9,6 +9,7 @@ struct BMIChart: View {
     }
     
     @State private var range: MeasurementChartRange = .month
+    @State private var selectedPoint: MeasurementChartPoint?
     
     var body: some View {
         let now = Date.now
@@ -55,6 +56,15 @@ struct BMIChart: View {
                     .foregroundStyle(.mint)
                 }
                 .chartLegend(.hidden)
+                .chartOverlay { proxy in
+                    MeasurementChartLollipopOverlay(
+                        proxy: proxy,
+                        points: points,
+                        selectedPoint: $selectedPoint,
+                        tint: .mint,
+                        value: lollipopValue
+                    )
+                }
                 .chartXAxis {
                     AxisMarks(values: .stride(by: range.axisStrideComponent, count: range.axisStrideCount)) { value in
                         AxisGridLine()
@@ -71,6 +81,9 @@ struct BMIChart: View {
                 }
                 .chartXScale(domain: interval.start...interval.end)
                 .chartYScale(domain: yDomain)
+                .onChange(of: range) { _, _ in
+                    selectedPoint = nil
+                }
             }
         }
     }
@@ -93,5 +106,9 @@ struct BMIChart: View {
         }
         
         return Utils.formatTenths(latestRecord.value)
+    }
+    
+    private func lollipopValue(for point: MeasurementChartPoint) -> String {
+        Utils.formatTenths(point.value)
     }
 }

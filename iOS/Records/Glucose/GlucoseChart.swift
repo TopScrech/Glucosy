@@ -11,6 +11,7 @@ struct GlucoseChart: View {
     }
     
     @State private var range: MeasurementChartRange = .month
+    @State private var selectedPoint: MeasurementChartPoint?
     
     var body: some View {
         let now = Date.now
@@ -63,6 +64,15 @@ struct GlucoseChart: View {
                     .foregroundStyle(.red)
                 }
                 .chartLegend(.hidden)
+                .chartOverlay { proxy in
+                    MeasurementChartLollipopOverlay(
+                        proxy: proxy,
+                        points: points,
+                        selectedPoint: $selectedPoint,
+                        tint: .red,
+                        value: lollipopValue
+                    )
+                }
                 .chartXAxis {
                     AxisMarks(values: .stride(by: range.axisStrideComponent, count: range.axisStrideCount)) { value in
                         AxisGridLine()
@@ -78,6 +88,9 @@ struct GlucoseChart: View {
                     AxisMarks(position: .trailing)
                 }
                 .chartXScale(domain: interval.start...interval.end)
+                .onChange(of: range) { _, _ in
+                    selectedPoint = nil
+                }
             }
         }
     }
@@ -94,5 +107,17 @@ struct GlucoseChart: View {
         let maximumValue = maximum.formattedValue(in: store.glucoseUnit)
         
         return "\(minimumValue)-\(maximumValue) \(store.glucoseUnit.title)"
+    }
+    
+    private func lollipopValue(for point: MeasurementChartPoint) -> String {
+        let value = switch store.glucoseUnit {
+        case .mmolL:
+            point.value.formatted(.number.precision(.fractionLength(0 ... 1)))
+            
+        case .mgdL:
+            point.value.formatted(.number.precision(.fractionLength(0)))
+        }
+        
+        return "\(value) \(store.glucoseUnit.title)"
     }
 }

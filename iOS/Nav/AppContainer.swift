@@ -96,6 +96,13 @@ struct AppContainer: View {
             deleteSavedReaderLogIfNeeded()
         }
 #endif
+        .onOpenURL { url in
+            guard let action = HomeAction(url: url) else {
+                return
+            }
+            
+            router.request(action)
+        }
 #if !os(watchOS)
         .task(id: router.actionRequest) {
             guard

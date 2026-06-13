@@ -1,4 +1,5 @@
 import ScrechKit
+import WidgetKit
 
 struct DebugSettings: View {
     @EnvironmentObject private var store: ValueStore
@@ -26,6 +27,12 @@ struct DebugSettings: View {
                 }
             }
 #endif
+            Section {
+                Button("Reset Basal Reminder Skip", systemImage: "arrow.counterclockwise") {
+                    BasalReminderAppStorage.reset()
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
+            }
         }
         .navigationTitle("Debug Settings")
     }

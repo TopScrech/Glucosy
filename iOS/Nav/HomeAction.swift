@@ -3,6 +3,20 @@ import SwiftUI
 enum HomeAction {
     case openAssistant, startNovoPenScan
     
+    init?(url: URL) {
+        guard url.scheme == "glucosy" else {
+            return nil
+        }
+        
+        switch url.host {
+        case "startNovoPenScan":
+            self = .startNovoPenScan
+            
+        default:
+            return nil
+        }
+    }
+    
 #if os(iOS)
     init?(shortcutItem: UIApplicationShortcutItem) {
         switch shortcutItem.type {

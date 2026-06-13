@@ -27,6 +27,7 @@ extension HealthKit {
                 self?.glucoseRecords.removeAll {
                     $0.sample.uuid == record.sample.uuid
                 }
+                self?.reloadWidgets()
             }
         }
     }
@@ -47,6 +48,7 @@ extension HealthKit {
                 self?.weightRecords.removeAll {
                     $0.sample.uuid == record.sample.uuid
                 }
+                self?.reloadWidgets()
             }
         }
     }
@@ -67,6 +69,7 @@ extension HealthKit {
                 self?.bmiRecords.removeAll {
                     $0.sample.uuid == record.sample.uuid
                 }
+                self?.reloadWidgets()
             }
         }
     }
@@ -87,6 +90,7 @@ extension HealthKit {
                 self?.carbsRecords.removeAll {
                     $0.sample.uuid == record.sample.uuid
                 }
+                self?.reloadWidgets()
             }
         }
     }
@@ -107,6 +111,7 @@ extension HealthKit {
                 self?.insulinRecords.removeAll {
                     $0.sample.uuid == record.sample.uuid
                 }
+                self?.reloadWidgets()
             }
         }
     }

@@ -24,6 +24,7 @@ extension HealthKit {
             
             Task { @MainActor in
                 self?.glucoseRecords.insert(Glucose(sample: sample), at: 0)
+                self?.reloadWidgets()
             }
         }
     }
@@ -42,6 +43,11 @@ extension HealthKit {
         store?.save(samples) { _, error in
             if let error {
                 Logger().error("HealthKit: error while saving glucose: \(error)")
+                return
+            }
+            
+            Task { @MainActor in
+                self.reloadWidgets()
             }
         }
     }

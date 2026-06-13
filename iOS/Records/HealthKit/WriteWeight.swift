@@ -27,6 +27,7 @@ extension HealthKit {
                     Weight(value: value, sample: sample),
                     at: 0
                 )
+                self?.reloadWidgets()
             }
         }
     }

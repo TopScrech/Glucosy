@@ -30,6 +30,7 @@ extension HealthKit {
 
         try await saveShortcutSample(sample, deniedError: .carbsAuthorizationDenied, logName: "carbs")
         carbsRecords.insert(Carbs(value: value, sample: sample), at: 0)
+        reloadWidgets()
     }
 
     func writeShortcutWeight(value: Double, date: Date = .now) async throws {
@@ -43,6 +44,7 @@ extension HealthKit {
 
         try await saveShortcutSample(sample, deniedError: .weightAuthorizationDenied, logName: "weight")
         weightRecords.insert(Weight(value: value, sample: sample), at: 0)
+        reloadWidgets()
     }
 
     private func saveShortcutSample(

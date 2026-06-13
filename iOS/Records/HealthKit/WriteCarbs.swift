@@ -27,6 +27,7 @@ extension HealthKit {
                     Carbs(value: value, sample: sample),
                     at: 0
                 )
+                self?.reloadWidgets()
             }
         }
     }
@@ -45,6 +46,11 @@ extension HealthKit {
         store?.save(samples) { _, error in
             if let error {
                 Logger().error("HealthKit: error while saving carbs: \(error)")
+                return
+            }
+            
+            Task { @MainActor in
+                self.reloadWidgets()
             }
         }
     }

@@ -5,6 +5,7 @@ import ChitChat
 struct ChatMessage: Identifiable {
     let id = UUID()
     let role: ChatMessageRole
+    var name: String?
     var text: String
     var targetText: String
     var response: ChatAssistantResponse?
@@ -19,20 +20,23 @@ struct ChatMessage: Identifiable {
     
     init(userText: String) {
         role = .user
+        name = nil
         text = userText
         targetText = userText
         response = nil
     }
     
-    init(assistantText: String) {
+    init(assistantText: String, name: String? = nil) {
         role = .assistant
+        self.name = name
         text = assistantText
         targetText = assistantText
         response = nil
     }
     
-    init(response: ChatAssistantResponse) {
+    init(response: ChatAssistantResponse, name: String? = nil) {
         role = .assistant
+        self.name = name
         text = response.outputText
         targetText = response.outputText
         self.response = response

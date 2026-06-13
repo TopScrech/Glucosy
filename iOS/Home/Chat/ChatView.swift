@@ -38,7 +38,7 @@ struct ChatView: View {
         .scrollIndicators(.hidden)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .task {
-            vm.printContextSize()
+            await vm.printContextSize()
         }
         .alert("Token Window Usage", isPresented: $alertTokenWindowUsage) {
             

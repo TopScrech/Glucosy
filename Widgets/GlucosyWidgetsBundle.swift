@@ -7,5 +7,10 @@ struct GlucosyWidgetsBundle: WidgetBundle {
         BasalReminderWidget()
         WeightWidgetA()
         WeightWidgetB()
+        
+        if #available(iOS 18, *) {
+            NovoPenScanLockScreenWidget()
+            NovoPenScanControlWidget()
+        }
     }
 }

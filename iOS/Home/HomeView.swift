@@ -39,7 +39,7 @@ struct HomeView: View {
             VStack(alignment: .leading, spacing: 16) {
                 TodayMetricsSection(metricCards(glucoseUnit: glucoseUnit))
                 TodayQuickActions()
-                TodayLatestSection()
+                TodayRecentSection()
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)

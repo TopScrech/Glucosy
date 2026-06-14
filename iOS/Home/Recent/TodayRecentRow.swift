@@ -1,6 +1,6 @@
 import ScrechKit
 
-struct TodayLatestRow: View {
+struct TodayRecentRow: View {
     let title: LocalizedStringKey
     let value: String?
     let unit: String?
@@ -55,9 +55,9 @@ struct TodayLatestRow: View {
 }
 
 #Preview {
-    TodayLatestRow(
+    TodayRecentRow(
         title: "Blood Glucose",
-        value: "118",
+        value: "92-118",
         unit: "mg/dL",
         date: Date(),
         icon: "drop",

@@ -56,10 +56,8 @@ struct AddScannedPenSheet: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                Button(shouldPerformFullHistoryScan ? "Save & Scan" : "Save") {
-                    savePen()
-                }
-                .bold()
+                Button(shouldPerformFullHistoryScan ? "Save & Scan" : "Save", action: savePen)
+                    .bold()
             }
         }
         .alert("Could Not Save Pen", isPresented: $showsError) {

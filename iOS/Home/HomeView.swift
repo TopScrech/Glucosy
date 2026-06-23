@@ -65,7 +65,7 @@ struct HomeView: View {
             }
 #if canImport(FoundationModels)
             ToolbarItem(placement: .topBarTrailing) {
-                SFButton("apple.intelligence") {
+                SFButton("siri") {
                     sheetChat = true
                 }
                 .symbolRenderingMode(.multicolor)

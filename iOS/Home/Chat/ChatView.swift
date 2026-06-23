@@ -15,7 +15,7 @@ struct ChatView: View {
                 if vm.messages.isEmpty {
                     ContentUnavailableView(
                         "Estimate carbs",
-                        systemImage: "apple.intelligence",
+                        systemImage: "siri",
                         description: Text("The assistant can only estimate the carbohydrate content of a product. Use this as a reference only, not as medical advice")
                     )
                     .symbolRenderingMode(.multicolor)

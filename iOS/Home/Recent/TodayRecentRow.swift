@@ -20,7 +20,7 @@ struct TodayRecentRow: View {
                     .title3(.semibold, design: .rounded)
                 
                 if let date {
-                    Text(date, format: .dateTime.month().day().hour().minute())
+                    Text(date, format: .dateTime.hour().minute())
                         .caption()
                         .secondary()
                 } else {

@@ -12,9 +12,10 @@ struct MeasurementChartLollipopOverlay: View {
         GeometryReader { geometry in
             ZStack(alignment: .topLeading) {
                 if let selectedPoint,
+                   let plotFrameAnchor = proxy.plotFrame,
                    let positionX = proxy.position(forX: selectedPoint.date),
                    let positionY = proxy.position(forY: selectedPoint.value) {
-                    let plotFrame = geometry[proxy.plotAreaFrame]
+                    let plotFrame = geometry[plotFrameAnchor]
                     let lineX = plotFrame.origin.x + positionX
                     let pointY = plotFrame.origin.y + positionY
                     
@@ -65,7 +66,11 @@ struct MeasurementChartLollipopOverlay: View {
         at location: CGPoint,
         geometry: GeometryProxy
     ) -> MeasurementChartPoint? {
-        let plotFrame = geometry[proxy.plotAreaFrame]
+        guard let plotFrameAnchor = proxy.plotFrame else {
+            return nil
+        }
+        
+        let plotFrame = geometry[plotFrameAnchor]
         let relativeX = location.x - plotFrame.origin.x
         
         guard let date = proxy.value(atX: relativeX) as Date? else {

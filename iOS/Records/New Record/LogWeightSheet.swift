@@ -1,8 +1,8 @@
 import ScrechKit
 
 struct LogWeightSheet: View {
-    private static let weightRange = 15...150
-    private static let defaultWeight = 64
+    private static let weightRange = 150...1_500
+    private static let defaultWeight = 640
 
     @Environment(HealthKit.self) private var vm
     @Environment(\.dismiss) private var dismiss
@@ -31,7 +31,7 @@ struct LogWeightSheet: View {
                     Section {
                         WheelPickerView(range: Self.weightRange, selectedValue: $selectedValue) { currentValue in
                             VStack {
-                                Text(String(currentValue))
+                                Text(Double(currentValue) / 10, format: .number.precision(.fractionLength(1)))
                                     .monospacedDigit()
                                     .largeTitle(.black, design: .rounded)
                                     .numericTransition()
@@ -101,7 +101,7 @@ struct LogWeightSheet: View {
         let value: Double
         
         if #available(iOS 18, *) {
-            value = Double(selectedValue)
+            value = Double(selectedValue) / 10
         } else {
             guard let fallbackWeight else { return }
             value = fallbackWeight
@@ -125,7 +125,7 @@ struct LogWeightSheet: View {
         }
 
         return min(
-            max(Int(latestWeight.rounded()), Self.weightRange.lowerBound),
+            max(Int((latestWeight * 10).rounded()), Self.weightRange.lowerBound),
             Self.weightRange.upperBound
         )
     }

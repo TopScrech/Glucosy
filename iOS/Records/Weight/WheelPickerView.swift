@@ -8,6 +8,9 @@ struct WheelPickerView<Label: View>: View {
     @ViewBuilder var label: (Int) -> Label
     
     @State private var activePosition: Int?
+    @State private var isScrolling = false
+    @State private var smallHapticTrigger = false
+    @State private var largeHapticTrigger = false
     
     var body: some View {
         GeometryReader {
@@ -40,6 +43,14 @@ struct WheelPickerView<Label: View>: View {
         .onChange(of: activePosition) { _, newValue in
             if let newValue, selectedValue != newValue {
                 selectedValue = newValue
+
+                if isScrolling {
+                    if isLargeTick(newValue) {
+                        largeHapticTrigger.toggle()
+                    } else {
+                        smallHapticTrigger.toggle()
+                    }
+                }
             }
         }
         .onChange(of: selectedValue) { _, newValue in
@@ -48,6 +59,8 @@ struct WheelPickerView<Label: View>: View {
             }
         }
         .onScrollPhaseChange { _, newPhase in
+            isScrolling = newPhase != .idle
+
             if newPhase == .idle {
                 Task {
                     activePosition = nil
@@ -63,6 +76,8 @@ struct WheelPickerView<Label: View>: View {
                 }
             }
         }
+        .hapticOn(smallHapticTrigger, as: .selection)
+        .hapticOn(largeHapticTrigger, as: .impact(weight: .heavy))
     }
     
     @ViewBuilder
@@ -123,7 +138,7 @@ struct WheelPickerView<Label: View>: View {
         let halfStrokeWidth = strokeWidth / 2
         
         /// Larger tick for the given frequency
-        let isLargeTick = ((ticks.firstIndex(of: value) ?? 0)) % config.largeTickFrequency == 0
+        let isLargeTick = isLargeTick(value)
         
         GeometryReader { proxy in
             /// Rotating the tick to match the Stroke border shape!
@@ -165,6 +180,10 @@ struct WheelPickerView<Label: View>: View {
             .compactMap {
                 $0
             }
+    }
+
+    private func isLargeTick(_ value: Int) -> Bool {
+        (ticks.firstIndex(of: value) ?? 0) % config.largeTickFrequency == 0
     }
     
     /// Config

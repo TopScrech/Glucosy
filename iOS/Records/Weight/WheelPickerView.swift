@@ -7,10 +7,8 @@ struct WheelPickerView<Label: View>: View {
     var config = WheelPickerConfig()
     @ViewBuilder var label: (Int) -> Label
     
-    @State private var activePosition: Int?
-    @State private var isScrolling = false
-    @State private var smallHapticTrigger = false
-    @State private var largeHapticTrigger = false
+    @State private var scrollPosition: Int?
+    @State private var activeValue: Int?
     
     var body: some View {
         GeometryReader {
@@ -34,50 +32,26 @@ struct WheelPickerView<Label: View>: View {
         .task {
             try? await Task.sleep(for: .seconds(0))
             
-            guard activePosition == nil else {
+            guard scrollPosition == nil else {
                 return
             }
             
-            activePosition = selectedValue
-        }
-        .onChange(of: activePosition) { _, newValue in
-            if let newValue, selectedValue != newValue {
-                selectedValue = newValue
-
-                if isScrolling {
-                    if isLargeTick(newValue) {
-                        largeHapticTrigger.toggle()
-                    } else {
-                        smallHapticTrigger.toggle()
-                    }
-                }
-            }
+            activeValue = selectedValue
+            scrollPosition = selectedValue
         }
         .onChange(of: selectedValue) { _, newValue in
-            if activePosition != newValue {
-                activePosition = newValue
+            if activeValue != newValue {
+                activeValue = newValue
+                scrollPosition = newValue
             }
         }
         .onScrollPhaseChange { _, newPhase in
-            isScrolling = newPhase != .idle
-
             if newPhase == .idle {
-                Task {
-                    activePosition = nil
-                    try? await Task.sleep(for: .seconds(0))
-                    
-                    /// Option 1
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        activePosition = selectedValue
-                    }
-                    
-                    /// Option 2
-                    // activePosition = selectedValue
+                withAnimation(.easeInOut(duration: 0.1)) {
+                    scrollPosition = selectedValue
                 }
             }
         }
-        .hapticOn(smallHapticTrigger, as: .selection)
-        .hapticOn(largeHapticTrigger, as: .impact(weight: .heavy))
     }
     
     @ViewBuilder
@@ -99,9 +73,18 @@ struct WheelPickerView<Label: View>: View {
         .scrollIndicators(.hidden)
         .scrollClipDisabled(true)
         /// Starting and ending at the center
-        .safeAreaPadding(.horizontal, (size.width - 8) / 2)
+        .safeAreaPadding(.horizontal, (size.width - config.tickWidth) / 2)
         .scrollTargetBehavior(.viewAligned(limitBehavior: .alwaysByOne))
-        .scrollPosition(id: $activePosition, anchor: .center)
+        .scrollPosition(id: $scrollPosition, anchor: .center)
+        .onScrollGeometryChange(for: Int.self) { geometry in
+            let tickStride = config.tickWidth + config.gapBetweenTicks
+            let offset = geometry.contentOffset.x + geometry.contentInsets.leading
+            let index = Int((offset / tickStride).rounded())
+
+            return min(max(range.lowerBound + index, range.lowerBound), range.upperBound)
+        } action: { _, newValue in
+            updateSelection(to: newValue)
+        }
         .clipShape(wheelShape)
         /// Optional
         .contentShape(wheelShape)
@@ -123,7 +106,7 @@ struct WheelPickerView<Label: View>: View {
         }
         .overlay(alignment: .bottom) {
             if radius > 0 {
-                label(activePosition ?? selectedValue)
+                label(activeValue ?? selectedValue)
                     .frame(
                         maxWidth: radius,
                         maxHeight: radius - (config.strokeStyle.lineWidth / 2)
@@ -158,7 +141,7 @@ struct WheelPickerView<Label: View>: View {
                 .offset(x: -minX)
         }
         .frame(width: 3, height: strokeWidth * (isLargeTick ? config.largeTickRatio : config.smallTickRatio))
-        .frame(width: 8, alignment: .leading)
+        .frame(width: config.tickWidth, alignment: .leading)
     }
     
     private func WheelPath(_ size: CGSize, radius: CGFloat) -> Path {
@@ -185,6 +168,15 @@ struct WheelPickerView<Label: View>: View {
     private func isLargeTick(_ value: Int) -> Bool {
         (ticks.firstIndex(of: value) ?? 0) % config.largeTickFrequency == 0
     }
+
+    private func updateSelection(to newValue: Int) {
+        guard activeValue != newValue else {
+            return
+        }
+
+        activeValue = newValue
+        selectedValue = newValue
+    }
     
     /// Config
     struct WheelPickerConfig {
@@ -203,6 +195,7 @@ struct WheelPickerView<Label: View>: View {
         var smallTickRatio = 0.4
         
         /// if you want to reduce the gap between the ticks use negative spacing value!
+        var tickWidth = 8.0
         var gapBetweenTicks = -2.0
         var height = 200.0
         

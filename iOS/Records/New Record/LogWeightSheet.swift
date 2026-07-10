@@ -1,11 +1,14 @@
 import ScrechKit
 
 struct LogWeightSheet: View {
+    private static let weightRange = 15...150
+    private static let defaultWeight = 64
+
     @Environment(HealthKit.self) private var vm
     @Environment(\.dismiss) private var dismiss
     
     @State private var date = Date()
-    @State private var selectedValue = 64
+    @State private var selectedValue = Self.defaultWeight
     @State private var enteredWeight = ""
     @FocusState private var isWeightFieldFocused: Bool
     
@@ -26,7 +29,7 @@ struct LogWeightSheet: View {
                     }
                     
                     Section {
-                        WheelPickerView(range: 15...150, selectedValue: $selectedValue) { currentValue in
+                        WheelPickerView(range: Self.weightRange, selectedValue: $selectedValue) { currentValue in
                             VStack {
                                 Text(String(currentValue))
                                     .monospacedDigit()
@@ -74,6 +77,9 @@ struct LogWeightSheet: View {
         }
         .navigationTitle("Weight")
         .navigationBarTitleDisplayMode(.inline)
+        .task {
+            selectedValue = initialSelectedValue
+        }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(role: .destructive) {
@@ -111,6 +117,17 @@ struct LogWeightSheet: View {
         } else {
             fallbackWeight == nil
         }
+    }
+
+    private var initialSelectedValue: Int {
+        guard let latestWeight = vm.weightRecords.first?.value else {
+            return Self.defaultWeight
+        }
+
+        return min(
+            max(Int(latestWeight.rounded()), Self.weightRange.lowerBound),
+            Self.weightRange.upperBound
+        )
     }
 }
 

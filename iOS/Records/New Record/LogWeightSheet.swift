@@ -1,84 +1,46 @@
 import ScrechKit
 
 struct LogWeightSheet: View {
-    private static let weightRange = 150...1_500
-    private static let defaultWeight = 640
-
     @Environment(HealthKit.self) private var vm
     @Environment(\.dismiss) private var dismiss
     
     @State private var date = Date()
-    @State private var selectedValue = Self.defaultWeight
-    @State private var enteredWeight = ""
+    @State private var weightString = ""
     @FocusState private var isWeightFieldFocused: Bool
     
-    private var fallbackWeight: Double? {
-        Double(enteredWeight.replacing(",", with: "."))
+    private var weight: Double? {
+        Double(weightString.replacing(",", with: "."))
     }
     
     var body: some View {
-        Group {
-            if #available(iOS 18, *) {
-                List {
-                    Section {
-                        DatePicker("Date", selection: $date, displayedComponents: .date)
-                            .secondary()
-                        
-                        DatePicker("Time", selection: $date, displayedComponents: .hourAndMinute)
-                            .secondary()
-                    }
+        List {
+            Section {
+                DatePicker("Date", selection: $date, displayedComponents: .date)
+                    .secondary()
+
+                DatePicker("Time", selection: $date, displayedComponents: .hourAndMinute)
+                    .secondary()
+
+                HStack {
+                    Text("Weight")
+                        .secondary()
                     
-                    Section {
-                        WheelPickerView(range: Self.weightRange, selectedValue: $selectedValue) { currentValue in
-                            VStack {
-                                Text(Double(currentValue) / 10, format: .number.precision(.fractionLength(1)))
-                                    .monospacedDigit()
-                                    .largeTitle(.black, design: .rounded)
-                                    .numericTransition()
-                                    .animation(.snappy, value: currentValue)
-                                
-                                Text("KG")
-                                    .callout()
-                                    .foregroundStyle(.gray)
-                            }
-                            .padding(.top, 32)
-                        }
-                    }
-                }
-            } else {
-                List {
-                    Section {
-                        DatePicker("Date", selection: $date, displayedComponents: .date)
-                            .secondary()
-                        
-                        DatePicker("Time", selection: $date, displayedComponents: .hourAndMinute)
-                            .secondary()
-                        
-                        HStack {
-                            Text("Weight")
-                                .secondary()
-                            
-                            Spacer()
-                            
-                            TextField("", text: $enteredWeight)
-                                .focused($isWeightFieldFocused)
-                                .multilineTextAlignment(.trailing)
-                                .keyboardType(.decimalPad)
-                            
-                            Text("KG")
-                        }
-                    }
-                }
-                .task {
-                    await Task.yield()
-                    isWeightFieldFocused = true
+                    Spacer()
+
+                    TextField("", text: $weightString)
+                        .focused($isWeightFieldFocused)
+                        .multilineTextAlignment(.trailing)
+                        .keyboardType(.decimalPad)
+
+                    Text("KG")
                 }
             }
         }
         .navigationTitle("Weight")
         .navigationBarTitleDisplayMode(.inline)
         .task {
-            selectedValue = initialSelectedValue
+            await Task.yield()
+            isWeightFieldFocused = true
         }
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -92,42 +54,16 @@ struct LogWeightSheet: View {
             
             ToolbarItem(placement: .topBarTrailing) {
                 SFButton("checkmark", action: saveRecord)
-                    .disabled(saveDisabled)
+                    .disabled(weight == nil)
             }
         }
     }
     
     private func saveRecord() {
-        let value: Double
+        guard let weight else { return }
         
-        if #available(iOS 18, *) {
-            value = Double(selectedValue) / 10
-        } else {
-            guard let fallbackWeight else { return }
-            value = fallbackWeight
-        }
-        
-        vm.writeWeight(value: value, date: date)
+        vm.writeWeight(value: weight, date: date)
         dismiss()
-    }
-    
-    private var saveDisabled: Bool {
-        if #available(iOS 18, *) {
-            false
-        } else {
-            fallbackWeight == nil
-        }
-    }
-
-    private var initialSelectedValue: Int {
-        guard let latestWeight = vm.weightRecords.first?.value else {
-            return Self.defaultWeight
-        }
-
-        return min(
-            max(Int((latestWeight * 10).rounded()), Self.weightRange.lowerBound),
-            Self.weightRange.upperBound
-        )
     }
 }
 

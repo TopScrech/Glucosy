@@ -36,10 +36,6 @@ final class PenReaderVM {
         }
     }
     
-    var hasReading: Bool {
-        reading != nil
-    }
-    
     var doses: [DoseEntry] {
         reading?.doses ?? []
     }
@@ -67,10 +63,6 @@ final class PenReaderVM {
         return zip(doses, matches).compactMap {
             $1 == .missing ? $0 : nil
         }
-    }
-    
-    var logText: String {
-        logs.map(\.formattedLine).joined(separator: "\n")
     }
     
     var visibleLogText: String {

@@ -337,10 +337,7 @@ final class NovoPenSession {
             throw NovoPenError.invalidStatusWord(statusWord)
         }
         
-        return NovoPenTransceiveResult(
-            content: Data(content),
-            isSuccess: true
-        )
+        return NovoPenTransceiveResult(content: Data(content))
     }
     
     private func pauseForTransportIfNeeded() async throws {

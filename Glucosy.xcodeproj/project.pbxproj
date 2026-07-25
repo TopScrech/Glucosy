@@ -197,7 +197,6 @@
 				Reader/Views/AddScannedPenSheet.swift,
 				Reader/Views/DoseHistorySection.swift,
 				Reader/Views/DoseRow.swift,
-				Reader/Views/NovoPenPendingDoseRow.swift,
 				Reader/Views/NovoPenReader.swift,
 				Reader/Views/NovoPenSavedDoseRow.swift,
 				Reader/Views/NovoPenWriteConfirmationSheet.swift,
@@ -206,7 +205,6 @@
 				Reader/Views/ReaderDebugSection.swift,
 				Reader/Views/ReaderStatusSection.swift,
 				Reader/Views/SavedPenEditorView.swift,
-				Reader/Views/SavedPenRow.swift,
 				Settings/Novopen/SavedNovoPenCard.swift,
 				Settings/Novopen/SettingsNovopenSection.swift,
 				Shortcuts/GlucosyShortcutsProvider.swift,
@@ -223,7 +221,6 @@
 		F3C7128E2F82B567008A7E17 /* Exceptions for "visionOS" folder in "visionOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				ContentView.swift,
 				Info.plist,
 			);
 			target = F3C712802F82B566008A7E17 /* visionOS */;

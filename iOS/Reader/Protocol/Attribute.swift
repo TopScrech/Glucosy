@@ -9,7 +9,7 @@ struct Attribute {
     static let segmentUsageCount = 2427
     static let relativeTime = 2447
     static let unitCode = 2454
-    static let attributeValueMap = 2645
+    //    static let attributeValueMap = 2645
     static let segmentMap = 2638
     
     let type: Int

@@ -147,8 +147,6 @@
 				Reader/Models/DoseIdentity.swift,
 				"Reader/Models/NovoPenSavedDose + Display.swift",
 				Reader/Models/NovoPenSavedDose.swift,
-				"Reader/Models/PendingDoseWrite + Display.swift",
-				Reader/Models/PendingDoseWrite.swift,
 				"Reader/Models/PenReading + Display.swift",
 				Reader/Models/PenReading.swift,
 				Reader/Models/ReaderLogEntry.swift,

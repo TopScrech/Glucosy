@@ -1,5 +1,3 @@
-import Foundation
-
 enum WatchRecordKind: String, CaseIterable, Identifiable, Hashable {
     case glucose, insulin, carbs, weight
     

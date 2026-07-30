@@ -1,5 +1,3 @@
-import Foundation
-
 struct Specification {
     let serial: String
     let partNumber: String

@@ -1,5 +1,4 @@
 import ScrechKit
-import WidgetKit
 import AppIntents
 
 struct BasalReminderWidgetContent: View {

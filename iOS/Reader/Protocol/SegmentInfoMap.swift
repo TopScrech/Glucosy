@@ -1,5 +1,3 @@
-import Foundation
-
 struct SegmentInfoMap {
     let bits: Int
     let count: Int

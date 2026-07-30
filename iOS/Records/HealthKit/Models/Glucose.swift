@@ -1,4 +1,3 @@
-import SwiftUI
 import HealthKit
 
 struct Glucose: @MainActor HealthRecord {

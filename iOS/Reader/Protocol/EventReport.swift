@@ -1,5 +1,3 @@
-import Foundation
-
 struct EventReport {
     static let configurationNotification = 3356
     static let segmentDataNotification = 3361

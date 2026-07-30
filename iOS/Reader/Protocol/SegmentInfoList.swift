@@ -1,5 +1,3 @@
-import Foundation
-
 struct SegmentInfoList {
     let items: [SegmentInfo]
     

@@ -1,5 +1,4 @@
 import Charts
-import ScrechKit
 
 struct WeightWidgetAChart: View {
     let entries: [WeightWidgetEntry]

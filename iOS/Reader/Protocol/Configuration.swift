@@ -1,5 +1,3 @@
-import Foundation
-
 struct Configuration {
     let id: Int
     let handle: Int

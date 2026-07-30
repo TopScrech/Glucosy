@@ -1,5 +1,3 @@
-import Foundation
-
 struct ARequest {
     let version: Int
     let elements: Int

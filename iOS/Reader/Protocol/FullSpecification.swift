@@ -1,5 +1,3 @@
-import Foundation
-
 struct FullSpecification {
     let specification: Specification
     let relativeTime: Int

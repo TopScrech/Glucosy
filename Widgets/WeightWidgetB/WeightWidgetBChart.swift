@@ -1,5 +1,4 @@
 import Charts
-import ScrechKit
 import WidgetKit
 
 struct WeightWidgetBChart: View {

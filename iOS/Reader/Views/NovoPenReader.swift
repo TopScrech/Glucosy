@@ -26,6 +26,7 @@ struct NovoPenReader: View {
         }
         .navigationTitle("NovoPen Reader")
         .environment(vm)
+        .environment(healthKit)
         .onChange(of: store.debugMode) { _, newValue in
             vm.setPersistentLoggingEnabled(newValue)
         }

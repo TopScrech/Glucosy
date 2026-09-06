@@ -1,2 +1,2 @@
 # Guidelines
-Always use the sui skill if available
+When changes involve Swift/SwiftUI, always use the sui skill if available

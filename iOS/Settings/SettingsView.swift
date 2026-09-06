@@ -18,6 +18,7 @@ struct SettingsView: View {
             }
             
             GlucoseUnitPicker()
+            
 #if canImport(CoreNFC)
             SettingsNovopenSection()
 #endif

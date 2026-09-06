@@ -8,7 +8,7 @@ struct CaloriesView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("Today")
-                        .font(.headline)
+                        .headline()
 
                     HStack {
                         CaloriesEnergyCardView(kind: .active)

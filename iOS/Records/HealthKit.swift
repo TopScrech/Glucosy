@@ -6,9 +6,24 @@ final class HealthKit {
     var insulinRecords: [Insulin] = []
     var glucoseRecords: [Glucose] = []
     var carbsRecords:   [Carbs] = []
-    var weightRecords:  [Weight] = []
-    var bmiRecords:     [BMI] = []
+    var weightRecords: [Weight] = [] {
+        didSet { updateLatestWeight() }
+    }
+    var bmiRecords: [BMI] = [] {
+        didSet { updateLatestBMI() }
+    }
+
+    var savedWeight: LatestHealthMeasurement?
+    var savedBMI: LatestHealthMeasurement?
     
+    var latestWeightRecord: Weight? {
+        weightRecords.max { $0.date < $1.date }
+    }
+
+    var latestBMIRecord: BMI? {
+        bmiRecords.max { $0.date < $1.date }
+    }
+
     var energyRecords: [EnergyKind: [EnergyDay]] = [:]
     var energyErrors: [EnergyKind: String] = [:]
 
@@ -36,6 +51,8 @@ final class HealthKit {
         if isAvailable {
             store = HKHealthStore()
         }
+        restoreLatestMeasurements()
+        restoreStartupRecords()
     }
     
     private var isAvailable: Bool {

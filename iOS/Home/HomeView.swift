@@ -149,17 +149,7 @@ struct HomeView: View {
             handleNovoPenStatusChange(newValue)
         }
 #endif
-        .task {
-            if vm.store != nil {
-                await vm.restoreCachedRecords()
-                do {
-                    try await vm.requestAuthorization()
-                    await vm.reloadAllRecords()
-                } catch {
-                    Logger().error("HealthKit authorization error: \(error)")
-                }
-            }
-        }
+
     }
     
     private var latestGlucoseToday: Glucose? {
@@ -204,14 +194,6 @@ struct HomeView: View {
         return values.reduce(0, +)
     }
     
-    private var latestWeightOverall: Weight? {
-        vm.weightRecords.first
-    }
-    
-    private var latestBMIOverall: BMI? {
-        vm.bmiRecords.first
-    }
-    
     private func metricCards(glucoseUnit: GlucoseUnit) -> [TodayMetricData] {[
         TodayMetricData(
             destination: .glucose,
@@ -240,7 +222,7 @@ struct HomeView: View {
         TodayMetricData(
             destination: .weight,
             title: String(localized: "Weight"),
-            value: Utils.formatTenths(latestWeightOverall?.value),
+            value: Utils.formatTenths(vm.savedWeight?.value),
             unit: String(localized: "kg"),
             icon: "scalemass",
             color: .blue
@@ -248,7 +230,7 @@ struct HomeView: View {
         TodayMetricData(
             destination: .bmi,
             title: String(localized: "BMI"),
-            value: Utils.formatTenths(latestBMIOverall?.value),
+            value: Utils.formatTenths(vm.savedBMI?.value),
             unit: nil,
             icon: "figure",
             color: .mint

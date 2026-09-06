@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import OSLog
 
 #if canImport(LGAlert) && os(visionOS)
 import LGAlert
@@ -72,6 +73,15 @@ struct AppContainer: View {
         }
 #if !os(watchOS)
         .environment(healthKit)
+        .task {
+            await healthKit.restoreCachedRecords()
+            do {
+                try await healthKit.requestAuthorization()
+                await healthKit.reloadAllRecords()
+            } catch {
+                Logger().error("HealthKit authorization error: \(error)")
+            }
+        }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active, healthKit.restoredCache {
                 Task { await healthKit.reloadAllRecords() }

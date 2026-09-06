@@ -31,9 +31,6 @@ struct CaloriesView: View {
             .refreshable {
                 await healthKit.refreshCalories()
             }
-            .task {
-                await healthKit.refreshCalories()
-            }
         }
     }
 }

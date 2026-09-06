@@ -2,6 +2,32 @@ import HealthKit
 import OSLog
 
 extension HealthKit {
+    func restoreStartupRecords() {
+        for type in [glucoseType, insulinType, carbsType, bodyMassType, bmiType] {
+            if type == bodyMassType, savedWeight != nil { continue }
+            if type == bmiType, savedBMI != nil { continue }
+            do {
+                guard let samples = try HealthRecordCache.loadStartupSamples(for: type.identifier) else { continue }
+                switch type {
+                case glucoseType: applyGlucoseSamples(samples)
+                case insulinType: applyInsulinSamples(samples)
+                case carbsType: applyCarbsSamples(samples)
+                case bodyMassType: applyWeightSamples(samples)
+                default: applyBMISamples(samples)
+                }
+            } catch {
+                Logger().error("Could not restore startup records: \(error)")
+            }
+        }
+        for kind in EnergyKind.allCases {
+            do {
+                energyRecords[kind] = try HealthRecordCache.loadStartupEnergy(for: kind.quantityType.identifier + "-days")
+            } catch {
+                Logger().error("Could not restore startup energy: \(error)")
+            }
+        }
+    }
+
     func withRecordRefresh(for type: HKQuantityType, fullHistory: Bool, operation: @escaping () async throws -> Void) async throws {
         let key = type.identifier
         while let task = recordRefreshTasks[key] {
@@ -22,7 +48,7 @@ extension HealthKit {
     }
 
     var recentRefreshStart: Date {
-        Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: -30, to: .now) ?? .now)
+        Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: -7, to: .now) ?? .now)
     }
 
     func restoreCachedRecords() async {

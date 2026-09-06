@@ -26,6 +26,15 @@ struct HealthRecordMergeTests {
         precondition(boundary.count == 2)
         let fullRefresh = HealthRecordMerge.merge(existing: [], incoming: [updated, updated], id: \.id, date: \.date)
         precondition(fullRefresh == [updated], "Full history must replace the cache and exclude deleted older records")
-        print("HealthRecordMerge tests passed")
+        let startupCutoff = Date(timeIntervalSince1970: 200)
+        let olderMeasurements = HealthStartupRecords.select(from: [recent, old], since: startupCutoff, date: \.date)
+        precondition(olderMeasurements == [recent], "Weight and BMI must restore the latest saved measurement when nothing was recorded today")
+        let unorderedMeasurements = HealthStartupRecords.select(from: [old, updated], since: old.date, date: \.date)
+        precondition(unorderedMeasurements.first == updated, "A backdated write must not replace the latest measurement")
+        let afterDeletion = HealthStartupRecords.select(from: [old], since: startupCutoff, date: \.date)
+        precondition(afterDeletion == [old], "Deleting the latest measurement must expose the previous saved value")
+        let emptyStartup = HealthStartupRecords.select(from: [Record](), since: startupCutoff, date: \.date)
+        precondition(emptyStartup.isEmpty, "Deleting all measurements must clear the saved value")
+        print("Health record merge and startup tests passed")
     }
 }

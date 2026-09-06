@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 import ChitChat
 
 @available(iOS 26, *)

@@ -1,7 +1,7 @@
 import HealthKit
 
 struct Glucose: @MainActor HealthRecord {
-    let id = UUID()
+    var id: UUID { sample.uuid }
     let value: Double
     let sample: HKQuantitySample
     

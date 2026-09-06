@@ -17,6 +17,7 @@ extension HealthKit {
         
         let record = Insulin(value: value, type: type, sample: sample)
         insulinRecords.insert(record, at: 0)
+        await persistCurrentRecords()
         reloadWidgets()
         
         return record

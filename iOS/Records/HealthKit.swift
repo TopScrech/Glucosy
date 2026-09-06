@@ -12,6 +12,15 @@ final class HealthKit {
     var energyRecords: [EnergyKind: [EnergyDay]] = [:]
     var energyErrors: [EnergyKind: String] = [:]
 
+    let recordCache = HealthRecordCache()
+    var cacheRestoreTask: Task<Void, Never>?
+    var restoredCache = false
+    var cachedTypes: Set<String> = []
+    var cachedSamples: [String: [HKQuantitySample]] = [:]
+    var isReloading = false
+    var recordRefreshTasks: [String: Task<Void, Error>] = [:]
+    var fullHistoryRefreshes: Set<String> = []
+
     var store: HKHealthStore?
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L unavailible
     var weightUnit = HKUnit.gramUnit(with: .kilo)
@@ -78,13 +87,37 @@ final class HealthKit {
     }
     
     func reloadAllRecords() async {
-        _ = try? await reloadGlucoseRecords()
-        _ = try? await reloadInsulinRecords()
-        _ = try? await reloadCarbsRecords()
-        _ = try? await reloadWeightRecords()
-        _ = try? await reloadBMIRecords()
+        guard !isReloading else { return }
+        isReloading = true
+        defer { isReloading = false }
+        await restoreCachedRecords()
+        let glucoseLoaded = (try? await reloadGlucoseRecords()) != nil
+        let insulinLoaded = (try? await reloadInsulinRecords()) != nil
+        let carbsLoaded = (try? await reloadCarbsRecords()) != nil
+        let weightLoaded = (try? await reloadWeightRecords()) != nil
+        let bmiLoaded = (try? await reloadBMIRecords()) != nil
+        var loadedEnergy: [EnergyKind] = []
         for kind in EnergyKind.allCases {
-            await refreshEnergy(for: kind)
+            do {
+                try await reloadEnergyRecords(for: kind)
+                loadedEnergy.append(kind)
+            } catch {
+                energyErrors[kind] = error.localizedDescription
+            }
+        }
+
+        // Recent results are already visible while the complete history refresh runs
+        if glucoseLoaded { _ = try? await reloadGlucoseRecords(fullHistory: true) }
+        if insulinLoaded { _ = try? await reloadInsulinRecords(fullHistory: true) }
+        if carbsLoaded { _ = try? await reloadCarbsRecords(fullHistory: true) }
+        if weightLoaded { _ = try? await reloadWeightRecords(fullHistory: true) }
+        if bmiLoaded { _ = try? await reloadBMIRecords(fullHistory: true) }
+        for kind in loadedEnergy {
+            do {
+                try await reloadEnergyRecords(for: kind, fullHistory: true)
+            } catch {
+                energyErrors[kind] = error.localizedDescription
+            }
         }
     }
 }

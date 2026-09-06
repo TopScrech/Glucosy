@@ -151,6 +151,7 @@ struct HomeView: View {
 #endif
         .task {
             if vm.store != nil {
+                await vm.restoreCachedRecords()
                 do {
                     try await vm.requestAuthorization()
                     await vm.reloadAllRecords()

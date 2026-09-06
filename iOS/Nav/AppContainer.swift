@@ -10,6 +10,7 @@ import Appearance
 #endif
 
 struct AppContainer: View {
+    @Environment(\.scenePhase) private var scenePhase
     private let router = AppRouter.shared
     @StateObject private var store = ValueStore()
     
@@ -71,6 +72,11 @@ struct AppContainer: View {
         }
 #if !os(watchOS)
         .environment(healthKit)
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active, healthKit.restoredCache {
+                Task { await healthKit.reloadAllRecords() }
+            }
+        }
 #endif
         .environment(router)
 #if canImport(CoreNFC)

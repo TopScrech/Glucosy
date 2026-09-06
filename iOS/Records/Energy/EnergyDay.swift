@@ -1,6 +1,6 @@
 import Foundation
 
-struct EnergyDay: Identifiable {
+nonisolated struct EnergyDay: Identifiable, Codable, Sendable {
     let date: Date
     let value: Double
 

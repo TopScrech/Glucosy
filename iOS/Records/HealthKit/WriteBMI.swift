@@ -27,6 +27,7 @@ extension HealthKit {
                     BMI(value: value, sample: sample),
                     at: 0
                 )
+                await self?.persistCurrentRecords()
                 self?.reloadWidgets()
             }
         }

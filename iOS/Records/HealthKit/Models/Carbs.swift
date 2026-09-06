@@ -2,7 +2,7 @@ import SwiftUI
 import HealthKit
 
 struct Carbs: @MainActor HealthRecord {
-    let id = UUID()
+    var id: UUID { sample.uuid }
     let value: Double
     let sample: HKQuantitySample
     

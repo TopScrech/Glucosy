@@ -24,6 +24,7 @@ extension HealthKit {
             
             Task { @MainActor in
                 self?.glucoseRecords.insert(Glucose(sample: sample), at: 0)
+                await self?.persistCurrentRecords()
                 self?.reloadWidgets()
             }
         }

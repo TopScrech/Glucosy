@@ -2,7 +2,7 @@ import SwiftUI
 import HealthKit
 
 struct Insulin: @MainActor HealthRecord {
-    let id = UUID()
+    var id: UUID { sample.uuid }
     let value: Double
     let type: InsulinType
     let sample: HKQuantitySample

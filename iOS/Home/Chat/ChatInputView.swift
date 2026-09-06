@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 import PhotosUI
 
 @available(iOS 26, *)
@@ -25,7 +25,7 @@ struct ChatInputView: View {
             
             if let error = vm.attachmentError {
                 Text(error)
-                    .font(.caption)
+                    .caption()
                     .foregroundStyle(.red)
             }
             
@@ -52,7 +52,7 @@ struct ChatInputView: View {
                 
                 if vm.isLoadingImages {
                     ProgressView("Loading images")
-                        .font(.caption)
+                        .caption()
                 }
                 
                 Spacer()

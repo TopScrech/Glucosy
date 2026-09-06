@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct EnergyHistoryView: View {
     @Environment(HealthKit.self) private var healthKit
@@ -17,7 +17,7 @@ struct EnergyHistoryView: View {
             if let error = healthKit.energyErrors[kind] {
                 Section {
                     Text(error)
-                        .foregroundStyle(.secondary)
+                        .secondary()
                 }
             }
 

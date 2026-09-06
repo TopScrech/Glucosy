@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct EnergyDayRowView: View {
     let day: EnergyDay
@@ -12,7 +12,7 @@ struct EnergyDayRowView: View {
             Text(day.value, format: .number.precision(.fractionLength(0 ... 1)))
                 .monospacedDigit()
             Text("kcal")
-                .foregroundStyle(.secondary)
+                .secondary()
         }
     }
 }

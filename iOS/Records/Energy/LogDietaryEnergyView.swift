@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct LogDietaryEnergyView: View {
     @Environment(HealthKit.self) private var healthKit
@@ -18,7 +18,7 @@ struct LogDietaryEnergyView: View {
                 
                 HStack {
                     Text("kcal")
-                        .foregroundStyle(.secondary)
+                        .secondary()
                     
                     TextField("Energy", text: $form.amount)
                         .multilineTextAlignment(.trailing)

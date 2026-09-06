@@ -8,6 +8,7 @@ struct TodayQuickActions: View {
     @State private var sheetNewGlucoseRecord = false
     @State private var sheetNewWeightRecord = false
     @State private var sheetNewBMIRecord = false
+    @State private var sheetNewDietaryEnergyRecord = false
     
     private let columns = [
         GridItem(.flexible(), spacing: 12),
@@ -36,6 +37,10 @@ struct TodayQuickActions: View {
                     sheetNewCarbsRecord = true
                 }
                 
+                TodayActionButton("Dietary Energy", icon: "fork.knife", color: .orange) {
+                    sheetNewDietaryEnergyRecord = true
+                }
+
                 TodayActionButton("Weight", icon: "scalemass", color: .blue) {
                     sheetNewWeightRecord = true
                 }
@@ -56,6 +61,9 @@ struct TodayQuickActions: View {
         }
         .sheet($sheetNewWeightRecord) {
             NewRecordSheet(.weight)
+        }
+        .sheet($sheetNewDietaryEnergyRecord) {
+            NewRecordSheet(.dietaryEnergy)
         }
         .sheet($sheetNewBMIRecord) {
             NewRecordSheet(.bmi)

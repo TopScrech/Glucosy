@@ -38,7 +38,7 @@ final class HealthKit {
     }
     
     private var shareTypes: Set<HKSampleType> {
-        Set([glucoseType, insulinType, carbsType, bodyMassType, bmiType])
+        Set([glucoseType, insulinType, carbsType, bodyMassType, bmiType, EnergyKind.dietary.quantityType])
     }
     
     func requestAuthorization() async throws {

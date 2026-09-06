@@ -2,6 +2,7 @@ import SwiftUI
 
 struct EnergyHistoryView: View {
     @Environment(HealthKit.self) private var healthKit
+    @State private var showsNewRecord = false
     let kind: EnergyKind
 
     var body: some View {
@@ -27,6 +28,17 @@ struct EnergyHistoryView: View {
             }
         }
         .navigationTitle(kind.title)
+        .toolbar {
+            if kind == .dietary {
+                Button("Add Dietary Energy", systemImage: "plus") {
+                    showsNewRecord = true
+                }
+            }
+        }
+        .sheet(isPresented: $showsNewRecord) {
+            NewRecordSheet(.dietaryEnergy)
+                .environment(healthKit)
+        }
         .refreshable { await healthKit.refreshEnergy(for: kind) }
         .task { await healthKit.refreshEnergy(for: kind) }
     }

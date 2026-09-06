@@ -24,6 +24,9 @@ struct NewRecordSheet: View {
             case .weight:
                 LogWeightSheet()
                 
+            case .dietaryEnergy:
+                LogDietaryEnergyView()
+
             case .bmi:
                 LogBMISheet()
             }

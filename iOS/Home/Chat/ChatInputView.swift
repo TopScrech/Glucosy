@@ -18,7 +18,7 @@ struct ChatInputView: View {
                 }
             }
             
-            TextField("Ask about a food", text: $vm.prompt, axis: .vertical)
+            TextField("Ask about food or log a record", text: $vm.prompt, axis: .vertical)
                 .lineLimit(1...6)
                 .focused($isFocused)
                 .padding(.bottom)

@@ -8,6 +8,12 @@ final class LogDietaryEnergyVM {
     var isSaving = false
     var errorMessage: String?
 
+    init(initialAmount: Double? = nil) {
+        if let initialAmount, initialAmount.isFinite, initialAmount > 0 {
+            amount = initialAmount.formatted(.number.grouping(.never))
+        }
+    }
+
     var value: Double? {
         guard let value = Double(amount.replacing(",", with: ".")), value.isFinite, value > 0 else {
             return nil

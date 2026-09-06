@@ -6,6 +6,8 @@ struct ChatView: View {
     @State private var vm = ChatVM()
     @State private var alertTokenWindowUsage = false
     @State private var carbDraft: ChatCarbDraft?
+    @State private var insulinDraft: ChatInsulinDraft?
+    @State private var dietaryEnergyDraft: ChatDietaryEnergyDraft?
     
     
     var body: some View {
@@ -13,15 +15,19 @@ struct ChatView: View {
             LazyVStack {
                 if vm.messages.isEmpty {
                     ContentUnavailableView(
-                        "Estimate carbs",
+                        "Estimate food or log a record",
                         systemImage: "siri",
-                        description: Text("The assistant can only estimate the carbohydrate content of a product. Use this as a reference only, not as medical advice")
+                        description: Text("Estimate carbs or calories in food, or ask to log carbs, insulin, or dietary calories you provide. Review and save each entry using the add buttons")
                     )
                     .symbolRenderingMode(.multicolor)
                 } else {
                     ForEach(vm.messages) {
                         ChatMessageBubble(message: $0) {
                             carbDraft = $0
+                        } onLogInsulin: {
+                            insulinDraft = $0
+                        } onLogDietaryEnergy: {
+                            dietaryEnergyDraft = $0
                         } onStartNewChat: {
                             vm.startNewChat()
                         }
@@ -46,6 +52,16 @@ struct ChatView: View {
         .sheet(item: $carbDraft) { carbDraft in
             NavigationStack {
                 NewRecordCarbs(initialAmount: carbDraft.carbsAmount)
+            }
+        }
+        .sheet(item: $insulinDraft) { draft in
+            NavigationStack {
+                NewRecordInsulin(insulinType: draft.type, initialAmount: draft.units)
+            }
+        }
+        .sheet(item: $dietaryEnergyDraft) { draft in
+            NavigationStack {
+                LogDietaryEnergyView(initialAmount: draft.kilocalories)
             }
         }
         .safeAreaInset(edge: .bottom) {

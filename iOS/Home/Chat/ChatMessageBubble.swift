@@ -5,12 +5,19 @@ import ChitChat
 struct ChatMessageBubble: View {
     let message: ChatMessage
     let onLogCarbs: (ChatCarbDraft) -> Void
+    let onLogInsulin: (ChatInsulinDraft) -> Void
+    let onLogDietaryEnergy: (ChatDietaryEnergyDraft) -> Void
     let onStartNewChat: () -> Void
     
     var body: some View {
         let carbGramsToLog = message.response?.logCarbsAction?.carbGrams
-        let showsLogCarbsButton = message.isFullyRevealed && (carbGramsToLog ?? 0) > 0
+        let showsLogCarbsButton = message.isFullyRevealed && (carbGramsToLog?.isFinite ?? false) && (carbGramsToLog ?? 0) > 0
+        let insulinAction = message.response?.logInsulinAction
+        let showsLogInsulinButton = message.isFullyRevealed && (insulinAction?.units.isFinite ?? false) && (insulinAction?.units ?? 0) > 0
         
+        let dietaryEnergyAction = message.response?.logDietaryEnergyAction
+        let showsLogDietaryEnergyButton = message.isFullyRevealed && (dietaryEnergyAction?.kilocalories.isFinite ?? false) && (dietaryEnergyAction?.kilocalories ?? 0) > 0
+
         HStack {
             if message.role == .assistant {
                 VStack(alignment: .leading) {
@@ -28,6 +35,18 @@ struct ChatMessageBubble: View {
                         }
                     }
                     
+                    if let insulinAction, showsLogInsulinButton {
+                        ChatActionButton("Add \(insulinAction.units.formatted()) U \(insulinAction.type.insulinType.title)", systemImage: "syringe") {
+                            onLogInsulin(ChatInsulinDraft(units: insulinAction.units, type: insulinAction.type.insulinType))
+                        }
+                    }
+
+                    if let dietaryEnergyAction, showsLogDietaryEnergyButton {
+                        ChatActionButton("Add \(dietaryEnergyAction.kilocalories.formatted()) kcal", systemImage: "flame") {
+                            onLogDietaryEnergy(ChatDietaryEnergyDraft(kilocalories: dietaryEnergyAction.kilocalories))
+                        }
+                    }
+
                     if message.showsStartNewChatAction {
                         ChatActionButton("New chat", systemImage: "plus.message", action: onStartNewChat)
                     }
@@ -36,6 +55,8 @@ struct ChatMessageBubble: View {
                 .background(.gray.opacity(0.15), in: .rect(cornerRadius: 20))
                 .padding(.vertical, 8)
                 .animation(.snappy(duration: 0.35, extraBounce: 0.08), value: showsLogCarbsButton)
+                .animation(.snappy(duration: 0.35, extraBounce: 0.08), value: showsLogInsulinButton)
+                .animation(.snappy(duration: 0.35, extraBounce: 0.08), value: showsLogDietaryEnergyButton)
                 .animation(.snappy(duration: 0.35, extraBounce: 0.08), value: message.showsStartNewChatAction)
                 
                 Spacer()
@@ -57,6 +78,6 @@ struct ChatMessageBubble: View {
     }
     
     private func buttonTitle(for carbGramsToLog: Double) -> String {
-        "\(carbGramsToLog.formatted(.number.precision(.fractionLength(0 ... 1))))g carbs"
+        "Add \(carbGramsToLog.formatted()) g carbs"
     }
 }

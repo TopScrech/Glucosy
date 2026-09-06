@@ -3,9 +3,15 @@ import FoundationModels
 @available(iOS 26, *)
 @Generable
 struct ChatAssistantResponse {
-    @Guide(description: "Make it clear that the carbohydrate values are estimates. Mention carbohydrates per 100 g or 100 ml, whichever fits the product better. Mention the carbohydrates for the chosen portion whenever you provide logCarbsAction")
+    @Guide(description: "A concise reply in the user's language. For food estimates, label estimates and mention the requested nutrients per 100 g or 100 ml and the chosen portion. Dietary energy is in kcal. For direct logging requests, repeat the supplied amount without calling it an estimate. Explain that the user can review and save with the buttons, never claim a record was saved")
     var outputText: String
-    
-    @Guide(description: "An optional action for showing the log carbs button in the app. Use a value only when there is a clear carbohydrate estimate that the person could plausibly log right now. Use null for irrelevant questions, refusals, follow-up questions, or when the answer should not show a log button. If they gave no portion, choose a logical common portion such as 1 apple or 250 ml soup whenever possible. If that is still not clear, use 100 g or 100 ml as the portion")
+
+    @Guide(description: "An optional carbs entry action for a clear food estimate or an explicit request to log a supplied carbohydrate amount in grams. Omit when the amount or unit is unclear or a button would not be useful")
     var logCarbsAction: ChatLogCarbsAction?
+
+    @Guide(description: "An optional insulin entry action only for an explicit logging request with a user-supplied dose in units and an explicit basal or bolus type. Omit for missing details, dosing advice, or inferred doses")
+    var logInsulinAction: ChatLogInsulinAction?
+
+    @Guide(description: "An optional dietary energy entry action for an explicit calorie logging request or a requested food calorie estimate with a clear portion. Food calories mean kcal. Omit for unclear amounts, active or resting energy, and unrelated replies")
+    var logDietaryEnergyAction: ChatLogDietaryEnergyAction?
 }

@@ -6,6 +6,10 @@ struct LogDietaryEnergyView: View {
     @State private var form = LogDietaryEnergyVM()
     @FocusState private var isAmountFocused: Bool
     
+    init(initialAmount: Double? = nil) {
+        _form = State(initialValue: LogDietaryEnergyVM(initialAmount: initialAmount))
+    }
+
     var body: some View {
         Form {
             Section {

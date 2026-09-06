@@ -12,8 +12,11 @@ struct NewRecordInsulin: View {
     @State private var purpose: InsulinType
     @FocusState private var isUnitsFieldFocused: Bool
     
-    init(insulinType: InsulinType = .bolus) {
+    init(insulinType: InsulinType = .bolus, initialAmount: Double? = nil) {
         _purpose = State(initialValue: insulinType)
+        if let initialAmount {
+            _unitsString = State(initialValue: initialAmount.formatted(.number.grouping(.never)))
+        }
     }
     
     private var units: Double? {

@@ -71,7 +71,7 @@ struct NewRecordCarbs: View {
     }
     
     private static func initialUnitsString(for amount: Double) -> String {
-        return amount.formatted(.number.precision(.fractionLength(0 ... 1)))
+        return amount.formatted(.number.grouping(.never))
     }
 }
 

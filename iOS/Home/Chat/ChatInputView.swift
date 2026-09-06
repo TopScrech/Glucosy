@@ -82,6 +82,10 @@ struct ChatInputView: View {
         }
         .padding(.horizontal)
         .padding(.bottom)
+        .task {
+            await Task.yield()
+            isFocused = true
+        }
         #if os(iOS)
         .fullScreenCover(isPresented: $vm.showsCamera) {
             ChatCameraView { data in

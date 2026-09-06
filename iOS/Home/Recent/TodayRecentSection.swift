@@ -1,3 +1,4 @@
+import HealthKit
 import ScrechKit
 
 struct TodayRecentSection: View {
@@ -176,6 +177,15 @@ struct TodayRecentSection: View {
             WeightRecordList()
                 .environment(vm)
             
+        case .restingEnergy:
+            EnergyHistoryView(kind: .resting)
+                .environment(vm)
+        case .activeEnergy:
+            EnergyHistoryView(kind: .active)
+                .environment(vm)
+        case .dietaryEnergy:
+            EnergyHistoryView(kind: .dietary)
+                .environment(vm)
         case .bmi:
             BMIRecordList()
                 .environment(vm)

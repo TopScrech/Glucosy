@@ -150,11 +150,14 @@ struct HomeView: View {
         }
 #endif
         .task {
-            vm.authorize { result in
-                Logger().info("Auth status: \(result)")
+            if vm.store != nil {
+                do {
+                    try await vm.requestAuthorization()
+                    await vm.reloadAllRecords()
+                } catch {
+                    Logger().error("HealthKit authorization error: \(error)")
+                }
             }
-            
-            await vm.reloadAllRecords()
         }
     }
     
@@ -249,7 +252,7 @@ struct HomeView: View {
             icon: "figure",
             color: .mint
         )
-    ]}
+    ] + vm.energyMetricCards}
     
     @ViewBuilder
     private func destinationView(for destination: TodayMetricDestination) -> some View {
@@ -275,6 +278,15 @@ struct HomeView: View {
             WeightRecordList()
                 .environment(vm)
             
+        case .restingEnergy:
+            EnergyHistoryView(kind: .resting)
+                .environment(vm)
+        case .activeEnergy:
+            EnergyHistoryView(kind: .active)
+                .environment(vm)
+        case .dietaryEnergy:
+            EnergyHistoryView(kind: .dietary)
+                .environment(vm)
         case .bmi:
             BMIRecordList()
                 .environment(vm)

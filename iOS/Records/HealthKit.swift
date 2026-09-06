@@ -9,6 +9,9 @@ final class HealthKit {
     var weightRecords:  [Weight] = []
     var bmiRecords:     [BMI] = []
     
+    var energyRecords: [EnergyKind: [EnergyDay]] = [:]
+    var energyErrors: [EnergyKind: String] = [:]
+
     var store: HKHealthStore?
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L unavailible
     var weightUnit = HKUnit.gramUnit(with: .kilo)
@@ -31,13 +34,17 @@ final class HealthKit {
     }
     
     private var readTypes: Set<HKObjectType> {
-        Set([glucoseType, insulinType, carbsType, bodyMassType, bmiType])
+        Set([glucoseType, insulinType, carbsType, bodyMassType, bmiType] + EnergyKind.allCases.map(\.quantityType))
     }
     
     private var shareTypes: Set<HKSampleType> {
         Set([glucoseType, insulinType, carbsType, bodyMassType, bmiType])
     }
     
+    func requestAuthorization() async throws {
+        try await store?.requestAuthorization(toShare: shareTypes, read: readTypes)
+    }
+
     func authorize(_ handler: @escaping @Sendable (Bool) -> Void) {
         store?.requestAuthorization(toShare: shareTypes, read: readTypes) { success, error in
             guard let error else {
@@ -76,5 +83,8 @@ final class HealthKit {
         _ = try? await reloadCarbsRecords()
         _ = try? await reloadWeightRecords()
         _ = try? await reloadBMIRecords()
+        for kind in EnergyKind.allCases {
+            await refreshEnergy(for: kind)
+        }
     }
 }

@@ -31,8 +31,17 @@ struct ChatInputView: View {
             
             HStack {
                 if #available(anyAppleOS 27, *) {
-                    Button("Add images", systemImage: "plus") {
-                        showsPhotoPicker = true
+                    Menu("Add images", systemImage: "plus") {
+                        Button("Photo Library", systemImage: "photo.on.rectangle") {
+                            showsPhotoPicker = true
+                        }
+                        #if os(iOS)
+                        Button("Take Photo", systemImage: "camera") {
+                            isFocused = false
+                            Task { await vm.openCamera() }
+                        }
+                        .disabled(!ChatCameraView.isAvailable)
+                        #endif
                     }
                     .labelStyle(.iconOnly)
                     .buttonStyle(.borderless)
@@ -73,6 +82,14 @@ struct ChatInputView: View {
         }
         .padding(.horizontal)
         .padding(.bottom)
+        #if os(iOS)
+        .fullScreenCover(isPresented: $vm.showsCamera) {
+            ChatCameraView { data in
+                vm.addCameraImage(data)
+            }
+            .ignoresSafeArea()
+        }
+        #endif
         .task(id: selectedPhotos) {
             await vm.loadImages(selectedPhotos)
             if !selectedPhotos.isEmpty {

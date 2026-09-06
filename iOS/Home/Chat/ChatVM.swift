@@ -2,6 +2,9 @@ import SwiftUI
 import ChitChat
 import OSLog
 import PhotosUI
+#if os(iOS)
+import AVFoundation
+#endif
 
 #if canImport(FoundationModels)
 import FoundationModels
@@ -17,6 +20,39 @@ final class ChatVM {
     var attachments: [ChatImageAttachment] = []
     var isLoadingImages = false
     var attachmentError: String?
+
+    #if os(iOS)
+    var showsCamera = false
+
+    func openCamera() async {
+        guard !isResponding && !isLoadingImages && ChatCameraView.isAvailable else { return }
+        attachmentError = nil
+        let authorized: Bool
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            authorized = true
+        case .notDetermined:
+            authorized = await AVCaptureDevice.requestAccess(for: .video)
+        default:
+            authorized = false
+        }
+        guard authorized else {
+            attachmentError = "Camera access is unavailable. You can allow access in Settings or choose a photo from your library"
+            return
+        }
+        guard !isResponding && !isLoadingImages else { return }
+        showsCamera = true
+    }
+
+    func addCameraImage(_ data: Data?) {
+        guard let data, let attachment = ChatImageAttachment(data: data) else {
+            attachmentError = "Could not load the captured photo. Please try again"
+            return
+        }
+        attachmentError = nil
+        attachments.append(attachment)
+    }
+    #endif
 
     var canSend: Bool {
         !isResponding && !isLoadingImages && (!prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || !attachments.isEmpty)

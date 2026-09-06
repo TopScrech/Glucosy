@@ -7,7 +7,7 @@ import LGAlert
 #endif
 
 struct HomeView: View {
-    @State private var vm = HealthKit()
+    @Environment(HealthKit.self) private var vm
     @EnvironmentObject private var store: ValueStore
     
 #if canImport(CoreNFC)
@@ -405,6 +405,7 @@ struct HomeView: View {
     }
     .darkSchemePreferred()
     .environmentObject(ValueStore())
+    .environment(HealthKit())
     
 #if canImport(CoreNFC)
     .modelContainer(for: [SavedPen.self], inMemory: true)

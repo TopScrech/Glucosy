@@ -13,6 +13,10 @@ struct AppContainer: View {
     private let router = AppRouter.shared
     @StateObject private var store = ValueStore()
     
+#if !os(watchOS)
+    @State private var healthKit = HealthKit()
+#endif
+
     @State private var assistantRequest = 0
     @State private var novoPenScanRequest = 0
 #if canImport(CoreNFC)
@@ -47,6 +51,11 @@ struct AppContainer: View {
 #endif
                 }
             }
+#elseif os(iOS)
+            MainTabView(
+                assistantRequest: assistantRequest,
+                novoPenScanRequest: novoPenScanRequest
+            )
 #else
             NavigationStack {
 #if os(watchOS)
@@ -60,6 +69,9 @@ struct AppContainer: View {
             }
 #endif
         }
+#if !os(watchOS)
+        .environment(healthKit)
+#endif
         .environment(router)
 #if canImport(CoreNFC)
         .modelContainer(for: [SavedPen.self])

@@ -33,16 +33,36 @@ extension HealthKit {
     }
 
     var energyMetricCards: [TodayMetricData] {
-        EnergyKind.allCases.map { kind in
-            let today = energyRecords[kind]?.first { Calendar.current.isDateInToday($0.date) }
-            return TodayMetricData(
-                destination: kind.destination,
-                title: kind.title,
-                value: today?.value.formatted(.number.precision(.fractionLength(0))) ?? "-",
-                unit: String(localized: "kcal"),
-                icon: kind.icon,
-                color: kind.color
-            )
+        EnergyKind.allCases.map { energyMetricCard(for: $0) }
+    }
+
+    func energyToday(for kind: EnergyKind) -> Double? {
+        energyRecords[kind]?.first { Calendar.current.isDateInToday($0.date) }?.value
+    }
+
+    var totalEnergyToday: Double? {
+        guard let active = energyToday(for: .active),
+              let resting = energyToday(for: .resting) else {
+            return nil
         }
+
+        return active + resting
+    }
+
+    func refreshCalories() async {
+        for kind in EnergyKind.allCases {
+            await refreshEnergy(for: kind)
+        }
+    }
+
+    func energyMetricCard(for kind: EnergyKind) -> TodayMetricData {
+        TodayMetricData(
+            destination: kind.destination,
+            title: kind.title,
+            value: energyToday(for: kind)?.formatted(.number.precision(.fractionLength(0))) ?? "-",
+            unit: String(localized: "kcal"),
+            icon: kind.icon,
+            color: kind.color
+        )
     }
 }

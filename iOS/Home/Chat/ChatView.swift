@@ -7,7 +7,6 @@ struct ChatView: View {
     @State private var alertTokenWindowUsage = false
     @State private var carbDraft: ChatCarbDraft?
     
-    @FocusState private var isFocused
     
     var body: some View {
         ScrollView {
@@ -30,7 +29,6 @@ struct ChatView: View {
                 }
             }
             .scenePadding()
-            .padding(.bottom, 40)
         }
         .navigationTitle("Assistant")
         .toolbarTitleDisplayMode(.inline)
@@ -50,13 +48,9 @@ struct ChatView: View {
                 NewRecordCarbs(initialAmount: carbDraft.carbsAmount)
             }
         }
-        .overlay(alignment: .bottom) {
-            ChatComposer(prompt: $vm.prompt, isResponding: $vm.isResponding, isFocused: $isFocused) {
-                Task {
-                    await vm.sendPrompt()
-                }
-            }
-            .environment(vm)
+        .safeAreaInset(edge: .bottom) {
+            ChatInputView()
+                .environment(vm)
         }
         .toolbar {
             if #available(iOS 26.4, *) {
@@ -68,7 +62,7 @@ struct ChatView: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                NewChatButton(disabled: vm.isResponding || vm.messages.isEmpty, action: vm.startNewChat)
+                NewChatButton(disabled: vm.isResponding || vm.isLoadingImages || vm.messages.isEmpty, action: vm.startNewChat)
             }
         }
     }

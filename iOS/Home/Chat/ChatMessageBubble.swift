@@ -40,7 +40,14 @@ struct ChatMessageBubble: View {
                 
                 Spacer()
             } else {
-                Text(message.text)
+                VStack(alignment: .trailing) {
+                    if !message.attachments.isEmpty {
+                        ChatImageStrip(attachments: message.attachments)
+                    }
+                    if !message.text.isEmpty {
+                        Text(message.text)
+                    }
+                }
                     .padding()
                     .background(.tint.opacity(0.15), in: .rect(cornerRadius: 20))
                     .padding(.vertical, 8)

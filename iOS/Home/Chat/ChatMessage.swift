@@ -8,6 +8,7 @@ struct ChatMessage: Identifiable {
     var name: String?
     var text: String
     var targetText: String
+    var attachments: [ChatImageAttachment] = []
     var response: ChatAssistantResponse?
     
     var isFullyRevealed: Bool {
@@ -18,7 +19,8 @@ struct ChatMessage: Identifiable {
         isFullyRevealed && role == .assistant && targetText == "Exceeded model context window size"
     }
     
-    init(userText: String) {
+    init(userText: String, attachments: [ChatImageAttachment] = []) {
+        self.attachments = attachments
         role = .user
         name = nil
         text = userText

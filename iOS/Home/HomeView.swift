@@ -28,6 +28,7 @@ struct HomeView: View {
     
     let assistantRequest: Int
     let novoPenScanRequest: Int
+    var showsCalories = false
     
     @State private var showsSettings = false
     @State private var sheetChat = false
@@ -35,19 +36,25 @@ struct HomeView: View {
     var body: some View {
         let glucoseUnit = store.glucoseUnit
         
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                TodayMetricsSection(metricCards(glucoseUnit: glucoseUnit))
-                TodayQuickActions()
-                TodayRecentSection()
+        Group {
+            if showsCalories {
+                CaloriesContentView()
+            } else {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        TodayMetricsSection(metricCards(glucoseUnit: glucoseUnit))
+                        TodayQuickActions()
+                        TodayRecentSection()
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                }
+                .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
+                .scrollIndicators(.hidden)
+                .refreshable {
+                    await vm.reloadAllRecords()
+                }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-        }
-        .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
-        .scrollIndicators(.hidden)
-        .refreshable {
-            await vm.reloadAllRecords()
         }
         .sheet($sheetChat) {
             NavigationStack {

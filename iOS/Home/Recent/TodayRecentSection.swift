@@ -84,7 +84,7 @@ struct TodayRecentSection: View {
                 id: $0.sample.uuid.uuidString,
                 destination: .carbs,
                 title: "Carbohydrates",
-                value: Utils.formatNumber($0.value),
+                value: $0.value.formatted(.number.precision(.fractionLength(0))),
                 unit: String(localized: "g"),
                 date: $0.date,
                 icon: "fork.knife",

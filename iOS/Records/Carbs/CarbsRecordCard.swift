@@ -19,7 +19,7 @@ struct CarbsRecordCard: View {
             
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
-                    Text(Utils.formatNumber(record.value))
+                    Text(record.value, format: .number.precision(.fractionLength(0)))
                         .title3(.semibold, design: .rounded)
                     
                     Text("g")

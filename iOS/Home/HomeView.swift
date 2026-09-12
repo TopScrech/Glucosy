@@ -206,7 +206,7 @@ struct HomeView: View {
         TodayMetricData(
             destination: .carbs,
             title: String(localized: "Carbs"),
-            value: formattedNumber(carbsTotal),
+            value: carbsTotal?.formatted(.number.precision(.fractionLength(0))) ?? "-",
             unit: String(localized: "g"),
             icon: "fork.knife",
             color: .orange

@@ -49,7 +49,7 @@ struct HomeView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
                 }
-                .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()))
+                .navigationTitle(Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day()).localizedCapitalized)
                 .scrollIndicators(.hidden)
                 .refreshable {
                     await vm.reloadAllRecords()

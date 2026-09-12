@@ -261,9 +261,6 @@ struct HomeView: View {
             WeightRecordList()
                 .environment(vm)
             
-        case .restingEnergy:
-            EnergyHistoryView(kind: .resting)
-                .environment(vm)
         case .activeEnergy:
             EnergyHistoryView(kind: .active)
                 .environment(vm)

@@ -65,15 +65,6 @@ extension HealthKit {
         energyRecords[kind]?.first { Calendar.current.isDateInToday($0.date) }?.value
     }
 
-    var totalEnergyToday: Double? {
-        guard let active = energyToday(for: .active),
-              let resting = energyToday(for: .resting) else {
-            return nil
-        }
-
-        return active + resting
-    }
-
     func refreshCalories() async {
         for kind in EnergyKind.allCases {
             await refreshEnergy(for: kind)

@@ -10,14 +10,7 @@ struct CaloriesView: View {
                     Text("Today")
                         .headline()
 
-                    HStack {
-                        CaloriesEnergyCardView(kind: .active)
-                        CaloriesEnergyCardView(kind: .resting)
-                    }
-
-                    Divider()
-
-                    CaloriesTotalEnergyView()
+                    CaloriesEnergyCardView(kind: .active)
 
                     CaloriesEnergyCardView(kind: .dietary)
                 }

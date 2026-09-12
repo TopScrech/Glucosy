@@ -12,6 +12,6 @@ struct ChatAssistantResponse {
     @Guide(description: "An optional insulin entry action only for an explicit logging request with a user-supplied dose in units and an explicit basal or bolus type. Omit for missing details, dosing advice, or inferred doses")
     var logInsulinAction: ChatLogInsulinAction?
 
-    @Guide(description: "An optional dietary energy entry action for an explicit calorie logging request or a requested food calorie estimate with a clear portion. Food calories mean kcal. Omit for unclear amounts, active or resting energy, and unrelated replies")
+    @Guide(description: "An optional dietary energy entry action for an explicit calorie logging request or a requested food calorie estimate with a clear portion. Food calories mean kcal. Omit for unclear amounts, energy expenditure, and unrelated replies")
     var logDietaryEnergyAction: ChatLogDietaryEnergyAction?
 }

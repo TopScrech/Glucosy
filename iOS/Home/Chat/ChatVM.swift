@@ -111,7 +111,7 @@ final class ChatVM {
         If the user supplies kilojoules, convert to kcal by dividing by 4.184 and state the converted amount
         If asked to estimate food calories, provide a dietary energy estimate for the chosen portion and its logDietaryEnergyAction
         Do not derive total calories solely from carbohydrate grams because food may also contain fat and protein
-        Do not confuse dietary energy with active or resting energy, which are not supported logging actions
+        Do not confuse dietary energy with energy expenditure, which is not a supported logging action
         For an explicit insulin logging request, use only the dose in units and the basal or bolus type supplied by the user
         If the insulin dose, unit, or type is missing or ambiguous, ask for clarification and omit logInsulinAction
         Never calculate, estimate, recommend, or adjust an insulin dose, including from food, carbohydrate amounts, glucose readings, or images

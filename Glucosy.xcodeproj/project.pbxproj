@@ -776,6 +776,7 @@
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Scan supported NovoPen devices over NFC";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Take photos of food to attach to your assistant chats";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy saves glucose, insulin, carbs, and weight entries to Health";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -823,6 +824,7 @@
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NFCReaderUsageDescription = "Scan supported NovoPen devices over NFC";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Take photos of food to attach to your assistant chats";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Glucosy reads Health data to show your glucose, carbs, insulin, and weight records";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Glucosy saves glucose, insulin, carbs, and weight entries to Health";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

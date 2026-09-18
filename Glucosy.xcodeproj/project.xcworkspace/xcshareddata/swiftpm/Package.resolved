@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TopScrech/HealthyKit",
       "state" : {
-        "revision" : "bb92605a9cc9de7a1e0a3598bbd3b301c5365207",
-        "version" : "1.0.4"
+        "revision" : "b241828bc3d4866dc5bdacddee32ed3c4dba2b4d",
+        "version" : "1.0.5"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TopScrech/ScrechKit",
       "state" : {
-        "revision" : "40f089e897c48986d101a5630c1597241b40c6c5",
-        "version" : "1.0.9"
+        "revision" : "bc5f6b5c251ae16c5d29a50a642ac95a9fe8d0e7",
+        "version" : "1.0.10"
       }
     },
     {

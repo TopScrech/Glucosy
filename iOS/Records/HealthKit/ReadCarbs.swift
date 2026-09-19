@@ -1,12 +1,6 @@
 import HealthKit
 
 extension HealthKit {
-    func readCarbs() {
-        Task {
-            _ = try? await reloadCarbsRecords()
-        }
-    }
-
     @discardableResult
     func reloadCarbsRecords(fullHistory: Bool = false) async throws -> [Carbs] {
         await restoreCachedRecords()

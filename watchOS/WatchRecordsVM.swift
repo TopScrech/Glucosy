@@ -8,7 +8,6 @@ final class WatchRecordsVM {
     private(set) var authorizationMessage: String?
     private var prepared = false
     private var loadingKinds = Set<WatchRecordKind>()
-    private var loadedKinds = Set<WatchRecordKind>()
     
     private var glucoseEntries = [WatchRecordEntry]()
     private var insulinEntries = [WatchRecordEntry]()
@@ -32,14 +31,6 @@ final class WatchRecordsVM {
         loadingKinds.contains(kind)
     }
     
-    func loadIfNeeded(_ kind: WatchRecordKind) async {
-        guard !loadedKinds.contains(kind) else {
-            return
-        }
-        
-        await refresh(kind)
-    }
-    
     func refresh(_ kind: WatchRecordKind) async {
         guard await ensureAuthorization() else {
             setEntries([], for: kind)
@@ -52,7 +43,6 @@ final class WatchRecordsVM {
         do {
             let entries = try await loadEntries(for: kind)
             authorizationMessage = nil
-            loadedKinds.insert(kind)
             setEntries(entries, for: kind)
         } catch {
             authorizationMessage = error.localizedDescription

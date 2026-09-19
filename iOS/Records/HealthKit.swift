@@ -6,27 +6,29 @@ final class HealthKit {
     var insulinRecords: [Insulin] = []
     var glucoseRecords: [Glucose] = []
     var carbsRecords:   [Carbs] = []
+    
     var weightRecords: [Weight] = [] {
         didSet { updateLatestWeight() }
     }
+    
     var bmiRecords: [BMI] = [] {
         didSet { updateLatestBMI() }
     }
-
+    
     var savedWeight: LatestHealthMeasurement?
     var savedBMI: LatestHealthMeasurement?
     
     var latestWeightRecord: Weight? {
         weightRecords.max { $0.date < $1.date }
     }
-
+    
     var latestBMIRecord: BMI? {
         bmiRecords.max { $0.date < $1.date }
     }
-
+    
     var energyRecords: [EnergyKind: [EnergyDay]] = [:]
     var energyErrors: [EnergyKind: String] = [:]
-
+    
     let recordCache = HealthRecordCache()
     var cacheRestoreTask: Task<Void, Never>?
     var restoredCache = false
@@ -35,7 +37,7 @@ final class HealthKit {
     var isReloading = false
     var recordRefreshTasks: [String: Task<Void, Error>] = [:]
     var fullHistoryRefreshes: Set<String> = []
-
+    
     var store: HKHealthStore?
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L unavailible
     var weightUnit = HKUnit.gramUnit(with: .kilo)
@@ -70,7 +72,7 @@ final class HealthKit {
     func requestAuthorization() async throws {
         try await store?.requestAuthorization(toShare: shareTypes, read: readTypes)
     }
-
+    
     func authorize(_ handler: @escaping @Sendable (Bool) -> Void) {
         store?.requestAuthorization(toShare: shareTypes, read: readTypes) { success, error in
             guard let error else {
@@ -86,23 +88,6 @@ final class HealthKit {
         store?.authorizationStatus(for: glucoseType) == .sharingAuthorized
     }
     
-    func getAuthorizationState(_ handler: @escaping @Sendable (Bool) -> Void) {
-        guard let store else {
-            handler(false)
-            return
-        }
-        
-        store.getRequestStatusForAuthorization(toShare: shareTypes, read: readTypes) { status, error in
-            if let error {
-                Logger().error("HealthKit authorization status error: \(error)")
-                handler(false)
-                return
-            }
-            
-            handler(status == .unnecessary)
-        }
-    }
-    
     func reloadAllRecords() async {
         guard !isReloading else { return }
         isReloading = true
@@ -114,6 +99,7 @@ final class HealthKit {
         let weightLoaded = (try? await reloadWeightRecords()) != nil
         let bmiLoaded = (try? await reloadBMIRecords()) != nil
         var loadedEnergy: [EnergyKind] = []
+        
         for kind in EnergyKind.allCases {
             do {
                 try await reloadEnergyRecords(for: kind)
@@ -122,7 +108,7 @@ final class HealthKit {
                 energyErrors[kind] = error.localizedDescription
             }
         }
-
+        
         // Recent results are already visible while the complete history refresh runs
         if glucoseLoaded { _ = try? await reloadGlucoseRecords(fullHistory: true) }
         if insulinLoaded { _ = try? await reloadInsulinRecords(fullHistory: true) }

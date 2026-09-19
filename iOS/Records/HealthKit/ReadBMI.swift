@@ -1,12 +1,6 @@
 import HealthKit
 
 extension HealthKit {
-    func readBMI() {
-        Task {
-            _ = try? await reloadBMIRecords()
-        }
-    }
-
     @discardableResult
     func reloadBMIRecords(fullHistory: Bool = false) async throws -> [BMI] {
         await restoreCachedRecords()

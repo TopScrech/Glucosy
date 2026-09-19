@@ -9,16 +9,6 @@ enum MeasurementChartRange: String, CaseIterable, Identifiable {
         self
     }
     
-    var summaryTitle: String {
-        switch self {
-        case .day: "today"
-        case .week: "the last 7 days"
-        case .month: "the last 30 days"
-        case .sixMonths: "the last 6 months"
-        case .year: "the last year"
-        }
-    }
-    
     var axisStrideComponent: Calendar.Component {
         switch self {
         case .day: .hour
@@ -117,27 +107,6 @@ enum MeasurementChartRange: String, CaseIterable, Identifiable {
         }
     }
     
-    func bucketCount(
-        endingAt endDate: Date = .now,
-        calendar: Calendar = .current
-    ) -> Int {
-        let interval = interval(endingAt: endDate, calendar: calendar)
-        var bucketDate = bucketStart(for: interval.start, calendar: calendar)
-        var count = 0
-        
-        while bucketDate <= interval.end {
-            count += 1
-            
-            guard let nextBucketDate = nextBucketStart(after: bucketDate, calendar: calendar) else {
-                break
-            }
-            
-            bucketDate = nextBucketDate
-        }
-        
-        return count
-    }
-    
     func dayCount(
         endingAt endDate: Date = .now,
         calendar: Calendar = .current
@@ -148,21 +117,5 @@ enum MeasurementChartRange: String, CaseIterable, Identifiable {
         let dayDifference = calendar.dateComponents([.day], from: startOfFirstDay, to: startOfLastDay).day ?? 0
         
         return dayDifference + 1
-    }
-    
-    private func nextBucketStart(after date: Date, calendar: Calendar) -> Date? {
-        switch self {
-        case .day:
-            calendar.date(byAdding: .hour, value: 1, to: date)
-            
-        case .week, .month:
-            calendar.date(byAdding: .day, value: 1, to: date)
-            
-        case .sixMonths:
-            calendar.date(byAdding: .weekOfYear, value: 1, to: date)
-            
-        case .year:
-            calendar.date(byAdding: .month, value: 1, to: date)
-        }
     }
 }

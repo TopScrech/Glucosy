@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct CaloriesContentView: View {
     @Environment(HealthKit.self) private var healthKit

@@ -39,7 +39,8 @@ struct EnergyHistoryView: View {
             NewRecordSheet(.dietaryEnergy)
                 .environment(healthKit)
         }
-        .refreshable { await healthKit.refreshEnergy(for: kind) }
-        .task { await healthKit.refreshEnergy(for: kind) }
+        .refreshableTask {
+            await healthKit.refreshEnergy(for: kind)
+        }
     }
 }

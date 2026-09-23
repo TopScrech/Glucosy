@@ -6,6 +6,7 @@ extension HealthKit {
         for type in [glucoseType, insulinType, carbsType, bodyMassType, bmiType] {
             if type == bodyMassType, savedWeight != nil { continue }
             if type == bmiType, savedBMI != nil { continue }
+            
             do {
                 guard let samples = try HealthRecordCache.loadStartupSamples(for: type.identifier) else { continue }
                 switch type {
@@ -30,18 +31,22 @@ extension HealthKit {
 
     func withRecordRefresh(for type: HKQuantityType, fullHistory: Bool, operation: @escaping () async throws -> Void) async throws {
         let key = type.identifier
+        
         while let task = recordRefreshTasks[key] {
             let includesHistory = fullHistoryRefreshes.contains(key)
             try await task.value
             if !fullHistory || includesHistory { return }
         }
+        
         let task = Task {
             defer {
                 recordRefreshTasks[key] = nil
                 fullHistoryRefreshes.remove(key)
             }
+            
             try await operation()
         }
+        
         recordRefreshTasks[key] = task
         if fullHistory { fullHistoryRefreshes.insert(key) }
         try await task.value
@@ -56,6 +61,7 @@ extension HealthKit {
             await cacheRestoreTask.value
             return
         }
+        
         guard !restoredCache else { return }
         let task = Task {
             for type in [glucoseType, insulinType, carbsType, bodyMassType, bmiType] + EnergyKind.allCases.map(\.quantityType) {

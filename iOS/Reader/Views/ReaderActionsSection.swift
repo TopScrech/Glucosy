@@ -1,4 +1,4 @@
-import SwiftUI
+import ScrechKit
 
 struct ReaderActionsSection: View {
     @Environment(PenReaderVM.self) private var vm
@@ -10,7 +10,7 @@ struct ReaderActionsSection: View {
             Toggle("Receive Full History", isOn: $vm.readerOptions.receivesFullHistory)
                 .disabled(vm.isWorking)
             
-            Button("Load Sample Trace", systemImage: "doc.text.magnifyingglass", action: vm.loadSampleTrace)
+            AsyncButton("Load Sample Trace", systemImage: "doc.text.magnifyingglass", action: vm.loadSampleTrace)
                 .disabled(vm.isWorking)
         }
     }

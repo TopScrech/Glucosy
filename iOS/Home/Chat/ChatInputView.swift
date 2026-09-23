@@ -35,13 +35,13 @@ struct ChatInputView: View {
                         Button("Photo Library", systemImage: "photo.on.rectangle") {
                             showsPhotoPicker = true
                         }
-                        #if os(iOS)
-                        Button("Take Photo", systemImage: "camera") {
+#if os(iOS)
+                        AsyncButton("Take Photo", systemImage: "camera") {
                             isFocused = false
-                            Task { await vm.openCamera() }
+                            await vm.openCamera()
                         }
                         .disabled(!ChatCameraView.isAvailable)
-                        #endif
+#endif
                     }
                     .labelStyle(.iconOnly)
                     .buttonStyle(.borderless)
@@ -62,9 +62,9 @@ struct ChatInputView: View {
                         .accessibilityLabel("Generating response")
                 }
                 
-                Button("Send message", systemImage: "arrow.up") {
+                AsyncButton("Send message", systemImage: "arrow.up") {
                     isFocused = false
-                    Task { await vm.sendPrompt() }
+                    await vm.sendPrompt()
                 }
                 .labelStyle(.iconOnly)
                 .buttonStyle(.borderedProminent)
@@ -86,16 +86,17 @@ struct ChatInputView: View {
             await Task.yield()
             isFocused = true
         }
-        #if os(iOS)
+#if os(iOS)
         .fullScreenCover(isPresented: $vm.showsCamera) {
             ChatCameraView { data in
                 vm.addCameraImage(data)
             }
             .ignoresSafeArea()
         }
-        #endif
+#endif
         .task(id: selectedPhotos) {
             await vm.loadImages(selectedPhotos)
+            
             if !selectedPhotos.isEmpty {
                 selectedPhotos = []
             }

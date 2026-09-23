@@ -288,7 +288,10 @@ struct HomeView: View {
     private func startNovoPenScan(receivesFullHistory: Bool) {
         novoPenReader.setPersistentLoggingEnabled(store.debugMode)
         novoPenReader.readerOptions.receivesFullHistory = receivesFullHistory
-        novoPenReader.startScan()
+        
+        Task {
+            await novoPenReader.startScan()
+        }
     }
     
     private func handleNovoPenStatusChange(_ status: ReaderStatus) {

@@ -35,7 +35,7 @@ struct NovoPenReader: View {
             
             healthKit.authorize { _ in
                 Task { @MainActor in
-                    healthKit.readInsulin()
+                    await healthKit.readInsulin()
                 }
             }
             
@@ -44,7 +44,7 @@ struct NovoPenReader: View {
             }
             
             hasStartedInitialScan = true
-            vm.startScan()
+            await vm.startScan()
         }
     }
 }

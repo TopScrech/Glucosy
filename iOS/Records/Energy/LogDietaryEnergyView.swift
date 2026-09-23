@@ -9,7 +9,7 @@ struct LogDietaryEnergyView: View {
     init(initialAmount: Double? = nil) {
         _form = State(initialValue: LogDietaryEnergyVM(initialAmount: initialAmount))
     }
-
+    
     var body: some View {
         Form {
             Section {
@@ -48,11 +48,9 @@ struct LogDietaryEnergyView: View {
             }
             
             ToolbarItem(placement: .confirmationAction) {
-                Button("Save", systemImage: "checkmark") {
-                    Task {
-                        if await form.save(action: healthKit.writeDietaryEnergy) {
-                            dismiss()
-                        }
+                AsyncButton("Save", systemImage: "checkmark") {
+                    if await form.save(action: healthKit.writeDietaryEnergy) {
+                        dismiss()
                     }
                 }
                 .disabled(!form.canSave)

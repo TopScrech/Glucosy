@@ -110,16 +110,12 @@ final class PenReaderVM {
         }
     }
     
-    func startScan() {
-        Task {
-            await beginRead(from: .liveNFC)
-        }
+    func startScan() async {
+        await beginRead(from: .liveNFC)
     }
     
-    func loadSampleTrace() {
-        Task {
-            await beginRead(from: .sampleTrace)
-        }
+    func loadSampleTrace() async {
+        await beginRead(from: .sampleTrace)
     }
     
     private func beginRead(from source: NovoPenReadSource) async {

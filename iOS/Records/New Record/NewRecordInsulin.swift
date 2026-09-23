@@ -74,8 +74,10 @@ struct NewRecordInsulin: View {
             }
             
             ToolbarItem(placement: .topBarTrailing) {
-                SFButton("checkmark", action: saveRecord)
-                    .disabled(units == nil || isAdding)
+                AsyncButton(action: saveRecord) {
+                    Image(systemName: "checkmark")
+                }
+                .disabled(units == nil || isAdding)
             }
         }
         .alert("Could Not Add Insulin", isPresented: $showsError) {
@@ -90,19 +92,17 @@ struct NewRecordInsulin: View {
         }
     }
     
-    private func saveRecord() {
+    private func saveRecord() async {
         guard let units else { return }
         
-        Task {
-            do {
-                isAdding = true
-                _ = try await vm.writeInsulin(value: units, type: purpose, date: date)
-                dismiss()
-            } catch {
-                errorMessage = error.localizedDescription
-                showsError = true
-                isAdding = false
-            }
+        do {
+            isAdding = true
+            _ = try await vm.writeInsulin(value: units, type: purpose, date: date)
+            dismiss()
+        } catch {
+            errorMessage = error.localizedDescription
+            showsError = true
+            isAdding = false
         }
     }
 }

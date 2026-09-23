@@ -75,6 +75,7 @@ struct AppContainer: View {
         .environment(healthKit)
         .task {
             await healthKit.restoreCachedRecords()
+            
             do {
                 try await healthKit.requestAuthorization()
                 await healthKit.reloadAllRecords()
@@ -84,7 +85,9 @@ struct AppContainer: View {
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active, healthKit.restoredCache {
-                Task { await healthKit.reloadAllRecords() }
+                Task {
+                    await healthKit.reloadAllRecords()
+                }
             }
         }
 #endif

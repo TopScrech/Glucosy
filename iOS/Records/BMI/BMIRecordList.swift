@@ -1,5 +1,4 @@
 import ScrechKit
-import Algorithms
 
 struct BMIRecordList: View {
     @Environment(HealthKit.self) private var vm
@@ -7,10 +6,6 @@ struct BMIRecordList: View {
     @State private var sheetNewEntry = false
     
     var body: some View {
-        let dayChunks = vm.bmiRecords.chunked { lhs, rhs in
-            Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
-        }
-        
         List {
             Section {
                 BMIChart(vm.bmiRecords)
@@ -19,21 +14,20 @@ struct BMIRecordList: View {
                     .listRowBackground(Color.clear)
             }
             
-            ForEach(dayChunks.indices, id: \.self) { index in
-                let chunk = dayChunks[index]
-                
-                if let first = chunk.first {
-                    Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk) {
-                            BMIRecordCard($0)
-                        }
+            ForEach(vm.bmiDays) { day in
+                Section(Utils.formattedDate(day.date)) {
+                    ForEach(day.records) {
+                        BMIRecordCard($0)
                     }
                 }
             }
         }
         .navigationTitle("BMI")
+        .task {
+            _ = try? await vm.reloadBMIRecords(fullHistory: true, ifStale: true)
+        }
         .refreshable {
-            _ = try? await vm.reloadBMIRecords()
+            _ = try? await vm.reloadBMIRecords(fullHistory: true)
         }
         .sheet($sheetNewEntry) {
             NewRecordSheet(.bmi)

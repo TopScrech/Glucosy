@@ -1,6 +1,24 @@
 import Foundation
 
 nonisolated enum HealthRecordMerge {
+    static func preservingLocalChanges<Record>(
+        from baseline: [Record],
+        current: [Record],
+        incoming: [Record],
+        id: KeyPath<Record, UUID>,
+        date: KeyPath<Record, Date>
+    ) -> [Record] {
+        let baselineIDs = Set(baseline.map { $0[keyPath: id] })
+        let currentIDs = Set(current.map { $0[keyPath: id] })
+        return merge(
+            existing: incoming,
+            incoming: current.filter { !baselineIDs.contains($0[keyPath: id]) },
+            deletedIDs: baselineIDs.subtracting(currentIDs),
+            id: id,
+            date: date
+        )
+    }
+
     static func merge<Record>(
         existing: [Record],
         incoming: [Record],

@@ -1,5 +1,4 @@
 import ScrechKit
-import Algorithms
 
 struct CarbsRecordList: View {
     @Environment(HealthKit.self) private var vm
@@ -7,10 +6,6 @@ struct CarbsRecordList: View {
     @State private var sheetNewRecord = false
     
     var body: some View {
-        let dayChunks = vm.carbsRecords.chunked { lhs, rhs in
-            Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
-        }
-        
         List {
             Section {
                 CarbsChart(vm.carbsRecords)
@@ -19,21 +14,20 @@ struct CarbsRecordList: View {
                     .listRowBackground(Color.clear)
             }
             
-            ForEach(dayChunks.indices, id: \.self) { index in
-                let chunk = dayChunks[index]
-                
-                if let first = chunk.first {
-                    Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk) {
-                            CarbsRecordCard($0)
-                        }
+            ForEach(vm.carbsDays) { day in
+                Section(Utils.formattedDate(day.date)) {
+                    ForEach(day.records) {
+                        CarbsRecordCard($0)
                     }
                 }
             }
         }
         .navigationTitle("Carbohydrates")
+        .task {
+            _ = try? await vm.reloadCarbsRecords(fullHistory: true, ifStale: true)
+        }
         .refreshable {
-            _ = try? await vm.reloadCarbsRecords()
+            _ = try? await vm.reloadCarbsRecords(fullHistory: true)
         }
         .sheet($sheetNewRecord) {
             NewRecordSheet(.carbs)

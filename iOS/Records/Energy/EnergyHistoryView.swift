@@ -39,8 +39,19 @@ struct EnergyHistoryView: View {
             NewRecordSheet(.dietaryEnergy)
                 .environment(healthKit)
         }
-        .refreshableTask {
-            await healthKit.refreshEnergy(for: kind)
+        .task(id: kind) {
+            await refreshHistory(ifStale: true)
+        }
+        .refreshable {
+            await refreshHistory()
+        }
+    }
+
+    private func refreshHistory(ifStale: Bool = false) async {
+        do {
+            try await healthKit.reloadEnergyRecords(for: kind, fullHistory: true, ifStale: ifStale)
+        } catch {
+            healthKit.energyErrors[kind] = error.localizedDescription
         }
     }
 }

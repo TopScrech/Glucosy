@@ -2,13 +2,14 @@ import HealthKit
 
 extension HealthKit {
     @discardableResult
-    func reloadWeightRecords(fullHistory: Bool = false) async throws -> [Weight] {
-        await restoreCachedRecords()
-        try await withRecordRefresh(for: bodyMassType, fullHistory: fullHistory) { [self] in
-            let samples = try await refreshedSamples(for: bodyMassType, fullHistory: fullHistory, existing: { self.weightRecords.map(\.sample) })
-            applyWeightSamples(samples)
-            await persistSamples(samples, for: bodyMassType)
-        }
+    func reloadWeightRecords(fullHistory: Bool = false, ifStale: Bool = false) async throws -> [Weight] {
+        try await refreshRecords(
+            for: bodyMassType,
+            fullHistory: fullHistory,
+            ifStale: ifStale,
+            existing: { self.weightRecords.map(\.sample) },
+            apply: applyWeightSamples
+        )
         return weightRecords
     }
 

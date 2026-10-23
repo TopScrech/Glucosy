@@ -1,51 +1,90 @@
 import HealthKit
 
 extension HealthKit {
-    func reloadEnergyRecords(for kind: EnergyKind, fullHistory: Bool = false) async throws {
-        await restoreCachedRecords()
-        try await withRecordRefresh(for: kind.quantityType, fullHistory: fullHistory) { [self] in
+    func reloadEnergyRecords(for kind: EnergyKind, fullHistory: Bool = false, ifStale: Bool = false) async throws {
+        try await withRecordRefresh(for: kind.quantityType, fullHistory: fullHistory || recordAnchors[kind.quantityType.identifier] != nil, ifStale: ifStale) { [self] in
             try await loadEnergyRecords(for: kind, fullHistory: fullHistory)
         }
     }
 
     private func loadEnergyRecords(for kind: EnergyKind, fullHistory: Bool) async throws {
-        guard let store else { return }
+        guard let store else { throw HKError(.errorHealthDataUnavailable) }
 
         let now = Date.now
         let key = kind.quantityType.identifier
-        let previousSamples = cachedSamples[key] ?? []
-        let samples = try await refreshedSamples(for: kind.quantityType, fullHistory: fullHistory, existing: { self.cachedSamples[key] ?? [] })
-        let start = Calendar.current.startOfDay(for: fullHistory
-            ? min(samples.last?.startDate ?? now, energyRecords[kind]?.last?.date ?? now)
-            : recentRefreshStart)
-        // Retry historical changes if the statistics query or cache write fails
-        do {
-            let predicate = HKQuery.predicateForSamples(withStart: start, end: now)
-            let descriptor = HKStatisticsCollectionQueryDescriptor(
-                predicate: HKSamplePredicate.quantitySample(type: kind.quantityType, predicate: predicate),
-                options: .cumulativeSum,
-                anchorDate: Calendar.current.startOfDay(for: now),
-                intervalComponents: DateComponents(day: 1)
-            )
-            let collection = try await descriptor.result(for: store)
-            var days: [EnergyDay] = []
-            collection.enumerateStatistics(from: start, to: now) { statistics, _ in
-                if let quantity = statistics.sumQuantity() {
-                    days.append(EnergyDay(date: statistics.startDate, value: quantity.doubleValue(for: .kilocalorie())))
-                }
+        if !cachedTypes.contains(key) {
+            if let snapshot = try? await recordCache.loadEnergySync(for: key + "-days") {
+                energyRecords[kind] = snapshot.days
+                recordAnchors[key] = snapshot.anchor
+            } else if let cached = try? await recordCache.loadEnergy(for: key + "-days") {
+                energyRecords[kind] = cached
             }
-            let retained = (energyRecords[kind] ?? []).filter { $0.date < start }
-            var byDay: [Date: EnergyDay] = [:]
-            for day in retained + days {
-                byDay[day.date] = day
+            cachedTypes.insert(key)
+        }
+        var anchor = recordAnchors[key]
+        let changes: HealthEnergyChanges?
+        if fullHistory || anchor != nil {
+            do {
+                changes = try await energyChanges(for: kind, anchor: anchor, store: store)
+            } catch {
+                guard anchor != nil, (error as? HKError)?.code == .errorInvalidArgument else { throw error }
+                anchor = nil
+                changes = try await energyChanges(for: kind, anchor: nil, store: store)
             }
-            energyRecords[kind] = byDay.values.sorted { $0.date > $1.date }
-            try await recordCache.saveEnergy(energyRecords[kind] ?? [], for: key + "-days")
-            await persistSamples(samples, for: kind.quantityType)
-            energyErrors[kind] = nil
-        } catch {
-            cachedSamples[key] = previousSamples
-            throw error
+        } else {
+            changes = nil
+        }
+        // Deleted objects contain UUIDs, not dates, so their daily totals need a full reconciliation
+        let replacesHistory = changes != nil && (anchor == nil || changes?.hasDeletions == true)
+        let start = Calendar.current.startOfDay(for: replacesHistory
+            ? min(changes?.earliestDate ?? now, energyRecords[kind]?.last?.date ?? now)
+            : min(changes?.earliestDate ?? recentRefreshStart, recentRefreshStart))
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: now)
+        let descriptor = HKStatisticsCollectionQueryDescriptor(
+            predicate: HKSamplePredicate.quantitySample(type: kind.quantityType, predicate: predicate),
+            options: .cumulativeSum,
+            anchorDate: Calendar.current.startOfDay(for: now),
+            intervalComponents: DateComponents(day: 1)
+        )
+        let collection = try await descriptor.result(for: store)
+        var days: [EnergyDay] = []
+        collection.enumerateStatistics(from: start, to: now) { statistics, _ in
+            if let quantity = statistics.sumQuantity() {
+                days.append(EnergyDay(date: statistics.startDate, value: quantity.doubleValue(for: .kilocalorie())))
+            }
+        }
+        let retained = replacesHistory ? [] : (energyRecords[kind] ?? []).filter { $0.date < start }
+        var byDay: [Date: EnergyDay] = [:]
+        for day in retained + days {
+            byDay[day.date] = day
+        }
+        let updatedDays = byDay.values.sorted { $0.date > $1.date }
+        if let changes {
+            try await recordCache.saveEnergySync(updatedDays, anchor: changes.anchor, refreshedAt: .now, for: key + "-days")
+            recordAnchors[key] = changes.anchor
+        } else {
+            try await recordCache.saveEnergy(updatedDays, for: key + "-days")
+        }
+        energyRecords[kind] = updatedDays
+        energyErrors[kind] = nil
+    }
+
+    private func energyChanges(for kind: EnergyKind, anchor: HKQueryAnchor?, store: HKHealthStore) async throws -> HealthEnergyChanges {
+        var nextAnchor = anchor
+        var earliestDate: Date?
+        var hasDeletions = false
+        // Bound peak memory without retaining raw energy samples in the cache
+        while true {
+            try Task.checkCancellation()
+            let result = try await anchoredChanges(for: kind.quantityType, anchor: nextAnchor, store: store, limit: 1_000)
+            if let first = result.addedSamples.map(\.startDate).min() {
+                earliestDate = min(earliestDate ?? first, first)
+            }
+            hasDeletions = hasDeletions || !result.deletedObjects.isEmpty
+            nextAnchor = result.newAnchor
+            if result.addedSamples.isEmpty, result.deletedObjects.isEmpty {
+                return HealthEnergyChanges(anchor: result.newAnchor, earliestDate: earliestDate, hasDeletions: hasDeletions)
+            }
         }
     }
 

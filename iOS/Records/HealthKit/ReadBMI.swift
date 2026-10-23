@@ -2,13 +2,14 @@ import HealthKit
 
 extension HealthKit {
     @discardableResult
-    func reloadBMIRecords(fullHistory: Bool = false) async throws -> [BMI] {
-        await restoreCachedRecords()
-        try await withRecordRefresh(for: bmiType, fullHistory: fullHistory) { [self] in
-            let samples = try await refreshedSamples(for: bmiType, fullHistory: fullHistory, existing: { self.bmiRecords.map(\.sample) })
-            applyBMISamples(samples)
-            await persistSamples(samples, for: bmiType)
-        }
+    func reloadBMIRecords(fullHistory: Bool = false, ifStale: Bool = false) async throws -> [BMI] {
+        try await refreshRecords(
+            for: bmiType,
+            fullHistory: fullHistory,
+            ifStale: ifStale,
+            existing: { self.bmiRecords.map(\.sample) },
+            apply: applyBMISamples
+        )
         return bmiRecords
     }
 

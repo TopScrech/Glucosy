@@ -2,13 +2,14 @@ import HealthKit
 
 extension HealthKit {
     @discardableResult
-    func reloadCarbsRecords(fullHistory: Bool = false) async throws -> [Carbs] {
-        await restoreCachedRecords()
-        try await withRecordRefresh(for: carbsType, fullHistory: fullHistory) { [self] in
-            let samples = try await refreshedSamples(for: carbsType, fullHistory: fullHistory, existing: { self.carbsRecords.map(\.sample) })
-            applyCarbsSamples(samples)
-            await persistSamples(samples, for: carbsType)
-        }
+    func reloadCarbsRecords(fullHistory: Bool = false, ifStale: Bool = false) async throws -> [Carbs] {
+        try await refreshRecords(
+            for: carbsType,
+            fullHistory: fullHistory,
+            ifStale: ifStale,
+            existing: { self.carbsRecords.map(\.sample) },
+            apply: applyCarbsSamples
+        )
         return carbsRecords
     }
 

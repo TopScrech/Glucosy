@@ -16,9 +16,11 @@ extension HealthKit {
     }
 
     func updateLatestWeight() {
-        savedWeight = latestWeightRecord.map {
+        let latest = latestWeightRecord.map {
             LatestHealthMeasurement(id: $0.id, date: $0.date, value: $0.value)
         }
+        guard latest != savedWeight else { return }
+        savedWeight = latest
         do {
             try LatestHealthMeasurementCache.save(savedWeight, for: "weight")
         } catch {
@@ -27,9 +29,11 @@ extension HealthKit {
     }
 
     func updateLatestBMI() {
-        savedBMI = latestBMIRecord.map {
+        let latest = latestBMIRecord.map {
             LatestHealthMeasurement(id: $0.id, date: $0.date, value: $0.value)
         }
+        guard latest != savedBMI else { return }
+        savedBMI = latest
         do {
             try LatestHealthMeasurementCache.save(savedBMI, for: "bmi")
         } catch {

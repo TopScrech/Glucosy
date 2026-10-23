@@ -1,5 +1,4 @@
 import ScrechKit
-import Algorithms
 
 struct WeightRecordList: View {
     @Environment(HealthKit.self) private var vm
@@ -7,10 +6,6 @@ struct WeightRecordList: View {
     @State private var sheetNewEntry = false
     
     var body: some View {
-        let dayChunks = vm.weightRecords.chunked { lhs, rhs in
-            Calendar.current.isDate(lhs.date, inSameDayAs: rhs.date)
-        }
-        
         List {
             Section {
                 WeightChart(vm.weightRecords)
@@ -19,21 +14,20 @@ struct WeightRecordList: View {
                     .listRowBackground(Color.clear)
             }
             
-            ForEach(dayChunks.indices, id: \.self) { index in
-                let chunk = dayChunks[index]
-                
-                if let first = chunk.first {
-                    Section(Utils.formattedDate(first.date)) {
-                        ForEach(chunk) {
-                            WeightRecordCard($0)
-                        }
+            ForEach(vm.weightDays) { day in
+                Section(Utils.formattedDate(day.date)) {
+                    ForEach(day.records) {
+                        WeightRecordCard($0)
                     }
                 }
             }
         }
         .navigationTitle("Weight")
+        .task {
+            _ = try? await vm.reloadWeightRecords(fullHistory: true, ifStale: true)
+        }
         .refreshable {
-            _ = try? await vm.reloadWeightRecords()
+            _ = try? await vm.reloadWeightRecords(fullHistory: true)
         }
         .sheet($sheetNewEntry) {
             NewRecordSheet(.weight)

@@ -3,18 +3,36 @@ import OSLog
 
 @Observable
 final class HealthKit {
-    var insulinRecords: [Insulin] = []
-    var glucoseRecords: [Glucose] = []
-    var carbsRecords:   [Carbs] = []
+    var insulinRecords: [Insulin] = [] {
+        didSet { insulinDays = HealthRecordDay.group(insulinRecords) }
+    }
+    var glucoseRecords: [Glucose] = [] {
+        didSet { glucoseDays = HealthRecordDay.group(glucoseRecords) }
+    }
+    var carbsRecords: [Carbs] = [] {
+        didSet { carbsDays = HealthRecordDay.group(carbsRecords) }
+    }
     
     var weightRecords: [Weight] = [] {
-        didSet { updateLatestWeight() }
+        didSet {
+            weightDays = HealthRecordDay.group(weightRecords)
+            updateLatestWeight()
+        }
     }
     
     var bmiRecords: [BMI] = [] {
-        didSet { updateLatestBMI() }
+        didSet {
+            bmiDays = HealthRecordDay.group(bmiRecords)
+            updateLatestBMI()
+        }
     }
     
+    var glucoseDays: [HealthRecordDay<Glucose>] = []
+    var insulinDays: [HealthRecordDay<Insulin>] = []
+    var carbsDays: [HealthRecordDay<Carbs>] = []
+    var weightDays: [HealthRecordDay<Weight>] = []
+    var bmiDays: [HealthRecordDay<BMI>] = []
+
     var savedWeight: LatestHealthMeasurement?
     var savedBMI: LatestHealthMeasurement?
     
@@ -30,13 +48,13 @@ final class HealthKit {
     var energyErrors: [EnergyKind: String] = [:]
     
     let recordCache = HealthRecordCache()
-    var cacheRestoreTask: Task<Void, Never>?
-    var restoredCache = false
+    var isReady = false
     var cachedTypes: Set<String> = []
-    var cachedSamples: [String: [HKQuantitySample]] = [:]
     var isReloading = false
     var recordRefreshTasks: [String: Task<Void, Error>] = [:]
     var fullHistoryRefreshes: Set<String> = []
+    var recordAnchors: [String: HKQueryAnchor] = [:]
+    var refreshStates: [String: HealthRefreshState] = [:]
     
     var store: HKHealthStore?
     var glucoseUnit = HKUnit(from: "mg/dl") /// mmol/L unavailible
@@ -92,35 +110,18 @@ final class HealthKit {
         guard !isReloading else { return }
         isReloading = true
         defer { isReloading = false }
-        await restoreCachedRecords()
-        let glucoseLoaded = (try? await reloadGlucoseRecords()) != nil
-        let insulinLoaded = (try? await reloadInsulinRecords()) != nil
-        let carbsLoaded = (try? await reloadCarbsRecords()) != nil
-        let weightLoaded = (try? await reloadWeightRecords()) != nil
-        let bmiLoaded = (try? await reloadBMIRecords()) != nil
-        var loadedEnergy: [EnergyKind] = []
-        
-        for kind in EnergyKind.allCases {
-            do {
-                try await reloadEnergyRecords(for: kind)
-                loadedEnergy.append(kind)
-            } catch {
-                energyErrors[kind] = error.localizedDescription
-            }
-        }
-        
-        // Recent results are already visible while the complete history refresh runs
-        if glucoseLoaded { _ = try? await reloadGlucoseRecords(fullHistory: true) }
-        if insulinLoaded { _ = try? await reloadInsulinRecords(fullHistory: true) }
-        if carbsLoaded { _ = try? await reloadCarbsRecords(fullHistory: true) }
-        if weightLoaded { _ = try? await reloadWeightRecords(fullHistory: true) }
-        if bmiLoaded { _ = try? await reloadBMIRecords(fullHistory: true) }
-        for kind in loadedEnergy {
-            do {
-                try await reloadEnergyRecords(for: kind, fullHistory: true)
-            } catch {
-                energyErrors[kind] = error.localizedDescription
-            }
-        }
+        async let glucose: Void = refreshRecentGlucose()
+        async let insulin: Void = refreshRecentInsulin()
+        async let carbs: Void = refreshRecentCarbs()
+        async let weight: Void = refreshRecentWeight()
+        async let bmi: Void = refreshRecentBMI()
+        async let energy: Void = refreshCalories()
+        _ = await (glucose, insulin, carbs, weight, bmi, energy)
     }
+
+    private func refreshRecentGlucose() async { _ = try? await reloadGlucoseRecords() }
+    private func refreshRecentInsulin() async { _ = try? await reloadInsulinRecords() }
+    private func refreshRecentCarbs() async { _ = try? await reloadCarbsRecords() }
+    private func refreshRecentWeight() async { _ = try? await reloadWeightRecords(fullHistory: true) }
+    private func refreshRecentBMI() async { _ = try? await reloadBMIRecords(fullHistory: true) }
 }

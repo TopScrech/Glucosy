@@ -31,7 +31,7 @@ struct NovoPenScanToastView: View {
             .gesture(
                 DragGesture()
                     .onEnded {
-                        if $0.translation.height > 30 {
+                        if $0.translation.height < -30 {
                             dismiss()
                         }
                     }
@@ -60,7 +60,7 @@ struct NovoPenScanToastView: View {
             .gesture(
                 DragGesture()
                     .onEnded {
-                        if $0.translation.height > 30 {
+                        if $0.translation.height < -30 {
                             dismiss()
                         }
                     }

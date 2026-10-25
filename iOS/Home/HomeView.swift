@@ -2,7 +2,7 @@ import ScrechKit
 import SwiftData
 import OSLog
 
-#if canImport(LGAlert)
+#if canImport(LGAlert) && os(visionOS)
 import LGAlert
 #endif
 
@@ -350,6 +350,7 @@ struct HomeView: View {
             showToast(.init(
                 title: novoPenScanToastTitle(missingDoseCount: missingDoseCount),
                 duration: 5,
+                placement: .top,
                 symbol: "wave.3.right",
                 actionTitle: missingDoseCount > 0 ? String(localized: "View All") : nil
             ) {

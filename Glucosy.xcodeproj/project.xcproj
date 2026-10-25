@@ -55,7 +55,7 @@
       "kind": "remote",
       "repository": "https://github.com/TopScrech/Liquid-Glass-Alert",
       "version": {
-        "up-to-next-major-version": "1.0.0",
+        "up-to-next-major-version": "1.1.0",
       },
     },
   ],

@@ -102,7 +102,7 @@ struct AppContainer: View {
         .preferredColorScheme(store.appearance.scheme)
 #endif
 #if canImport(CoreNFC)
-        .overlay(alignment: .bottom) {
+        .overlay(alignment: .top) {
             if let novoPenScanToast {
                 NovoPenScanToastView(
                     title: novoPenScanToast.title,
@@ -114,8 +114,8 @@ struct AppContainer: View {
                     dismiss: dismissNovoPenScanToast
                 )
                 .padding(.horizontal)
-                .padding(.bottom)
-                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .padding(.top)
+                .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
         .environment(\.showNovoPenScanToast, showNovoPenScanToast)

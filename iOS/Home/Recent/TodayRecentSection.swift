@@ -36,7 +36,7 @@ struct TodayRecentSection: View {
     }
     
     private var recentCutoff: Date {
-        Date.now.addingTimeInterval(-15 * 60)
+        Date.now.addingTimeInterval(-30 * 60)
     }
     
     private var recentGlucoseRecords: [Glucose] {

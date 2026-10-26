@@ -20,9 +20,13 @@ struct TodayRecentRow: View {
                     .title3(.semibold, design: .rounded)
                 
                 if let date {
-                    Text(date, format: .dateTime.hour().minute())
-                        .caption()
-                        .secondary()
+                    TimelineView(.periodic(from: date, by: 60)) { context in
+                        let minutesAgo = max(0, Int(context.date.timeIntervalSince(date) / 60))
+
+                        Text("\(minutesAgo) min ago")
+                            .caption()
+                            .secondary()
+                    }
                 } else {
                     Text("No entries yet")
                         .caption()

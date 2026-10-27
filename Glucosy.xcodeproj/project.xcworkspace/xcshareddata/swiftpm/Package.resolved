@@ -1,5 +1,5 @@
 {
-  "originHash" : "04e05467a073d9b44ed330f2c810d1f27cc6acc91d1d382eb7d6f8a40dd4bb63",
+  "originHash" : "c8b84add7869d709ed08aabc0788ecdfb5e0e86d48be51019dd63d030c0fe3cb",
   "pins" : [
     {
       "identity" : "appearance",
@@ -62,6 +62,15 @@
       "state" : {
         "revision" : "0c0290ff6b24942dadb83a929ffaaa1481df04a2",
         "version" : "1.1.1"
+      }
+    },
+    {
+      "identity" : "swift-update",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TopScrech/swift-update.git",
+      "state" : {
+        "revision" : "76b1cceb552c2e1074049d9762d81c98e7e10398",
+        "version" : "1.1.0"
       }
     },
     {

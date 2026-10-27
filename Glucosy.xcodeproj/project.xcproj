@@ -23,6 +23,13 @@
   "packages": [
     {
       "kind": "remote",
+      "repository": "https://github.com/TopScrech/swift-update.git",
+      "version": {
+        "up-to-next-major-version": "1.1.0",
+      },
+    },
+    {
+      "kind": "remote",
       "repository": "https://github.com/SimplyDanny/SwiftLintPlugins",
       "version": {
         "up-to-next-major-version": "0.65.1",
@@ -251,6 +258,7 @@
       "kind": "group",
       "name": "Products",
       "children": [
+        { "path": "<PRODUCTS>/Package Update Tools.bundle", "id": "0753BADEF9C3FE61AC98B1A2", "type": "wrapper.cfbundle", "index": false },
         { "path": "<PRODUCTS>/iOS.app", "id": "F32B207A2CD5823B00925351", "type": "wrapper.application", "index": false },
         { "path": "<PRODUCTS>/watchOS.app", "id": "F3F8ED8D2D2EA2FD004A2638", "type": "wrapper.application", "index": false, "target-membership": [ { "build-phase": "iOS/copy/Embed Watch Content", "header-preservation": "remove-on-copy" } ] },
         { "path": "<PRODUCTS>/Widgets.appex", "id": "F32A1DDA2D2EEBD5008AEB2F", "type": "wrapper.app-extension", "index": false, "target-membership": [ { "build-phase": "iOS/copy/Embed Foundation Extensions", "header-preservation": "remove-on-copy" } ] },
@@ -260,16 +268,37 @@
   ],
   "targets": [
     {
+      "name": "Package Update Tools",
+      "id": "4311CDD01240475A16B837DD",
+      "product": "id:0753BADEF9C3FE61AC98B1A2",
+      "product-type": "bundle",
+      "dependencies": [
+        { "kind": "package", "package": "swift-update", "product-name": "swift-update" },
+      ],
+      "build-phases": [],
+      "build-settings": {
+        "SDKROOT": "macosx",
+        "SUPPORTED_PLATFORMS": "macosx",
+        "MACOSX_DEPLOYMENT_TARGET": "13.0",
+        "CODE_SIGNING_ALLOWED": "NO",
+        "GENERATE_INFOPLIST_FILE": "YES",
+        "PRODUCT_BUNDLE_IDENTIFIER": "dev.topscrech.PackageUpdateTools",
+        "PRODUCT_NAME": "Package Update Tools",
+        "SKIP_INSTALL": "YES",
+      },
+    },
+    {
       "name": "Check Package Updates",
       "id": "5040B75559454415B4508EB6",
       "kind": "aggregate",
+      "dependencies": [ "Package Update Tools" ],
       "build-phases": [
         {
           "kind": "script",
           "name": "Check Package Updates",
           "run-on-every-build": true,
           "shell": "/bin/sh",
-          "script": "/usr/bin/python3 \"$SRCROOT/Scripts/check-package-updates.py\""
+          "script": "\"$BUILT_PRODUCTS_DIR/swift-update\" --xcode --path \"$PROJECT_FILE_PATH\" || true"
         }
       ],
       "build-settings": {

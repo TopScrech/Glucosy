@@ -16,10 +16,12 @@ struct InsulinRecordList: View {
             }
             
             ForEach(vm.insulinDays) { day in
-                Section(Utils.formattedDate(day.date)) {
+                Section {
                     ForEach(day.records) {
                         InsulinRecordCard($0)
                     }
+                } header: {
+                    InsulinSectionHeaderView(day: day)
                 }
             }
         }

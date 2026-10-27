@@ -10,15 +10,19 @@ struct InsulinSectionHeaderView: View {
             Spacer()
 
             ForEach(InsulinType.allCases) { type in
-                HStack(spacing: 2) {
-                    Text(day.total(for: type), format: .number)
-                        .monospacedDigit()
+                let total = day.total(for: type)
 
-                    Image(systemName: type == .bolus ? "syringe" : "syringe.fill")
-                        .foregroundStyle(type == .bolus ? .yellow : .purple)
+                if total > 0 {
+                    HStack(spacing: 2) {
+                        Text(total, format: .number)
+                            .monospacedDigit()
+
+                        Image(systemName: type == .bolus ? "syringe" : "syringe.fill")
+                            .foregroundStyle(type == .bolus ? .yellow : .purple)
+                    }
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityLabel("\(type.title): \(total.formatted()) U")
                 }
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel("\(type.title): \(day.total(for: type).formatted()) U")
             }
         }
     }

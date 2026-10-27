@@ -23,6 +23,13 @@
   "packages": [
     {
       "kind": "remote",
+      "repository": "https://github.com/SimplyDanny/SwiftLintPlugins",
+      "version": {
+        "up-to-next-major-version": "0.65.1",
+      },
+    },
+    {
+      "kind": "remote",
       "repository": "https://github.com/TopScrech/Chit-Chat",
       "version": {
         "up-to-next-major-version": "1.0.0",
@@ -60,6 +67,7 @@
     },
   ],
   "files": [
+    { "path": ".swiftlint.yml" },
     { "path": "README.md" },
     { "path": "AGENTS.md" },
     {
@@ -257,6 +265,7 @@
       "product": "Products/iOS.app",
       "product-type": "application",
       "dependencies": [
+        { "kind": "package", "package": "SwiftLintPlugins", "product-name": "SwiftLintBuildToolPlugin", "product-type": "build-tool-plugin" },
         "watchOS",
         "Widgets",
       ],
@@ -359,6 +368,9 @@
       "id": "F3F8ED8C2D2EA2FD004A2638",
       "product": "Products/watchOS.app",
       "product-type": "application",
+      "dependencies": [
+        { "kind": "package", "package": "SwiftLintPlugins", "product-name": "SwiftLintBuildToolPlugin", "product-type": "build-tool-plugin" },
+      ],
       "build-phases": [
         "compile-sources",
         "frameworks",
@@ -406,6 +418,9 @@
       "id": "F32A1DD92D2EEBD5008AEB2F",
       "product": "Products/Widgets.appex",
       "product-type": "app-extension",
+      "dependencies": [
+        { "kind": "package", "package": "SwiftLintPlugins", "product-name": "SwiftLintBuildToolPlugin", "product-type": "build-tool-plugin" },
+      ],
       "build-phases": [
         "compile-sources",
         "frameworks",
@@ -454,6 +469,9 @@
       "id": "F3C712802F82B566008A7E17",
       "product": "Products/visionOS.app",
       "product-type": "application",
+      "dependencies": [
+        { "kind": "package", "package": "SwiftLintPlugins", "product-name": "SwiftLintBuildToolPlugin", "product-type": "build-tool-plugin" },
+      ],
       "build-phases": [
         "compile-sources",
         "frameworks",

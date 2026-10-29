@@ -131,7 +131,12 @@ struct HomeView: View {
             }
         }
         .alert("NovoPen Scan Failed", isPresented: $showsNovoPenScanError) {
-            Button("OK") {
+            Button("Try Again") {
+                novoPenScanErrorMessage = nil
+                startNovoPenScan(receivesFullHistory: novoPenReader.readerOptions.receivesFullHistory)
+            }
+
+            Button("OK", role: .cancel) {
                 novoPenScanErrorMessage = nil
             }
         } message: {
